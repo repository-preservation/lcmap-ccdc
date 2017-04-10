@@ -1,2 +1,2 @@
-# lcmap-gen
-Product generation tier for LCMAP
+# lcmap-firebird
+Apache Spark based product generation for LCMAP
