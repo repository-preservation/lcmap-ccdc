@@ -29,5 +29,5 @@ TODO
 ## Implementation Wants
 * Leverage [hylang](http://docs.hylang.org/en/latest/)
 * Utilize xarray for input handling
-* All code should be written according to Functional principles... immutability, purity, substitution, statelessness.
+* All code should be written according to functional principles... immutability, purity, substitution, statelessness.
 
