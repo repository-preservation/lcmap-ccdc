@@ -14,10 +14,11 @@ Apache Spark based product generation for LCMAP.
 
 * Install Docker
 
-* Install Conda
+* Install Conda (works with miniconda3 version 4.3.16)
 
 * Create and activate a conda environment, install hylang (not yet available in conda-forge or pypi).
 ```bash
+   $ conda config --add channels conda-forge 
    $ conda create --name firebird --file environment.txt
    $ source activate firebird
    $ pip install git+https://github.com/hylang/hy.git .
