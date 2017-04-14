@@ -4,7 +4,6 @@ Apache Spark based product generation for LCMAP.
 ## Planned Features
 * Run and retrieve results and job status for all LCMAP products from the command line.
 * Run jobs synchronously or asynchronously.
-* Listen for model generation requests via AMQP.
 * Retrieve model inputs from LCMAP HTTP services or local files, determine availability, generate status reports.
 * Save science model outputs to Apache Cassandra, local files, or stdout.
 * Connect to remote, local or embedded Spark clusters.
@@ -28,7 +27,4 @@ Apache Spark based product generation for LCMAP.
 TODO
 
 ## Implementation Wants
-* Leverage [hylang](http://docs.hylang.org/en/latest/)
-* Utilize xarray for input handling
 * All code should be written according to functional principles... immutability, purity, substitution, statelessness.
-
