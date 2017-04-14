@@ -1,6 +1,9 @@
+import os
+
 CASSANDRA_CONTACT_POINTS = os.getenv('CASSANDRA_CONTACT_POINTS', '0.0.0.0')
-CASSANDRA_USER = os.getenv('CASSANDRA_USER')
-CASSANDRA_PASS   = os.getenv('CASSANDRA_PASS')
+CASSANDRA_USER           = os.getenv('CASSANDRA_USER')
+CASSANDRA_PASS           = os.getenv('CASSANDRA_PASS')
+CASSANDRA_KEYSPACE       = os.getenv('CASSANDRA_KEYSPACE', 'lcmap_local')
 
 LOG_LEVEL = ''
 
