@@ -17,14 +17,13 @@ Apache Spark based product generation for LCMAP.
 
 * Create and activate a conda environment, install hylang (not yet available in conda-forge or pypi).
 ```bash
-   $ conda config --add channels conda-forge 
+   $ conda config --add channels conda-forge
    $ conda create --name firebird --file environment.txt
    $ source activate firebird
-   $ pip install git+https://github.com/hylang/hy.git .
 ```
 
 ## Usage
 TODO
 
 ## Implementation Wants
-* All code should be written according to functional principles... immutability, purity, substitution, statelessness.
+* Code should be written according to functional principles wherever possible... immutability, purity, substitution, statelessness.
