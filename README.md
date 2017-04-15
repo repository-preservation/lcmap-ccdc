@@ -22,6 +22,13 @@ Apache Spark based product generation for LCMAP.
    $ source activate firebird
 ```
 
+## Testing
+```bash
+ make docker-deps-up
+ nose2
+ make docker-deps-down
+```
+
 ## Usage
 Configuration via environment variables
 
@@ -46,7 +53,6 @@ Configuration via environment variables
 ```
 
 ## Implementation Wants
-* Leverage [hylang](http://docs.hylang.org/en/latest/)
 * Utilize xarray for input handling
 * All code should be written according to functional principles... immutability, purity, substitution, statelessness.
 
