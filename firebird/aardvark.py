@@ -9,14 +9,14 @@ def pyccd_tile_spec_queries(url):
         url: full url for tile-spec endpoint
              http://localhost:9200/landsat/tile-specs
     """
-    return {"red"     : ''.join([url, '?q=tags:red AND sr']),
-            "green"   : ''.join([url, '?q=tags:green AND sr']),
-            "blue"    : ''.join([url, '?q=tags:blue AND sr']),
-            "nir"     : ''.join([url, '?q=tags:nir AND sr']),
-            "swir1"   : ''.join([url, '?q=tags:swir1 AND sr']),
-            "swir2"   : ''.join([url, '?q=tags:swir2 AND sr']),
-            "thermal" : ''.join([url, '?q=tags:thermal AND toa']),
-            "cfmask"  : ''.join([url, '?q=tags:cfmask AND sr'])}
+    return {"red": ''.join([url, '?q=tags:red AND sr']),
+            "green": ''.join([url, '?q=tags:green AND sr']),
+            "blue": ''.join([url, '?q=tags:blue AND sr']),
+            "nir": ''.join([url, '?q=tags:nir AND sr']),
+            "swir1": ''.join([url, '?q=tags:swir1 AND sr']),
+            "swir2": ''.join([url, '?q=tags:swir2 AND sr']),
+            "thermal": ''.join([url, '?q=tags:thermal AND toa']),
+            "cfmask": ''.join([url, '?q=tags:cfmask AND sr'])}
 
 
 def chip_specs(query):
@@ -68,13 +68,3 @@ def data(url, x, y, acquired, ubids):
                                      'y': y,
                                      'acquired': acquired,
                                      'ubids': ubids}).json()
-
-#;(defn pyccd-inputs
-#  ;[polygon start_date end_date]
-#  ;None)
-
-
-#;def chip_ids(bbox, tile_spec):
-#;    """ Returns all the chip ids (tile_x, tile_y points) needed to
-#;        cover the bbox """
-#;    pass
