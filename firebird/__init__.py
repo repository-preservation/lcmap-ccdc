@@ -13,6 +13,15 @@ AARDVARK_HOST = os.getenv('AARDVARK_HOST', 'localhost')
 AARDVARK_PORT = os.getenv('AARDVARK_PORT', '5678')
 AARDVARK_TILESPECS = os.getenv('AARDVARK_TILESPECS', '/landsat/tile-specs')
 
+LCMAP_PRODUCT_DICT = {
+    "CCD": "Continuous Change Detection",
+    "LOS": "Length of Segment",
+    "QA" : "Quality Assurance",
+    "MOC": "Magnitude of Change",
+    "TSC": "Time Since Change",
+    "LTC": "Location and Timing of Change"
+}
+
 
 def minbox(points):
     """ Returns the minimal bounding box necessary to contain points """

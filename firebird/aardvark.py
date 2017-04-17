@@ -1,6 +1,7 @@
 import json
 import requests
 
+
 def pyccd_tile_spec_queries(url):
     """ returns map of pyccd spectra to tile-spec queries
         params:
@@ -16,6 +17,7 @@ def pyccd_tile_spec_queries(url):
             "thermal" : ''.join([url, '?q=tags:thermal AND toa']),
             "cfmask"  : ''.join([url, '?q=tags:cfmask AND sr'])}
 
+
 def tile_specs(query):
     """ queries elasticsearch and returns tile_specs
         params:
@@ -30,6 +32,7 @@ def tile_specs(query):
     else:
         return []
 
+
 def ubids(tile_spec):
     """ return a sequence of ubids from a tile_spec
         params:
@@ -38,6 +41,7 @@ def ubids(tile_spec):
             a sequence of ubids ['ubid1', 'ubid2', 'ubid3' ...]
     """
     return tile_spec['ubid']
+
 
 def data(url, x, y, acquired, ubids):
     """ returns aardvark data for given x, y, date range and ubid sequence
@@ -61,15 +65,3 @@ def data(url, x, y, acquired, ubids):
                                      'acquired': acquired,
                                      'ubids': ubids}).json()
 
-#;(defn pyccd-inputs
-#  ;[polygon start_date end_date]
-#  ;None)
-
-#;def snap(point, tile_spec):
-#;    """ Snaps a point to a chip id (tile_x, tile_y) """
-#;    pass
-
-#;def chip_ids(bbox, tile_spec):
-#;    """ Returns all the chip ids (tile_x, tile_y points) needed to
-#;        cover the bbox """
-#;    pass

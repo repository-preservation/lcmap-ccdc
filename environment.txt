@@ -84,3 +84,4 @@ xorg-libxdmcp=1.1.2=3
 xz=5.2.2=0
 zeromq=4.2.1=1
 zlib=1.2.11=0
+lcmap-pyccd=1.3.1=0
