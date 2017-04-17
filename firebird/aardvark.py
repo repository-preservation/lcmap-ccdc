@@ -19,14 +19,14 @@ def pyccd_tile_spec_queries(url):
             "cfmask"  : ''.join([url, '?q=tags:cfmask AND sr'])}
 
 
-def tile_specs(query):
+def chip_specs(query):
     """
-    Queries elasticsearch and returns tile_specs
+    Queries elasticsearch and returns chip_specs
     Args:
         query: full url query for elasticsearch
                http://localhost:9200/landsat/tile-specs?q=tags:red AND sr
     Returns:
-        ['tile_spec_1', 'tile_spec_2', ...]
+        ['chip_spec_1', 'chip_spec_2', ...]
     """
     js = requests.get(query).json()
     if 'hits' in js and 'hits' in js['hits']:

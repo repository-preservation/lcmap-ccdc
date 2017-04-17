@@ -82,6 +82,10 @@ def point_to_chip(x, y, x_interval, y_interval, x_offset, y_offset):
         y_interval:
         x_offset:
         y_offset:
+
+    Returns:
+        A tuple containing x, y where x and y are the identifying coordinates
+        of a chip.
     """
     return (near(x, x_interval, x_offset),
             near(y, y_interval, y_offset))
@@ -104,4 +108,34 @@ def snap(x, y, chip_spec):
   chip_y  = chip_spec['chip_y']
   shift_x = chip_spec['shift_x']
   shift_y = chip_spec['shift_y']
-  return point_to_chip(x, y, chip_x, chip_y, shift_x, shift_y)
+  chip    = point_to_chip(x, y, chip_x, chip_y, shift_x, shift_y)
+  return (long(chip[0]), long(chip[1]))
+
+
+def ids(ulx, uly, lrx, lry, chip_spec):
+    """
+    Returns all the chip ids that are needed to cover a supplied bounding box.
+
+    Args:
+        ulx: upper left x coordinate
+        uly: upper left y coordinate
+        lrx: lower right x coordinate
+        lry: lower right y coordinate
+
+    Returns:
+       Tuple of tuples containing chip ids
+
+    Example:
+       # assumes chip sizes of 500 pixels
+       >>> chip_ids = ids(-1000, 1000, -500, 500, chip_spec)
+       ((-1000, 500), (-500, 500), (-1000, -500), (-500, -500))
+    """
+    chip_x = chip_spec['chip_x']   # e.g. 3000 meters, width of chip
+    chip_y = chip_spec['chip_y']   # e.g. -3000 meters, height of chip
+
+    start_x, start_y = snap(ulx, uly, chip_spec)
+    end_x,   end_y   = snap(lrx, lry, chip_spec)
+
+    for x in range(start_x, end_x + chip_x, chip_x):
+        for y in range(start_y, end_y + chip_y, chip_y):
+            yield (x, y)
