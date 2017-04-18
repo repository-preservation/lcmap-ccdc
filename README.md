@@ -25,5 +25,9 @@ Apache Spark based product generation for LCMAP.
 ## Usage
 TODO
 
+## Testing
+
+```$ pytest```
+
 ## Implementation Wants
 * Code should be written according to functional principles wherever possible... immutability, purity, substitution, statelessness.
