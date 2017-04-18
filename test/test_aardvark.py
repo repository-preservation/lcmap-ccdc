@@ -12,3 +12,9 @@ def test_pyccd_tile_spec_queries(url):
         assert url.netloc
     queries = pyccd_tile_spec_queries(url)
     [check(query) for query in queries.values()]
+
+
+def test_ubids():
+    data = ({'ubid': 'a/b/c'}, {'ubid': 'd/e/f'}, {'ubid': 'g'}, {'noubid': 'z'})
+    good = filter(lambda f: 'ubid' in f, data)
+    assert set(map(lambda u: u['ubid'], good)) == set(ubids(data))
