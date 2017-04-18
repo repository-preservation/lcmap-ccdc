@@ -9,14 +9,14 @@ def pyccd_tile_spec_queries(url):
         url: full url for tile-spec endpoint
              http://localhost:9200/landsat/tile-specs
     """
-    return {"red": ''.join([url, '?q=tags:red AND sr']),
-            "green": ''.join([url, '?q=tags:green AND sr']),
-            "blue": ''.join([url, '?q=tags:blue AND sr']),
-            "nir": ''.join([url, '?q=tags:nir AND sr']),
-            "swir1": ''.join([url, '?q=tags:swir1 AND sr']),
-            "swir2": ''.join([url, '?q=tags:swir2 AND sr']),
+    return {"red":     ''.join([url, '?q=tags:red AND sr']),
+            "green":   ''.join([url, '?q=tags:green AND sr']),
+            "blue":    ''.join([url, '?q=tags:blue AND sr']),
+            "nir":     ''.join([url, '?q=tags:nir AND sr']),
+            "swir1":   ''.join([url, '?q=tags:swir1 AND sr']),
+            "swir2":   ''.join([url, '?q=tags:swir2 AND sr']),
             "thermal": ''.join([url, '?q=tags:thermal AND toa']),
-            "cfmask": ''.join([url, '?q=tags:cfmask AND sr'])}
+            "cfmask":  ''.join([url, '?q=tags:cfmask AND sr'])}
 
 
 def chip_specs(query):
@@ -35,15 +35,15 @@ def chip_specs(query):
         return []
 
 
-def ubids(tile_specs):
+def ubids(chip_specs):
     """
-    Extract ubids from a sequence of tile_specs
+    Extract ubids from a sequence of chip_specs
     Args:
-        tile_specs: a sequence of tile_spec dicts
+        chip_specs: a sequence of chip_spec dicts
     Returns:
         a sequence of ubids
     """
-    return [ts['ubid'] for ts in tile_specs if 'ubid' in ts]
+    return [cs['ubid'] for cs in chip_specs if 'ubid' in cs]
 
 
 def data(url, x, y, acquired, ubids):
@@ -68,3 +68,16 @@ def data(url, x, y, acquired, ubids):
                                      'y': y,
                                      'acquired': acquired,
                                      'ubids': ubids}).json()
+
+def rodify(chip_idx, chip_idy, chip_spec, chips):
+    """
+    Accepts a sequence of chips plus location information and returns
+    sequences organized by x,y for all chips.
+
+    Args:
+        chip_idx:  The x coordinate for the chip id
+        chip_idy:  The y coordinate for the chip id
+        chip_spec: The chip spec for the chip array
+        chips:     Sequence of
+    """
+    pass
