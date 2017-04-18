@@ -69,15 +69,40 @@ def data(url, x, y, acquired, ubids):
                                      'acquired': acquired,
                                      'ubids': ubids}).json()
 
-def rodify(chip_idx, chip_idy, chip_spec, chips):
+
+def sort(chips):
+    """
+    Sorts all the returned chips by date.
+
+    Args:
+        chips: sequence of chips
+
+    Returns:
+        sorted sequence of chips
+    """
+    pass
+
+
+def split(chip_idx, chip_idy, chip_spec, chips):
     """
     Accepts a sequence of chips plus location information and returns
-    sequences organized by x,y for all chips.
+    sequences of pixels organized by x,y,t for all chips.
 
     Args:
         chip_idx:  The x coordinate for the chip id
         chip_idy:  The y coordinate for the chip id
         chip_spec: The chip spec for the chip array
-        chips:     Sequence of
+        chips:     Sequence of chips
+
+    Returns:
+        sequence of (x, y, t sequence, pixel data sequence) for each x,y
+    """
+    pass
+
+
+def merge():
+    """
+    Combines multiple spectral sequences into a single multi-dimensional
+    sequence, ready for pyccd execution.
     """
     pass
