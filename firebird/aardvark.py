@@ -29,8 +29,8 @@ def chip_specs(query):
         ['chip_spec_1', 'chip_spec_2', ...]
     """
     js = requests.get(query).json()
-    if 'hits' in js and 'hits' in js['hits']:
-        return [hit['_source'] for hit in js['hits']['hits']]
+    if js:
+        return [i for i in js if 'ubid' in i]
     else:
         return []
 

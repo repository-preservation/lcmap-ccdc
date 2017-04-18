@@ -26,7 +26,7 @@ def difference(point, interval):
     Returns:
         The difference between a point and prior point on an interval.
     """
-   return point % interval
+    return point % interval
 
 
 def near(point, interval, offset):
@@ -107,12 +107,12 @@ def snap(x, y, chip_spec):
     Returns:
         Tuple of chip x & y
   """
-  chip_x  = chip_spec['chip_x']
-  chip_y  = chip_spec['chip_y']
-  shift_x = chip_spec['shift_x']
-  shift_y = chip_spec['shift_y']
-  chip    = point_to_chip(x, y, chip_x, chip_y, shift_x, shift_y)
-  return (long(chip[0]), long(chip[1]))
+    chip_x  = chip_spec['chip_x']
+    chip_y  = chip_spec['chip_y']
+    shift_x = chip_spec['shift_x']
+    shift_y = chip_spec['shift_y']
+    chip    = point_to_chip(x, y, chip_x, chip_y, shift_x, shift_y)
+    return (long(chip[0]), long(chip[1]))
 
 
 def ids(ulx, uly, lrx, lry, chip_spec):

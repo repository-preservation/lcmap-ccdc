@@ -2,11 +2,12 @@ import os
 
 AARDVARK_HOST = os.getenv('AARDVARK_HOST', 'localhost')
 AARDVARK_PORT = os.getenv('AARDVARK_PORT', '5678')
-AARDVARK_CHIP_SPECS = os.getenv('AARDVARK_CHIP_SPECS', '/landsat/chip-specs')
+AARDVARK_SPECS = os.getenv('AARDVARK_SPECS', '/landsat/chip-specs')
+AARDVARK_SPECS_URL = ''.join([AARDVARK_HOST, ':', AARDVARK_PORT, AARDVARK_SPECS])
 
 CASSANDRA_CONTACT_POINTS = os.getenv('CASSANDRA_CONTACT_POINTS', '0.0.0.0')
-CASSANDRA_USER = os.getenv('CASSANDRA_USER')
-CASSANDRA_PASS = os.getenv('CASSANDRA_PASS')
+CASSANDRA_USER           = os.getenv('CASSANDRA_USER')
+CASSANDRA_PASS           = os.getenv('CASSANDRA_PASS')
 CASSANDRA_KEYSPACE       = os.getenv('CASSANDRA_KEYSPACE', 'lcmap_changes_local')
 
 LOG_LEVEL = ''
