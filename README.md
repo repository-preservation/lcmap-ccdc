@@ -17,7 +17,7 @@ Apache Spark based product generation for LCMAP.
 
 * Create and activate a conda environment
 ```bash
-   $ conda config --add channels conda-forge 
+   $ conda config --add channels conda-forge
    $ conda create --name firebird --file environment.txt
    $ source activate firebird
 ```
@@ -55,4 +55,4 @@ Configuration via environment variables
 ## Implementation Wants
 * Utilize xarray for input handling
 * All code should be written according to functional principles... immutability, purity, substitution, statelessness.
-
+* Code should be written according to functional principles wherever possible... immutability, purity, substitution, statelessness.
