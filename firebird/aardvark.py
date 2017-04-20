@@ -69,3 +69,14 @@ def data(url, x, y, acquired, ubids):
                                      'acquired': acquired,
                                      'ubids': ubids}).json()
 
+
+def spicey_meatball(coords, acquired, band, url):
+    pass
+
+
+def spicey_meatball_dates(indata):
+    pass
+
+
+
+

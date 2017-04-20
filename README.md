@@ -39,6 +39,9 @@ Configuration via environment variables
 | CASSANDRA_PASS | | DB password |
 | CASSANDRA_KEYSPACE | 'lcmap_local' | DB keyspace |
 | SPARK_MASTER | 'spark://localhost:7077' | Spark host |
+| SPARK_EXECUTOR_IMAGE | | Docker Image for Spark Executor |
+| SPARK_EXECUTOR_CORES | | Cores allocated per Spark Executor |
+| SPARK_EXECUTOR_FORCE_PULL | 'false' | Force fresh pull of Docker Image |
 | AARDVARK_HOST | 'localhost' | Aardvark host |
 | AARDVARK_PORT | '5678' | Aardvark port |
 | AARDVARK_TILESPECS | '/landsat/tile-specs' | Tile-specs url |
