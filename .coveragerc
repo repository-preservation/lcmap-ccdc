@@ -1,18 +1,7 @@
 [run]
 branch  = True
-source  = api
-omit    = api/providers/storage*
-          api/interfaces/admin/migrations*
-          api/providers/configuration*
-          api/providers/metrics*
-          api/providers/ordering/__init__.py
-          api/transports/http_testing.py
-          api/providers/validation/validation_provider.py
-          api/providers/validation/validation_schema.py
-          api/providers/caching/__init__.py
-          *mocks/*
-          venv*
-          lib/*
+source  = firebird
+omit    = lib/*
           bin/*
           lib64/*
           include/*
