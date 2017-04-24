@@ -1,0 +1,1944 @@
+({:id "LC80300282013104-SC20170131150623",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013104-SC20170131150623.tar.gz",
+  :checksum "3812e4da8e6c63c3a5defc9018e6122c"}
+ {:id "LC80300282013120-SC20170131153114",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013120-SC20170131153114.tar.gz",
+  :checksum "cdc38ee66e6b55899bede9453387411f"}
+ {:id "LC80300282013136-SC20170131150758",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013136-SC20170131150758.tar.gz",
+  :checksum "2e88d9fbc97a9786b736f60891b9bcc2"}
+ {:id "LC80300282013152-SC20170131152508",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013152-SC20170131152508.tar.gz",
+  :checksum "a0ec3ea94263189d45487ea1105bb75c"}
+ {:id "LC80300282013168-SC20170131154518",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013168-SC20170131154518.tar.gz",
+  :checksum "7e8631879e670a0e981a9c41e666f6b1"}
+ {:id "LC80300282013184-SC20170131155410",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013184-SC20170131155410.tar.gz",
+  :checksum "73bad5c99635b2e2c6463eff7f6a8dbb"}
+ {:id "LC80300282013200-SC20170131161217",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013200-SC20170131161217.tar.gz",
+  :checksum "8e4f83b4681c0b2e83d823824977ba9e"}
+ {:id "LC80300282013216-SC20170131160816",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013216-SC20170131160816.tar.gz",
+  :checksum "05b17eb84757ea6c71b4a9b2e475b953"}
+ {:id "LC80300282013232-SC20170131161752",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013232-SC20170131161752.tar.gz",
+  :checksum "d7cc8227f365b2f4d98c3ab694eb0612"}
+ {:id "LC80300282013248-SC20170131160106",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013248-SC20170131160106.tar.gz",
+  :checksum "94560ff0a7bb70b27ecba275d6051210"}
+ {:id "LC80300282013264-SC20170131155444",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013264-SC20170131155444.tar.gz",
+  :checksum "08c7fda5f6a643acb43e0e87efceecf6"}
+ {:id "LC80300282013280-SC20170131154512",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013280-SC20170131154512.tar.gz",
+  :checksum "09710442210f000bf4a49e72309652ec"}
+ {:id "LC80300282013296-SC20170131160001",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013296-SC20170131160001.tar.gz",
+  :checksum "67ad2c9a4f2e9af4e1e0ab4e73987820"}
+ {:id "LC80300282013312-SC20170131153429",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013312-SC20170131153429.tar.gz",
+  :checksum "6399a6672ce27e75801e524947ecf024"}
+ {:id "LC80300282013328-SC20170131155313",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013328-SC20170131155313.tar.gz",
+  :checksum "c4819a38130e4a74483ee79f4edfc86a"}
+ {:id "LC80300282013344-SC20170131154115",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013344-SC20170131154115.tar.gz",
+  :checksum "f3d404f79a4bf7999fb2c856bb81cb14"}
+ {:id "LC80300282013360-SC20170131160045",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282013360-SC20170131160045.tar.gz",
+  :checksum "d0c185f992a706fa0c5f44dca722c7ea"}
+ {:id "LC80300282014011-SC20170131160611",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014011-SC20170131160611.tar.gz",
+  :checksum "7d320be7ecc921007b5ce4a28dac3acd"}
+ {:id "LC80300282014027-SC20170131153532",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014027-SC20170131153532.tar.gz",
+  :checksum "3bb802370ce1b37700a030475d51c9d8"}
+ {:id "LC80300282014043-SC20170131155954",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014043-SC20170131155954.tar.gz",
+  :checksum "89db0d545751ad23de7ae5057c7516d2"}
+ {:id "LC80300282014059-SC20170131155401",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014059-SC20170131155401.tar.gz",
+  :checksum "b1ab8ae4e253475bf35171463a796cf2"}
+ {:id "LC80300282014075-SC20170131153250",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014075-SC20170131153250.tar.gz",
+  :checksum "4af73f3a6f0568c6816089cdf22a58db"}
+ {:id "LC80300282014091-SC20170131155412",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014091-SC20170131155412.tar.gz",
+  :checksum "a3d881b8d2b90fb501e3f28b26f5cf87"}
+ {:id "LC80300282014107-SC20170131155745",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014107-SC20170131155745.tar.gz",
+  :checksum "1780fe873f2fb2404b68331f60bb79cf"}
+ {:id "LC80300282014123-SC20170131155739",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014123-SC20170131155739.tar.gz",
+  :checksum "a3fa305ed7e0ed3ace3a04428683400b"}
+ {:id "LC80300282014139-SC20170131155635",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014139-SC20170131155635.tar.gz",
+  :checksum "303eae45f76e586b993cbe21e90b6e2a"}
+ {:id "LC80300282014155-SC20170131160919",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014155-SC20170131160919.tar.gz",
+  :checksum "7f0bd336de01843e1088c90cff4f62c8"}
+ {:id "LC80300282014171-SC20170131160129",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014171-SC20170131160129.tar.gz",
+  :checksum "bbd107fe236a40ceae21bc27ac72fb83"}
+ {:id "LC80300282014187-SC20170131161825",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014187-SC20170131161825.tar.gz",
+  :checksum "08123e679c65a1a0287835cb9eed73b0"}
+ {:id "LC80300282014203-SC20170131160924",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014203-SC20170131160924.tar.gz",
+  :checksum "505880d4d3782aad0cded2cd79285a95"}
+ {:id "LC80300282014219-SC20170131155429",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014219-SC20170131155429.tar.gz",
+  :checksum "8da884ae6518a07fc978305c64951b77"}
+ {:id "LC80300282014235-SC20170131154014",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014235-SC20170131154014.tar.gz",
+  :checksum "ed9f2d36811389bb1313ca13911ef4d0"}
+ {:id "LC80300282014251-SC20170131161902",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014251-SC20170131161902.tar.gz",
+  :checksum "253d2a39f938d3e557e4236732b50ee1"}
+ {:id "LC80300282014267-SC20170131160525",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014267-SC20170131160525.tar.gz",
+  :checksum "62d0101a0a751be4240f819831061e1b"}
+ {:id "LC80300282014283-SC20170131160624",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014283-SC20170131160624.tar.gz",
+  :checksum "265468c4670bfa8ea9b01b44e2ea67d8"}
+ {:id "LC80300282014299-SC20170131160032",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014299-SC20170131160032.tar.gz",
+  :checksum "6e04107db435585bd04f1089fb14f807"}
+ {:id "LC80300282014315-SC20170131153537",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014315-SC20170131153537.tar.gz",
+  :checksum "88adedeb8b25fd900f4bb12cc4ac48cc"}
+ {:id "LC80300282014331-SC20170131160734",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014331-SC20170131160734.tar.gz",
+  :checksum "6f455c5186d706e423e67863d766e663"}
+ {:id "LC80300282014347-SC20170131155456",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014347-SC20170131155456.tar.gz",
+  :checksum "26771c1282f4c3fdfbb51f03fd7645ed"}
+ {:id "LC80300282014363-SC20170131154955",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282014363-SC20170131154955.tar.gz",
+  :checksum "eb236c08a9a4c609aabbd568190ed91e"}
+ {:id "LC80300282015014-SC20170131154909",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015014-SC20170131154909.tar.gz",
+  :checksum "dde1c1eb0d8f4963cb9d5be89e2ef3df"}
+ {:id "LC80300282015030-SC20170131160128",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015030-SC20170131160128.tar.gz",
+  :checksum "40b3a26ba5e770adcd75c7f18dd3f23c"}
+ {:id "LC80300282015046-SC20170131154735",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015046-SC20170131154735.tar.gz",
+  :checksum "d2679d2cc160facbf8435e5f88f6c257"}
+ {:id "LC80300282015078-SC20170131160054",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015078-SC20170131160054.tar.gz",
+  :checksum "a59dfc9136c1053cd402d5fcaa91f3d1"}
+ {:id "LC80300282015094-SC20170131160319",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015094-SC20170131160319.tar.gz",
+  :checksum "1f4c5729c63d7a6b9eee3284962df782"}
+ {:id "LC80300282015110-SC20170131154253",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015110-SC20170131154253.tar.gz",
+  :checksum "e507565970995bf80ea133975d16d336"}
+ {:id "LC80300282015126-SC20170131153809",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015126-SC20170131153809.tar.gz",
+  :checksum "b48f894b1140b6302ebc9b1b8c676793"}
+ {:id "LC80300282015142-SC20170131160557",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015142-SC20170131160557.tar.gz",
+  :checksum "7dfe042c66d12a39f4580c297b922a20"}
+ {:id "LC80300282015158-SC20170131160726",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015158-SC20170131160726.tar.gz",
+  :checksum "7ae2a1c94c06eb27eb8a48412fe2eeca"}
+ {:id "LC80300282015174-SC20170131160633",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015174-SC20170131160633.tar.gz",
+  :checksum "5534b824b39c6fe792c275ce13af3a28"}
+ {:id "LC80300282015190-SC20170131155239",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015190-SC20170131155239.tar.gz",
+  :checksum "3e0f1c279787bdacb95ff35a631c3533"}
+ {:id "LC80300282015206-SC20170131155301",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015206-SC20170131155301.tar.gz",
+  :checksum "22c981acfc4455e9554e58f3cabfcced"}
+ {:id "LC80300282015222-SC20170131162511",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015222-SC20170131162511.tar.gz",
+  :checksum "32f9518e81f9a53405557b893d7d03e1"}
+ {:id "LC80300282015238-SC20170131161407",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015238-SC20170131161407.tar.gz",
+  :checksum "df1b6d24ddb132b13ce1d8ff5000180d"}
+ {:id "LC80300282015254-SC20170131161241",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015254-SC20170131161241.tar.gz",
+  :checksum "fe0f807055efc5761bbd54831cba8b55"}
+ {:id "LC80300282015270-SC20170131153740",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015270-SC20170131153740.tar.gz",
+  :checksum "9d32c0983b53f70cf3df0dc06b6f456e"}
+ {:id "LC80300282015286-SC20170131155757",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015286-SC20170131155757.tar.gz",
+  :checksum "292df7721d115151849358cf7583747d"}
+ {:id "LC80300282015302-SC20170131155701",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015302-SC20170131155701.tar.gz",
+  :checksum "b6affc8cc3a9a7b669358216da027099"}
+ {:id "LC80300282015318-SC20170131154449",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015318-SC20170131154449.tar.gz",
+  :checksum "bac60f4dc9516e9e5b88a90f62f742af"}
+ {:id "LC80300282015334-SC20170131154221",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015334-SC20170131154221.tar.gz",
+  :checksum "1449bca4629001b64567172244c946d7"}
+ {:id "LC80300282015350-SC20170131154505",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282015350-SC20170131154505.tar.gz",
+  :checksum "fbb8530978157616f0474c39e0c53323"}
+ {:id "LC80300282016001-SC20170131160539",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016001-SC20170131160539.tar.gz",
+  :checksum "1c6a3629370e3b8137fba03b941b431c"}
+ {:id "LC80300282016017-SC20170131154345",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016017-SC20170131154345.tar.gz",
+  :checksum "495d2d57c0a608b830ab7001bc3081ca"}
+ {:id "LC80300282016033-SC20170131153931",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016033-SC20170131153931.tar.gz",
+  :checksum "2817f54ba7ba351216be5b6a57d414c2"}
+ {:id "LC80300282016049-SC20170131154048",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016049-SC20170131154048.tar.gz",
+  :checksum "b9c959e6631d0da6aeae53a3c02e7655"}
+ {:id "LC80300282016065-SC20170131160612",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016065-SC20170131160612.tar.gz",
+  :checksum "3d38cac1bfb6c4255b3435042ee34a68"}
+ {:id "LC80300282016081-SC20170131155022",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016081-SC20170131155022.tar.gz",
+  :checksum "2d2f0cf0152d87c1bd6ac66f71a9b8dc"}
+ {:id "LC80300282016097-SC20170131155116",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016097-SC20170131155116.tar.gz",
+  :checksum "6ada466aa0aaeb11219124b32300f74f"}
+ {:id "LC80300282016113-SC20170131160503",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016113-SC20170131160503.tar.gz",
+  :checksum "a3ff687cfa41e235afbe23b07c31d84a"}
+ {:id "LC80300282016129-SC20170131160917",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016129-SC20170131160917.tar.gz",
+  :checksum "b906e48bb7436c9eda70bb3d31ab5c3b"}
+ {:id "LC80300282016145-SC20170131160831",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016145-SC20170131160831.tar.gz",
+  :checksum "8c2411e3f42d5f76c901a3f95985542e"}
+ {:id "LC80300282016161-SC20170131161225",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016161-SC20170131161225.tar.gz",
+  :checksum "a2f185affda21d32797332c3b89e7f75"}
+ {:id "LC80300282016177-SC20170131155928",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016177-SC20170131155928.tar.gz",
+  :checksum "25e94572c22d9deca93c622a56168220"}
+ {:id "LC80300282016193-SC20170131154937",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016193-SC20170131154937.tar.gz",
+  :checksum "690c56f886b256a2b6ac7086f7d6fce4"}
+ {:id "LC80300282016209-SC20170131164412",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016209-SC20170131164412.tar.gz",
+  :checksum "20d889be0097178eac106fe406e1dff6"}
+ {:id "LC80300282016225-SC20170131163513",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016225-SC20170131163513.tar.gz",
+  :checksum "e94c2016ebeb29d91f551ea4c01e4a93"}
+ {:id "LC80300282016241-SC20170131163530",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016241-SC20170131163530.tar.gz",
+  :checksum "480e6b4ea8a4f2460278025e77131d13"}
+ {:id "LC80300282016257-SC20170131155224",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016257-SC20170131155224.tar.gz",
+  :checksum "9bd3488294b7497ccc1a1447d7b33368"}
+ {:id "LC80300282016273-SC20170131161307",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016273-SC20170131161307.tar.gz",
+  :checksum "a46f0119cfb2a7ca362c0c24c22e5852"}
+ {:id "LC80300282016289-SC20170131154919",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016289-SC20170131154919.tar.gz",
+  :checksum "cb3123d76183b566be0aa2b9f35e1027"}
+ {:id "LC80300282016305-SC20170131160623",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300282016305-SC20170131160623.tar.gz",
+  :checksum "7a8468bf9bda1b5617852d14b78d980b"}
+ {:id "LC80300292013104-SC20170131154311",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013104-SC20170131154311.tar.gz",
+  :checksum "a77fa2460aea40d77a3cb18681261c13"}
+ {:id "LC80300292013120-SC20170131155552",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013120-SC20170131155552.tar.gz",
+  :checksum "db4a7f6402fa67aa54eaa018179040a6"}
+ {:id "LC80300292013136-SC20170131154413",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013136-SC20170131154413.tar.gz",
+  :checksum "5a7a61fa0d527ce67cfe4aa0e137c45b"}
+ {:id "LC80300292013152-SC20170131161606",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013152-SC20170131161606.tar.gz",
+  :checksum "75571f0ac66ef63ca813e019b1e36b63"}
+ {:id "LC80300292013168-SC20170131161808",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013168-SC20170131161808.tar.gz",
+  :checksum "6f1a60fddbce7090ee132a1cdff4bb15"}
+ {:id "LC80300292013184-SC20170131163742",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013184-SC20170131163742.tar.gz",
+  :checksum "81dd56897ec82edb41bfc2c03b3fa383"}
+ {:id "LC80300292013200-SC20170131211013",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013200-SC20170131211013.tar.gz",
+  :checksum "cab393153734d0d70088f0a1de3aabde"}
+ {:id "LC80300292013216-SC20170131164930",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013216-SC20170131164930.tar.gz",
+  :checksum "5e4e419a74a026da473f896be729c0a9"}
+ {:id "LC80300292013232-SC20170131163608",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013232-SC20170131163608.tar.gz",
+  :checksum "1aa880ba6c18adf04430a95b6c1728c8"}
+ {:id "LC80300292013248-SC20170131162405",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013248-SC20170131162405.tar.gz",
+  :checksum "e0686cd233f21dc654e77c12784b251b"}
+ {:id "LC80300292013264-SC20170131162505",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013264-SC20170131162505.tar.gz",
+  :checksum "354c614e35aacf8cbb8081b3a59462f3"}
+ {:id "LC80300292013280-SC20170131162534",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013280-SC20170131162534.tar.gz",
+  :checksum "31436b842c0596abc0f8192ce989d6cd"}
+ {:id "LC80300292013296-SC20170131185251",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013296-SC20170131185251.tar.gz",
+  :checksum "2e093f89d3735c48c19f425fb5850574"}
+ {:id "LC80300292013312-SC20170131160807",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013312-SC20170131160807.tar.gz",
+  :checksum "a52114a00038e332c2b3c28836891c11"}
+ {:id "LC80300292013328-SC20170131211528",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013328-SC20170131211528.tar.gz",
+  :checksum "c9bb48beec6f3b4a4179da29d8603d91"}
+ {:id "LC80300292013344-SC20170131160515",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013344-SC20170131160515.tar.gz",
+  :checksum "318a72c5fd3657f83136ef2ffc42e823"}
+ {:id "LC80300292013360-SC20170131162351",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292013360-SC20170131162351.tar.gz",
+  :checksum "c936c3d8c6ec46075885b667bfea473b"}
+ {:id "LC80300292014011-SC20170131163823",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014011-SC20170131163823.tar.gz",
+  :checksum "0c717cbaa5c555221aae25df3f91c840"}
+ {:id "LC80300292014027-SC20170131160330",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014027-SC20170131160330.tar.gz",
+  :checksum "8670a8e96c1a182f6a9fadba20c78781"}
+ {:id "LC80300292014043-SC20170131163933",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014043-SC20170131163933.tar.gz",
+  :checksum "76c599033b3e276d883ffb6780a7c140"}
+ {:id "LC80300292014059-SC20170131160624",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014059-SC20170131160624.tar.gz",
+  :checksum "15bfbeb97a258cb7019393abd269ba96"}
+ {:id "LC80300292014075-SC20170131160114",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014075-SC20170131160114.tar.gz",
+  :checksum "3c6ee1a0d97008a286b5484eab521bd4"}
+ {:id "LC80300292014091-SC20170131161033",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014091-SC20170131161033.tar.gz",
+  :checksum "99da6652ebf622f3810cf03f3721bace"}
+ {:id "LC80300292014107-SC20170131163159",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014107-SC20170131163159.tar.gz",
+  :checksum "67179dcfadd51ef09ab0a6c48e21873f"}
+ {:id "LC80300292014123-SC20170131153648",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014123-SC20170131153648.tar.gz",
+  :checksum "826f705228f31ac9117a9c532a183d86"}
+ {:id "LC80300292014139-SC20170131152324",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014139-SC20170131152324.tar.gz",
+  :checksum "51fe5b10b185eb2d95089c36577b37d2"}
+ {:id "LC80300292014155-SC20170131154753",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014155-SC20170131154753.tar.gz",
+  :checksum "a1700ff8ed71e296d616716485a7a0d1"}
+ {:id "LC80300292014171-SC20170131154452",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014171-SC20170131154452.tar.gz",
+  :checksum "1b56df720faa22ac8b445997636ff06f"}
+ {:id "LC80300292014187-SC20170131154936",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014187-SC20170131154936.tar.gz",
+  :checksum "bb44c60ad077f7041be2190a9edc1ce3"}
+ {:id "LC80300292014203-SC20170131153532",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014203-SC20170131153532.tar.gz",
+  :checksum "85913acfcb2954205759091e80d32c91"}
+ {:id "LC80300292014219-SC20170131153504",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014219-SC20170131153504.tar.gz",
+  :checksum "777e03804c47bc6aa31413f20f8b3a45"}
+ {:id "LC80300292014235-SC20170131152719",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014235-SC20170131152719.tar.gz",
+  :checksum "70cdb74622118f92f1f676c41263cee1"}
+ {:id "LC80300292014251-SC20170131154729",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014251-SC20170131154729.tar.gz",
+  :checksum "f8501e9b75f8875c3f5cd891ba4f9e51"}
+ {:id "LC80300292014267-SC20170131154251",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014267-SC20170131154251.tar.gz",
+  :checksum "53ab22ac4691453a8c18681cea8ad087"}
+ {:id "LC80300292014283-SC20170131153250",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014283-SC20170131153250.tar.gz",
+  :checksum "fbacd6ce84aac0cd4e7805cefaac2dfa"}
+ {:id "LC80300292014299-SC20170131153358",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014299-SC20170131153358.tar.gz",
+  :checksum "16296644ace4b513f59bea2bdbbf451c"}
+ {:id "LC80300292014315-SC20170131151807",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014315-SC20170131151807.tar.gz",
+  :checksum "1474bddc6a666ed611a825846893b1f0"}
+ {:id "LC80300292014331-SC20170131154334",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014331-SC20170131154334.tar.gz",
+  :checksum "2c3224be1d19b020e21a3a9e7b124f20"}
+ {:id "LC80300292014347-SC20170131152509",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014347-SC20170131152509.tar.gz",
+  :checksum "a42f8c49c282365c82d0c4ab2e5c0f41"}
+ {:id "LC80300292014363-SC20170131153140",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292014363-SC20170131153140.tar.gz",
+  :checksum "7e9874768631e2d36d2907d3a4cebdd8"}
+ {:id "LC80300292015014-SC20170131151424",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015014-SC20170131151424.tar.gz",
+  :checksum "cc48f4f75b8ed709763bf91a5d0eaff3"}
+ {:id "LC80300292015030-SC20170131153605",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015030-SC20170131153605.tar.gz",
+  :checksum "b043ee48f96f5f248ca5f01e74be6872"}
+ {:id "LC80300292015046-SC20170131151607",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015046-SC20170131151607.tar.gz",
+  :checksum "9084c5f08258e16ad33989a2b1ef1c05"}
+ {:id "LC80300292015078-SC20170131153932",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015078-SC20170131153932.tar.gz",
+  :checksum "fb90fda6db552e108227f9a0d226965a"}
+ {:id "LC80300292015094-SC20170131154152",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015094-SC20170131154152.tar.gz",
+  :checksum "9866097ab5eeebd4c4cf95393230a644"}
+ {:id "LC80300292015110-SC20170131152230",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015110-SC20170131152230.tar.gz",
+  :checksum "a6fcfaf43029a6f5e38b1d9688ef932e"}
+ {:id "LC80300292015126-SC20170131150704",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015126-SC20170131150704.tar.gz",
+  :checksum "e6c86507beb3b0e04b9b948012c0d8dc"}
+ {:id "LC80300292015142-SC20170131152756",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015142-SC20170131152756.tar.gz",
+  :checksum "1704ebda888a0f04b979b7c822da55db"}
+ {:id "LC80300292015158-SC20170131151513",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015158-SC20170131151513.tar.gz",
+  :checksum "206c71603489cd2388b00a0dc391f0af"}
+ {:id "LC80300292015174-SC20170131153057",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015174-SC20170131153057.tar.gz",
+  :checksum "f061ae49288336a63b7b7625ba7a652e"}
+ {:id "LC80300292015190-SC20170131160227",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015190-SC20170131160227.tar.gz",
+  :checksum "c6c49d4aedfa25fdaca31f7dc1ddad40"}
+ {:id "LC80300292015206-SC20170131153908",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015206-SC20170131153908.tar.gz",
+  :checksum "d75094f21db612214834e64d561a1d56"}
+ {:id "LC80300292015222-SC20170131161020",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015222-SC20170131161020.tar.gz",
+  :checksum "88cdc33d81c9d63e8a4d0b01c3a6765c"}
+ {:id "LC80300292015238-SC20170131160549",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015238-SC20170131160549.tar.gz",
+  :checksum "bc3ce7c279959705b0e6c7b2032952b5"}
+ {:id "LC80300292015254-SC20170131154742",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015254-SC20170131154742.tar.gz",
+  :checksum "7c985990c6f327ed4fe3b959d27e6b95"}
+ {:id "LC80300292015270-SC20170131154041",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015270-SC20170131154041.tar.gz",
+  :checksum "81ad6ebb82815f19dc12552ffaecdee2"}
+ {:id "LC80300292015286-SC20170131153348",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015286-SC20170131153348.tar.gz",
+  :checksum "b578bfd7c34d388e385a3ddad56b0929"}
+ {:id "LC80300292015302-SC20170131153936",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015302-SC20170131153936.tar.gz",
+  :checksum "8b1775a67350d77e53b2d7a218848aa7"}
+ {:id "LC80300292015318-SC20170131152818",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015318-SC20170131152818.tar.gz",
+  :checksum "fb6d04365d1a4d34f413ebbac673b1db"}
+ {:id "LC80300292015334-SC20170131151240",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015334-SC20170131151240.tar.gz",
+  :checksum "41806c63b3c1dd2e09a8b62884f5046a"}
+ {:id "LC80300292015350-SC20170131153234",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292015350-SC20170131153234.tar.gz",
+  :checksum "5fb50d891a679ab4122646f1f40f8ec5"}
+ {:id "LC80300292016001-SC20170131155208",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016001-SC20170131155208.tar.gz",
+  :checksum "c5afc4b5951ca20d789fa205a58da480"}
+ {:id "LC80300292016017-SC20170131151812",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016017-SC20170131151812.tar.gz",
+  :checksum "b14c3adfed00a51715fa396034676511"}
+ {:id "LC80300292016033-SC20170131151408",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016033-SC20170131151408.tar.gz",
+  :checksum "c8ef30468f301ed08475bfd8405475c6"}
+ {:id "LC80300292016049-SC20170131152547",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016049-SC20170131152547.tar.gz",
+  :checksum "c29460e8809fbc699a748cabf151b999"}
+ {:id "LC80300292016065-SC20170131154011",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016065-SC20170131154011.tar.gz",
+  :checksum "d460a2532d95f1e6b73d840559c5753e"}
+ {:id "LC80300292016081-SC20170131153458",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016081-SC20170131153458.tar.gz",
+  :checksum "e1fe34ed21e76f39638c096301507fbc"}
+ {:id "LC80300292016097-SC20170131152716",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016097-SC20170131152716.tar.gz",
+  :checksum "0de5ad36aa577e643869216314859871"}
+ {:id "LC80300292016113-SC20170131154328",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016113-SC20170131154328.tar.gz",
+  :checksum "e6d1ecb344146fece413cbed68b64924"}
+ {:id "LC80300292016129-SC20170131154449",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016129-SC20170131154449.tar.gz",
+  :checksum "983057274e06662bb407c300df4562a1"}
+ {:id "LC80300292016145-SC20170131154453",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016145-SC20170131154453.tar.gz",
+  :checksum "61816c6f6f69b1e8382d5be972c99b60"}
+ {:id "LC80300292016161-SC20170131155102",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016161-SC20170131155102.tar.gz",
+  :checksum "a24dbba672792ed0eb19ec512047e805"}
+ {:id "LC80300292016177-SC20170131153239",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016177-SC20170131153239.tar.gz",
+  :checksum "35aec3d29e607239569c348dddd8cf40"}
+ {:id "LC80300292016193-SC20170131154316",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016193-SC20170131154316.tar.gz",
+  :checksum "b78f18834fef5b7030804c4adbcc9dd3"}
+ {:id "LC80300292016209-SC20170131155507",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016209-SC20170131155507.tar.gz",
+  :checksum "f03c1f07e51d2a31ab95dc9493575a07"}
+ {:id "LC80300292016225-SC20170131155847",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016225-SC20170131155847.tar.gz",
+  :checksum "c758add57c5e1b0c34270251f9615a0a"}
+ {:id "LC80300292016241-SC20170131160053",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016241-SC20170131160053.tar.gz",
+  :checksum "f9d66ee4f0999568cf7f13d4d2420af1"}
+ {:id "LC80300292016257-SC20170131153217",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016257-SC20170131153217.tar.gz",
+  :checksum "ad769b86c357bd3111b5659f4127cf4b"}
+ {:id "LC80300292016273-SC20170131155106",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016273-SC20170131155106.tar.gz",
+  :checksum "3a60b1d55271aa33e16743685e10441a"}
+ {:id "LC80300292016289-SC20170131152029",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016289-SC20170131152029.tar.gz",
+  :checksum "e9b3266bd75d03a206fc928cdee3f822"}
+ {:id "LC80300292016305-SC20170131154424",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80300292016305-SC20170131154424.tar.gz",
+  :checksum "bd6ebbe5c3cc9b9536c169906747709e"}
+ {:id "LC80310282013111-SC20170131153700",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013111-SC20170131153700.tar.gz",
+  :checksum "3f0903d1f77a18f766d569fa4e8fb0ca"}
+ {:id "LC80310282013143-SC20170131154820",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013143-SC20170131154820.tar.gz",
+  :checksum "7422b89c1f2f2f30f90c6da60d215303"}
+ {:id "LC80310282013159-SC20170131152327",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013159-SC20170131152327.tar.gz",
+  :checksum "9e87fee7ff1600bc02b9fe6bb05a4999"}
+ {:id "LC80310282013175-SC20170131153859",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013175-SC20170131153859.tar.gz",
+  :checksum "cb14a9c7fee89a3010252bb184249a4d"}
+ {:id "LC80310282013191-SC20170131160416",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013191-SC20170131160416.tar.gz",
+  :checksum "9b75e2be82e7e758565be6f3b5bf317d"}
+ {:id "LC80310282013207-SC20170131155536",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013207-SC20170131155536.tar.gz",
+  :checksum "173bf5a78e47bb6894fd1f2091b692d8"}
+ {:id "LC80310282013223-SC20170131155846",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013223-SC20170131155846.tar.gz",
+  :checksum "7e9e35674cbd40ca8aaf6b4e5a0aee85"}
+ {:id "LC80310282013239-SC20170131155452",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013239-SC20170131155452.tar.gz",
+  :checksum "cfac386ae4544cc06e66f7a0d8c886cd"}
+ {:id "LC80310282013255-SC20170131155040",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013255-SC20170131155040.tar.gz",
+  :checksum "23cd950bf2983703023fb75bc0dd77d1"}
+ {:id "LC80310282013271-SC20170131154431",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013271-SC20170131154431.tar.gz",
+  :checksum "6992a06dfa7eee26009c4a78fc63a2b4"}
+ {:id "LC80310282013287-SC20170131151917",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013287-SC20170131151917.tar.gz",
+  :checksum "d22487776d3bf21d31eef6e0834aad39"}
+ {:id "LC80310282013303-SC20170131152900",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013303-SC20170131152900.tar.gz",
+  :checksum "32379aad3af9d68797bd5baa70135468"}
+ {:id "LC80310282013319-SC20170131153306",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013319-SC20170131153306.tar.gz",
+  :checksum "82598ead1f64e490dfab415d36247688"}
+ {:id "LC80310282013335-SC20170131152159",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013335-SC20170131152159.tar.gz",
+  :checksum "a27137cf35e0d75d8a1c88f6267b3feb"}
+ {:id "LC80310282013351-SC20170131152312",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282013351-SC20170131152312.tar.gz",
+  :checksum "55f5c1ef9b32b9778aaa9a52a4d172c9"}
+ {:id "LC80310282014002-SC20170131155130",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014002-SC20170131155130.tar.gz",
+  :checksum "f221d00a868d86def5892fad2d961007"}
+ {:id "LC80310282014018-SC20170131153240",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014018-SC20170131153240.tar.gz",
+  :checksum "11d82b64ebc24e3889890bd14f33b49a"}
+ {:id "LC80310282014034-SC20170131152551",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014034-SC20170131152551.tar.gz",
+  :checksum "4173091742a6e37f27f1d82c5d6d78af"}
+ {:id "LC80310282014050-SC20170131212808",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014050-SC20170131212808.tar.gz",
+  :checksum "ed71cfd1ff1e36656f3c8453d920db64"}
+ {:id "LC80310282014066-SC20170131160008",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014066-SC20170131160008.tar.gz",
+  :checksum "2df9d5c82607513b80f562bcf0e6a56d"}
+ {:id "LC80310282014082-SC20170131155152",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014082-SC20170131155152.tar.gz",
+  :checksum "57a339c892e586d591abc4453330b45f"}
+ {:id "LC80310282014098-SC20170131154441",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014098-SC20170131154441.tar.gz",
+  :checksum "92ec531002ab88304226786be369550b"}
+ {:id "LC80310282014114-SC20170131154819",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014114-SC20170131154819.tar.gz",
+  :checksum "d8f53b5a5dddbfc4ce7132d4ba9c6473"}
+ {:id "LC80310282014130-SC20170131152730",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014130-SC20170131152730.tar.gz",
+  :checksum "00ae2858e81043ae4a31c3e85512558f"}
+ {:id "LC80310282014146-SC20170131154350",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014146-SC20170131154350.tar.gz",
+  :checksum "0a1d0bfa34acee6f52fcedad9788bbb5"}
+ {:id "LC80310282014162-SC20170131155304",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014162-SC20170131155304.tar.gz",
+  :checksum "0f2e8d8decebd36b80d5a42bb7ef18f0"}
+ {:id "LC80310282014178-SC20170131152355",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014178-SC20170131152355.tar.gz",
+  :checksum "9b3b770f478868475905184d7ee9bdec"}
+ {:id "LC80310282014194-SC20170131155808",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014194-SC20170131155808.tar.gz",
+  :checksum "f3924c2e9f1a94eadc377dc68cb207f5"}
+ {:id "LC80310282014210-SC20170131160333",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014210-SC20170131160333.tar.gz",
+  :checksum "e66d42c4349d0631d4f8dc5ce8cd10e5"}
+ {:id "LC80310282014226-SC20170131153540",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014226-SC20170131153540.tar.gz",
+  :checksum "1ca7d98fc1b1f47da6894117e977b5f8"}
+ {:id "LC80310282014242-SC20170131161140",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014242-SC20170131161140.tar.gz",
+  :checksum "5520d8ce5c0eb80aa114ef07ad8c3e36"}
+ {:id "LC80310282014258-SC20170131155438",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014258-SC20170131155438.tar.gz",
+  :checksum "c9142fdc3ba41fae8ff060cd7557478e"}
+ {:id "LC80310282014274-SC20170131154601",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014274-SC20170131154601.tar.gz",
+  :checksum "2923714796431823e55cabfa04a03f0b"}
+ {:id "LC80310282014290-SC20170131155159",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014290-SC20170131155159.tar.gz",
+  :checksum "e52bc987e8f3e4f20a386bf21ae0bb94"}
+ {:id "LC80310282014306-SC20170131153115",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014306-SC20170131153115.tar.gz",
+  :checksum "86229ff6b1d0c9bfab9997ce3e199c7c"}
+ {:id "LC80310282014322-SC20170131152658",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014322-SC20170131152658.tar.gz",
+  :checksum "a2cb62ef1e6f2037b75680730352a327"}
+ {:id "LC80310282014338-SC20170131155204",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014338-SC20170131155204.tar.gz",
+  :checksum "4565694310d768e5ba39049469c3c7a6"}
+ {:id "LC80310282014354-SC20170131154642",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282014354-SC20170131154642.tar.gz",
+  :checksum "6606873e770aab8583f85bba59fb170e"}
+ {:id "LC80310282015005-SC20170131152340",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015005-SC20170131152340.tar.gz",
+  :checksum "44b6ca71f47f12e47df4963097fb21c6"}
+ {:id "LC80310282015021-SC20170131153302",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015021-SC20170131153302.tar.gz",
+  :checksum "98b3e07c80be418a107e1048d41e71c9"}
+ {:id "LC80310282015037-SC20170131155214",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015037-SC20170131155214.tar.gz",
+  :checksum "a32a25b70a94f0c7698f617c35a4496c"}
+ {:id "LC80310282015053-SC20170131152457",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015053-SC20170131152457.tar.gz",
+  :checksum "bf1645030473d49f3ac105d2bff94e3f"}
+ {:id "LC80310282015069-SC20170131154935",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015069-SC20170131154935.tar.gz",
+  :checksum "47adcb498915c19fdcbacc559bd1c136"}
+ {:id "LC80310282015085-SC20170131152431",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015085-SC20170131152431.tar.gz",
+  :checksum "cafcd7cec970eb91fe93bd489fdf63e4"}
+ {:id "LC80310282015101-SC20170131154745",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015101-SC20170131154745.tar.gz",
+  :checksum "df4fc3f113aa2d4f73a02e4c0bc43a0b"}
+ {:id "LC80310282015117-SC20170131185133",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015117-SC20170131185133.tar.gz",
+  :checksum "3b051d7f5049d0684d7b53100d50d2e1"}
+ {:id "LC80310282015133-SC20170131153920",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015133-SC20170131153920.tar.gz",
+  :checksum "659b22fcbbde288fbba8125c61b200ac"}
+ {:id "LC80310282015149-SC20170131152356",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015149-SC20170131152356.tar.gz",
+  :checksum "2e48375a4ec74f8279dc9771d0d5c4a5"}
+ {:id "LC80310282015165-SC20170131155946",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015165-SC20170131155946.tar.gz",
+  :checksum "c0c0d663baaa686c047d0c4bda523215"}
+ {:id "LC80310282015181-SC20170131152513",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015181-SC20170131152513.tar.gz",
+  :checksum "8d660a5be03d10209be42d676fd403a0"}
+ {:id "LC80310282015197-SC20170131155901",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015197-SC20170131155901.tar.gz",
+  :checksum "b1682019320b96b02f1afea6a7fce8f7"}
+ {:id "LC80310282015213-SC20170131160209",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015213-SC20170131160209.tar.gz",
+  :checksum "0208e75cd28e9c217384f5148ead69db"}
+ {:id "LC80310282015229-SC20170131155106",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015229-SC20170131155106.tar.gz",
+  :checksum "6bce2ac142f5f0df8f66093e267c0c25"}
+ {:id "LC80310282015245-SC20170131155830",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015245-SC20170131155830.tar.gz",
+  :checksum "4ef3e0a8c429dada89b0f8d05561e52e"}
+ {:id "LC80310282015261-SC20170131182651",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015261-SC20170131182651.tar.gz",
+  :checksum "f138deba59de492bdd25c3e1e8d88e6c"}
+ {:id "LC80310282015277-SC20170201000611",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015277-SC20170201000611.tar.gz",
+  :checksum "fda6a3fb817c6261ed2ee687a9b45db4"}
+ {:id "LC80310282015293-SC20170131153322",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015293-SC20170131153322.tar.gz",
+  :checksum "d6eaeb3edc30ba6ee96a6d53d26345b8"}
+ {:id "LC80310282015309-SC20170131153217",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015309-SC20170131153217.tar.gz",
+  :checksum "6f23afa9b55e70d37d9411b706eabcf9"}
+ {:id "LC80310282015325-SC20170131154336",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015325-SC20170131154336.tar.gz",
+  :checksum "6b139b70ceb3564ddd926642fbc5f784"}
+ {:id "LC80310282015341-SC20170131155657",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015341-SC20170131155657.tar.gz",
+  :checksum "272d013f63903041e1824365f41be629"}
+ {:id "LC80310282015357-SC20170131154446",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282015357-SC20170131154446.tar.gz",
+  :checksum "3fdc0dbef74114e3cd686b72af9a3c62"}
+ {:id "LC80310282016008-SC20170131154636",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016008-SC20170131154636.tar.gz",
+  :checksum "5ecb2c0da42c96d7a263982c5fcf1946"}
+ {:id "LC80310282016024-SC20170131152705",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016024-SC20170131152705.tar.gz",
+  :checksum "1e0be3ae8162235de7f88aa09542d035"}
+ {:id "LC80310282016040-SC20170131153811",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016040-SC20170131153811.tar.gz",
+  :checksum "3feb0a0778e1e60ef7c61ad7ece31a43"}
+ {:id "LC80310282016072-SC20170131154456",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016072-SC20170131154456.tar.gz",
+  :checksum "5cd55601aa92eb66eb67d96a0a0823d0"}
+ {:id "LC80310282016088-SC20170131155016",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016088-SC20170131155016.tar.gz",
+  :checksum "47ad664127111c7081f17d1c667fb1ae"}
+ {:id "LC80310282016104-SC20170131155608",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016104-SC20170131155608.tar.gz",
+  :checksum "54119a1889714cfe76e98d92b233222d"}
+ {:id "LC80310282016120-SC20170131155814",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016120-SC20170131155814.tar.gz",
+  :checksum "32b45ea61db1136be124169d6141419a"}
+ {:id "LC80310282016136-SC20170131160042",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016136-SC20170131160042.tar.gz",
+  :checksum "8c0a8a56ee5a526e80cd152be9bba504"}
+ {:id "LC80310282016152-SC20170131155405",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016152-SC20170131155405.tar.gz",
+  :checksum "72d5712006e45aae55b002b8a7183db0"}
+ {:id "LC80310282016168-SC20170131160733",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016168-SC20170131160733.tar.gz",
+  :checksum "59d2b0dbb210ccd8eefc451efba8fa2f"}
+ {:id "LC80310282016184-SC20170131160613",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016184-SC20170131160613.tar.gz",
+  :checksum "1a8243c55fd5eb837bd4765034f5a561"}
+ {:id "LC80310282016200-SC20170131161007",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016200-SC20170131161007.tar.gz",
+  :checksum "73d24ee626f69c2f24c86de023e53fed"}
+ {:id "LC80310282016216-SC20170131161629",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016216-SC20170131161629.tar.gz",
+  :checksum "58169c45f595cc14dd1f2d020c8c42c1"}
+ {:id "LC80310282016232-SC20170131154130",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016232-SC20170131154130.tar.gz",
+  :checksum "3c0d7889d61a6061abfbbab7e7f33b1e"}
+ {:id "LC80310282016248-SC20170131155533",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016248-SC20170131155533.tar.gz",
+  :checksum "a28aa57a19297aea01aac99cfbfd93ea"}
+ {:id "LC80310282016264-SC20170131154343",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016264-SC20170131154343.tar.gz",
+  :checksum "cd5a43f902d87532a2d4d5a63f34d332"}
+ {:id "LC80310282016280-SC20170131153327",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016280-SC20170131153327.tar.gz",
+  :checksum "b0d393b0ccc4ab21fd6480745106b94c"}
+ {:id "LC80310282016296-SC20170131154411",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016296-SC20170131154411.tar.gz",
+  :checksum "76ce953aac4a7eee3d8a8fa6730ec429"}
+ {:id "LC80310282016312-SC20170131155214",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310282016312-SC20170131155214.tar.gz",
+  :checksum "b28b2fee069ba81fbad613d11e636347"}
+ {:id "LC80310292013111-SC20170131155410",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013111-SC20170131155410.tar.gz",
+  :checksum "20384e187ffb24472215ded094a943c2"}
+ {:id "LC80310292013143-SC20170131155749",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013143-SC20170131155749.tar.gz",
+  :checksum "8b18dc68867fba0bceef2108652d012e"}
+ {:id "LC80310292013159-SC20170131153029",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013159-SC20170131153029.tar.gz",
+  :checksum "54fe57da63b30cccf0149bcae219f493"}
+ {:id "LC80310292013175-SC20170131154345",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013175-SC20170131154345.tar.gz",
+  :checksum "cd5a3f32b225a77e7f8adcc4c28ce3ef"}
+ {:id "LC80310292013191-SC20170131155648",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013191-SC20170131155648.tar.gz",
+  :checksum "165480f602a1bdd1f7b4930631fa784b"}
+ {:id "LC80310292013207-SC20170131160336",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013207-SC20170131160336.tar.gz",
+  :checksum "ea6d7e7c09ac03f89a4946857160e345"}
+ {:id "LC80310292013223-SC20170131160347",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013223-SC20170131160347.tar.gz",
+  :checksum "526da703fab7290eb7f471f54492f9d7"}
+ {:id "LC80310292013239-SC20170131155732",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013239-SC20170131155732.tar.gz",
+  :checksum "4b76bd3f372bb0da6c45e7c36cb08139"}
+ {:id "LC80310292013255-SC20170131155337",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013255-SC20170131155337.tar.gz",
+  :checksum "4ec6e718ac0a86feb743e539a34cbafd"}
+ {:id "LC80310292013271-SC20170131155531",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013271-SC20170131155531.tar.gz",
+  :checksum "c4e46526f7cb952b6684516fe497294a"}
+ {:id "LC80310292013287-SC20170131153012",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013287-SC20170131153012.tar.gz",
+  :checksum "ca7f0cc362478f70bb7725b2e44dd45e"}
+ {:id "LC80310292013303-SC20170131153858",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013303-SC20170131153858.tar.gz",
+  :checksum "98514bd7572da0020e698237cd367f2d"}
+ {:id "LC80310292013319-SC20170131154837",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013319-SC20170131154837.tar.gz",
+  :checksum "1ff98ee64e062e0cfaf7c4e63c0971d9"}
+ {:id "LC80310292013335-SC20170131151331",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013335-SC20170131151331.tar.gz",
+  :checksum "be52d4fd8b797be782190abe8bbf710a"}
+ {:id "LC80310292013351-SC20170131162324",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292013351-SC20170131162324.tar.gz",
+  :checksum "252dce2801b0e2df99403256a8ed8e4f"}
+ {:id "LC80310292014002-SC20170131164205",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014002-SC20170131164205.tar.gz",
+  :checksum "5909b9c3a89efa72b5c18fdc2c83351c"}
+ {:id "LC80310292014018-SC20170131162311",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014018-SC20170131162311.tar.gz",
+  :checksum "f126767d6c6869c3c46c6d19c38df307"}
+ {:id "LC80310292014034-SC20170131160808",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014034-SC20170131160808.tar.gz",
+  :checksum "660190cc21da28a84de46758036b7db0"}
+ {:id "LC80310292014050-SC20170131161013",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014050-SC20170131161013.tar.gz",
+  :checksum "7c8487da12fd8984679d091b4468c816"}
+ {:id "LC80310292014066-SC20170131161651",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014066-SC20170131161651.tar.gz",
+  :checksum "dcc11f40708c4e1b24be86eb23887127"}
+ {:id "LC80310292014082-SC20170131162231",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014082-SC20170131162231.tar.gz",
+  :checksum "2fc5b6a13665e825eb013683563f4ada"}
+ {:id "LC80310292014098-SC20170131162713",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014098-SC20170131162713.tar.gz",
+  :checksum "e728f6c949aa150994a1b857b8d6dd28"}
+ {:id "LC80310292014114-SC20170131163513",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014114-SC20170131163513.tar.gz",
+  :checksum "58ca56f11d8a0b5a1aa210c5b8fde0b1"}
+ {:id "LC80310292014130-SC20170131163334",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014130-SC20170131163334.tar.gz",
+  :checksum "6d7f5bd9e4b267df10e53fe13997ab7c"}
+ {:id "LC80310292014146-SC20170131161656",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014146-SC20170131161656.tar.gz",
+  :checksum "4d927c3a029270771364413cd610cd6b"}
+ {:id "LC80310292014162-SC20170131163116",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014162-SC20170131163116.tar.gz",
+  :checksum "b6d15db7b1dc04cd7dd9469e5debcf86"}
+ {:id "LC80310292014178-SC20170131160705",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014178-SC20170131160705.tar.gz",
+  :checksum "b482601af113974f8b55550e7adf2daf"}
+ {:id "LC80310292014194-SC20170131164853",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014194-SC20170131164853.tar.gz",
+  :checksum "b6250795a108f166a7c56843d775ed61"}
+ {:id "LC80310292014210-SC20170131163825",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014210-SC20170131163825.tar.gz",
+  :checksum "db57547cd2e2f889562bd6c3b6eda090"}
+ {:id "LC80310292014226-SC20170131161552",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014226-SC20170131161552.tar.gz",
+  :checksum "5c5f44889218f14fb217d7165ae1686a"}
+ {:id "LC80310292014242-SC20170131164941",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014242-SC20170131164941.tar.gz",
+  :checksum "1195e149fef7f394d968b49bbae8e935"}
+ {:id "LC80310292014258-SC20170131163150",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014258-SC20170131163150.tar.gz",
+  :checksum "497ca9872c4169389121dfc3fefe8436"}
+ {:id "LC80310292014274-SC20170131163537",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014274-SC20170131163537.tar.gz",
+  :checksum "2d76b2227f9a9e41f3cd8028b05ecda8"}
+ {:id "LC80310292014290-SC20170131162940",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014290-SC20170131162940.tar.gz",
+  :checksum "1701e02e54e78a615a48dfec232cca93"}
+ {:id "LC80310292014306-SC20170131161558",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014306-SC20170131161558.tar.gz",
+  :checksum "e28e76fcec0b69e52c388e2ef2fe7c05"}
+ {:id "LC80310292014322-SC20170131162344",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014322-SC20170131162344.tar.gz",
+  :checksum "86bfe4e1bf8fa1c22a7317fb6f2b70e1"}
+ {:id "LC80310292014338-SC20170131162949",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014338-SC20170131162949.tar.gz",
+  :checksum "1354185681d6582c3bf3b79d5df6045d"}
+ {:id "LC80310292014354-SC20170131161105",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292014354-SC20170131161105.tar.gz",
+  :checksum "e0d5a6bc65d366d7b031b7539a6a2d7f"}
+ {:id "LC80310292015005-SC20170131160742",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015005-SC20170131160742.tar.gz",
+  :checksum "6882513c409dfbf107463c44e2d8a986"}
+ {:id "LC80310292015021-SC20170131161051",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015021-SC20170131161051.tar.gz",
+  :checksum "61c0514c42d709f7d8a0834bb5bc29fa"}
+ {:id "LC80310292015037-SC20170131162617",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015037-SC20170131162617.tar.gz",
+  :checksum "95088ae7f9012615acade71bb1e6d5c0"}
+ {:id "LC80310292015053-SC20170131160743",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015053-SC20170131160743.tar.gz",
+  :checksum "ef5c154ecb66501f3790fe127c89e059"}
+ {:id "LC80310292015069-SC20170131163119",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015069-SC20170131163119.tar.gz",
+  :checksum "ce691e09806fee021f6eeb16cd3f7670"}
+ {:id "LC80310292015085-SC20170131161957",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015085-SC20170131161957.tar.gz",
+  :checksum "86ffb11e578c0b304513501bd446901d"}
+ {:id "LC80310292015101-SC20170131164726",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015101-SC20170131164726.tar.gz",
+  :checksum "2ea02f2c3ab7d5fed1405b78efad5b1b"}
+ {:id "LC80310292015117-SC20170131163157",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015117-SC20170131163157.tar.gz",
+  :checksum "4f173336137027c723d029eb55ffc3d7"}
+ {:id "LC80310292015133-SC20170131184050",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015133-SC20170131184050.tar.gz",
+  :checksum "a77072e9163da71a75d3aaf18bd5684b"}
+ {:id "LC80310292015149-SC20170131161819",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015149-SC20170131161819.tar.gz",
+  :checksum "cf2f84370f0bb57ec2167ecf3d9bf01e"}
+ {:id "LC80310292015165-SC20170131203851",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015165-SC20170131203851.tar.gz",
+  :checksum "7ad39a0650f01ac21857347c5aee6a4c"}
+ {:id "LC80310292015181-SC20170131161859",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015181-SC20170131161859.tar.gz",
+  :checksum "7bb624d12bb4a3d04ea883f52480e7ff"}
+ {:id "LC80310292015197-SC20170131165731",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015197-SC20170131165731.tar.gz",
+  :checksum "819b9609081d2d0dae597e3d6d52e7db"}
+ {:id "LC80310292015213-SC20170131165825",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015213-SC20170131165825.tar.gz",
+  :checksum "7a7fe19f75d8dc7e39783534f32067da"}
+ {:id "LC80310292015229-SC20170131163011",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015229-SC20170131163011.tar.gz",
+  :checksum "543d6bc728b174c26286e2bbf967505a"}
+ {:id "LC80310292015245-SC20170131163123",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015245-SC20170131163123.tar.gz",
+  :checksum "7269ba554722cc341c863549b5fef608"}
+ {:id "LC80310292015261-SC20170131161855",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015261-SC20170131161855.tar.gz",
+  :checksum "7e50d5044b7de6104a60a0bcfcfd2527"}
+ {:id "LC80310292015277-SC20170131163506",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015277-SC20170131163506.tar.gz",
+  :checksum "c8aa678c78a9c38f509456e2aadece5f"}
+ {:id "LC80310292015293-SC20170131162920",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015293-SC20170131162920.tar.gz",
+  :checksum "1ce2ad1808eba55e3d49a43c242df645"}
+ {:id "LC80310292015309-SC20170131204626",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015309-SC20170131204626.tar.gz",
+  :checksum "12896ec98a9f1d9e1258a695ed187f76"}
+ {:id "LC80310292015325-SC20170131164030",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015325-SC20170131164030.tar.gz",
+  :checksum "5a106976234b8179278148ea7f8b63a2"}
+ {:id "LC80310292015341-SC20170131164656",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015341-SC20170131164656.tar.gz",
+  :checksum "f1e1f9d78ff310058bd8bc4c9711362d"}
+ {:id "LC80310292015357-SC20170131163703",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292015357-SC20170131163703.tar.gz",
+  :checksum "19263daf3f7e57ca752a32ac919e1396"}
+ {:id "LC80310292016008-SC20170131162402",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016008-SC20170131162402.tar.gz",
+  :checksum "43f3747922f9262edd7a269a15babe43"}
+ {:id "LC80310292016024-SC20170131161827",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016024-SC20170131161827.tar.gz",
+  :checksum "503f20f5938ac66a02b913c5dc34e907"}
+ {:id "LC80310292016040-SC20170131160841",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016040-SC20170131160841.tar.gz",
+  :checksum "8f6dce15ba9636da2b23441592275bbb"}
+ {:id "LC80310292016072-SC20170131162721",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016072-SC20170131162721.tar.gz",
+  :checksum "18defd1733b7f546a4c81b41e276eb2c"}
+ {:id "LC80310292016088-SC20170131162908",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016088-SC20170131162908.tar.gz",
+  :checksum "b819f24ac161c4ea7fffb34cf40741e3"}
+ {:id "LC80310292016104-SC20170131162411",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016104-SC20170131162411.tar.gz",
+  :checksum "b11679cb3b13173f8b7eb51730f62593"}
+ {:id "LC80310292016120-SC20170131163310",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016120-SC20170131163310.tar.gz",
+  :checksum "9e520dca7fc83878d380dc7a36352677"}
+ {:id "LC80310292016136-SC20170131162417",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016136-SC20170131162417.tar.gz",
+  :checksum "177d470146ee8a64ebe8b413fd141e56"}
+ {:id "LC80310292016152-SC20170131163610",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016152-SC20170131163610.tar.gz",
+  :checksum "21cde92a9e7fec134e37dde16ad7bdf6"}
+ {:id "LC80310292016168-SC20170131163642",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016168-SC20170131163642.tar.gz",
+  :checksum "8dce1cead8a61f05d7528e85ce963e85"}
+ {:id "LC80310292016184-SC20170131162552",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016184-SC20170131162552.tar.gz",
+  :checksum "3f067be393b8ce472c9b9524d48adc87"}
+ {:id "LC80310292016200-SC20170131162647",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016200-SC20170131162647.tar.gz",
+  :checksum "baad1607c271d97e2e9bfef19a6a05bc"}
+ {:id "LC80310292016216-SC20170131163538",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016216-SC20170131163538.tar.gz",
+  :checksum "e0b037e1a21f60796370b07236279f99"}
+ {:id "LC80310292016232-SC20170131162224",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016232-SC20170131162224.tar.gz",
+  :checksum "3d5de6fae95c588450ce41dd2f6dfe85"}
+ {:id "LC80310292016248-SC20170131163346",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016248-SC20170131163346.tar.gz",
+  :checksum "18116e08e3ed16431b6e203b247f83d8"}
+ {:id "LC80310292016264-SC20170131162748",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016264-SC20170131162748.tar.gz",
+  :checksum "3d7713f9e27b5cd0b10c0d7abaf06be1"}
+ {:id "LC80310292016280-SC20170131160153",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016280-SC20170131160153.tar.gz",
+  :checksum "d019212115c7fe7178a0ca8a1a1a2da5"}
+ {:id "LC80310292016296-SC20170131161446",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016296-SC20170131161446.tar.gz",
+  :checksum "12983cf1d966b453c7823ccd4482defe"}
+ {:id "LC80310292016312-SC20170131161838",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80310292016312-SC20170131161838.tar.gz",
+  :checksum "2a09006c48302288b4e64f03df854bb8"}
+ {:id "LC80320282013102-SC20170131162005",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013102-SC20170131162005.tar.gz",
+  :checksum "7dba7ab6ac865fea6741ad72df696cb0"}
+ {:id "LC80320282013118-SC20170131160216",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013118-SC20170131160216.tar.gz",
+  :checksum "a7444f60f82e44e1ec07b769dd3080cc"}
+ {:id "LC80320282013134-SC20170131162953",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013134-SC20170131162953.tar.gz",
+  :checksum "ae42239dd473f4835d9e198e19fb1d12"}
+ {:id "LC80320282013166-SC20170131163110",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013166-SC20170131163110.tar.gz",
+  :checksum "ee9828631610ed5e00c80a361039b3d5"}
+ {:id "LC80320282013182-SC20170131161303",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013182-SC20170131161303.tar.gz",
+  :checksum "289b0e343005a2a8ee49994f58548571"}
+ {:id "LC80320282013198-SC20170131162958",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013198-SC20170131162958.tar.gz",
+  :checksum "536a1db2bfcc65d326c03e47dadea790"}
+ {:id "LC80320282013214-SC20170131160420",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013214-SC20170131160420.tar.gz",
+  :checksum "2d6ad0dbeda6f112605392c734d0bf2b"}
+ {:id "LC80320282013230-SC20170131160127",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013230-SC20170131160127.tar.gz",
+  :checksum "e60b8de8ed7e525987f9c8174526453a"}
+ {:id "LC80320282013246-SC20170131160650",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013246-SC20170131160650.tar.gz",
+  :checksum "e7c00d7ac21ee1c4ab84f7fb81c18e64"}
+ {:id "LC80320282013262-SC20170131162054",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013262-SC20170131162054.tar.gz",
+  :checksum "2e04876a0cc3eb34648ce1df4b851c3a"}
+ {:id "LC80320282013278-SC20170131160708",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013278-SC20170131160708.tar.gz",
+  :checksum "b2485d5dacf452c6bfb82ddf5533e070"}
+ {:id "LC80320282013294-SC20170131161124",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013294-SC20170131161124.tar.gz",
+  :checksum "a7e64cc0a883ba934346757195c4cd05"}
+ {:id "LC80320282013310-SC20170131162531",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013310-SC20170131162531.tar.gz",
+  :checksum "e7e06d4e3faeab272fded4e61737efe1"}
+ {:id "LC80320282013326-SC20170131161946",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013326-SC20170131161946.tar.gz",
+  :checksum "9f914d6d4029fd74c72d20ef115fb02b"}
+ {:id "LC80320282013342-SC20170131161110",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013342-SC20170131161110.tar.gz",
+  :checksum "da5d95eb5bcd16d279986c8a80d0dab8"}
+ {:id "LC80320282013358-SC20170131161546",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282013358-SC20170131161546.tar.gz",
+  :checksum "184a05c123a7e6df0a56751dc6aa4f80"}
+ {:id "LC80320282014009-SC20170131230608",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014009-SC20170131230608.tar.gz",
+  :checksum "b79b50b31381e0698ac7a2a75b6ced16"}
+ {:id "LC80320282014025-SC20170131160945",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014025-SC20170131160945.tar.gz",
+  :checksum "9ebfa7cead9d2ad1878c97dd78149f14"}
+ {:id "LC80320282014041-SC20170131161757",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014041-SC20170131161757.tar.gz",
+  :checksum "d1b8d59e8d43e49db7323d18d21c00b0"}
+ {:id "LC80320282014057-SC20170131183030",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014057-SC20170131183030.tar.gz",
+  :checksum "4d7ffbb96c8bfa8dd7bccdbddeb8ea05"}
+ {:id "LC80320282014073-SC20170131162344",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014073-SC20170131162344.tar.gz",
+  :checksum "3666989b1a8ce31fdd24da61d6da940a"}
+ {:id "LC80320282014089-SC20170131160540",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014089-SC20170131160540.tar.gz",
+  :checksum "a1c4977177b6dabd271bd71e56344dff"}
+ {:id "LC80320282014105-SC20170131162159",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014105-SC20170131162159.tar.gz",
+  :checksum "b09c951f72ad49276bc3b1fb299b5681"}
+ {:id "LC80320282014121-SC20170131163412",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014121-SC20170131163412.tar.gz",
+  :checksum "6fa973eb83cf4176c9f624d6af5edd02"}
+ {:id "LC80320282014137-SC20170131163644",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014137-SC20170131163644.tar.gz",
+  :checksum "263800d2cb75f95ae61a65cdd80be3ca"}
+ {:id "LC80320282014153-SC20170131163647",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014153-SC20170131163647.tar.gz",
+  :checksum "4e2e25b1ce238625807f0a59c047c1ae"}
+ {:id "LC80320282014169-SC20170131160902",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014169-SC20170131160902.tar.gz",
+  :checksum "ad2a785ffb013d4ca3c29188de321b75"}
+ {:id "LC80320282014185-SC20170131161536",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014185-SC20170131161536.tar.gz",
+  :checksum "4723362841d1af18fda34cce8d4a6b4e"}
+ {:id "LC80320282014201-SC20170131164749",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014201-SC20170131164749.tar.gz",
+  :checksum "a455f4e41356b06441d59fe72b843750"}
+ {:id "LC80320282014217-SC20170131160623",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014217-SC20170131160623.tar.gz",
+  :checksum "7c4eb655480f4a879f2c52ceaf7d3447"}
+ {:id "LC80320282014233-SC20170131164251",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014233-SC20170131164251.tar.gz",
+  :checksum "382587a5f7f0912c38c269fb3fff4cc3"}
+ {:id "LC80320282014249-SC20170131164026",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014249-SC20170131164026.tar.gz",
+  :checksum "77e1807b1465e8d4f720246f21eddf99"}
+ {:id "LC80320282014265-SC20170131161623",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014265-SC20170131161623.tar.gz",
+  :checksum "4c314078e015ec0ece015835acf9f754"}
+ {:id "LC80320282014281-SC20170131152025",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014281-SC20170131152025.tar.gz",
+  :checksum "20ac2a4dc15c5534e87b71fac155a871"}
+ {:id "LC80320282014297-SC20170131152733",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014297-SC20170131152733.tar.gz",
+  :checksum "762d68900047474a18f8330c8896ad6d"}
+ {:id "LC80320282014313-SC20170131161707",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014313-SC20170131161707.tar.gz",
+  :checksum "78a03a5903a46ca05963cf92a46e77b2"}
+ {:id "LC80320282014329-SC20170131161600",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014329-SC20170131161600.tar.gz",
+  :checksum "d5ed605baecb2ca3b9b36c7f9a879afd"}
+ {:id "LC80320282014345-SC20170131164537",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014345-SC20170131164537.tar.gz",
+  :checksum "0055ed693910b7b4acafff04d940ca77"}
+ {:id "LC80320282014361-SC20170131164606",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282014361-SC20170131164606.tar.gz",
+  :checksum "11135812e7d11dfea1bffe6868ee9ff2"}
+ {:id "LC80320282015012-SC20170131163236",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015012-SC20170131163236.tar.gz",
+  :checksum "fc52829fb5b43dbfda82e29c78e2b2ed"}
+ {:id "LC80320282015028-SC20170131162317",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015028-SC20170131162317.tar.gz",
+  :checksum "8181be27ed2cfa56476384b3cfde11e2"}
+ {:id "LC80320282015044-SC20170131165322",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015044-SC20170131165322.tar.gz",
+  :checksum "5ce45f1e5c498124e4ec9f8c40ee5530"}
+ {:id "LC80320282015060-SC20170131164814",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015060-SC20170131164814.tar.gz",
+  :checksum "177bb4de2638515dc04367d3b1a80d88"}
+ {:id "LC80320282015076-SC20170131162342",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015076-SC20170131162342.tar.gz",
+  :checksum "a8f2166ea0ada83a5d1a18f4e051a34a"}
+ {:id "LC80320282015092-SC20170131210247",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015092-SC20170131210247.tar.gz",
+  :checksum "0a136bd74d1448fa199489eab2664f2d"}
+ {:id "LC80320282015108-SC20170131162603",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015108-SC20170131162603.tar.gz",
+  :checksum "bc793b5076ab6fa4c30c3c38b9f4340f"}
+ {:id "LC80320282015124-SC20170131162829",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015124-SC20170131162829.tar.gz",
+  :checksum "8244f93647e5aa9cb601b4464c818225"}
+ {:id "LC80320282015140-SC20170131165304",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015140-SC20170131165304.tar.gz",
+  :checksum "b78a2579fe436566ac1338ea1037babd"}
+ {:id "LC80320282015156-SC20170131165306",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015156-SC20170131165306.tar.gz",
+  :checksum "e4a680bda70d3cce4e069eb0e80b744c"}
+ {:id "LC80320282015172-SC20170131165741",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015172-SC20170131165741.tar.gz",
+  :checksum "73aacbca25f38a7f04e969f9a4b6c82f"}
+ {:id "LC80320282015188-SC20170131170103",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015188-SC20170131170103.tar.gz",
+  :checksum "1a04c6e6713f08bb5e1d041e0477b895"}
+ {:id "LC80320282015204-SC20170131165500",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015204-SC20170131165500.tar.gz",
+  :checksum "585a592756ce0b818cfc2ff7e9052dad"}
+ {:id "LC80320282015220-SC20170131164229",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015220-SC20170131164229.tar.gz",
+  :checksum "370dab043096592073af7b2b82561add"}
+ {:id "LC80320282015236-SC20170131164757",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015236-SC20170131164757.tar.gz",
+  :checksum "1ae98b99dcb124399fdb2fd24fd76d89"}
+ {:id "LC80320282015252-SC20170131165601",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015252-SC20170131165601.tar.gz",
+  :checksum "fc1d6ce3df3d8eede645eef909698a4a"}
+ {:id "LC80320282015268-SC20170131165309",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015268-SC20170131165309.tar.gz",
+  :checksum "537caa9e56e79d0e8e5f916d9dea3aff"}
+ {:id "LC80320282015284-SC20170131164017",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015284-SC20170131164017.tar.gz",
+  :checksum "f364717109595b0491d0a388359b13d5"}
+ {:id "LC80320282015300-SC20170131164839",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015300-SC20170131164839.tar.gz",
+  :checksum "a23f5c1c152c99a5eb030f3635611968"}
+ {:id "LC80320282015316-SC20170131164323",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015316-SC20170131164323.tar.gz",
+  :checksum "039adc7751e4be2bfbb3b499a4abeae9"}
+ {:id "LC80320282015332-SC20170131164935",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015332-SC20170131164935.tar.gz",
+  :checksum "67268a5bdd28e528595c009d9c16b5e5"}
+ {:id "LC80320282015348-SC20170131163038",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015348-SC20170131163038.tar.gz",
+  :checksum "39f4d64472e585ccc5b33cba2ba517c8"}
+ {:id "LC80320282015364-SC20170131164909",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282015364-SC20170131164909.tar.gz",
+  :checksum "24098e532ac27260df2cccb73ad28883"}
+ {:id "LC80320282016015-SC20170131164200",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016015-SC20170131164200.tar.gz",
+  :checksum "b021191947e3335ecb22fa1b76f81aab"}
+ {:id "LC80320282016031-SC20170131164710",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016031-SC20170131164710.tar.gz",
+  :checksum "b404f10a6bf2e0a76477d98f804d0a9e"}
+ {:id "LC80320282016047-SC20170131164246",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016047-SC20170131164246.tar.gz",
+  :checksum "60366774e349b441f1185b3d59d14fe4"}
+ {:id "LC80320282016063-SC20170131164129",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016063-SC20170131164129.tar.gz",
+  :checksum "c2b380e79ddf8da9b4ea0f07452546c3"}
+ {:id "LC80320282016079-SC20170131163821",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016079-SC20170131163821.tar.gz",
+  :checksum "e52195a9e28d9e4864b4da24146351b8"}
+ {:id "LC80320282016095-SC20170131165136",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016095-SC20170131165136.tar.gz",
+  :checksum "41dfb2c4ae467c8a667816405e934e4f"}
+ {:id "LC80320282016111-SC20170131164551",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016111-SC20170131164551.tar.gz",
+  :checksum "214ccbbe80e0b56eacf0d1bb7440d163"}
+ {:id "LC80320282016127-SC20170131164713",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016127-SC20170131164713.tar.gz",
+  :checksum "f68cc8f5aa81e07d851a7e31b6069c7c"}
+ {:id "LC80320282016143-SC20170131164847",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016143-SC20170131164847.tar.gz",
+  :checksum "1b21d8f8c589006a98a1087054ccb3b7"}
+ {:id "LC80320282016159-SC20170131165052",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016159-SC20170131165052.tar.gz",
+  :checksum "b6664e5801da7c0ffe1432be9356cdde"}
+ {:id "LC80320282016175-SC20170131165300",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016175-SC20170131165300.tar.gz",
+  :checksum "e1af52954765f2765b2bbf9df000689c"}
+ {:id "LC80320282016191-SC20170131164836",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016191-SC20170131164836.tar.gz",
+  :checksum "a25ab63a1ae4f7f37503417ea7eeaddc"}
+ {:id "LC80320282016207-SC20170131165101",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016207-SC20170131165101.tar.gz",
+  :checksum "75b0b297bfe9b860d818abf182dd28b5"}
+ {:id "LC80320282016223-SC20170131165250",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016223-SC20170131165250.tar.gz",
+  :checksum "0cda9dcc7f5fc797ade3bb424489dc15"}
+ {:id "LC80320282016239-SC20170131163014",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016239-SC20170131163014.tar.gz",
+  :checksum "20d35784011cf2c6fa91977688a289bf"}
+ {:id "LC80320282016255-SC20170131164857",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016255-SC20170131164857.tar.gz",
+  :checksum "fdbf5f1a4d030037e916642ee7b1b546"}
+ {:id "LC80320282016271-SC20170131164317",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016271-SC20170131164317.tar.gz",
+  :checksum "d71411af1b93bb7c39412cc9c9f3b0ee"}
+ {:id "LC80320282016287-SC20170131164320",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016287-SC20170131164320.tar.gz",
+  :checksum "8f2eb6210355aaa2ab76c7e0068ec18c"}
+ {:id "LC80320282016303-SC20170131163018",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016303-SC20170131163018.tar.gz",
+  :checksum "0845f90031f143b678dca3a2416be348"}
+ {:id "LC80320282016319-SC20170131164203",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320282016319-SC20170131164203.tar.gz",
+  :checksum "b5c1197d9c9e76b154e053ca6a14c742"}
+ {:id "LC80320292013102-SC20170131163510",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013102-SC20170131163510.tar.gz",
+  :checksum "bdae79daf85e655da62f8ae7f1ae5879"}
+ {:id "LC80320292013118-SC20170131151009",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013118-SC20170131151009.tar.gz",
+  :checksum "ac040e63adb379a7b55a1499550de836"}
+ {:id "LC80320292013134-SC20170131153715",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013134-SC20170131153715.tar.gz",
+  :checksum "0748da1c7a3e3530512098c87280089f"}
+ {:id "LC80320292013166-SC20170131153557",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013166-SC20170131153557.tar.gz",
+  :checksum "0ca344c6a16473749cf1bdb2c4848874"}
+ {:id "LC80320292013182-SC20170131164213",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013182-SC20170131164213.tar.gz",
+  :checksum "29ca1d2bc490f9c69eb7f259663a9c74"}
+ {:id "LC80320292013198-SC20170131164511",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013198-SC20170131164511.tar.gz",
+  :checksum "9121c7a2e0db5f40b238c80e2fade508"}
+ {:id "LC80320292013214-SC20170131163902",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013214-SC20170131163902.tar.gz",
+  :checksum "49e052e2e73a706163fbd2b15bf1d4ad"}
+ {:id "LC80320292013230-SC20170131162342",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013230-SC20170131162342.tar.gz",
+  :checksum "d5d9b97e97491b1fd957f6c9213aebf4"}
+ {:id "LC80320292013246-SC20170131163743",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013246-SC20170131163743.tar.gz",
+  :checksum "fcd1cf50fe4c70fdbe97c2795a8371f2"}
+ {:id "LC80320292013262-SC20170131163551",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013262-SC20170131163551.tar.gz",
+  :checksum "90e82fa662916bfcd0a5183e8038b9ac"}
+ {:id "LC80320292013278-SC20170131164414",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013278-SC20170131164414.tar.gz",
+  :checksum "a5da7cf1442f56957152839dbd870be3"}
+ {:id "LC80320292013294-SC20170131163304",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013294-SC20170131163304.tar.gz",
+  :checksum "45559eb46b666acf8ee50e58c726e663"}
+ {:id "LC80320292013310-SC20170131165848",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013310-SC20170131165848.tar.gz",
+  :checksum "94c51b94e132b5a68a3a2b1eeaece5ab"}
+ {:id "LC80320292013326-SC20170131164900",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013326-SC20170131164900.tar.gz",
+  :checksum "d8166d2a030d0f8cb86a482f4c56092c"}
+ {:id "LC80320292013342-SC20170131184156",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013342-SC20170131184156.tar.gz",
+  :checksum "67fdd40c63cb54cd4baa6dacd8677bf3"}
+ {:id "LC80320292013358-SC20170131163211",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292013358-SC20170131163211.tar.gz",
+  :checksum "affb29db785a3691919d4d43fc14590d"}
+ {:id "LC80320292014009-SC20170131164432",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014009-SC20170131164432.tar.gz",
+  :checksum "c045dea37ac0fae15caa775e679ff0e9"}
+ {:id "LC80320292014025-SC20170131164203",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014025-SC20170131164203.tar.gz",
+  :checksum "39c889813b60b188582c798ee393bf77"}
+ {:id "LC80320292014041-SC20170131163519",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014041-SC20170131163519.tar.gz",
+  :checksum "ab3c22824e74a19c659c50f93137225f"}
+ {:id "LC80320292014057-SC20170131163442",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014057-SC20170131163442.tar.gz",
+  :checksum "e86d24bcc1575fcda97db68c6c98c9b0"}
+ {:id "LC80320292014073-SC20170131165002",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014073-SC20170131165002.tar.gz",
+  :checksum "d3df86b93a26cada45b515ae176c07a1"}
+ {:id "LC80320292014089-SC20170131162514",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014089-SC20170131162514.tar.gz",
+  :checksum "42563833f9a96cea49830ce2b6f16838"}
+ {:id "LC80320292014105-SC20170131164221",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014105-SC20170131164221.tar.gz",
+  :checksum "826fb5095da36916b944e9cbb04a6135"}
+ {:id "LC80320292014121-SC20170131165415",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014121-SC20170131165415.tar.gz",
+  :checksum "e94b0419a595da27a478e95e95751b90"}
+ {:id "LC80320292014137-SC20170131165551",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014137-SC20170131165551.tar.gz",
+  :checksum "ce2f1828c153d3d20cd43dbc8541403a"}
+ {:id "LC80320292014153-SC20170131170024",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014153-SC20170131170024.tar.gz",
+  :checksum "d74787f0ebf77a94f96a3d4253130d76"}
+ {:id "LC80320292014169-SC20170131164507",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014169-SC20170131164507.tar.gz",
+  :checksum "5acc805ff5822496c511abdc8f0ca67d"}
+ {:id "LC80320292014185-SC20170131163221",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014185-SC20170131163221.tar.gz",
+  :checksum "1514ace29c38fbcc3396a6bf4400b882"}
+ {:id "LC80320292014201-SC20170131165804",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014201-SC20170131165804.tar.gz",
+  :checksum "b34a83275fc011bf1e79f9f345519d4b"}
+ {:id "LC80320292014217-SC20170131163308",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014217-SC20170131163308.tar.gz",
+  :checksum "c5be8f2f4ba70aa1396c61fe71bd5c8e"}
+ {:id "LC80320292014233-SC20170131165255",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014233-SC20170131165255.tar.gz",
+  :checksum "60727fd52ac1b357826aa151abb0258e"}
+ {:id "LC80320292014249-SC20170131165210",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014249-SC20170131165210.tar.gz",
+  :checksum "442c829cd9b28aebbbca0bd8bef90442"}
+ {:id "LC80320292014265-SC20170131163935",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014265-SC20170131163935.tar.gz",
+  :checksum "ffed1682f5592964e49135bc202bb3e6"}
+ {:id "LC80320292014281-SC20170131164247",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014281-SC20170131164247.tar.gz",
+  :checksum "c2027dc4d30c6b9b2e7a32bac982ed53"}
+ {:id "LC80320292014297-SC20170131175058",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014297-SC20170131175058.tar.gz",
+  :checksum "5ea8eb93e0ed35a21b481c60d13ae09f"}
+ {:id "LC80320292014313-SC20170131162727",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014313-SC20170131162727.tar.gz",
+  :checksum "5b121b6f50bb99fc600b4c2db5f20d60"}
+ {:id "LC80320292014329-SC20170131162848",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014329-SC20170131162848.tar.gz",
+  :checksum "4b10ef57acea3bf2c06f57cd05ce862a"}
+ {:id "LC80320292014345-SC20170131165039",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014345-SC20170131165039.tar.gz",
+  :checksum "3a02b4663f74aee84aa52264360d4d3b"}
+ {:id "LC80320292014361-SC20170131165853",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292014361-SC20170131165853.tar.gz",
+  :checksum "9ffd52c7c9733c32069aeae3d18b7a1b"}
+ {:id "LC80320292015012-SC20170131163229",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015012-SC20170131163229.tar.gz",
+  :checksum "7db198fe9adb6c9350b51d006bf69c66"}
+ {:id "LC80320292015028-SC20170131163332",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015028-SC20170131163332.tar.gz",
+  :checksum "b2742005e1860f734029a9c07f4d61db"}
+ {:id "LC80320292015044-SC20170131165527",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015044-SC20170131165527.tar.gz",
+  :checksum "6288eaa2678cbc0735944e3f7964628b"}
+ {:id "LC80320292015060-SC20170131165404",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015060-SC20170131165404.tar.gz",
+  :checksum "803891f08c6763f4f23beddbefcfa22b"}
+ {:id "LC80320292015076-SC20170131163302",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015076-SC20170131163302.tar.gz",
+  :checksum "32c380e6ce183848c0fea64acef54bc4"}
+ {:id "LC80320292015092-SC20170131163602",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015092-SC20170131163602.tar.gz",
+  :checksum "6c496f8ac105ab99180ed63337328d67"}
+ {:id "LC80320292015108-SC20170131162934",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015108-SC20170131162934.tar.gz",
+  :checksum "4d12269ac4a189bb9bcf692b681dcae9"}
+ {:id "LC80320292015124-SC20170131163000",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015124-SC20170131163000.tar.gz",
+  :checksum "95efc968047360f606dfc2bfb28d000b"}
+ {:id "LC80320292015140-SC20170131165141",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015140-SC20170131165141.tar.gz",
+  :checksum "8f584ecbc90926dcc2df289367c1b555"}
+ {:id "LC80320292015156-SC20170131164822",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015156-SC20170131164822.tar.gz",
+  :checksum "98321ad7b9bcede3ade93b5fd0d82e22"}
+ {:id "LC80320292015172-SC20170131170037",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015172-SC20170131170037.tar.gz",
+  :checksum "7cc317dd60a134d769fe003043109423"}
+ {:id "LC80320292015188-SC20170131165703",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015188-SC20170131165703.tar.gz",
+  :checksum "fe12749f6cf5f1ee8a135a8620fe611f"}
+ {:id "LC80320292015204-SC20170131152918",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015204-SC20170131152918.tar.gz",
+  :checksum "4b7c739363bcae97bceb327931180cb4"}
+ {:id "LC80320292015220-SC20170131150911",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015220-SC20170131150911.tar.gz",
+  :checksum "f995c6dd06aa46304f86f0900967492c"}
+ {:id "LC80320292015236-SC20170131164622",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015236-SC20170131164622.tar.gz",
+  :checksum "e7e5110223c15dad5577a576c73cf67a"}
+ {:id "LC80320292015252-SC20170131163602",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015252-SC20170131163602.tar.gz",
+  :checksum "ed44e123fd029ee6e74d1916e6a55029"}
+ {:id "LC80320292015268-SC20170131164945",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015268-SC20170131164945.tar.gz",
+  :checksum "7a8a94c88d5cd768f38cd520df59dca0"}
+ {:id "LC80320292015284-SC20170131163402",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015284-SC20170131163402.tar.gz",
+  :checksum "15e6b63fd74c986b89e4990bc74b7541"}
+ {:id "LC80320292015300-SC20170131163252",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015300-SC20170131163252.tar.gz",
+  :checksum "88f2414815420d72c8b91b33b7bd26f0"}
+ {:id "LC80320292015316-SC20170131164232",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015316-SC20170131164232.tar.gz",
+  :checksum "4db646ca0678c4e761d56818653c3650"}
+ {:id "LC80320292015332-SC20170131164700",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015332-SC20170131164700.tar.gz",
+  :checksum "7b775a345d320eb01fdae216b836689b"}
+ {:id "LC80320292015348-SC20170131164330",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015348-SC20170131164330.tar.gz",
+  :checksum "5419d8b8f0218ed88ff5ef799ae0d8c7"}
+ {:id "LC80320292015364-SC20170131164905",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292015364-SC20170131164905.tar.gz",
+  :checksum "9b2727e49a2bdac5f012f73e8c4b9713"}
+ {:id "LC80320292016015-SC20170131162354",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016015-SC20170131162354.tar.gz",
+  :checksum "da3613c90ea72cad6717430f17b8c9b5"}
+ {:id "LC80320292016031-SC20170131164710",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016031-SC20170131164710.tar.gz",
+  :checksum "93cf0b5b2683995c907e69f5fcce58d5"}
+ {:id "LC80320292016047-SC20170131163353",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016047-SC20170131163353.tar.gz",
+  :checksum "21c3f1f5f01a53ad4eab781d4d6a1183"}
+ {:id "LC80320292016063-SC20170131164932",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016063-SC20170131164932.tar.gz",
+  :checksum "4bc07759849b71386724ded76fbe98cf"}
+ {:id "LC80320292016079-SC20170131162356",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016079-SC20170131162356.tar.gz",
+  :checksum "19e4db4735895acaf2aee8f33f383b7d"}
+ {:id "LC80320292016095-SC20170131164535",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016095-SC20170131164535.tar.gz",
+  :checksum "5d22cb50452b91f0bfcdfd4321974fa9"}
+ {:id "LC80320292016111-SC20170131163418",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016111-SC20170131163418.tar.gz",
+  :checksum "d2bd8c979156954991f5d1d432eaddea"}
+ {:id "LC80320292016127-SC20170131162359",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016127-SC20170131162359.tar.gz",
+  :checksum "812fb33d49983cdbb680d62cab7b3e9c"}
+ {:id "LC80320292016143-SC20170131165328",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016143-SC20170131165328.tar.gz",
+  :checksum "433064fce2f513c0871d61c95aa164b3"}
+ {:id "LC80320292016159-SC20170131164627",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016159-SC20170131164627.tar.gz",
+  :checksum "b35011a7a9124672b7e7d1ed1b91445d"}
+ {:id "LC80320292016175-SC20170131164624",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016175-SC20170131164624.tar.gz",
+  :checksum "af74ae49b2d0dbf11f034c355823a4a9"}
+ {:id "LC80320292016191-SC20170131164344",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016191-SC20170131164344.tar.gz",
+  :checksum "f0ff21e8bdec47c30e23ec7ac0375b3f"}
+ {:id "LC80320292016207-SC20170131163816",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016207-SC20170131163816.tar.gz",
+  :checksum "fb24ce57e513b064cf295451a32d6896"}
+ {:id "LC80320292016223-SC20170131164052",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016223-SC20170131164052.tar.gz",
+  :checksum "47149cbfee8109efef7c5a9a6c9e6dc8"}
+ {:id "LC80320292016239-SC20170131162124",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016239-SC20170131162124.tar.gz",
+  :checksum "5e4a65bcaf8ed39d0597755b3c50e457"}
+ {:id "LC80320292016255-SC20170131164409",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016255-SC20170131164409.tar.gz",
+  :checksum "25f75d948c9b7b3ff03c6d07c048393d"}
+ {:id "LC80320292016271-SC20170131164235",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016271-SC20170131164235.tar.gz",
+  :checksum "e22d63a8be0a6dec83211d330db08495"}
+ {:id "LC80320292016287-SC20170131163851",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016287-SC20170131163851.tar.gz",
+  :checksum "c179ea6f8fd1fe920fc31f5f43a1d5fd"}
+ {:id "LC80320292016303-SC20170131153542",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016303-SC20170131153542.tar.gz",
+  :checksum "b676e2489f524e6a85ae89d8d64fbcfa"}
+ {:id "LC80320292016319-SC20170131152729",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/plains/H15V05-529/LC80320292016319-SC20170131152729.tar.gz",
+  :checksum "b674375ea7396854ba37f8da5620c3f5"})

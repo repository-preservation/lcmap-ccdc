@@ -1,0 +1,996 @@
+({:id "LT050420351998051101T1-SC20170120100331",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998051101T1-SC20170120100331.tar.gz",
+  :checksum "4468df0ec3946aa6292693b61953d0ed"}
+ {:id "LT050420351998052701T1-SC20170120100451",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998052701T1-SC20170120100451.tar.gz",
+  :checksum "0d8bc8570cf51b3cc11e8213db185032"}
+ {:id "LT050420351998062801T1-SC20170120100451",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998062801T1-SC20170120100451.tar.gz",
+  :checksum "388e6e1b83561e2d762f452cd7b0494f"}
+ {:id "LT050420351998071401T1-SC20170120100350",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998071401T1-SC20170120100350.tar.gz",
+  :checksum "abd3e509a120088c2315f0f85b516f7a"}
+ {:id "LT050420351998073001T1-SC20170120100537",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998073001T1-SC20170120100537.tar.gz",
+  :checksum "9acea195b763c90f7fd6faa98d8c431d"}
+ {:id "LT050420351998081501T1-SC20170120100444",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998081501T1-SC20170120100444.tar.gz",
+  :checksum "9a733954a7300e5dacd34ecdfe19be7a"}
+ {:id "LT050420351998083101T1-SC20170120100355",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998083101T1-SC20170120100355.tar.gz",
+  :checksum "4b275ee67454836041b5c72ec28e8e1f"}
+ {:id "LT050420351998091601T1-SC20170120100403",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998091601T1-SC20170120100403.tar.gz",
+  :checksum "4ac08fd28b23f3685affe285c7220fe7"}
+ {:id "LT050420351998100201T1-SC20170120100345",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998100201T1-SC20170120100345.tar.gz",
+  :checksum "6f075cacf7841f5eda0c26c7627eb00a"}
+ {:id "LT050420351998101801T1-SC20170120100844",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998101801T1-SC20170120100844.tar.gz",
+  :checksum "ca3adff6ea8d321b722d223564a83ac4"}
+ {:id "LT050420351998110301T1-SC20170120100647",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998110301T1-SC20170120100647.tar.gz",
+  :checksum "f883c6184c9ace79991919bac06ec0fb"}
+ {:id "LT050420351998111901T1-SC20170120101134",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998111901T1-SC20170120101134.tar.gz",
+  :checksum "241130c05877ba2679424d2c3d408943"}
+ {:id "LT050420351998120501T1-SC20170120101006",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998120501T1-SC20170120101006.tar.gz",
+  :checksum "0e04c66f64000a5eb633fa2237b6e5ed"}
+ {:id "LT050420351998122101T1-SC20170120100935",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351998122101T1-SC20170120100935.tar.gz",
+  :checksum "ae82324fdc178d6e5bf3a781f405585d"}
+ {:id "LT050420351999010601T1-SC20170120101256",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999010601T1-SC20170120101256.tar.gz",
+  :checksum "6bcea9cc8b8458364ac177389949f861"}
+ {:id "LT050420351999012201T1-SC20170120100945",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999012201T1-SC20170120100945.tar.gz",
+  :checksum "55f0dfe7fe7445b21d3b2fb161011a67"}
+ {:id "LT050420351999022301T1-SC20170120101037",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999022301T1-SC20170120101037.tar.gz",
+  :checksum "a451a518c0baa9ab43d0da117dcad93c"}
+ {:id "LT050420351999031101T1-SC20170120100859",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999031101T1-SC20170120100859.tar.gz",
+  :checksum "32dfa3662e372c5d670adb76ab883770"}
+ {:id "LT050420351999032701T1-SC20170120101045",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999032701T1-SC20170120101045.tar.gz",
+  :checksum "577fc6838c5c00f26b547d632bcb1c3c"}
+ {:id "LT050420351999041201T1-SC20170120101037",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999041201T1-SC20170120101037.tar.gz",
+  :checksum "7cd071e6dd19136ca74c83720f914368"}
+ {:id "LT050420351999051401T1-SC20170120100908",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999051401T1-SC20170120100908.tar.gz",
+  :checksum "8e7c49258c6ffa77d0dc408f1445be63"}
+ {:id "LT050420351999053001T1-SC20170120100932",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999053001T1-SC20170120100932.tar.gz",
+  :checksum "f676c27de2e643d719dfe6977e43d9e5"}
+ {:id "LT050420351999061501T1-SC20170120100945",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999061501T1-SC20170120100945.tar.gz",
+  :checksum "90c14a23a78ebac9cc81b3ce7d331a7b"}
+ {:id "LT050420351999071701T1-SC20170120101047",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999071701T1-SC20170120101047.tar.gz",
+  :checksum "476da3b3a8e7532efa83f96639c7467f"}
+ {:id "LT050420351999080201T1-SC20170120100901",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999080201T1-SC20170120100901.tar.gz",
+  :checksum "2dc21a771adc556b21b1f189382bdf75"}
+ {:id "LT050420351999081801T1-SC20170120100908",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999081801T1-SC20170120100908.tar.gz",
+  :checksum "e30ef4f5014771a3907b34449c92e95f"}
+ {:id "LT050420351999090301T1-SC20170120093639",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999090301T1-SC20170120093639.tar.gz",
+  :checksum "5941bf6b4b0047a52abb138a334a33e1"}
+ {:id "LT050420351999091901T1-SC20170120093509",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999091901T1-SC20170120093509.tar.gz",
+  :checksum "3fd5ad92e09c4f49641b726d0adca6b9"}
+ {:id "LT050420351999100501T1-SC20170120100927",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999100501T1-SC20170120100927.tar.gz",
+  :checksum "97fb7276b7ec5f623589b5d3b2fbf3be"}
+ {:id "LT050420351999102101T1-SC20170120100958",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999102101T1-SC20170120100958.tar.gz",
+  :checksum "657ee8b92215921359e4d602bc1084ee"}
+ {:id "LT050420351999110601T1-SC20170120093602",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999110601T1-SC20170120093602.tar.gz",
+  :checksum "66b2dbe7e7538f33a28fcdcbfc8f20e5"}
+ {:id "LT050420351999112201T1-SC20170120093322",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999112201T1-SC20170120093322.tar.gz",
+  :checksum "566381e1c1da1eca25382022e4c05c3d"}
+ {:id "LT050420351999122401T1-SC20170120093328",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420351999122401T1-SC20170120093328.tar.gz",
+  :checksum "ce119520cc8acb979a4e20d2082336f6"}
+ {:id "LT050420352000010901T1-SC20170120093437",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000010901T1-SC20170120093437.tar.gz",
+  :checksum "1489e3386e0b545bf86a44cc3f561635"}
+ {:id "LT050420352000021001T1-SC20170120093347",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000021001T1-SC20170120093347.tar.gz",
+  :checksum "84fd7104c9497f0ea2216ae2964e0508"}
+ {:id "LT050420352000032901T1-SC20170120093304",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000032901T1-SC20170120093304.tar.gz",
+  :checksum "2e70ecdea03f7c2b478d6c91e8ecfcc7"}
+ {:id "LT050420352000041401T1-SC20170120094708",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000041401T1-SC20170120094708.tar.gz",
+  :checksum "cce50d1d2eff8af5d703ed0b985069f2"}
+ {:id "LT050420352000043001T1-SC20170120094708",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000043001T1-SC20170120094708.tar.gz",
+  :checksum "ac63bd955b743ce91d2be5aa129c9d64"}
+ {:id "LT050420352000051601T1-SC20170120094436",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000051601T1-SC20170120094436.tar.gz",
+  :checksum "3a0d58cb7ab9ddf33c9011ffbd9f656a"}
+ {:id "LT050420352000060101T1-SC20170120094403",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000060101T1-SC20170120094403.tar.gz",
+  :checksum "29ca6a6e14a08b4bc063782d21e07854"}
+ {:id "LT050420352000061701T1-SC20170120094850",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000061701T1-SC20170120094850.tar.gz",
+  :checksum "20f9855257f0437e228e93a349679ea6"}
+ {:id "LT050420352000070301T1-SC20170120094715",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000070301T1-SC20170120094715.tar.gz",
+  :checksum "615883ca51a99ffe39a7d5511ffe85f6"}
+ {:id "LT050420352000071901T1-SC20170120093815",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000071901T1-SC20170120093815.tar.gz",
+  :checksum "779ad0952033033449a60007ff9bb3ff"}
+ {:id "LT050420352000080401T1-SC20170120093201",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000080401T1-SC20170120093201.tar.gz",
+  :checksum "69419ffa3a9a69672ce5388ea82f33e1"}
+ {:id "LT050420352000082001T1-SC20170120093342",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000082001T1-SC20170120093342.tar.gz",
+  :checksum "cb4af571f94b41d85e4b93804c4cba27"}
+ {:id "LT050420352000092101T1-SC20170120093434",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000092101T1-SC20170120093434.tar.gz",
+  :checksum "7d0caec0d10949906e22c6e6622a55a7"}
+ {:id "LT050420352000100701T1-SC20170120093320",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000100701T1-SC20170120093320.tar.gz",
+  :checksum "2d2144323ce9329a88086b392b1f9682"}
+ {:id "LT050420352000102301T1-SC20170120093430",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000102301T1-SC20170120093430.tar.gz",
+  :checksum "4a066b147e1d44e2773675ba06663362"}
+ {:id "LT050420352000112401T1-SC20170120093444",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000112401T1-SC20170120093444.tar.gz",
+  :checksum "3117a73fd6746dbb6a2f21d1f4bc0944"}
+ {:id "LT050420352000121001T1-SC20170120093311",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000121001T1-SC20170120093311.tar.gz",
+  :checksum "b9473ad911eef1f28a9f74be685e9f5a"}
+ {:id "LT050420352000122601T1-SC20170120093317",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352000122601T1-SC20170120093317.tar.gz",
+  :checksum "ecdd4e7e9a7137db14645474edbfc6c2"}
+ {:id "LT050420352001011101T1-SC20170120093510",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001011101T1-SC20170120093510.tar.gz",
+  :checksum "ccdc8f06b0e69d9ad9e3bda619c0d755"}
+ {:id "LT050420352001012701T1-SC20170120095417",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001012701T1-SC20170120095417.tar.gz",
+  :checksum "e7911bc62f5743f7599f8a0711df6c76"}
+ {:id "LT050420352001021201T1-SC20170120093409",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001021201T1-SC20170120093409.tar.gz",
+  :checksum "09fd0c3ce5bf1076d5a4fe02a2c2c995"}
+ {:id "LT050420352001022801T1-SC20170120093445",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001022801T1-SC20170120093445.tar.gz",
+  :checksum "efb26df5ec6d4eb8887578171afcbf6f"}
+ {:id "LT050420352001031601T1-SC20170120093220",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001031601T1-SC20170120093220.tar.gz",
+  :checksum "db91ee1ca25799c5c24b19bcce590e62"}
+ {:id "LT050420352001040101T1-SC20170120093229",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001040101T1-SC20170120093229.tar.gz",
+  :checksum "37dace2f5dacb2c3479182b6e8e5574b"}
+ {:id "LT050420352001041701T1-SC20170120093220",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001041701T1-SC20170120093220.tar.gz",
+  :checksum "0d8678b859ce6e010601529d87321384"}
+ {:id "LT050420352001050301T1-SC20170120093247",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001050301T1-SC20170120093247.tar.gz",
+  :checksum "c30ba90013fce6645782c068526203bd"}
+ {:id "LT050420352001051901T1-SC20170120093228",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001051901T1-SC20170120093228.tar.gz",
+  :checksum "2a949e3b86f28bac0668e196820bf728"}
+ {:id "LT050420352001060401T1-SC20170120093206",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001060401T1-SC20170120093206.tar.gz",
+  :checksum "1a685e12024b42b62facf835eb1f71a3"}
+ {:id "LT050420352001062001T1-SC20170120093218",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001062001T1-SC20170120093218.tar.gz",
+  :checksum "1890056fcbc85dd438d21baabfdd0e38"}
+ {:id "LT050420352001072201T1-SC20170120093241",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001072201T1-SC20170120093241.tar.gz",
+  :checksum "d50dccba093863380f71a41c899f3b47"}
+ {:id "LT050420352001080701T1-SC20170120093320",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001080701T1-SC20170120093320.tar.gz",
+  :checksum "62f716f3521823347898000a3addba50"}
+ {:id "LT050420352001082301T1-SC20170120093215",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001082301T1-SC20170120093215.tar.gz",
+  :checksum "4aa096d20c5e7a38a30d61b461e9e0b8"}
+ {:id "LT050420352001090801T1-SC20170120093306",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001090801T1-SC20170120093306.tar.gz",
+  :checksum "e591bdb1dfef5ebc57882f895a29288f"}
+ {:id "LT050420352001092401T1-SC20170120093253",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001092401T1-SC20170120093253.tar.gz",
+  :checksum "0079ae420507e7135d55b07da42401b5"}
+ {:id "LT050420352001101001T1-SC20170120093223",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001101001T1-SC20170120093223.tar.gz",
+  :checksum "f9b3b65465dffc154c8ebf2fac55694e"}
+ {:id "LT050420352001102601T1-SC20170120093247",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001102601T1-SC20170120093247.tar.gz",
+  :checksum "5a2290284d8c2877946d5d13a38d1ca1"}
+ {:id "LT050420352001111101T1-SC20170120093248",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001111101T1-SC20170120093248.tar.gz",
+  :checksum "0a06e05cb60acce482d540e891bd71a0"}
+ {:id "LT050420352001112701T1-SC20170120095511",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001112701T1-SC20170120095511.tar.gz",
+  :checksum "925e6b624f469eea306b416a8d400fe3"}
+ {:id "LT050420352001121301T1-SC20170120095523",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352001121301T1-SC20170120095523.tar.gz",
+  :checksum "aee4d59043b5f8655e2ff68931b1b6c1"}
+ {:id "LT050420352002011401T1-SC20170120095755",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002011401T1-SC20170120095755.tar.gz",
+  :checksum "be4c2fb13a500fb4a0a77537b33c8bb5"}
+ {:id "LT050420352002030301T1-SC20170120095623",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002030301T1-SC20170120095623.tar.gz",
+  :checksum "8e0e7bb1e181e1da3b14524560f51dae"}
+ {:id "LT050420352002050601T1-SC20170120095505",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002050601T1-SC20170120095505.tar.gz",
+  :checksum "d418a466ad39d19effba6efc5c34b41d"}
+ {:id "LT050420352002052201T1-SC20170120095431",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002052201T1-SC20170120095431.tar.gz",
+  :checksum "3cfa97d22271644bf0da4968e2e236d4"}
+ {:id "LT050420352002060701T1-SC20170120095414",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002060701T1-SC20170120095414.tar.gz",
+  :checksum "c5af07d374fa80e16a4be1e7142deee6"}
+ {:id "LT050420352002062301T1-SC20170120095522",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002062301T1-SC20170120095522.tar.gz",
+  :checksum "143eb161abe2f53e5b5d358d6d19d80a"}
+ {:id "LT050420352002070901T1-SC20170120095537",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002070901T1-SC20170120095537.tar.gz",
+  :checksum "491825b0c4bd89913e0fc97bf2099cfb"}
+ {:id "LT050420352002072501T1-SC20170120095418",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002072501T1-SC20170120095418.tar.gz",
+  :checksum "d053e71f2e002b7eb2d002a2f34e6c29"}
+ {:id "LT050420352002081001T1-SC20170120095359",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002081001T1-SC20170120095359.tar.gz",
+  :checksum "f1f96f8e6bf8dd7a10116032ce2afb2b"}
+ {:id "LT050420352002091101T1-SC20170120095600",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002091101T1-SC20170120095600.tar.gz",
+  :checksum "37b16c8264fc1714ab25830b093ab024"}
+ {:id "LT050420352002092701T1-SC20170120095844",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002092701T1-SC20170120095844.tar.gz",
+  :checksum "5a347f389c40b71886042f33aba8dbd7"}
+ {:id "LT050420352002101301T1-SC20170120095805",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002101301T1-SC20170120095805.tar.gz",
+  :checksum "06aca4acfa9e33ef904a9787f4b8dd3f"}
+ {:id "LT050420352002102901T1-SC20170120094617",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002102901T1-SC20170120094617.tar.gz",
+  :checksum "33186362639eb0edc81710699c32e073"}
+ {:id "LT050420352002111401T1-SC20170120094609",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352002111401T1-SC20170120094609.tar.gz",
+  :checksum "cda4ec4328c8e8f785be474fbb9ea5a6"}
+ {:id "LT050420352003010101T1-SC20170120094540",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003010101T1-SC20170120094540.tar.gz",
+  :checksum "8163deba8122545735974b2ae7941032"}
+ {:id "LT050420352003011701T1-SC20170120094004",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003011701T1-SC20170120094004.tar.gz",
+  :checksum "33540049ede6a4d0de8956a3dd96b62f"}
+ {:id "LT050420352003020201T1-SC20170120093809",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003020201T1-SC20170120093809.tar.gz",
+  :checksum "4cb00ccadececa6edfccbfc8cb85b2f9"}
+ {:id "LT050420352003021801T1-SC20170120094602",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003021801T1-SC20170120094602.tar.gz",
+  :checksum "c2c8eebae053bc5036a9880cc1a53a9c"}
+ {:id "LT050420352003030601T1-SC20170120094632",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003030601T1-SC20170120094632.tar.gz",
+  :checksum "788ab1c864dfab1762ab7c2cbb7d6950"}
+ {:id "LT050420352003032201T1-SC20170120093634",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003032201T1-SC20170120093634.tar.gz",
+  :checksum "40cec6c399261f7d33b34f2ac5060971"}
+ {:id "LT050420352003040701T1-SC20170120093556",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003040701T1-SC20170120093556.tar.gz",
+  :checksum "d7c3666c8f6e9b9a25a580159ece3fab"}
+ {:id "LT050420352003042301T1-SC20170120095624",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003042301T1-SC20170120095624.tar.gz",
+  :checksum "c2102d3fcea688bc2ff4d006eede41f1"}
+ {:id "LT050420352003050901T1-SC20170120095517",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003050901T1-SC20170120095517.tar.gz",
+  :checksum "7e3a24efac76de6b27987d09da973065"}
+ {:id "LT050420352003052501T1-SC20170120095400",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003052501T1-SC20170120095400.tar.gz",
+  :checksum "27731d25286a7b26b95555ba31026b96"}
+ {:id "LT050420352003061001T1-SC20170120095523",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003061001T1-SC20170120095523.tar.gz",
+  :checksum "153d9726247bd7332d78fc363c023ae9"}
+ {:id "LT050420352003062601T1-SC20170120095800",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003062601T1-SC20170120095800.tar.gz",
+  :checksum "33478da1042b0ace0206538cd67513ce"}
+ {:id "LT050420352003071201T1-SC20170120095500",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003071201T1-SC20170120095500.tar.gz",
+  :checksum "3bacdb73312921230e2fc1cb8bad1f10"}
+ {:id "LT050420352003072801T1-SC20170120095814",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003072801T1-SC20170120095814.tar.gz",
+  :checksum "ec5a6d7a76713bc2dabd1f91cf06704c"}
+ {:id "LT050420352003081301T1-SC20170120095606",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003081301T1-SC20170120095606.tar.gz",
+  :checksum "fc533805d25cb3e92ee7745700e89770"}
+ {:id "LT050420352003082901T1-SC20170120095506",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003082901T1-SC20170120095506.tar.gz",
+  :checksum "9ae15027a1890fd6c2efe39b0b946ff0"}
+ {:id "LT050420352003091401T1-SC20170120095438",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003091401T1-SC20170120095438.tar.gz",
+  :checksum "d95f9bd2df52b4cc226bcb35dd470b8d"}
+ {:id "LT050420352003093001T1-SC20170120095617",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003093001T1-SC20170120095617.tar.gz",
+  :checksum "f8a713ad27d0e0c935a7367f9b14da13"}
+ {:id "LT050420352003101601T1-SC20170120095826",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003101601T1-SC20170120095826.tar.gz",
+  :checksum "b852cc0d8677235653e891cbeeee9725"}
+ {:id "LT050420352003110101T1-SC20170120095520",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003110101T1-SC20170120095520.tar.gz",
+  :checksum "91a6b3649e6b779cb73c223252534ffa"}
+ {:id "LT050420352003111701T1-SC20170120095840",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003111701T1-SC20170120095840.tar.gz",
+  :checksum "a34af523d325b54dec0da21315e86cc8"}
+ {:id "LT050420352003120301T1-SC20170120095618",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003120301T1-SC20170120095618.tar.gz",
+  :checksum "96eeee228f7bbc2da006eb6d96e2fe72"}
+ {:id "LT050420352003121901T1-SC20170120095754",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352003121901T1-SC20170120095754.tar.gz",
+  :checksum "2eb7bcfe2738e50a48bd06edbd933140"}
+ {:id "LT050420352004010401T1-SC20170120095621",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004010401T1-SC20170120095621.tar.gz",
+  :checksum "bbcd9f8344056ce1758cbb1c8c72c8c4"}
+ {:id "LT050420352004020501T1-SC20170120095458",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004020501T1-SC20170120095458.tar.gz",
+  :checksum "2916ca212c783ebdc9c5a35e1825a002"}
+ {:id "LT050420352004030801T1-SC20170120095827",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004030801T1-SC20170120095827.tar.gz",
+  :checksum "928c4980f67b574879944d81a35c1295"}
+ {:id "LT050420352004040901T1-SC20170120095703",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004040901T1-SC20170120095703.tar.gz",
+  :checksum "5e3279c18729bc0eaa58a17536c43547"}
+ {:id "LT050420352004042501T1-SC20170120095658",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004042501T1-SC20170120095658.tar.gz",
+  :checksum "21a3f7fbe0bad4389dfc9cae66566b2e"}
+ {:id "LT050420352004051101T1-SC20170120095454",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004051101T1-SC20170120095454.tar.gz",
+  :checksum "fd97fcd427e6bf9849c7e558ba41d084"}
+ {:id "LT050420352004052701T1-SC20170120093500",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004052701T1-SC20170120093500.tar.gz",
+  :checksum "7c1fd270856212769e0c3ec81ee98de5"}
+ {:id "LT050420352004061201T1-SC20170120095444",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004061201T1-SC20170120095444.tar.gz",
+  :checksum "d9b327afb754bcd15bfda3ab086f1d9a"}
+ {:id "LT050420352004062801T1-SC20170120093349",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004062801T1-SC20170120093349.tar.gz",
+  :checksum "569e28100444818bb240d68335aa4306"}
+ {:id "LT050420352004071401T1-SC20170120093403",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004071401T1-SC20170120093403.tar.gz",
+  :checksum "06b2af27e8bdf1fc26761215d7b8e370"}
+ {:id "LT050420352004073001T1-SC20170120093237",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004073001T1-SC20170120093237.tar.gz",
+  :checksum "1f2780f0918ab7937bd6acfc7c72f620"}
+ {:id "LT050420352004081501T1-SC20170120093409",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004081501T1-SC20170120093409.tar.gz",
+  :checksum "e66f26742be5153cfec81d3696c7afd3"}
+ {:id "LT050420352004083101T1-SC20170120093421",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004083101T1-SC20170120093421.tar.gz",
+  :checksum "d5ef3e087e430cd89ca96561925ca813"}
+ {:id "LT050420352004091601T1-SC20170120093143",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004091601T1-SC20170120093143.tar.gz",
+  :checksum "d4364ea2567454812f56b76ed314d833"}
+ {:id "LT050420352004100201T1-SC20170120100522",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004100201T1-SC20170120100522.tar.gz",
+  :checksum "027e71c3d3d9cd2b8a35223c65d149fb"}
+ {:id "LT050420352004110301T1-SC20170120100623",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004110301T1-SC20170120100623.tar.gz",
+  :checksum "da4659306b451227e9cf0b53748e3261"}
+ {:id "LT050420352004111901T1-SC20170120100343",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004111901T1-SC20170120100343.tar.gz",
+  :checksum "ef31b03955ca68c747d2fec1bbf78076"}
+ {:id "LT050420352004120501T1-SC20170120100653",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004120501T1-SC20170120100653.tar.gz",
+  :checksum "81b1ac2b18faf9d345b9827103515b13"}
+ {:id "LT050420352004122101T1-SC20170120100541",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352004122101T1-SC20170120100541.tar.gz",
+  :checksum "ce7eb76a6facbb00f0f3c9e5e2ee118c"}
+ {:id "LT050420352005010601T1-SC20170120100443",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005010601T1-SC20170120100443.tar.gz",
+  :checksum "961cedd1854fe6e1096af273baa49f34"}
+ {:id "LT050420352005012201T1-SC20170120100725",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005012201T1-SC20170120100725.tar.gz",
+  :checksum "77e56ffbfd4bcfd300fe650a016cac04"}
+ {:id "LT050420352005022301T1-SC20170120100611",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005022301T1-SC20170120100611.tar.gz",
+  :checksum "24c1bc47f5a53772fd0d767573dbd1a6"}
+ {:id "LT050420352005031101T1-SC20170120094519",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005031101T1-SC20170120094519.tar.gz",
+  :checksum "43f1f81ae1f119be77a0d6ce769152a6"}
+ {:id "LT050420352005032701T1-SC20170120095120",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005032701T1-SC20170120095120.tar.gz",
+  :checksum "444f78d1a89eb38e6dd4ff6f0423de9a"}
+ {:id "LT050420352005041201T1-SC20170120094705",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005041201T1-SC20170120094705.tar.gz",
+  :checksum "473bfafadf5a24fe3290368689b665b2"}
+ {:id "LT050420352005051401T1-SC20170120094548",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005051401T1-SC20170120094548.tar.gz",
+  :checksum "645e6db125babe052650b745df76e1fb"}
+ {:id "LT050420352005053001T1-SC20170120094443",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005053001T1-SC20170120094443.tar.gz",
+  :checksum "6b795b841d826307b3e9d2da0cba05ae"}
+ {:id "LT050420352005061501T1-SC20170120094425",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005061501T1-SC20170120094425.tar.gz",
+  :checksum "06f0ebc0602799ccf9b9a80ce592c547"}
+ {:id "LT050420352005070101T1-SC20170120094720",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005070101T1-SC20170120094720.tar.gz",
+  :checksum "49faf2a202e106d9d7e944fe41c2b585"}
+ {:id "LT050420352005071701T1-SC20170120094743",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005071701T1-SC20170120094743.tar.gz",
+  :checksum "d2ace1e5f291401df115582babea3db5"}
+ {:id "LT050420352005080201T1-SC20170120094755",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005080201T1-SC20170120094755.tar.gz",
+  :checksum "799287b5a5681467ed1bc24051ac9682"}
+ {:id "LT050420352005081801T1-SC20170120094535",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005081801T1-SC20170120094535.tar.gz",
+  :checksum "6865a63495910da60591a0248021e68e"}
+ {:id "LT050420352005090301T1-SC20170120094600",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005090301T1-SC20170120094600.tar.gz",
+  :checksum "8fb3332da9bbf04e1ef9ededa8123140"}
+ {:id "LT050420352005091901T1-SC20170120094650",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005091901T1-SC20170120094650.tar.gz",
+  :checksum "2c1b67a524f28f8207f21c9e8c58624f"}
+ {:id "LT050420352005100501T1-SC20170120094531",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005100501T1-SC20170120094531.tar.gz",
+  :checksum "fd137c28f9a0d0c7db47ccbba2d04048"}
+ {:id "LT050420352005102101T1-SC20170120094651",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005102101T1-SC20170120094651.tar.gz",
+  :checksum "2c12ec549018fc6d22b4eaddac9a30a4"}
+ {:id "LT050420352005110601T1-SC20170120094633",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005110601T1-SC20170120094633.tar.gz",
+  :checksum "d37fc58ce05382a7bbf632994458a873"}
+ {:id "LT050420352005112201T1-SC20170120094440",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352005112201T1-SC20170120094440.tar.gz",
+  :checksum "ab99ed9371d20c3c601856d4ee16d0c6"}
+ {:id "LT050420352006010901T1-SC20170120094555",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006010901T1-SC20170120094555.tar.gz",
+  :checksum "c9bbda5ec42349a181d57d2e493aa4a2"}
+ {:id "LT050420352006012501T1-SC20170120094643",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006012501T1-SC20170120094643.tar.gz",
+  :checksum "8114d31fdbe34d901a8be2e632a4c6d5"}
+ {:id "LT050420352006021001T1-SC20170120094544",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006021001T1-SC20170120094544.tar.gz",
+  :checksum "bc7f5795ef4d3720fc047f6b7d51cb4f"}
+ {:id "LT050420352006022601T1-SC20170120094942",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006022601T1-SC20170120094942.tar.gz",
+  :checksum "e8a0a0a33bcfe7e305135c4ee1cf2583"}
+ {:id "LT050420352006041501T1-SC20170120094553",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006041501T1-SC20170120094553.tar.gz",
+  :checksum "cec912beb968c81cf0e2661c75e44bbc"}
+ {:id "LT050420352006050101T1-SC20170120094513",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006050101T1-SC20170120094513.tar.gz",
+  :checksum "9821109c15b4fcd4d0468e7264e906a4"}
+ {:id "LT050420352006051701T1-SC20170120094402",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006051701T1-SC20170120094402.tar.gz",
+  :checksum "d008d611f51d95be82a8e175f827d1ab"}
+ {:id "LT050420352006060201T1-SC20170120094409",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006060201T1-SC20170120094409.tar.gz",
+  :checksum "2c91f0ffd3f8d6fda563412e852bdd8d"}
+ {:id "LT050420352006061801T1-SC20170120094917",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006061801T1-SC20170120094917.tar.gz",
+  :checksum "e75c412c302d321f659c4a76fbb98212"}
+ {:id "LT050420352006070401T1-SC20170120094658",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006070401T1-SC20170120094658.tar.gz",
+  :checksum "eb45c345e107e382768aa3aacffea732"}
+ {:id "LT050420352006072001T1-SC20170120100355",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006072001T1-SC20170120100355.tar.gz",
+  :checksum "1c1abf5cc2f20bfaf494d6642591295f"}
+ {:id "LT050420352006080501T1-SC20170120100525",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006080501T1-SC20170120100525.tar.gz",
+  :checksum "2099dc061b41371e2290376c970f450c"}
+ {:id "LT050420352006082101T1-SC20170120100549",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006082101T1-SC20170120100549.tar.gz",
+  :checksum "ad5c02d095bbdb57bd8e55f91a99ab75"}
+ {:id "LT050420352006090601T1-SC20170120100436",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006090601T1-SC20170120100436.tar.gz",
+  :checksum "cf571d0a57361d4da89dafe86f095599"}
+ {:id "LT050420352006092201T1-SC20170120100636",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006092201T1-SC20170120100636.tar.gz",
+  :checksum "87fc4a572095df06c40db026eee13bf5"}
+ {:id "LT050420352006100801T1-SC20170120100638",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006100801T1-SC20170120100638.tar.gz",
+  :checksum "c31a4abd7fc5b521889550f0930afd9c"}
+ {:id "LT050420352006102401T1-SC20170120100522",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006102401T1-SC20170120100522.tar.gz",
+  :checksum "704963c9496fe5b5f52e58a43e174947"}
+ {:id "LT050420352006110901T1-SC20170120100424",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006110901T1-SC20170120100424.tar.gz",
+  :checksum "3ba2f677803eda3aeee6d70cec3c09c4"}
+ {:id "LT050420352006112501T1-SC20170120100414",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006112501T1-SC20170120100414.tar.gz",
+  :checksum "6feffe886abe0a0bb13beca9e0de5120"}
+ {:id "LT050420352006121101T1-SC20170120100914",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352006121101T1-SC20170120100914.tar.gz",
+  :checksum "02ee2232212d4564d5ae33171c49ce4c"}
+ {:id "LT050420352007011201T1-SC20170120100654",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007011201T1-SC20170120100654.tar.gz",
+  :checksum "ba08e9d2df6aa713d3319463633de3ff"}
+ {:id "LT050420352007030101T1-SC20170120100628",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007030101T1-SC20170120100628.tar.gz",
+  :checksum "de744ce9d59bdd95b9dd9d3d35b307f5"}
+ {:id "LT050420352007031701T1-SC20170120100442",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007031701T1-SC20170120100442.tar.gz",
+  :checksum "0559217ee24a0f095f00307eb36aed8a"}
+ {:id "LT050420352007040201T1-SC20170120100511",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007040201T1-SC20170120100511.tar.gz",
+  :checksum "b1b686e42c210457ec6c0c730fa91785"}
+ {:id "LT050420352007041801T1-SC20170120100321",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007041801T1-SC20170120100321.tar.gz",
+  :checksum "f37701952bc10743dedfb71ea6465d87"}
+ {:id "LT050420352007050401T1-SC20170120100425",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007050401T1-SC20170120100425.tar.gz",
+  :checksum "86cfdbbb8c59208384a7e6bb2a821643"}
+ {:id "LT050420352007052001T1-SC20170120100442",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007052001T1-SC20170120100442.tar.gz",
+  :checksum "bc22d819eb9f1a4c6ee83a37dd4e9b7d"}
+ {:id "LT050420352007062101T1-SC20170120100353",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007062101T1-SC20170120100353.tar.gz",
+  :checksum "643a60d7314482e7b5e2beb8bf8564f8"}
+ {:id "LT050420352007070701T1-SC20170120093655",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007070701T1-SC20170120093655.tar.gz",
+  :checksum "c23651f53b9ce04f703bd20e7a639582"}
+ {:id "LT050420352007072301T1-SC20170120093558",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007072301T1-SC20170120093558.tar.gz",
+  :checksum "fcca29131e9e8095a740d8309ca914a5"}
+ {:id "LT050420352007080801T1-SC20170120093550",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007080801T1-SC20170120093550.tar.gz",
+  :checksum "ce859fbd1d50d6e9ffe1819bbf327b5b"}
+ {:id "LT050420352007082401T1-SC20170120093830",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007082401T1-SC20170120093830.tar.gz",
+  :checksum "af6a393c053cd0c71886bd6e6739dc23"}
+ {:id "LT050420352007090901T1-SC20170120094426",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007090901T1-SC20170120094426.tar.gz",
+  :checksum "a9ef383483163e33f1b97d683f77317d"}
+ {:id "LT050420352007092501T1-SC20170120093649",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352007092501T1-SC20170120093649.tar.gz",
+  :checksum "cd4feae29cd3c3cbc1e3048d018ce334"}
+ {:id "LT050420352008021601T1-SC20170120093749",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008021601T1-SC20170120093749.tar.gz",
+  :checksum "fe0a18c7dda8b185564e566059071e5b"}
+ {:id "LT050420352008030301T1-SC20170120093619",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008030301T1-SC20170120093619.tar.gz",
+  :checksum "c337ed2c584cb0d609945997d64787df"}
+ {:id "LT050420352008031901T1-SC20170120093706",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008031901T1-SC20170120093706.tar.gz",
+  :checksum "7beb2e92311d106cd0121a6b69332eef"}
+ {:id "LT050420352008040401T1-SC20170120093734",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008040401T1-SC20170120093734.tar.gz",
+  :checksum "d628e7c73b4524bed63fb94d5422991e"}
+ {:id "LT050420352008042001T1-SC20170120093721",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008042001T1-SC20170120093721.tar.gz",
+  :checksum "37437d1ac34d6c98587e1e171fd5ec48"}
+ {:id "LT050420352008052201T1-SC20170120093549",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008052201T1-SC20170120093549.tar.gz",
+  :checksum "e9a60e1654b034709f9b79e2f01dc41a"}
+ {:id "LT050420352008060701T1-SC20170120093640",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008060701T1-SC20170120093640.tar.gz",
+  :checksum "91e63b003cf97d6d91e9726f83ab7986"}
+ {:id "LT050420352008062301T1-SC20170120093713",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008062301T1-SC20170120093713.tar.gz",
+  :checksum "a95cbddbbb275f7dcce4661f53a6468c"}
+ {:id "LT050420352008072501T1-SC20170120093556",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008072501T1-SC20170120093556.tar.gz",
+  :checksum "ddb1212a9bd1e84ae2c875d256f00b10"}
+ {:id "LT050420352008081001T1-SC20170120093651",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008081001T1-SC20170120093651.tar.gz",
+  :checksum "ce9486c3fc9ad7977172ba1ca80f7884"}
+ {:id "LT050420352008091101T1-SC20170120093744",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008091101T1-SC20170120093744.tar.gz",
+  :checksum "d404ece74f93f4be29b4c8b0c9d448e8"}
+ {:id "LT050420352008092701T1-SC20170120093604",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008092701T1-SC20170120093604.tar.gz",
+  :checksum "da4ddbab83315e3082d97343fbed9540"}
+ {:id "LT050420352008101301T1-SC20170120093514",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008101301T1-SC20170120093514.tar.gz",
+  :checksum "792b209e1814e6d786a2faa71a489e71"}
+ {:id "LT050420352008102901T1-SC20170120093830",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008102901T1-SC20170120093830.tar.gz",
+  :checksum "35252e41d7abd6bb5734553e269201ab"}
+ {:id "LT050420352008111401T1-SC20170120094414",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352008111401T1-SC20170120094414.tar.gz",
+  :checksum "893eafd1d810ca22651e8370d05c5ecc"}
+ {:id "LT050420352009011701T1-SC20170120093727",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009011701T1-SC20170120093727.tar.gz",
+  :checksum "9a3215664af9b1c11b28495c72342589"}
+ {:id "LT050420352009020201T1-SC20170120093721",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009020201T1-SC20170120093721.tar.gz",
+  :checksum "e1b22e3147077564b704ca7241ba239d"}
+ {:id "LT050420352009021801T1-SC20170120093643",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009021801T1-SC20170120093643.tar.gz",
+  :checksum "ae8240c682d33f42af92404c08a87a02"}
+ {:id "LT050420352009030601T1-SC20170120093646",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009030601T1-SC20170120093646.tar.gz",
+  :checksum "0c71967c29a9d1fe3fafdd9b087a8d4f"}
+ {:id "LT050420352009032201T1-SC20170120093506",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009032201T1-SC20170120093506.tar.gz",
+  :checksum "52f2f857b565bb1bb13d0bbb809e811a"}
+ {:id "LT050420352009040701T1-SC20170120093630",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009040701T1-SC20170120093630.tar.gz",
+  :checksum "9120fc463156da9673fd9197a6444c57"}
+ {:id "LT050420352009042301T1-SC20170120093612",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009042301T1-SC20170120093612.tar.gz",
+  :checksum "9ef6b0d94512c4469042405f14b2619e"}
+ {:id "LT050420352009050901T1-SC20170120093637",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009050901T1-SC20170120093637.tar.gz",
+  :checksum "93f5e98436d283144d52e78d3d9ad8e8"}
+ {:id "LT050420352009052501T1-SC20170120093500",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009052501T1-SC20170120093500.tar.gz",
+  :checksum "01454f6a093123963a09bb4ba10659ae"}
+ {:id "LT050420352009061001T1-SC20170120093532",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009061001T1-SC20170120093532.tar.gz",
+  :checksum "93dacac34bf7d4127404766b5a56bfba"}
+ {:id "LT050420352009062601T1-SC20170120093756",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009062601T1-SC20170120093756.tar.gz",
+  :checksum "d67b6d5ccb1e64222db3a946e9dd4a30"}
+ {:id "LT050420352009071201T1-SC20170120093532",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009071201T1-SC20170120093532.tar.gz",
+  :checksum "d7e13729f4acb0210f6d3548390cddae"}
+ {:id "LT050420352009072801T1-SC20170120093607",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009072801T1-SC20170120093607.tar.gz",
+  :checksum "ebf936d4ced3e33645b2b2a6c9f0161a"}
+ {:id "LT050420352009082901T1-SC20170120093634",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009082901T1-SC20170120093634.tar.gz",
+  :checksum "9d9857ffd47ff79fe684dff6108f2320"}
+ {:id "LT050420352009091401T1-SC20170120093415",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009091401T1-SC20170120093415.tar.gz",
+  :checksum "2bffd746b3fd2416dcf9dd06152f43d0"}
+ {:id "LT050420352009093001T1-SC20170120093714",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009093001T1-SC20170120093714.tar.gz",
+  :checksum "caa3ae2b19756ad3cedfe5f2b9aa58d4"}
+ {:id "LT050420352009101601T1-SC20170120093529",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009101601T1-SC20170120093529.tar.gz",
+  :checksum "0c53deb52b49fe23a681d417abacdb23"}
+ {:id "LT050420352009110101T1-SC20170120094712",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009110101T1-SC20170120094712.tar.gz",
+  :checksum "e7fd08acb00adf8f4db8e339d4ff179e"}
+ {:id "LT050420352009111701T1-SC20170120094726",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009111701T1-SC20170120094726.tar.gz",
+  :checksum "eb52c4bcf6cd9e9071c07e628aa77bd3"}
+ {:id "LT050420352009120301T1-SC20170120094545",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352009120301T1-SC20170120094545.tar.gz",
+  :checksum "afea4927a4af3848932c905c4f543391"}
+ {:id "LT050420352010032501T1-SC20170120094704",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010032501T1-SC20170120094704.tar.gz",
+  :checksum "ec9845101b4ce0d63babac42ce0559c8"}
+ {:id "LT050420352010041001T1-SC20170120094654",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010041001T1-SC20170120094654.tar.gz",
+  :checksum "abb3aaf497ae627467ce25b022a8be6f"}
+ {:id "LT050420352010042601T1-SC20170120094452",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010042601T1-SC20170120094452.tar.gz",
+  :checksum "4746b6ca7c32cd7768ff29fc4da5c17c"}
+ {:id "LT050420352010051201T1-SC20170120094403",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010051201T1-SC20170120094403.tar.gz",
+  :checksum "04a062c02f0720efd273cd497a57a029"}
+ {:id "LT050420352010052801T1-SC20170120094352",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010052801T1-SC20170120094352.tar.gz",
+  :checksum "9481196678bf7dbdde8e3a5cf2633850"}
+ {:id "LT050420352010061301T1-SC20170120094618",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010061301T1-SC20170120094618.tar.gz",
+  :checksum "d5322b56cd4afe7172011a152cfd366d"}
+ {:id "LT050420352010062901T1-SC20170120094700",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010062901T1-SC20170120094700.tar.gz",
+  :checksum "00a4d1c90b4e7a12c8337bb68ca7e06e"}
+ {:id "LT050420352010071501T1-SC20170120094500",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010071501T1-SC20170120094500.tar.gz",
+  :checksum "c9e893d101c8fc32d98ac2c49ee41d44"}
+ {:id "LT050420352010073101T1-SC20170120100527",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010073101T1-SC20170120100527.tar.gz",
+  :checksum "e92028936234b0e721940f854ba5fdbe"}
+ {:id "LT050420352010081601T1-SC20170120100505",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010081601T1-SC20170120100505.tar.gz",
+  :checksum "2ca7df080fc7505bec11f3ae92af107c"}
+ {:id "LT050420352010090101T1-SC20170120100759",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010090101T1-SC20170120100759.tar.gz",
+  :checksum "df641f8746f43df45b6ee156249b08a6"}
+ {:id "LT050420352010091701T1-SC20170120100618",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010091701T1-SC20170120100618.tar.gz",
+  :checksum "0b83cc2255bdd954fa88fcba95a5c2a7"}
+ {:id "LT050420352010100301T1-SC20170120100455",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010100301T1-SC20170120100455.tar.gz",
+  :checksum "e7f686ddf2de7e2712f3bf7adff31a9d"}
+ {:id "LT050420352010110401T1-SC20170120100620",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010110401T1-SC20170120100620.tar.gz",
+  :checksum "6939c90dfe1e372db54a2b7e0628b0ed"}
+ {:id "LT050420352010120601T1-SC20170120100339",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352010120601T1-SC20170120100339.tar.gz",
+  :checksum "fbec0bb510271b4d776f924cee9f3f21"}
+ {:id "LT050420352011010701T1-SC20170120100627",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011010701T1-SC20170120100627.tar.gz",
+  :checksum "cc5a8d5d6cd65c055edadd1a505f8d10"}
+ {:id "LT050420352011012301T1-SC20170120100552",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011012301T1-SC20170120100552.tar.gz",
+  :checksum "e3afc8c036826c7220da371c1c28b895"}
+ {:id "LT050420352011020801T1-SC20170120100718",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011020801T1-SC20170120100718.tar.gz",
+  :checksum "b686a2766c8ffa2b5861952b5db0b10a"}
+ {:id "LT050420352011031201T1-SC20170120100728",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011031201T1-SC20170120100728.tar.gz",
+  :checksum "6229fcb558b6cba667fb4b666cd6438c"}
+ {:id "LT050420352011041301T1-SC20170120100535",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011041301T1-SC20170120100535.tar.gz",
+  :checksum "e390863e00e36d6c1091c5149216b32e"}
+ {:id "LT050420352011042901T1-SC20170120095433",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011042901T1-SC20170120095433.tar.gz",
+  :checksum "889183b8f464a2e9acbf9600d3b1f6fc"}
+ {:id "LT050420352011051501T1-SC20170120095502",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011051501T1-SC20170120095502.tar.gz",
+  :checksum "b3cb00c019fc4eeb8b2aed3b6f6000a8"}
+ {:id "LT050420352011053101T1-SC20170120095437",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011053101T1-SC20170120095437.tar.gz",
+  :checksum "b549a2c33603fbcecc90a11574b3b427"}
+ {:id "LT050420352011061601T1-SC20170120095534",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011061601T1-SC20170120095534.tar.gz",
+  :checksum "eaca2ad895080c8232df36c02fe5da16"}
+ {:id "LT050420352011070201T1-SC20170120095457",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011070201T1-SC20170120095457.tar.gz",
+  :checksum "0984a6f1029a0f6ceab4ff5c7d986da4"}
+ {:id "LT050420352011071801T1-SC20170120095416",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011071801T1-SC20170120095416.tar.gz",
+  :checksum "48bfd7ac106ca6fcd3ce71cfda93f7cd"}
+ {:id "LT050420352011080301T1-SC20170120095351",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011080301T1-SC20170120095351.tar.gz",
+  :checksum "39efa6405be983b4f9676ecf6d27d475"}
+ {:id "LT050420352011081901T1-SC20170120095525",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011081901T1-SC20170120095525.tar.gz",
+  :checksum "32bc2c70b1d11da7fe1509789a664bc0"}
+ {:id "LT050420352011090401T1-SC20170120095534",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011090401T1-SC20170120095534.tar.gz",
+  :checksum "4a5e4482f1ea8a8fc7ebb08dec0ab028"}
+ {:id "LT050420352011092001T1-SC20170120095513",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011092001T1-SC20170120095513.tar.gz",
+  :checksum "3532dcbf1ebd9e91016cade80cce5e88"}
+ {:id "LT050420352011100601T1-SC20170120095646",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011100601T1-SC20170120095646.tar.gz",
+  :checksum "c1f591c9f669384f8ab713daa132fdd7"}
+ {:id "LT050420352011102201T1-SC20170120095556",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011102201T1-SC20170120095556.tar.gz",
+  :checksum "4cb9b2538709e49e0720876230c96e7b"}
+ {:id "LT050420352011110701T1-SC20170120100453",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/california/H04V10-829/LT050420352011110701T1-SC20170120100453.tar.gz",
+  :checksum "8f93a8559e7211c77f70911a6fbff705"})
