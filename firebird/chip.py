@@ -112,7 +112,7 @@ def snap(x, y, chip_spec):
     shift_x = chip_spec['shift_x']
     shift_y = chip_spec['shift_y']
     chip    = point_to_chip(x, y, chip_x, chip_y, shift_x, shift_y)
-    return (int(chip[0]), int(chip[1]))
+    return int(chip[0]), int(chip[1])
 
 
 def ids(ulx, uly, lrx, lry, chip_spec):

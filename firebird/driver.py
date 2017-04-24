@@ -9,7 +9,7 @@ from .aardvark import pyccd_tile_spec_queries, chip_specs
 from .chip     import ids as chip_ids
 from pyspark   import SparkConf, SparkContext
 from datetime  import datetime
-from .cassandra import save_pyccd_result
+from .cassandra import save_result
 
 # to be replaced by dave's official function names
 #
@@ -35,6 +35,7 @@ args = parser.parse_args()
 
 
 def simplify_detect_results(results):
+    ''' Convert child objects inside CCD results from NamedTuples to Dictionaries '''
     output = dict()
     for key in results.keys():
         output[key] = simplify_objects(results[key])
@@ -74,11 +75,18 @@ def detect(input, tile_x, tile_y):
     output['inputs_md5'] = 'not implemented'
     # writes to cassandra happen from node doing the work
     # don't want to collect all chip records on driver host
-    save_pyccd_result(output)
+    save_result(output)
     return output
 
 
 def assemble_ccd_data(tile_coords, acquired, band_queries):
+    '''
+    Gather data necessary for input into the CCD algorithm
+    :param tile_coords: Coordinates of tiles to acquire data for
+    :param acquired: Start and end dates for querying data
+    :param band_queries: The actual queries used to retrieve each bands UBIDs
+    :return: A dictionary of band data for a given chip of landsat data.
+    '''
     ccd_data = {}
     for band in band_queries:
         ccd_data[band] = spicey_meatball(tile_coords, acquired, band_queries[band])
@@ -89,6 +97,21 @@ def assemble_ccd_data(tile_coords, acquired, band_queries):
 
 def run(acquired, ulx, uly, lrx, lry, ord_date,
         lastchange=False, changemag=False, changedate=False, seglength=False, qa=False):
+    '''
+    Primary function for the driver module in lcmap-firebird.  Default behavior is to generate ALL the level2 products, unless specific products are requested.
+    :param acquired: Date values for selecting input products. ISO format, joined with '/': <start date>/<end date> .
+    :param ulx: Upper left x coordinate for area to generate CCD and Level2 product results.
+    :param uly: Upper left y coordinate for area to generate CCD and Level2 product results.
+    :param lrx: Lower right x coordinate for area to generate CCD and Level2 product results.
+    :param lry: Lower right y coordinate for area to generate CCD and Level2 product results.
+    :param ord_date: Ordinal date for which to generate Level2 products.
+    :param lastchange: Generate lastchange product.
+    :param changemag: Generate changemag product.
+    :param changedate: Generate changedate product.
+    :param seglength: Generate seglength product.
+    :param qa: Generate QA product
+    :return: True
+    '''
     # if we can't get our Spark ducks in a row, no reason to continue
     try:
         conf = (SparkConf().setAppName("lcmap-firebird-{}".format(datetime.now().strftime('%Y-%m-%d-%I:%M')))
@@ -125,19 +148,20 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
             ccd_rdd = sc.parallelize(ccd_data, 10000)
             # cache the results with persist()
             ccd_map = ccd_rdd.map(lambda i: detect(i, i[0][0], i[0][1])).persist()
-            # 5 available change products
-            # could get cute here and loop this, leaving unwound for now
-            if lastchange:
-                ccd_map.foreach(lambda i: products.lastchange_val(i, ord_date))
-            if changemag:
-                # ! need to resolve magnitudes reference in changemag_val func
-                ccd_map.foreach(lambda i: products.changemag_val(i, ord_date))
-            if changedate:
-                ccd_map.foreach(lambda i: products.changedate_val(i, ord_date))
-            if seglength:
-                ccd_map.foreach(lambda i: products.seglength_val(i, ord_date))
-            if qa:
-                ccd_map.foreach(lambda i: products.qa_val(i, ord_date))
+            if {False} == {lastchange, changemag, changedate, seglength, qa}:
+                # if you didn't specify, you get everything
+                ccd_map.foreach(lambda i: products.run('all', i, ord_date))
+            else:
+                if lastchange:
+                    ccd_map.foreach(lambda i: products.run('lastchange', i, ord_date))
+                if changemag:
+                    ccd_map.foreach(lambda i: products.run('changemag', i, ord_date))
+                if changedate:
+                    ccd_map.foreach(lambda i: products.run('changedate', i, ord_date))
+                if seglength:
+                    ccd_map.foreach(lambda i: products.run('seglength', i, ord_date))
+                if qa:
+                    ccd_map.foreach(lambda i: products.run('qa', i, ord_date))
 
     except Exception as e:
         firebird.logger.info("Exception running Spark job: {}".format(e))
