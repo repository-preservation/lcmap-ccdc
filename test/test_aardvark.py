@@ -1,8 +1,14 @@
-from firebird.aardvark import pyccd_tile_spec_queries, ubids
-
+from firebird.aardvark import pyccd_tile_spec_queries
+from firebird.aardvark import ubids
 from hypothesis import given
 import hypothesis.strategies as st
+import logging
 import urllib
+import firebird
+
+logger = logging.getLogger(__name__)
+logger.debug('does this work?')
+logger.warning('this is a warning')
 
 @given(url=st.sampled_from(('http://localhost',
                             'https://localhost',
