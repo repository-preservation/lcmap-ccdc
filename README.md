@@ -15,7 +15,7 @@ Apache Spark based product generation for LCMAP.
 
 * Install Conda (works with miniconda3 version 4.3.16)
 
-* Create and activate a conda environment, install hylang (not yet available in conda-forge or pypi).
+* Create and activate a conda environment
 ```bash
    $ conda config --add channels conda-forge
    $ conda create --name firebird --file environment.txt
