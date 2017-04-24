@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<espa_metadata version="1.2"
+xmlns="http://espa.cr.usgs.gov/v1.2"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://espa.cr.usgs.gov/v1.2 http://espa.cr.usgs.gov/schema/espa_internal_metadata_v1_2.xsd">
+
+    <global_metadata>
+        <data_provider>USGS/EROS</data_provider>
+        <satellite>LANDSAT_7</satellite>
+        <instrument>ETM</instrument>
+        <acquisition_date>2010-11-24</acquisition_date>
+        <level1_production_date>2014-11-11T12:45:12Z</level1_production_date>
+        <solar_angles zenith="69.656158" azimuth="163.646667" units="degrees"/>
+        <wrs system="2" path="46" row="27"/>
+        <lpgs_metadata_file>LE70460272010328EDC00_MTL.txt</lpgs_metadata_file>
+        <corner location="UL" latitude="48.000034" longitude="-122.624702"/>
+        <corner location="LR" latitude="47.813199" longitude="-122.133212"/>
+        <bounding_coordinates>
+            <west>-122.624948</west>
+            <east>-122.132967</east>
+            <north>48.074835</north>
+            <south>47.738769</south>
+        </bounding_coordinates>
+        <projection_information projection="ALBERS" datum="WGS84" units="meters">
+            <corner_point location="UL" x="-1977270.000000" y="3056970.000000"/>
+            <corner_point location="LR" x="-1947300.000000" y="3027000.000000"/>
+            <grid_origin>CENTER</grid_origin>
+            <albers_proj_params>
+                <standard_parallel1>29.500000</standard_parallel1>
+                <standard_parallel2>45.500000</standard_parallel2>
+                <central_meridian>-96.000000</central_meridian>
+                <origin_latitude>23.000000</origin_latitude>
+                <false_easting>0.000000</false_easting>
+                <false_northing>0.000000</false_northing>
+            </albers_proj_params>
+        </projection_information>
+        <orientation_angle>0.000000</orientation_angle>
+    </global_metadata>
+
+    <bands>
+        <band product="toa_refl" source="level1" name="toa_band1" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7REF</short_name>
+            <long_name>band 1 TOA reflectance</long_name>
+            <file_name>LE70460272010328EDC00_toa_band1.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-100" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:46Z</production_date>
+        </band>
+        <band product="toa_refl" source="level1" name="toa_band2" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7REF</short_name>
+            <long_name>band 2 TOA reflectance</long_name>
+            <file_name>LE70460272010328EDC00_toa_band2.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-100" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:46Z</production_date>
+        </band>
+        <band product="toa_refl" source="level1" name="toa_band3" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7REF</short_name>
+            <long_name>band 3 TOA reflectance</long_name>
+            <file_name>LE70460272010328EDC00_toa_band3.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-100" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:46Z</production_date>
+        </band>
+        <band product="toa_refl" source="level1" name="toa_band4" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7REF</short_name>
+            <long_name>band 4 TOA reflectance</long_name>
+            <file_name>LE70460272010328EDC00_toa_band4.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-100" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:46Z</production_date>
+        </band>
+        <band product="toa_refl" source="level1" name="toa_band5" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7REF</short_name>
+            <long_name>band 5 TOA reflectance</long_name>
+            <file_name>LE70460272010328EDC00_toa_band5.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-100" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:46Z</production_date>
+        </band>
+        <band product="toa_refl" source="level1" name="toa_band7" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7REF</short_name>
+            <long_name>band 7 TOA reflectance</long_name>
+            <file_name>LE70460272010328EDC00_toa_band7.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-100" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:46Z</production_date>
+        </band>
+        <band product="toa_refl" source="level1" name="toa_qa" category="qa" data_type="UINT8" nlines="1000" nsamps="1000" fill_value="1">
+            <short_name>LE7REF</short_name>
+            <long_name>QA band</long_name>
+            <file_name>LE70460272010328EDC00_toa_qa.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>bitmap</data_units>
+            <valid_range min="0" max="255"/>
+            <bitmap_description>
+                <bit num="0">Data Fill Flag (0 = valid data, 1 = invalid data)</bit>
+                <bit num="1">Band 1 Data Saturation Flag (0 = valid data, 1 = saturated data)</bit>
+                <bit num="2">Band 2 Data Saturation Flag (0 = valid data, 1 = saturated data)</bit>
+                <bit num="3">Band 3 Data Saturation Flag (0 = valid data, 1 = saturated data)</bit>
+                <bit num="4">Band 4 Data Saturation Flag (0 = valid data, 1 = saturated data)</bit>
+                <bit num="5">Band 5 Data Saturation Flag (0 = valid data, 1 = saturated data)</bit>
+                <bit num="6">Band 6 Data Saturation Flag (not set)</bit>
+                <bit num="7">Band 7 Data Saturation Flag (0 = valid data, 1 = saturated data)</bit>
+            </bitmap_description>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:46Z</production_date>
+        </band>
+        <band product="toa_bt" source="level1" name="toa_band6" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.100000" add_offset="0.000000">
+            <short_name>LE7BT</short_name>
+            <long_name>band 6 brightness temperature</long_name>
+            <file_name>LE70460272010328EDC00_toa_band6.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>temperature (kelvin)</data_units>
+            <valid_range min="1500" max="3500"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:46Z</production_date>
+        </band>
+        <band product="toa_bt" source="level1" name="toa_band6_qa" category="qa" data_type="UINT8" nlines="1000" nsamps="1000" fill_value="1">
+            <short_name>LE7BT</short_name>
+            <long_name>QA band</long_name>
+            <file_name>LE70460272010328EDC00_toa_band6_qa.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>bitmap</data_units>
+            <valid_range min="0" max="255"/>
+            <bitmap_description>
+                <bit num="0">Data Fill Flag (0 = valid data, 1 = invalid data)</bit>
+                <bit num="1">Band 1 Data Saturation Flag (not set)</bit>
+                <bit num="2">Band 2 Data Saturation Flag (not set)</bit>
+                <bit num="3">Band 3 Data Saturation Flag (not set)</bit>
+                <bit num="4">Band 4 Data Saturation Flag (not set)</bit>
+                <bit num="5">Band 5 Data Saturation Flag (not set)</bit>
+                <bit num="6">Band 6 Data Saturation Flag (0 = valid data, 1 = saturated data)</bit>
+                <bit num="7">Band 7 Data Saturation Flag (not set)</bit>
+            </bitmap_description>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:46Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_band1" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7SR</short_name>
+            <long_name>band 1 surface reflectance</long_name>
+            <file_name>LE70460272010328EDC00_sr_band1.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-2000" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_band2" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7SR</short_name>
+            <long_name>band 2 surface reflectance</long_name>
+            <file_name>LE70460272010328EDC00_sr_band2.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-2000" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_band3" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7SR</short_name>
+            <long_name>band 3 surface reflectance</long_name>
+            <file_name>LE70460272010328EDC00_sr_band3.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-2000" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_band4" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7SR</short_name>
+            <long_name>band 4 surface reflectance</long_name>
+            <file_name>LE70460272010328EDC00_sr_band4.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-2000" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_band5" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7SR</short_name>
+            <long_name>band 5 surface reflectance</long_name>
+            <file_name>LE70460272010328EDC00_sr_band5.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-2000" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_band7" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" saturate_value="20000" scale_factor="0.000100" add_offset="0.000000">
+            <short_name>LE7SR</short_name>
+            <long_name>band 7 surface reflectance</long_name>
+            <file_name>LE70460272010328EDC00_sr_band7.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-2000" max="16000"/>
+            <calibrated_nt>5.000000</calibrated_nt>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_atmos_opacity" category="image" data_type="INT16" nlines="1000" nsamps="1000" fill_value="-9999" scale_factor="0.001000">
+            <short_name>LE7SR</short_name>
+            <long_name>atmos_opacity</long_name>
+            <file_name>LE70460272010328EDC00_sr_atmos_opacity.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>reflectance</data_units>
+            <valid_range min="-2000" max="16000"/>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_fill_qa" category="qa" data_type="UINT8" nlines="1000" nsamps="1000">
+            <short_name>LE7SR</short_name>
+            <long_name>fill_qa</long_name>
+            <file_name>LE70460272010328EDC00_sr_fill_qa.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>quality/feature classification</data_units>
+            <valid_range min="0" max="255"/>
+            <class_values>
+                <class num="0">not fill</class>
+                <class num="255">fill</class>
+            </class_values>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_ddv_qa" category="qa" data_type="UINT8" nlines="1000" nsamps="1000">
+            <short_name>LE7SR</short_name>
+            <long_name>ddv_qa</long_name>
+            <file_name>LE70460272010328EDC00_sr_ddv_qa.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>quality/feature classification</data_units>
+            <valid_range min="0" max="255"/>
+            <class_values>
+                <class num="0">not dark dense vegetation</class>
+                <class num="255">dark dense vegetation</class>
+            </class_values>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_cloud_qa" category="qa" data_type="UINT8" nlines="1000" nsamps="1000">
+            <short_name>LE7SR</short_name>
+            <long_name>cloud_qa</long_name>
+            <file_name>LE70460272010328EDC00_sr_cloud_qa.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>quality/feature classification</data_units>
+            <valid_range min="0" max="255"/>
+            <class_values>
+                <class num="0">not cloud</class>
+                <class num="255">cloud</class>
+            </class_values>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_cloud_shadow_qa" category="qa" data_type="UINT8" nlines="1000" nsamps="1000">
+            <short_name>LE7SR</short_name>
+            <long_name>cloud_shadow_qa</long_name>
+            <file_name>LE70460272010328EDC00_sr_cloud_shadow_qa.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>quality/feature classification</data_units>
+            <valid_range min="0" max="255"/>
+            <class_values>
+                <class num="0">not cloud shadow</class>
+                <class num="255">cloud shadow</class>
+            </class_values>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_snow_qa" category="qa" data_type="UINT8" nlines="1000" nsamps="1000">
+            <short_name>LE7SR</short_name>
+            <long_name>snow_qa</long_name>
+            <file_name>LE70460272010328EDC00_sr_snow_qa.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>quality/feature classification</data_units>
+            <valid_range min="0" max="255"/>
+            <class_values>
+                <class num="0">not snow</class>
+                <class num="255">snow</class>
+            </class_values>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_land_water_qa" category="qa" data_type="UINT8" nlines="1000" nsamps="1000">
+            <short_name>LE7SR</short_name>
+            <long_name>land_water_qa</long_name>
+            <file_name>LE70460272010328EDC00_sr_land_water_qa.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>quality/feature classification</data_units>
+            <valid_range min="0" max="255"/>
+            <class_values>
+                <class num="0">land</class>
+                <class num="255">water</class>
+            </class_values>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="sr_refl" source="toa_refl" name="sr_adjacent_cloud_qa" category="qa" data_type="UINT8" nlines="1000" nsamps="1000">
+            <short_name>LE7SR</short_name>
+            <long_name>adjacent_cloud_qa</long_name>
+            <file_name>LE70460272010328EDC00_sr_adjacent_cloud_qa.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>quality/feature classification</data_units>
+            <valid_range min="0" max="255"/>
+            <class_values>
+                <class num="0">not adjacent cloud</class>
+                <class num="255">adjacent cloud</class>
+            </class_values>
+            <app_version>LEDAPS_2.4.0</app_version>
+            <production_date>2015-12-30T16:07:55Z</production_date>
+        </band>
+        <band product="cfmask" source="toa_refl" name="cfmask" category="qa" data_type="UINT8" nlines="1000" nsamps="1000" fill_value="255">
+            <short_name>LE7CFMASK</short_name>
+            <long_name>cfmask_band</long_name>
+            <file_name>LE70460272010328EDC00_cfmask.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>quality/feature classification</data_units>
+            <valid_range min="0" max="4"/>
+            <class_values>
+                <class num="0">clear</class>
+                <class num="1">water</class>
+                <class num="2">cloud_shadow</class>
+                <class num="3">snow</class>
+                <class num="4">cloud</class>
+                <class num="255">fill</class>
+            </class_values>
+            <app_version>cfmask_1.7.0</app_version>
+            <production_date>2015-12-30T16:17:39Z</production_date>
+        </band>
+        <band product="cfmask" source="toa_refl" name="cfmask_conf" category="qa" data_type="UINT8" nlines="1000" nsamps="1000" fill_value="255">
+            <short_name>LE7CFMASK_CONF</short_name>
+            <long_name>cfmask_conf_band</long_name>
+            <file_name>LE70460272010328EDC00_cfmask_conf.tif</file_name>
+            <pixel_size x="30" y="30" units="meters"/>
+            <resample_method>nearest neighbor</resample_method>
+            <data_units>quality/feature classification</data_units>
+            <valid_range min="0" max="3"/>
+            <class_values>
+                <class num="0">None</class>
+                <class num="1">less than or equal to 12.5 Percent Cloud Confidence</class>
+                <class num="2">greater than 12.5 and less than or equal to 22.5 Percent Cloud Confidence</class>
+                <class num="3">greater than 22.5 Percent Cloud Confidence</class>
+                <class num="255">fill</class>
+            </class_values>
+            <app_version>cfmask_1.7.0</app_version>
+            <production_date>2015-12-30T16:17:39Z</production_date>
+        </band>
+    </bands>
+</espa_metadata>

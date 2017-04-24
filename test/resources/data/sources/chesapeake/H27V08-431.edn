@@ -1,0 +1,1304 @@
+({:id "LC80150322013111-SC20170108054319",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013111-SC20170108054319.tar.gz",
+  :checksum "adfff985ac5451fe42af4c251d1e4eed"}
+ {:id "LC80150322013143-SC20170108052429",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013143-SC20170108052429.tar.gz",
+  :checksum "d0dfa6f52ad7f4cefca3fc69569f4f67"}
+ {:id "LC80150322013159-SC20170108054532",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013159-SC20170108054532.tar.gz",
+  :checksum "3d6d93ff20341abcf6ae6b7292c21543"}
+ {:id "LC80150322013175-SC20170108063553",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013175-SC20170108063553.tar.gz",
+  :checksum "71952a8bf42851ea17fdb6da294281ee"}
+ {:id "LC80150322013191-SC20170108053010",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013191-SC20170108053010.tar.gz",
+  :checksum "2c4a0acd73c30054b4845db3795c61ee"}
+ {:id "LC80150322013207-SC20170108063844",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013207-SC20170108063844.tar.gz",
+  :checksum "318e2559e7c33e6ef4cb0e43421739ac"}
+ {:id "LC80150322013223-SC20170108061307",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013223-SC20170108061307.tar.gz",
+  :checksum "4a578497e5cc80343c27e74ec7cc6ed6"}
+ {:id "LC80150322013239-SC20170108060947",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013239-SC20170108060947.tar.gz",
+  :checksum "8306f58d833613569f37f48201a32bbe"}
+ {:id "LC80150322013255-SC20170108054912",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013255-SC20170108054912.tar.gz",
+  :checksum "0f7aaf866ade3fcb59ebae93a8dcca39"}
+ {:id "LC80150322013271-SC20170108055929",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013271-SC20170108055929.tar.gz",
+  :checksum "930e9929f227fcb2fb603621774ddd01"}
+ {:id "LC80150322013287-SC20170108055049",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013287-SC20170108055049.tar.gz",
+  :checksum "dd357ef0eb421b4e9356987397283e83"}
+ {:id "LC80150322013303-SC20170108055303",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013303-SC20170108055303.tar.gz",
+  :checksum "e074be966666e30a1f52c3a06c513121"}
+ {:id "LC80150322013319-SC20170108051707",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013319-SC20170108051707.tar.gz",
+  :checksum "62b0d534c01f426542cbe104573676bb"}
+ {:id "LC80150322013335-SC20170108051436",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013335-SC20170108051436.tar.gz",
+  :checksum "2172324b51eed8bd8629617372d49805"}
+ {:id "LC80150322013351-SC20170108050458",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322013351-SC20170108050458.tar.gz",
+  :checksum "0c7d8689d94e6682e48760e2df20a8c6"}
+ {:id "LC80150322014002-SC20170108045420",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014002-SC20170108045420.tar.gz",
+  :checksum "acbe813deb5a535bb22184c81bcc9a35"}
+ {:id "LC80150322014018-SC20170108052011",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014018-SC20170108052011.tar.gz",
+  :checksum "344b538bad02cda5f86a48b2cef3c235"}
+ {:id "LC80150322014034-SC20170108045458",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014034-SC20170108045458.tar.gz",
+  :checksum "1045a79e5a561ef7779b28dd3a45ccc1"}
+ {:id "LC80150322014050-SC20170108051655",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014050-SC20170108051655.tar.gz",
+  :checksum "3552a12226c03aa448ee34f3e9931770"}
+ {:id "LC80150322014066-SC20170108050307",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014066-SC20170108050307.tar.gz",
+  :checksum "d52d4be8f28b454d4620ace1513506ae"}
+ {:id "LC80150322014082-SC20170108045503",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014082-SC20170108045503.tar.gz",
+  :checksum "d8e66f728d7dc79617b00d08862f502d"}
+ {:id "LC80150322014098-SC20170108051157",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014098-SC20170108051157.tar.gz",
+  :checksum "ca9fabd076c981f7e6d4549039c5ccfb"}
+ {:id "LC80150322014114-SC20170108052000",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014114-SC20170108052000.tar.gz",
+  :checksum "7491b8f83d76297698661266fc350657"}
+ {:id "LC80150322014130-SC20170108045804",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014130-SC20170108045804.tar.gz",
+  :checksum "4e2eda983345dd5849abd989726e4420"}
+ {:id "LC80150322014146-SC20170108050121",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014146-SC20170108050121.tar.gz",
+  :checksum "8550f2f621a949eabef6fb2db684de74"}
+ {:id "LC80150322014162-SC20170108050616",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014162-SC20170108050616.tar.gz",
+  :checksum "783533af4b1f445babf827abf6721cba"}
+ {:id "LC80150322014178-SC20170108054940",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014178-SC20170108054940.tar.gz",
+  :checksum "56dc0d608944b444de4c75ace26eb5c8"}
+ {:id "LC80150322014194-SC20170108052347",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014194-SC20170108052347.tar.gz",
+  :checksum "597371893678826c8c605bad8e016bc0"}
+ {:id "LC80150322014210-SC20170108052611",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014210-SC20170108052611.tar.gz",
+  :checksum "0ed567e52ec5b747cfc8f8aa7c47cb15"}
+ {:id "LC80150322014226-SC20170108054636",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014226-SC20170108054636.tar.gz",
+  :checksum "04eb259c32acbbf01917d2a3fc411740"}
+ {:id "LC80150322014242-SC20170108053132",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014242-SC20170108053132.tar.gz",
+  :checksum "5f9296fc53d764b4f2650920df4d07f8"}
+ {:id "LC80150322014258-SC20170108055034",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014258-SC20170108055034.tar.gz",
+  :checksum "6c2f4b910cc9753be80caa31c695146b"}
+ {:id "LC80150322014274-SC20170108053122",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014274-SC20170108053122.tar.gz",
+  :checksum "ca6f700817593140eb7eee0bdcb3ffee"}
+ {:id "LC80150322014290-SC20170108052816",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014290-SC20170108052816.tar.gz",
+  :checksum "8cf0ad8481695b2409987f3d47dcab73"}
+ {:id "LC80150322014306-SC20170108052628",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014306-SC20170108052628.tar.gz",
+  :checksum "04d00e359d610e7d01e8d92d3d0920c4"}
+ {:id "LC80150322014322-SC20170108052259",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014322-SC20170108052259.tar.gz",
+  :checksum "cab1cfa7c477595276d8d659b61c047c"}
+ {:id "LC80150322014338-SC20170108050209",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014338-SC20170108050209.tar.gz",
+  :checksum "6a97428752dc583e9629df5243735296"}
+ {:id "LC80150322014354-SC20170108045944",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322014354-SC20170108045944.tar.gz",
+  :checksum "2a402d52c02451c25bab150ed10d594e"}
+ {:id "LC80150322015005-SC20170108052449",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015005-SC20170108052449.tar.gz",
+  :checksum "15f96dd6e882722ae1cced46b07fbe90"}
+ {:id "LC80150322015021-SC20170108045819",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015021-SC20170108045819.tar.gz",
+  :checksum "83bf169a9f62e36b9b979f87ed4769fc"}
+ {:id "LC80150322015037-SC20170108050944",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015037-SC20170108050944.tar.gz",
+  :checksum "23fccb6e2b08120ff900c8ce6e7bc80a"}
+ {:id "LC80150322015053-SC20170108051049",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015053-SC20170108051049.tar.gz",
+  :checksum "4797390b9604e98b0cae686ffbe19dad"}
+ {:id "LC80150322015069-SC20170108045536",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015069-SC20170108045536.tar.gz",
+  :checksum "94c3644d8f4350f53ebef4baf190d9d0"}
+ {:id "LC80150322015085-SC20170108051404",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015085-SC20170108051404.tar.gz",
+  :checksum "0378dc4ca36dde42435ea7c068fe315b"}
+ {:id "LC80150322015101-SC20170108051859",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015101-SC20170108051859.tar.gz",
+  :checksum "212cc31224b530182c496d44231a8eb4"}
+ {:id "LC80150322015117-SC20170108050514",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015117-SC20170108050514.tar.gz",
+  :checksum "d9429ada47c1949c369225c3703f0ae8"}
+ {:id "LC80150322015133-SC20170108053323",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015133-SC20170108053323.tar.gz",
+  :checksum "8eca316e910136971e179d7641f16e67"}
+ {:id "LC80150322015149-SC20170108055445",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015149-SC20170108055445.tar.gz",
+  :checksum "3893018a20e4f1c49cfa1c85d1f67e60"}
+ {:id "LC80150322015165-SC20170108053718",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015165-SC20170108053718.tar.gz",
+  :checksum "3f4baa48e30883311727e4b768d391e9"}
+ {:id "LC80150322015181-SC20170108051804",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015181-SC20170108051804.tar.gz",
+  :checksum "2cecd3c0dde0f4ac202c92d0e7565e6b"}
+ {:id "LC80150322015197-SC20170108060439",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015197-SC20170108060439.tar.gz",
+  :checksum "f533c33a6f09cc2981dddca860dbafff"}
+ {:id "LC80150322015213-SC20170108053823",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015213-SC20170108053823.tar.gz",
+  :checksum "07d7805c5cabc124a55ed64a9a79dc64"}
+ {:id "LC80150322015229-SC20170108061206",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015229-SC20170108061206.tar.gz",
+  :checksum "dcf427c04c2706eba92e88ae33674407"}
+ {:id "LC80150322015245-SC20170108054035",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015245-SC20170108054035.tar.gz",
+  :checksum "3b73c4069090ac1f8fa34f332f344206"}
+ {:id "LC80150322015261-SC20170108055308",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015261-SC20170108055308.tar.gz",
+  :checksum "1b2e36ba5221185d31e36aec5a6f419a"}
+ {:id "LC80150322015277-SC20170108053255",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015277-SC20170108053255.tar.gz",
+  :checksum "7429ac3c2760e775be9865ced8747aa8"}
+ {:id "LC80150322015293-SC20170108051832",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015293-SC20170108051832.tar.gz",
+  :checksum "3f6a5ff9918b2de7a25113a5647ea860"}
+ {:id "LC80150322015309-SC20170108051947",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015309-SC20170108051947.tar.gz",
+  :checksum "90e4de1b4cb456638186500735135258"}
+ {:id "LC80150322015325-SC20170108051538",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015325-SC20170108051538.tar.gz",
+  :checksum "c472a6680d829f59c9fb7fc975b9b215"}
+ {:id "LC80150322015341-SC20170108053130",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015341-SC20170108053130.tar.gz",
+  :checksum "a0280d9324f0d822ad51835f3f36f0c5"}
+ {:id "LC80150322015357-SC20170108045439",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322015357-SC20170108045439.tar.gz",
+  :checksum "1418418da03c84fecb1a939791c97573"}
+ {:id "LC80150322016008-SC20170108045618",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016008-SC20170108045618.tar.gz",
+  :checksum "a39676321478a00472bfdc7e649676c9"}
+ {:id "LC80150322016024-SC20170108053225",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016024-SC20170108053225.tar.gz",
+  :checksum "7142e0caa7063b1e6e873052d59384fc"}
+ {:id "LC80150322016040-SC20170108035040",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016040-SC20170108035040.tar.gz",
+  :checksum "9b44e1c254a235b131b282369a7cb721"}
+ {:id "LC80150322016072-SC20170108035240",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016072-SC20170108035240.tar.gz",
+  :checksum "0164c0bf620e38cde1709d4e56e93108"}
+ {:id "LC80150322016088-SC20170108040525",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016088-SC20170108040525.tar.gz",
+  :checksum "6e4f8755f730d18d89ce821896d30d27"}
+ {:id "LC80150322016104-SC20170108040530",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016104-SC20170108040530.tar.gz",
+  :checksum "85d578ed47570526cf5111bb81f242ab"}
+ {:id "LC80150322016120-SC20170108041836",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016120-SC20170108041836.tar.gz",
+  :checksum "033613997f6b11c6ea5eed16cf9f4f2c"}
+ {:id "LC80150322016136-SC20170108035210",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016136-SC20170108035210.tar.gz",
+  :checksum "b699972057e4d590a000140f32e1f58e"}
+ {:id "LC80150322016152-SC20170108043202",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016152-SC20170108043202.tar.gz",
+  :checksum "ef29db983a1670ecf9604b709d2b0ed7"}
+ {:id "LC80150322016168-SC20170108035744",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016168-SC20170108035744.tar.gz",
+  :checksum "c8a858e3eeb95eb13079d119c8bcadf4"}
+ {:id "LC80150322016184-SC20170108040218",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016184-SC20170108040218.tar.gz",
+  :checksum "1def28dd1913d8516ceab5c49e55f5de"}
+ {:id "LC80150322016200-SC20170108040346",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016200-SC20170108040346.tar.gz",
+  :checksum "2508206197bc223a1cf899d94be82b58"}
+ {:id "LC80150322016216-SC20170108043529",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016216-SC20170108043529.tar.gz",
+  :checksum "f3bf888443b0f212aac24fe7b120cf8a"}
+ {:id "LC80150322016232-SC20170108043916",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016232-SC20170108043916.tar.gz",
+  :checksum "96fe3252f3ed37d84f05a5a03f5cd4df"}
+ {:id "LC80150322016248-SC20170108043410",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016248-SC20170108043410.tar.gz",
+  :checksum "3e2d5aeb527025cd38f1d750ea96c792"}
+ {:id "LC80150322016264-SC20170108035439",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016264-SC20170108035439.tar.gz",
+  :checksum "a392466f18667c1c887af179022be215"}
+ {:id "LC80150322016280-SC20170108043444",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016280-SC20170108043444.tar.gz",
+  :checksum "567ffa80baaf010dcf06d5a4bf5251f0"}
+ {:id "LC80150322016296-SC20170108035023",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016296-SC20170108035023.tar.gz",
+  :checksum "6af2e1b85f2c016774aedfdb8d1b6673"}
+ {:id "LC80150322016312-SC20170108063544",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150322016312-SC20170108063544.tar.gz",
+  :checksum "ba32009b6a2b2aebc3f22c974098f19e"}
+ {:id "LC80150332013111-SC20170108035800",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013111-SC20170108035800.tar.gz",
+  :checksum "90bd61d09134d1c9f2a7d6662c2084b7"}
+ {:id "LC80150332013143-SC20170108035043",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013143-SC20170108035043.tar.gz",
+  :checksum "13c230493d4e062bab5ab096ce5e095f"}
+ {:id "LC80150332013159-SC20170108033757",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013159-SC20170108033757.tar.gz",
+  :checksum "117a943eff7bfc59e1b80913fce75139"}
+ {:id "LC80150332013175-SC20170108042615",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013175-SC20170108042615.tar.gz",
+  :checksum "c15ec8256d7b9021573734d70e34cf18"}
+ {:id "LC80150332013191-SC20170108034504",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013191-SC20170108034504.tar.gz",
+  :checksum "229b37192b67bf6f406d17cf7ccb9816"}
+ {:id "LC80150332013207-SC20170108044041",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013207-SC20170108044041.tar.gz",
+  :checksum "3b98e0a09c35cef3bc7aba2c1fcdc7fa"}
+ {:id "LC80150332013223-SC20170108042919",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013223-SC20170108042919.tar.gz",
+  :checksum "714a6cb9d3f4fb03ca3fd78d2e1b513c"}
+ {:id "LC80150332013239-SC20170108044107",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013239-SC20170108044107.tar.gz",
+  :checksum "c19abacccbe1815ed8ee8de525509fe8"}
+ {:id "LC80150332013255-SC20170108043336",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013255-SC20170108043336.tar.gz",
+  :checksum "6ddce4dc131e9ee055c0d819a2dbc493"}
+ {:id "LC80150332013271-SC20170108041333",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013271-SC20170108041333.tar.gz",
+  :checksum "2a312fc1cf71aa6d177aae040e33df65"}
+ {:id "LC80150332013287-SC20170108042518",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013287-SC20170108042518.tar.gz",
+  :checksum "5151f683a5308f06325eedabae11e5b7"}
+ {:id "LC80150332013303-SC20170108040934",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013303-SC20170108040934.tar.gz",
+  :checksum "fc5bda5f7874f0b3b560cfe7e95038e6"}
+ {:id "LC80150332013319-SC20170108034947",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013319-SC20170108034947.tar.gz",
+  :checksum "2aced6efcf2b9c6a971483613a55778e"}
+ {:id "LC80150332013335-SC20170108042233",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013335-SC20170108042233.tar.gz",
+  :checksum "86771a6ccca1088ad770fb78643fa25f"}
+ {:id "LC80150332013351-SC20170108034539",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332013351-SC20170108034539.tar.gz",
+  :checksum "9a6df0c192bddd416687281064b868e4"}
+ {:id "LC80150332014002-SC20170108034016",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014002-SC20170108034016.tar.gz",
+  :checksum "e0cd7927123ba593924601af751b2152"}
+ {:id "LC80150332014018-SC20170108041634",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014018-SC20170108041634.tar.gz",
+  :checksum "7d2b0bd3274cbc4579ce6505d6b17393"}
+ {:id "LC80150332014034-SC20170108033451",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014034-SC20170108033451.tar.gz",
+  :checksum "1b3baad0a1079c97d96b10cce9266a18"}
+ {:id "LC80150332014050-SC20170108043516",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014050-SC20170108043516.tar.gz",
+  :checksum "7ec9f15e219faf7190d4f25994f806d4"}
+ {:id "LC80150332014066-SC20170108033807",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014066-SC20170108033807.tar.gz",
+  :checksum "a60ba038f212cbd0a632166ce1e1ff38"}
+ {:id "LC80150332014082-SC20170108034007",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014082-SC20170108034007.tar.gz",
+  :checksum "4e862e796bb641046f5c3c51a6214953"}
+ {:id "LC80150332014098-SC20170108043409",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014098-SC20170108043409.tar.gz",
+  :checksum "581a721aa1aa970581d5d5b3dc9b4f33"}
+ {:id "LC80150332014114-SC20170108044146",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014114-SC20170108044146.tar.gz",
+  :checksum "16cc65984f876dab6e55d5fe3db6ac3c"}
+ {:id "LC80150332014130-SC20170108034019",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014130-SC20170108034019.tar.gz",
+  :checksum "d85e86e7ed877c97232fc7b556573614"}
+ {:id "LC80150332014146-SC20170108044133",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014146-SC20170108044133.tar.gz",
+  :checksum "e44a8ab1a32412f29309baefcb50357f"}
+ {:id "LC80150332014162-SC20170108042721",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014162-SC20170108042721.tar.gz",
+  :checksum "f2e088f00b71ea938c54c562ae6c570b"}
+ {:id "LC80150332014178-SC20170108052712",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014178-SC20170108052712.tar.gz",
+  :checksum "829ffbb2751789e4f9435a38a8270243"}
+ {:id "LC80150332014194-SC20170108042611",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014194-SC20170108042611.tar.gz",
+  :checksum "800657f11c35880f4a6e1f2d5d93caff"}
+ {:id "LC80150332014210-SC20170108042435",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014210-SC20170108042435.tar.gz",
+  :checksum "f234e1a7cf6f638af242868e96239dc2"}
+ {:id "LC80150332014226-SC20170108042534",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014226-SC20170108042534.tar.gz",
+  :checksum "bc102b83c3ca920858e5bee384d0fcc2"}
+ {:id "LC80150332014242-SC20170108041543",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014242-SC20170108041543.tar.gz",
+  :checksum "39304984a55907e9c2566792314d7285"}
+ {:id "LC80150332014258-SC20170108043216",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014258-SC20170108043216.tar.gz",
+  :checksum "a5cbba7e6666ad578895b145fb48bef2"}
+ {:id "LC80150332014274-SC20170108035844",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014274-SC20170108035844.tar.gz",
+  :checksum "872909318dbe9e62b5d66fd4bd0fbc7d"}
+ {:id "LC80150332014290-SC20170108041117",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014290-SC20170108041117.tar.gz",
+  :checksum "40eff4bb79fcbd8c7dfc636b85fa71c0"}
+ {:id "LC80150332014306-SC20170108034423",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014306-SC20170108034423.tar.gz",
+  :checksum "b223267dc98bab2ea6c93b4a0288b7af"}
+ {:id "LC80150332014322-SC20170108033502",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014322-SC20170108033502.tar.gz",
+  :checksum "0ab1a9bd41234fee52651b4095da02e4"}
+ {:id "LC80150332014338-SC20170108031828",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014338-SC20170108031828.tar.gz",
+  :checksum "fe2f9fd4e136cd885e472825cf33baa3"}
+ {:id "LC80150332014354-SC20170108031602",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332014354-SC20170108031602.tar.gz",
+  :checksum "3323657cc44f7a43156e1c77ba7ec18c"}
+ {:id "LC80150332015005-SC20170108034803",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015005-SC20170108034803.tar.gz",
+  :checksum "b58cde5bb58e4e860b91a09de9591d45"}
+ {:id "LC80150332015021-SC20170108035648",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015021-SC20170108035648.tar.gz",
+  :checksum "e11947f3a2bdcc6bd39622b8c7a10664"}
+ {:id "LC80150332015037-SC20170108033149",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015037-SC20170108033149.tar.gz",
+  :checksum "70f17af431ca87b9482f10138b0df4c2"}
+ {:id "LC80150332015053-SC20170108031857",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015053-SC20170108031857.tar.gz",
+  :checksum "a3e1b4bd1eaf55e4713d699a33459a78"}
+ {:id "LC80150332015069-SC20170108031203",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015069-SC20170108031203.tar.gz",
+  :checksum "43612d8c8dafd117adf4514e554f5f18"}
+ {:id "LC80150332015085-SC20170108033417",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015085-SC20170108033417.tar.gz",
+  :checksum "5ffb4de7fffb8e6b00ddd3cdc6918bee"}
+ {:id "LC80150332015101-SC20170108033951",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015101-SC20170108033951.tar.gz",
+  :checksum "e6603ac0735353aaf7304a7b875f4b96"}
+ {:id "LC80150332015117-SC20170108033823",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015117-SC20170108033823.tar.gz",
+  :checksum "b9be0905c2c7a99bac96f087db4c7bd2"}
+ {:id "LC80150332015133-SC20170108034316",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015133-SC20170108034316.tar.gz",
+  :checksum "788435d67705619eea282c980ce1e733"}
+ {:id "LC80150332015149-SC20170108035500",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015149-SC20170108035500.tar.gz",
+  :checksum "6a7341b7126b58afa49966bd2dfd6065"}
+ {:id "LC80150332015165-SC20170108062652",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015165-SC20170108062652.tar.gz",
+  :checksum "927c0d8a718c972f47814e95b2d4d2b4"}
+ {:id "LC80150332015181-SC20170108060201",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015181-SC20170108060201.tar.gz",
+  :checksum "dc38d113c1c3730a03de1724430bc8fd"}
+ {:id "LC80150332015197-SC20170108064156",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015197-SC20170108064156.tar.gz",
+  :checksum "e5f830686cd6fab99bd03171cf07d58b"}
+ {:id "LC80150332015213-SC20170108061216",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015213-SC20170108061216.tar.gz",
+  :checksum "201b41199f5757afffd7d91f96c0aa45"}
+ {:id "LC80150332015229-SC20170108062013",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015229-SC20170108062013.tar.gz",
+  :checksum "df986dac741136ce5396ef1a76500150"}
+ {:id "LC80150332015245-SC20170108055303",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015245-SC20170108055303.tar.gz",
+  :checksum "3d7850cc3e7e7343d8fce707d8fb14b2"}
+ {:id "LC80150332015261-SC20170108062124",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015261-SC20170108062124.tar.gz",
+  :checksum "c64afa4d901eacbdd30a834d0a0ef5be"}
+ {:id "LC80150332015277-SC20170108054508",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015277-SC20170108054508.tar.gz",
+  :checksum "199bf31d8bc79d43b22f04da7c7df320"}
+ {:id "LC80150332015293-SC20170108055720",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015293-SC20170108055720.tar.gz",
+  :checksum "072ac12d85eb4e7babc0bb65d1aa20c0"}
+ {:id "LC80150332015309-SC20170108055126",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015309-SC20170108055126.tar.gz",
+  :checksum "d4c69d3aef36af9c3f100161b61cb8f6"}
+ {:id "LC80150332015325-SC20170108054807",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015325-SC20170108054807.tar.gz",
+  :checksum "1995cea7a3d5f160cd24ad56a78b93ad"}
+ {:id "LC80150332015341-SC20170108061512",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015341-SC20170108061512.tar.gz",
+  :checksum "e51b54179bf3d31061d1527afe1b39dc"}
+ {:id "LC80150332015357-SC20170108051640",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332015357-SC20170108051640.tar.gz",
+  :checksum "d9df75c396e40105fefe3d4950719af0"}
+ {:id "LC80150332016008-SC20170108053931",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016008-SC20170108053931.tar.gz",
+  :checksum "75851c8d9313056c449d5456e9873c25"}
+ {:id "LC80150332016024-SC20170108055141",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016024-SC20170108055141.tar.gz",
+  :checksum "9676f703efc936fb179f4fcb6e080739"}
+ {:id "LC80150332016040-SC20170108051924",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016040-SC20170108051924.tar.gz",
+  :checksum "665189dd809c4d93b7d7cff64879d048"}
+ {:id "LC80150332016072-SC20170108052353",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016072-SC20170108052353.tar.gz",
+  :checksum "31fab115011e66f1169d25f56fc89e94"}
+ {:id "LC80150332016088-SC20170108034854",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016088-SC20170108034854.tar.gz",
+  :checksum "979ba7ebcba2628f733ca4dbc1700b31"}
+ {:id "LC80150332016104-SC20170108034947",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016104-SC20170108034947.tar.gz",
+  :checksum "e1816726241faf1532b63bd1c1238a51"}
+ {:id "LC80150332016120-SC20170108032826",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016120-SC20170108032826.tar.gz",
+  :checksum "f0fce22acb60dbcae095e10aeadeaacf"}
+ {:id "LC80150332016136-SC20170108035559",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016136-SC20170108035559.tar.gz",
+  :checksum "9dbc6ceeb2603b035d24d81eab30b640"}
+ {:id "LC80150332016152-SC20170108040533",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016152-SC20170108040533.tar.gz",
+  :checksum "891525c6e0dd3f34687d11f82c71e00a"}
+ {:id "LC80150332016168-SC20170108034420",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016168-SC20170108034420.tar.gz",
+  :checksum "9edae2d887a69619b37772ccd3039efc"}
+ {:id "LC80150332016184-SC20170108040917",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016184-SC20170108040917.tar.gz",
+  :checksum "c4b2860b8f2f1e1d7f62daec9aa5efce"}
+ {:id "LC80150332016200-SC20170108035318",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016200-SC20170108035318.tar.gz",
+  :checksum "6e0f0855951f4d91dc8df329ce836134"}
+ {:id "LC80150332016216-SC20170108040805",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016216-SC20170108040805.tar.gz",
+  :checksum "9420247f81286f62ad6438d4d4dd7aa8"}
+ {:id "LC80150332016232-SC20170108034829",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016232-SC20170108034829.tar.gz",
+  :checksum "f7feace741f40ad3142db3da00ce19be"}
+ {:id "LC80150332016248-SC20170108034941",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016248-SC20170108034941.tar.gz",
+  :checksum "267ebd7716ce538fdd336202123d532b"}
+ {:id "LC80150332016264-SC20170108031645",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016264-SC20170108031645.tar.gz",
+  :checksum "a57c6c33cd592a985fd42f5dd57357e7"}
+ {:id "LC80150332016280-SC20170108035523",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016280-SC20170108035523.tar.gz",
+  :checksum "542e34c1cbccb7788851e8e8ac536323"}
+ {:id "LC80150332016296-SC20170108041315",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016296-SC20170108041315.tar.gz",
+  :checksum "862c1e52bf22d01fc6e5715b1013ff49"}
+ {:id "LC80150332016312-SC20170108035621",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80150332016312-SC20170108035621.tar.gz",
+  :checksum "374d9ed1adfbc122d0b7f280415d46a0"}
+ {:id "LC80160322013102-SC20170108033630",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013102-SC20170108033630.tar.gz",
+  :checksum "d7cdfdb5e82e2c0cfdcf721c801ed036"}
+ {:id "LC80160322013118-SC20170108031227",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013118-SC20170108031227.tar.gz",
+  :checksum "ef70058719f11a476e9a8f2f66bf8e59"}
+ {:id "LC80160322013134-SC20170108035122",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013134-SC20170108035122.tar.gz",
+  :checksum "7a0a3e588a63b65fa181f84c085206e6"}
+ {:id "LC80160322013150-SC20170108041321",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013150-SC20170108041321.tar.gz",
+  :checksum "6445b2f2626aa0e42135002aa6805dad"}
+ {:id "LC80160322013166-SC20170108041811",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013166-SC20170108041811.tar.gz",
+  :checksum "e7b88184adf69f785b9351b69aed1d54"}
+ {:id "LC80160322013182-SC20170108040621",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013182-SC20170108040621.tar.gz",
+  :checksum "eec2dbf9e0c3a2742562f322318fab0a"}
+ {:id "LC80160322013198-SC20170108042708",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013198-SC20170108042708.tar.gz",
+  :checksum "5c1e9345ca9e214fdbca17616ca224f3"}
+ {:id "LC80160322013214-SC20170108040624",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013214-SC20170108040624.tar.gz",
+  :checksum "0b2b9e442a91d5842e58dbb0010c38d3"}
+ {:id "LC80160322013230-SC20170108031653",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013230-SC20170108031653.tar.gz",
+  :checksum "b5d3596df6bb08054857f49e7a68fb7f"}
+ {:id "LC80160322013246-SC20170108040307",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013246-SC20170108040307.tar.gz",
+  :checksum "f56fbe8668e31811f60966608457d5b6"}
+ {:id "LC80160322013262-SC20170108040721",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013262-SC20170108040721.tar.gz",
+  :checksum "e89dca87c3f6f8eb707ed8487c1936c1"}
+ {:id "LC80160322013278-SC20170108035316",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013278-SC20170108035316.tar.gz",
+  :checksum "9ae52911bb40e7085d1c11e8dcfd8cee"}
+ {:id "LC80160322013294-SC20170108034038",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013294-SC20170108034038.tar.gz",
+  :checksum "66220ec71201cb8b903df5df7ddfe01b"}
+ {:id "LC80160322013310-SC20170108034748",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013310-SC20170108034748.tar.gz",
+  :checksum "ed41f1d73e179fc45e2468ee9811d479"}
+ {:id "LC80160322013326-SC20170108032506",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013326-SC20170108032506.tar.gz",
+  :checksum "1476cab7e1b2eb2a4d2e01200c26eab1"}
+ {:id "LC80160322013342-SC20170108031600",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013342-SC20170108031600.tar.gz",
+  :checksum "29130f1509e2e6e5a2290f904ce41c7f"}
+ {:id "LC80160322013358-SC20170108035249",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322013358-SC20170108035249.tar.gz",
+  :checksum "d2095395e3344aca256873c3ec11ce8f"}
+ {:id "LC80160322014009-SC20170108035804",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014009-SC20170108035804.tar.gz",
+  :checksum "a4525e8faf7798377e018819915f5087"}
+ {:id "LC80160322014025-SC20170108042726",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014025-SC20170108042726.tar.gz",
+  :checksum "907a836cb5367823153454cadc9544e0"}
+ {:id "LC80160322014041-SC20170108030552",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014041-SC20170108030552.tar.gz",
+  :checksum "b76caff271512e99dc0920b246bd1157"}
+ {:id "LC80160322014057-SC20170108030914",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014057-SC20170108030914.tar.gz",
+  :checksum "ee90ab608974ba2717468cf4e2ecaa74"}
+ {:id "LC80160322014073-SC20170108031914",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014073-SC20170108031914.tar.gz",
+  :checksum "a2f179f137b4d7ed71308eb7ce7baffc"}
+ {:id "LC80160322014089-SC20170108025305",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014089-SC20170108025305.tar.gz",
+  :checksum "acec14865b9f6075eef18774239f1024"}
+ {:id "LC80160322014105-SC20170108051429",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014105-SC20170108051429.tar.gz",
+  :checksum "99e4c0c1e27457c6e7fa909809cb0585"}
+ {:id "LC80160322014121-SC20170108061833",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014121-SC20170108061833.tar.gz",
+  :checksum "99e7d9d72c75022f4313b19264a5a4c0"}
+ {:id "LC80160322014137-SC20170108052606",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014137-SC20170108052606.tar.gz",
+  :checksum "a6a632adb4591b270c29ba8ee7a43736"}
+ {:id "LC80160322014153-SC20170108052030",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014153-SC20170108052030.tar.gz",
+  :checksum "79231fe85e95d21d240a5403a1d5f2d0"}
+ {:id "LC80160322014169-SC20170108052623",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014169-SC20170108052623.tar.gz",
+  :checksum "520202d6153b2ece197418089c4614b6"}
+ {:id "LC80160322014185-SC20170108052532",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014185-SC20170108052532.tar.gz",
+  :checksum "4af5eae4796d0532d2c8e306b2333342"}
+ {:id "LC80160322014201-SC20170108034550",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014201-SC20170108034550.tar.gz",
+  :checksum "e54ecb84ed27a525107b76c8ecc88146"}
+ {:id "LC80160322014217-SC20170108052736",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014217-SC20170108052736.tar.gz",
+  :checksum "6573ce9dec5f86ad7d427cbadb88f2ac"}
+ {:id "LC80160322014233-SC20170108052725",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014233-SC20170108052725.tar.gz",
+  :checksum "1548ea9d6812acbc5d954f5faf7e3b53"}
+ {:id "LC80160322014249-SC20170108045058",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014249-SC20170108045058.tar.gz",
+  :checksum "93b0c25ccb0390cb2713ddebc181fe7f"}
+ {:id "LC80160322014265-SC20170108042748",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014265-SC20170108042748.tar.gz",
+  :checksum "05ad1da4c9170bf283530199c58991e1"}
+ {:id "LC80160322014281-SC20170108054701",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014281-SC20170108054701.tar.gz",
+  :checksum "728216a17b9d38554e5a640c7a46b5dd"}
+ {:id "LC80160322014297-SC20170108043842",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014297-SC20170108043842.tar.gz",
+  :checksum "754ab9029579cfac2dd6991c18279176"}
+ {:id "LC80160322014313-SC20170108032935",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014313-SC20170108032935.tar.gz",
+  :checksum "fa0c70cb9ad4b76a108bd7002eb1c388"}
+ {:id "LC80160322014329-SC20170108025520",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014329-SC20170108025520.tar.gz",
+  :checksum "3ab83fa2d592d5767303796a1974d1f3"}
+ {:id "LC80160322014345-SC20170108033128",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014345-SC20170108033128.tar.gz",
+  :checksum "040e4882fda38e0f8e9d547e2ed66654"}
+ {:id "LC80160322014361-SC20170108032216",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322014361-SC20170108032216.tar.gz",
+  :checksum "147bf914a1575ad03001e34fcd749095"}
+ {:id "LC80160322015012-SC20170108040704",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015012-SC20170108040704.tar.gz",
+  :checksum "cdfcfb277b80cff92b1bec3395555ff6"}
+ {:id "LC80160322015028-SC20170108052515",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015028-SC20170108052515.tar.gz",
+  :checksum "10eab8f9324ea7348ba91fcfb4a10e6e"}
+ {:id "LC80160322015044-SC20170108033301",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015044-SC20170108033301.tar.gz",
+  :checksum "dee641642ddd812645521b6683e5a761"}
+ {:id "LC80160322015060-SC20170108031526",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015060-SC20170108031526.tar.gz",
+  :checksum "2e0dce646aab6528d7fd7ba25fc1291d"}
+ {:id "LC80160322015076-SC20170108051551",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015076-SC20170108051551.tar.gz",
+  :checksum "2b3eefd22cffa136fb2cf2f8011a4e39"}
+ {:id "LC80160322015092-SC20170108025928",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015092-SC20170108025928.tar.gz",
+  :checksum "30cdd65cb9ce44c177330be06460037a"}
+ {:id "LC80160322015108-SC20170108051428",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015108-SC20170108051428.tar.gz",
+  :checksum "155ee4d8dc69ce24adc50133e52648ee"}
+ {:id "LC80160322015124-SC20170108043429",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015124-SC20170108043429.tar.gz",
+  :checksum "50ccfe49dace628c1ce904f5851c0718"}
+ {:id "LC80160322015140-SC20170108052605",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015140-SC20170108052605.tar.gz",
+  :checksum "a6a471b8c97068454bf1d0fb6d7ff445"}
+ {:id "LC80160322015156-SC20170108032543",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015156-SC20170108032543.tar.gz",
+  :checksum "c70b1c1ac5a41e57646cf60bc7b217c6"}
+ {:id "LC80160322015172-SC20170108053214",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015172-SC20170108053214.tar.gz",
+  :checksum "ef7d638b759895147d41a39a242239e4"}
+ {:id "LC80160322015188-SC20170108065206",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015188-SC20170108065206.tar.gz",
+  :checksum "c593fc6caf8fe2392c70499188c339d1"}
+ {:id "LC80160322015204-SC20170108055533",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015204-SC20170108055533.tar.gz",
+  :checksum "5113e1f6cc3345cd3207ead09f19fbf0"}
+ {:id "LC80160322015220-SC20170108034815",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015220-SC20170108034815.tar.gz",
+  :checksum "9d1d8ac1c38272b7f68b091a62a5927c"}
+ {:id "LC80160322015236-SC20170108034710",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015236-SC20170108034710.tar.gz",
+  :checksum "94b657ddbd6d75cddb46008bb36bd703"}
+ {:id "LC80160322015252-SC20170108052958",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015252-SC20170108052958.tar.gz",
+  :checksum "eb5cc627907d2f62378cc00ce35fe23b"}
+ {:id "LC80160322015268-SC20170108025922",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015268-SC20170108025922.tar.gz",
+  :checksum "dafd2b1b69d4767b6f65e05004c9e88a"}
+ {:id "LC80160322015284-SC20170108053226",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015284-SC20170108053226.tar.gz",
+  :checksum "be3ad4e4aa49d3767c70a030b510a997"}
+ {:id "LC80160322015300-SC20170108052605",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015300-SC20170108052605.tar.gz",
+  :checksum "26994fa12d61899f783947a16ad15b7d"}
+ {:id "LC80160322015316-SC20170108051534",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015316-SC20170108051534.tar.gz",
+  :checksum "27acac6f2f222651746af630909a1d8e"}
+ {:id "LC80160322015332-SC20170108025338",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015332-SC20170108025338.tar.gz",
+  :checksum "b4c6fbe47574f72f649fe69636f91011"}
+ {:id "LC80160322015348-SC20170108031827",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015348-SC20170108031827.tar.gz",
+  :checksum "3c37bce2bc2dba74c884b6533580ede6"}
+ {:id "LC80160322015364-SC20170108032023",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322015364-SC20170108032023.tar.gz",
+  :checksum "957959a254aeaa5b068f6519257a374b"}
+ {:id "LC80160322016015-SC20170108043848",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016015-SC20170108043848.tar.gz",
+  :checksum "3d68729fc1534ac286850c806461a757"}
+ {:id "LC80160322016031-SC20170108030738",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016031-SC20170108030738.tar.gz",
+  :checksum "9caa118844f5bc4cd1c0b1847335df42"}
+ {:id "LC80160322016047-SC20170108025349",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016047-SC20170108025349.tar.gz",
+  :checksum "f75a38d6e2d2ad67a83169e76e5d8c86"}
+ {:id "LC80160322016063-SC20170108052606",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016063-SC20170108052606.tar.gz",
+  :checksum "ecb31fe1a946f5949635605b5c89ea9d"}
+ {:id "LC80160322016079-SC20170108060204",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016079-SC20170108060204.tar.gz",
+  :checksum "fc5b276703cd3a36cabdacb41f98e378"}
+ {:id "LC80160322016095-SC20170108051553",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016095-SC20170108051553.tar.gz",
+  :checksum "91a0731607e58a00364c5c333c82471b"}
+ {:id "LC80160322016111-SC20170108025418",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016111-SC20170108025418.tar.gz",
+  :checksum "55106ea2d912810e6f0df31972df14d2"}
+ {:id "LC80160322016127-SC20170108025821",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016127-SC20170108025821.tar.gz",
+  :checksum "b0fdea1d061b243bc1231243e5cc3905"}
+ {:id "LC80160322016143-SC20170108024413",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016143-SC20170108024413.tar.gz",
+  :checksum "fd7ff28c676c9ad784651a6fb237aed6"}
+ {:id "LC80160322016159-SC20170108030602",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016159-SC20170108030602.tar.gz",
+  :checksum "fce9621190086a0ca69399cb71a55e54"}
+ {:id "LC80160322016175-SC20170108024215",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016175-SC20170108024215.tar.gz",
+  :checksum "118bc07bc40ca0f34f9ede89dd9bed47"}
+ {:id "LC80160322016191-SC20170108033936",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016191-SC20170108033936.tar.gz",
+  :checksum "b7f1f2f1fe597613b9d88d8bbe59eaaa"}
+ {:id "LC80160322016207-SC20170108031334",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016207-SC20170108031334.tar.gz",
+  :checksum "1a4e5763b2d037141751e93050059e64"}
+ {:id "LC80160322016223-SC20170108030006",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016223-SC20170108030006.tar.gz",
+  :checksum "2042ff751147a1914bcb6a18491cba37"}
+ {:id "LC80160322016239-SC20170108031605",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016239-SC20170108031605.tar.gz",
+  :checksum "6356c0ffa5c4736cc11c820e7a31d771"}
+ {:id "LC80160322016255-SC20170108031405",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016255-SC20170108031405.tar.gz",
+  :checksum "fcd72e1e0fcc56c87d4999e00da10fa3"}
+ {:id "LC80160322016271-SC20170108034057",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016271-SC20170108034057.tar.gz",
+  :checksum "5aaced88dfeee72580c527b5cbb639fc"}
+ {:id "LC80160322016287-SC20170108025002",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016287-SC20170108025002.tar.gz",
+  :checksum "23d53d2677627e5c5fee9d8326173fc3"}
+ {:id "LC80160322016303-SC20170108023644",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016303-SC20170108023644.tar.gz",
+  :checksum "62cd9e9faae3b584dcd5a2d871b43f91"}
+ {:id "LC80160322016319-SC20170108033333",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160322016319-SC20170108033333.tar.gz",
+  :checksum "8d97184d316936add12ecd7e92256ad1"}
+ {:id "LC80160332013102-SC20170108025147",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013102-SC20170108025147.tar.gz",
+  :checksum "2b7847847c14fd33df0be0c65873239e"}
+ {:id "LC80160332013118-SC20170108025258",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013118-SC20170108025258.tar.gz",
+  :checksum "196d9acd4b5678375abfbfb438c5b01b"}
+ {:id "LC80160332013134-SC20170108030508",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013134-SC20170108030508.tar.gz",
+  :checksum "abe7ccaed7095b961ac872e25118a79c"}
+ {:id "LC80160332013150-SC20170108032719",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013150-SC20170108032719.tar.gz",
+  :checksum "81f5540124f6f4b21f0777d8e0d50a19"}
+ {:id "LC80160332013166-SC20170108034303",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013166-SC20170108034303.tar.gz",
+  :checksum "5d622d062f07718cda606c39e6b7d01a"}
+ {:id "LC80160332013182-SC20170108024313",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013182-SC20170108024313.tar.gz",
+  :checksum "b2b1a3b3cfbeb178739e594ec332e987"}
+ {:id "LC80160332013198-SC20170108033343",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013198-SC20170108033343.tar.gz",
+  :checksum "ee75f272e11a795cbd8ec1201c04bc95"}
+ {:id "LC80160332013214-SC20170108030758",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013214-SC20170108030758.tar.gz",
+  :checksum "3f3bb8d6cf2ca8d573bf7f4ba2b4e42c"}
+ {:id "LC80160332013230-SC20170108023110",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013230-SC20170108023110.tar.gz",
+  :checksum "0fbcb2e69fa7c12e74268fa5ebd0c649"}
+ {:id "LC80160332013246-SC20170108031808",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013246-SC20170108031808.tar.gz",
+  :checksum "d0d2b45a3225d9ae5ad8f4644af320be"}
+ {:id "LC80160332013262-SC20170108032054",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013262-SC20170108032054.tar.gz",
+  :checksum "0c31f6919018568a527aeceed2111346"}
+ {:id "LC80160332013278-SC20170108031441",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013278-SC20170108031441.tar.gz",
+  :checksum "4c6fe157d5b809c216fa941360d8a708"}
+ {:id "LC80160332013294-SC20170108030553",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013294-SC20170108030553.tar.gz",
+  :checksum "3532ed819a7f88237e6b428b35c1fb63"}
+ {:id "LC80160332013310-SC20170108025907",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013310-SC20170108025907.tar.gz",
+  :checksum "8988c910408900eadfb46ad6ed61237e"}
+ {:id "LC80160332013326-SC20170108024737",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013326-SC20170108024737.tar.gz",
+  :checksum "2b2c0f18063d4dbad1ff70428110a441"}
+ {:id "LC80160332013342-SC20170108025628",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013342-SC20170108025628.tar.gz",
+  :checksum "4d1b104375077b0bf4a6a8ee22744ae9"}
+ {:id "LC80160332013358-SC20170108025030",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332013358-SC20170108025030.tar.gz",
+  :checksum "c487d33acce2df300aa482805ab463be"}
+ {:id "LC80160332014009-SC20170108031232",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014009-SC20170108031232.tar.gz",
+  :checksum "a06cf615ca27f1c5b3e27aea068b42c4"}
+ {:id "LC80160332014025-SC20170108023154",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014025-SC20170108023154.tar.gz",
+  :checksum "592ecf1c0d8e335939657580caf8cf43"}
+ {:id "LC80160332014041-SC20170108023733",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014041-SC20170108023733.tar.gz",
+  :checksum "ae9665ae922867cbb8765fe846e4573b"}
+ {:id "LC80160332014057-SC20170108025238",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014057-SC20170108025238.tar.gz",
+  :checksum "6b599821f1fa505d6aa31345c9f509c6"}
+ {:id "LC80160332014073-SC20170108024630",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014073-SC20170108024630.tar.gz",
+  :checksum "86f3ad648b0f1af1dc3711c53ad83242"}
+ {:id "LC80160332014089-SC20170108030133",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014089-SC20170108030133.tar.gz",
+  :checksum "fdecabce5350ed97c90069ac15814a11"}
+ {:id "LC80160332014105-SC20170108022828",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014105-SC20170108022828.tar.gz",
+  :checksum "7a22521bba83c057a40d8816b92474a5"}
+ {:id "LC80160332014121-SC20170108025551",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014121-SC20170108025551.tar.gz",
+  :checksum "c6510eb1cfd70f779f5dc50ddca09e08"}
+ {:id "LC80160332014137-SC20170108030311",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014137-SC20170108030311.tar.gz",
+  :checksum "5bbfe97e1a7cea4e1c33011fe584a9be"}
+ {:id "LC80160332014153-SC20170108030012",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014153-SC20170108030012.tar.gz",
+  :checksum "241aa0a3e43cda9b2a8ee052b6deff46"}
+ {:id "LC80160332014169-SC20170108031711",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014169-SC20170108031711.tar.gz",
+  :checksum "0026a9ef597c897d63393de38e8ce223"}
+ {:id "LC80160332014185-SC20170108033926",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014185-SC20170108033926.tar.gz",
+  :checksum "22ba46a18540128830d9b1ecf6df36b5"}
+ {:id "LC80160332014201-SC20170108031007",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014201-SC20170108031007.tar.gz",
+  :checksum "f7020608783f62714d9f4ec3077d8147"}
+ {:id "LC80160332014217-SC20170108032225",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014217-SC20170108032225.tar.gz",
+  :checksum "1739538e57cd5628a76679b02b5662e6"}
+ {:id "LC80160332014233-SC20170108031055",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014233-SC20170108031055.tar.gz",
+  :checksum "29cb49c8842420e7aaee2ead079cf281"}
+ {:id "LC80160332014249-SC20170108031356",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014249-SC20170108031356.tar.gz",
+  :checksum "d2e12ee3d9e5fd8b54d09b49e9d0d4e0"}
+ {:id "LC80160332014265-SC20170108031143",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014265-SC20170108031143.tar.gz",
+  :checksum "b4caabecd60f547504a7995c4569a87d"}
+ {:id "LC80160332014281-SC20170108032308",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014281-SC20170108032308.tar.gz",
+  :checksum "2ef774c64da22f7b1981f34e81dd4287"}
+ {:id "LC80160332014297-SC20170108021719",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014297-SC20170108021719.tar.gz",
+  :checksum "267648f3ba24abb47bed6b8b4658bdd7"}
+ {:id "LC80160332014313-SC20170108023021",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014313-SC20170108023021.tar.gz",
+  :checksum "f371dc5089ab0b496f142c2da4175d93"}
+ {:id "LC80160332014329-SC20170108022322",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014329-SC20170108022322.tar.gz",
+  :checksum "0013367537ca1d232b8a00c75bd3b2c9"}
+ {:id "LC80160332014345-SC20170108022624",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014345-SC20170108022624.tar.gz",
+  :checksum "ee595ad94ba552a126ef83b369f1efd2"}
+ {:id "LC80160332014361-SC20170108033126",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332014361-SC20170108033126.tar.gz",
+  :checksum "9cb77480e25d4546a25fb753dee94174"}
+ {:id "LC80160332015012-SC20170108020942",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015012-SC20170108020942.tar.gz",
+  :checksum "40ecafd85c9822ced413ee660fb61fed"}
+ {:id "LC80160332015028-SC20170108025203",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015028-SC20170108025203.tar.gz",
+  :checksum "0621132ec73284c800213f81f17e8a10"}
+ {:id "LC80160332015044-SC20170108023153",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015044-SC20170108023153.tar.gz",
+  :checksum "fe9021cfaf962d21fa6d21b376d75ce9"}
+ {:id "LC80160332015060-SC20170108020938",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015060-SC20170108020938.tar.gz",
+  :checksum "d138142ba978e318dc547e054470e95f"}
+ {:id "LC80160332015076-SC20170108024127",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015076-SC20170108024127.tar.gz",
+  :checksum "6a681ea1a5ccfdb97a535024dd41815e"}
+ {:id "LC80160332015092-SC20170108022224",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015092-SC20170108022224.tar.gz",
+  :checksum "692ef971667e17f3eba12a6370b26744"}
+ {:id "LC80160332015108-SC20170108023634",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015108-SC20170108023634.tar.gz",
+  :checksum "6a89fe4cd97a8b888ba940e790d7a7cd"}
+ {:id "LC80160332015124-SC20170108024510",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015124-SC20170108024510.tar.gz",
+  :checksum "5c5297fee0505a72a008dae6b4da96d3"}
+ {:id "LC80160332015140-SC20170108025253",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015140-SC20170108025253.tar.gz",
+  :checksum "6fc49d9f18d013ea5750d916e003d2ea"}
+ {:id "LC80160332015156-SC20170108024106",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015156-SC20170108024106.tar.gz",
+  :checksum "062b20073d8eaf1ef0ee54fcd1e73f67"}
+ {:id "LC80160332015172-SC20170108025306",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015172-SC20170108025306.tar.gz",
+  :checksum "16f3fdb63c6aa474e5678a56293e4487"}
+ {:id "LC80160332015188-SC20170108030905",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015188-SC20170108030905.tar.gz",
+  :checksum "505a4a49b43695406ec6e5bd19bef4d6"}
+ {:id "LC80160332015204-SC20170108031454",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015204-SC20170108031454.tar.gz",
+  :checksum "ddbcd275694286cf391bafee12797428"}
+ {:id "LC80160332015220-SC20170108033441",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015220-SC20170108033441.tar.gz",
+  :checksum "d62f5ee29147bc33b08677c7672c8ddf"}
+ {:id "LC80160332015236-SC20170108030543",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015236-SC20170108030543.tar.gz",
+  :checksum "ec016771c7e1001d3716080f1eb79f02"}
+ {:id "LC80160332015252-SC20170108034724",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015252-SC20170108034724.tar.gz",
+  :checksum "17ac1b89b7bcef910b32c72a9ff4a4cf"}
+ {:id "LC80160332015268-SC20170108024506",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015268-SC20170108024506.tar.gz",
+  :checksum "3dfa1e827859a8e118461c26a3bdab6b"}
+ {:id "LC80160332015284-SC20170108025045",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015284-SC20170108025045.tar.gz",
+  :checksum "b300e68281faf8fa6d394b597c144c42"}
+ {:id "LC80160332015300-SC20170108022523",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015300-SC20170108022523.tar.gz",
+  :checksum "5cb8faf3db864387d9b366ae06e32385"}
+ {:id "LC80160332015316-SC20170108022728",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015316-SC20170108022728.tar.gz",
+  :checksum "c6fbd111f80ec63ee89104714c23e997"}
+ {:id "LC80160332015332-SC20170108024541",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015332-SC20170108024541.tar.gz",
+  :checksum "5cd2f147c9c18ce0088bf83cf1ab688c"}
+ {:id "LC80160332015348-SC20170108021627",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015348-SC20170108021627.tar.gz",
+  :checksum "710cc8dd256b3d90ac37a85eda53bb9c"}
+ {:id "LC80160332015364-SC20170108021904",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332015364-SC20170108021904.tar.gz",
+  :checksum "3f9374d9a0dfaf1ffa1856769531339f"}
+ {:id "LC80160332016015-SC20170108022332",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016015-SC20170108022332.tar.gz",
+  :checksum "ab802cc31626ab699081d2bcb3efc124"}
+ {:id "LC80160332016031-SC20170108024744",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016031-SC20170108024744.tar.gz",
+  :checksum "5f8847a3af83bfd5bfe05c2a4ea6e9db"}
+ {:id "LC80160332016047-SC20170108021751",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016047-SC20170108021751.tar.gz",
+  :checksum "182211d112999c66a883787c12aa7695"}
+ {:id "LC80160332016063-SC20170108022741",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016063-SC20170108022741.tar.gz",
+  :checksum "7d616a44be57d6f25605d31455b8527e"}
+ {:id "LC80160332016079-SC20170108031855",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016079-SC20170108031855.tar.gz",
+  :checksum "5fa0de4fcd187f374d464d985a4ec8f1"}
+ {:id "LC80160332016095-SC20170108031631",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016095-SC20170108031631.tar.gz",
+  :checksum "54d66f7a60f6d5d06c800449052c40df"}
+ {:id "LC80160332016111-SC20170108023555",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016111-SC20170108023555.tar.gz",
+  :checksum "fc3686f5a864c6b1f1ce93429058dbd7"}
+ {:id "LC80160332016127-SC20170108020902",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016127-SC20170108020902.tar.gz",
+  :checksum "de6155acbcff0691482cf09e2c6cbe89"}
+ {:id "LC80160332016143-SC20170108024125",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016143-SC20170108024125.tar.gz",
+  :checksum "f60facdc8751d40a62bba29c22bd90d3"}
+ {:id "LC80160332016159-SC20170108025850",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016159-SC20170108025850.tar.gz",
+  :checksum "7c3bacbf8701b9f4643c3215caa8362f"}
+ {:id "LC80160332016175-SC20170108020833",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016175-SC20170108020833.tar.gz",
+  :checksum "60076ba5553c3408f998057ddab32a41"}
+ {:id "LC80160332016191-SC20170108025932",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016191-SC20170108025932.tar.gz",
+  :checksum "0674f86eaf9faac0a679c705080c7594"}
+ {:id "LC80160332016207-SC20170108032648",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016207-SC20170108032648.tar.gz",
+  :checksum "8e284d538ed2a84dfff2006598c33b8f"}
+ {:id "LC80160332016223-SC20170108024644",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016223-SC20170108024644.tar.gz",
+  :checksum "d3b678e11660fb7ac7997f19137c0546"}
+ {:id "LC80160332016239-SC20170108034433",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016239-SC20170108034433.tar.gz",
+  :checksum "01a378103d501f1f8477d0f4bc7a0196"}
+ {:id "LC80160332016255-SC20170108024518",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016255-SC20170108024518.tar.gz",
+  :checksum "6ccb9d9b40aa0e0e8ba1aff374d36729"}
+ {:id "LC80160332016271-SC20170108032221",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016271-SC20170108032221.tar.gz",
+  :checksum "7fd42a05e88ded7e25b5e752faf23bde"}
+ {:id "LC80160332016287-SC20170108023123",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016287-SC20170108023123.tar.gz",
+  :checksum "243ebcb977ef48ece78790f1a42aa494"}
+ {:id "LC80160332016303-SC20170108022708",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016303-SC20170108022708.tar.gz",
+  :checksum "5d731fa19703552bdea4f65513bab366"}
+ {:id "LC80160332016319-SC20170108021923",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/chesapeake/H27V08-431/LC80160332016319-SC20170108021923.tar.gz",
+  :checksum "6d0ecffc974b8280b8168f7c713925ec"})

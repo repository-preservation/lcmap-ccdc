@@ -1,0 +1,1284 @@
+({:id "LC80210312013105-SC20170225004948",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013105-SC20170225004948.tar.gz",
+  :checksum "3d561b62d3bd4eacf9f8665cda724c8c"}
+ {:id "LC80210312013121-SC20170225010542",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013121-SC20170225010542.tar.gz",
+  :checksum "b8a3f7afefa98905cc26f9287ba97476"}
+ {:id "LC80210312013137-SC20170225014844",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013137-SC20170225014844.tar.gz",
+  :checksum "7f3a51cc2cf4d71a07bcb0d0d2d4d096"}
+ {:id "LC80210312013153-SC20170225011525",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013153-SC20170225011525.tar.gz",
+  :checksum "db1ee8c3c1f3acdab55a1ef214382494"}
+ {:id "LC80210312013169-SC20170225012446",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013169-SC20170225012446.tar.gz",
+  :checksum "fd4ee8e7c13ddee9d33c849e2355fa79"}
+ {:id "LC80210312013185-SC20170225010147",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013185-SC20170225010147.tar.gz",
+  :checksum "6a682986321b337f6997d510a9486906"}
+ {:id "LC80210312013201-SC20170225012955",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013201-SC20170225012955.tar.gz",
+  :checksum "75be054382f8d8619c992cd59ba0ca13"}
+ {:id "LC80210312013217-SC20170225004900",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013217-SC20170225004900.tar.gz",
+  :checksum "af5d2f938750ab6e2a2421e561bf3c9c"}
+ {:id "LC80210312013233-SC20170225011835",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013233-SC20170225011835.tar.gz",
+  :checksum "a6312e61172881d0b34d596695ff4a55"}
+ {:id "LC80210312013249-SC20170225011007",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013249-SC20170225011007.tar.gz",
+  :checksum "2a69662ae231d7a5641b6e7476eef530"}
+ {:id "LC80210312013265-SC20170225011359",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013265-SC20170225011359.tar.gz",
+  :checksum "d4a81701220d9f5b126ea61021141d52"}
+ {:id "LC80210312013281-SC20170225012311",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013281-SC20170225012311.tar.gz",
+  :checksum "c0644bd3a79240306d876c02f42b6295"}
+ {:id "LC80210312013297-SC20170225015353",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013297-SC20170225015353.tar.gz",
+  :checksum "6b5f5e19380b90db3e6ab2f1efd69595"}
+ {:id "LC80210312013313-SC20170225010402",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013313-SC20170225010402.tar.gz",
+  :checksum "8954af97a6642a0e2227a376211a4db3"}
+ {:id "LC80210312013329-SC20170225004935",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013329-SC20170225004935.tar.gz",
+  :checksum "10139c427a9e935d26ba0bca285dc794"}
+ {:id "LC80210312013345-SC20170225005327",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013345-SC20170225005327.tar.gz",
+  :checksum "18dff8d12af4aeb907afcdd1e16c1957"}
+ {:id "LC80210312013361-SC20170225010911",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312013361-SC20170225010911.tar.gz",
+  :checksum "a74269646be36f3fff50f76eeaf3908b"}
+ {:id "LC80210312014012-SC20170225010439",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014012-SC20170225010439.tar.gz",
+  :checksum "2a314d73494eec986612b0ab0e2c1683"}
+ {:id "LC80210312014028-SC20170225004958",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014028-SC20170225004958.tar.gz",
+  :checksum "5925737c7b0263719b158060a241014f"}
+ {:id "LC80210312014044-SC20170225010437",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014044-SC20170225010437.tar.gz",
+  :checksum "c2e3f713bac183f1a8310757a2ea3e69"}
+ {:id "LC80210312014060-SC20170225015353",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014060-SC20170225015353.tar.gz",
+  :checksum "0b4d7f79fb3346412e58a80b384ac7e3"}
+ {:id "LC80210312014076-SC20170225010704",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014076-SC20170225010704.tar.gz",
+  :checksum "19b35f97ddba5673d8059fe2ab534ddd"}
+ {:id "LC80210312014092-SC20170225010021",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014092-SC20170225010021.tar.gz",
+  :checksum "3428b9271f1ddb05a46d7a1d8df77276"}
+ {:id "LC80210312014108-SC20170225010941",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014108-SC20170225010941.tar.gz",
+  :checksum "8c75749cb42551f2d4e1eb5f946b497f"}
+ {:id "LC80210312014124-SC20170225005522",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014124-SC20170225005522.tar.gz",
+  :checksum "33239bccca5d76ad73f1ab1649f96132"}
+ {:id "LC80210312014140-SC20170225010742",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014140-SC20170225010742.tar.gz",
+  :checksum "067be082d78ae266e4b8ad148b75b136"}
+ {:id "LC80210312014156-SC20170225011316",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014156-SC20170225011316.tar.gz",
+  :checksum "97dd6fea848fb41acc9355325a6563a3"}
+ {:id "LC80210312014172-SC20170225011404",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014172-SC20170225011404.tar.gz",
+  :checksum "a2c5bdd4fedbff1dd749e2ac8eefd4ea"}
+ {:id "LC80210312014188-SC20170225015540",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014188-SC20170225015540.tar.gz",
+  :checksum "fa9b951b7caad9bf5d8ab2b8867c4ed7"}
+ {:id "LC80210312014204-SC20170225005732",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014204-SC20170225005732.tar.gz",
+  :checksum "d3b1caaccd01f428c4d2c5a40e10de5e"}
+ {:id "LC80210312014220-SC20170225012916",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014220-SC20170225012916.tar.gz",
+  :checksum "3433df91490e30ce5b50a28604e8a43d"}
+ {:id "LC80210312014236-SC20170225010524",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014236-SC20170225010524.tar.gz",
+  :checksum "44089ae077c07f5f84f101dbe9e17771"}
+ {:id "LC80210312014252-SC20170225005801",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014252-SC20170225005801.tar.gz",
+  :checksum "6e5c683571d36365865cbeb8a05c31e6"}
+ {:id "LC80210312014268-SC20170225005448",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014268-SC20170225005448.tar.gz",
+  :checksum "dd4cdb466f67ec3fc6a67ce01817ae0c"}
+ {:id "LC80210312014284-SC20170225010548",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014284-SC20170225010548.tar.gz",
+  :checksum "6161d89591a9649f13957896d96511ae"}
+ {:id "LC80210312014300-SC20170225010223",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014300-SC20170225010223.tar.gz",
+  :checksum "7afd81901e8f4c37b8a0139817efb886"}
+ {:id "LC80210312014316-SC20170225010827",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014316-SC20170225010827.tar.gz",
+  :checksum "d08bb61e41bbb36c554c60423cee135f"}
+ {:id "LC80210312014332-SC20170225004938",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014332-SC20170225004938.tar.gz",
+  :checksum "8aac1570777b081c32fb00d75181f2df"}
+ {:id "LC80210312014348-SC20170225011140",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014348-SC20170225011140.tar.gz",
+  :checksum "edc9c833d0030da1bf09a479c00888fa"}
+ {:id "LC80210312014364-SC20170224191546",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312014364-SC20170224191546.tar.gz",
+  :checksum "01c4fe406d8681baeea5cb4ccaf39289"}
+ {:id "LC80210312015015-SC20170224191906",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015015-SC20170224191906.tar.gz",
+  :checksum "a23bacb329cc53b623154d5acad57238"}
+ {:id "LC80210312015031-SC20170224192728",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015031-SC20170224192728.tar.gz",
+  :checksum "1c051d95bf0204e24576046082dcbc92"}
+ {:id "LC80210312015047-SC20170224190857",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015047-SC20170224190857.tar.gz",
+  :checksum "948cbf2e1414c0b4f3646a93cf42f386"}
+ {:id "LC80210312015079-SC20170224192426",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015079-SC20170224192426.tar.gz",
+  :checksum "1d84152cf17b440fcf4a25ef975dbb63"}
+ {:id "LC80210312015095-SC20170224211537",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015095-SC20170224211537.tar.gz",
+  :checksum "e7140d235b847934276718505d55039f"}
+ {:id "LC80210312015111-SC20170224191645",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015111-SC20170224191645.tar.gz",
+  :checksum "e3740f91ccbe11871651ba4b125923ec"}
+ {:id "LC80210312015127-SC20170224193116",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015127-SC20170224193116.tar.gz",
+  :checksum "62dc2a068efe5333749287b197f0c397"}
+ {:id "LC80210312015143-SC20170224194343",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015143-SC20170224194343.tar.gz",
+  :checksum "e78c4d4b9823c9f894ce55fa6782ec78"}
+ {:id "LC80210312015159-SC20170224192202",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015159-SC20170224192202.tar.gz",
+  :checksum "b63ceae7f457eaac04e2f6ad8f14b525"}
+ {:id "LC80210312015175-SC20170224190954",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015175-SC20170224190954.tar.gz",
+  :checksum "9136c4b55a9354fe6c9e147c3fd1f570"}
+ {:id "LC80210312015191-SC20170224190912",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015191-SC20170224190912.tar.gz",
+  :checksum "78997d5e385c9de1d5b637c5748976e5"}
+ {:id "LC80210312015207-SC20170224192448",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015207-SC20170224192448.tar.gz",
+  :checksum "254c2f93a300b6f057a6de71f819fba0"}
+ {:id "LC80210312015223-SC20170224195138",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015223-SC20170224195138.tar.gz",
+  :checksum "586414cef3a116356a682902d4caaf8d"}
+ {:id "LC80210312015239-SC20170224194113",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015239-SC20170224194113.tar.gz",
+  :checksum "8882c44365817865a2af14660a48d26a"}
+ {:id "LC80210312015255-SC20170224203843",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015255-SC20170224203843.tar.gz",
+  :checksum "291a46633670f1c982e04640e32e4387"}
+ {:id "LC80210312015271-SC20170224193821",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015271-SC20170224193821.tar.gz",
+  :checksum "e94ca48f6fbdba11867359238526b10d"}
+ {:id "LC80210312015287-SC20170224193305",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015287-SC20170224193305.tar.gz",
+  :checksum "3b7f00b6152d829b343dbf4e8742d743"}
+ {:id "LC80210312015303-SC20170224192553",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015303-SC20170224192553.tar.gz",
+  :checksum "0443440f9ae7802770e3a048fd568a49"}
+ {:id "LC80210312015319-SC20170224192613",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015319-SC20170224192613.tar.gz",
+  :checksum "8062304df885f322813ffb3a75a74fe7"}
+ {:id "LC80210312015335-SC20170224190827",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015335-SC20170224190827.tar.gz",
+  :checksum "2cd12041d921e34d2775effa7ed2fc82"}
+ {:id "LC80210312015351-SC20170224192541",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312015351-SC20170224192541.tar.gz",
+  :checksum "5754331223bfa614db1249e7904dc8cb"}
+ {:id "LC80210312016002-SC20170224193142",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016002-SC20170224193142.tar.gz",
+  :checksum "64cbb2b55763405229a13bbd9660caf0"}
+ {:id "LC80210312016018-SC20170224192438",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016018-SC20170224192438.tar.gz",
+  :checksum "3f8104bf2378844ce30cc60faf583c58"}
+ {:id "LC80210312016034-SC20170224144812",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016034-SC20170224144812.tar.gz",
+  :checksum "6b9c285b36f48364547b4e5d7bb37e31"}
+ {:id "LC80210312016066-SC20170224142918",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016066-SC20170224142918.tar.gz",
+  :checksum "b3f4707dcead7ad6aa97aa73f83d2fad"}
+ {:id "LC80210312016082-SC20170224143125",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016082-SC20170224143125.tar.gz",
+  :checksum "02bda41ad8bfb7d3b1b7ad87c2c2b199"}
+ {:id "LC80210312016098-SC20170224142753",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016098-SC20170224142753.tar.gz",
+  :checksum "6016e8b5a4d61e56dad8b0489254609e"}
+ {:id "LC80210312016114-SC20170224144724",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016114-SC20170224144724.tar.gz",
+  :checksum "0adb5e44c1b65d0c9c060b2a1e7bdd79"}
+ {:id "LC80210312016130-SC20170224164016",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016130-SC20170224164016.tar.gz",
+  :checksum "4075d21bce70770ec5826275bea4e8c1"}
+ {:id "LC80210312016146-SC20170224115734",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016146-SC20170224115734.tar.gz",
+  :checksum "288e5159089bda21e71e4ba13e4a25da"}
+ {:id "LC80210312016162-SC20170224114221",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016162-SC20170224114221.tar.gz",
+  :checksum "c9aedcabed94014dab20004f03333e79"}
+ {:id "LC80210312016178-SC20170224113609",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016178-SC20170224113609.tar.gz",
+  :checksum "6a70156f24e4caecfc76e4ecf552be4f"}
+ {:id "LC80210312016194-SC20170224124113",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016194-SC20170224124113.tar.gz",
+  :checksum "e7edd00fcca93107620615942f6ebca5"}
+ {:id "LC80210312016210-SC20170224113749",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016210-SC20170224113749.tar.gz",
+  :checksum "7389b53bcde8521a3d5c8485e6a95659"}
+ {:id "LC80210312016226-SC20170224114322",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016226-SC20170224114322.tar.gz",
+  :checksum "dd662427f43c80e3faa7e23f79375bc2"}
+ {:id "LC80210312016242-SC20170224121129",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016242-SC20170224121129.tar.gz",
+  :checksum "cef2f6e3ca2140e208cddb70bff455bd"}
+ {:id "LC80210312016258-SC20170224114803",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016258-SC20170224114803.tar.gz",
+  :checksum "24c3bb9a14c80f92000f52669966164a"}
+ {:id "LC80210312016274-SC20170224114031",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016274-SC20170224114031.tar.gz",
+  :checksum "1b550a4ae55325abe8a8676f3f11f080"}
+ {:id "LC80210312016290-SC20170224114225",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016290-SC20170224114225.tar.gz",
+  :checksum "7c2e1ed8711b83b6b8bbb1915c14e62f"}
+ {:id "LC80210312016306-SC20170224114547",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210312016306-SC20170224114547.tar.gz",
+  :checksum "5d64c67757cc48f0feda66d9993ea605"}
+ {:id "LC80210322013105-SC20170224114005",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013105-SC20170224114005.tar.gz",
+  :checksum "05a0f4a7215ce4ded0b71c6fd2c93437"}
+ {:id "LC80210322013121-SC20170224115842",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013121-SC20170224115842.tar.gz",
+  :checksum "0e047861a48a9605699619776ff7f016"}
+ {:id "LC80210322013137-SC20170224114002",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013137-SC20170224114002.tar.gz",
+  :checksum "6d18e2785d567a6b4915bd6c16e3a8f5"}
+ {:id "LC80210322013153-SC20170224115106",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013153-SC20170224115106.tar.gz",
+  :checksum "488f623e2928d9c69a9790eac1b2ab67"}
+ {:id "LC80210322013169-SC20170224115335",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013169-SC20170224115335.tar.gz",
+  :checksum "270f141e3626fa934efd82fd21ee5876"}
+ {:id "LC80210322013185-SC20170224113527",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013185-SC20170224113527.tar.gz",
+  :checksum "f132ceadae2d1e56a7f6d6048f12a8b0"}
+ {:id "LC80210322013201-SC20170224114640",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013201-SC20170224114640.tar.gz",
+  :checksum "5bde7ab2a20820152835f0793501b888"}
+ {:id "LC80210322013217-SC20170224120426",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013217-SC20170224120426.tar.gz",
+  :checksum "b140328d032185acac2685a306b5412a"}
+ {:id "LC80210322013233-SC20170224120533",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013233-SC20170224120533.tar.gz",
+  :checksum "f18b038a0814598b2f0b28d86836b6ec"}
+ {:id "LC80210322013249-SC20170224121421",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013249-SC20170224121421.tar.gz",
+  :checksum "ff10d3c9ccb2649d2c73c1baeaa5d7e2"}
+ {:id "LC80210322013265-SC20170224115920",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013265-SC20170224115920.tar.gz",
+  :checksum "c9761adc2a366608afe25986327e6d99"}
+ {:id "LC80210322013281-SC20170224115624",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013281-SC20170224115624.tar.gz",
+  :checksum "7e46d9e6e346a6b8fa02aec7a33c572b"}
+ {:id "LC80210322013297-SC20170224114142",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013297-SC20170224114142.tar.gz",
+  :checksum "77fa2274f75295711af2ffe0959c9abb"}
+ {:id "LC80210322013313-SC20170224115043",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013313-SC20170224115043.tar.gz",
+  :checksum "b29eaab5ddf2b535408c17c544bb361d"}
+ {:id "LC80210322013329-SC20170224113420",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013329-SC20170224113420.tar.gz",
+  :checksum "2ca4d2f41824698aa2fb8588966e91a5"}
+ {:id "LC80210322013345-SC20170224114212",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013345-SC20170224114212.tar.gz",
+  :checksum "3cf12fd9c759ef8bc8c8b88d2ffcf521"}
+ {:id "LC80210322013361-SC20170224141124",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322013361-SC20170224141124.tar.gz",
+  :checksum "d0f1dbe85af5ed7996802d91b4df018d"}
+ {:id "LC80210322014012-SC20170224114711",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014012-SC20170224114711.tar.gz",
+  :checksum "74d6b791082d91be2a1f0de9fdf2d248"}
+ {:id "LC80210322014028-SC20170224113535",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014028-SC20170224113535.tar.gz",
+  :checksum "71263b8e922bf3ae89442a2ff41464e2"}
+ {:id "LC80210322014044-SC20170224120146",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014044-SC20170224120146.tar.gz",
+  :checksum "893f80d113a0a3af17f36583d170ee7e"}
+ {:id "LC80210322014060-SC20170224120028",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014060-SC20170224120028.tar.gz",
+  :checksum "8cd99f4c0681e7eb07589e73bddf4ebf"}
+ {:id "LC80210322014076-SC20170224115255",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014076-SC20170224115255.tar.gz",
+  :checksum "672f0853ba92fb10902d93d458ab0db2"}
+ {:id "LC80210322014092-SC20170224114107",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014092-SC20170224114107.tar.gz",
+  :checksum "47c68a0417edf7a749baac6e22341a5c"}
+ {:id "LC80210322014108-SC20170224115451",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014108-SC20170224115451.tar.gz",
+  :checksum "9899f51d2c222fb865d0474260131bd0"}
+ {:id "LC80210322014124-SC20170224114705",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014124-SC20170224114705.tar.gz",
+  :checksum "913a4469cc46a8283badcddd3d184480"}
+ {:id "LC80210322014140-SC20170224114133",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014140-SC20170224114133.tar.gz",
+  :checksum "1aef6e5812c9510d7234f02e7cb61571"}
+ {:id "LC80210322014156-SC20170224114542",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014156-SC20170224114542.tar.gz",
+  :checksum "3edac7dedf44e48985d96939f9a0040e"}
+ {:id "LC80210322014172-SC20170224120003",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014172-SC20170224120003.tar.gz",
+  :checksum "154d17e8addccf181a9f05b9b3e33073"}
+ {:id "LC80210322014188-SC20170224115241",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014188-SC20170224115241.tar.gz",
+  :checksum "b718c5393e9acf6ba20e75955febda87"}
+ {:id "LC80210322014204-SC20170224113508",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014204-SC20170224113508.tar.gz",
+  :checksum "30df94cd98535ed0443caa29fe2802c8"}
+ {:id "LC80210322014220-SC20170224115431",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014220-SC20170224115431.tar.gz",
+  :checksum "4ab7788f1e55cf41ef732d99c24f90d6"}
+ {:id "LC80210322014236-SC20170224120821",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014236-SC20170224120821.tar.gz",
+  :checksum "b89193bec814860e7f09ada78d44afa7"}
+ {:id "LC80210322014252-SC20170224114428",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014252-SC20170224114428.tar.gz",
+  :checksum "c1a5436fc929e98bb2ee950736d97746"}
+ {:id "LC80210322014268-SC20170224065143",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014268-SC20170224065143.tar.gz",
+  :checksum "c89c15f9ae8eea0cf9dae766ac024006"}
+ {:id "LC80210322014284-SC20170224063708",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014284-SC20170224063708.tar.gz",
+  :checksum "1a800f0702d208eb5c4584b1789a1d96"}
+ {:id "LC80210322014300-SC20170224064301",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014300-SC20170224064301.tar.gz",
+  :checksum "af05a254b5c00904db0031a73432149b"}
+ {:id "LC80210322014316-SC20170224070023",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014316-SC20170224070023.tar.gz",
+  :checksum "cd6f68fdaa237ac18cad4b4f4b2a90fb"}
+ {:id "LC80210322014332-SC20170224063737",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014332-SC20170224063737.tar.gz",
+  :checksum "3d5c188287659e3098b404ef6ecfd8b6"}
+ {:id "LC80210322014348-SC20170224070202",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014348-SC20170224070202.tar.gz",
+  :checksum "9f9ea7647dc80d90d2443ee1c5b63178"}
+ {:id "LC80210322014364-SC20170225010256",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322014364-SC20170225010256.tar.gz",
+  :checksum "602a3d3768de68269393eb7399a125d1"}
+ {:id "LC80210322015015-SC20170224231208",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015015-SC20170224231208.tar.gz",
+  :checksum "6927fea1294bbfd46af027b101dc934f"}
+ {:id "LC80210322015031-SC20170225022903",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015031-SC20170225022903.tar.gz",
+  :checksum "a57e2080cdef02e3a3e4da0f0f39e559"}
+ {:id "LC80210322015047-SC20170224234159",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015047-SC20170224234159.tar.gz",
+  :checksum "e915f0f25c98d742c08eda655f28d853"}
+ {:id "LC80210322015079-SC20170224230914",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015079-SC20170224230914.tar.gz",
+  :checksum "296ec43ca4f88dd9a6be23a4d1a79442"}
+ {:id "LC80210322015095-SC20170224230353",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015095-SC20170224230353.tar.gz",
+  :checksum "04516a5456109e180a3914fb2dc52d41"}
+ {:id "LC80210322015111-SC20170224230842",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015111-SC20170224230842.tar.gz",
+  :checksum "7bc7db5ea1ed2c6003e4d21a1769180b"}
+ {:id "LC80210322015127-SC20170224231047",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015127-SC20170224231047.tar.gz",
+  :checksum "d847be3e19ab9f8edb7bf1dc54c0504f"}
+ {:id "LC80210322015143-SC20170224231311",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015143-SC20170224231311.tar.gz",
+  :checksum "28ae830de0a446526701ee34d71efa1b"}
+ {:id "LC80210322015159-SC20170225000532",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015159-SC20170225000532.tar.gz",
+  :checksum "4fdf3709a48b4234263ec89f9221e5f2"}
+ {:id "LC80210322015175-SC20170224225357",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015175-SC20170224225357.tar.gz",
+  :checksum "1469b168bb7db1c5e88865175c63ce15"}
+ {:id "LC80210322015191-SC20170224224631",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015191-SC20170224224631.tar.gz",
+  :checksum "44b3e0f766031e4aac71f7df11f4b388"}
+ {:id "LC80210322015191-SC20170224224711",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015191-SC20170224224711.tar.gz",
+  :checksum "bb28dc0fe2f3c432a1fbfbae3cd2154e"}
+ {:id "LC80210322015207-SC20170224225623",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015207-SC20170224225623.tar.gz",
+  :checksum "9f31ef4a5cc7c16f21757e2395140180"}
+ {:id "LC80210322015223-SC20170224233802",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015223-SC20170224233802.tar.gz",
+  :checksum "4dfd918be7241c8a76e66b11ee65bad7"}
+ {:id "LC80210322015239-SC20170225003834",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015239-SC20170225003834.tar.gz",
+  :checksum "c0c4835ef157e3b8b8e01e56b6e11418"}
+ {:id "LC80210322015255-SC20170224230414",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015255-SC20170224230414.tar.gz",
+  :checksum "189b86dac1971ae886f0df4df91e0ca8"}
+ {:id "LC80210322015271-SC20170225003834",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015271-SC20170225003834.tar.gz",
+  :checksum "fe3d735c030012b749863e736f19ad85"}
+ {:id "LC80210322015287-SC20170225025043",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015287-SC20170225025043.tar.gz",
+  :checksum "01267c52f8335ece3d83f621b4379e73"}
+ {:id "LC80210322015303-SC20170225001320",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015303-SC20170225001320.tar.gz",
+  :checksum "790d0a6a6356d0da7595928350f4ba95"}
+ {:id "LC80210322015319-SC20170224230851",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015319-SC20170224230851.tar.gz",
+  :checksum "f2cbe0568b4ed53657262167f97397ea"}
+ {:id "LC80210322015335-SC20170224224827",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015335-SC20170224224827.tar.gz",
+  :checksum "663775a3f27641f97f846e228ba55003"}
+ {:id "LC80210322015351-SC20170224231208",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322015351-SC20170224231208.tar.gz",
+  :checksum "ed3793116fddbd8de017e3b9afb43ac3"}
+ {:id "LC80210322016002-SC20170224230957",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016002-SC20170224230957.tar.gz",
+  :checksum "5bb36a11fdba9d11ba09eec19c208867"}
+ {:id "LC80210322016018-SC20170224230141",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016018-SC20170224230141.tar.gz",
+  :checksum "b3728a88774a08c6b03840c1155e6b61"}
+ {:id "LC80210322016034-SC20170224231148",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016034-SC20170224231148.tar.gz",
+  :checksum "a4e8f1dcafa0cc1558668c19724955c7"}
+ {:id "LC80210322016066-SC20170224230426",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016066-SC20170224230426.tar.gz",
+  :checksum "b4db5acc7c4492daf8d79a841017dc7b"}
+ {:id "LC80210322016082-SC20170224230313",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016082-SC20170224230313.tar.gz",
+  :checksum "c158173e8bf83f317d66b2d1ef1a3946"}
+ {:id "LC80210322016098-SC20170224063629",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016098-SC20170224063629.tar.gz",
+  :checksum "8c2c7c9e06657943e906328abd6380c1"}
+ {:id "LC80210322016114-SC20170224093250",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016114-SC20170224093250.tar.gz",
+  :checksum "5ee7bdfb6f5e40d984528b34d04f7533"}
+ {:id "LC80210322016130-SC20170224063934",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016130-SC20170224063934.tar.gz",
+  :checksum "ef53ca5d97af569ffdb8c7d420adcd28"}
+ {:id "LC80210322016146-SC20170224064857",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016146-SC20170224064857.tar.gz",
+  :checksum "31fc455cc75635f353318b57fb4c1868"}
+ {:id "LC80210322016162-SC20170224065034",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016162-SC20170224065034.tar.gz",
+  :checksum "841a74d42e232be749afd719b13f7275"}
+ {:id "LC80210322016178-SC20170224070523",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016178-SC20170224070523.tar.gz",
+  :checksum "e22e14aa9c88e1ac21b144a88ec4203f"}
+ {:id "LC80210322016194-SC20170224072157",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016194-SC20170224072157.tar.gz",
+  :checksum "598fbff8f697538e45ef3bca9e3412e3"}
+ {:id "LC80210322016210-SC20170224064458",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016210-SC20170224064458.tar.gz",
+  :checksum "1bf2fc43a5ba5e621961bf967fdba147"}
+ {:id "LC80210322016226-SC20170224063837",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016226-SC20170224063837.tar.gz",
+  :checksum "5976a7b369289aca3361a5332162bcfb"}
+ {:id "LC80210322016242-SC20170224072317",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016242-SC20170224072317.tar.gz",
+  :checksum "c83e86c13d827d2285aff08a4d93d2b2"}
+ {:id "LC80210322016258-SC20170224065622",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016258-SC20170224065622.tar.gz",
+  :checksum "a82e47d373e5bbd25c59e5b604734439"}
+ {:id "LC80210322016274-SC20170224064103",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016274-SC20170224064103.tar.gz",
+  :checksum "d59ecd9644c48fdffdd44f87fb815fa9"}
+ {:id "LC80210322016290-SC20170224064451",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016290-SC20170224064451.tar.gz",
+  :checksum "a57240d0f4188ae75725647e59032585"}
+ {:id "LC80210322016306-SC20170224064820",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80210322016306-SC20170224064820.tar.gz",
+  :checksum "1c45b9af0cfcaa2e0df616ef60d41311"}
+ {:id "LC80220312013112-SC20170224064919",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013112-SC20170224064919.tar.gz",
+  :checksum "4710f18f88ce121b1236378d3f0ef96c"}
+ {:id "LC80220312013144-SC20170224071007",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013144-SC20170224071007.tar.gz",
+  :checksum "816a66929fbc9b5eceb6e23a0fea2ab9"}
+ {:id "LC80220312013160-SC20170224063904",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013160-SC20170224063904.tar.gz",
+  :checksum "127565f9965910008b94aa6da83a35ad"}
+ {:id "LC80220312013176-SC20170224063950",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013176-SC20170224063950.tar.gz",
+  :checksum "5ce2f6d93553801f2f42009350d070f6"}
+ {:id "LC80220312013192-SC20170224071951",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013192-SC20170224071951.tar.gz",
+  :checksum "a34c50565fdd7315857524a801fa16bf"}
+ {:id "LC80220312013208-SC20170224065513",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013208-SC20170224065513.tar.gz",
+  :checksum "a04704464d5e0e5f59baaefa6f281355"}
+ {:id "LC80220312013224-SC20170224064824",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013224-SC20170224064824.tar.gz",
+  :checksum "5602a0280ac4e1a8421d65280a2f7fdf"}
+ {:id "LC80220312013240-SC20170224070550",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013240-SC20170224070550.tar.gz",
+  :checksum "d12f419ccbc04efc0c47597450549bf6"}
+ {:id "LC80220312013256-SC20170224070605",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013256-SC20170224070605.tar.gz",
+  :checksum "81a878f16f1215552c03cd850f80d6da"}
+ {:id "LC80220312013272-SC20170224070136",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013272-SC20170224070136.tar.gz",
+  :checksum "da3e8ba142b22aa1b1fa70d9b40fdd7d"}
+ {:id "LC80220312013288-SC20170224063712",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013288-SC20170224063712.tar.gz",
+  :checksum "0dafa295dab146fa0fc42585961782ae"}
+ {:id "LC80220312013304-SC20170224063554",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013304-SC20170224063554.tar.gz",
+  :checksum "1f3f6082bd8cda2725cf93a7cff89445"}
+ {:id "LC80220312013320-SC20170224054316",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013320-SC20170224054316.tar.gz",
+  :checksum "02273e53f490931ba457c9be13d167e3"}
+ {:id "LC80220312013336-SC20170224054657",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013336-SC20170224054657.tar.gz",
+  :checksum "b3749a61ccde34111bb2fc388391072a"}
+ {:id "LC80220312013352-SC20170224060337",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312013352-SC20170224060337.tar.gz",
+  :checksum "96c970f54878f878d6dd10cbb31865f8"}
+ {:id "LC80220312014003-SC20170224060658",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014003-SC20170224060658.tar.gz",
+  :checksum "c00635bc404c37209fc0072f34492686"}
+ {:id "LC80220312014019-SC20170224055941",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014019-SC20170224055941.tar.gz",
+  :checksum "145ff85a09e834b09fc2138e6fda56b4"}
+ {:id "LC80220312014035-SC20170224054045",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014035-SC20170224054045.tar.gz",
+  :checksum "6b27c36fe7c87cc49948b2c7d1403046"}
+ {:id "LC80220312014051-SC20170224054217",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014051-SC20170224054217.tar.gz",
+  :checksum "347efc96ff84dc9f0e4a9c2ea0f3018d"}
+ {:id "LC80220312014067-SC20170224054108",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014067-SC20170224054108.tar.gz",
+  :checksum "052732312663581874fd659794df0954"}
+ {:id "LC80220312014083-SC20170224055755",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014083-SC20170224055755.tar.gz",
+  :checksum "bdb73c61a932b6c95fe03c0012dfb44d"}
+ {:id "LC80220312014099-SC20170224055716",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014099-SC20170224055716.tar.gz",
+  :checksum "ca748417bbf041f9bd82d735137599c2"}
+ {:id "LC80220312014115-SC20170224055228",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014115-SC20170224055228.tar.gz",
+  :checksum "1a5daeb0028cdf299cccef79367282e2"}
+ {:id "LC80220312014131-SC20170224054751",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014131-SC20170224054751.tar.gz",
+  :checksum "5588cccd743d87e14c2391db0da5a1b9"}
+ {:id "LC80220312014147-SC20170224054605",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014147-SC20170224054605.tar.gz",
+  :checksum "344800f9c6a1ab64eebe004a77bb0e5a"}
+ {:id "LC80220312014163-SC20170224055810",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014163-SC20170224055810.tar.gz",
+  :checksum "7a01d8dd33c7c0379678f10a846729d2"}
+ {:id "LC80220312014179-SC20170224055716",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014179-SC20170224055716.tar.gz",
+  :checksum "b1f17794ef3e1099846592413f33b856"}
+ {:id "LC80220312014195-SC20170224055742",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014195-SC20170224055742.tar.gz",
+  :checksum "b0586ab45591001393d48ee71fad8b1c"}
+ {:id "LC80220312014211-SC20170224061234",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014211-SC20170224061234.tar.gz",
+  :checksum "c626612a5dfd9a47b224cf4619e9ad43"}
+ {:id "LC80220312014227-SC20170224071214",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014227-SC20170224071214.tar.gz",
+  :checksum "36f5fd4579aac8b9071bf54550b5074f"}
+ {:id "LC80220312014243-SC20170224070238",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014243-SC20170224070238.tar.gz",
+  :checksum "dd643e726b9b103b2b977251982cc937"}
+ {:id "LC80220312014259-SC20170224060241",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014259-SC20170224060241.tar.gz",
+  :checksum "1a88f15f551faf8654c313f5b732d90d"}
+ {:id "LC80220312014275-SC20170224054421",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014275-SC20170224054421.tar.gz",
+  :checksum "1d81dceaf97db8da6e4e010a461f2966"}
+ {:id "LC80220312014291-SC20170224054144",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014291-SC20170224054144.tar.gz",
+  :checksum "1f7d0e2fa0a16c15ced0dfe5736b1352"}
+ {:id "LC80220312014307-SC20170224054410",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014307-SC20170224054410.tar.gz",
+  :checksum "beeacece3e643328f5fc42e232e2f886"}
+ {:id "LC80220312014323-SC20170224060115",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014323-SC20170224060115.tar.gz",
+  :checksum "343aa8b13bbe9b7051674274c4245487"}
+ {:id "LC80220312014339-SC20170224054009",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014339-SC20170224054009.tar.gz",
+  :checksum "7f32f5880dcd00c0dcb7fb0731e1597a"}
+ {:id "LC80220312014355-SC20170224054517",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312014355-SC20170224054517.tar.gz",
+  :checksum "a8802bdb0dd6e33fea39ea899205aff3"}
+ {:id "LC80220312015006-SC20170224064657",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015006-SC20170224064657.tar.gz",
+  :checksum "6092349b124fb87f863bc0e7ec432361"}
+ {:id "LC80220312015022-SC20170224060215",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015022-SC20170224060215.tar.gz",
+  :checksum "09cf6c14a8e9fb7817760265de781493"}
+ {:id "LC80220312015038-SC20170224054646",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015038-SC20170224054646.tar.gz",
+  :checksum "dc396941a1713f47d5f276ef823d0df3"}
+ {:id "LC80220312015054-SC20170224054506",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015054-SC20170224054506.tar.gz",
+  :checksum "c273c34f376422a6a7c27b4267d09ac2"}
+ {:id "LC80220312015070-SC20170224055915",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015070-SC20170224055915.tar.gz",
+  :checksum "34c9f37cd1c693b23537209cd1b02dbe"}
+ {:id "LC80220312015086-SC20170224054529",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015086-SC20170224054529.tar.gz",
+  :checksum "3724cf825f7ac35c6713554afabbb7bf"}
+ {:id "LC80220312015102-SC20170224054710",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015102-SC20170224054710.tar.gz",
+  :checksum "b7fe5997f433e20ba1fa102dbadd2ab9"}
+ {:id "LC80220312015118-SC20170224065149",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015118-SC20170224065149.tar.gz",
+  :checksum "e104e2856b5e1e395441913cd7182fa5"}
+ {:id "LC80220312015134-SC20170224111802",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015134-SC20170224111802.tar.gz",
+  :checksum "ce4d6f47b0f77c1fb3c94e464437ecfe"}
+ {:id "LC80220312015150-SC20170224063810",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015150-SC20170224063810.tar.gz",
+  :checksum "49362ac849f9e0c4cd820a7e97393a46"}
+ {:id "LC80220312015166-SC20170224064150",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015166-SC20170224064150.tar.gz",
+  :checksum "afbb6fa1e2b8390b479ea217dde11264"}
+ {:id "LC80220312015182-SC20170224071047",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015182-SC20170224071047.tar.gz",
+  :checksum "937460b816c56ad89db2855d04be23fa"}
+ {:id "LC80220312015198-SC20170224070440",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015198-SC20170224070440.tar.gz",
+  :checksum "9102cbabf67052a847a8de436dfcb7b6"}
+ {:id "LC80220312015214-SC20170224070835",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015214-SC20170224070835.tar.gz",
+  :checksum "b59b234e6b674b8e609b9bbfb357cbbe"}
+ {:id "LC80220312015230-SC20170224071009",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015230-SC20170224071009.tar.gz",
+  :checksum "cba6a108ab82e1691e473c89073dd02f"}
+ {:id "LC80220312015246-SC20170224070229",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015246-SC20170224070229.tar.gz",
+  :checksum "ec4f78aa6630a9d827e77fb7ef47e1ce"}
+ {:id "LC80220312015262-SC20170224070729",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015262-SC20170224070729.tar.gz",
+  :checksum "85080288b1cbb3126d91c95bac198d1e"}
+ {:id "LC80220312015278-SC20170224065446",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015278-SC20170224065446.tar.gz",
+  :checksum "d16b20030f5f65746451681be0ecf5c1"}
+ {:id "LC80220312015294-SC20170224064354",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015294-SC20170224064354.tar.gz",
+  :checksum "0c67072973439513d2345c6ccc9d6891"}
+ {:id "LC80220312015310-SC20170224065825",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015310-SC20170224065825.tar.gz",
+  :checksum "7db85c664b29f978c306677e5568151a"}
+ {:id "LC80220312015326-SC20170224065654",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015326-SC20170224065654.tar.gz",
+  :checksum "cd7276872be359cb313058ba0ffe7b7a"}
+ {:id "LC80220312015342-SC20170224142832",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015342-SC20170224142832.tar.gz",
+  :checksum "0b9c78e374e350bea5f5c5453ab7d202"}
+ {:id "LC80220312015358-SC20170224144633",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312015358-SC20170224144633.tar.gz",
+  :checksum "80cd2230c1777e0d5eb225b701eb8fb9"}
+ {:id "LC80220312016009-SC20170224143033",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016009-SC20170224143033.tar.gz",
+  :checksum "c742c6d6e96a1d23839baae5a002693a"}
+ {:id "LC80220312016025-SC20170224143308",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016025-SC20170224143308.tar.gz",
+  :checksum "9169b56663e1f14163c1e15bddf44171"}
+ {:id "LC80220312016041-SC20170224143352",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016041-SC20170224143352.tar.gz",
+  :checksum "e428ec5c5f286689cc4ccabe40c076b2"}
+ {:id "LC80220312016073-SC20170224142637",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016073-SC20170224142637.tar.gz",
+  :checksum "b485ed8a9ff8bb0eb6c3f872b20af11b"}
+ {:id "LC80220312016089-SC20170224144756",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016089-SC20170224144756.tar.gz",
+  :checksum "34cb2e701d9b2b53d10dc17f6813f272"}
+ {:id "LC80220312016105-SC20170224185325",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016105-SC20170224185325.tar.gz",
+  :checksum "e5bec3bea4d925117345cd29438873bc"}
+ {:id "LC80220312016121-SC20170224142544",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016121-SC20170224142544.tar.gz",
+  :checksum "daab9846ec6c4c982392253a35cb8f0d"}
+ {:id "LC80220312016137-SC20170224144427",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016137-SC20170224144427.tar.gz",
+  :checksum "f9a6f239a005ad2dedf1d98e05b69401"}
+ {:id "LC80220312016153-SC20170224142706",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016153-SC20170224142706.tar.gz",
+  :checksum "13f583500264b664165448acd9e8f860"}
+ {:id "LC80220312016169-SC20170224145919",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016169-SC20170224145919.tar.gz",
+  :checksum "8d225ed0e46a3d25d7d735e49a888586"}
+ {:id "LC80220312016185-SC20170224142928",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016185-SC20170224142928.tar.gz",
+  :checksum "981bd068bf587efe041113ced4f63431"}
+ {:id "LC80220312016201-SC20170224145400",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016201-SC20170224145400.tar.gz",
+  :checksum "f2ce2c22dc107b43faec994041ea7313"}
+ {:id "LC80220312016217-SC20170224150626",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016217-SC20170224150626.tar.gz",
+  :checksum "09773b95c7e755041c31be6d8e302eac"}
+ {:id "LC80220312016233-SC20170224143013",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016233-SC20170224143013.tar.gz",
+  :checksum "b73b58ba136a14f410964e8b895607ed"}
+ {:id "LC80220312016249-SC20170224145737",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016249-SC20170224145737.tar.gz",
+  :checksum "8b7155eb7c622e5c5805512e9da9bdda"}
+ {:id "LC80220312016265-SC20170224143803",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016265-SC20170224143803.tar.gz",
+  :checksum "154054f07686c894d0c6548db2f67d1a"}
+ {:id "LC80220312016281-SC20170224145607",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016281-SC20170224145607.tar.gz",
+  :checksum "cf2041067d677ff063de3f4f5ca3fd07"}
+ {:id "LC80220312016297-SC20170224144858",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016297-SC20170224144858.tar.gz",
+  :checksum "a4f8a6a12fdc17127849de33b216004f"}
+ {:id "LC80220312016313-SC20170224143745",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220312016313-SC20170224143745.tar.gz",
+  :checksum "9ca91b0c4c6c0e590ece3d646035ac59"}
+ {:id "LC80220322013112-SC20170224144742",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013112-SC20170224144742.tar.gz",
+  :checksum "4bdc245b2507151e6f0e19b12c0d3177"}
+ {:id "LC80220322013144-SC20170224145102",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013144-SC20170224145102.tar.gz",
+  :checksum "f763b7663f7f7b628b5e487d69b9b49c"}
+ {:id "LC80220322013160-SC20170224142753",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013160-SC20170224142753.tar.gz",
+  :checksum "ddc692575b1a2403cf446be8b4fadced"}
+ {:id "LC80220322013176-SC20170224144839",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013176-SC20170224144839.tar.gz",
+  :checksum "882f51571759df3d3990b38d738e533e"}
+ {:id "LC80220322013192-SC20170224151147",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013192-SC20170224151147.tar.gz",
+  :checksum "e9b16e4cbc2eb9ec836e849865dd248d"}
+ {:id "LC80220322013208-SC20170224150150",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013208-SC20170224150150.tar.gz",
+  :checksum "9c24d264035a9f74d4ec8466ce588746"}
+ {:id "LC80220322013224-SC20170224145329",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013224-SC20170224145329.tar.gz",
+  :checksum "8c4848f7905a1697abbc24729e3c8a55"}
+ {:id "LC80220322013240-SC20170224151200",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013240-SC20170224151200.tar.gz",
+  :checksum "29c3698498dd4d6be7c70a46b2de99a2"}
+ {:id "LC80220322013256-SC20170224145109",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013256-SC20170224145109.tar.gz",
+  :checksum "cfbd94e0a7bc2fc6f5d86348ccd82b57"}
+ {:id "LC80220322013272-SC20170224144929",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013272-SC20170224144929.tar.gz",
+  :checksum "7a813bbdccfcccb81058c49102f4188b"}
+ {:id "LC80220322013288-SC20170224142627",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013288-SC20170224142627.tar.gz",
+  :checksum "6d19e3be12b2fa265fd0af51611e328c"}
+ {:id "LC80220322013304-SC20170224142839",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013304-SC20170224142839.tar.gz",
+  :checksum "deb6673c78f2204a7ba5294f967ba016"}
+ {:id "LC80220322013320-SC20170224143129",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013320-SC20170224143129.tar.gz",
+  :checksum "07598624d0eec41830b1f29d5178999c"}
+ {:id "LC80220322013336-SC20170224143448",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013336-SC20170224143448.tar.gz",
+  :checksum "739f497932048b14374d8309b5aabbf6"}
+ {:id "LC80220322013352-SC20170224145147",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322013352-SC20170224145147.tar.gz",
+  :checksum "3d83c7b966363fcffa2d98befb937d4f"}
+ {:id "LC80220322014003-SC20170224145303",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014003-SC20170224145303.tar.gz",
+  :checksum "8bc0a97a9c4ae10bfab1eea33f1c0198"}
+ {:id "LC80220322014019-SC20170224145022",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014019-SC20170224145022.tar.gz",
+  :checksum "a9eb976ff1e9cdd34d8b5512b8c8729b"}
+ {:id "LC80220322014035-SC20170224142643",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014035-SC20170224142643.tar.gz",
+  :checksum "339572deedd1ef1d10ef2adf7d187cf5"}
+ {:id "LC80220322014051-SC20170224142819",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014051-SC20170224142819.tar.gz",
+  :checksum "833fc242e52e6c55dca5c706e27df8d6"}
+ {:id "LC80220322014067-SC20170224142927",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014067-SC20170224142927.tar.gz",
+  :checksum "c92bc89c1789d6a191e95b1b1b66a5be"}
+ {:id "LC80220322014083-SC20170224144055",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014083-SC20170224144055.tar.gz",
+  :checksum "86a32decfb536bd40f11625e94bb1432"}
+ {:id "LC80220322014099-SC20170224145113",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014099-SC20170224145113.tar.gz",
+  :checksum "4488db9f769e3644213c5a4210599599"}
+ {:id "LC80220322014115-SC20170224144451",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014115-SC20170224144451.tar.gz",
+  :checksum "512bd20d2491ec01bdbc40c3c074c036"}
+ {:id "LC80220322014131-SC20170224114545",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014131-SC20170224114545.tar.gz",
+  :checksum "70c3cce2d9d24f85c0da4a8d3b1f8695"}
+ {:id "LC80220322014147-SC20170224113453",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014147-SC20170224113453.tar.gz",
+  :checksum "fda66fe68d302df40dc83018a89000d6"}
+ {:id "LC80220322014163-SC20170224115701",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014163-SC20170224115701.tar.gz",
+  :checksum "fc4a7cadd9bcd02325f0e65dfe750978"}
+ {:id "LC80220322014179-SC20170224120151",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014179-SC20170224120151.tar.gz",
+  :checksum "76d4a278d4d5db6cab43c40dc80f7137"}
+ {:id "LC80220322014195-SC20170224125709",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014195-SC20170224125709.tar.gz",
+  :checksum "65a8996f023cbcfb93337960f1a6b78e"}
+ {:id "LC80220322014211-SC20170224122402",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014211-SC20170224122402.tar.gz",
+  :checksum "faf0826890ea3ec5dad1fc5049a59bb0"}
+ {:id "LC80220322014227-SC20170225003631",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014227-SC20170225003631.tar.gz",
+  :checksum "d36f3d44c702a1788155b69cefda831c"}
+ {:id "LC80220322014243-SC20170224231619",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014243-SC20170224231619.tar.gz",
+  :checksum "6854028087bdac5829c2a6aad219d667"}
+ {:id "LC80220322014259-SC20170224232040",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014259-SC20170224232040.tar.gz",
+  :checksum "027aa340bf7333c91a09a3871cdaff26"}
+ {:id "LC80220322014275-SC20170224225920",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014275-SC20170224225920.tar.gz",
+  :checksum "da61e2297bbe97d31f92cbcd92fc352f"}
+ {:id "LC80220322014291-SC20170224225635",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014291-SC20170224225635.tar.gz",
+  :checksum "3141ea4089ba35ff6e7fca74de5471cb"}
+ {:id "LC80220322014307-SC20170224225632",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014307-SC20170224225632.tar.gz",
+  :checksum "d1d033efa1cf3a57c35ad2c1c8d00395"}
+ {:id "LC80220322014323-SC20170224230237",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014323-SC20170224230237.tar.gz",
+  :checksum "81659f23de81acbc7400a1e8e3abd255"}
+ {:id "LC80220322014339-SC20170224224606",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014339-SC20170224224606.tar.gz",
+  :checksum "756b8711e808dca121b2d056a3dd3143"}
+ {:id "LC80220322014355-SC20170224225215",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322014355-SC20170224225215.tar.gz",
+  :checksum "c116ba1cea497e2a2015116d3275b97f"}
+ {:id "LC80220322015006-SC20170224225012",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015006-SC20170224225012.tar.gz",
+  :checksum "16f23fee66ccaef06805d5a18539971d"}
+ {:id "LC80220322015022-SC20170224230528",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015022-SC20170224230528.tar.gz",
+  :checksum "b47548a1b21a457bf4bd0f25c64ceaa4"}
+ {:id "LC80220322015038-SC20170224230553",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015038-SC20170224230553.tar.gz",
+  :checksum "97fce1b191572320f87fa75b3ad51923"}
+ {:id "LC80220322015054-SC20170225002349",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015054-SC20170225002349.tar.gz",
+  :checksum "d51c39ec299c77d3b5d28edd0a48b784"}
+ {:id "LC80220322015070-SC20170224231253",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015070-SC20170224231253.tar.gz",
+  :checksum "eb1cc76abc1c3567f318ef771c4bf78f"}
+ {:id "LC80220322015086-SC20170224234225",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015086-SC20170224234225.tar.gz",
+  :checksum "33e2c49e2f0efcc2ef6ff267978f6917"}
+ {:id "LC80220322015102-SC20170225012435",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015102-SC20170225012435.tar.gz",
+  :checksum "014e8f6a14eea2585ac85e287badf817"}
+ {:id "LC80220322015118-SC20170224231021",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015118-SC20170224231021.tar.gz",
+  :checksum "0faf1905f508724bd3b01697d298d0d7"}
+ {:id "LC80220322015134-SC20170224224823",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015134-SC20170224224823.tar.gz",
+  :checksum "fbf341c1aeaa4428441ddefdb535c0f3"}
+ {:id "LC80220322015150-SC20170225004116",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015150-SC20170225004116.tar.gz",
+  :checksum "b6e900e4bc9a6d0e5f7201065a991f63"}
+ {:id "LC80220322015166-SC20170224230204",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015166-SC20170224230204.tar.gz",
+  :checksum "e03c25f9a058b53d80e3210545fb9488"}
+ {:id "LC80220322015182-SC20170224231107",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015182-SC20170224231107.tar.gz",
+  :checksum "8fa95831198968c03292f05ae242a4cf"}
+ {:id "LC80220322015198-SC20170224233026",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015198-SC20170224233026.tar.gz",
+  :checksum "daac9d541854f3fa92499782b453ff7f"}
+ {:id "LC80220322015214-SC20170224233640",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015214-SC20170224233640.tar.gz",
+  :checksum "cdb8b01adac77cd75d9253179ae1981c"}
+ {:id "LC80220322015230-SC20170224231945",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015230-SC20170224231945.tar.gz",
+  :checksum "0a5c8ff61ba1816f10b96c8b5cbec34d"}
+ {:id "LC80220322015246-SC20170224195459",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015246-SC20170224195459.tar.gz",
+  :checksum "257c89facf5917da9439bd8bc57569ce"}
+ {:id "LC80220322015262-SC20170224192911",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015262-SC20170224192911.tar.gz",
+  :checksum "d3fdc3029b6030ed07d228edd5aa631b"}
+ {:id "LC80220322015278-SC20170224193427",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015278-SC20170224193427.tar.gz",
+  :checksum "13dca8a86a9b69ea4eb0c7895a57885e"}
+ {:id "LC80220322015294-SC20170224192152",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015294-SC20170224192152.tar.gz",
+  :checksum "30ccb76912d446b18c12006de0767d46"}
+ {:id "LC80220322015310-SC20170224192543",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015310-SC20170224192543.tar.gz",
+  :checksum "67abfc00a368818ca57209fc10c4a1f0"}
+ {:id "LC80220322015326-SC20170224192859",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015326-SC20170224192859.tar.gz",
+  :checksum "3069f18eb6c19fa290906f2728e1cfe5"}
+ {:id "LC80220322015342-SC20170224204848",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015342-SC20170224204848.tar.gz",
+  :checksum "9c19df5c2246ff65ea6bea7b548beab9"}
+ {:id "LC80220322015358-SC20170224191313",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322015358-SC20170224191313.tar.gz",
+  :checksum "c0deda829c6773117b27710f6ab1068e"}
+ {:id "LC80220322016009-SC20170224190640",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016009-SC20170224190640.tar.gz",
+  :checksum "367d76459e6a58b144eb6f1089b80692"}
+ {:id "LC80220322016025-SC20170224223829",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016025-SC20170224223829.tar.gz",
+  :checksum "8a7a2fb740550d8fc8b49c87d72d9b85"}
+ {:id "LC80220322016041-SC20170224191451",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016041-SC20170224191451.tar.gz",
+  :checksum "6183d60e2ada9d2e321bb13db37fc67d"}
+ {:id "LC80220322016073-SC20170224191100",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016073-SC20170224191100.tar.gz",
+  :checksum "6c8579f352437cecf06106f441c9f1b2"}
+ {:id "LC80220322016089-SC20170224192957",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016089-SC20170224192957.tar.gz",
+  :checksum "cc3495c8f85ab95c75e2f51c104fb776"}
+ {:id "LC80220322016105-SC20170224193003",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016105-SC20170224193003.tar.gz",
+  :checksum "32a9641376bb9e46bdb4089ebfb26b1d"}
+ {:id "LC80220322016121-SC20170224190728",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016121-SC20170224190728.tar.gz",
+  :checksum "98ab1411553c687b2e6362ed8967cf9c"}
+ {:id "LC80220322016137-SC20170224191903",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016137-SC20170224191903.tar.gz",
+  :checksum "63234002ed72a8efa78a29d2234f6d64"}
+ {:id "LC80220322016153-SC20170224190803",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016153-SC20170224190803.tar.gz",
+  :checksum "ac090cc06096f10672fb85aec711dc45"}
+ {:id "LC80220322016169-SC20170224193757",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016169-SC20170224193757.tar.gz",
+  :checksum "df22ad7eea03c0411100f9db2d7c63af"}
+ {:id "LC80220322016185-SC20170224190716",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016185-SC20170224190716.tar.gz",
+  :checksum "94b36fbf196f83a7ec260eec67ca70d6"}
+ {:id "LC80220322016201-SC20170224195028",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016201-SC20170224195028.tar.gz",
+  :checksum "9662f9de2c294884eccb251117ef25af"}
+ {:id "LC80220322016217-SC20170224201108",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016217-SC20170224201108.tar.gz",
+  :checksum "19e6b5e0e4d59e686e266d474fa3a0ae"}
+ {:id "LC80220322016233-SC20170224192614",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016233-SC20170224192614.tar.gz",
+  :checksum "ebe76e98ef7209476d6a4d19c3993b46"}
+ {:id "LC80220322016249-SC20170224194541",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016249-SC20170224194541.tar.gz",
+  :checksum "d8ef8960c490c218596a33e07d7d5259"}
+ {:id "LC80220322016265-SC20170224191711",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016265-SC20170224191711.tar.gz",
+  :checksum "9e4629f138338f64c235bd3f6b0206bc"}
+ {:id "LC80220322016281-SC20170224193222",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016281-SC20170224193222.tar.gz",
+  :checksum "fb19477dab9de5ed36baefc14bc114b5"}
+ {:id "LC80220322016297-SC20170224192748",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016297-SC20170224192748.tar.gz",
+  :checksum "adfa48f2163fe0d615920acff52f2a14"}
+ {:id "LC80220322016313-SC20170224063710",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/lakes/H22V08-473/LC80220322016313-SC20170224063710.tar.gz",
+  :checksum "9f858cff4cca4e3cef27d426e1a41edc"})

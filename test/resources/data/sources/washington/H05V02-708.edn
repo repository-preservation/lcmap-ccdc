@@ -1,0 +1,2420 @@
+({:id "LC80430272013115-SC20161215025921",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013115-SC20161215025921.tar.gz",
+  :checksum "bdb09795ef69fd527a23e300eeea7050"}
+ {:id "LC80430272013131-SC20161215025106",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013131-SC20161215025106.tar.gz",
+  :checksum "8694a1914a7d7d252962e7007dc6d180"}
+ {:id "LC80430272013147-SC20161215022947",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013147-SC20161215022947.tar.gz",
+  :checksum "73677451a5e2b8168423a99c3e09a4ab"}
+ {:id "LC80430272013163-SC20161215025948",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013163-SC20161215025948.tar.gz",
+  :checksum "7400dbb5fa6d00f2c6bfb4649972daf3"}
+ {:id "LC80430272013179-SC20161215030803",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013179-SC20161215030803.tar.gz",
+  :checksum "861d007d4a3c429b98b3b534fc3d0533"}
+ {:id "LC80430272013195-SC20161215030158",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013195-SC20161215030158.tar.gz",
+  :checksum "8459791da2c7deec346380183e5cdabf"}
+ {:id "LC80430272013211-SC20161215024940",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013211-SC20161215024940.tar.gz",
+  :checksum "483c20f42388d5447261d04825b302e9"}
+ {:id "LC80430272013227-SC20161215024149",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013227-SC20161215024149.tar.gz",
+  :checksum "f432ce8db59ef0503da49bb0ab653e4c"}
+ {:id "LC80430272013243-SC20161215025210",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013243-SC20161215025210.tar.gz",
+  :checksum "e96a5d32a8bf3da59fd393c1c9eae082"}
+ {:id "LC80430272013259-SC20161215024753",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013259-SC20161215024753.tar.gz",
+  :checksum "dd56d197b12e4dc4a961142d48f1294e"}
+ {:id "LC80430272013275-SC20161215021547",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013275-SC20161215021547.tar.gz",
+  :checksum "070af460a20a710693d89b103e8393ce"}
+ {:id "LC80430272013291-SC20161215025543",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013291-SC20161215025543.tar.gz",
+  :checksum "f06fa7d091acca7a8226c15ab3b4200f"}
+ {:id "LC80430272013307-SC20161215021050",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013307-SC20161215021050.tar.gz",
+  :checksum "aba0349de6347d522f32265d7953a64b"}
+ {:id "LC80430272013323-SC20161215023008",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013323-SC20161215023008.tar.gz",
+  :checksum "cfe7395ed2a9f204acfc2e78e401757b"}
+ {:id "LC80430272013339-SC20161215021233",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013339-SC20161215021233.tar.gz",
+  :checksum "73097072f7979d4ec91c573828e761c5"}
+ {:id "LC80430272013355-SC20161215024104",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272013355-SC20161215024104.tar.gz",
+  :checksum "0997facea1e7a28bc084176473009514"}
+ {:id "LC80430272014006-SC20161215022717",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014006-SC20161215022717.tar.gz",
+  :checksum "daeb1c6a8c543789ed96a28a0d1dfca3"}
+ {:id "LC80430272014022-SC20161215023927",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014022-SC20161215023927.tar.gz",
+  :checksum "38d8aa94817dcf9fc15a0f50362f3c36"}
+ {:id "LC80430272014038-SC20161215022145",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014038-SC20161215022145.tar.gz",
+  :checksum "79d7bb0dfbdcd2efc9b64f0b5e36c0f3"}
+ {:id "LC80430272014054-SC20161215020822",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014054-SC20161215020822.tar.gz",
+  :checksum "f129578f9d4609ceea1afa6a3b70d793"}
+ {:id "LC80430272014070-SC20161215024436",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014070-SC20161215024436.tar.gz",
+  :checksum "3464ceb034212574a266ffd239a53d9c"}
+ {:id "LC80430272014086-SC20161215021654",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014086-SC20161215021654.tar.gz",
+  :checksum "f5efa4dee6522717c89e5325f542489a"}
+ {:id "LC80430272014102-SC20161215023703",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014102-SC20161215023703.tar.gz",
+  :checksum "6cb92df0ef1e658766b945c9b0a52530"}
+ {:id "LC80430272014118-SC20161215023417",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014118-SC20161215023417.tar.gz",
+  :checksum "753d2e9be30d095fb62a07685ff1a8f3"}
+ {:id "LC80430272014134-SC20161215023035",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014134-SC20161215023035.tar.gz",
+  :checksum "e34c3f6b0325a92d46449d4d2aed4341"}
+ {:id "LC80430272014150-SC20161215023628",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014150-SC20161215023628.tar.gz",
+  :checksum "0091af1fd0e4d935a9344514085a85c3"}
+ {:id "LC80430272014166-SC20161215021124",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014166-SC20161215021124.tar.gz",
+  :checksum "a723bba6959cfcb79f214115a190e756"}
+ {:id "LC80430272014182-SC20161215024245",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014182-SC20161215024245.tar.gz",
+  :checksum "9630e70bcedfced7a23de814c7239057"}
+ {:id "LC80430272014198-SC20161215024957",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014198-SC20161215024957.tar.gz",
+  :checksum "68905d251d27a75de921bbece172dd72"}
+ {:id "LC80430272014214-SC20161215024639",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014214-SC20161215024639.tar.gz",
+  :checksum "b8e35396b6e67e85dce149297b9b6fe6"}
+ {:id "LC80430272014230-SC20161215025526",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014230-SC20161215025526.tar.gz",
+  :checksum "d2ab9f959b5c87ed15e3f189b8e35c53"}
+ {:id "LC80430272014246-SC20161215021827",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014246-SC20161215021827.tar.gz",
+  :checksum "c4141427d7edc22f48050010e0f9e3b9"}
+ {:id "LC80430272014262-SC20161215024631",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014262-SC20161215024631.tar.gz",
+  :checksum "629fab4af116ea99f872eca293ba21b1"}
+ {:id "LC80430272014278-SC20161215023354",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014278-SC20161215023354.tar.gz",
+  :checksum "bb7a42c5757143957faaf788ea53323e"}
+ {:id "LC80430272014294-SC20161215023508",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014294-SC20161215023508.tar.gz",
+  :checksum "f473ae713e084318c51d17c2e535f369"}
+ {:id "LC80430272014310-SC20161215022822",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014310-SC20161215022822.tar.gz",
+  :checksum "aa5646818f545d0000270df7b75fe18e"}
+ {:id "LC80430272014326-SC20161215023529",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014326-SC20161215023529.tar.gz",
+  :checksum "06c56e0ee3fed5635f81791b52a3363b"}
+ {:id "LC80430272014342-SC20161215022431",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014342-SC20161215022431.tar.gz",
+  :checksum "b03e301c8c509218e3db3e5d87ec8590"}
+ {:id "LC80430272014358-SC20161215020602",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272014358-SC20161215020602.tar.gz",
+  :checksum "7e302aab09c34f6048604a5d7a9d3d45"}
+ {:id "LC80430272015009-SC20161215021449",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015009-SC20161215021449.tar.gz",
+  :checksum "d5356aba5a6e72a0facb449a2433ea76"}
+ {:id "LC80430272015025-SC20161215020943",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015025-SC20161215020943.tar.gz",
+  :checksum "a736cc78954b0c0d4e9452f868e090c1"}
+ {:id "LC80430272015057-SC20161215023228",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015057-SC20161215023228.tar.gz",
+  :checksum "cdc7123581a1ca99ff39f62da70ab13b"}
+ {:id "LC80430272015073-SC20161215020816",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015073-SC20161215020816.tar.gz",
+  :checksum "f95005f48ae028f09b53c3877b0a7313"}
+ {:id "LC80430272015089-SC20161215023855",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015089-SC20161215023855.tar.gz",
+  :checksum "9beec9eff8da622291698e054a1f3294"}
+ {:id "LC80430272015105-SC20161215024630",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015105-SC20161215024630.tar.gz",
+  :checksum "d345607134f148188dc2fccbfad7504a"}
+ {:id "LC80430272015121-SC20161215023707",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015121-SC20161215023707.tar.gz",
+  :checksum "103775fdcaf68e51ef90e4e25f99a9b4"}
+ {:id "LC80430272015137-SC20161215023322",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015137-SC20161215023322.tar.gz",
+  :checksum "2e32d5f98981d60c91892dbcac31f950"}
+ {:id "LC80430272015153-SC20161215021517",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015153-SC20161215021517.tar.gz",
+  :checksum "63264a668caaac041ba1004ed74531f9"}
+ {:id "LC80430272015169-SC20161215022733",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015169-SC20161215022733.tar.gz",
+  :checksum "e5f26e6d3f52a7f14a40bf60f1982eb0"}
+ {:id "LC80430272015185-SC20161215024233",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015185-SC20161215024233.tar.gz",
+  :checksum "09e89b3d1c787c2058e4d794d54bf560"}
+ {:id "LC80430272015201-SC20161215024922",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015201-SC20161215024922.tar.gz",
+  :checksum "43a6fe2da558a7baa7fd859b22687e52"}
+ {:id "LC80430272015217-SC20161215023724",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015217-SC20161215023724.tar.gz",
+  :checksum "ee1b7623e0623e6da35d793e32add19e"}
+ {:id "LC80430272015233-SC20161215023153",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015233-SC20161215023153.tar.gz",
+  :checksum "d26a56d0cbdcdaa489ff24e213ef79ba"}
+ {:id "LC80430272015249-SC20161215021332",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015249-SC20161215021332.tar.gz",
+  :checksum "3b7fbe4354b70646f98180ea6887aae1"}
+ {:id "LC80430272015265-SC20161215021540",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015265-SC20161215021540.tar.gz",
+  :checksum "bf213bc454cf42f9de9c4bea55864896"}
+ {:id "LC80430272015281-SC20161215020815",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015281-SC20161215020815.tar.gz",
+  :checksum "451fcbbe0eb2a7c0113f4974a23cb01f"}
+ {:id "LC80430272015297-SC20161215020658",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015297-SC20161215020658.tar.gz",
+  :checksum "54ccefe02c8ef59b584e13fe29ec70b0"}
+ {:id "LC80430272015313-SC20161215020810",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015313-SC20161215020810.tar.gz",
+  :checksum "b2a5e512e2f00ec90458528cb59eb9c7"}
+ {:id "LC80430272015329-SC20161215024755",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015329-SC20161215024755.tar.gz",
+  :checksum "30f0866849d532f47a538a7b79a47b7c"}
+ {:id "LC80430272015345-SC20161215022718",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015345-SC20161215022718.tar.gz",
+  :checksum "902f3f812433e06e38ba56692a26d44d"}
+ {:id "LC80430272015361-SC20161215015740",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430272015361-SC20161215015740.tar.gz",
+  :checksum "4ac8846166f1a49b8fc134010486ca4b"}
+ {:id "LC80430282013115-SC20161215023125",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013115-SC20161215023125.tar.gz",
+  :checksum "f1177dc17c4d064c71b3cb20a31bdbb5"}
+ {:id "LC80430282013131-SC20161215021101",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013131-SC20161215021101.tar.gz",
+  :checksum "43ba5ce1622d1664f56fc380a047a979"}
+ {:id "LC80430282013147-SC20161215015709",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013147-SC20161215015709.tar.gz",
+  :checksum "302ef4122b44322ddb98acc637d57b2f"}
+ {:id "LC80430282013163-SC20161215022141",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013163-SC20161215022141.tar.gz",
+  :checksum "6ca4a53394d84a94a9e92ccfaac3d8ee"}
+ {:id "LC80430282013179-SC20161215024351",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013179-SC20161215024351.tar.gz",
+  :checksum "1bdb05357605f5da2df2084b42d3a94e"}
+ {:id "LC80430282013195-SC20161215023158",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013195-SC20161215023158.tar.gz",
+  :checksum "3df9381acfcb5a92739909f61a18c7ac"}
+ {:id "LC80430282013211-SC20161215020923",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013211-SC20161215020923.tar.gz",
+  :checksum "e5f0936a630762d38c0ec2fc9b0c91b6"}
+ {:id "LC80430282013227-SC20161215023148",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013227-SC20161215023148.tar.gz",
+  :checksum "830a6cd835e2e4593890916388bcf940"}
+ {:id "LC80430282013243-SC20161215023102",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013243-SC20161215023102.tar.gz",
+  :checksum "71fd3f3d07d2e5d794cd794e9026e88c"}
+ {:id "LC80430282013259-SC20161215023124",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013259-SC20161215023124.tar.gz",
+  :checksum "9f045888ef709f48bfd8a68fa94e58b2"}
+ {:id "LC80430282013275-SC20161215020004",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013275-SC20161215020004.tar.gz",
+  :checksum "0930b8fdd3ee5cd8fc54bc554ef25f30"}
+ {:id "LC80430282013291-SC20161215023022",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013291-SC20161215023022.tar.gz",
+  :checksum "68d999923b9ae881e7f9dcabaa90d202"}
+ {:id "LC80430282013307-SC20161215020625",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013307-SC20161215020625.tar.gz",
+  :checksum "9c0c3e89da40324b19c365a9a45d71dc"}
+ {:id "LC80430282013323-SC20161215020347",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013323-SC20161215020347.tar.gz",
+  :checksum "a1839ea911dc7bc69bc2f21379d7337e"}
+ {:id "LC80430282013339-SC20161215020749",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013339-SC20161215020749.tar.gz",
+  :checksum "38a75dedeb56e2133096d148352eb476"}
+ {:id "LC80430282013355-SC20161215022834",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282013355-SC20161215022834.tar.gz",
+  :checksum "9bcaf24ac98e8d788f7cf9762807e7a0"}
+ {:id "LC80430282014006-SC20161215021318",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014006-SC20161215021318.tar.gz",
+  :checksum "ad4cfe21afacd62dc7438c44b0c63a68"}
+ {:id "LC80430282014022-SC20161215023747",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014022-SC20161215023747.tar.gz",
+  :checksum "0ae7c300cb439ab035c86c6cbd94612c"}
+ {:id "LC80430282014038-SC20161215021039",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014038-SC20161215021039.tar.gz",
+  :checksum "d981d02060c4b3d93ecf1482a71643e6"}
+ {:id "LC80430282014054-SC20161215015519",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014054-SC20161215015519.tar.gz",
+  :checksum "007e22e1ca9f52cfac882af5061e14e9"}
+ {:id "LC80430282014070-SC20161215023408",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014070-SC20161215023408.tar.gz",
+  :checksum "e6e26a070699469c986b3e1ac6d7e930"}
+ {:id "LC80430282014086-SC20161215020521",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014086-SC20161215020521.tar.gz",
+  :checksum "cfe209de3db5ba09d4361a6acac6712b"}
+ {:id "LC80430282014102-SC20161215023752",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014102-SC20161215023752.tar.gz",
+  :checksum "058d4b18542bb942343f598518e49037"}
+ {:id "LC80430282014118-SC20161215022005",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014118-SC20161215022005.tar.gz",
+  :checksum "5ac37225134589ee6ae1d48ee276386a"}
+ {:id "LC80430282014134-SC20161215024026",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014134-SC20161215024026.tar.gz",
+  :checksum "a3ae5775101aea905457d3604df21a2c"}
+ {:id "LC80430282014150-SC20161215023823",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014150-SC20161215023823.tar.gz",
+  :checksum "daa9015d76ad1ec1316d0b9e67e63189"}
+ {:id "LC80430282014166-SC20161215020046",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014166-SC20161215020046.tar.gz",
+  :checksum "18d0ecdfaa7c97b550e7435c33d5331d"}
+ {:id "LC80430282014182-SC20161215023327",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014182-SC20161215023327.tar.gz",
+  :checksum "cad1daf7024ff041c63923653c4c8c11"}
+ {:id "LC80430282014198-SC20161215023926",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014198-SC20161215023926.tar.gz",
+  :checksum "a358721c747efc98e411c27d6b3142a3"}
+ {:id "LC80430282014214-SC20161215022858",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014214-SC20161215022858.tar.gz",
+  :checksum "0f21a7cfa7915a7bd0ee6e38f098fd31"}
+ {:id "LC80430282014230-SC20161215023724",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014230-SC20161215023724.tar.gz",
+  :checksum "c4a0406038c76e810b4dbb0007c0c9c4"}
+ {:id "LC80430282014246-SC20161215022946",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014246-SC20161215022946.tar.gz",
+  :checksum "720c83decfdeb9889a213c8406b62e98"}
+ {:id "LC80430282014262-SC20161215023244",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014262-SC20161215023244.tar.gz",
+  :checksum "ede4ca2e67abb83ac04c69062aa0e3d6"}
+ {:id "LC80430282014278-SC20161215022012",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014278-SC20161215022012.tar.gz",
+  :checksum "0d8cc5ca7e03ecd808d8e6222932dd1d"}
+ {:id "LC80430282014294-SC20161215022226",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014294-SC20161215022226.tar.gz",
+  :checksum "afc6f7047672a23219f04d2c8d362638"}
+ {:id "LC80430282014310-SC20161215023425",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014310-SC20161215023425.tar.gz",
+  :checksum "9f2b4664a2ad26b88f4a767f77a44f94"}
+ {:id "LC80430282014326-SC20161215021545",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014326-SC20161215021545.tar.gz",
+  :checksum "e3e204f8fa53fa4b00572c322bf52638"}
+ {:id "LC80430282014342-SC20161215021110",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014342-SC20161215021110.tar.gz",
+  :checksum "6ec62b7862eaeb502dedf3a810ddec7e"}
+ {:id "LC80430282014358-SC20161215015518",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282014358-SC20161215015518.tar.gz",
+  :checksum "a132eeaad3af7bc143e30bb7096969a6"}
+ {:id "LC80430282015009-SC20161215015647",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015009-SC20161215015647.tar.gz",
+  :checksum "4884053e2c2f4c6f78e71bdf655adfaf"}
+ {:id "LC80430282015025-SC20161215020743",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015025-SC20161215020743.tar.gz",
+  :checksum "ababeab56b6597133342c3675fd7300a"}
+ {:id "LC80430282015057-SC20161215020551",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015057-SC20161215020551.tar.gz",
+  :checksum "5888684e836e62f2cca806fa7fe3351b"}
+ {:id "LC80430282015073-SC20161215015547",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015073-SC20161215015547.tar.gz",
+  :checksum "197d0b7b89a89f4e0827615264b76171"}
+ {:id "LC80430282015089-SC20161215022156",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015089-SC20161215022156.tar.gz",
+  :checksum "f95c1f9ff66501833681f06c68a1009b"}
+ {:id "LC80430282015105-SC20161215024046",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015105-SC20161215024046.tar.gz",
+  :checksum "da873c5f72bef71e049c7bd13c2e3bfd"}
+ {:id "LC80430282015121-SC20161215021037",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015121-SC20161215021037.tar.gz",
+  :checksum "ce8d5ea9e92bd98a0cc2b1ce460a14f9"}
+ {:id "LC80430282015137-SC20161215021036",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015137-SC20161215021036.tar.gz",
+  :checksum "8b2f705460c570f230855d472bd8b804"}
+ {:id "LC80430282015153-SC20161215022141",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015153-SC20161215022141.tar.gz",
+  :checksum "a9538189b5467948b3fbebdf83d27d15"}
+ {:id "LC80430282015169-SC20161215021209",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015169-SC20161215021209.tar.gz",
+  :checksum "09d0b98213de592f9966223ac1fd75c9"}
+ {:id "LC80430282015185-SC20161215020943",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015185-SC20161215020943.tar.gz",
+  :checksum "286e9e7794788f2151059d39ff170bab"}
+ {:id "LC80430282015201-SC20161214151805",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015201-SC20161214151805.tar.gz",
+  :checksum "abe46a1a27fa4d12d12421e7d1a1b3eb"}
+ {:id "LC80430282015217-SC20161214150750",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015217-SC20161214150750.tar.gz",
+  :checksum "0b829d167661a36782a69c7a423dbce5"}
+ {:id "LC80430282015233-SC20161214151119",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015233-SC20161214151119.tar.gz",
+  :checksum "a00ef2ac995a7ed5a03ea0e1d7f35e21"}
+ {:id "LC80430282015249-SC20161214145513",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015249-SC20161214145513.tar.gz",
+  :checksum "c5b02347bb89e514f6a65d9efcecba3f"}
+ {:id "LC80430282015265-SC20161214144500",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015265-SC20161214144500.tar.gz",
+  :checksum "940429a568863dae829ab9b1b32d3a5e"}
+ {:id "LC80430282015281-SC20161214144108",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015281-SC20161214144108.tar.gz",
+  :checksum "c25de71df29c357db783e5942c5b7194"}
+ {:id "LC80430282015297-SC20161214144107",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015297-SC20161214144107.tar.gz",
+  :checksum "85ef00e11d9682f9973f69bc6a27e85b"}
+ {:id "LC80430282015313-SC20161214144020",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015313-SC20161214144020.tar.gz",
+  :checksum "af3cab1851b941b1335a66fc744e4921"}
+ {:id "LC80430282015329-SC20161214151258",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015329-SC20161214151258.tar.gz",
+  :checksum "e4df3f33bcb170f3a20bed04c273a374"}
+ {:id "LC80430282015345-SC20161214151037",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015345-SC20161214151037.tar.gz",
+  :checksum "1ea0377569d9f2cb8fb266c837e4851b"}
+ {:id "LC80430282015361-SC20161214144016",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80430282015361-SC20161214144016.tar.gz",
+  :checksum "69acc1b69247af3970eee4e34b7c9020"}
+ {:id "LC80440262013106-SC20161214145515",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013106-SC20161214145515.tar.gz",
+  :checksum "d0474f75d438453c4f3b0045e576ab3e"}
+ {:id "LC80440262013154-SC20161214150203",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013154-SC20161214150203.tar.gz",
+  :checksum "41192fa1a6dcbb3dc0ebee3da66ec86d"}
+ {:id "LC80440262013170-SC20161214144142",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013170-SC20161214144142.tar.gz",
+  :checksum "49e2ddd52969849472cb98f5017fde71"}
+ {:id "LC80440262013186-SC20161214151043",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013186-SC20161214151043.tar.gz",
+  :checksum "2c88add197afb2da86263ea971a40e88"}
+ {:id "LC80440262013202-SC20161214151656",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013202-SC20161214151656.tar.gz",
+  :checksum "42c877a1c538a07f72cefebb64ce80fe"}
+ {:id "LC80440262013218-SC20161214151323",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013218-SC20161214151323.tar.gz",
+  :checksum "06b46361ef8f29d3cb094dbb7ef69c10"}
+ {:id "LC80440262013234-SC20161214145936",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013234-SC20161214145936.tar.gz",
+  :checksum "ef03bc987bde2c7f6ffca00f7e464177"}
+ {:id "LC80440262013250-SC20161214144553",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013250-SC20161214144553.tar.gz",
+  :checksum "88da54bbe670baf8a041855401812f23"}
+ {:id "LC80440262013266-SC20161214145321",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013266-SC20161214145321.tar.gz",
+  :checksum "eaf765b042056a573003e67483f69884"}
+ {:id "LC80440262013282-SC20161214150902",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013282-SC20161214150902.tar.gz",
+  :checksum "b2239a5b39fbd245d1954baecc5d3016"}
+ {:id "LC80440262013298-SC20161214150949",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013298-SC20161214150949.tar.gz",
+  :checksum "0cefc6a6076e79a5f3035ea3ceffd05d"}
+ {:id "LC80440262013314-SC20161214144243",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013314-SC20161214144243.tar.gz",
+  :checksum "79464b3dc5fb6224b9714b49ce99f325"}
+ {:id "LC80440262013330-SC20161214144357",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013330-SC20161214144357.tar.gz",
+  :checksum "750280880bf3744127906a88a735daf0"}
+ {:id "LC80440262013346-SC20161214144326",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013346-SC20161214144326.tar.gz",
+  :checksum "98be7983e4825dee5f7e803e792dd8c7"}
+ {:id "LC80440262013362-SC20161214151648",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262013362-SC20161214151648.tar.gz",
+  :checksum "8de7b9cf99b00f7dec8ddbc20e249f94"}
+ {:id "LC80440262014013-SC20161214144555",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014013-SC20161214144555.tar.gz",
+  :checksum "e5f79a9df76ef1a33a4efa6285ec204c"}
+ {:id "LC80440262014029-SC20161214145120",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014029-SC20161214145120.tar.gz",
+  :checksum "b1a0fb8734fa7580a46894b371dc53fc"}
+ {:id "LC80440262014045-SC20161214145700",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014045-SC20161214145700.tar.gz",
+  :checksum "d0763c4f9eedd81d66d7290ad104a57d"}
+ {:id "LC80440262014061-SC20161214144544",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014061-SC20161214144544.tar.gz",
+  :checksum "0a05101ee465fcd65efc4b551602c297"}
+ {:id "LC80440262014077-SC20161214151941",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014077-SC20161214151941.tar.gz",
+  :checksum "87d12270749af3a70e3bd6d386454b56"}
+ {:id "LC80440262014093-SC20161214144211",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014093-SC20161214144211.tar.gz",
+  :checksum "e7529956e154cf44bf0f0b199868f43d"}
+ {:id "LC80440262014109-SC20161214144155",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014109-SC20161214144155.tar.gz",
+  :checksum "f97b5d5d17f58520bd09e34e86445f40"}
+ {:id "LC80440262014125-SC20161214145702",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014125-SC20161214145702.tar.gz",
+  :checksum "9cee6d154abe56305c7859de4cb84957"}
+ {:id "LC80440262014141-SC20161214144432",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014141-SC20161214144432.tar.gz",
+  :checksum "46d92b4a220eeb6550bb233dff7f39e4"}
+ {:id "LC80440262014157-SC20161214150342",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014157-SC20161214150342.tar.gz",
+  :checksum "01ca4b998a82631a2340275806b20ccd"}
+ {:id "LC80440262014173-SC20161214152010",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014173-SC20161214152010.tar.gz",
+  :checksum "5fd9315709a8345a38c421574727a9a6"}
+ {:id "LC80440262014189-SC20161214152125",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014189-SC20161214152125.tar.gz",
+  :checksum "0ed43d1708f558d7f8c0fbc6143ba761"}
+ {:id "LC80440262014205-SC20161214144411",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014205-SC20161214144411.tar.gz",
+  :checksum "d290618585f52c2f9e8123531d2fb095"}
+ {:id "LC80440262014221-SC20161214145551",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014221-SC20161214145551.tar.gz",
+  :checksum "131bdcfb172eb6e4ddbef1431e4079e7"}
+ {:id "LC80440262014237-SC20161214150704",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014237-SC20161214150704.tar.gz",
+  :checksum "fdf9f38e59e30522a45d8d92a462757b"}
+ {:id "LC80440262014253-SC20161214151247",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014253-SC20161214151247.tar.gz",
+  :checksum "b5b2438bb4e4ceefc02e4feae642117a"}
+ {:id "LC80440262014269-SC20161214150559",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014269-SC20161214150559.tar.gz",
+  :checksum "11a3ce1473a67158e113b183f53e490e"}
+ {:id "LC80440262014285-SC20161214145934",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014285-SC20161214145934.tar.gz",
+  :checksum "e6cffc6c4b3ae9abe11af536940775d4"}
+ {:id "LC80440262014301-SC20161214144724",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014301-SC20161214144724.tar.gz",
+  :checksum "5276b9c044a597821569948e6f148bcd"}
+ {:id "LC80440262014317-SC20161214152936",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014317-SC20161214152936.tar.gz",
+  :checksum "dfac27a154b96d9ada4e9fa9bc120ac2"}
+ {:id "LC80440262014333-SC20161214150605",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014333-SC20161214150605.tar.gz",
+  :checksum "bad785f29cc2dcbbf1f46aed5c81b968"}
+ {:id "LC80440262014349-SC20161214153532",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014349-SC20161214153532.tar.gz",
+  :checksum "1601391e7ad02591e319a085d95f1ca8"}
+ {:id "LC80440262014365-SC20161214150410",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262014365-SC20161214150410.tar.gz",
+  :checksum "a37a5fe9f215cd4862d34cc10ac005cf"}
+ {:id "LC80440262015016-SC20161214145132",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015016-SC20161214145132.tar.gz",
+  :checksum "21add249ee3f6ec0841897d8818602b0"}
+ {:id "LC80440262015032-SC20161215010952",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015032-SC20161215010952.tar.gz",
+  :checksum "8cdd3f1fd0c2d585449cf75b1e4e2782"}
+ {:id "LC80440262015048-SC20161215020146",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015048-SC20161215020146.tar.gz",
+  :checksum "e6b662d037e148db405ae9b4abd76534"}
+ {:id "LC80440262015064-SC20161215012650",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015064-SC20161215012650.tar.gz",
+  :checksum "8e8e45b2f5935b2d8cbadb94b254b98f"}
+ {:id "LC80440262015080-SC20161215012849",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015080-SC20161215012849.tar.gz",
+  :checksum "3ca4087a9a9009b1ca4acac609ee713c"}
+ {:id "LC80440262015096-SC20161215011232",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015096-SC20161215011232.tar.gz",
+  :checksum "be106559a1cc22a201d6ca4996e4f2b0"}
+ {:id "LC80440262015112-SC20161215012613",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015112-SC20161215012613.tar.gz",
+  :checksum "85113e6b134df2fdd6f25d3cad2e7e08"}
+ {:id "LC80440262015128-SC20161215013716",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015128-SC20161215013716.tar.gz",
+  :checksum "8e8593f27a33979048ed0e366b135ab0"}
+ {:id "LC80440262015144-SC20161215012927",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015144-SC20161215012927.tar.gz",
+  :checksum "c487a6e87ad1429e35b7d906841cadc3"}
+ {:id "LC80440262015160-SC20161215014001",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015160-SC20161215014001.tar.gz",
+  :checksum "2018adc7f50b262e60339e990751af50"}
+ {:id "LC80440262015176-SC20161215014815",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015176-SC20161215014815.tar.gz",
+  :checksum "f156336210121b34b835e556fd465929"}
+ {:id "LC80440262015192-SC20161215011132",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015192-SC20161215011132.tar.gz",
+  :checksum "e0d56c6cbaa2bfd99a3cb0ce39c9e87e"}
+ {:id "LC80440262015208-SC20161215014753",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015208-SC20161215014753.tar.gz",
+  :checksum "1779ca1515c76adb20c4aad9a023367a"}
+ {:id "LC80440262015224-SC20161215015608",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015224-SC20161215015608.tar.gz",
+  :checksum "796d203db372cf1bfcffe7cfd46a9050"}
+ {:id "LC80440262015240-SC20161215011013",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015240-SC20161215011013.tar.gz",
+  :checksum "86630ba86559ed1502666c8c4fd94065"}
+ {:id "LC80440262015256-SC20161215011046",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015256-SC20161215011046.tar.gz",
+  :checksum "e38f8f24f5d7d5e9cbda6cd357000cbb"}
+ {:id "LC80440262015272-SC20161215013358",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015272-SC20161215013358.tar.gz",
+  :checksum "70dfabcaee62ae1b596489c0c2a4fc61"}
+ {:id "LC80440262015288-SC20161215013301",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015288-SC20161215013301.tar.gz",
+  :checksum "215e9f06662eb0a812a951743a0f4068"}
+ {:id "LC80440262015304-SC20161215011032",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015304-SC20161215011032.tar.gz",
+  :checksum "82e3f54068950c40cdea6806aa2cecd5"}
+ {:id "LC80440262015320-SC20161215011836",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015320-SC20161215011836.tar.gz",
+  :checksum "0654a16bb82727ec427527b730280fdd"}
+ {:id "LC80440262015336-SC20161215012442",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015336-SC20161215012442.tar.gz",
+  :checksum "c450a751bf0ab5763353b4a43e4a5b22"}
+ {:id "LC80440262015352-SC20161215012141",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440262015352-SC20161215012141.tar.gz",
+  :checksum "c0a6742252f3baa61c0f337cdc6e2174"}
+ {:id "LC80440272013106-SC20161215013017",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013106-SC20161215013017.tar.gz",
+  :checksum "94b782e1a984595f945b252c6c04cb7b"}
+ {:id "LC80440272013154-SC20161215014622",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013154-SC20161215014622.tar.gz",
+  :checksum "d7550bc667313386e8b59929bec1098a"}
+ {:id "LC80440272013170-SC20161215011242",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013170-SC20161215011242.tar.gz",
+  :checksum "aaae5da05c772b14bf9fa7d6e6ab2d20"}
+ {:id "LC80440272013186-SC20161215013949",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013186-SC20161215013949.tar.gz",
+  :checksum "e1f23c6364ffc9b3f22048b2fe77ed11"}
+ {:id "LC80440272013202-SC20161215014509",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013202-SC20161215014509.tar.gz",
+  :checksum "f572f99ad9fadbde81ebd1ffdd9f0810"}
+ {:id "LC80440272013218-SC20161215013434",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013218-SC20161215013434.tar.gz",
+  :checksum "96dde7daab98ad5fb78b5d5315819173"}
+ {:id "LC80440272013234-SC20161215013251",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013234-SC20161215013251.tar.gz",
+  :checksum "bcd4ed54edc10c622b728f2391041f45"}
+ {:id "LC80440272013250-SC20161215012512",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013250-SC20161215012512.tar.gz",
+  :checksum "4504f03536d8e5c1d2b64da9f9aa8593"}
+ {:id "LC80440272013266-SC20161215011248",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013266-SC20161215011248.tar.gz",
+  :checksum "33aa83cf4ddf076fe53789c4626491a4"}
+ {:id "LC80440272013282-SC20161215013149",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013282-SC20161215013149.tar.gz",
+  :checksum "3f602c8f5a0d31c6346ee4ca29228f6a"}
+ {:id "LC80440272013298-SC20161215014407",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013298-SC20161215014407.tar.gz",
+  :checksum "123b42e92150186215efea8ca28035ff"}
+ {:id "LC80440272013314-SC20161215011112",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013314-SC20161215011112.tar.gz",
+  :checksum "4e6389d471d3625fdbc692d2b36f7d4c"}
+ {:id "LC80440272013330-SC20161215011519",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013330-SC20161215011519.tar.gz",
+  :checksum "ed8cba0d3f282efdb4926152380c8a9d"}
+ {:id "LC80440272013346-SC20161215011211",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013346-SC20161215011211.tar.gz",
+  :checksum "ba1b0d758beb2db86ab375fc1a5102ee"}
+ {:id "LC80440272013362-SC20161215014126",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272013362-SC20161215014126.tar.gz",
+  :checksum "1093d28ad3bf787b07765f53d0fea224"}
+ {:id "LC80440272014013-SC20161215011252",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014013-SC20161215011252.tar.gz",
+  :checksum "d9ac49e97f687767766d8f69970602a3"}
+ {:id "LC80440272014029-SC20161215011527",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014029-SC20161215011527.tar.gz",
+  :checksum "9255c03b10b9f29455b86e5e5acb8fde"}
+ {:id "LC80440272014045-SC20161215013017",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014045-SC20161215013017.tar.gz",
+  :checksum "61b0991772df86354689e79a064ad7a6"}
+ {:id "LC80440272014061-SC20161215011134",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014061-SC20161215011134.tar.gz",
+  :checksum "e707c976a721f1f8e7b7ab9deefbe5de"}
+ {:id "LC80440272014077-SC20161215014314",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014077-SC20161215014314.tar.gz",
+  :checksum "1e7d14a9e933aef8180452f397aadf92"}
+ {:id "LC80440272014093-SC20161215011222",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014093-SC20161215011222.tar.gz",
+  :checksum "b33af585bd006f9921a92181dcd81f57"}
+ {:id "LC80440272014109-SC20161215011744",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014109-SC20161215011744.tar.gz",
+  :checksum "9f7e63a87c19d0474c86ef08acf81e35"}
+ {:id "LC80440272014125-SC20161215013747",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014125-SC20161215013747.tar.gz",
+  :checksum "a8accde2fcb680ff7e392342d26c4503"}
+ {:id "LC80440272014141-SC20161215011904",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014141-SC20161215011904.tar.gz",
+  :checksum "6ab9f46ed07341d4c4882feeebf366af"}
+ {:id "LC80440272014157-SC20161215014433",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014157-SC20161215014433.tar.gz",
+  :checksum "0bb05da8c44354f7fc00cca4725c54f9"}
+ {:id "LC80440272014173-SC20161215014551",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014173-SC20161215014551.tar.gz",
+  :checksum "fa90c6c1c5bb53240662dec51879f246"}
+ {:id "LC80440272014189-SC20161215013419",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014189-SC20161215013419.tar.gz",
+  :checksum "a6bf2604cacf94bee704310f7bf7eef1"}
+ {:id "LC80440272014205-SC20161215012559",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014205-SC20161215012559.tar.gz",
+  :checksum "e9eb8795b163ee58dd9b9ab20c37ce1a"}
+ {:id "LC80440272014221-SC20161215011912",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014221-SC20161215011912.tar.gz",
+  :checksum "3a88fd49d7b9d61f5a5fd0168b6b6646"}
+ {:id "LC80440272014237-SC20161215013224",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014237-SC20161215013224.tar.gz",
+  :checksum "3cc1007243ff073982483c67e04d1158"}
+ {:id "LC80440272014253-SC20161215012159",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014253-SC20161215012159.tar.gz",
+  :checksum "d25ce0f2963f1c5532621974ae8e8007"}
+ {:id "LC80440272014269-SC20161215013354",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014269-SC20161215013354.tar.gz",
+  :checksum "f14a7c4ce282ede7dc59ad942c1179a7"}
+ {:id "LC80440272014285-SC20161215011439",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014285-SC20161215011439.tar.gz",
+  :checksum "30c39f5a5d4a7ffd8e67be849ec78a10"}
+ {:id "LC80440272014301-SC20161215011121",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014301-SC20161215011121.tar.gz",
+  :checksum "c803685505c27d0a5723fb690a84bdbd"}
+ {:id "LC80440272014317-SC20161215011839",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014317-SC20161215011839.tar.gz",
+  :checksum "e9ec8dbd44afaffee33ac3702ae6c820"}
+ {:id "LC80440272014333-SC20161215011741",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014333-SC20161215011741.tar.gz",
+  :checksum "042c316e1453d16e1904ec553affcf33"}
+ {:id "LC80440272014349-SC20161215013121",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014349-SC20161215013121.tar.gz",
+  :checksum "80fb5e89d68ec7f0f8fe08ec20360b93"}
+ {:id "LC80440272014365-SC20161215011941",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272014365-SC20161215011941.tar.gz",
+  :checksum "0686843170d46388ae466f581a685513"}
+ {:id "LC80440272015016-SC20161215010820",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015016-SC20161215010820.tar.gz",
+  :checksum "025172d18b7848ae39b5c662fb547ed7"}
+ {:id "LC80440272015032-SC20161215010122",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015032-SC20161215010122.tar.gz",
+  :checksum "8c9eea7e4259608c9d605502c641d9b5"}
+ {:id "LC80440272015048-SC20161215011730",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015048-SC20161215011730.tar.gz",
+  :checksum "a368ab727eb46900d7e4bfc1b65c1a56"}
+ {:id "LC80440272015064-SC20161215011312",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015064-SC20161215011312.tar.gz",
+  :checksum "9011f4f5b7a2d0b884e5e37fb04800d4"}
+ {:id "LC80440272015080-SC20161215011928",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015080-SC20161215011928.tar.gz",
+  :checksum "e7adc3cd9ebb38820d41e4271700c213"}
+ {:id "LC80440272015096-SC20161215010155",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015096-SC20161215010155.tar.gz",
+  :checksum "1030cdc843b55788929a4683f74057d8"}
+ {:id "LC80440272015112-SC20161215012635",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015112-SC20161215012635.tar.gz",
+  :checksum "5e2afc2520f5b0e73fdcb3d69dd3a806"}
+ {:id "LC80440272015128-SC20161215012128",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015128-SC20161215012128.tar.gz",
+  :checksum "5db5ccaa172b5f95deb4092f5520f9f8"}
+ {:id "LC80440272015144-SC20161215011211",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015144-SC20161215011211.tar.gz",
+  :checksum "402b2642818c695317e893b66db727a0"}
+ {:id "LC80440272015160-SC20161215013222",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015160-SC20161215013222.tar.gz",
+  :checksum "de1c404c9e382d09cb62194e8bdbe3b8"}
+ {:id "LC80440272015176-SC20161215012309",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015176-SC20161215012309.tar.gz",
+  :checksum "ddf6ee2fc5be9ee7f91a0a4e3862ecef"}
+ {:id "LC80440272015192-SC20161215010519",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015192-SC20161215010519.tar.gz",
+  :checksum "0326b06ca018f6a0a051433420f56169"}
+ {:id "LC80440272015208-SC20161215012627",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015208-SC20161215012627.tar.gz",
+  :checksum "5ff570a6598bf17f18b0614f8c3d23c8"}
+ {:id "LC80440272015224-SC20161215013141",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015224-SC20161215013141.tar.gz",
+  :checksum "1a2240973ad704abad258c962cc0a908"}
+ {:id "LC80440272015240-SC20161215005947",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015240-SC20161215005947.tar.gz",
+  :checksum "292a3908cb1799eed3db9d27739feba0"}
+ {:id "LC80440272015256-SC20161215010706",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015256-SC20161215010706.tar.gz",
+  :checksum "e9e7b51455f07d371fa587ae1c08635e"}
+ {:id "LC80440272015272-SC20161215012659",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015272-SC20161215012659.tar.gz",
+  :checksum "5c38afaf761f03458ae952f21398d53d"}
+ {:id "LC80440272015288-SC20161215011416",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015288-SC20161215011416.tar.gz",
+  :checksum "cc047656bd0b1f9bd063d2fa74e07da2"}
+ {:id "LC80440272015304-SC20161215010126",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015304-SC20161215010126.tar.gz",
+  :checksum "c255cfb4f1b718a46be753130dcb0cd1"}
+ {:id "LC80440272015320-SC20161215010742",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015320-SC20161215010742.tar.gz",
+  :checksum "55772a832a5750f0f28dc4140d88ebff"}
+ {:id "LC80440272015336-SC20161215011823",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015336-SC20161215011823.tar.gz",
+  :checksum "6c13483c5e9f2751914ed9bd549f122e"}
+ {:id "LC80440272015352-SC20161215021053",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440272015352-SC20161215021053.tar.gz",
+  :checksum "5d1b80cfd1e09dd4adf9f0967daa3646"}
+ {:id "LC80440282013106-SC20161215022004",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013106-SC20161215022004.tar.gz",
+  :checksum "6b61703cd852fea48de665081dd7abac"}
+ {:id "LC80440282013154-SC20161215022106",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013154-SC20161215022106.tar.gz",
+  :checksum "2fb9643888c2d4bec92dd929365cc48d"}
+ {:id "LC80440282013170-SC20161215015117",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013170-SC20161215015117.tar.gz",
+  :checksum "da6bac82602de30ebc7cf8af252a9edb"}
+ {:id "LC80440282013186-SC20161215022044",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013186-SC20161215022044.tar.gz",
+  :checksum "228b80e0fbf1235c67c1f06230a708d4"}
+ {:id "LC80440282013202-SC20161215021706",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013202-SC20161215021706.tar.gz",
+  :checksum "188d41d86f173f0e076fcc342bfc3ab5"}
+ {:id "LC80440282013218-SC20161215022134",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013218-SC20161215022134.tar.gz",
+  :checksum "84bba2e153066da03d52e804c7e5b65f"}
+ {:id "LC80440282013234-SC20161215020934",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013234-SC20161215020934.tar.gz",
+  :checksum "7d6c9295d99fce804dce12c88d27d697"}
+ {:id "LC80440282013250-SC20161215022043",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013250-SC20161215022043.tar.gz",
+  :checksum "15250c05a6f8700c7b71ed56f1015c12"}
+ {:id "LC80440282013266-SC20161215020335",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013266-SC20161215020335.tar.gz",
+  :checksum "fddd16906324e0ff35eecb10120d1a75"}
+ {:id "LC80440282013282-SC20161215020949",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013282-SC20161215020949.tar.gz",
+  :checksum "ab50c4fb7adb46e925d95dfe41cb9d5a"}
+ {:id "LC80440282013298-SC20161215021208",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013298-SC20161215021208.tar.gz",
+  :checksum "ec60419d6f94eaa896347ae59bf10f41"}
+ {:id "LC80440282013314-SC20161215015125",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013314-SC20161215015125.tar.gz",
+  :checksum "7e20dd14e0cc8416d8b57d2688d5a98d"}
+ {:id "LC80440282013330-SC20161215015210",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013330-SC20161215015210.tar.gz",
+  :checksum "f3155688e973fa373c939f59d1028c9c"}
+ {:id "LC80440282013346-SC20161215014855",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013346-SC20161215014855.tar.gz",
+  :checksum "46356ca9fbb737853aa7506272652d55"}
+ {:id "LC80440282013362-SC20161215022352",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282013362-SC20161215022352.tar.gz",
+  :checksum "917c3a9ecbdad640739c5bb3f58e954f"}
+ {:id "LC80440282014013-SC20161215015022",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014013-SC20161215015022.tar.gz",
+  :checksum "b59bbcfc551b1490efc9481e664f727d"}
+ {:id "LC80440282014029-SC20161215015031",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014029-SC20161215015031.tar.gz",
+  :checksum "3fc8f8010793aa638fabe29f3ec9f250"}
+ {:id "LC80440282014045-SC20161215015350",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014045-SC20161215015350.tar.gz",
+  :checksum "dd60a7ca0842d5dbe66cf5e11e7156d7"}
+ {:id "LC80440282014061-SC20161215014623",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014061-SC20161215014623.tar.gz",
+  :checksum "c7dfbbe54fb5bd8e57f4026f82324c50"}
+ {:id "LC80440282014077-SC20161215021807",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014077-SC20161215021807.tar.gz",
+  :checksum "b48bad31879b3f35b5c80c621f7fcfbb"}
+ {:id "LC80440282014093-SC20161215014913",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014093-SC20161215014913.tar.gz",
+  :checksum "3c138aea9743c50900fc374532716092"}
+ {:id "LC80440282014109-SC20161215020708",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014109-SC20161215020708.tar.gz",
+  :checksum "d162c61f41a540153f5a26034f0d41d9"}
+ {:id "LC80440282014125-SC20161215021354",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014125-SC20161215021354.tar.gz",
+  :checksum "83188186536c117a45383ce542193335"}
+ {:id "LC80440282014141-SC20161215021017",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014141-SC20161215021017.tar.gz",
+  :checksum "c5b5b51e6e86deee2a685c5067bd265c"}
+ {:id "LC80440282014157-SC20161215022144",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014157-SC20161215022144.tar.gz",
+  :checksum "e914ec7728b7c29f7d2d3badf3ed98dd"}
+ {:id "LC80440282014173-SC20161215021031",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014173-SC20161215021031.tar.gz",
+  :checksum "e93d7ba1216ae6885615559433bec606"}
+ {:id "LC80440282014189-SC20161215021937",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014189-SC20161215021937.tar.gz",
+  :checksum "ea6c95e03697b254d2ed4546573fb192"}
+ {:id "LC80440282014205-SC20161215022803",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014205-SC20161215022803.tar.gz",
+  :checksum "99d27024d6d80d17760593b22c9ebd56"}
+ {:id "LC80440282014221-SC20161215021643",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014221-SC20161215021643.tar.gz",
+  :checksum "920c6e8a8fa594daf25ebb8cffde5669"}
+ {:id "LC80440282014237-SC20161215021751",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014237-SC20161215021751.tar.gz",
+  :checksum "64ded1a17a7479beeaaf027a350f4736"}
+ {:id "LC80440282014253-SC20161215021827",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014253-SC20161215021827.tar.gz",
+  :checksum "fd90730c2f3278c45383d3b44fdce9c7"}
+ {:id "LC80440282014269-SC20161215021703",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014269-SC20161215021703.tar.gz",
+  :checksum "976b3e9f080b73f226a0d9dfe433de18"}
+ {:id "LC80440282014285-SC20161215021537",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014285-SC20161215021537.tar.gz",
+  :checksum "803e36952a1944751c523a2fbfdd49b8"}
+ {:id "LC80440282014301-SC20161215020914",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014301-SC20161215020914.tar.gz",
+  :checksum "292858ed686b637572f4aa8f204c04b9"}
+ {:id "LC80440282014317-SC20161215014839",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014317-SC20161215014839.tar.gz",
+  :checksum "9392d72e1a534f27f02b9d5894b63998"}
+ {:id "LC80440282014333-SC20161215020024",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014333-SC20161215020024.tar.gz",
+  :checksum "7b66ba0af4c5a1632803229f9d8c5017"}
+ {:id "LC80440282014349-SC20161215020212",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014349-SC20161215020212.tar.gz",
+  :checksum "421f3d8edd5750d6c113def18831e357"}
+ {:id "LC80440282014365-SC20161215020946",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282014365-SC20161215020946.tar.gz",
+  :checksum "2179c0dc2f197ad20db9abe8777dee90"}
+ {:id "LC80440282015016-SC20161215021054",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015016-SC20161215021054.tar.gz",
+  :checksum "a5fc7cbe3f76b42fc962697fe3d9c506"}
+ {:id "LC80440282015032-SC20161215014724",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015032-SC20161215014724.tar.gz",
+  :checksum "d4f454fca132ea5d41585a29fc0c3208"}
+ {:id "LC80440282015048-SC20161215021308",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015048-SC20161215021308.tar.gz",
+  :checksum "bddbd43f2b1bcc749b397fde778da5a9"}
+ {:id "LC80440282015064-SC20161215015600",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015064-SC20161215015600.tar.gz",
+  :checksum "dedac380c30e251a3cb2a6ce78e55168"}
+ {:id "LC80440282015080-SC20161215021144",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015080-SC20161215021144.tar.gz",
+  :checksum "640ee03809ce1354cdc3b83c061fc9a7"}
+ {:id "LC80440282015096-SC20161215020912",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015096-SC20161215020912.tar.gz",
+  :checksum "e3a4c9c9e83f2f68e3c8c30dc435f991"}
+ {:id "LC80440282015112-SC20161215021950",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015112-SC20161215021950.tar.gz",
+  :checksum "a6ee4fe259de550ef7a9988c8bb9c2c1"}
+ {:id "LC80440282015128-SC20161215021153",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015128-SC20161215021153.tar.gz",
+  :checksum "9e17f6c38a9a193ddba6cdf74f1daad1"}
+ {:id "LC80440282015144-SC20161215020535",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015144-SC20161215020535.tar.gz",
+  :checksum "4d027f52a18d042704e94b349c0276cf"}
+ {:id "LC80440282015160-SC20161215020527",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015160-SC20161215020527.tar.gz",
+  :checksum "aa6ea27565a7ceab967fc9d80fcbf39e"}
+ {:id "LC80440282015176-SC20161215020836",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015176-SC20161215020836.tar.gz",
+  :checksum "c78f9a5329e242071ab1fd27e9e57878"}
+ {:id "LC80440282015192-SC20161215014422",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015192-SC20161215014422.tar.gz",
+  :checksum "b1e63cf44d248543fb2bb6d240ffa190"}
+ {:id "LC80440282015208-SC20161215020550",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015208-SC20161215020550.tar.gz",
+  :checksum "e08c40aa3a5127186e3b629d569a44b5"}
+ {:id "LC80440282015224-SC20161215020750",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015224-SC20161215020750.tar.gz",
+  :checksum "acf047aaec00be63273c36e1c4dd9285"}
+ {:id "LC80440282015240-SC20161215013915",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015240-SC20161215013915.tar.gz",
+  :checksum "b512dffe4c82869bff87c56372783041"}
+ {:id "LC80440282015256-SC20161215015500",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015256-SC20161215015500.tar.gz",
+  :checksum "76703fddd5ddce60d5d12ccee21ab8cb"}
+ {:id "LC80440282015272-SC20161215020648",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015272-SC20161215020648.tar.gz",
+  :checksum "d1d0e1a8366205f282b7a27073d14623"}
+ {:id "LC80440282015288-SC20161215015055",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015288-SC20161215015055.tar.gz",
+  :checksum "f8073aa1f558491d24f53544cebc974d"}
+ {:id "LC80440282015304-SC20161215014137",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015304-SC20161215014137.tar.gz",
+  :checksum "4ec7c30b13dea6d97b192795632b8dee"}
+ {:id "LC80440282015320-SC20161215015811",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015320-SC20161215015811.tar.gz",
+  :checksum "aa216b5fcc78ede9de980a81695ac781"}
+ {:id "LC80440282015336-SC20161215020429",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015336-SC20161215020429.tar.gz",
+  :checksum "872b359cfa6a0f89222f89e99763a3e5"}
+ {:id "LC80440282015352-SC20161215020238",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80440282015352-SC20161215020238.tar.gz",
+  :checksum "291aa6ab618bc6fa5471082dffcd90be"}
+ {:id "LC80450262013113-SC20161215015749",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013113-SC20161215015749.tar.gz",
+  :checksum "c875de4eb1239cb4011fd33ae657e271"}
+ {:id "LC80450262013145-SC20161215020208",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013145-SC20161215020208.tar.gz",
+  :checksum "033391d70fe2e94d40e48a0d175b8fcb"}
+ {:id "LC80450262013161-SC20161215021101",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013161-SC20161215021101.tar.gz",
+  :checksum "d0a55da9f2aa0d24f2e1039488f99cc0"}
+ {:id "LC80450262013177-SC20161215014610",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013177-SC20161215014610.tar.gz",
+  :checksum "cb8261ed7431c08400792e6b89d5eb73"}
+ {:id "LC80450262013193-SC20161215015011",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013193-SC20161215015011.tar.gz",
+  :checksum "dddf7f734002060521f0566f0ad19ec1"}
+ {:id "LC80450262013209-SC20161215021533",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013209-SC20161215021533.tar.gz",
+  :checksum "dc83aa5161f87828f39679cb0490cd7f"}
+ {:id "LC80450262013225-SC20161215021827",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013225-SC20161215021827.tar.gz",
+  :checksum "0a97a46237e2a7012c8cb9757dd02599"}
+ {:id "LC80450262013241-SC20161215014623",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013241-SC20161215014623.tar.gz",
+  :checksum "83b2d4a517211e8ac5fa3035710aaf55"}
+ {:id "LC80450262013257-SC20161215020818",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013257-SC20161215020818.tar.gz",
+  :checksum "24afde4b274c08a99691ae337ffade69"}
+ {:id "LC80450262013273-SC20161215015554",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013273-SC20161215015554.tar.gz",
+  :checksum "0308c26367929f7ebca6b3cd5c900133"}
+ {:id "LC80450262013289-SC20161215023222",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013289-SC20161215023222.tar.gz",
+  :checksum "78d2e5df13581fd28a3d32aeeb125fbc"}
+ {:id "LC80450262013305-SC20161215015646",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013305-SC20161215015646.tar.gz",
+  :checksum "3fb782183ee2164533ad3f10d806bdbb"}
+ {:id "LC80450262013321-SC20161215015242",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013321-SC20161215015242.tar.gz",
+  :checksum "d6d4c4d509b550a3749b928af1ac7c8b"}
+ {:id "LC80450262013337-SC20161215020606",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013337-SC20161215020606.tar.gz",
+  :checksum "97f1be29fd07d24051f829bc424587be"}
+ {:id "LC80450262013353-SC20161215014009",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262013353-SC20161215014009.tar.gz",
+  :checksum "34111e64aad6e2ec3f2d6644a8165af0"}
+ {:id "LC80450262014004-SC20161215020831",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014004-SC20161215020831.tar.gz",
+  :checksum "e99f0f1191bce620a30f6239908a97e8"}
+ {:id "LC80450262014020-SC20161215020934",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014020-SC20161215020934.tar.gz",
+  :checksum "bfcac5017595eeff2e723ffc1de28ed2"}
+ {:id "LC80450262014036-SC20161215015635",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014036-SC20161215015635.tar.gz",
+  :checksum "10655dd0c3df1412acc38046a7026ff7"}
+ {:id "LC80450262014052-SC20161215014850",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014052-SC20161215014850.tar.gz",
+  :checksum "6df23996e76c2939626181e04c39ef89"}
+ {:id "LC80450262014068-SC20161215015635",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014068-SC20161215015635.tar.gz",
+  :checksum "3e2cdef4f94cfe47bb1b7d6153126cc7"}
+ {:id "LC80450262014084-SC20161215014010",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014084-SC20161215014010.tar.gz",
+  :checksum "c40dcc950e9d882b977b69d0ed0f35ef"}
+ {:id "LC80450262014100-SC20161215020043",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014100-SC20161215020043.tar.gz",
+  :checksum "2614fc7bf4f9f5cef414c22f3974e077"}
+ {:id "LC80450262014116-SC20161215015203",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014116-SC20161215015203.tar.gz",
+  :checksum "279da1251dcc7f66c28180f1c7a8e8f9"}
+ {:id "LC80450262014132-SC20161215021824",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014132-SC20161215021824.tar.gz",
+  :checksum "cbe3840c50d94b10aa1b8eff599a3021"}
+ {:id "LC80450262014148-SC20161215015024",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014148-SC20161215015024.tar.gz",
+  :checksum "30e039af5ca7d5f0ae6585396adc2055"}
+ {:id "LC80450262014164-SC20161215014132",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014164-SC20161215014132.tar.gz",
+  :checksum "7012791440c5a16287cae4c1cdfc1391"}
+ {:id "LC80450262014180-SC20161215014844",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014180-SC20161215014844.tar.gz",
+  :checksum "731e608751e69e2c4bcde685d2d32bdc"}
+ {:id "LC80450262014196-SC20161215021939",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014196-SC20161215021939.tar.gz",
+  :checksum "74cc4b10426f49c0effbf6f85a075787"}
+ {:id "LC80450262014212-SC20161215023254",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014212-SC20161215023254.tar.gz",
+  :checksum "a6554f1b59f35e4ca2fe275f87d9886b"}
+ {:id "LC80450262014228-SC20161215021701",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014228-SC20161215021701.tar.gz",
+  :checksum "f1469f2ff0033540295c73947c0d5427"}
+ {:id "LC80450262014244-SC20161215022714",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014244-SC20161215022714.tar.gz",
+  :checksum "83fd76aa8f460ea73942429a4f1b8bdc"}
+ {:id "LC80450262014260-SC20161215015319",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014260-SC20161215015319.tar.gz",
+  :checksum "40fff9ef1364d5518c23f4815057757b"}
+ {:id "LC80450262014276-SC20161215015612",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014276-SC20161215015612.tar.gz",
+  :checksum "3bf1be75259330e63c8fecdb816e4b49"}
+ {:id "LC80450262014292-SC20161215014911",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014292-SC20161215014911.tar.gz",
+  :checksum "f2e941b77ea8cac984fd9ea270cef635"}
+ {:id "LC80450262014308-SC20161215013900",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014308-SC20161215013900.tar.gz",
+  :checksum "a12ac8fa399f81df27bed595c4334e4c"}
+ {:id "LC80450262014324-SC20161215021341",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014324-SC20161215021341.tar.gz",
+  :checksum "602c12ea3830550fe7dfd9f3b115e950"}
+ {:id "LC80450262014340-SC20161215015124",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014340-SC20161215015124.tar.gz",
+  :checksum "41e4321643eabe6a3754a1107d569f22"}
+ {:id "LC80450262014356-SC20161215020041",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262014356-SC20161215020041.tar.gz",
+  :checksum "fceae8e2c8a403cdf6bcfcf952eb3993"}
+ {:id "LC80450262015007-SC20161215014956",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015007-SC20161215014956.tar.gz",
+  :checksum "19250e220909855042e2fe24c5e83b23"}
+ {:id "LC80450262015023-SC20161215014513",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015023-SC20161215014513.tar.gz",
+  :checksum "502d639de3262fb3e01846694b1b81c3"}
+ {:id "LC80450262015039-SC20161215020534",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015039-SC20161215020534.tar.gz",
+  :checksum "29150afbff90825a1e7dcce9c7b28994"}
+ {:id "LC80450262015055-SC20161215014812",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015055-SC20161215014812.tar.gz",
+  :checksum "27254ac458bb198a8501897b05c27010"}
+ {:id "LC80450262015071-SC20161215014913",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015071-SC20161215014913.tar.gz",
+  :checksum "305aca1aab6e6ed460423c944bfa91ab"}
+ {:id "LC80450262015087-SC20161215020524",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015087-SC20161215020524.tar.gz",
+  :checksum "ae1255a0907bc99cc282e49ae6fcecb8"}
+ {:id "LC80450262015103-SC20161215014951",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015103-SC20161215014951.tar.gz",
+  :checksum "0b09202ab9cddbe3da8f0a113f35e540"}
+ {:id "LC80450262015119-SC20161215021130",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015119-SC20161215021130.tar.gz",
+  :checksum "ef0d718b1da7653fcd70cb847574d32f"}
+ {:id "LC80450262015135-SC20161215020823",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015135-SC20161215020823.tar.gz",
+  :checksum "d015457076f47701bc929e7b676e121e"}
+ {:id "LC80450262015151-SC20161215013809",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015151-SC20161215013809.tar.gz",
+  :checksum "5dd1483f055c8cc3cdaf96ee41dcfc8c"}
+ {:id "LC80450262015167-SC20161215021618",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015167-SC20161215021618.tar.gz",
+  :checksum "b764bf98aceb43e08ae182a4c1947839"}
+ {:id "LC80450262015183-SC20161215021456",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015183-SC20161215021456.tar.gz",
+  :checksum "e3d20293db80d2e7c04c77df85ed512a"}
+ {:id "LC80450262015199-SC20161215022128",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015199-SC20161215022128.tar.gz",
+  :checksum "5807f258bd16b6cfacaa85e1322c3ce8"}
+ {:id "LC80450262015215-SC20161215014100",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015215-SC20161215014100.tar.gz",
+  :checksum "494052791e763a034e37d1b7e549538b"}
+ {:id "LC80450262015231-SC20161215020837",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015231-SC20161215020837.tar.gz",
+  :checksum "f6853e9c9163dfa39f3bd9339eeca403"}
+ {:id "LC80450262015247-SC20161215014611",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015247-SC20161215014611.tar.gz",
+  :checksum "3b4835ba9cc99baff6fee2147ecb5b3d"}
+ {:id "LC80450262015263-SC20161215021118",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015263-SC20161215021118.tar.gz",
+  :checksum "5e03ec1520366a054814302ee12192b3"}
+ {:id "LC80450262015279-SC20161215014321",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015279-SC20161215014321.tar.gz",
+  :checksum "7097926bf1b27eea7b0159485f553dc8"}
+ {:id "LC80450262015295-SC20161215021030",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015295-SC20161215021030.tar.gz",
+  :checksum "19043f674b8f8a90133837836421ee74"}
+ {:id "LC80450262015311-SC20161215013914",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015311-SC20161215013914.tar.gz",
+  :checksum "6d352d56b907228c9928917bd6c0ce2d"}
+ {:id "LC80450262015327-SC20161215013351",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015327-SC20161215013351.tar.gz",
+  :checksum "e5ec1d77b9658b7dc7ccad3b4ac49a63"}
+ {:id "LC80450262015343-SC20161215015300",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015343-SC20161215015300.tar.gz",
+  :checksum "9bb26d308b362e5da05b6de4b42b6ceb"}
+ {:id "LC80450262015359-SC20161215014900",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450262015359-SC20161215014900.tar.gz",
+  :checksum "b2e568b451eeb1acbea1d2ab097bd34b"}
+ {:id "LC80450272013113-SC20161215014640",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013113-SC20161215014640.tar.gz",
+  :checksum "25b21506f9203eb0f7ebb2bc9045be68"}
+ {:id "LC80450272013145-SC20161215015355",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013145-SC20161215015355.tar.gz",
+  :checksum "17186f36254e304fa27b96e181228e12"}
+ {:id "LC80450272013161-SC20161215020225",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013161-SC20161215020225.tar.gz",
+  :checksum "3b764dc9dd12b4352ff039283ca5873a"}
+ {:id "LC80450272013177-SC20161215013543",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013177-SC20161215013543.tar.gz",
+  :checksum "58b059aa3af27e2cb08ef473eb85d072"}
+ {:id "LC80450272013193-SC20161215013954",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013193-SC20161215013954.tar.gz",
+  :checksum "0b813fe5708f96a4a3315e93aee18bbe"}
+ {:id "LC80450272013209-SC20161215020108",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013209-SC20161215020108.tar.gz",
+  :checksum "be357984838f656deb2b64195aed5837"}
+ {:id "LC80450272013225-SC20161215020103",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013225-SC20161215020103.tar.gz",
+  :checksum "2a97aebf523e168afac440c5b2e64482"}
+ {:id "LC80450272013241-SC20161215014318",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013241-SC20161215014318.tar.gz",
+  :checksum "a20b9b133011ae4e107edb244f53a130"}
+ {:id "LC80450272013257-SC20161215020316",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013257-SC20161215020316.tar.gz",
+  :checksum "96bb705ed398750a55153f93bab8bff5"}
+ {:id "LC80450272013273-SC20161215015321",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013273-SC20161215015321.tar.gz",
+  :checksum "1eed9476dad8703cb144013bc1e0997b"}
+ {:id "LC80450272013289-SC20161215015946",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013289-SC20161215015946.tar.gz",
+  :checksum "4c86e16294e1b3faf350f4907bca3ef8"}
+ {:id "LC80450272013305-SC20161215020255",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013305-SC20161215020255.tar.gz",
+  :checksum "32ed8d7e492a18dc305a07078e50028a"}
+ {:id "LC80450272013321-SC20161215015853",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013321-SC20161215015853.tar.gz",
+  :checksum "4bdf393a7f8ff098a275c2decaa448e8"}
+ {:id "LC80450272013337-SC20161215015928",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013337-SC20161215015928.tar.gz",
+  :checksum "679041d2fcdaf73b0508ca264476a49a"}
+ {:id "LC80450272013353-SC20161215013543",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272013353-SC20161215013543.tar.gz",
+  :checksum "88efc6a1de7194883cc762cc18fcd71c"}
+ {:id "LC80450272014004-SC20161215015732",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014004-SC20161215015732.tar.gz",
+  :checksum "58ee77495e266426c587e5dfb47ca848"}
+ {:id "LC80450272014020-SC20161215021323",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014020-SC20161215021323.tar.gz",
+  :checksum "246bcbf208341e37d0ff4bf7bf630938"}
+ {:id "LC80450272014036-SC20161215015516",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014036-SC20161215015516.tar.gz",
+  :checksum "f7f1c0100c707cc291cfb16e5c5ab03e"}
+ {:id "LC80450272014052-SC20161215014951",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014052-SC20161215014951.tar.gz",
+  :checksum "16c8b1c927761d0681ac00e992373999"}
+ {:id "LC80450272014068-SC20161215020023",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014068-SC20161215020023.tar.gz",
+  :checksum "81e56c7522190d3a5d9e24c83ac1683a"}
+ {:id "LC80450272014084-SC20161215013317",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014084-SC20161215013317.tar.gz",
+  :checksum "2e0aafa4ebc8e26e61046ea5ad11572a"}
+ {:id "LC80450272014100-SC20161215014940",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014100-SC20161215014940.tar.gz",
+  :checksum "c37239fefe99eb1f7c5e29684381f34c"}
+ {:id "LC80450272014116-SC20161215015820",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014116-SC20161215015820.tar.gz",
+  :checksum "010d7abb8689abdbcebd254d97180f7b"}
+ {:id "LC80450272014132-SC20161215020617",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014132-SC20161215020617.tar.gz",
+  :checksum "3cfeb98896914cbd3e9503f6e51c69e6"}
+ {:id "LC80450272014148-SC20161215015453",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014148-SC20161215015453.tar.gz",
+  :checksum "f6107b7167d4c59b0978680944a9e5a7"}
+ {:id "LC80450272014164-SC20161215014012",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014164-SC20161215014012.tar.gz",
+  :checksum "097e0f53cb7b03a1a0bb3ed04d905c5e"}
+ {:id "LC80450272014180-SC20161215014928",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014180-SC20161215014928.tar.gz",
+  :checksum "3fd6a493208acd1297d321e818174a77"}
+ {:id "LC80450272014196-SC20161215021326",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014196-SC20161215021326.tar.gz",
+  :checksum "27e877f187afb671494a3dbf1b0dcc17"}
+ {:id "LC80450272014212-SC20161215014924",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014212-SC20161215014924.tar.gz",
+  :checksum "69cf5e8b38a8903932a76b40577b827b"}
+ {:id "LC80450272014228-SC20161215020039",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014228-SC20161215020039.tar.gz",
+  :checksum "cc20983379e70ba56fb7f740a4a7543a"}
+ {:id "LC80450272014244-SC20161215020019",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014244-SC20161215020019.tar.gz",
+  :checksum "3b204d89ea2c858eafdab55c4a6b0e71"}
+ {:id "LC80450272014260-SC20161215013428",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014260-SC20161215013428.tar.gz",
+  :checksum "46920ffe3587f354643f34726775dc6a"}
+ {:id "LC80450272014276-SC20161215014147",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014276-SC20161215014147.tar.gz",
+  :checksum "c10471d84ebd2c8ee2036f104495ef38"}
+ {:id "LC80450272014292-SC20161215014042",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014292-SC20161215014042.tar.gz",
+  :checksum "99203dff3a4191c29d0dacc566bc4148"}
+ {:id "LC80450272014308-SC20161215013004",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014308-SC20161215013004.tar.gz",
+  :checksum "d578be6acca35fa19244e6d53cba7de4"}
+ {:id "LC80450272014324-SC20161215020845",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014324-SC20161215020845.tar.gz",
+  :checksum "357b5a7439e4334337b566e835b6e6af"}
+ {:id "LC80450272014340-SC20161215014308",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014340-SC20161215014308.tar.gz",
+  :checksum "47d544f3430b53484e8bf54fde226d53"}
+ {:id "LC80450272014356-SC20161215020309",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272014356-SC20161215020309.tar.gz",
+  :checksum "2445ddd0adabac5a09d26ca2eaeaf075"}
+ {:id "LC80450272015007-SC20161215015459",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015007-SC20161215015459.tar.gz",
+  :checksum "840e7f1d3cc4e935786782c803202083"}
+ {:id "LC80450272015023-SC20161215013512",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015023-SC20161215013512.tar.gz",
+  :checksum "11dba78effa8014a3d4729b6986233d1"}
+ {:id "LC80450272015039-SC20161215013732",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015039-SC20161215013732.tar.gz",
+  :checksum "17ec5c642c152d2e102fbf5970789889"}
+ {:id "LC80450272015055-SC20161215015913",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015055-SC20161215015913.tar.gz",
+  :checksum "c259594809405df9add9b8bad0e188e4"}
+ {:id "LC80450272015071-SC20161215014153",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015071-SC20161215014153.tar.gz",
+  :checksum "b40ed320ce941bb2d0cf45a3e1948a32"}
+ {:id "LC80450272015087-SC20161215013725",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015087-SC20161215013725.tar.gz",
+  :checksum "5be04d69ed8c705c227ee9e525480b5a"}
+ {:id "LC80450272015103-SC20161215013933",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015103-SC20161215013933.tar.gz",
+  :checksum "4f16ba77f2f11cefffe683cd55b25167"}
+ {:id "LC80450272015119-SC20161215015809",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015119-SC20161215015809.tar.gz",
+  :checksum "8eb0e643396c4deea8ff27d7e39c5591"}
+ {:id "LC80450272015135-SC20161215015009",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015135-SC20161215015009.tar.gz",
+  :checksum "8f3e738fa851d54f8a4d66ba37d72f4d"}
+ {:id "LC80450272015151-SC20161215013130",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015151-SC20161215013130.tar.gz",
+  :checksum "f6a342cd4d220741bf5c5b222903e24e"}
+ {:id "LC80450272015167-SC20161215015942",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015167-SC20161215015942.tar.gz",
+  :checksum "9d147f0483e3c8c95ad08a7dac0a2149"}
+ {:id "LC80450272015183-SC20161215020018",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015183-SC20161215020018.tar.gz",
+  :checksum "d39ed8a8abbcdaf600872b0ec66d11dc"}
+ {:id "LC80450272015199-SC20161215015603",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015199-SC20161215015603.tar.gz",
+  :checksum "de534786f022b96d02aa0be5ec404302"}
+ {:id "LC80450272015215-SC20161215013047",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015215-SC20161215013047.tar.gz",
+  :checksum "f590aafd79d58e2ee1d0b26b96509af3"}
+ {:id "LC80450272015231-SC20161215022207",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015231-SC20161215022207.tar.gz",
+  :checksum "e79e468ba6661b5b4501e78f086b4b87"}
+ {:id "LC80450272015247-SC20161215013847",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015247-SC20161215013847.tar.gz",
+  :checksum "63d05d0ed9ee63903cb21d93f5fce9a8"}
+ {:id "LC80450272015263-SC20161215015426",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015263-SC20161215015426.tar.gz",
+  :checksum "f3fdaa84ca7a7c6a2f38c8dd533bacfa"}
+ {:id "LC80450272015279-SC20161215012835",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015279-SC20161215012835.tar.gz",
+  :checksum "b0f2b8184362fa6f42330f969bde74d6"}
+ {:id "LC80450272015295-SC20161215015941",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015295-SC20161215015941.tar.gz",
+  :checksum "ef11d83328f4414abc6b0d7e55e87e99"}
+ {:id "LC80450272015311-SC20161215015113",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015311-SC20161215015113.tar.gz",
+  :checksum "2bca69ba4163b69048a08f75be1c4b15"}
+ {:id "LC80450272015327-SC20161215015420",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015327-SC20161215015420.tar.gz",
+  :checksum "14f7c530708e39b93bc850607877147a"}
+ {:id "LC80450272015343-SC20161215014722",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015343-SC20161215014722.tar.gz",
+  :checksum "9501f17caa1bd8a63fcdd1f041d3355f"}
+ {:id "LC80450272015359-SC20161215015500",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450272015359-SC20161215015500.tar.gz",
+  :checksum "0eb0890800376b94483483a5c2076e16"}
+ {:id "LC80450282013113-SC20161215014720",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013113-SC20161215014720.tar.gz",
+  :checksum "f75a5fe989c100130f96e4f4c3ac936f"}
+ {:id "LC80450282013177-SC20161215012640",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013177-SC20161215012640.tar.gz",
+  :checksum "a6015602c5ec5784988f607c7566f916"}
+ {:id "LC80450282013193-SC20161215015028",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013193-SC20161215015028.tar.gz",
+  :checksum "955046ad952cbb2ff361fea18223e7cd"}
+ {:id "LC80450282013209-SC20161215020702",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013209-SC20161215020702.tar.gz",
+  :checksum "7d9303055da74a834a38f57e66359f69"}
+ {:id "LC80450282013225-SC20161215021154",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013225-SC20161215021154.tar.gz",
+  :checksum "a51913bf7af8cb793f5748e7d389e952"}
+ {:id "LC80450282013241-SC20161215013959",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013241-SC20161215013959.tar.gz",
+  :checksum "6e1ee00cb03ae7b63f34ceff18b1ff5a"}
+ {:id "LC80450282013257-SC20161215020653",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013257-SC20161215020653.tar.gz",
+  :checksum "81d1cb9007f3ec9b232d23c78eaf48b4"}
+ {:id "LC80450282013273-SC20161215022900",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013273-SC20161215022900.tar.gz",
+  :checksum "cc190366cb42f376e30b60d08ee2ce78"}
+ {:id "LC80450282013289-SC20161215020537",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013289-SC20161215020537.tar.gz",
+  :checksum "276f7bbb331ce1d9ee395aecc14a2c8d"}
+ {:id "LC80450282013305-SC20161215020610",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013305-SC20161215020610.tar.gz",
+  :checksum "736928421c6a21ef30a7ac5d9929af0b"}
+ {:id "LC80450282013321-SC20161215015050",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013321-SC20161215015050.tar.gz",
+  :checksum "a12766600226f74c3dd09c51a27aa140"}
+ {:id "LC80450282013337-SC20161215015553",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013337-SC20161215015553.tar.gz",
+  :checksum "f8f9397683c21901cd7d25e4cac540c5"}
+ {:id "LC80450282013353-SC20161215014806",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282013353-SC20161215014806.tar.gz",
+  :checksum "174e969b5b44fff9485159cedcd45457"}
+ {:id "LC80450282014004-SC20161215015117",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014004-SC20161215015117.tar.gz",
+  :checksum "b75a769de5a33cc4e531932bea326349"}
+ {:id "LC80450282014020-SC20161215015630",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014020-SC20161215015630.tar.gz",
+  :checksum "c196254827ba9e36756e6d4c3ba4e54f"}
+ {:id "LC80450282014036-SC20161215015201",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014036-SC20161215015201.tar.gz",
+  :checksum "bca5c03f6f56e288642474200691e06a"}
+ {:id "LC80450282014052-SC20161215015605",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014052-SC20161215015605.tar.gz",
+  :checksum "a3ad863158df1f0042e3a65579f4d3f2"}
+ {:id "LC80450282014068-SC20161215013302",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014068-SC20161215013302.tar.gz",
+  :checksum "8cafab53b62265e8ffb75c8d9ffa96d7"}
+ {:id "LC80450282014084-SC20161215012311",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014084-SC20161215012311.tar.gz",
+  :checksum "cacc6459d7eb6359e7a956f4acb127d7"}
+ {:id "LC80450282014100-SC20161215015805",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014100-SC20161215015805.tar.gz",
+  :checksum "bb36dbbb45a64bb545a447ea555f7947"}
+ {:id "LC80450282014116-SC20161215015256",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014116-SC20161215015256.tar.gz",
+  :checksum "4ba9276bd24799a59531c22b0338bf11"}
+ {:id "LC80450282014132-SC20161215021118",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014132-SC20161215021118.tar.gz",
+  :checksum "c448e87bed1325792fe3c9c84f2770d6"}
+ {:id "LC80450282014148-SC20161215014551",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014148-SC20161215014551.tar.gz",
+  :checksum "6c9701863c1ec19938da088bdef36c1f"}
+ {:id "LC80450282014164-SC20161215012301",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014164-SC20161215012301.tar.gz",
+  :checksum "4d4a0ee78a7815c3dc795b385d4b6ac5"}
+ {:id "LC80450282014180-SC20161215014926",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014180-SC20161215014926.tar.gz",
+  :checksum "c21711b29149205f71950576a9c8a78f"}
+ {:id "LC80450282014196-SC20161215020059",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014196-SC20161215020059.tar.gz",
+  :checksum "9175489e5e0ec569688e9ad273a4d75d"}
+ {:id "LC80450282014212-SC20161215014607",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014212-SC20161215014607.tar.gz",
+  :checksum "2afd344e5a8268c997eebd7ec03c74d2"}
+ {:id "LC80450282014228-SC20161215020301",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014228-SC20161215020301.tar.gz",
+  :checksum "78fd5b79545982a06c487305d8bbfc76"}
+ {:id "LC80450282014244-SC20161215021051",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014244-SC20161215021051.tar.gz",
+  :checksum "ecbd1e76611e5ef3062bf4e62b5d5519"}
+ {:id "LC80450282014260-SC20161215012442",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014260-SC20161215012442.tar.gz",
+  :checksum "df47507796db897d29903610fac5c24c"}
+ {:id "LC80450282014276-SC20161215020440",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014276-SC20161215020440.tar.gz",
+  :checksum "a2673ca33461bbcdd4dd2517fb45decf"}
+ {:id "LC80450282014292-SC20161215014715",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014292-SC20161215014715.tar.gz",
+  :checksum "87719f4edf427ba8fbbc86719e2ed150"}
+ {:id "LC80450282014308-SC20161215012432",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014308-SC20161215012432.tar.gz",
+  :checksum "5e7140e22485cf1060534c497a3aca4f"}
+ {:id "LC80450282014324-SC20161215014156",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014324-SC20161215014156.tar.gz",
+  :checksum "7642209f5490e568ed28f017d825f8a3"}
+ {:id "LC80450282014340-SC20161215015016",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014340-SC20161215015016.tar.gz",
+  :checksum "46f2865c60b1d30b406960163d0c36fe"}
+ {:id "LC80450282014356-SC20161215020003",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282014356-SC20161215020003.tar.gz",
+  :checksum "eb8344fdfc1f0223e7fd8abb29a68473"}
+ {:id "LC80450282015007-SC20161215020644",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015007-SC20161215020644.tar.gz",
+  :checksum "95648059d6d49256135436c88b989e82"}
+ {:id "LC80450282015023-SC20161215012809",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015023-SC20161215012809.tar.gz",
+  :checksum "e9c112c882a99fefa97e740c026cae54"}
+ {:id "LC80450282015039-SC20161215012336",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015039-SC20161215012336.tar.gz",
+  :checksum "5abb895012caf38eca21878feda224f3"}
+ {:id "LC80450282015055-SC20161215015908",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015055-SC20161215015908.tar.gz",
+  :checksum "12e4e24c85cc26823d3acd92b4988269"}
+ {:id "LC80450282015071-SC20161215020340",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015071-SC20161215020340.tar.gz",
+  :checksum "7d3097e0b1df9e0812b4faf34564b2f7"}
+ {:id "LC80450282015087-SC20161215013113",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015087-SC20161215013113.tar.gz",
+  :checksum "d9ccf7961f295dbc3cc7ef1b2a5f01b3"}
+ {:id "LC80450282015103-SC20161215013450",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015103-SC20161215013450.tar.gz",
+  :checksum "58ed64ac68b62c9782ec151341b4f6ad"}
+ {:id "LC80450282015119-SC20161215014444",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015119-SC20161215014444.tar.gz",
+  :checksum "204924e1b8f9264173c6f36a960f8071"}
+ {:id "LC80450282015135-SC20161215013707",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015135-SC20161215013707.tar.gz",
+  :checksum "7f8ba7bcf6535b86904deaae5e5786cf"}
+ {:id "LC80450282015151-SC20161215013014",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015151-SC20161215013014.tar.gz",
+  :checksum "41afdcca53dfa9b7e833e25e7f7d93bf"}
+ {:id "LC80450282015167-SC20161215014823",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015167-SC20161215014823.tar.gz",
+  :checksum "37b4d078cce35d99f7d9cc934d7bcd28"}
+ {:id "LC80450282015183-SC20161215015917",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015183-SC20161215015917.tar.gz",
+  :checksum "f119be5ab22b83e2f55588abda9356b1"}
+ {:id "LC80450282015199-SC20161215015524",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015199-SC20161215015524.tar.gz",
+  :checksum "1c245d9a408b8e491d1cae9fd5e48a44"}
+ {:id "LC80450282015215-SC20161215012316",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015215-SC20161215012316.tar.gz",
+  :checksum "7bb5f7f2c44f246c7d98cea6ba7b6689"}
+ {:id "LC80450282015231-SC20161215020518",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015231-SC20161215020518.tar.gz",
+  :checksum "caaf581dfd1308e45dd994276ae10c43"}
+ {:id "LC80450282015247-SC20161215013554",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015247-SC20161215013554.tar.gz",
+  :checksum "e353ee84392d3a6ab57c6556bf3d8ebb"}
+ {:id "LC80450282015263-SC20161215015350",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015263-SC20161215015350.tar.gz",
+  :checksum "0ffce8fa22e511594ca7d9c73d34b1e3"}
+ {:id "LC80450282015279-SC20161215012356",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015279-SC20161215012356.tar.gz",
+  :checksum "3719e0acfafab924907f9c2038d669b3"}
+ {:id "LC80450282015295-SC20161215015555",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015295-SC20161215015555.tar.gz",
+  :checksum "d207b5a33a51537b3bf0ace6e26bd1c3"}
+ {:id "LC80450282015311-SC20161215013838",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015311-SC20161215013838.tar.gz",
+  :checksum "bdaae41ec4057efd44c46bdf50c2d2d8"}
+ {:id "LC80450282015327-SC20161215020334",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015327-SC20161215020334.tar.gz",
+  :checksum "22bed55300c68be05658c3f0d74ca03f"}
+ {:id "LC80450282015343-SC20161215013335",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015343-SC20161215013335.tar.gz",
+  :checksum "081548f3794d90f4d5b50b2ad205dbeb"}
+ {:id "LC80450282015359-SC20161215014444",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80450282015359-SC20161215014444.tar.gz",
+  :checksum "81b08b3ed597c061136f23caaea3fe0f"}
+ {:id "LC80460262013104-SC20161215013430",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013104-SC20161215013430.tar.gz",
+  :checksum "9612df8ba3b5b52b9a0ad72567df046e"}
+ {:id "LC80460262013120-SC20161215014415",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013120-SC20161215014415.tar.gz",
+  :checksum "9e357c649ed53773cc2f0d3df6fa5cb8"}
+ {:id "LC80460262013136-SC20161215015233",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013136-SC20161215015233.tar.gz",
+  :checksum "9aa8af96e035997eaa9410e71a30eb74"}
+ {:id "LC80460262013152-SC20161215013919",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013152-SC20161215013919.tar.gz",
+  :checksum "a7c3ea2df79bf9c117b8372c954a66a6"}
+ {:id "LC80460262013168-SC20161215015312",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013168-SC20161215015312.tar.gz",
+  :checksum "1b6ebd5186c4dcace49078053cff75b7"}
+ {:id "LC80460262013184-SC20161215020323",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013184-SC20161215020323.tar.gz",
+  :checksum "f70a9a9f000ff6fb85b390f30f792ff4"}
+ {:id "LC80460262013200-SC20161215022631",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013200-SC20161215022631.tar.gz",
+  :checksum "f47bb831a60f720929089dcc40100469"}
+ {:id "LC80460262013216-SC20161215022448",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013216-SC20161215022448.tar.gz",
+  :checksum "a41e62d7cf24fa395207e15b18b25950"}
+ {:id "LC80460262013232-SC20161215021518",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013232-SC20161215021518.tar.gz",
+  :checksum "b8bde73e7d22588b0378c90f7d5a2f8e"}
+ {:id "LC80460262013248-SC20161215012451",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013248-SC20161215012451.tar.gz",
+  :checksum "66f8526815e0aea55e1d18046e642dcb"}
+ {:id "LC80460262013264-SC20161215014650",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013264-SC20161215014650.tar.gz",
+  :checksum "7d1f9ebf9a9c0f4efbff1dcd0581a676"}
+ {:id "LC80460262013280-SC20161215013504",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013280-SC20161215013504.tar.gz",
+  :checksum "970e044fffbff73e545c97de2576fceb"}
+ {:id "LC80460262013296-SC20161215015807",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013296-SC20161215015807.tar.gz",
+  :checksum "caf03e65f2433879ba8a3608d8b24eb9"}
+ {:id "LC80460262013312-SC20161215013714",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013312-SC20161215013714.tar.gz",
+  :checksum "f4d5ff56de132d1b9c088c852ac2d734"}
+ {:id "LC80460262013328-SC20161215014903",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013328-SC20161215014903.tar.gz",
+  :checksum "1efb2d1a7852195c9348d972ec5cb7e9"}
+ {:id "LC80460262013344-SC20161215013143",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013344-SC20161215013143.tar.gz",
+  :checksum "2fe8052d99a43c6ac75cb75238e0c3cb"}
+ {:id "LC80460262013360-SC20161215014449",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262013360-SC20161215014449.tar.gz",
+  :checksum "9e2a21c5cc3dd4994095122d15eab7d3"}
+ {:id "LC80460262014011-SC20161215011817",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014011-SC20161215011817.tar.gz",
+  :checksum "05c15194564bb87102af6f91914bb1a8"}
+ {:id "LC80460262014027-SC20161215011834",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014027-SC20161215011834.tar.gz",
+  :checksum "302f430db4d829217fdd60201bfb7083"}
+ {:id "LC80460262014043-SC20161215014607",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014043-SC20161215014607.tar.gz",
+  :checksum "c7a2c087f10fab44ce93cbc52cc40ef2"}
+ {:id "LC80460262014059-SC20161215015707",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014059-SC20161215015707.tar.gz",
+  :checksum "ac58496361cc02cf9a19ab4949778d66"}
+ {:id "LC80460262014075-SC20161215011710",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014075-SC20161215011710.tar.gz",
+  :checksum "4c33d3ef44d5089efef470f602a0855a"}
+ {:id "LC80460262014091-SC20161215014758",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014091-SC20161215014758.tar.gz",
+  :checksum "f1870164f2d7c808a60ce855c6b93881"}
+ {:id "LC80460262014107-SC20161215012822",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014107-SC20161215012822.tar.gz",
+  :checksum "32ec4771f0aeb2ebbf38ec8a811a2d45"}
+ {:id "LC80460262014123-SC20161215013323",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014123-SC20161215013323.tar.gz",
+  :checksum "7573966f4da26549ebe8dc4d6d759686"}
+ {:id "LC80460262014139-SC20161215013913",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014139-SC20161215013913.tar.gz",
+  :checksum "7d3ecc511b402fbbf39c77631ad3af86"}
+ {:id "LC80460262014155-SC20161215014814",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014155-SC20161215014814.tar.gz",
+  :checksum "ffc0412e3c71c65c7fedc4fa53169325"}
+ {:id "LC80460262014171-SC20161215011940",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014171-SC20161215011940.tar.gz",
+  :checksum "835bd96be596a5f120bce8b48d4add0d"}
+ {:id "LC80460262014187-SC20161215014410",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014187-SC20161215014410.tar.gz",
+  :checksum "f599a158fd259510022972360625f211"}
+ {:id "LC80460262014203-SC20161215012443",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014203-SC20161215012443.tar.gz",
+  :checksum "74fbe1c906c8fb86b6d390cafa9d8a84"}
+ {:id "LC80460262014219-SC20161215022307",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014219-SC20161215022307.tar.gz",
+  :checksum "967115450d7aad552f4a72c98f04b0c9"}
+ {:id "LC80460262014235-SC20161215022540",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014235-SC20161215022540.tar.gz",
+  :checksum "a56734b38ad900d6a1f1ccc4a92650c7"}
+ {:id "LC80460262014251-SC20161215015221",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014251-SC20161215015221.tar.gz",
+  :checksum "5c9d5e985234764a0dce1489682a37cd"}
+ {:id "LC80460262014267-SC20161215011832",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014267-SC20161215011832.tar.gz",
+  :checksum "9a73e4006429c77f49989575ad69f890"}
+ {:id "LC80460262014283-SC20161215014610",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014283-SC20161215014610.tar.gz",
+  :checksum "3aff6df44bc9f13360c2d668f165004c"}
+ {:id "LC80460262014299-SC20161215013932",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014299-SC20161215013932.tar.gz",
+  :checksum "970c02ef532aa186e8ee9790f040ade5"}
+ {:id "LC80460262014315-SC20161215014141",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014315-SC20161215014141.tar.gz",
+  :checksum "b40228d0443b4dafeb62af7b972c9dba"}
+ {:id "LC80460262014331-SC20161215013107",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014331-SC20161215013107.tar.gz",
+  :checksum "0542ac5240a17080228d1e9aaaa501f7"}
+ {:id "LC80460262014347-SC20161215015137",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014347-SC20161215015137.tar.gz",
+  :checksum "5339147c5b4d88039f0dc02fbb26c59a"}
+ {:id "LC80460262014363-SC20161215013537",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262014363-SC20161215013537.tar.gz",
+  :checksum "734d16ba7505b81e6ce569ceb1ea3574"}
+ {:id "LC80460262015014-SC20161215014112",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015014-SC20161215014112.tar.gz",
+  :checksum "dec8647c5a587a94e74acb07363a63f1"}
+ {:id "LC80460262015030-SC20161215021145",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015030-SC20161215021145.tar.gz",
+  :checksum "59d613e2c409543a538c62452d55c6ae"}
+ {:id "LC80460262015046-SC20161215015748",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015046-SC20161215015748.tar.gz",
+  :checksum "50729e01b6b0e79194c61ba3d76828aa"}
+ {:id "LC80460262015078-SC20161215011600",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015078-SC20161215011600.tar.gz",
+  :checksum "ae2ad43c850ee4f7de6f1f6de6713f3c"}
+ {:id "LC80460262015094-SC20161215014441",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015094-SC20161215014441.tar.gz",
+  :checksum "6c719b39e46748e40e8f0517a8639cf9"}
+ {:id "LC80460262015110-SC20161215021125",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015110-SC20161215021125.tar.gz",
+  :checksum "afa03eb19d0759ffb686a7dfe2dee402"}
+ {:id "LC80460262015126-SC20161215013933",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015126-SC20161215013933.tar.gz",
+  :checksum "3df3640b4994bf3bba32861d1aa66a28"}
+ {:id "LC80460262015142-SC20161215014336",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015142-SC20161215014336.tar.gz",
+  :checksum "4162b9b2f162fdaccb0db5ad82915550"}
+ {:id "LC80460262015158-SC20161215021342",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015158-SC20161215021342.tar.gz",
+  :checksum "578b03acace58a9876bf8445a03d1972"}
+ {:id "LC80460262015174-SC20161215020756",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015174-SC20161215020756.tar.gz",
+  :checksum "11c543c7753c0e8a963e814645b25715"}
+ {:id "LC80460262015190-SC20161215021545",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015190-SC20161215021545.tar.gz",
+  :checksum "9a133834a3052e9549c93e1c6b155a5d"}
+ {:id "LC80460262015206-SC20161215013640",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015206-SC20161215013640.tar.gz",
+  :checksum "9fb20f3a50918b3416eeaf1561bf10a6"}
+ {:id "LC80460262015222-SC20161215020146",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015222-SC20161215020146.tar.gz",
+  :checksum "4d1c266ea1aee950d83da8f24fdaa3b5"}
+ {:id "LC80460262015238-SC20161215013004",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015238-SC20161215013004.tar.gz",
+  :checksum "0f8d2bf5de8bf0ce202ca4c6c8499bfc"}
+ {:id "LC80460262015254-SC20161215021533",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015254-SC20161215021533.tar.gz",
+  :checksum "b272cf0f012f311b33b44b8441bac796"}
+ {:id "LC80460262015270-SC20161215020255",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015270-SC20161215020255.tar.gz",
+  :checksum "85e17a0e619c46cd46c1f3e3b42d00be"}
+ {:id "LC80460262015286-SC20161215015040",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015286-SC20161215015040.tar.gz",
+  :checksum "3a9378f30f888f88f748ac17ecd52cca"}
+ {:id "LC80460262015302-SC20161215012236",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015302-SC20161215012236.tar.gz",
+  :checksum "b3c4588cbf5b7c94783eff27dbd3546a"}
+ {:id "LC80460262015318-SC20161215011048",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015318-SC20161215011048.tar.gz",
+  :checksum "f92ebc2762a071c63ab43a9cc5bcc13a"}
+ {:id "LC80460262015334-SC20161215013413",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015334-SC20161215013413.tar.gz",
+  :checksum "57bd266684c788f3e592eb6488d63328"}
+ {:id "LC80460262015350-SC20161215011134",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460262015350-SC20161215011134.tar.gz",
+  :checksum "cf4d74aa0862ad1ca6e0d6b451b92af9"}
+ {:id "LC80460272013104-SC20161215011412",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013104-SC20161215011412.tar.gz",
+  :checksum "a26add6afecc26e451996d8125bae646"}
+ {:id "LC80460272013120-SC20161215011324",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013120-SC20161215011324.tar.gz",
+  :checksum "a29f66c50fb1e887028216f60a66686e"}
+ {:id "LC80460272013136-SC20161215013124",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013136-SC20161215013124.tar.gz",
+  :checksum "f0748f49c16e71912f19be1c5cd4d28b"}
+ {:id "LC80460272013152-SC20161215012101",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013152-SC20161215012101.tar.gz",
+  :checksum "0a40faf32e9e001bacc061fd784a77ee"}
+ {:id "LC80460272013168-SC20161215012555",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013168-SC20161215012555.tar.gz",
+  :checksum "9cb47ea4ee1d71d93d9f4e0f2dd54439"}
+ {:id "LC80460272013184-SC20161215013823",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013184-SC20161215013823.tar.gz",
+  :checksum "1904eab30d816f1ea202f7aff1ce4190"}
+ {:id "LC80460272013200-SC20161215013445",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013200-SC20161215013445.tar.gz",
+  :checksum "e340ae2d60da0438806c87ae2dce6001"}
+ {:id "LC80460272013216-SC20161215015229",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013216-SC20161215015229.tar.gz",
+  :checksum "affb3e9e33bf9da42271b1a7ef59e28b"}
+ {:id "LC80460272013232-SC20161215013024",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013232-SC20161215013024.tar.gz",
+  :checksum "b1d305a2bac531827b586775e4624259"}
+ {:id "LC80460272013248-SC20161215011621",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013248-SC20161215011621.tar.gz",
+  :checksum "7c1bad8e892c4c2b080d193a9ec86004"}
+ {:id "LC80460272013264-SC20161215012629",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013264-SC20161215012629.tar.gz",
+  :checksum "8b03240b807584bc134822f868de0085"}
+ {:id "LC80460272013280-SC20161215011645",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013280-SC20161215011645.tar.gz",
+  :checksum "900bd65b27da6d56bc2dbf49bbb3982e"}
+ {:id "LC80460272013296-SC20161215012327",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013296-SC20161215012327.tar.gz",
+  :checksum "06176efba44c10cff7ad9899d697ebe7"}
+ {:id "LC80460272013312-SC20161215011500",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013312-SC20161215011500.tar.gz",
+  :checksum "3d932284d0e99e52e4956e83178ab1e5"}
+ {:id "LC80460272013328-SC20161215013217",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013328-SC20161215013217.tar.gz",
+  :checksum "3fbd5a4a193e33a066e51a44496abd20"}
+ {:id "LC80460272013344-SC20161215005732",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013344-SC20161215005732.tar.gz",
+  :checksum "ee23e700cf5d96e22812ccfa4b316abf"}
+ {:id "LC80460272013360-SC20161215011551",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272013360-SC20161215011551.tar.gz",
+  :checksum "5afdea330206e95722ddf192e604e7a8"}
+ {:id "LC80460272014011-SC20161215005620",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014011-SC20161215005620.tar.gz",
+  :checksum "7e58a84173c8f35cdc959c124d5b7b0e"}
+ {:id "LC80460272014027-SC20161215005243",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014027-SC20161215005243.tar.gz",
+  :checksum "926ad887929b2033007165d422de4ff9"}
+ {:id "LC80460272014043-SC20161215012026",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014043-SC20161215012026.tar.gz",
+  :checksum "b2a2583746d5dea6f5b08d2e41889e77"}
+ {:id "LC80460272014059-SC20161215013139",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014059-SC20161215013139.tar.gz",
+  :checksum "b55afca42aaf4037d1c95b60f4bcb8db"}
+ {:id "LC80460272014075-SC20161215005244",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014075-SC20161215005244.tar.gz",
+  :checksum "1be88e4b25f764018690325b188b9f96"}
+ {:id "LC80460272014091-SC20161215010851",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014091-SC20161215010851.tar.gz",
+  :checksum "51dff84e71203c0845887ee3272ca2f8"}
+ {:id "LC80460272014107-SC20161215005751",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014107-SC20161215005751.tar.gz",
+  :checksum "439e10d2fc11af322587e7a5b8b94d62"}
+ {:id "LC80460272014123-SC20161215011115",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014123-SC20161215011115.tar.gz",
+  :checksum "4a8332767236573dea8573feae7dd8b4"}
+ {:id "LC80460272014139-SC20161215012509",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014139-SC20161215012509.tar.gz",
+  :checksum "575a8037afe75ba16039a04c4304634d"}
+ {:id "LC80460272014155-SC20161215011549",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014155-SC20161215011549.tar.gz",
+  :checksum "bdf6c343cfc233f646fc1ca0d2f39dc6"}
+ {:id "LC80460272014171-SC20161215010512",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014171-SC20161215010512.tar.gz",
+  :checksum "615624b85b4f652516d153a8009c916f"}
+ {:id "LC80460272014187-SC20161215013127",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014187-SC20161215013127.tar.gz",
+  :checksum "3bf9e651d7ece0d95852b7dc63a39a75"}
+ {:id "LC80460272014203-SC20161215010236",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014203-SC20161215010236.tar.gz",
+  :checksum "d83b46eb29c5f5447e6820fea54dd4da"}
+ {:id "LC80460272014219-SC20161215013411",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014219-SC20161215013411.tar.gz",
+  :checksum "b1bbc0d396a712e860d3c01ceaac4792"}
+ {:id "LC80460272014235-SC20161215012843",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014235-SC20161215012843.tar.gz",
+  :checksum "882c7b4e024707eb60db8d7630a880e2"}
+ {:id "LC80460272014251-SC20161215011538",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014251-SC20161215011538.tar.gz",
+  :checksum "f77dd319a0f576a53b7c9e72de768975"}
+ {:id "LC80460272014267-SC20161215005151",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014267-SC20161215005151.tar.gz",
+  :checksum "a3a2fce35568f82c35be66a565f9c976"}
+ {:id "LC80460272014283-SC20161215011329",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014283-SC20161215011329.tar.gz",
+  :checksum "3f504ef277d40b91d9e5f2c87f98b4cc"}
+ {:id "LC80460272014299-SC20161215011756",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014299-SC20161215011756.tar.gz",
+  :checksum "e04900e2d838b89e73262c46303b3af2"}
+ {:id "LC80460272014315-SC20161215013659",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014315-SC20161215013659.tar.gz",
+  :checksum "8abd4ca2029b4cb4f75566ad4e312057"}
+ {:id "LC80460272014331-SC20161215012328",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014331-SC20161215012328.tar.gz",
+  :checksum "6e89a739e19e84b4dc9c26f2dc078dea"}
+ {:id "LC80460272014347-SC20161215013352",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014347-SC20161215013352.tar.gz",
+  :checksum "845d94e1b933539ee1c5929dcffc3c07"}
+ {:id "LC80460272014363-SC20161215011345",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272014363-SC20161215011345.tar.gz",
+  :checksum "d94d7c3ecedf09fe380a07396986ac93"}
+ {:id "LC80460272015014-SC20161215012145",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015014-SC20161215012145.tar.gz",
+  :checksum "15cba684b19913393bc3c1a01a8bb80b"}
+ {:id "LC80460272015030-SC20161215013513",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015030-SC20161215013513.tar.gz",
+  :checksum "80a9a95e3ad8cbdb6aee3aeb727b3c32"}
+ {:id "LC80460272015046-SC20161215012138",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015046-SC20161215012138.tar.gz",
+  :checksum "03dc04055417d73ff70db5b32960fdaa"}
+ {:id "LC80460272015078-SC20161215005217",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015078-SC20161215005217.tar.gz",
+  :checksum "24f8e8587f69a126485c13ae269e1b85"}
+ {:id "LC80460272015094-SC20161215012658",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015094-SC20161215012658.tar.gz",
+  :checksum "5a0b557abd35adc3cfaac8dd334b7617"}
+ {:id "LC80460272015110-SC20161215012247",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015110-SC20161215012247.tar.gz",
+  :checksum "62b8eb239866bd1d1f82a0f5180ec064"}
+ {:id "LC80460272015126-SC20161215011828",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015126-SC20161215011828.tar.gz",
+  :checksum "2b4fcecbf5c34bf4af50a5efa273e770"}
+ {:id "LC80460272015142-SC20161215010247",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015142-SC20161215010247.tar.gz",
+  :checksum "acc25ccb2ffc25f1cf19a505afdb9546"}
+ {:id "LC80460272015158-SC20161215011603",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015158-SC20161215011603.tar.gz",
+  :checksum "6937928a91706efb6c1fffc5d06aea89"}
+ {:id "LC80460272015174-SC20161215011502",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015174-SC20161215011502.tar.gz",
+  :checksum "69532e026a632211b8f64809b26fa9ab"}
+ {:id "LC80460272015190-SC20161215014126",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015190-SC20161215014126.tar.gz",
+  :checksum "c49033317af0c6b62243001ddd018589"}
+ {:id "LC80460272015206-SC20161215010052",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015206-SC20161215010052.tar.gz",
+  :checksum "de91ba3118ddbf06d4932c395a831cc1"}
+ {:id "LC80460272015222-SC20161215012016",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015222-SC20161215012016.tar.gz",
+  :checksum "702235edb04cd4076f24485147101de8"}
+ {:id "LC80460272015238-SC20161215013008",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015238-SC20161215013008.tar.gz",
+  :checksum "c947cdcbf12ccbc89caad456f674a4e1"}
+ {:id "LC80460272015254-SC20161215012614",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015254-SC20161215012614.tar.gz",
+  :checksum "bc69048348eda126d6b0189e6adc6a97"}
+ {:id "LC80460272015270-SC20161215011547",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015270-SC20161215011547.tar.gz",
+  :checksum "509e29106233edb214e0af48f0fa9513"}
+ {:id "LC80460272015286-SC20161215011611",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015286-SC20161215011611.tar.gz",
+  :checksum "2e6104aa9edb22739d192fef70902748"}
+ {:id "LC80460272015302-SC20161215012132",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015302-SC20161215012132.tar.gz",
+  :checksum "3fdce87964a35726d8d0ebb031bcc85f"}
+ {:id "LC80460272015318-SC20161215005201",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015318-SC20161215005201.tar.gz",
+  :checksum "a9c3352ff5006cbcc1e87301724b3e09"}
+ {:id "LC80460272015334-SC20161215014633",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015334-SC20161215014633.tar.gz",
+  :checksum "4a68cd3cd980bc0c4c31b577a217eb14"}
+ {:id "LC80460272015350-SC20161215011828",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/washington/H05V02-708/LC80460272015350-SC20161215011828.tar.gz",
+  :checksum "10a01cb3ff67e4cab347fc1cddd61b8f"})

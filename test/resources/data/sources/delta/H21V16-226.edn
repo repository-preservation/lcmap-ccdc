@@ -1,0 +1,1392 @@
+({:id "LC80210382013105-SC20170214094834",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013105-SC20170214094834.tar.gz",
+  :checksum "f4d3058e045a379863de0b9b38886b34"}
+ {:id "LC80210382013121-SC20170214090920",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013121-SC20170214090920.tar.gz",
+  :checksum "a4ad369fd8033d3bf81d85b3f8a11e40"}
+ {:id "LC80210382013137-SC20170214093304",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013137-SC20170214093304.tar.gz",
+  :checksum "cd9ddc9122e63d69502a27f8e0a2f1a1"}
+ {:id "LC80210382013153-SC20170214090647",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013153-SC20170214090647.tar.gz",
+  :checksum "16bf7f3a736a05a0b5d3b22e32ffec84"}
+ {:id "LC80210382013169-SC20170214091604",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013169-SC20170214091604.tar.gz",
+  :checksum "22440dade9f252bdca257ed299a6e55d"}
+ {:id "LC80210382013185-SC20170214092743",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013185-SC20170214092743.tar.gz",
+  :checksum "198b960e5090bf510074678d0e8b476b"}
+ {:id "LC80210382013201-SC20170214100152",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013201-SC20170214100152.tar.gz",
+  :checksum "acfe0e1e0bdd9f03fab6c11a362e8aa3"}
+ {:id "LC80210382013217-SC20170214094410",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013217-SC20170214094410.tar.gz",
+  :checksum "f9524a9035b7528f010b8bbfab2dee16"}
+ {:id "LC80210382013233-SC20170214085039",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013233-SC20170214085039.tar.gz",
+  :checksum "3c41629f77355e87ccaad778d358f068"}
+ {:id "LC80210382013249-SC20170214102056",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013249-SC20170214102056.tar.gz",
+  :checksum "c9926aced2a16b7158e1b557fee68c2d"}
+ {:id "LC80210382013265-SC20170214101210",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013265-SC20170214101210.tar.gz",
+  :checksum "23947ed042eaba11f0ed1ffc23ac96f0"}
+ {:id "LC80210382013281-SC20170214102720",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013281-SC20170214102720.tar.gz",
+  :checksum "b04afd7b510e1a3829d7b9c7a3b85bea"}
+ {:id "LC80210382013297-SC20170214095254",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013297-SC20170214095254.tar.gz",
+  :checksum "fc4c19a8600582081babc07ebc2663c7"}
+ {:id "LC80210382013313-SC20170214092749",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013313-SC20170214092749.tar.gz",
+  :checksum "90448daa877e15df65cdde250f23a7cc"}
+ {:id "LC80210382013329-SC20170214084756",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013329-SC20170214084756.tar.gz",
+  :checksum "800f37a872bb17677b3eb31c29420e78"}
+ {:id "LC80210382013345-SC20170214101712",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013345-SC20170214101712.tar.gz",
+  :checksum "bef36f4b05f0b5fda0c0e3dc1d0de5bf"}
+ {:id "LC80210382013361-SC20170214092235",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382013361-SC20170214092235.tar.gz",
+  :checksum "a1d57616c031d9dd1de6c42c5eedcff6"}
+ {:id "LC80210382014012-SC20170214125821",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014012-SC20170214125821.tar.gz",
+  :checksum "42beead49ab72d28191d7d36cb4429f2"}
+ {:id "LC80210382014028-SC20170214092927",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014028-SC20170214092927.tar.gz",
+  :checksum "086ecacecba8837c00aeecf92accb8d3"}
+ {:id "LC80210382014044-SC20170214095323",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014044-SC20170214095323.tar.gz",
+  :checksum "a64b366544cdbc0c4fb8fc668e261a10"}
+ {:id "LC80210382014060-SC20170214100826",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014060-SC20170214100826.tar.gz",
+  :checksum "3b86650ccd49fa9c7f6ffc6318f44b7c"}
+ {:id "LC80210382014076-SC20170214091417",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014076-SC20170214091417.tar.gz",
+  :checksum "667745289fcc5e0a2610a970e5c0e443"}
+ {:id "LC80210382014092-SC20170214092355",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014092-SC20170214092355.tar.gz",
+  :checksum "10ab68ec014669274d25c6ab5fb8b3b5"}
+ {:id "LC80210382014108-SC20170214094132",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014108-SC20170214094132.tar.gz",
+  :checksum "ae6c2777150347da551abbd04a71a659"}
+ {:id "LC80210382014124-SC20170214094520",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014124-SC20170214094520.tar.gz",
+  :checksum "de5af48365c155f3b37307a8d2046ea6"}
+ {:id "LC80210382014140-SC20170214154631",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014140-SC20170214154631.tar.gz",
+  :checksum "7dc8d6e7da262055bd3405c0790613e7"}
+ {:id "LC80210382014156-SC20170214102753",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014156-SC20170214102753.tar.gz",
+  :checksum "34576f95483c44f669f60fe49c121d90"}
+ {:id "LC80210382014172-SC20170214104156",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014172-SC20170214104156.tar.gz",
+  :checksum "3983f6b14b273b4d12ae5fff6c296557"}
+ {:id "LC80210382014188-SC20170214095444",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014188-SC20170214095444.tar.gz",
+  :checksum "3b301698d54f336b66deccb457579f88"}
+ {:id "LC80210382014204-SC20170214090833",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014204-SC20170214090833.tar.gz",
+  :checksum "11e4abec375f1ee157b4f3b16237f943"}
+ {:id "LC80210382014220-SC20170214091206",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014220-SC20170214091206.tar.gz",
+  :checksum "a5002fd97751a3973f33ec26bd64c830"}
+ {:id "LC80210382014236-SC20170214090126",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014236-SC20170214090126.tar.gz",
+  :checksum "263755999254437831812bf13c36d987"}
+ {:id "LC80210382014252-SC20170214101931",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014252-SC20170214101931.tar.gz",
+  :checksum "1e4a02677c730074245f243725d0db5d"}
+ {:id "LC80210382014268-SC20170214091949",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014268-SC20170214091949.tar.gz",
+  :checksum "28e7840ad9d59580d76195fa8805c96c"}
+ {:id "LC80210382014284-SC20170214091559",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014284-SC20170214091559.tar.gz",
+  :checksum "c797c028289749f0fd702ef758a57133"}
+ {:id "LC80210382014300-SC20170214092343",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014300-SC20170214092343.tar.gz",
+  :checksum "8057338da5d277a512a58f4c41c75854"}
+ {:id "LC80210382014316-SC20170214083047",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014316-SC20170214083047.tar.gz",
+  :checksum "80aa14e2cfefc5514f5ccfa01debd672"}
+ {:id "LC80210382014332-SC20170214095241",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014332-SC20170214095241.tar.gz",
+  :checksum "2c9b7f96b6a0ca2b32b670c27b98b54b"}
+ {:id "LC80210382014348-SC20170214102706",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014348-SC20170214102706.tar.gz",
+  :checksum "77b4e2a53e4b119862a267e6135bc076"}
+ {:id "LC80210382014364-SC20170214112014",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382014364-SC20170214112014.tar.gz",
+  :checksum "af13d4554745b5a275748a8681aa4a88"}
+ {:id "LC80210382015015-SC20170214091809",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015015-SC20170214091809.tar.gz",
+  :checksum "8ceb0708e5042198919d52da4e40b45d"}
+ {:id "LC80210382015031-SC20170214084100",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015031-SC20170214084100.tar.gz",
+  :checksum "22796b22269bc854257e66662d4eda21"}
+ {:id "LC80210382015047-SC20170214083228",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015047-SC20170214083228.tar.gz",
+  :checksum "2b3e59377000692b02e065710ba4276b"}
+ {:id "LC80210382015079-SC20170214141417",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015079-SC20170214141417.tar.gz",
+  :checksum "814e7bbb0fa17f0bf8be063340b8393f"}
+ {:id "LC80210382015095-SC20170214143741",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015095-SC20170214143741.tar.gz",
+  :checksum "7000798f468ac595cbb7c8851411abcb"}
+ {:id "LC80210382015111-SC20170214100131",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015111-SC20170214100131.tar.gz",
+  :checksum "ceb5b65623403ba578622d37ef189810"}
+ {:id "LC80210382015127-SC20170214091728",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015127-SC20170214091728.tar.gz",
+  :checksum "e352fa4f8d21cdfc6d3ff28aef0d0fed"}
+ {:id "LC80210382015143-SC20170214101703",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015143-SC20170214101703.tar.gz",
+  :checksum "c4f050a46b57d9ce71dcc4832cd8f05e"}
+ {:id "LC80210382015159-SC20170214095920",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015159-SC20170214095920.tar.gz",
+  :checksum "31213f4d4883a79dfa8eff2a137a3f4e"}
+ {:id "LC80210382015175-SC20170214093021",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015175-SC20170214093021.tar.gz",
+  :checksum "10d354ca3d62a2be611c523ee0d7b891"}
+ {:id "LC80210382015191-SC20170214091920",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015191-SC20170214091920.tar.gz",
+  :checksum "9c704414856b84df41afdd321d2c1bb9"}
+ {:id "LC80210382015207-SC20170214100853",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015207-SC20170214100853.tar.gz",
+  :checksum "27232c33f98e1c7935f504329aeaabae"}
+ {:id "LC80210382015223-SC20170214085745",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015223-SC20170214085745.tar.gz",
+  :checksum "52a3a86574637cd301c617c823993791"}
+ {:id "LC80210382015239-SC20170214092054",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015239-SC20170214092054.tar.gz",
+  :checksum "fcd05605b740ffa0cc5ad8a4c23c3bc0"}
+ {:id "LC80210382015255-SC20170214092547",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015255-SC20170214092547.tar.gz",
+  :checksum "3cc87ca6c666b284efaa1d9629213363"}
+ {:id "LC80210382015271-SC20170214091620",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015271-SC20170214091620.tar.gz",
+  :checksum "03821d665f547d3258ac2bad696bb3a1"}
+ {:id "LC80210382015287-SC20170214092225",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015287-SC20170214092225.tar.gz",
+  :checksum "910a1512507717067591a507fee118e7"}
+ {:id "LC80210382015303-SC20170214093855",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015303-SC20170214093855.tar.gz",
+  :checksum "dce3d0795bcdcd435e7e8b26cbde6c47"}
+ {:id "LC80210382015319-SC20170214094134",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015319-SC20170214094134.tar.gz",
+  :checksum "603537e3e93a9fa94e9f4f894337d01a"}
+ {:id "LC80210382015335-SC20170214091944",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015335-SC20170214091944.tar.gz",
+  :checksum "b5043c424982728fc8c0a4d9c0e56015"}
+ {:id "LC80210382015351-SC20170214085738",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382015351-SC20170214085738.tar.gz",
+  :checksum "f353f1287c8abf766ee49714cbb72338"}
+ {:id "LC80210382016002-SC20170214155314",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016002-SC20170214155314.tar.gz",
+  :checksum "5fd4d3d7708b883ab47fe11e384f803b"}
+ {:id "LC80210382016018-SC20170214125029",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016018-SC20170214125029.tar.gz",
+  :checksum "276e9b7aab02126dbd336e1b98471b47"}
+ {:id "LC80210382016034-SC20170214132254",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016034-SC20170214132254.tar.gz",
+  :checksum "fe63ce4d5c1cac2238898dd57b391a56"}
+ {:id "LC80210382016066-SC20170214094909",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016066-SC20170214094909.tar.gz",
+  :checksum "5c6016083bc8fd93be63ac5973afcdb8"}
+ {:id "LC80210382016082-SC20170214085517",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016082-SC20170214085517.tar.gz",
+  :checksum "03851005ffdc4e5c0075e0aa369b1bc5"}
+ {:id "LC80210382016098-SC20170214090200",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016098-SC20170214090200.tar.gz",
+  :checksum "560c276cfcbf1d7d3e458a1f37dfeba7"}
+ {:id "LC80210382016114-SC20170214103303",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016114-SC20170214103303.tar.gz",
+  :checksum "ea00e60733ff0f392a324827f05ae739"}
+ {:id "LC80210382016130-SC20170214083331",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016130-SC20170214083331.tar.gz",
+  :checksum "f3b0fbbe43cbcebb547bc7a3a9f7b72b"}
+ {:id "LC80210382016146-SC20170214093748",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016146-SC20170214093748.tar.gz",
+  :checksum "e7c5dad3e1430eae9a0ba2dbb420e625"}
+ {:id "LC80210382016162-SC20170214095646",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016162-SC20170214095646.tar.gz",
+  :checksum "7eb4f063a65627a6605bf3a20a6b038b"}
+ {:id "LC80210382016178-SC20170214162913",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016178-SC20170214162913.tar.gz",
+  :checksum "20d7fbb9f81cba607f126a8989f51605"}
+ {:id "LC80210382016194-SC20170214091620",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016194-SC20170214091620.tar.gz",
+  :checksum "c17a2ac2deec0efe3386fab7f5668fa9"}
+ {:id "LC80210382016210-SC20170214101120",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016210-SC20170214101120.tar.gz",
+  :checksum "4b69a90b88963ab31ed2320b407c2e9f"}
+ {:id "LC80210382016226-SC20170214100704",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016226-SC20170214100704.tar.gz",
+  :checksum "74eb1730c60387b5dce810be985bd924"}
+ {:id "LC80210382016242-SC20170214100722",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016242-SC20170214100722.tar.gz",
+  :checksum "d7a6af8508f640952b7a09e271d02ede"}
+ {:id "LC80210382016258-SC20170214105803",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016258-SC20170214105803.tar.gz",
+  :checksum "eccd73b2f642c764e237425bf6e8eedf"}
+ {:id "LC80210382016274-SC20170214101016",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016274-SC20170214101016.tar.gz",
+  :checksum "4a4d920aff3d31c3132cb0f70ed3ecde"}
+ {:id "LC80210382016290-SC20170214091523",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016290-SC20170214091523.tar.gz",
+  :checksum "87e86452349f3042d63c8c9697bc928f"}
+ {:id "LC80210382016306-SC20170214100152",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210382016306-SC20170214100152.tar.gz",
+  :checksum "ab927f4458ffa2743562d28a5e463f04"}
+ {:id "LC80210392013105-SC20170214084936",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013105-SC20170214084936.tar.gz",
+  :checksum "ef673597d0febab2684d4f412de122ae"}
+ {:id "LC80210392013121-SC20170214084719",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013121-SC20170214084719.tar.gz",
+  :checksum "c69e3687cc5c54a03c37db6ba7dbb777"}
+ {:id "LC80210392013137-SC20170214095405",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013137-SC20170214095405.tar.gz",
+  :checksum "8e2f0c0cda225a6a115dcac332e1e554"}
+ {:id "LC80210392013153-SC20170214085743",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013153-SC20170214085743.tar.gz",
+  :checksum "337bd68775998b12b9e436774fc79a9f"}
+ {:id "LC80210392013169-SC20170214100110",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013169-SC20170214100110.tar.gz",
+  :checksum "5274b9bca2f21092fecf35b9117ba94f"}
+ {:id "LC80210392013185-SC20170214084829",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013185-SC20170214084829.tar.gz",
+  :checksum "6e8c6d14c16e56aac440b7cf86dd014a"}
+ {:id "LC80210392013201-SC20170214085429",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013201-SC20170214085429.tar.gz",
+  :checksum "c20f70db2de38418275bb32fe7a2d19b"}
+ {:id "LC80210392013217-SC20170214083801",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013217-SC20170214083801.tar.gz",
+  :checksum "d0b3bc2a5827f8b7f663358a4d07cfcf"}
+ {:id "LC80210392013233-SC20170214084941",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013233-SC20170214084941.tar.gz",
+  :checksum "436aef77e222f3712046029db7826cac"}
+ {:id "LC80210392013249-SC20170214090553",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013249-SC20170214090553.tar.gz",
+  :checksum "80ed043da6503fcfb7c9ffe820b04145"}
+ {:id "LC80210392013265-SC20170214093346",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013265-SC20170214093346.tar.gz",
+  :checksum "738e66f90c64c605aca8f20bae96b624"}
+ {:id "LC80210392013297-SC20170214091933",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013297-SC20170214091933.tar.gz",
+  :checksum "924bce16bfe01a6396f08f2c1a0eff90"}
+ {:id "LC80210392013313-SC20170214091006",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013313-SC20170214091006.tar.gz",
+  :checksum "a4885c5f77bb403afd44ea7a1614ead9"}
+ {:id "LC80210392013329-SC20170214084046",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013329-SC20170214084046.tar.gz",
+  :checksum "4a5d8e75557b031ed13f71a5a25f054e"}
+ {:id "LC80210392013345-SC20170214102433",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013345-SC20170214102433.tar.gz",
+  :checksum "3b6a3d30a6a94a0df86ba48111e222dd"}
+ {:id "LC80210392013361-SC20170214085227",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392013361-SC20170214085227.tar.gz",
+  :checksum "56e5ad27018664599a9ac18038ed7085"}
+ {:id "LC80210392014012-SC20170214091148",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014012-SC20170214091148.tar.gz",
+  :checksum "809398f979e1cbbe1f234609ba70d30a"}
+ {:id "LC80210392014028-SC20170214092116",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014028-SC20170214092116.tar.gz",
+  :checksum "81aa292abcddaa8e8e75f1c3872bfcf3"}
+ {:id "LC80210392014044-SC20170214085746",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014044-SC20170214085746.tar.gz",
+  :checksum "5fda5034bff7d329d5196634a0482fae"}
+ {:id "LC80210392014060-SC20170214092147",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014060-SC20170214092147.tar.gz",
+  :checksum "42458ebf51e87acaaea1f61cc8e94062"}
+ {:id "LC80210392014076-SC20170214093252",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014076-SC20170214093252.tar.gz",
+  :checksum "f69042d9dc64395410a36b3822baad44"}
+ {:id "LC80210392014092-SC20170214125835",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014092-SC20170214125835.tar.gz",
+  :checksum "193883ca8ade6b5abfe6047ba7d31a78"}
+ {:id "LC80210392014108-SC20170214094701",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014108-SC20170214094701.tar.gz",
+  :checksum "dd82706b6832027391c0980575816289"}
+ {:id "LC80210392014124-SC20170214101340",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014124-SC20170214101340.tar.gz",
+  :checksum "60a133701b961a61722d4caa144722bb"}
+ {:id "LC80210392014140-SC20170214090418",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014140-SC20170214090418.tar.gz",
+  :checksum "e886957cb9c9de241ae617c5541e1c6b"}
+ {:id "LC80210392014156-SC20170214101059",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014156-SC20170214101059.tar.gz",
+  :checksum "a332ee4fcf55990d4260a0c972975023"}
+ {:id "LC80210392014172-SC20170214102653",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014172-SC20170214102653.tar.gz",
+  :checksum "73890aeafde9d79c37b636c6a991a4ff"}
+ {:id "LC80210392014188-SC20170214091951",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014188-SC20170214091951.tar.gz",
+  :checksum "0a777b98a59e400237d01c8b190d0b86"}
+ {:id "LC80210392014204-SC20170214092647",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014204-SC20170214092647.tar.gz",
+  :checksum "bc6e15c017f6b88f468d39b57c3117bf"}
+ {:id "LC80210392014220-SC20170214095523",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014220-SC20170214095523.tar.gz",
+  :checksum "0f4669ba183343d7f99c7a9b6ac52ed2"}
+ {:id "LC80210392014236-SC20170214090308",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014236-SC20170214090308.tar.gz",
+  :checksum "440b352854f0f928d73fcd297e3fbb33"}
+ {:id "LC80210392014252-SC20170214091353",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014252-SC20170214091353.tar.gz",
+  :checksum "d914df1a64cf5500c8dd2dec48bff093"}
+ {:id "LC80210392014268-SC20170214090936",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014268-SC20170214090936.tar.gz",
+  :checksum "5d76effbc2624a82f4ba7b09bab3457f"}
+ {:id "LC80210392014284-SC20170214140528",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014284-SC20170214140528.tar.gz",
+  :checksum "07b818654299e851a62c64b8fddf7fbf"}
+ {:id "LC80210392014300-SC20170214102617",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014300-SC20170214102617.tar.gz",
+  :checksum "ab0b2fcd86f235fd7985d4497b9187aa"}
+ {:id "LC80210392014316-SC20170214082934",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014316-SC20170214082934.tar.gz",
+  :checksum "71a8d74c709f2b9dd4b45c87a206af87"}
+ {:id "LC80210392014332-SC20170214085935",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014332-SC20170214085935.tar.gz",
+  :checksum "d616501b16d77d80585244846b331e13"}
+ {:id "LC80210392014348-SC20170214145220",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014348-SC20170214145220.tar.gz",
+  :checksum "ae20d73f89b4ad8612bb634882bb33d2"}
+ {:id "LC80210392014364-SC20170214092809",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392014364-SC20170214092809.tar.gz",
+  :checksum "5090e05f54bfc0384aa2d0c7d8324a45"}
+ {:id "LC80210392015015-SC20170214091909",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015015-SC20170214091909.tar.gz",
+  :checksum "8b24cae6af734215ad9ce78ebfc92950"}
+ {:id "LC80210392015031-SC20170214095901",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015031-SC20170214095901.tar.gz",
+  :checksum "ca95e2f10655ee9f9e61bf83b2b7c453"}
+ {:id "LC80210392015047-SC20170214091622",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015047-SC20170214091622.tar.gz",
+  :checksum "1004bebea541b68aaad293c5f2097613"}
+ {:id "LC80210392015079-SC20170214095554",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015079-SC20170214095554.tar.gz",
+  :checksum "c92a188f4ba35b7fdd50b5b27c49021b"}
+ {:id "LC80210392015095-SC20170214083345",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015095-SC20170214083345.tar.gz",
+  :checksum "cae943736e37d73d76f083a5b38791d2"}
+ {:id "LC80210392015111-SC20170214135945",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015111-SC20170214135945.tar.gz",
+  :checksum "70a302368207799da3591626ed147f6f"}
+ {:id "LC80210392015127-SC20170214101557",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015127-SC20170214101557.tar.gz",
+  :checksum "193d4a556bb50015a3c47facae155cbe"}
+ {:id "LC80210392015143-SC20170214134531",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015143-SC20170214134531.tar.gz",
+  :checksum "7aa3cc33e4f8de64f18bbdf1fd21243f"}
+ {:id "LC80210392015159-SC20170214085958",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015159-SC20170214085958.tar.gz",
+  :checksum "cfb2d45d68c81ebfa4955c258a73e057"}
+ {:id "LC80210392015175-SC20170214092847",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015175-SC20170214092847.tar.gz",
+  :checksum "e96097d32f4187aa1154b43dc7de9f20"}
+ {:id "LC80210392015191-SC20170214093838",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015191-SC20170214093838.tar.gz",
+  :checksum "a4781406f4902e5c7beabd2265599d96"}
+ {:id "LC80210392015207-SC20170214100232",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015207-SC20170214100232.tar.gz",
+  :checksum "4beeb74c898affdd09195c32b3682bd4"}
+ {:id "LC80210392015223-SC20170214092740",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015223-SC20170214092740.tar.gz",
+  :checksum "b077b3bb719944c65a9e39e1b11e69ef"}
+ {:id "LC80210392015239-SC20170214092159",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015239-SC20170214092159.tar.gz",
+  :checksum "510814275e951a9d1e6ddd77b39c79c8"}
+ {:id "LC80210392015255-SC20170214093337",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015255-SC20170214093337.tar.gz",
+  :checksum "be9af47d31f688bc7d87284f368c1675"}
+ {:id "LC80210392015271-SC20170214093406",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015271-SC20170214093406.tar.gz",
+  :checksum "330201d87586cb4aa678ede36c1a03dc"}
+ {:id "LC80210392015287-SC20170214125555",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015287-SC20170214125555.tar.gz",
+  :checksum "63216ae083e4ed157ea1c4d14369b087"}
+ {:id "LC80210392015303-SC20170214094140",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015303-SC20170214094140.tar.gz",
+  :checksum "a1180171596879c8dfe0b9d1a87feb4a"}
+ {:id "LC80210392015319-SC20170214094323",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015319-SC20170214094323.tar.gz",
+  :checksum "57110e66f45bf33134d93021224f27f6"}
+ {:id "LC80210392015335-SC20170214090518",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015335-SC20170214090518.tar.gz",
+  :checksum "acf07b33543b1b77edac01a82dd22b87"}
+ {:id "LC80210392015351-SC20170214082925",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392015351-SC20170214082925.tar.gz",
+  :checksum "5ae2c6fcdc0c6cffe6d40149d5649074"}
+ {:id "LC80210392016002-SC20170214093858",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016002-SC20170214093858.tar.gz",
+  :checksum "176e1f1d409e81aed05996f66bbc9297"}
+ {:id "LC80210392016018-SC20170214095819",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016018-SC20170214095819.tar.gz",
+  :checksum "e334dd1d944d1bd50a418ebcd329edff"}
+ {:id "LC80210392016034-SC20170214153210",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016034-SC20170214153210.tar.gz",
+  :checksum "1772fc14e28ee4eb2e7ba1cfc6d9e9ac"}
+ {:id "LC80210392016066-SC20170214100843",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016066-SC20170214100843.tar.gz",
+  :checksum "8fb1c72342e30e2450d1b63a42712352"}
+ {:id "LC80210392016082-SC20170214095703",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016082-SC20170214095703.tar.gz",
+  :checksum "a787256bbeb5d265353d4caa13a9bf8d"}
+ {:id "LC80210392016098-SC20170214091338",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016098-SC20170214091338.tar.gz",
+  :checksum "3258ed9a2bf856a4eeb6dccbcdf28c39"}
+ {:id "LC80210392016114-SC20170214100724",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016114-SC20170214100724.tar.gz",
+  :checksum "6c229f56ea88ede5cfdcb29227703b1f"}
+ {:id "LC80210392016130-SC20170214090856",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016130-SC20170214090856.tar.gz",
+  :checksum "06a70015fecf93c535779db941ebe127"}
+ {:id "LC80210392016146-SC20170214093856",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016146-SC20170214093856.tar.gz",
+  :checksum "a5b778f1fe4cfdf44c0e895f0e32ca8e"}
+ {:id "LC80210392016162-SC20170214125835",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016162-SC20170214125835.tar.gz",
+  :checksum "9d2bb98d6ec7fd33a20127e638b089f5"}
+ {:id "LC80210392016178-SC20170214092226",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016178-SC20170214092226.tar.gz",
+  :checksum "3670ee82623825b25f49e74008be8e5b"}
+ {:id "LC80210392016194-SC20170214095704",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016194-SC20170214095704.tar.gz",
+  :checksum "4eded28cd9d9509c7dfdc885c6acc47e"}
+ {:id "LC80210392016210-SC20170214095750",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016210-SC20170214095750.tar.gz",
+  :checksum "77eea9c8d8ca37a29f174d41cf72b92b"}
+ {:id "LC80210392016226-SC20170214092022",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016226-SC20170214092022.tar.gz",
+  :checksum "c356d221b429a147a95320509caaa8ae"}
+ {:id "LC80210392016242-SC20170214093458",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016242-SC20170214093458.tar.gz",
+  :checksum "80c745b055109a54fe6342c3e4d585f7"}
+ {:id "LC80210392016258-SC20170214145845",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016258-SC20170214145845.tar.gz",
+  :checksum "c769214159d7a27e26bfcad6ed0714a9"}
+ {:id "LC80210392016274-SC20170214092917",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016274-SC20170214092917.tar.gz",
+  :checksum "ade41573ce13d4c3b92577d52d9a6b08"}
+ {:id "LC80210392016290-SC20170214125636",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016290-SC20170214125636.tar.gz",
+  :checksum "2014d0a3abf229915137815af75301bc"}
+ {:id "LC80210392016306-SC20170214101026",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210392016306-SC20170214101026.tar.gz",
+  :checksum "46de899f3b6eaf6719433860911a095b"}
+ {:id "LC80210402013105-SC20170214095209",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402013105-SC20170214095209.tar.gz",
+  :checksum "62a5627ab4ddc0a31aadf9b8159cf9cd"}
+ {:id "LC80210402013121-SC20170214093426",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402013121-SC20170214093426.tar.gz",
+  :checksum "c4ab3715ff1c181d496cbd5a88c52e88"}
+ {:id "LC80210402013137-SC20170214130952",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402013137-SC20170214130952.tar.gz",
+  :checksum "075b034a1c8fb376e0a647439a4cd61e"}
+ {:id "LC80210402013153-SC20170214092826",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402013153-SC20170214092826.tar.gz",
+  :checksum "e5047fe32bce5adbf4347c1d2cd5f863"}
+ {:id "LC80210402013169-SC20170214085757",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402013169-SC20170214085757.tar.gz",
+  :checksum "5294f5e9b50e667cb22799a97c3c2f88"}
+ {:id "LC80210402013185-SC20170214101318",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402013185-SC20170214101318.tar.gz",
+  :checksum "fc09454c3bb23ddfc4768b0ef63ccbb2"}
+ {:id "LC80210402015303-SC20170207110547",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402015303-SC20170207110547.tar.gz",
+  :checksum "070c6c8680a807746f44bb0504e5bbd6"}
+ {:id "LC80210402015319-SC20170214094414",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402015319-SC20170214094414.tar.gz",
+  :checksum "f8549a87a9b768601a1cb20b3bac62a5"}
+ {:id "LC80210402015335-SC20170214093415",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402015335-SC20170214093415.tar.gz",
+  :checksum "ae6147aba23d71524c34c55799b39b29"}
+ {:id "LC80210402015351-SC20170214093130",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402015351-SC20170214093130.tar.gz",
+  :checksum "899ba817bebc9c988d3becff27c0b474"}
+ {:id "LC80210402016002-SC20170214093348",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016002-SC20170214093348.tar.gz",
+  :checksum "37f336c3fba6779d8fea29d6c3fefd34"}
+ {:id "LC80210402016018-SC20170214085747",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016018-SC20170214085747.tar.gz",
+  :checksum "d268cb4a49f139b5c9d998c46d8235e2"}
+ {:id "LC80210402016034-SC20170214083527",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016034-SC20170214083527.tar.gz",
+  :checksum "fdf5043186624d22463c41b4f2b8b094"}
+ {:id "LC80210402016066-SC20170214092546",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016066-SC20170214092546.tar.gz",
+  :checksum "c705fd588bbd193557cd7ae192822532"}
+ {:id "LC80210402016082-SC20170207112343",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016082-SC20170207112343.tar.gz",
+  :checksum "c7056d294f9e4ed2e8dc279a7267cb03"}
+ {:id "LC80210402016098-SC20170214103043",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016098-SC20170214103043.tar.gz",
+  :checksum "197bba88816387a5abb262bebadd288e"}
+ {:id "LC80210402016114-SC20170207113737",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016114-SC20170207113737.tar.gz",
+  :checksum "e4bfb11d91f918e573f558801afd1f44"}
+ {:id "LC80210402016130-SC20170214084723",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016130-SC20170214084723.tar.gz",
+  :checksum "af59101f8fdca5e24817b16bf82ce48e"}
+ {:id "LC80210402016146-SC20170214090204",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016146-SC20170214090204.tar.gz",
+  :checksum "05825bf9b096b8c5005d4b935e6dd9f3"}
+ {:id "LC80210402016162-SC20170214091436",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016162-SC20170214091436.tar.gz",
+  :checksum "766e2486fede7237e9eacaad72b0381c"}
+ {:id "LC80210402016178-SC20170214102439",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016178-SC20170214102439.tar.gz",
+  :checksum "0af7d4b820adc4c94249843a5e11d9d1"}
+ {:id "LC80210402016194-SC20170214093253",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016194-SC20170214093253.tar.gz",
+  :checksum "047a341f912794baf55fdd6ec9daec44"}
+ {:id "LC80210402016210-SC20170214092354",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016210-SC20170214092354.tar.gz",
+  :checksum "2331ef994977d3e2d9df0c3014650b9d"}
+ {:id "LC80210402016226-SC20170214082854",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016226-SC20170214082854.tar.gz",
+  :checksum "83b589dc2659707db09cf68e98ce8c66"}
+ {:id "LC80210402016242-SC20170214092246",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016242-SC20170214092246.tar.gz",
+  :checksum "0ef29a5bfd0602baeb183fdc96014f41"}
+ {:id "LC80210402016258-SC20170214095357",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016258-SC20170214095357.tar.gz",
+  :checksum "a0b8c5e10a7db6e39b29d8a7419792cb"}
+ {:id "LC80210402016274-SC20170214085800",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016274-SC20170214085800.tar.gz",
+  :checksum "d5879b94b626d4b7edefbc76ce3d9cce"}
+ {:id "LC80210402016290-SC20170214085517",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016290-SC20170214085517.tar.gz",
+  :checksum "c44ce6fe10158f47931eb79e498c4cb8"}
+ {:id "LC80210402016306-SC20170214085604",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80210402016306-SC20170214085604.tar.gz",
+  :checksum "2578ec9b0d5069e894f00e933147a8b8"}
+ {:id "LC80220382013112-SC20170214091716",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013112-SC20170214091716.tar.gz",
+  :checksum "ffca6c25304ddda8dd7be29cc3bd7770"}
+ {:id "LC80220382013144-SC20170214092311",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013144-SC20170214092311.tar.gz",
+  :checksum "7a98c34ad36a8da4eed12279bdfd1895"}
+ {:id "LC80220382013160-SC20170207104725",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013160-SC20170207104725.tar.gz",
+  :checksum "e60bd90e5dc5ffd70fbe9add3abd5ad2"}
+ {:id "LC80220382013176-SC20170214090753",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013176-SC20170214090753.tar.gz",
+  :checksum "0247454bf72fa261d154b4275883b84d"}
+ {:id "LC80220382013192-SC20170214083155",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013192-SC20170214083155.tar.gz",
+  :checksum "ac34d7d632eced8ae63f08eca1bae436"}
+ {:id "LC80220382013208-SC20170214092811",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013208-SC20170214092811.tar.gz",
+  :checksum "a51629efde6cdd2983188b34627a434a"}
+ {:id "LC80220382013224-SC20170214092750",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013224-SC20170214092750.tar.gz",
+  :checksum "81ee93178dc19fa495f60f11634644ea"}
+ {:id "LC80220382013240-SC20170214092704",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013240-SC20170214092704.tar.gz",
+  :checksum "914e93ed450c0e37e2e84c24b3c2d046"}
+ {:id "LC80220382013256-SC20170207114927",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013256-SC20170207114927.tar.gz",
+  :checksum "2419ea244d760d62a8d5235ff3d97738"}
+ {:id "LC80220382013272-SC20170207104928",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013272-SC20170207104928.tar.gz",
+  :checksum "987ca160505fc8a08aca4f927ec41a6c"}
+ {:id "LC80220382013288-SC20170207112539",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013288-SC20170207112539.tar.gz",
+  :checksum "33176ae71a9d635fe1c88ee8879e86c0"}
+ {:id "LC80220382013304-SC20170214091839",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013304-SC20170214091839.tar.gz",
+  :checksum "4de6f7827f02b649355af9abce44c61e"}
+ {:id "LC80220382013320-SC20170207105455",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013320-SC20170207105455.tar.gz",
+  :checksum "5304f19e451ae884da0cd8a480e1bbdc"}
+ {:id "LC80220382013336-SC20170207112235",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013336-SC20170207112235.tar.gz",
+  :checksum "31fc55d633a561c9167934d4d7036716"}
+ {:id "LC80220382013352-SC20170207113337",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382013352-SC20170207113337.tar.gz",
+  :checksum "0338dfb47b6c825dcb9ce491db7fbbfb"}
+ {:id "LC80220382014003-SC20170214100233",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014003-SC20170214100233.tar.gz",
+  :checksum "7c3d69b8854b4614ce85ab9789d9a6ee"}
+ {:id "LC80220382014019-SC20170207112141",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014019-SC20170207112141.tar.gz",
+  :checksum "672cacb2fd390cc9d83b441a209a891a"}
+ {:id "LC80220382014035-SC20170207110609",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014035-SC20170207110609.tar.gz",
+  :checksum "2638b70f6f3303edf9eaf8218bc21adb"}
+ {:id "LC80220382014051-SC20170214101113",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014051-SC20170214101113.tar.gz",
+  :checksum "222dd19ad4fd82e5c31e78c996df7668"}
+ {:id "LC80220382014067-SC20170207110056",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014067-SC20170207110056.tar.gz",
+  :checksum "cfab7875ec8cc39f502cfca235683bda"}
+ {:id "LC80220382014083-SC20170214093815",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014083-SC20170214093815.tar.gz",
+  :checksum "0c5e11be7b8337ab6ace67c815508aad"}
+ {:id "LC80220382014099-SC20170207111332",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014099-SC20170207111332.tar.gz",
+  :checksum "a04ffd4a4899dec6cdace4bb5e197eeb"}
+ {:id "LC80220382014115-SC20170207113846",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014115-SC20170207113846.tar.gz",
+  :checksum "eeb4a976dc4488d5ccd7128fa1c873bd"}
+ {:id "LC80220382014131-SC20170207113117",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014131-SC20170207113117.tar.gz",
+  :checksum "690568586ae959217f65e859e4e8c9f5"}
+ {:id "LC80220382014147-SC20170207110928",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014147-SC20170207110928.tar.gz",
+  :checksum "d34380197088fac14e782c9ae336bb8f"}
+ {:id "LC80220382014163-SC20170207105519",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014163-SC20170207105519.tar.gz",
+  :checksum "945d37488e95fde674117fdc96b7f0ac"}
+ {:id "LC80220382014179-SC20170207110226",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014179-SC20170207110226.tar.gz",
+  :checksum "37bded9bcb2526260306091a26efaa64"}
+ {:id "LC80220382014195-SC20170214092222",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014195-SC20170214092222.tar.gz",
+  :checksum "5c6504f38893794c39c4fbd52fd0c452"}
+ {:id "LC80220382014211-SC20170214093446",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014211-SC20170214093446.tar.gz",
+  :checksum "da446f82187ce7d0c06090841e317b66"}
+ {:id "LC80220382014227-SC20170214092902",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014227-SC20170214092902.tar.gz",
+  :checksum "7e8ff148dbb903c78f930483cbac8ec7"}
+ {:id "LC80220382014243-SC20170214084642",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014243-SC20170214084642.tar.gz",
+  :checksum "9f393c546d4621009baa006762fa7617"}
+ {:id "LC80220382014259-SC20170214085717",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014259-SC20170214085717.tar.gz",
+  :checksum "61b7fda8f05e3b156fd001fe8a9c4469"}
+ {:id "LC80220382014275-SC20170214101228",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014275-SC20170214101228.tar.gz",
+  :checksum "897a107e46d892242a0c6172386fd5b5"}
+ {:id "LC80220382014291-SC20170214092041",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014291-SC20170214092041.tar.gz",
+  :checksum "38561ea978aa6e8c3009645458667736"}
+ {:id "LC80220382014307-SC20170214092507",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014307-SC20170214092507.tar.gz",
+  :checksum "f18b595a45a15b1bd051c0c2a0ed419a"}
+ {:id "LC80220382014323-SC20170214090930",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014323-SC20170214090930.tar.gz",
+  :checksum "1531a511e3f64287cafc075e40a7a6bb"}
+ {:id "LC80220382014339-SC20170214085337",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014339-SC20170214085337.tar.gz",
+  :checksum "43a1bcd149255ef9c66faee64dcecf8c"}
+ {:id "LC80220382014355-SC20170214083459",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382014355-SC20170214083459.tar.gz",
+  :checksum "a9f6ff4fe3ba143a2e2e359c1cd5116f"}
+ {:id "LC80220382015006-SC20170214090935",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015006-SC20170214090935.tar.gz",
+  :checksum "97e55bf0c4211abdbb38e75112d1351a"}
+ {:id "LC80220382015022-SC20170214091933",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015022-SC20170214091933.tar.gz",
+  :checksum "6bfa4b765e180db4f987f1e13c1589e5"}
+ {:id "LC80220382015038-SC20170214090314",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015038-SC20170214090314.tar.gz",
+  :checksum "4aa8595abe1b94741c26a44399645b79"}
+ {:id "LC80220382015054-SC20170214085543",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015054-SC20170214085543.tar.gz",
+  :checksum "30b74666433777da6da079e56d6a180b"}
+ {:id "LC80220382015070-SC20170214085147",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015070-SC20170214085147.tar.gz",
+  :checksum "479f4324819e196758626b1041a41e55"}
+ {:id "LC80220382015086-SC20170214090256",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015086-SC20170214090256.tar.gz",
+  :checksum "8fffae9feb3db56e41e472bb4f5b8fec"}
+ {:id "LC80220382015102-SC20170214082508",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015102-SC20170214082508.tar.gz",
+  :checksum "8112d149f19a84f2584f98b6530640e3"}
+ {:id "LC80220382015118-SC20170214090816",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015118-SC20170214090816.tar.gz",
+  :checksum "0974fd6e1664a1ad9624e9a8bfe4c85c"}
+ {:id "LC80220382015134-SC20170214082506",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015134-SC20170214082506.tar.gz",
+  :checksum "03c5ba6e385763d058ec0298e33ee60c"}
+ {:id "LC80220382015150-SC20170214091611",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015150-SC20170214091611.tar.gz",
+  :checksum "86b2063ac3b10d5db9d11d2eed373c2c"}
+ {:id "LC80220382015166-SC20170214095629",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015166-SC20170214095629.tar.gz",
+  :checksum "0a21a9014a2a5dde66242d66674b90b8"}
+ {:id "LC80220382015182-SC20170214104148",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015182-SC20170214104148.tar.gz",
+  :checksum "6626fd29159dc7a34a5c04005c704374"}
+ {:id "LC80220382015198-SC20170214102018",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015198-SC20170214102018.tar.gz",
+  :checksum "2cab6b7ead024853560548d4b63816ee"}
+ {:id "LC80220382015214-SC20170214103636",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015214-SC20170214103636.tar.gz",
+  :checksum "75d16d2464ced521cd95cbd51a8cd922"}
+ {:id "LC80220382015230-SC20170214155208",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015230-SC20170214155208.tar.gz",
+  :checksum "ecb682b19d7e6c0fdc70503bdd050582"}
+ {:id "LC80220382015246-SC20170214100859",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015246-SC20170214100859.tar.gz",
+  :checksum "12c8222748115f76d3e2ab5639490b56"}
+ {:id "LC80220382015262-SC20170214092557",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015262-SC20170214092557.tar.gz",
+  :checksum "634fc06f7de83e3a2c4c8444b4c27a52"}
+ {:id "LC80220382015278-SC20170214161845",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015278-SC20170214161845.tar.gz",
+  :checksum "d41621885f910b508f55e5d43e75bff8"}
+ {:id "LC80220382015294-SC20170214092221",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015294-SC20170214092221.tar.gz",
+  :checksum "2782830ea93aaa5a0880aa8b893b0efd"}
+ {:id "LC80220382015310-SC20170214090138",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015310-SC20170214090138.tar.gz",
+  :checksum "b1cce0544ed035916010ae70d63e975d"}
+ {:id "LC80220382015326-SC20170214093419",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015326-SC20170214093419.tar.gz",
+  :checksum "b3c5bd61dbb612d5ffc3722cc351eb33"}
+ {:id "LC80220382015342-SC20170214091618",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015342-SC20170214091618.tar.gz",
+  :checksum "ee026482213e98c22348be9dd8651511"}
+ {:id "LC80220382015358-SC20170214100226",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382015358-SC20170214100226.tar.gz",
+  :checksum "8fed078c2d51472fd436d6f6b562d74e"}
+ {:id "LC80220382016009-SC20170214085140",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016009-SC20170214085140.tar.gz",
+  :checksum "57e0a13aef0991411187a33928897cdf"}
+ {:id "LC80220382016025-SC20170214094224",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016025-SC20170214094224.tar.gz",
+  :checksum "2b0c36198b9f10258bea724a62432aa0"}
+ {:id "LC80220382016041-SC20170214101508",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016041-SC20170214101508.tar.gz",
+  :checksum "8cb961db6e8e1a57038f3aa8e89d2471"}
+ {:id "LC80220382016073-SC20170214095849",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016073-SC20170214095849.tar.gz",
+  :checksum "a51734f34deb6118a845ce3c56b8e17c"}
+ {:id "LC80220382016089-SC20170214085427",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016089-SC20170214085427.tar.gz",
+  :checksum "d0f32fbc8066d3e8bbfe3b958094d146"}
+ {:id "LC80220382016105-SC20170214085325",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016105-SC20170214085325.tar.gz",
+  :checksum "3bf9ef525adf59816b6b47343c1daee1"}
+ {:id "LC80220382016121-SC20170214091916",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016121-SC20170214091916.tar.gz",
+  :checksum "7132b685085bdd3037e0a71125d62223"}
+ {:id "LC80220382016137-SC20170214092932",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016137-SC20170214092932.tar.gz",
+  :checksum "e7e86d14949ce501687de0dd2aeb505d"}
+ {:id "LC80220382016153-SC20170214092526",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016153-SC20170214092526.tar.gz",
+  :checksum "b13db81e98b384bbb231ea4ca3bc1778"}
+ {:id "LC80220382016169-SC20170214090920",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016169-SC20170214090920.tar.gz",
+  :checksum "13919f1813bffd347aecd68ffb45f016"}
+ {:id "LC80220382016185-SC20170214101138",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016185-SC20170214101138.tar.gz",
+  :checksum "5d040ba4726ae0ece5cb59cd8c4b9558"}
+ {:id "LC80220382016201-SC20170214102813",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016201-SC20170214102813.tar.gz",
+  :checksum "89f7cda33f269a3116af0fdf7f187d35"}
+ {:id "LC80220382016217-SC20170214103005",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016217-SC20170214103005.tar.gz",
+  :checksum "7adccd4fca5b987042a0bd5c43731657"}
+ {:id "LC80220382016233-SC20170214091259",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016233-SC20170214091259.tar.gz",
+  :checksum "729073578a30e692628f09babd876c78"}
+ {:id "LC80220382016249-SC20170214102110",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016249-SC20170214102110.tar.gz",
+  :checksum "0c1e424cdc6defa32d6adc956df591c4"}
+ {:id "LC80220382016265-SC20170214090816",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016265-SC20170214090816.tar.gz",
+  :checksum "068c7dcd627a5b127f3c9442cc1d7fa8"}
+ {:id "LC80220382016281-SC20170207112520",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016281-SC20170207112520.tar.gz",
+  :checksum "f7397a991991caae0f2721af731a3196"}
+ {:id "LC80220382016297-SC20170214091411",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016297-SC20170214091411.tar.gz",
+  :checksum "b8d2abb40761eba33e9737ef3774b702"}
+ {:id "LC80220382016313-SC20170214093829",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220382016313-SC20170214093829.tar.gz",
+  :checksum "0df3e70cfd5c1b594acd9e3379450165"}
+ {:id "LC80220392013112-SC20170214094358",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013112-SC20170214094358.tar.gz",
+  :checksum "3c49fe2c9853c5c528637eacd066e7ca"}
+ {:id "LC80220392013144-SC20170207110823",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013144-SC20170207110823.tar.gz",
+  :checksum "16d26c700e101075d14ead2c07d73ab2"}
+ {:id "LC80220392013160-SC20170214093629",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013160-SC20170214093629.tar.gz",
+  :checksum "a48ef28e7326207c3a8e6519d0a59b20"}
+ {:id "LC80220392013176-SC20170214094612",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013176-SC20170214094612.tar.gz",
+  :checksum "bfb864df2d43067fef89778c0b9a87a6"}
+ {:id "LC80220392013192-SC20170214092510",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013192-SC20170214092510.tar.gz",
+  :checksum "235fa5dfbfa56388e217f2d45006d338"}
+ {:id "LC80220392013208-SC20170207103945",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013208-SC20170207103945.tar.gz",
+  :checksum "1f19b987702825fc57b549d55254aefe"}
+ {:id "LC80220392013224-SC20170207111857",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013224-SC20170207111857.tar.gz",
+  :checksum "182e89918e3bde928751c2ac396e9b5f"}
+ {:id "LC80220392013240-SC20170207113906",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013240-SC20170207113906.tar.gz",
+  :checksum "c139ca09bc1e5cff269c56c2db063087"}
+ {:id "LC80220392013256-SC20170207114018",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013256-SC20170207114018.tar.gz",
+  :checksum "99756b08489b9542e3a3c293d7c93954"}
+ {:id "LC80220392013272-SC20170207112218",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013272-SC20170207112218.tar.gz",
+  :checksum "6e1fb05a6319e2210b5ad15fb315be69"}
+ {:id "LC80220392013288-SC20170214101413",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013288-SC20170214101413.tar.gz",
+  :checksum "cc4ab826c4a9f5e7f41b0c356b96951b"}
+ {:id "LC80220392013304-SC20170214092011",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013304-SC20170214092011.tar.gz",
+  :checksum "706ce9129c65f5386fc99acdf5d7f160"}
+ {:id "LC80220392013320-SC20170207111938",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013320-SC20170207111938.tar.gz",
+  :checksum "5bd7be121a78158928cbcfdfe07a0106"}
+ {:id "LC80220392013336-SC20170214094947",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013336-SC20170214094947.tar.gz",
+  :checksum "349cf9cc89dd8e42ca1773d4dc382da6"}
+ {:id "LC80220392013352-SC20170207113050",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392013352-SC20170207113050.tar.gz",
+  :checksum "ce8626a3394b942a9e05aceedc8d8287"}
+ {:id "LC80220392014003-SC20170214095820",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014003-SC20170214095820.tar.gz",
+  :checksum "b1bbdd0ead1ad8b8d6a9745659f595ce"}
+ {:id "LC80220392014019-SC20170207111632",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014019-SC20170207111632.tar.gz",
+  :checksum "9b5772d0cfb440be35a409e271fe5706"}
+ {:id "LC80220392014035-SC20170207112036",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014035-SC20170207112036.tar.gz",
+  :checksum "d2eba00f21b5daa1b64b9575cb6663b0"}
+ {:id "LC80220392014051-SC20170207112338",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014051-SC20170207112338.tar.gz",
+  :checksum "e83873689447fddaf02f90510affc265"}
+ {:id "LC80220392014067-SC20170207111603",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014067-SC20170207111603.tar.gz",
+  :checksum "eb41b5e05315844c249f4ee05c715676"}
+ {:id "LC80220392014083-SC20170214140415",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014083-SC20170214140415.tar.gz",
+  :checksum "924744532bdc141b85580c30c4575d02"}
+ {:id "LC80220392014099-SC20170214085836",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014099-SC20170214085836.tar.gz",
+  :checksum "4707e7699bbbcb0a68851a2d3cbd0c52"}
+ {:id "LC80220392014115-SC20170207112021",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014115-SC20170207112021.tar.gz",
+  :checksum "bafd9e2e5860d075cd8af30cd8873b7e"}
+ {:id "LC80220392014131-SC20170214102204",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014131-SC20170214102204.tar.gz",
+  :checksum "1fc06ce0add3e2c1aa86844c095fc7c2"}
+ {:id "LC80220392014147-SC20170207105710",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014147-SC20170207105710.tar.gz",
+  :checksum "2767f0ba1758a9ca99d5a2992f2c860d"}
+ {:id "LC80220392014163-SC20170207104829",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014163-SC20170207104829.tar.gz",
+  :checksum "40684715f8920c465f3a8bff8d0d2eb5"}
+ {:id "LC80220392014179-SC20170207105457",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014179-SC20170207105457.tar.gz",
+  :checksum "90dd4a722b36a274c37d03d50b463f1a"}
+ {:id "LC80220392014195-SC20170214090425",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014195-SC20170214090425.tar.gz",
+  :checksum "e9a5dc3d788b38d78dead16977a87497"}
+ {:id "LC80220392014211-SC20170207112656",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014211-SC20170207112656.tar.gz",
+  :checksum "0ee59e24f5772cf39c7d0ebd4255a53f"}
+ {:id "LC80220392014227-SC20170207132026",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014227-SC20170207132026.tar.gz",
+  :checksum "bcb893c75ed0573f231291231aebb371"}
+ {:id "LC80220392014243-SC20170207111539",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014243-SC20170207111539.tar.gz",
+  :checksum "ea02cd451dc2693b45b7ba0f0374cc63"}
+ {:id "LC80220392014259-SC20170207112328",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014259-SC20170207112328.tar.gz",
+  :checksum "e735c6c2b104035ac646065093a8af96"}
+ {:id "LC80220392014275-SC20170214105838",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014275-SC20170214105838.tar.gz",
+  :checksum "1ae5f6966cf9f1ea354eac88e5856715"}
+ {:id "LC80220392014291-SC20170207113547",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014291-SC20170207113547.tar.gz",
+  :checksum "a5753a6c8a563eab33de19726b7bec91"}
+ {:id "LC80220392014307-SC20170214103017",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014307-SC20170214103017.tar.gz",
+  :checksum "5cd5e190d54ad22060ef979989562256"}
+ {:id "LC80220392014323-SC20170214090949",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014323-SC20170214090949.tar.gz",
+  :checksum "2cd7050ff0f6f8264bbac405cb7aff55"}
+ {:id "LC80220392014339-SC20170214100521",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014339-SC20170214100521.tar.gz",
+  :checksum "49e145ccc4a1cb59d55862486871ad33"}
+ {:id "LC80220392014355-SC20170207104007",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392014355-SC20170207104007.tar.gz",
+  :checksum "7ec76ad34515cbf0e3b5a7f64976e1ef"}
+ {:id "LC80220392015006-SC20170214102018",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015006-SC20170214102018.tar.gz",
+  :checksum "146490b1cd40eb81a0b1c34131fe17b4"}
+ {:id "LC80220392015022-SC20170207105142",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015022-SC20170207105142.tar.gz",
+  :checksum "9c7f3cf3b86317898b772dffbc9d1963"}
+ {:id "LC80220392015038-SC20170214101522",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015038-SC20170214101522.tar.gz",
+  :checksum "9c4eb0e219ca3662d66911f4caeac1ae"}
+ {:id "LC80220392015054-SC20170207111301",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015054-SC20170207111301.tar.gz",
+  :checksum "6dbdd480bd18befae0cc2fb03edf9637"}
+ {:id "LC80220392015070-SC20170214093300",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015070-SC20170214093300.tar.gz",
+  :checksum "f792335106774f19f9c03ae1588cab39"}
+ {:id "LC80220392015086-SC20170207111600",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015086-SC20170207111600.tar.gz",
+  :checksum "695c01608ba7254575a3cef9afeb6825"}
+ {:id "LC80220392015102-SC20170214093144",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015102-SC20170214093144.tar.gz",
+  :checksum "3355deb2e77e65d542f50064bee60158"}
+ {:id "LC80220392015118-SC20170207111903",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015118-SC20170207111903.tar.gz",
+  :checksum "0990a4451995769138f30442c15a3d31"}
+ {:id "LC80220392015134-SC20170214092839",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015134-SC20170214092839.tar.gz",
+  :checksum "4912e387cbddbb9231e06cb492c13e7e"}
+ {:id "LC80220392015150-SC20170214090820",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015150-SC20170214090820.tar.gz",
+  :checksum "13f195300d1d8573d7399d7723c44f7a"}
+ {:id "LC80220392015166-SC20170214085612",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015166-SC20170214085612.tar.gz",
+  :checksum "7916748eb1f59aa28c96ca7c65a28f22"}
+ {:id "LC80220392015182-SC20170214090828",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015182-SC20170214090828.tar.gz",
+  :checksum "97081df5c34bc8658f7dd71837518df2"}
+ {:id "LC80220392015198-SC20170214091216",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015198-SC20170214091216.tar.gz",
+  :checksum "156789887cdf991ba51d23bb6431ffe8"}
+ {:id "LC80220392015214-SC20170214091834",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015214-SC20170214091834.tar.gz",
+  :checksum "a9d8d77c94ebb9f78cf4311253811294"}
+ {:id "LC80220392015230-SC20170214084953",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015230-SC20170214084953.tar.gz",
+  :checksum "10b02c5efd433c6ac8ebcbfb1a8be662"}
+ {:id "LC80220392015246-SC20170214094015",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015246-SC20170214094015.tar.gz",
+  :checksum "a425156c97396e6280b47c53766e0f58"}
+ {:id "LC80220392015262-SC20170214102421",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015262-SC20170214102421.tar.gz",
+  :checksum "de0f0d3ac7b8ae08bc0f28edbf0b1478"}
+ {:id "LC80220392015278-SC20170214090340",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015278-SC20170214090340.tar.gz",
+  :checksum "4face2a4930108fbdab80ed9d1b121cb"}
+ {:id "LC80220392015294-SC20170214105621",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015294-SC20170214105621.tar.gz",
+  :checksum "aa6eb1f0914a96a38be77ba5ffb545e6"}
+ {:id "LC80220392015310-SC20170214090341",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015310-SC20170214090341.tar.gz",
+  :checksum "d4658504fdadc9861c92211152d5aa41"}
+ {:id "LC80220392015326-SC20170214101911",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015326-SC20170214101911.tar.gz",
+  :checksum "049e24f939c39f933a66c10c8d054a57"}
+ {:id "LC80220392015342-SC20170214091449",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015342-SC20170214091449.tar.gz",
+  :checksum "7590980dc4f5733cff94a81aa9805447"}
+ {:id "LC80220392015358-SC20170207111134",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392015358-SC20170207111134.tar.gz",
+  :checksum "4c673be9f1f152785af3a7f359f0c536"}
+ {:id "LC80220392016009-SC20170214090217",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016009-SC20170214090217.tar.gz",
+  :checksum "6eb548c1e4133cea5d1a0606ed95bd26"}
+ {:id "LC80220392016025-SC20170214084646",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016025-SC20170214084646.tar.gz",
+  :checksum "2efac6f61e406f08f145faa9144decab"}
+ {:id "LC80220392016041-SC20170214090259",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016041-SC20170214090259.tar.gz",
+  :checksum "56a131306b1b8bf73a7ddbb9501dbaaa"}
+ {:id "LC80220392016073-SC20170214085938",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016073-SC20170214085938.tar.gz",
+  :checksum "1fa71160e7362dded559ceed040f4c28"}
+ {:id "LC80220392016089-SC20170214085501",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016089-SC20170214085501.tar.gz",
+  :checksum "c88f0969e494457252677466430050cf"}
+ {:id "LC80220392016105-SC20170214103841",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016105-SC20170214103841.tar.gz",
+  :checksum "938988e248cf3c281bf67c35be2f706d"}
+ {:id "LC80220392016121-SC20170214082657",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016121-SC20170214082657.tar.gz",
+  :checksum "0796088a56a3334441a7c64746d3145f"}
+ {:id "LC80220392016137-SC20170214082609",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016137-SC20170214082609.tar.gz",
+  :checksum "806f929f9e60969e0f2d5f39d602b47a"}
+ {:id "LC80220392016153-SC20170207103848",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016153-SC20170207103848.tar.gz",
+  :checksum "bbec94fffae1d426b45dccdd7cd1a2e1"}
+ {:id "LC80220392016169-SC20170214091348",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016169-SC20170214091348.tar.gz",
+  :checksum "0358ec37bd8d0818ec7c036f2abf930e"}
+ {:id "LC80220392016185-SC20170214102033",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016185-SC20170214102033.tar.gz",
+  :checksum "4642fb11c880b0e43354932ffefc92bd"}
+ {:id "LC80220392016201-SC20170214095542",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016201-SC20170214095542.tar.gz",
+  :checksum "366fc3a22d41283013a28d77ef10365e"}
+ {:id "LC80220392016217-SC20170214090407",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016217-SC20170214090407.tar.gz",
+  :checksum "59d9659514474fa4e7522bfe9b44d494"}
+ {:id "LC80220392016233-SC20170214090516",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016233-SC20170214090516.tar.gz",
+  :checksum "5f15ec2fc5bbf8fa9e29d5d9b2bd2a5d"}
+ {:id "LC80220392016249-SC20170207105807",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016249-SC20170207105807.tar.gz",
+  :checksum "427cb0151da2b139087e6cc23e85b568"}
+ {:id "LC80220392016265-SC20170214103948",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016265-SC20170214103948.tar.gz",
+  :checksum "3b486de8b14fd62deb313140530b07dd"}
+ {:id "LC80220392016281-SC20170214092315",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016281-SC20170214092315.tar.gz",
+  :checksum "29241fde6777b3bd80b72ec1fb4e334e"}
+ {:id "LC80220392016297-SC20170214090655",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016297-SC20170214090655.tar.gz",
+  :checksum "c54da5ed7e01e31bbd6f11ba3092dab1"}
+ {:id "LC80220392016313-SC20170207104014",
+  :uri
+  "https://edclpdsftp.cr.usgs.gov/downloads/lcmap/sites/delta/H21V16-226/LC80220392016313-SC20170207104014.tar.gz",
+  :checksum "78ffcaa2d50e9a96b5563079d220631a"})
