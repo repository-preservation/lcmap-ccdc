@@ -5,9 +5,18 @@ import requests
 def pyccd_tile_spec_queries(url):
     """
     A map of pyccd spectra to tile-spec queries
-    Args:
-        url: full url for tile-spec endpoint
-             http://localhost:9200/landsat/tile-specs
+    :param url: full url for tile-spec endpoint
+    :return: map of spectra to tile spec queries
+    :example:
+    >>> pyccd_tile_spec_queries('http://localhost:9200/landsat/tile-specs')
+    {"red":     'http://localhost:9200/landsat/tile-specs?q=tags:red AND sr',
+     "green":   'http://localhost:9200/landsat/tile-specs?q=tags:green AND sr'
+     "blue":    'http://localhost:9200/landsat/tile-specs?q=tags:blue AND sr'
+     "nir":     'http://localhost:9200/landsat/tile-specs?q=tags:nir AND sr'
+     "swir1":   'http://localhost:9200/landsat/tile-specs?q=tags:swir1 AND sr'
+     "swir2":   'http://localhost:9200/landsat/tile-specs?q=tags:swir2 AND sr'
+     "thermal": 'http://localhost:9200/landsat/tile-specs?q=tags:thermal AND toa'
+     "cfmask":  'http://localhost:9200/landsat/tile-specs?q=tags:cfmask AND sr'}
     """
     return {"red":     ''.join([url, '?q=tags:red AND sr']),
             "green":   ''.join([url, '?q=tags:green AND sr']),
@@ -22,11 +31,11 @@ def pyccd_tile_spec_queries(url):
 def chip_specs(query):
     """
     Queries elasticsearch and returns chip_specs
-    Args:
-        query: full url query for elasticsearch
-               http://localhost:9200/landsat/tile-specs?q=tags:red AND sr
-    Returns:
-        ['chip_spec_1', 'chip_spec_2', ...]
+    :param query: full url query for elasticsearch
+    :returns: sequence of chip specs
+    :example:
+    >>> chip_specs('http://localhost:9200/landsat/tile-specs?q=tags:red AND sr')
+    ['chip_spec_1', 'chip_spec_2', ...]
     """
     js = requests.get(query).json()
     if 'hits' in js and 'hits' in js['hits']:
@@ -38,10 +47,8 @@ def chip_specs(query):
 def ubids(chip_specs):
     """
     Extract ubids from a sequence of chip_specs
-    Args:
-        chip_specs: a sequence of chip_spec dicts
-    Returns:
-        a sequence of ubids
+    :param chip_specs: a sequence of chip_spec dicts
+    :returns: a sequence of ubids
     """
     return [cs['ubid'] for cs in chip_specs if 'ubid' in cs]
 
@@ -49,16 +56,20 @@ def ubids(chip_specs):
 def data(url, x, y, acquired, ubids):
     """
     Returns aardvark data for given x, y, date range and ubid sequence
-    Args:
-        url: full url to aardvark endpoint
-        x: number, longitude
-        y: number, latitude
-        acquired: date range as iso8601 strings '2012-01-01/2014-01-03'
-        ubids: sequence of ubid strings
-    Returns:
-        TBD
-    Example:
-        data(url='http://localhost:5678/landsat/tiles',
+    :param url: full url to aardvark endpoint
+    :param x: longitude
+    :param y: latitude
+    :param acquired: date range as iso8601 strings '2012-01-01/2014-01-03'
+    :param ubids: sequence of ubid strings
+    :type url: string
+    :type x: number
+    :type y: number
+    :type acquired: string
+    :type ubids: sequence
+    :returns: TBD
+
+    :Example:
+    >>> data(url='http://localhost:5678/landsat/tiles',
              x=123456,
              y=789456,
              acquired='2012-01-01/2014-01-03',
@@ -73,12 +84,8 @@ def data(url, x, y, acquired, ubids):
 def sort(chips):
     """
     Sorts all the returned chips by date.
-
-    Args:
-        chips: sequence of chips
-
-    Returns:
-        sorted sequence of chips
+    :param chips: sequence of chips
+    :returns: sorted sequence of chips
     """
     pass
 
@@ -87,15 +94,15 @@ def split(chip_idx, chip_idy, chip_spec, chips):
     """
     Accepts a sequence of chips plus location information and returns
     sequences of pixels organized by x,y,t for all chips.
-
-    Args:
-        chip_idx:  The x coordinate for the chip id
-        chip_idy:  The y coordinate for the chip id
-        chip_spec: The chip spec for the chip array
-        chips:     Sequence of chips
-
-    Returns:
-        sequence of (x, y, t sequence, pixel data sequence) for each x,y
+    :param chip_idx:  x coordinate for the chip id
+    :param chip_idy:  y coordinate for the chip id
+    :param chip_spec: chip spec for the chip array
+    :param chips: sequence of chips
+    :type chip_idx: number
+    :type chip_idy: number
+    :type chip_spec: dictionary
+    :type chips: sequence of chips
+    :returns: sequence of (x, y, t sequence, pixel data sequence) for each x,y
     """
     pass
 
