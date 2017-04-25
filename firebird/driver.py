@@ -1,4 +1,4 @@
-import firebird, ccd, argparse, json, hashlib
+import firebird, ccd, json, hashlib
 from firebird import products
 from pandas import to_datetime
 from firebird  import SPARK_MASTER, SPARK_EXECUTOR_IMAGE, SPARK_EXECUTOR_CORES, SPARK_EXECUTOR_FORCE_PULL
@@ -9,31 +9,15 @@ from .aardvark import pyccd_tile_spec_queries, chip_specs
 from .chip     import ids as chip_ids
 from pyspark   import SparkConf, SparkContext
 from datetime  import datetime
-from .cassandra import insert_statement
 from .cassandra import execute as cassandra_execute
 from .cassandra import RESULT_INPUT
+from .cassandra import INSERT_CQL
 
 # to be replaced by dave's official function names
 #
 from .aardvark import spicey_meatball, spicey_meatball_dates
 #
 #
-
-parser = argparse.ArgumentParser(description="Driver for LCMAP product generation")
-# could get cute here and loop this, leaving unwound for now
-parser.add_argument('-ord', dest='ord_date')
-parser.add_argument('-acq', dest='acquired')
-parser.add_argument('-ulx', dest='ulx')
-parser.add_argument('-uly', dest='uly')
-parser.add_argument('-lrx', dest='lrx')
-parser.add_argument('-lry', dest='lry')
-parser.add_argument('-lastchange', dest='lastchange', action='store_true')
-parser.add_argument('-changemag',  dest='changemag',  action='store_true')
-parser.add_argument('-changedate', dest='changedate', action='store_true')
-parser.add_argument('-seglength',  dest='seglength',  action='store_true')
-parser.add_argument('-qa',         dest='qa',         action='store_true')
-
-args = parser.parse_args()
 
 
 def simplify_detect_results(results):
@@ -77,7 +61,7 @@ def detect(input, tile_x, tile_y):
     output['inputs_md5'] = 'not implemented'
     # writes to cassandra happen from node doing the work
     # don't want to collect all chip records on driver host
-    cassandra_execute([insert_statement(output)])
+    cassandra_execute(INSERT_CQL, [output])
     return output
 
 
@@ -173,6 +157,3 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
         sc.stop()
     return True
 
-if __name__ == "__main__":
-    run(args.acquired, args.ulx, args.uly, args.lrx, args.lry, args.ord_date,
-        args.lastchange, args.changemag, args.changedate, args.seglength, args.qa)

@@ -5,7 +5,7 @@ would fail because there are other dependencies imported in
 pw/__init__.py that are not present until after
 install. Do not import anything into this module."""
 
-__version__ = '0.0.1'
+__version__ = '2017.04.25'
 __name = 'lcmap-firebird'
 __algorithm__ = '-'.join([__name, __version__])
 

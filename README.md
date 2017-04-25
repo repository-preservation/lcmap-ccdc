@@ -45,6 +45,7 @@ Configuration via environment variables
 | AARDVARK_HOST | 'localhost' | Aardvark host |
 | AARDVARK_PORT | '5678' | Aardvark port |
 | AARDVARK_TILESPECS | '/landsat/tile-specs' | Tile-specs url |
+| BEGINNING_OF_TIME | 723546 | Ordinal date for use in seglength product calculation |
 
 
 * Command line

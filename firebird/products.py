@@ -1,20 +1,25 @@
 import numpy as np
 import json
 from datetime import date
-from .cassandra import insert_statement
 from .cassandra import execute as cassandra_execute
 from .cassandra import RESULT_INPUT
+from .cassandra import INSERT_CQL
 from datetime import datetime
 
-beginning_of_time = date(year=1982, month=1, day=1).toordinal()
+from firebird import BEGINNING_OF_TIME
 
 
 def result_to_models(inresult):
+    '''
+    Function to extract the change_models dictionary from the CCD results
+    :param inresult: CCD result object
+    :return: dict
+    '''
     _rjson = json.loads(inresult['result'])
     return _rjson['change_models']
 
 
-def lastchange_val(models, ord_date):
+def lastchange(models, ord_date):
     ret = 0
     if ord_date > 0:
         break_dates = []
@@ -32,7 +37,7 @@ def lastchange_val(models, ord_date):
     return ret
 
 
-def changemag_val(models, ord_date):
+def changemag(models, ord_date):
     ret = 0
     if ord_date > 0:
         query_date = date.fromordinal(ord_date)
@@ -47,7 +52,7 @@ def changemag_val(models, ord_date):
     return ret
 
 
-def changedate_val(models, ord_date):
+def changedate(models, ord_date):
     ret = 0
     if ord_date > 0:
         query_date = date.fromordinal(ord_date)
@@ -61,7 +66,7 @@ def changedate_val(models, ord_date):
     return ret
 
 
-def seglength_val(models, ord_date, bot=beginning_of_time):
+def seglength(models, ord_date, bot=BEGINNING_OF_TIME):
     ret = 0
     if ord_date > 0:
         all_dates = [bot]
@@ -77,7 +82,7 @@ def seglength_val(models, ord_date, bot=beginning_of_time):
     return ret
 
 
-def qa_val(models, ord_date):
+def qa(models, ord_date):
     ret = 0
     if ord_date > 0:
         for m in models:
@@ -101,18 +106,18 @@ def run(alg, ccdres, ord_date):
         return "json load error for ccdresult: {}".format(ccdres)
 
     _prods = dict()
-    _stmts = list()
+    _results = list()
 
     if alg in ('all', 'lastchange'):
-        _prods['lastchange'] = lastchange_val(models, ord_date)
+        _prods['lastchange'] = lastchange(models, ord_date)
     if alg in ('all', 'changemag'):
-        _prods['changemag'] = changemag_val(models, ord_date)
+        _prods['changemag'] = changemag(models, ord_date)
     if alg in ('all', 'changedate'):
-        _prods['changedate'] = changedate_val(models, ord_date)
+        _prods['changedate'] = changedate(models, ord_date)
     if alg in ('all', 'seglength'):
-        _prods['seglength'] = seglength_val(models, ord_date)
+        _prods['seglength'] = seglength(models, ord_date)
     if alg in ('all', 'qa'):
-        _prods['qa'] = qa_val(models, ord_date)
+        _prods['qa'] = qa(models, ord_date)
 
     _now = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
     for _p in _prods:
@@ -125,8 +130,8 @@ def run(alg, ccdres, ord_date):
         _r['result']          = _prods[_p]
         _r['result_ok']       = True
         _r['result_produced'] = _now
-        _stmts.append(insert_statement(_r))
+        _results.append(_r)
 
     # save results
-    cassandra_execute(_stmts)
+    cassandra_execute(INSERT_CQL, _results)
     return True
