@@ -9,6 +9,9 @@ from firebird import CASSANDRA_KEYSPACE
 auth_provider = PlainTextAuthProvider(username=CASSANDRA_USER, password=CASSANDRA_PASS)
 cluster = Cluster(CASSANDRA_CONTACT_POINTS.split(','), auth_provider=auth_provider)
 
+RESULT_INPUT = {'tile_x': '', 'tile_y': '', 'x': '', 'y': '', 'algorithm': '', 'result': '', 'result_ok': '',
+                'result_produced': '', 'inputs_md5': '', 'result_md5': ''}
+
 
 def insert_statement(record):
     return ("INSERT INTO {}.results (y, tile_x, tile_y, algorithm, x, result_ok, inputs_md5, result, result_produced, "

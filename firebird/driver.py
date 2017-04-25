@@ -9,7 +9,9 @@ from .aardvark import pyccd_tile_spec_queries, chip_specs
 from .chip     import ids as chip_ids
 from pyspark   import SparkConf, SparkContext
 from datetime  import datetime
-from .cassandra import save_result
+from .cassandra import insert_statement
+from .cassandra import execute as cassandra_execute
+from .cassandra import RESULT_INPUT
 
 # to be replaced by dave's official function names
 #
@@ -47,7 +49,7 @@ def detect(input, tile_x, tile_y):
     # input is a tuple: ((pixel x, pixel y), {bands dict}
     _px, _py = input[0][0], input[0][1]
     _bands   = input[1]
-    output = dict()
+    output = RESULT_INPUT.copy()
     try:
         # ccd switch back to using kwargs, right?
         _results = ccd.detect(blues    = _bands['blue'],
@@ -75,7 +77,7 @@ def detect(input, tile_x, tile_y):
     output['inputs_md5'] = 'not implemented'
     # writes to cassandra happen from node doing the work
     # don't want to collect all chip records on driver host
-    save_result(output)
+    cassandra_execute([insert_statement(output)])
     return output
 
 

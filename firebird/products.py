@@ -3,6 +3,7 @@ import json
 from datetime import date
 from .cassandra import insert_statement
 from .cassandra import execute as cassandra_execute
+from .cassandra import RESULT_INPUT
 from datetime import datetime
 
 beginning_of_time = date(year=1982, month=1, day=1).toordinal()
@@ -100,7 +101,7 @@ def run(alg, ccdres, ord_date):
         return "json load error for ccdresult: {}".format(ccdres)
 
     _prods = dict()
-    _stmnts = list()
+    _stmts = list()
 
     if alg in ('all', 'lastchange'):
         _prods['lastchange'] = lastchange_val(models, ord_date)
@@ -115,10 +116,17 @@ def run(alg, ccdres, ord_date):
 
     _now = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
     for _p in _prods:
-        _r = {'x': ccdres['x'], 'y': ccdres['y'], 'result_produced': _now, 'tile_x': ccdres['tile_x'],
-              'tile_y': ccdres['tile_y'], 'algorithm': _p, 'result': _prods[_p]}
-        _stmnts.append(insert_statement(_r))
+        _r = RESULT_INPUT.copy()
+        _r['tile_x']          = ccdres['tile_x']
+        _r['tile_y']          = ccdres['tile_y']
+        _r['x']               = ccdres['x']
+        _r['y']               = ccdres['y']
+        _r['algorithm']       = _p
+        _r['result']          = _prods[_p]
+        _r['result_ok']       = True
+        _r['result_produced'] = _now
+        _stmts.append(insert_statement(_r))
 
     # save results
-    cassandra_execute(_stmnts)
+    cassandra_execute(_stmts)
     return True
