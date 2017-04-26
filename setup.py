@@ -23,7 +23,9 @@ setup(name='lcmap-firebird',
       packages=['firebird'],
       install_requires=[
           'numpy',
-          'lcmap-pyccd>=1.3.1',
+          'xarray',
+          'pandas',
+          'lcmap-pyccd==1.3.1',
           'pyspark==2.1',
       ],
       # List additional groups of dependencies here (e.g. development
