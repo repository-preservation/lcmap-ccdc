@@ -1,9 +1,10 @@
-import pytest
 import glob
 import json
 import os
 import itertools
 from firebird.files import read
+
+CWD = os.path.dirname(os.path.realpath(__file__))
 
 def flatten(iterable):
     """
@@ -13,7 +14,7 @@ def flatten(iterable):
     """
     return itertools.chain.from_iterable(iterable)
 
-def chips(spectra, root_dir='./resources/data/chips/band-json'):
+def chips(spectra, root_dir=os.path.join(CWD, 'resources/data/chips/band-json')):
     """
     Return chips for named spectra
     :param spectra: red, green, blue, nir, swir1, swir2, thermal or cfmask
@@ -25,7 +26,7 @@ def chips(spectra, root_dir='./resources/data/chips/band-json'):
     chips = [json.loads(read(filename)) for filename in filenames]
     return flatten(chips)
 
-def chip_specs(spectra, root_dir='./resources/data/chip-specs'):
+def chip_specs(spectra, root_dir=os.path.join(CWD, 'resources/data/chip-specs')):
     """
     Returns chip specs for the named spectra.
     :param spectra: red, green, blue, nir, swir1, swir2, thermal or cfmask
