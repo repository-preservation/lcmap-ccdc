@@ -19,12 +19,10 @@ def difference(point, interval):
     using a negative value helps us avoid special cases for finding the
     nearest tile-point.
 
-    Args:
-        point: a scalar value on the real number line
-        interval: a scalar value describing regularly spaced points
-                  on the real number line
-    Returns:
-        The difference between a point and prior point on an interval.
+    :param point: a scalar value on the real number line
+    :param interval: a scalar value describing regularly spaced points
+                     on the real number line
+    :returns: difference between a point and prior point on an interval.
     """
     return point % interval
 
@@ -41,14 +39,12 @@ def near(point, interval, offset):
     This function is used to calculate the nearest points along the
     x- and y- axis.
 
-    Args:
-        point: a scalar value on the real number line
-        interval: a scalar value describing regularly spaced points
-                  on the real number line
-        offset: a scalar value used to shift point before and after
-                finding the 'preceding' interval.
-    Returns:
-        A number representing a point.
+    :param point: a scalar value on the real number line
+    :param interval: a scalar value describing regularly spaced points
+                     on the real number line
+    :param offset: a scalar value used to shift point before and after
+                  finding the 'preceding' interval.
+    :returns: a number representing a point.
     """
     # original clojure code
     # (-> point (- offset) (/ interval) (Math/floor) (* interval) (+ offset)))
@@ -75,17 +71,14 @@ def point_to_chip(x, y, x_interval, y_interval, x_offset, y_offset):
     The offset value is used for grids that are not aligned with the
     origin of the projection coordinate system.
 
-    Args:
-        x: longitudinal value
-        y: latitude value
-        x_interval:
-        y_interval:
-        x_offset:
-        y_offset:
-
-    Returns:
-        A tuple containing x, y where x and y are the identifying coordinates
-        of a chip.
+    :param x: longitudinal value
+    :param y: latitude value
+    :param x_interval:
+    :param y_interval:
+    :param x_offset:
+    :param y_offset:
+    :returns: a tuple containing x, y where x and y are the identifying
+              coordinates of a chip.
     """
     return (near(x, x_interval, x_offset),
             near(y, y_interval, y_offset))
@@ -99,13 +92,10 @@ def snap(x, y, chip_spec):
     This function only works when working with points on a cartesian plane,
     it cannot be used with other coordinate systems.
 
-    Args:
-        x: x coordinate
-        y: y coordinate
-        chip_spec: parameters for a chip's grid system
-
-    Returns:
-        Tuple of chip x & y
+    :param x: x coordinate
+    :param y: y coordinate
+    :param chip_spec: parameters for a chip's grid system
+    :returns: tuple of chip x & y
   """
     chip_x  = chip_spec['chip_x']
     chip_y  = chip_spec['chip_y']
@@ -119,20 +109,16 @@ def ids(ulx, uly, lrx, lry, chip_spec):
     """
     Returns all the chip ids that are needed to cover a supplied bounding box.
 
-    Args:
-        ulx: upper left x coordinate
-        uly: upper left y coordinate
-        lrx: lower right x coordinate
-        lry: lower right y coordinate
-        chip_spec: dict of chip_spec containing chip_x, chip_y, shift_x, shift_y
-
-    Returns:
-        Generator of tuples containing chip ids
-
-    Example:
-        # assumes chip sizes of 500 pixels
-        >>> chip_ids = ids(1000, -1000, -500, 500, chip_spec)
-        ((-1000, 500), (-500, 500), (-1000, -500), (-500, -500))
+    :param ulx: upper left x coordinate
+    :param uly: upper left y coordinate
+    :param lrx: lower right x coordinate
+    :param lry: lower right y coordinate
+    :param chip_spec: dict containing chip_x, chip_y, shift_x, shift_y
+    :returns: generator of tuples containing chip ids
+    :example:
+    # assumes chip sizes of 500 pixels
+    >>> chip_ids = ids(1000, -1000, -500, 500, chip_spec)
+    ((-1000, 500), (-500, 500), (-1000, -500), (-500, -500))
     """
     chip_x = chip_spec['chip_x']   # e.g.  3000 meters, width of chip
     chip_y = chip_spec['chip_y']   # e.g. -3000 meters, height of chip

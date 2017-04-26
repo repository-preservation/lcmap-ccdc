@@ -56,6 +56,10 @@ Configuration via environment variables
 ```bash
 ```
 
+## Testing
+
+```$ pytest```
+
 ## Implementation Wants
 * Utilize xarray for input handling
 * All code should be written according to functional principles... immutability, purity, substitution, statelessness.
