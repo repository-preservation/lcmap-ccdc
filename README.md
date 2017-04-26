@@ -22,12 +22,45 @@ Apache Spark based product generation for LCMAP.
    $ source activate firebird
 ```
 
+## Testing
+```bash
+ make docker-deps-up
+ nose2
+ make docker-deps-down
+```
+
 ## Usage
-TODO
+Configuration via environment variables
+
+| VARIABLE | DEFAULT | Description |
+| --- | --- | --- |
+| CASSANDRA_CONTACT_POINTS | '0.0.0.0' | Cassandra host IP |
+| CASSANDRA_USER | | DB username |
+| CASSANDRA_PASS | | DB password |
+| CASSANDRA_KEYSPACE | 'lcmap_local' | DB keyspace |
+| SPARK_MASTER | 'spark://localhost:7077' | Spark host |
+| SPARK_EXECUTOR_IMAGE | | Docker Image for Spark Executor |
+| SPARK_EXECUTOR_CORES | | Cores allocated per Spark Executor |
+| SPARK_EXECUTOR_FORCE_PULL | 'false' | Force fresh pull of Docker Image |
+| AARDVARK_HOST | 'localhost' | Aardvark host |
+| AARDVARK_PORT | '5678' | Aardvark port |
+| AARDVARK_TILESPECS | '/landsat/tile-specs' | Tile-specs url |
+| BEGINNING_OF_TIME | 723546 | Ordinal date for use in seglength product calculation |
+
+
+* Command line
+```bash
+```
+
+* Jupyter
+```bash
+```
 
 ## Testing
 
 ```$ pytest```
 
 ## Implementation Wants
+* Utilize xarray for input handling
+* All code should be written according to functional principles... immutability, purity, substitution, statelessness.
 * Code should be written according to functional principles wherever possible... immutability, purity, substitution, statelessness.
