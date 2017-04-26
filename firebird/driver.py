@@ -2,7 +2,7 @@ import firebird, ccd, json, hashlib
 from firebird import products
 from pandas import to_datetime
 from firebird  import SPARK_MASTER, SPARK_EXECUTOR_IMAGE, SPARK_EXECUTOR_CORES, SPARK_EXECUTOR_FORCE_PULL
-from firebird  import AARDVARK_SPECS_URL
+from firebird  import AARDVARK_SPECS_URL, X_PIXEL_DIM, Y_PIXEL_DIM
 from firebird  import simplify_objects, dtstr_to_ordinal
 from .validation import *
 from .aardvark import pyccd_tile_spec_queries, chip_specs
@@ -28,23 +28,19 @@ def simplify_detect_results(results):
     return output
 
 
-def detect(input, tile_x, tile_y):
+def detect(column, row, bands, tile_x, tile_y):
     """ Return results of ccd.detect for a given stack of data at a particular x and y """
-    # input is a tuple: ((pixel x, pixel y), {bands dict}
-    _px, _py = input[0][0], input[0][1]
-    _bands   = input[1]
     output = RESULT_INPUT.copy()
     try:
-        # ccd switch back to using kwargs, right?
-        _results = ccd.detect(blues    = _bands['blue'],
-                              greens   = _bands['green'],
-                              reds     = _bands['red'],
-                              nirs     = _bands['nir'],
-                              swir1s   = _bands['swir1'],
-                              swir2s   = _bands['swir2'],
-                              thermals = _bands['thermal'],
-                              quality  = _bands['cfmask'],
-                              dates    = [dtstr_to_ordinal(str(to_datetime(i)), False) for i in _bands['dates']])
+        _results = ccd.detect(blues    = bands['blue'].values[:, row, column],
+                              greens   = bands['green'].values[:, row, column],
+                              reds     = bands['red'].values[:, row, column],
+                              nirs     = bands['nir'].values[:, row, column],
+                              swir1s   = bands['swir1'].values[:, row, column],
+                              swir2s   = bands['swir2'].values[:, row, column],
+                              thermals = bands['thermal'].values[:, row, column],
+                              quality  = bands['cfmask'].values[:, row, column],
+                              dates    = [dtstr_to_ordinal(str(to_datetime(i)), False) for i in bands['dates']])
         output['result'] = json.dumps(simplify_detect_results(_results))
         output['result_ok'] = True
         output['algorithm'] = _results['algorithm']
@@ -55,7 +51,8 @@ def detect(input, tile_x, tile_y):
         output['result'] = ''
         output['result_ok'] = False
 
-    output['x'], output['y'] = _px, _py
+    output['x'] = tile_x + (column * X_PIXEL_DIM)
+    output['y'] = tile_y + (row * Y_PIXEL_DIM)
     output['result_md5'] = hashlib.md5(output['result'].encode('UTF-8')).hexdigest()
     output['result_produced'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
     output['inputs_md5'] = 'not implemented'
@@ -132,22 +129,23 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
             # spark prefers task sizes of 100kb or less, means ccd results results in a 1 per work bucket rdd
             # still based on the assumption of 100x100 pixel chips
             ccd_rdd = sc.parallelize(ccd_data, 10000)
-            # cache the results with persist()
-            ccd_map = ccd_rdd.map(lambda i: detect(i, i[0][0], i[0][1])).persist()
-            if {False} == {lastchange, changemag, changedate, seglength, qa}:
-                # if you didn't specify, you get everything
-                ccd_map.foreach(lambda i: products.run('all', i, ord_date))
-            else:
-                if lastchange:
-                    ccd_map.foreach(lambda i: products.run('lastchange', i, ord_date))
-                if changemag:
-                    ccd_map.foreach(lambda i: products.run('changemag', i, ord_date))
-                if changedate:
-                    ccd_map.foreach(lambda i: products.run('changedate', i, ord_date))
-                if seglength:
-                    ccd_map.foreach(lambda i: products.run('seglength', i, ord_date))
-                if qa:
-                    ccd_map.foreach(lambda i: products.run('qa', i, ord_date))
+            for x_index in range(0, 100):
+                for y_index in range(0, 100):
+                    ccd_map = ccd_rdd.map(lambda i: detect(x_index, y_index, i, i[0][0], i[0][1])).persist()
+                    if {False} == {lastchange, changemag, changedate, seglength, qa}:
+                        # if you didn't specify, you get everything
+                        ccd_map.foreach(lambda i: products.run('all', i, ord_date))
+                    else:
+                        if lastchange:
+                            ccd_map.foreach(lambda i: products.run('lastchange', i, ord_date))
+                        if changemag:
+                            ccd_map.foreach(lambda i: products.run('changemag', i, ord_date))
+                        if changedate:
+                            ccd_map.foreach(lambda i: products.run('changedate', i, ord_date))
+                        if seglength:
+                            ccd_map.foreach(lambda i: products.run('seglength', i, ord_date))
+                        if qa:
+                            ccd_map.foreach(lambda i: products.run('qa', i, ord_date))
 
     except Exception as e:
         firebird.logger.info("Exception running Spark job: {}".format(e))

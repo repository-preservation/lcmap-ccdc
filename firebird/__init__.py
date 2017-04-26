@@ -22,15 +22,9 @@ SPARK_EXECUTOR_CORES      = os.getenv('SPARK_EXECUTOR_CORES', 1)
 SPARK_EXECUTOR_FORCE_PULL = os.getenv('SPARK_EXECUTOR_FORCE_PULL', 'false')
 
 BEGINNING_OF_TIME         = os.getenv('BEGINNING_OF_TIME', date(year=1982, month=1, day=1).toordinal())
+X_PIXEL_DIM               = int(os.getenv('X_PIXEL_DIM', 30))
+Y_PIXEL_DIM               = int(os.getenv('Y_PIXEL_DIM', -30))
 
-LCMAP_PRODUCT_DICT = {
-    "CCD": "Continuous Change Detection",
-    "LOS": "Length of Segment",
-    "QA" : "Quality Assurance",
-    "MOC": "Magnitude of Change",
-    "TSC": "Time Since Change",
-    "LTC": "Location and Timing of Change"
-}
 
 logging.basicConfig(stream=sys.stdout,
                     level=LOG_LEVEL,
