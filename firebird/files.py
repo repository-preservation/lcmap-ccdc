@@ -46,7 +46,7 @@ def delete(path):
         os.remove(path)
     except FileNotFoundError:
         pass
-    except Exception, e:
+    except Exception as e:
         logger.error("Exception deleting file:{}".format(path))
         logger.error(e)
         return False
