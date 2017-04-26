@@ -22,12 +22,22 @@ setup(name='lcmap-firebird',
       license='Unlicense',
       packages=['firebird'],
       install_requires=[
-          'numpy', 
+          'numpy',
           'lcmap-pyccd>=1.3.1',
           'pyspark==2.1',
       ],
-      test_suite='nose.collector',
-      tests_require=['nose', 'nose-cover3'],
+      # List additional groups of dependencies here (e.g. development
+      # dependencies). You can install these using the following syntax,
+      # for example:
+      # $ pip install -e .[test]
+      extras_require={
+          'test': ['nose2',
+                   'nose2-cov',
+                  ],
+          'dev': ['jupyter',],
+      },
+      #test_suite='nose.collector',
+      #tests_require=['nose', 'nose-cover3'],
       entry_points={
           'console_scripts': ['firebird=firebird.cmdline:main'],
       },
