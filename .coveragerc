@@ -1,0 +1,7 @@
+[run]
+branch  = True
+source  = firebird
+omit    = lib/*
+          bin/*
+          lib64/*
+          include/*
