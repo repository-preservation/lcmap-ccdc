@@ -40,10 +40,8 @@ def changemag(models, ord_date):
     if ord_date > 0:
         query_date = date.fromordinal(ord_date)
         for m in models:
-            #if m['break_day'] <= 0:
-            #    continue
             break_date = date.fromordinal(m['break_day'])
-            if query_date.year == break_date.year:
+            if (query_date.year == break_date.year) and m['change_probability'] == 1:
                 ret = np.linalg.norm(m['magnitudes'][1:-1])
                 break
 
@@ -55,10 +53,8 @@ def changedate(models, ord_date):
     if ord_date > 0:
         query_date = date.fromordinal(ord_date)
         for m in models:
-            #if m['break_day'] <= 0:
-            #    continue
             break_date = date.fromordinal(m['break_day'])
-            if query_date.year == break_date.year:
+            if (query_date.year == break_date.year) and m['change_probability'] == 1:
                 ret = break_date.timetuple().tm_yday
                 break
     return ret
