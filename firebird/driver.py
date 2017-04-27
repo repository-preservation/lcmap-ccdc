@@ -5,7 +5,7 @@ from firebird  import SPARK_MASTER, SPARK_EXECUTOR_IMAGE, SPARK_EXECUTOR_CORES, 
 from firebird  import AARDVARK_SPECS_URL, X_PIXEL_DIM, Y_PIXEL_DIM
 from firebird  import simplify_objects, dtstr_to_ordinal
 from .validation import *
-from .aardvark import pyccd_tile_spec_queries, chip_specs
+from .aardvark import pyccd_chip_spec_queries, chip_specs
 from .chip     import ids as chip_ids
 from pyspark   import SparkConf, SparkContext
 from datetime  import datetime
@@ -28,7 +28,7 @@ def simplify_detect_results(results):
     return output
 
 
-def detect(column, row, bands, tile_x, tile_y):
+def detect(column, row, bands, chip_x, chip_y):
     """ Return results of ccd.detect for a given stack of data at a particular x and y """
     output = RESULT_INPUT.copy()
     try:
@@ -44,15 +44,15 @@ def detect(column, row, bands, tile_x, tile_y):
         output['result'] = json.dumps(simplify_detect_results(_results))
         output['result_ok'] = True
         output['algorithm'] = _results['algorithm']
-        output['tile_x'] = tile_x
-        output['tile_y'] = tile_y
+        output['chip_x'] = chip_x
+        output['chip_y'] = chip_y
     except Exception as e:
         firebird.logger.error("Exception running ccd.detect: {}".format(e))
         output['result'] = ''
         output['result_ok'] = False
 
-    output['x'] = tile_x + (column * X_PIXEL_DIM)
-    output['y'] = tile_y + (row * Y_PIXEL_DIM)
+    output['x'] = chip_x + (column * X_PIXEL_DIM)
+    output['y'] = chip_y + (row * Y_PIXEL_DIM)
     output['result_md5'] = hashlib.md5(output['result'].encode('UTF-8')).hexdigest()
     output['result_produced'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
     output['inputs_md5'] = 'not implemented'
@@ -62,17 +62,17 @@ def detect(column, row, bands, tile_x, tile_y):
     return output
 
 
-def assemble_ccd_data(tile_coords, acquired, band_queries):
+def assemble_ccd_data(chip_coords, acquired, band_queries):
     '''
     Gather data necessary for input into the CCD algorithm
-    :param tile_coords: Coordinates of tiles to acquire data for
+    :param chip_coords: Coordinates of chips to acquire data for
     :param acquired: Start and end dates for querying data
     :param band_queries: The actual queries used to retrieve each bands UBIDs
     :return: A dictionary of band data for a given chip of landsat data.
     '''
     ccd_data = {}
     for band in band_queries:
-        ccd_data[band] = spicey_meatball(tile_coords, acquired, band_queries[band])
+        ccd_data[band] = spicey_meatball(chip_coords, acquired, band_queries[band])
     # toss this over the fence to aardvark for now
     ccd_data['dates'] = spicey_meatball_dates(ccd_data['blue'])
     return ccd_data
@@ -119,7 +119,7 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
 
     try:
         # organize required data
-        band_queries = pyccd_tile_spec_queries(AARDVARK_SPECS_URL)
+        band_queries = pyccd_chip_spec_queries(AARDVARK_SPECS_URL)
         # assuming chip-specs are identical for a location across the bands
         chipids = chip_ids(ulx, uly, lrx, lry, chip_specs(band_queries['blue']))
 
