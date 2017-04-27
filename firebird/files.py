@@ -1,6 +1,9 @@
 """ Functions for working with files in python """
 import os
 
+from firebird import logger
+
+
 def read(path):
     with open(path, 'r+') as handle:
         return handle.read()
