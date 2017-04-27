@@ -1,4 +1,6 @@
 import math
+import numpy as np
+from base64 import base64decode
 
 
 def difference(point, interval):
@@ -48,8 +50,7 @@ def near(point, interval, offset):
     """
     # original clojure code
     # (-> point (- offset) (/ interval) (Math/floor) (* interval) (+ offset)))
-
-    return ((math.floor ((point - offset) / interval)) * interval) + offset
+    return ((math.floor((point - offset) / interval)) * interval) + offset
 
 
 def point_to_chip(x, y, x_interval, y_interval, x_offset, y_offset):
@@ -97,11 +98,11 @@ def snap(x, y, chip_spec):
     :param chip_spec: parameters for a chip's grid system
     :returns: tuple of chip x & y
   """
-    chip_x  = chip_spec['chip_x']
-    chip_y  = chip_spec['chip_y']
+    chip_x = chip_spec['chip_x']
+    chip_y = chip_spec['chip_y']
     shift_x = chip_spec['shift_x']
     shift_y = chip_spec['shift_y']
-    chip    = point_to_chip(x, y, chip_x, chip_y, shift_x, shift_y)
+    chip = point_to_chip(x, y, chip_x, chip_y, shift_x, shift_y)
     return int(chip[0]), int(chip[1])
 
 
@@ -124,7 +125,26 @@ def ids(ulx, uly, lrx, lry, chip_spec):
     chip_y = chip_spec['chip_y']   # e.g. -3000 meters, height of chip
 
     start_x, start_y = snap(ulx, uly, chip_spec)
-    end_x,   end_y   = snap(lrx, lry, chip_spec)
+    end_x, end_y = snap(lrx, lry, chip_spec)
 
     yield ((x, y) for x in range(start_x, end_x + chip_x, chip_x)
                   for y in range(start_y, end_y + chip_y, chip_y))
+
+
+def to_numpy(chip, chip_spec):
+    """
+    Removes base64 encoding of chip data and converts it to a numpy array
+    :param chip: A chip
+    :param chip_spec: Corresponding chip_spec
+    :returns: A decoded chip with data as a shaped numpy array
+    """
+    numpy_types = {'UINT8': np.uint8,
+                   'UINT16': np.uint16,
+                   'INT8': np.int8,
+                   'INT16': np.int16}
+
+    shape = chip_spec['shape']
+    data_type = numpy_types[chip_spec['data_type']]
+    decoded = base64decode(chip['data'])
+    chip['data'] = np.frombuffer(decoded, data_type).reshape(*shape)
+    return chip
