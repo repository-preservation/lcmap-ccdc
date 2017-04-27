@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS lcmap_changes_local.results(
     tile_update_requested timestamp STATIC,
     inputs_url text STATIC,
     inputs_md5 text STATIC,
-    PRIMARY KEY ((tile_x, tile_y, algorithm), x, y)
+    PRIMARY KEY ((chip_x, chip_y, algorithm), x, y)
 )
 WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
