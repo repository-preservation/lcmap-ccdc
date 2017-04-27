@@ -5,3 +5,5 @@ omit    = lib/*
           bin/*
           lib64/*
           include/*
+[html]
+directory = test/coverage
