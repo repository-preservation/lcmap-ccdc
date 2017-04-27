@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS lcmap_changes_local.algorithms(
 );
 
 CREATE TABLE IF NOT EXISTS lcmap_changes_local.results(
-    tile_x int,
-    tile_y int,
+    chip_x int,
+    chip_y int,
     algorithm text,
     x int,
     y int,

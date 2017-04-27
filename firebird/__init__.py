@@ -13,6 +13,7 @@ CASSANDRA_CONTACT_POINTS  = os.getenv('CASSANDRA_CONTACT_POINTS', '0.0.0.0')
 CASSANDRA_USER            = os.getenv('CASSANDRA_USER')
 CASSANDRA_PASS            = os.getenv('CASSANDRA_PASS')
 CASSANDRA_KEYSPACE        = os.getenv('CASSANDRA_KEYSPACE', 'lcmap_changes_local')
+CASSANDRA_RESULTS_TABLE   = os.getenv('CASSANDRA_RESULTS_TABLE', 'results')
 
 LOG_LEVEL                 = os.getenv('FIREBIRD_LOG_LEVEL', 'INFO')
 
