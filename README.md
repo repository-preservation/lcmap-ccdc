@@ -47,6 +47,7 @@ Configuration via environment variables
 | CASSANDRA_USER | | DB username |
 | CASSANDRA_PASS | | DB password |
 | CASSANDRA_KEYSPACE | 'lcmap_local' | DB keyspace |
+| CASSANDRA_RESULTS_TABLE | 'results' | Name of table to store results |
 | SPARK_MASTER | 'spark://localhost:7077' | Spark host |
 | SPARK_EXECUTOR_IMAGE | | Docker Image for Spark Executor |
 | SPARK_EXECUTOR_CORES | | Cores allocated per Spark Executor |
