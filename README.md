@@ -18,8 +18,9 @@ Apache Spark based product generation for LCMAP.
 * Create and activate a conda environment
 ```bash
    $ conda config --add channels conda-forge
-   $ conda create --name firebird --file environment.txt
+   $ conda create --name firebird python=3.5 pyspark -y
    $ source activate firebird
+   $ pip install -e .
 ```
 
 ## Testing
