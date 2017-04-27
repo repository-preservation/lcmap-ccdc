@@ -1,22 +1,21 @@
-import json
 import requests
 
 
-def pyccd_tile_spec_queries(url):
+def pyccd_chip_spec_queries(url):
     """
-    A map of pyccd spectra to tile-spec queries
-    :param url: full url for tile-spec endpoint
-    :return: map of spectra to tile spec queries
+    A map of pyccd spectra to chip-spec queries
+    :param url: full url for chip-spec endpoint
+    :return: map of spectra to chip spec queries
     :example:
-    >>> pyccd_tile_spec_queries('http://localhost:9200/landsat/tile-specs')
-    {"red":     'http://localhost:9200/landsat/tile-specs?q=tags:red AND sr',
-     "green":   'http://localhost:9200/landsat/tile-specs?q=tags:green AND sr'
-     "blue":    'http://localhost:9200/landsat/tile-specs?q=tags:blue AND sr'
-     "nir":     'http://localhost:9200/landsat/tile-specs?q=tags:nir AND sr'
-     "swir1":   'http://localhost:9200/landsat/tile-specs?q=tags:swir1 AND sr'
-     "swir2":   'http://localhost:9200/landsat/tile-specs?q=tags:swir2 AND sr'
-     "thermal": 'http://localhost:9200/landsat/tile-specs?q=tags:thermal AND toa'
-     "cfmask":  'http://localhost:9200/landsat/tile-specs?q=tags:cfmask AND sr'}
+    >>> pyccd_chip_spec_queries('http://host:port/landsat/chip-specs')
+    {"red":     'http://host:port/landsat/chip-specs?q=tags:red AND sr',
+     "green":   'http://host:port/landsat/chip-specs?q=tags:green AND sr'
+     "blue":    'http://host:port/landsat/chip-specs?q=tags:blue AND sr'
+     "nir":     'http://host:port/landsat/chip-specs?q=tags:nir AND sr'
+     "swir1":   'http://host:port/landsat/chip-specs?q=tags:swir1 AND sr'
+     "swir2":   'http://host:port/landsat/chip-specs?q=tags:swir2 AND sr'
+     "thermal": 'http://host:port/landsat/chip-specs?q=tags:thermal AND toa'
+     "cfmask":  'http://host:port/landsat/chip-specs?q=tags:cfmask AND sr'}
     """
     return {"red":     ''.join([url, '?q=tags:red AND sr']),
             "green":   ''.join([url, '?q=tags:green AND sr']),
@@ -34,7 +33,7 @@ def chip_specs(query):
     :param query: full url query for elasticsearch
     :returns: sequence of chip specs
     :example:
-    >>> chip_specs('http://localhost:9200/landsat/tile-specs?q=tags:red AND sr')
+    >>> chip_specs('http://host:port/landsat/chip-specs?q=tags:red AND sr')
     ['chip_spec_1', 'chip_spec_2', ...]
     """
     js = requests.get(query).json()
@@ -53,9 +52,9 @@ def ubids(chip_specs):
     return [cs['ubid'] for cs in chip_specs if 'ubid' in cs]
 
 
-def data(url, x, y, acquired, ubids):
+def chips(url, x, y, acquired, ubids):
     """
-    Returns aardvark data for given x, y, date range and ubid sequence
+    Returns aardvark chips for given x, y, date range and ubid sequence
     :param url: full url to aardvark endpoint
     :param x: longitude
     :param y: latitude
@@ -69,11 +68,11 @@ def data(url, x, y, acquired, ubids):
     :returns: TBD
 
     :Example:
-    >>> data(url='http://localhost:5678/landsat/tiles',
-             x=123456,
-             y=789456,
-             acquired='2012-01-01/2014-01-03',
-             ubids=['LANDSAT_7/ETM/sr_band1', 'LANDSAT_5/TM/sr_band1'])
+    >>> chips(url='http://host:port/landsat/chips',
+              x=123456,
+              y=789456,
+              acquired='2012-01-01/2014-01-03',
+              ubids=['LANDSAT_7/ETM/sr_band1', 'LANDSAT_5/TM/sr_band1'])
     """
     return requests.get(url, params={'x': x,
                                      'y': y,
