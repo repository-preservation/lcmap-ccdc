@@ -26,7 +26,7 @@ docker-deps-down:
 	docker-compose -f resources/docker-compose.yml down
 
 clean:
-	@rm -rf dist build lcmap_pyccd_worker.egg-info
+	@rm -rf dist build lcmap_firebird.egg-info test/coverage
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -delete
 

@@ -20,7 +20,15 @@ Apache Spark based product generation for LCMAP.
    $ conda config --add channels conda-forge
    $ conda create --name firebird python=3.5 pyspark -y
    $ source activate firebird
+```
+
+* Clone this repo, install deps and submodules
+```bash 
+   $ git clone git@github.com:usgs-eros/lcmap-firebird
+   $ cd lcmap-firebird
    $ pip install -e .
+   $ git submodule init
+   $ git submodule update
 ```
 
 ## Testing
@@ -56,10 +64,6 @@ Configuration via environment variables
 * Jupyter
 ```bash
 ```
-
-## Testing
-
-```$ pytest```
 
 ## Implementation Wants
 * Utilize xarray for input handling
