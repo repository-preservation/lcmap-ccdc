@@ -1,6 +1,9 @@
 """ Functions for working with files in python """
 import os
 
+from firebird import logger
+
+
 def read(path):
     with open(path, 'r+') as handle:
         return handle.read()
@@ -46,7 +49,7 @@ def delete(path):
         os.remove(path)
     except FileNotFoundError:
         pass
-    except Exception, e:
+    except Exception as e:
         logger.error("Exception deleting file:{}".format(path))
         logger.error(e)
         return False
