@@ -1,9 +1,34 @@
+"""
+Aardvark interface module for firebird.  aardvark.py contains non-composed
+functions for working with aardvark.  It is intended to enable a number of
+use cases whether the calling code requires stacks or time-series, wide
+spatial extent data, or any mix of different data spectra.
+
+Features include:
+    - query aardvark for chips
+    - query aardvark for chip_specs
+    - convert encoded chip data to numpy arrays
+    - split chip data into data structures that properly identify each data by
+      x,y,t,s,u where x is longitude, y is latitude, t is time s is spectra
+      and u is ubid
+    - merge split data into a 'rainbow' data structure for input to pyccd.
+
+It is up the caller of the module to compose these functions together properly.
+There is a natural order that they can be composed however, as the expected
+input parameters (and types) have been carefully examined to ensure they are
+compatible with upstream return values.
+
+Do not add functions into this module that implement business logic, such as
+'how' the functions are used together.  That should be done in the
+calling modules.  aardvark.py is a client library only.
+"""
 import requests
 from . import chip
 
 
 def pyccd_chip_spec_queries(url):
     """
+    TODO: This should really be housed elsewhere.  It is specific to pyccd.
     A map of pyccd spectra to chip-spec queries
     :param url: full url for chip-spec endpoint
     :return: map of spectra to chip spec queries
@@ -35,7 +60,7 @@ def chip_specs(query):
     :returns: sequence of chip specs
     :example:
     >>> chip_specs('http://host:port/landsat/chip-specs?q=tags:red AND sr')
-    ['chip_spec_1', 'chip_spec_2', ...]
+    ('chip_spec_1', 'chip_spec_2', ...)
     """
     js = requests.get(query).json()
     if 'hits' in js and 'hits' in js['hits']:
