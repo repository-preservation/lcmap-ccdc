@@ -39,9 +39,9 @@ def chip_specs(query):
     """
     js = requests.get(query).json()
     if 'hits' in js and 'hits' in js['hits']:
-        return [hit['_source'] for hit in js['hits']['hits']]
+        return tuple(hit['_source'] for hit in js['hits']['hits'])
     else:
-        return []
+        return tuple()
 
 
 def byubid(chip_specs):
@@ -59,7 +59,7 @@ def ubids(chip_specs):
     :param chip_specs: a sequence of chip_spec dicts
     :returns: a sequence of ubids
     """
-    return [cs['ubid'] for cs in chip_specs if 'ubid' in cs]
+    return tuple(cs['ubid'] for cs in chip_specs if 'ubid' in cs)
 
 
 def chips(url, x, y, acquired, ubids):
@@ -96,7 +96,7 @@ def sort(chips):
     :param chips: sequence of chips
     :returns: sorted sequence of chips
     """
-    return sorted(chips, key=lambda c: c['acquired'])
+    return tuple(sorted(chips, key=lambda c: c['acquired']))
 
 
 def dates(chips):
@@ -105,7 +105,7 @@ def dates(chips):
     :param chips: sequence of chips
     :returns: sequence of dates
     """
-    return [c['acquired'] for c in chips]
+    return tuple([c['acquired'] for c in chips])
 
 
 def intersection(items):
@@ -121,14 +121,14 @@ def intersection(items):
     return set.intersection(*(map(lambda x: set(x), items)))
 
 
-def filter(chips, dates):
+def trim(chips, dates):
     """
     Eliminates chips that are not from the specified dates
     :param chips: Sequence of chips
     :param dates: Sequence of dates
     :returns: Sequence of filtered chips
     """
-    return filter(lambda c: c['acquired'] in dates, chips)
+    return tuple(filter(lambda c: c['acquired'] in dates, chips))
 
 
 def to_numpy(chips, chip_specs):
