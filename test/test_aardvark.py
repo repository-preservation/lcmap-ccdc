@@ -4,6 +4,7 @@ from firebird.aardvark import byubid
 from firebird.aardvark import sort
 from firebird.aardvark import dates
 from firebird.aardvark import intersection
+from firebird.aardvark import trim
 
 from hypothesis import given
 import hypothesis.strategies as st
@@ -71,8 +72,16 @@ def test_intersection():
     assert intersection(items) == {3}
 
 
-def test_filter():
-    pass
+def test_trim():
+    inputs = list()
+    inputs.append({'include': True, 'acquired': '2015-04-01'})
+    inputs.append({'include': True, 'acquired': '2017-04-01'})
+    inputs.append({'include': False, 'acquired': '2017-01-01'})
+    inputs.append({'include': True, 'acquired': '2016-04-01'})
+    included = dates(filter(lambda d: d['include'] is True, inputs))
+    trimmed = trim(inputs, included)
+    assert len(list(trimmed)) == len(included)
+    assert set(included) == set(map(lambda x: x['acquired'], trimmed))
 
 
 def test_to_numpy():
