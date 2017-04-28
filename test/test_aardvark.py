@@ -2,6 +2,7 @@ from firebird.aardvark import pyccd_chip_spec_queries
 from firebird.aardvark import ubids
 from firebird.aardvark import byubid
 from firebird.aardvark import sort
+from firebird.aardvark import dates
 from hypothesis import given
 import hypothesis.strategies as st
 import urllib
@@ -55,7 +56,12 @@ def test_sort():
 
 
 def test_dates():
-    pass
+    inputs = list()
+    inputs.append({'acquired': '2015-04-01'})
+    inputs.append({'acquired': '2017-04-01'})
+    inputs.append({'acquired': '2017-01-01'})
+    inputs.append({'acquired': '2016-04-01'})
+    assert set(dates(inputs)) == set(map(lambda d: d['acquired'], inputs))
 
 
 def test_intersection():
