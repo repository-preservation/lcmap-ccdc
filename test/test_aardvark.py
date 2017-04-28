@@ -94,7 +94,3 @@ def test_split():
 
 def test_merge():
     pass
-
-
-def test_rodify():
-    assert True is True
