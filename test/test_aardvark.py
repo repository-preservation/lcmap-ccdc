@@ -3,6 +3,8 @@ from firebird.aardvark import ubids
 from firebird.aardvark import byubid
 from firebird.aardvark import sort
 from firebird.aardvark import dates
+from firebird.aardvark import intersection
+
 from hypothesis import given
 import hypothesis.strategies as st
 import urllib
@@ -65,7 +67,8 @@ def test_dates():
 
 
 def test_intersection():
-    pass
+    items = [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
+    assert intersection(items) == {3}
 
 
 def test_filter():
