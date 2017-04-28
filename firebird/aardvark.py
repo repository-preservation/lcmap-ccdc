@@ -1,5 +1,5 @@
 import requests
-import chip
+from . import chip
 
 
 def pyccd_chip_spec_queries(url):
@@ -50,7 +50,7 @@ def byubid(chip_specs):
     :param chip_specs: a sequence of chip specs
     :returns: a dict of chip_specs keyed by ubid
     """
-    pass
+    return {cs['ubid']: cs for cs in chip_specs}
 
 
 def ubids(chip_specs):

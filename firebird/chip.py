@@ -1,6 +1,6 @@
 import math
 import numpy as np
-from base64 import base64decode
+from base64 import b64decode
 
 
 def difference(point, interval):
@@ -145,6 +145,6 @@ def to_numpy(chip, chip_spec):
 
     shape = chip_spec['shape']
     data_type = numpy_types[chip_spec['data_type']]
-    decoded = base64decode(chip['data'])
+    decoded = b64decode(chip['data'])
     chip['data'] = np.frombuffer(decoded, data_type).reshape(*shape)
     return chip
