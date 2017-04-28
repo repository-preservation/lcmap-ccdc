@@ -1,6 +1,7 @@
 from firebird.aardvark import pyccd_chip_spec_queries
 from firebird.aardvark import ubids
 from firebird.aardvark import byubid
+from firebird.aardvark import sort
 from hypothesis import given
 import hypothesis.strategies as st
 import urllib
@@ -43,7 +44,14 @@ def test_ubids_from_chip_specs():
 
 
 def test_sort():
-    pass
+    inputs = list()
+    inputs.append({'acquired': '2015-04-01'})
+    inputs.append({'acquired': '2017-04-01'})
+    inputs.append({'acquired': '2017-01-01'})
+    inputs.append({'acquired': '2016-04-01'})
+    results = sort(inputs)
+    assert(results[0]['acquired'] < results[1]['acquired'] <
+           results[2]['acquired'] < results[3]['acquired'])
 
 
 def test_dates():
