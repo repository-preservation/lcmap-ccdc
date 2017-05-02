@@ -30,27 +30,28 @@ def pyccd_chip_spec_queries(url):
     """
     TODO: This should really be housed elsewhere.  It is specific to pyccd.
     A map of pyccd spectra to chip-spec queries
-    :param url: full url for chip-spec endpoint
+    :param url: full url (http://host:port/context) for chip-spec endpoint
     :return: map of spectra to chip spec queries
     :example:
-    >>> pyccd_chip_spec_queries('http://host:port/v1/landsat/chip-specs')
-    {"red":     'http://host:port/v1/landsat/chip-specs?q=tags:red AND sr',
-     "green":   'http://host:port/v1/landsat/chip-specs?q=tags:green AND sr'
-     "blue":    'http://host:port/v1/landsat/chip-specs?q=tags:blue AND sr'
-     "nir":     'http://host:port/v1/landsat/chip-specs?q=tags:nir AND sr'
-     "swir1":   'http://host:port/v1/landsat/chip-specs?q=tags:swir1 AND sr'
-     "swir2":   'http://host:port/v1/landsat/chip-specs?q=tags:swir2 AND sr'
-     "thermal": 'http://host:port/v1/landsat/chip-specs?q=tags:thermal AND toa'
-     "qa":      'http://host:port/v1/landsat/chip-specs?q=tags:qa AND sr'}
+    >>> pyccd_chip_spec_queries('http://host/v1/landsat/chip-specs')
+    {"red":     'http://host/v1/landsat/chip-specs?q=tags:red AND sr',
+     "green":   'http://host/v1/landsat/chip-specs?q=tags:green AND sr'
+     "blue":    'http://host/v1/landsat/chip-specs?q=tags:blue AND sr'
+     "nir":     'http://host/v1/landsat/chip-specs?q=tags:nir AND sr'
+     "swir1":   'http://host/v1/landsat/chip-specs?q=tags:swir1 AND sr'
+     "swir2":   'http://host/v1/landsat/chip-specs?q=tags:swir2 AND sr'
+     "thermal": 'http://host/v1/landsat/chip-specs?q=tags:thermal AND ta'
+     "qa":      'http://host/v1/landsat/chip-specs?q=tags:qa AND tags:pixel'}
     """
-    return {"red":     ''.join([url, '?q=tags:red AND sr']),
-            "green":   ''.join([url, '?q=tags:green AND sr']),
-            "blue":    ''.join([url, '?q=tags:blue AND sr']),
-            "nir":     ''.join([url, '?q=tags:nir AND sr']),
-            "swir1":   ''.join([url, '?q=tags:swir1 AND sr']),
-            "swir2":   ''.join([url, '?q=tags:swir2 AND sr']),
-            "thermal": ''.join([url, '?q=tags:bt AND thermal -BTB11']),
-            "qa":      ''.join([url, '?q=tags:pixelqa'])}
+    return {"red":     ''.join([url, '?q=tags:red AND tags:sr']),
+            "green":   ''.join([url, '?q=tags:green AND tags:sr']),
+            "blue":    ''.join([url, '?q=tags:blue AND tags:sr']),
+            "nir":     ''.join([url, '?q=tags:nir AND tags:sr']),
+            "swir1":   ''.join([url, '?q=tags:swir1 AND tags:sr']),
+            "swir2":   ''.join([url, '?q=tags:swir2 AND tags:sr']),
+            "thermal": ''.join([url, '?q=tags:ta AND (tags:bt OR tags:thermal)',
+                                     ' ', 'AND NOT tags:tirs2']),
+            "qa":      ''.join([url, '?q=tags:pixel AND tags:qa'])}
 
 
 def chip_specs(query):
@@ -59,7 +60,7 @@ def chip_specs(query):
     :param query: full url query for aardvark
     :returns: sequence of chip specs
     :example:
-    >>> chip_specs('http://host:port/v1/landsat/chip-specs?q=tags:red AND sr')
+    >>> chip_specs('http://host:port/v1/landsat/chip-specs?q=tags:red AND tags:sr')
     ('chip_spec_1', 'chip_spec_2', ...)
     """
     return tuple(requests.get(query).json())
@@ -108,7 +109,7 @@ def chips(url, x, y, acquired, ubids):
     return tuple(requests.get(url, params={'x': x,
                                            'y': y,
                                            'acquired': acquired,
-                                           'ubids': ubids}).json())
+                                           'ubid': ubids}).json())
 
 
 def sort(chips):
