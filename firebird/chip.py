@@ -121,7 +121,7 @@ def ids(ulx, uly, lrx, lry, chip_spec):
     >>> chip_ids = ids(1000, -1000, -500, 500, chip_spec)
     ((-1000, 500), (-500, 500), (-1000, -500), (-500, -500))
     """
-    chip_width = chip_spec['chip_x']   # e.g.  3000 meters, width of chip
+    chip_width = chip_spec['chip_x']    # e.g.  3000 meters, width of chip
     chip_height = chip_spec['chip_y']   # e.g. -3000 meters, height of chip
 
     start_x, start_y = snap(ulx, uly, chip_spec)
@@ -157,10 +157,17 @@ def locations(chip_idx, chip_idy, chip_spec):
     the starting location (upper left coordinant.)
     :param chip_idx: x coordinate (longitude) of upper left pixel of chip
     :param chip_idy: y coordinate (latitude) of upper left pixel of chip
+    :returns: A two dimensional sequence of (x,y) coordinates
+    TODO: WIP.  Not done or tested.
     """
-    width, height = chip_spec['shape']
-    pixel_x = chip_spec['pixel_x'] # 30 meters
-    pixel_y = chip_spec['pixel_y'] # -30 meters
-    matrix = ((x, y) for x in range(pixel_x, pixel_x * width + pixel_x, pixel_x)
-                     for y in range(pixel_y, pixel_y * height + pixel_y, pixel_y))
+    chip_width, chip_height = chip_spec['shape'] # e.g. 100, -100
+    pixel_width = chip_spec['pixel_x'] # 30 meters
+    pixel_height = chip_spec['pixel_y'] # -30 meters
+    startx = chip_idx
+    starty = chip_idy
+    endx = startx * chip_width + pixel_width
+    endy = endy * chip_height + pixel_height
+
+    matrix = ((x, y) for x in range(startx, endx, pixel_width)
+                     for y in range(starty, endy, pixel_height))
     return matrix
