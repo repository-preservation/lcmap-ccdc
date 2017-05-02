@@ -43,15 +43,14 @@ def pyccd_chip_spec_queries(url):
      "thermal": 'http://host/v1/landsat/chip-specs?q=tags:thermal AND ta'
      "qa":      'http://host/v1/landsat/chip-specs?q=tags:qa AND tags:pixel'}
     """
-    return {"red":     ''.join([url, '?q=tags:red AND tags:sr']),
-            "green":   ''.join([url, '?q=tags:green AND tags:sr']),
-            "blue":    ''.join([url, '?q=tags:blue AND tags:sr']),
-            "nir":     ''.join([url, '?q=tags:nir AND tags:sr']),
-            "swir1":   ''.join([url, '?q=tags:swir1 AND tags:sr']),
-            "swir2":   ''.join([url, '?q=tags:swir2 AND tags:sr']),
-            "thermal": ''.join([url, '?q=tags:ta AND (tags:bt OR tags:thermal)',
-                                     ' ', 'AND NOT tags:tirs2']),
-            "qa":      ''.join([url, '?q=tags:pixel AND tags:qa'])}
+    return {"red":     ''.join([url, '?q=tags:red AND sr']),
+            "green":   ''.join([url, '?q=tags:green AND sr']),
+            "blue":    ''.join([url, '?q=tags:blue AND sr']),
+            "nir":     ''.join([url, '?q=tags:nir AND sr']),
+            "swir1":   ''.join([url, '?q=tags:swir1 AND sr']),
+            "swir2":   ''.join([url, '?q=tags:swir2 AND sr']),
+            "thermal": ''.join([url, '?q=tags:bt AND thermal AND NOT tirs2']),
+            "qa":      ''.join([url, '?q=tags:pixelqa'])}
 
 
 def chip_specs(query):
