@@ -121,14 +121,14 @@ def ids(ulx, uly, lrx, lry, chip_spec):
     >>> chip_ids = ids(1000, -1000, -500, 500, chip_spec)
     ((-1000, 500), (-500, 500), (-1000, -500), (-500, -500))
     """
-    chip_x = chip_spec['chip_x']   # e.g.  3000 meters, width of chip
-    chip_y = chip_spec['chip_y']   # e.g. -3000 meters, height of chip
+    chip_width = chip_spec['chip_x']   # e.g.  3000 meters, width of chip
+    chip_height = chip_spec['chip_y']   # e.g. -3000 meters, height of chip
 
     start_x, start_y = snap(ulx, uly, chip_spec)
     end_x, end_y = snap(lrx, lry, chip_spec)
 
-    yield ((x, y) for x in range(start_x, end_x + chip_x, chip_x)
-                  for y in range(start_y, end_y + chip_y, chip_y))
+    yield ((x, y) for x in range(start_x, end_x + chip_width, chip_width)
+                  for y in range(start_y, end_y + chip_height, chip_height))
 
 
 def to_numpy(chip, chip_spec):
@@ -148,3 +148,19 @@ def to_numpy(chip, chip_spec):
     decoded = b64decode(chip['data'])
     chip['data'] = np.frombuffer(decoded, data_type).reshape(*shape)
     return chip
+
+
+def locations(chip_idx, chip_idy, chip_spec):
+    """
+    Computes locations for array elements that fall within the shape
+    specified by chip_spec['shape'] using the chip_idx and chip_idy as
+    the starting location (upper left coordinant.)
+    :param chip_idx: x coordinate (longitude) of upper left pixel of chip
+    :param chip_idy: y coordinate (latitude) of upper left pixel of chip
+    """
+    width, height = chip_spec['shape']
+    pixel_x = chip_spec['pixel_x'] # 30 meters
+    pixel_y = chip_spec['pixel_y'] # -30 meters
+    matrix = ((x, y) for x in range(pixel_x, pixel_x * width + pixel_x, pixel_x)
+                     for y in range(pixel_y, pixel_y * height + pixel_y, pixel_y))
+    return matrix
