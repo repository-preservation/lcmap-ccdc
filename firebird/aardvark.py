@@ -23,7 +23,7 @@ Do not add functions into this module that implement business logic, such as
 calling modules.  aardvark.py is a client library only.
 """
 import requests
-import chip
+from firebird import chip
 
 
 def pyccd_chip_spec_queries(url):
@@ -49,8 +49,8 @@ def pyccd_chip_spec_queries(url):
             "nir":     ''.join([url, '?q=tags:nir AND sr']),
             "swir1":   ''.join([url, '?q=tags:swir1 AND sr']),
             "swir2":   ''.join([url, '?q=tags:swir2 AND sr']),
-            "thermal": ''.join([url, '?q=tags:thermal AND toa']),
-            "qa":      ''.join([url, '?q=tags:qa AND sr'])}
+            "thermal": ''.join([url, '?q=tags:bt AND thermal -BTB11']),
+            "qa":      ''.join([url, '?q=tags:pixelqa'])}
 
 
 def chip_specs(query):
