@@ -49,7 +49,7 @@ def pyccd_chip_spec_queries(url):
             "nir":     ''.join([url, '?q=tags:nir AND sr']),
             "swir1":   ''.join([url, '?q=tags:swir1 AND sr']),
             "swir2":   ''.join([url, '?q=tags:swir2 AND sr']),
-            "thermal": ''.join([url, '?q=tags:bt AND thermal -BTB11']),
+            "thermal": ''.join([url, '?q=tags:bt AND thermal AND NOT tirs2']),
             "qa":      ''.join([url, '?q=tags:pixelqa'])}
 
 
