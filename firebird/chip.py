@@ -127,8 +127,8 @@ def ids(ulx, uly, lrx, lry, chip_spec):
     start_x, start_y = snap(ulx, uly, chip_spec)
     end_x, end_y = snap(lrx, lry, chip_spec)
 
-    yield ((x, y) for x in range(start_x, end_x + chip_width, chip_width)
-                  for y in range(start_y, end_y + chip_height, chip_height))
+    yield ((x, y) for x in np.arange(start_x, end_x + chip_width, chip_width)
+                  for y in np.arange(start_y, end_y + chip_height, chip_height))
 
 
 def to_numpy(chip, chip_spec):
@@ -150,24 +150,30 @@ def to_numpy(chip, chip_spec):
     return chip
 
 
-def locations(chip_idx, chip_idy, chip_spec):
+def locations(startx, starty, chip_spec):
     """
     Computes locations for array elements that fall within the shape
-    specified by chip_spec['shape'] using the chip_idx and chip_idy as
-    the starting location (upper left coordinant.)
-    :param chip_idx: x coordinate (longitude) of upper left pixel of chip
-    :param chip_idy: y coordinate (latitude) of upper left pixel of chip
-    :returns: A two dimensional sequence of (x,y) coordinates
-    TODO: WIP.  Not done or tested.
+    specified by chip_spec['shape'] using the startx and starty as
+    the origin.
+    :param startx: x coordinate (longitude) of upper left pixel of chip
+    :param starty: y coordinate (latitude) of upper left pixel of chip
+    :returns: A two (three) dimensional numpy array of [x, y] coordinates
     """
-    chip_width, chip_height = chip_spec['shape'] # e.g. 100, -100
-    pixel_width = chip_spec['pixel_x'] # 30 meters
-    pixel_height = chip_spec['pixel_y'] # -30 meters
-    startx = chip_idx
-    starty = chip_idy
-    endx = startx * chip_width + pixel_width
-    endy = endy * chip_height + pixel_height
+    # we're going to handle everything in here as longitude (x), latitude (y)...
+    # ... in that order
 
-    matrix = ((x, y) for x in range(startx, endx, pixel_width)
-                     for y in range(starty, endy, pixel_height))
-    return matrix
+    cw = chip_spec['data_shape'][0] # 100
+    ch = chip_spec['data_shape'][1] # 100
+
+    pw = chip_spec['pixel_x'] # 30 meters
+    ph = chip_spec['pixel_y'] # -30 meters
+
+    # determine ends
+    endx = startx + cw * pw
+    endy = starty + ch * ph
+
+    # build arrays of end - start / step shape
+    # flatten into 1d, concatenate and reshape to fit chip
+    x, y = np.mgrid[startx:endx:pw, starty:endy:ph]
+    matrix = np.c_[x.ravel(), y.ravel()]
+    return np.reshape(matrix, (cw, ch, 2))
