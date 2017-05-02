@@ -97,7 +97,7 @@ def snap(x, y, chip_spec):
     :param y: y coordinate
     :param chip_spec: parameters for a chip's grid system
     :returns: tuple of chip x & y
-  """
+    """
     chip_x = chip_spec['chip_x']
     chip_y = chip_spec['chip_y']
     shift_x = chip_spec['shift_x']
@@ -159,9 +159,6 @@ def locations(startx, starty, chip_spec):
     :param starty: y coordinate (latitude) of upper left pixel of chip
     :returns: A two (three) dimensional numpy array of [x, y] coordinates
     """
-    # we're going to handle everything in here as longitude (x), latitude (y)...
-    # ... in that order
-
     cw = chip_spec['data_shape'][0] # 100
     ch = chip_spec['data_shape'][1] # 100
 
