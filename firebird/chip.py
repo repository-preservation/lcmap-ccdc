@@ -143,7 +143,7 @@ def to_numpy(chip, chip_spec):
                    'INT8': np.int8,
                    'INT16': np.int16}
 
-    shape = chip_spec['shape']
+    shape = chip_spec['data_shape']
     data_type = numpy_types[chip_spec['data_type']]
     decoded = b64decode(chip['data'])
     chip['data'] = np.frombuffer(decoded, data_type).reshape(*shape)

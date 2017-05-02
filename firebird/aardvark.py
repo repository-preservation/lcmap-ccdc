@@ -59,7 +59,7 @@ def chip_specs(query):
     :param query: full url query for aardvark
     :returns: sequence of chip specs
     :example:
-    >>> chip_specs('http://host:port/v1/landsat/chip-specs?q=tags:red AND tags:sr')
+    >>> chip_specs('http://host:port/v1/landsat/chip-specs?q=red AND sr')
     ('chip_spec_1', 'chip_spec_2', ...)
     """
     return tuple(requests.get(query).json())
@@ -117,7 +117,7 @@ def sort(chips):
     :param chips: sequence of chips
     :returns: sorted sequence of chips
     """
-    return tuple(sorted(chips, key=lambda c: c['acquired']))
+    return tuple(sorted(chips, key=lambda c: c['acquired'], reverse=True))
 
 
 def dates(chips):
