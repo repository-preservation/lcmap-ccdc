@@ -180,7 +180,7 @@ def rods(chips):
     """
     Accepts sequences of chips and returns
     time series pixel rods organized by x, y, t for all chips.
-    Chips should be sorted as desired before calling rodify() as
+    Chips should be sorted as desired before calling rods() as
     output order mirrors input order.
     :param chips: sequence of chips
     :type chips: sequence of chips with data as numpy arrays
