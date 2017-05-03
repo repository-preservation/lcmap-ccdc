@@ -166,8 +166,8 @@ def rods(chips):
     """
     Accepts sequences of chips and returns
     time series pixel rods organized by x, y, t for all chips.
-    Chips should be sorted as desired before calling rods() as
-    output order mirrors input order.
+    Chips should be sorted as desired before calling rods() as output order
+    mirrors input order.
     :param chips: sequence of chips
     :type chips: sequence of chips with data as numpy arrays
     :returns: 3d numpy array organized by x, y, and t.  Output shape matches
@@ -180,21 +180,20 @@ def rods(chips):
     4. Reshape the master array to match incoming chip dimensions
     5. Pixel rods are now organized for timeseries access by x, y, t
 
-    chip_one   = np.int_([[1, 2, 3],
-                          [4, 5, 6],
-                          [7, 8, 9]])
+    >>> chip_one   = np.int_([[1, 2, 3],
+                              [4, 5, 6],
+                              [7, 8, 9]])
 
-    chip_two   = np.int_([[11, 12, 13],
-                          [14, 15, 16],
-                          [17, 18, 19]])
+    >>> chip_two   = np.int_([[11, 12, 13],
+                              [14, 15, 16],
+                              [17, 18, 19]])
 
-    chip_three  = np.int_([[21, 22, 23],
-                           [24, 25, 26],
-                           [27, 28, 29]])
+    >>> chip_three  = np.int_([[21, 22, 23],
+                               [24, 25, 26],
+                               [27, 28, 29]])
 
-    master = np.conj([chip_one, chip_two, chip_three])
-    np.hstack(master.T).reshape(3, 3, -1)
-
+    >>> master = np.conj([chip_one, chip_two, chip_three])
+    >>> np.hstack(master.T).reshape(3, 3, -1)
     array([[[ 1, 11, 21], [ 2, 12, 22], [ 3, 13, 23]],
            [[ 4, 14, 24], [ 5, 15, 25], [ 6, 16, 26]],
            [[ 7, 17, 27], [ 8, 18, 28], [ 9, 19, 29]]])
@@ -226,7 +225,7 @@ def assoc(keys, items):
           [[ 12,  99, 112, 110],  [112,  87, 231, 111], [112,  45,  47, 112]]])
 
     assoc converts keys to:
-    keys.reshape(keys.shape[0] * keys.shape[1], -1)
+    >>> keys.reshape(keys.shape[0] * keys.shape[1], -1)
     array([[0, 0],
            [0, 1],
            [0, 2],
@@ -238,7 +237,7 @@ def assoc(keys, items):
            [2, 2]])
 
     And items to:
-    items.reshape(items.shape[0] * items.shape[1], -1)
+    >>> items.reshape(items.shape[0] * items.shape[1], -1)
     array([[110, 110, 234, 664],
            [ 23, 887, 110, 111],
            [110, 464, 223, 112],
