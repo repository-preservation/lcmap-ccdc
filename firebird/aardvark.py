@@ -23,6 +23,7 @@ Do not add functions into this module that implement business logic, such as
 calling modules.  aardvark.py is a client library only.
 """
 import requests
+import numpy as np
 from firebird import chip
 
 
