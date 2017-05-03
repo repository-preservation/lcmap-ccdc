@@ -162,20 +162,6 @@ def to_numpy(chips, chip_specs_byubid):
     return map(lambda c: chip.to_numpy(c, chip_specs_byubid[c['ubid']]), chips)
 
 
-def split(chips, locations):
-    """
-    Accepts a sequence of chips plus location information and returns
-    sequences of pixels organized by x,y,t for all chips.
-    :param chips: sequence of chips
-    :param locations: [x, y] coords for each chip array element
-    :type chips: sequence of chips with data as numpy arrays
-    :type locations: 2d numpy array containing 2 element arrays of [x, y]
-    :returns: sequence of (x, y, date, ubid, data) for each x,y
-    {(x, y): {t: data}}
-    """
-    pass
-
-
 def rods(chips):
     """
     Accepts sequences of chips and returns
@@ -186,9 +172,8 @@ def rods(chips):
     :type chips: sequence of chips with data as numpy arrays
     :returns: 3d numpy array organized by x, y, and t.  Output shape matches
               input chip shape with the innermost chip value replaced by
-              another numpy array of chip time series
-
-    Function explanation:
+              another numpy array of chip time series values
+    :description:
     1. For each chip add data to master numpy array.
     2. Transpose the master array
     3. Horizontally stack the transposed master array elements
@@ -218,9 +203,85 @@ def rods(chips):
     return np.hstack(master.T]).reshape(*master[0].shape,-1)
 
 
-def merge(split_chips):
+def assoc(keys, items):
     """
-    Combines multiple spectral sequences into a single multi-dimensional
-    sequence, ready for pyccd execution.
+    Converts 2 numpy arrays into dict of {(key): item}
+    Each array is assumed to be at least 2 dimensions each.  Only first two
+    dimensions of each array are reduced by 1.  Each array dimension beyond 2
+    is left intact and represented either as the key tuple or the keyed item.
+    :param keys:  Numpy array with minimum dimensionality of 2.
+    :param items: Numpy array with minimum dimensionality of 2.
+    :returns: dict of (key): item for each key and item in the arrays.
+    :description:
+    Incoming keys as 3d array:
+
+    array([[[0, 0], [0, 1], [0, 2]],
+           [[1, 0], [1, 1], [1, 2]],
+           [[2, 0], [2, 1], [2, 2]]])
+
+    Incoming items also as 3d array:
+
+    array([[[110, 110, 234, 664], [ 23, 887, 110, 111], [110, 464, 223, 112]],
+          [[111, 887,   1, 110],  [ 33, 111,  12, 111], [  0, 111,  66, 112]],
+          [[ 12,  99, 112, 110],  [112,  87, 231, 111], [112,  45,  47, 112]]])
+
+    assoc converts keys to:
+    keys.reshape(keys.shape[0] * keys.shape[1], -1)
+    array([[0, 0],
+           [0, 1],
+           [0, 2],
+           [1, 0],
+           [1, 1],
+           [1, 2],
+           [2, 0],
+           [2, 1],
+           [2, 2]])
+
+    And items to:
+    items.reshape(items.shape[0] * items.shape[1], -1)
+    array([[110, 110, 234, 664],
+           [ 23, 887, 110, 111],
+           [110, 464, 223, 112],
+           [111, 887,   1, 110],
+           [ 33, 111,  12, 111],
+           [  0, 111,  66, 112],
+           [ 12,  99, 112, 110],
+           [112,  87, 231, 111],
+           [112,  45,  47, 112]])
+
+    Then the keys and items are zipped together into a dictionary
+    comprehension and returned.
     """
-    pass
+    kys = keys.reshape(keys.shape[0] * keys.shape[1], -1)
+    its = items.reshape(items.shape[0] * items.shape[1], -1)
+    return {tuple(k):v for k,v in zip(kys, its)}
+
+
+def double_rainbow(dates, reds, greens, blues, nirs,
+                   swir1s, swir2s, thermals, qas):
+    """
+    TODO: This doesnt even need to exist, especially not in aardvark.py
+          It's here temporarily for clarity only.
+          The name is a joke too, don't code against this.  It will be
+          rehoused properly into another module.
+    :param dates: sequence of dates corresponding to time series data elements
+    :param reds: dict of red time series data keyed by (x, y)
+    :param greens: dict of green time series data keyed by (x, y)
+    :param blues: dict of blue time series data keyed by (x, y)
+    :param nirs: dict of nir time series data keyed by (x, y)
+    :param swir1s: dict of swir1 time series data keyed by (x, y)
+    :param swir2s: dict of swir2 time series data keyed by (x, y)
+    :param thermals: dict of thermal time series data keyed by (x, y)
+    :param qas: dict of qa time series data keyed by (x, y)
+    :returns: A dict of all params keyed by name
+    """
+    return {'dates': dates,
+            'reds': reds,
+            'greens': greens,
+            'blues': blues,
+            'nirs': nirs,
+            'swir1s': swir1s,
+            'swir2s': swir2s,
+            'thermals': thermals,
+            'qas': qas
+     }
