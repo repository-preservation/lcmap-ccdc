@@ -251,6 +251,17 @@ def assoc(keys, items):
 
     Then the keys and items are zipped together into a dictionary
     comprehension and returned.
+    {
+     (0, 0): [110, 110, 234, 664],
+     (0, 1): [ 23, 887, 110, 111],
+     (0, 2): [110, 464, 223, 112],
+     (1, 0): [111, 887,   1, 110],
+     (1, 1): [ 33, 111,  12, 111],
+     (1, 2): [  0, 111,  66, 112],
+     (2, 0): [ 12,  99, 112, 110],
+     (2, 1): [112,  87, 231, 111],
+     (2, 2): [112,  45,  47, 112]
+    }
     """
     kys = keys.reshape(keys.shape[0] * keys.shape[1], -1)
     its = items.reshape(items.shape[0] * items.shape[1], -1)
