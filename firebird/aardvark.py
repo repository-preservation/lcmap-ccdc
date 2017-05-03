@@ -181,23 +181,23 @@ def rods(chips):
     4. Reshape the master array to match incoming chip dimensions
     5. Pixel rods are now organized for timeseries access by x, y, t
 
-    >>> chip_one   = np.int_([[1, 2, 3],
-                              [4, 5, 6],
-                              [7, 8, 9]])
-
-    >>> chip_two   = np.int_([[11, 12, 13],
+    >>> chip_one   = np.int_([[11, 12, 13],
                               [14, 15, 16],
                               [17, 18, 19]])
 
-    >>> chip_three  = np.int_([[21, 22, 23],
-                               [24, 25, 26],
-                               [27, 28, 29]])
+    >>> chip_two   = np.int_([[21, 22, 23],
+                              [24, 25, 26],
+                              [27, 28, 29]])
+
+    >>> chip_three  = np.int_([[31, 32, 33],
+                               [34, 35, 36],
+                               [37, 38, 39]])
 
     >>> master = np.conj([chip_one, chip_two, chip_three])
     >>> np.hstack(master.T).reshape(3, 3, -1)
-    array([[[ 1, 11, 21], [ 2, 12, 22], [ 3, 13, 23]],
-           [[ 4, 14, 24], [ 5, 15, 25], [ 6, 16, 26]],
-           [[ 7, 17, 27], [ 8, 18, 28], [ 9, 19, 29]]])
+    array([[[ 11, 21, 31], [ 12, 22, 32], [ 13, 23, 33]],
+           [[ 14, 24, 34], [ 15, 25, 35], [ 16, 26, 36]],
+           [[ 17, 27, 37], [ 18, 28, 38], [ 19, 29, 39]]])
     """
     master = np.conj([c['data'] for c in chips])
     return np.hstack(master.T]).reshape(*master[0].shape,-1)
