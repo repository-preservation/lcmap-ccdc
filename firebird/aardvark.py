@@ -162,22 +162,60 @@ def to_numpy(chips, chip_specs_byubid):
     return map(lambda c: chip.to_numpy(c, chip_specs_byubid[c['ubid']]), chips)
 
 
-def split(chip_idx, chip_idy, chip_specs_byubid, chips):
+def split(chips, locations):
     """
     Accepts a sequence of chips plus location information and returns
     sequences of pixels organized by x,y,t for all chips.
-    :param chip_idx:  x coordinate for the chip id
-    :param chip_idy:  y coordinate for the chip id
-    :param chip_spec: chip spec for the chip array
     :param chips: sequence of chips
-    :type chip_idx: number
-    :type chip_idy: number
-    :type chip_specs_byubid: dictionary of chip_specs keyed by ubid
+    :param locations: [x, y] coords for each chip array element
     :type chips: sequence of chips with data as numpy arrays
+    :type locations: 2d numpy array containing 2 element arrays of [x, y]
     :returns: sequence of (x, y, date, ubid, data) for each x,y
     {(x, y): {t: data}}
     """
     pass
+
+
+def rods(chips):
+    """
+    Accepts sequences of chips and returns
+    time series pixel rods organized by x, y, t for all chips.
+    Chips should be sorted as desired before calling rodify() as
+    output order mirrors input order.
+    :param chips: sequence of chips
+    :type chips: sequence of chips with data as numpy arrays
+    :returns: 3d numpy array organized by x, y, and t.  Output shape matches
+              input chip shape with the innermost chip value replaced by
+              another numpy array of chip time series
+
+    Function explanation:
+    1. For each chip add data to master numpy array.
+    2. Transpose the master array
+    3. Horizontally stack the transposed master array elements
+    4. Reshape the master array to match incoming chip dimensions
+    5. Pixel rods are now organized for timeseries access by x, y, t
+
+    chip_one   = np.int_([[1, 2, 3],
+                          [4, 5, 6],
+                          [7, 8, 9]])
+
+    chip_two   = np.int_([[11, 12, 13],
+                          [14, 15, 16],
+                          [17, 18, 19]])
+
+    chip_three  = np.int_([[21, 22, 23],
+                           [24, 25, 26],
+                           [27, 28, 29]])
+
+    master = np.conj([chip_one, chip_two, chip_three])
+    np.hstack(master.T).reshape(3, 3, -1)
+
+    array([[[ 1, 11, 21], [ 2, 12, 22], [ 3, 13, 23]],
+           [[ 4, 14, 24], [ 5, 15, 25], [ 6, 16, 26]],
+           [[ 7, 17, 27], [ 8, 18, 28], [ 9, 19, 29]]])
+    """
+    master = np.conj([c['data'] for c in chips])
+    return np.hstack(master.T]).reshape(*master[0].shape,-1)
 
 
 def merge(split_chips):
