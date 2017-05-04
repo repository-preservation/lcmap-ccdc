@@ -15,6 +15,7 @@ from hypothesis import given
 import hypothesis.strategies as st
 import urllib
 import numpy as np
+from numpy.random import randint
 
 @given(url=st.sampled_from(('http://localhost',
                             'https://localhost',
@@ -92,46 +93,32 @@ def test_to_numpy():
     """ Builds combos of shapes and numpy data types and tests
         aardvark.to_numpy() with all of them """
 
-    # define the types we want to make sure to_numpy can handle
-    types = ('uint8', 'uint16', 'int8', 'int16')
-
-    # define the shapes we want to make sure it handles.  This is to ensure
-    # that to_numpy doesn't do something bad like altering the data shape.
-    shapes = ((3, 3), (1, 1), (100, 100))
-
     def _ubid(dtype, shape):
-        """ generate ubid for test data """
-        return '_'.join([dtype, str(shape)])
+        return dtype + str(shape)
 
-    def _chips(dtype, shape, ubid):
-        """ generate chips for test data """
+    def _chip(dtype, shape, ubid):
         limits = np.iinfo(dtype)
-        samples = reduce(lambda accum, v: accum * v, shape)
-        data = np.random.randint(limits.min,
-                                 limits.max,
-                                 samples,
-                                 dtype).reshape(shape)
-        return {'ubid': ubid,
-                'data': b64encode(data)}
+        length = reduce(lambda accum, v: accum * v, shape)
+        matrix = randint(limits.min, limits.max, length, dtype).reshape(shape)
+        return {'ubid': ubid, 'data': b64encode(matrix)}
 
-    def _specs(dtype, shape, ubid):
-        """ generate chip specs for test data """
-        return {'ubid': ubid,
-                'data_shape': shape,
-                'data_type': dtype.upper()}
+    def _spec(dtype, shape, ubid):
+        return {'ubid': ubid, 'data_shape': shape, 'data_type': dtype.upper()}
 
-    # build every combination of types and shapes to test against
-    combos = tuple(product(types, shapes))
+    # Test combos of dtypes/shapes to ensure data shape and type are unaltered
+    combos = tuple(product(('uint8', 'uint16', 'int8', 'int16'),
+                           ((3, 3), (1, 1), (100, 100))))
 
     # generate the chip_specs and chips
-    chips = [_chips(*c, _ubid(*c)) for c in combos]
-    specs = [_specs(*c, _ubid(*c)) for c in combos]
+    chips = [_chip(*c, _ubid(*c)) for c in combos]
+    specs = [_spec(*c, _ubid(*c)) for c in combos]
     specs_byubid = byubid(specs)
 
     # make assertions about results
     for npchip in to_numpy(chips, specs_byubid):
         ubid = npchip['ubid']
         spec = specs_byubid[ubid]
+
         assert npchip['data'].dtype.name == spec['data_type'].lower()
         assert npchip['data'].shape == spec['data_shape']
 
