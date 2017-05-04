@@ -152,7 +152,7 @@ def test_rods():
     # [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27 ...]
     # [11, 21, 31, 12, 22, 32, 13, 23, 33, 14, 24, 34, 15, 25, 35, 16, 26 ...]
     # This alone serves as all the evidence needed to prove that imperative
-    # programming is bad for everyone involved.  I am very sorry for this.
+    # programming is bad for everyone involved.  I am very sorry.
     fchips = list(flatten([c['data'].flatten() for c in chips]))
     jump = reduce(lambda accum, v: accum + v, pillar.shape) # 9
     modulus = pillar.shape[0] # 3
