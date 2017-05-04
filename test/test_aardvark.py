@@ -6,7 +6,9 @@ from firebird.aardvark import dates
 from firebird.aardvark import intersection
 from firebird.aardvark import trim
 from firebird.aardvark import to_numpy
+from firebird.aardvark import rods
 from fixtures import chip_specs
+from fixtures import flatten
 
 from base64 import b64encode
 from functools import reduce
@@ -124,8 +126,35 @@ def test_to_numpy():
 
 
 def test_rods():
-    pass
+    chips = list()
+    chips.append({'data': np.int_([[11, 12, 13],
+                                   [14, 15, 16],
+                                   [17, 18, 19]])})
+    chips.append({'data': np.int_([[21, 22, 23],
+                                   [24, 25, 26],
+                                   [27, 28, 29]])})
+    chips.append({'data': np.int_([[31, 32, 33],
+                                   [34, 35, 36],
+                                   [37, 38, 39]])})
+    pillar = rods(chips)
+    assert pillar.shape[0] == chips[0]['data'].shape[0]
+    assert pillar.shape[1] == chips[0]['data'].shape[1]
+    assert pillar.shape[2] == len(chips)
 
+    # going to flatten both chips arrays and the pillar array
+    # then perform black magic and verify that the values wound up
+    # where they belonged in the array positions.
+    # using old style imperative code as double insurance
+    # happiness is not doing this and relying on functional principles only
+    # because direct manipulation of memory locations is error prone and
+    # very difficult to think about.
+    fchips = list(flatten([c['data'].flatten() for c in chips]))
+    jump = reduce(lambda accum, v: accum + v, pillar.shape)
+    modulus = pillar.shape[0]
+    for i, val in enumerate(pillar.flatten()):
+        factor = i % modulus
+        group = i // modulus
+        assert val == fchips[(factor * jump) + group]
 
 def test_assoc():
     pass
