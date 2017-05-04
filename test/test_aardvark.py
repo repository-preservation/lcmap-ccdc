@@ -157,8 +157,8 @@ def test_rods():
     jump = reduce(lambda accum, v: accum + v, pillar.shape) # 9
     modulus = pillar.shape[0] # 3
     for i, val in enumerate(pillar.flatten()):
-        factor = i % modulus # 0, 1 or 2
-        group = i // modulus # 0 1 or 2
+        factor = i % modulus # 0 1 2
+        group = i // modulus # 0 1 2
         assert val == fchips[(factor * jump) + group]
 
 def test_assoc():
