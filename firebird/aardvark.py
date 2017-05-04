@@ -165,8 +165,8 @@ def rods(chips):
     """
     Accepts sequences of chips and returns
     time series pixel rods organized by x, y, t for all chips.
-    Chips should be sorted as desired before calling rods() as output order
-    mirrors input order.
+    Chips should be sorted as desired before calling rods() as outputs
+    preserve input order.
     :param chips: sequence of chips
     :type chips: sequence of chips with data as numpy arrays
     :returns: 3d numpy array organized by x, y, and t.  Output shape matches
@@ -198,7 +198,7 @@ def rods(chips):
            [[ 17, 27, 37], [ 18, 28, 38], [ 19, 29, 39]]])
     """
     master = np.conj([c['data'] for c in chips])
-    return np.hstack([master.T]).reshape(*master[0].shape,-1)
+    return np.hstack(master.T).reshape(*master[0].shape,-1)
 
 
 def assoc(keys, items):

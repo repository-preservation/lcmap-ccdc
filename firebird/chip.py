@@ -138,23 +138,20 @@ def to_numpy(chip, chip_spec):
     :param chip_spec: Corresponding chip_spec
     :returns: A decoded chip with data as a shaped numpy array
     """
-    numpy_types = {'UINT8': np.uint8,
-                   'UINT16': np.uint16,
-                   'INT8': np.int8,
-                   'INT16': np.int16}
-
     shape = chip_spec['data_shape']
-    data_type = numpy_types[chip_spec['data_type']]
-    decoded = b64decode(chip['data'])
-    chip['data'] = np.frombuffer(decoded, data_type).reshape(*shape)
+    dtype = chip_spec['data_type'].lower()
+    cdata = b64decode(chip['data'])
+
+    chip['data'] = np.frombuffer(cdata, dtype).reshape(*shape)
     return chip
 
 
 def locations(startx, starty, chip_spec):
     """
     Computes locations for array elements that fall within the shape
-    specified by chip_spec['shape'] using the startx and starty as
-    the origin.
+    specified by chip_spec['data_shape'] using the startx and starty as
+    the origin.  locations() does not snap() the startx and starty... this
+    should be done prior to calling locations() if needed.
     :param startx: x coordinate (longitude) of upper left pixel of chip
     :param starty: y coordinate (latitude) of upper left pixel of chip
     :returns: A two (three) dimensional numpy array of [x, y] coordinates
