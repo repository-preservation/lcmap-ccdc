@@ -1,17 +1,15 @@
 """
 Aardvark interface module for firebird.  aardvark.py contains non-composed
 functions for working with aardvark.  It is intended to enable a number of
-use cases whether the calling code requires stacks or time-series, wide
+use cases whether the calling code requires stacks of time-series, wide
 spatial extent data, or any mix of different data spectra.
 
 Features include:
     - query aardvark for chips
     - query aardvark for chip_specs
     - convert encoded chip data to numpy arrays
-    - split chip data into data structures that properly identify each data by
-      x,y,t,s,u where x is longitude, y is latitude, t is time s is spectra
-      and u is ubid
-    - merge split data into a 'rainbow' data structure for input to pyccd.
+    - split chip data into x, y, t rods
+    - assign location identifiers to each rod
 
 It is up the caller of the module to compose these functions together properly.
 There is a natural order that they can be composed however, as the expected
@@ -172,7 +170,7 @@ def rods(chips):
     :param chips: sequence of chips
     :type chips: sequence of chips with data as numpy arrays
     :returns: 3d numpy array organized by x, y, and t.  Output shape matches
-              input chip shape with the innermost chip value replaced by
+              input chip shape with the chip value replaced by
               another numpy array of chip time series values
     :description:
     1. For each chip add data to master numpy array.
