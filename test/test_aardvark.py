@@ -148,12 +148,17 @@ def test_rods():
     # happiness is not doing this and relying on functional principles only
     # because direct manipulation of memory locations is error prone and
     # very difficult to think about.
+    # We're mapping array locations between two things like that look like this:
+    # [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27 ...]
+    # [11, 21, 31, 12, 22, 32, 13, 23, 33, 14, 24, 34, 15, 25, 35, 16, 26 ...]
+    # This alone serves as all the evidence needed to prove that imperative
+    # programming is bad for everyone involved.  I am very sorry for this.
     fchips = list(flatten([c['data'].flatten() for c in chips]))
-    jump = reduce(lambda accum, v: accum + v, pillar.shape)
-    modulus = pillar.shape[0]
+    jump = reduce(lambda accum, v: accum + v, pillar.shape) # 9
+    modulus = pillar.shape[0] # 3
     for i, val in enumerate(pillar.flatten()):
-        factor = i % modulus
-        group = i // modulus
+        factor = i % modulus # 0, 1 or 2
+        group = i // modulus # 0 1 or 2
         assert val == fchips[(factor * jump) + group]
 
 def test_assoc():
