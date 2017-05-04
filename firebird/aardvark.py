@@ -200,7 +200,7 @@ def rods(chips):
            [[ 17, 27, 37], [ 18, 28, 38], [ 19, 29, 39]]])
     """
     master = np.conj([c['data'] for c in chips])
-    return np.hstack(master.T]).reshape(*master[0].shape,-1)
+    return np.hstack([master.T]).reshape(*master[0].shape,-1)
 
 
 def assoc(keys, items):
