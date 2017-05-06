@@ -201,30 +201,27 @@ def rods(chips):
     return np.hstack(master.T).reshape(*master[0].shape,-1)
 
 
-def assoc(keys, items):
+def locrods(locations, rods):
     """
-    Converts 2 numpy arrays into dict of {(key): item}
-    Each array is assumed to be at least 2 dimensions each.  Only first two
-    dimensions of each array are reduced by 1.  Each array dimension beyond 2
-    is left intact and represented either as the key tuple or the keyed item.
-    :param keys:  Numpy array with minimum dimensionality of 2.
-    :param items: Numpy array with minimum dimensionality of 2.
-    :returns: dict of (key): item for each key and item in the arrays.
+    Combines location information with pixel rods.
+    :param locations:  Chip shaped numpy array of locations
+    :param rods: Chip shaped numpy array of rods
+    :returns: dict of (location): rod for each location and rod in the arrays.
     :description:
-    Incoming keys as 3d array:
+    Incoming locations as 3d array:
 
     array([[[0, 0], [0, 1], [0, 2]],
            [[1, 0], [1, 1], [1, 2]],
            [[2, 0], [2, 1], [2, 2]]])
 
-    Incoming items also as 3d array:
+    Incoming rods also as 3d array:
 
     array([[[110, 110, 234, 664], [ 23, 887, 110, 111], [110, 464, 223, 112]],
           [[111, 887,   1, 110],  [ 33, 111,  12, 111], [  0, 111,  66, 112]],
           [[ 12,  99, 112, 110],  [112,  87, 231, 111], [112,  45,  47, 112]]])
 
-    assoc converts keys to:
-    >>> keys.reshape(keys.shape[0] * keys.shape[1], -1)
+    locrods converts locations to:
+    >>> locations.reshape(locations.shape[0] * locations.shape[1], -1)
     array([[0, 0],
            [0, 1],
            [0, 2],
@@ -235,8 +232,8 @@ def assoc(keys, items):
            [2, 1],
            [2, 2]])
 
-    And items to:
-    >>> items.reshape(items.shape[0] * items.shape[1], -1)
+    And rods to:
+    >>> rods.reshape(rods.shape[0] * rods.shape[1], -1)
     array([[110, 110, 234, 664],
            [ 23, 887, 110, 111],
            [110, 464, 223, 112],
@@ -247,7 +244,7 @@ def assoc(keys, items):
            [112,  87, 231, 111],
            [112,  45,  47, 112]])
 
-    Then the keys and items are zipped together into a dictionary
+    Then the locations and rods are zipped together into a dictionary
     comprehension and returned.
     {
      (0, 0): [110, 110, 234, 664],
@@ -261,9 +258,9 @@ def assoc(keys, items):
      (2, 2): [112,  45,  47, 112]
     }
     """
-    kys = keys.reshape(keys.shape[0] * keys.shape[1], -1)
-    its = items.reshape(items.shape[0] * items.shape[1], -1)
-    return {tuple(k):v for k,v in zip(kys, its)}
+    flat_locs = locations.reshape(locations.shape[0] * locations.shape[1], -1)
+    flat_rods = rods.reshape(rods.shape[0] * rods.shape[1], -1)
+    return {tuple(k):v for k,v in zip(flat_locs, flat_rods)}
 
 
 def double_rainbow(dates, reds, greens, blues, nirs,
