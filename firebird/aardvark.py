@@ -25,33 +25,6 @@ import numpy as np
 from firebird import chip
 
 
-def pyccd_chip_spec_queries(url):
-    """
-    TODO: This should really be housed elsewhere.  It is specific to pyccd.
-    A map of pyccd spectra to chip-spec queries
-    :param url: full url (http://host:port/context) for chip-spec endpoint
-    :return: map of spectra to chip spec queries
-    :example:
-    >>> pyccd_chip_spec_queries('http://host/v1/landsat/chip-specs')
-    {"red":     'http://host/v1/landsat/chip-specs?q=tags:red AND sr',
-     "green":   'http://host/v1/landsat/chip-specs?q=tags:green AND sr'
-     "blue":    'http://host/v1/landsat/chip-specs?q=tags:blue AND sr'
-     "nir":     'http://host/v1/landsat/chip-specs?q=tags:nir AND sr'
-     "swir1":   'http://host/v1/landsat/chip-specs?q=tags:swir1 AND sr'
-     "swir2":   'http://host/v1/landsat/chip-specs?q=tags:swir2 AND sr'
-     "thermal": 'http://host/v1/landsat/chip-specs?q=tags:thermal AND ta'
-     "qa":      'http://host/v1/landsat/chip-specs?q=tags:qa AND tags:pixel'}
-    """
-    return {"red":     ''.join([url, '?q=tags:red AND sr']),
-            "green":   ''.join([url, '?q=tags:green AND sr']),
-            "blue":    ''.join([url, '?q=tags:blue AND sr']),
-            "nir":     ''.join([url, '?q=tags:nir AND sr']),
-            "swir1":   ''.join([url, '?q=tags:swir1 AND sr']),
-            "swir2":   ''.join([url, '?q=tags:swir2 AND sr']),
-            "thermal": ''.join([url, '?q=tags:bt AND thermal AND NOT tirs2']),
-            "qa":      ''.join([url, '?q=tags:pixelqa'])}
-
-
 def chip_specs(query):
     """
     Queries aardvark and returns chip_specs
@@ -261,33 +234,3 @@ def locrods(locations, rods):
     flat_locs = locations.reshape(locations.shape[0] * locations.shape[1], -1)
     flat_rods = rods.reshape(rods.shape[0] * rods.shape[1], -1)
     return {tuple(k):v for k,v in zip(flat_locs, flat_rods)}
-
-
-def double_rainbow(dates, reds, greens, blues, nirs,
-                   swir1s, swir2s, thermals, qas):
-    """
-    TODO: This doesnt even need to exist, especially not in aardvark.py
-          It's here temporarily for clarity only.
-          The name is a joke too, don't code against this.  It will be
-          rehoused properly into another module.
-    :param dates: sequence of dates corresponding to time series data elements
-    :param reds: dict of red time series data keyed by (x, y)
-    :param greens: dict of green time series data keyed by (x, y)
-    :param blues: dict of blue time series data keyed by (x, y)
-    :param nirs: dict of nir time series data keyed by (x, y)
-    :param swir1s: dict of swir1 time series data keyed by (x, y)
-    :param swir2s: dict of swir2 time series data keyed by (x, y)
-    :param thermals: dict of thermal time series data keyed by (x, y)
-    :param qas: dict of qa time series data keyed by (x, y)
-    :returns: A dict of all params keyed by name
-    """
-    return {'dates': dates,
-            'reds': reds,
-            'greens': greens,
-            'blues': blues,
-            'nirs': nirs,
-            'swir1s': swir1s,
-            'swir2s': swir2s,
-            'thermals': thermals,
-            'qas': qas
-     }
