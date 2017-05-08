@@ -13,11 +13,134 @@ from .cassandra import execute as cassandra_execute
 from .cassandra import RESULT_INPUT
 from .cassandra import INSERT_CQL
 
+import aardvark as a
+#from aardvark import chip_specs
+#from aardvark import byubid
+#from aardvark import ubid
+#from aardvark import chips
+#from aardvark import sort
+#from aardvark import dates
+#from aardvark import intersection
+#from aardvark import trim
+#from aardvark import to_numpy
+#from aardvark import rods
+#from aardvark import locrods
+
+from chip import locations
+from chip import snap
+
+from functools import partial
+
+
 # to be replaced by dave's official function names
 #
 from .aardvark import spicey_meatball, spicey_meatball_dates
 #
 #
+
+
+def chip_spec_urls(url):
+    """
+    A map of pyccd spectra to chip-spec queries
+    :param url: full url (http://host:port/context) for chip-spec endpoint
+    :return: map of spectra to chip spec queries
+    :example:
+    >>> pyccd_chip_spec_queries('http://host/v1/landsat/chip-specs')
+    {'reds':     'http://host/v1/landsat/chip-specs?q=tags:red AND sr',
+     'greens':   'http://host/v1/landsat/chip-specs?q=tags:green AND sr'
+     'blues':    'http://host/v1/landsat/chip-specs?q=tags:blue AND sr'
+     'nirs':     'http://host/v1/landsat/chip-specs?q=tags:nir AND sr'
+     'swir1s':   'http://host/v1/landsat/chip-specs?q=tags:swir1 AND sr'
+     'swir2s':   'http://host/v1/landsat/chip-specs?q=tags:swir2 AND sr'
+     'thermals': 'http://host/v1/landsat/chip-specs?q=tags:thermal AND ta'
+     'quality': 'http://host/v1/landsat/chip-specs?q=tags:qa AND tags:pixel'}
+    """
+    return {'reds':     ''.join([url, '?q=tags:red AND sr']),
+            'greens':   ''.join([url, '?q=tags:green AND sr']),
+            'blues':    ''.join([url, '?q=tags:blue AND sr']),
+            'nirs':     ''.join([url, '?q=tags:nir AND sr']),
+            'swir1s':   ''.join([url, '?q=tags:swir1 AND sr']),
+            'swir2s':   ''.join([url, '?q=tags:swir2 AND sr']),
+            'thermals': ''.join([url, '?q=tags:bt AND thermal AND NOT tirs2']),
+            'quality': ''.join([url, '?q=tags:pixelqa'])}
+
+
+def query(x, y, acquired, chips_endpoint, chip_spec_endpoint):
+    """ Retrieves chips and chip_specs for the supplied parameters """
+    return {'chips': a.sort(a.chips(chips_endpoint, x, y, acquired, ubids)),
+            'specs': chip_specs(chip_spec_endpoint)}
+
+
+def transform(data, common_dates, locations):
+    return compose(partial(a.trim, common_dates=common_date),
+                   partial(a.to_numpy, chip_specs_byubid=a.byubid(data['specs']),
+                   a.rods,
+                   partial(a.locrods, locations=locations))
+
+               
+def transform(data, common_dates, locations):
+    """ Mutate the data dictionary chips with the proper transformations to
+    generate a dictionary of rods with location information.
+    :param data: dict containing 'specs' and 'chips' keys
+    :common_dates: Set of dates to include in transformed output
+    :returns: A tuple of dates and rods """
+    data['chips'] = a.trim(data['chips'], common_dates)
+    data['chips'] = a.to_numpy(data['chips'], a.byubid(data['specs']))
+    data['rods'] = a.rods(data['chips'])
+    data['rods'] = a.locrods(locations, data['chips']))
+    data.pop('chips') if 'chips' in data
+    data.pop('chip_specs') if 'chip_specs' in data
+
+    return firebird.dtstr_to_ordinal(a.dates(data['chips'])), a.locrods(locations, data['chips'])
+
+
+def rods_by_xy(dates, xys, rods):
+
+    def colors(spectra, rods, xy):
+        return {spec: rods[spec][xy] for spec in spectra}
+
+    rainbow = partial(colors, spectra=rods.keys(), rods=rods)
+    yield rainbow(xy)) for xy in xys
+
+    tuple([xy, {'dates': dates}.update((xy) for xy in xys)}])
+
+
+def pyccd_rdd(chip_specs_endpoint, chips_endpoint, x, y, acquired):
+
+    pquery = partial(query, x=x, y=y, acquired=acquired,
+                     chips_endpoint=chips_endpoint)
+
+    # get all the query urls
+    urls = chip_spec_urls(chip_specs_endpoint)
+
+    # query for data (chips + chip_specs) organized by spectral key
+    # TODO: parallelizable by spectra if desired
+    data = {spectra: pquery(url) for spectra, url in urls.iteritems}
+
+    # find the common dates for all chips in all spectra
+    common_dates = a.intersection(map(a.dates, data.values()['chips']))
+
+    # just pick the first chip spec for now.  If the chips are not symmetrical
+    # then there are big problems with data ingest.
+    # This will need to be made more robust later if each chip doesn't not have
+    # the same geometry and resolution
+    fspec = data['specs'][0]
+    locations = chip.locations(*chip.snap(x, y, fspec), fspec)
+
+    # transform each spectra to rods with locations
+    # this is a dict of dicts:
+    # {spectra: {'dates': [date1, date2, date3],
+    #            'rods': {(x1,y1):[ts1, ts2], (x2,y2):[ts1, ts2]]]}
+    data = {k, transform(v, common_dates, locations)) for k, v in data}
+
+    # perform final transformation, emitting a list of dictionaries
+    # with a rod for each spectra plus a date array organized by x,y
+    # ((x, y): {'dates': [], 'reds': [], 'greens': [],
+    #           'blues': [], 'nirs1': [], 'swir1s': [],
+    #           'swir2s': [], 'thermals': [], quality: []},)
+    xys = data[spectra[0]]['rods'].keys()
+    dates = data[spectra[0]]['dates']
+    yield rods_by_xy(dates, xys, locrods)
 
 
 def simplify_detect_results(results):
@@ -154,4 +277,3 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
         # make sure to stop the SparkContext
         sc.stop()
     return True
-
