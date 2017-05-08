@@ -2,6 +2,7 @@ import os
 import sys
 import logging
 import numpy as np
+import functools
 from datetime import datetime, date
 
 AARDVARK_HOST             = os.getenv('AARDVARK_HOST', 'localhost')
@@ -71,3 +72,7 @@ def simplify_objects(obj):
         return obj
 
 
+def compose(*functions):
+    def compose2(f, g):
+        return lambda x: f(g(x))
+    return functools.reduce(compose2, functions, lambda x: x)
