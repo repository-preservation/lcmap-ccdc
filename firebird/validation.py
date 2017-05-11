@@ -1,6 +1,6 @@
 import re
 from datetime import date
-from firebird import LCMAP_PRODUCT_DICT
+#from firebird import LCMAP_PRODUCT_DICT
 
 
 def valid_acquired(ad):
@@ -28,7 +28,7 @@ def valid_ord(od):
     return True
 
 
-def valid_prods(prods):
-    if not set(prods.split(',')) <= set(LCMAP_PRODUCT_DICT):
-        return False
-    return True
+#def valid_prods(prods):
+#    if not set(prods.split(',')) <= set(LCMAP_PRODUCT_DICT):
+#        return False
+#    return True
