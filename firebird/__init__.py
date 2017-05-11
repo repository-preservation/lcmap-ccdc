@@ -5,10 +5,11 @@ import numpy as np
 import functools
 from datetime import datetime, date
 
-AARDVARK_HOST             = os.getenv('AARDVARK_HOST', 'localhost')
-AARDVARK_PORT             = os.getenv('AARDVARK_PORT', '5678')
-AARDVARK_SPECS            = os.getenv('AARDVARK_SPECS', '/landsat/chip-specs')
-AARDVARK_SPECS_URL        = ''.join([AARDVARK_HOST, ':', AARDVARK_PORT, AARDVARK_SPECS])
+AARDVARK = os.getenv('AARDVARK', 'http://localhost:5678')
+AARDVARK_SPECS = os.getenv('AARDVARK_SPECS', '/v1/landsat/chip-specs')
+SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
+AARDVARK_CHIPS = os.getenv('AARDVARK_CHIPS', '/v1/landsat/chips')
+CHIPS_URL = ''.join([AARDVARK, AARDVARK_CHIPS])
 
 CASSANDRA_CONTACT_POINTS  = os.getenv('CASSANDRA_CONTACT_POINTS', '0.0.0.0')
 CASSANDRA_USER            = os.getenv('CASSANDRA_USER')
@@ -23,7 +24,10 @@ SPARK_EXECUTOR_IMAGE      = os.getenv('SPARK_EXECUTOR_IMAGE')
 SPARK_EXECUTOR_CORES      = os.getenv('SPARK_EXECUTOR_CORES', 1)
 SPARK_EXECUTOR_FORCE_PULL = os.getenv('SPARK_EXECUTOR_FORCE_PULL', 'false')
 
+# TODO: This needs to be passed in from the command line
 BEGINNING_OF_TIME         = os.getenv('BEGINNING_OF_TIME', date(year=1982, month=1, day=1).toordinal())
+
+# TODO: These are obtained from chip specs
 X_PIXEL_DIM               = int(os.getenv('X_PIXEL_DIM', 30))
 Y_PIXEL_DIM               = int(os.getenv('Y_PIXEL_DIM', -30))
 
@@ -70,6 +74,11 @@ def simplify_objects(obj):
     else:
         # should be a serializable type
         return obj
+
+
+def rsort(iterable, key=None):
+    """Reverse sorts an iterable"""
+    return sorted(iterable, key, reverse=True)
 
 
 def compose(*functions):
