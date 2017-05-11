@@ -1,8 +1,3 @@
-# TODO: Namespace qualify all imports
-# Example: from firebird import chips, from firebird import aardvark as a, etc.
-# The reason is it's too difficult to see where a function is coming from
-# and collisions are inevitable.
-# from x import * is evil.
 import ccd
 import json
 import hashlib
