@@ -26,14 +26,18 @@ def test_csort():
     assert(results[0]['acquired'] > results[1]['acquired'] >
            results[2]['acquired'] > results[3]['acquired'])
 
+
 def test_to_rod():
     assert 1 > 0
+
 
 def test_to_pyccd():
     assert 1 > 0
 
+
 def test_pyccd_dates():
     assert 1 > 0
+
 
 def test_pyccd_rdd():
     assert 1 > 0

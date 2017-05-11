@@ -78,9 +78,9 @@ def to_pyccd(located_rods_by_spectra, dates):
 
     # alias the descriptive name down to something that doesn't take up a line
     locrods   = located_rods_by_spectra
-    spectra   = rods.keys()
-    locations = rods[spectra[0]].keys()
-    rainbow   = partial(dated_colors, spectra=rods.keys(), rods=rods)
+    spectra   = locrods.keys()
+    locations = locrods[spectra[0]].keys()
+    rainbow   = partial(dated_colors, spectra=locrods.keys(), rods=locrods)
     yield tuple((xy, add_dates(rainbow(xy), dates)) for xy in locations)
 
 
