@@ -1,42 +1,24 @@
-from datetime import datetime
+# TODO: Namespace qualify all imports
+# Example: from firebird import chips, from firebird import aardvark as a, etc.
+# The reason is it's too difficult to see where a function is coming from
+# and collisions are inevitable.
+# from x import * is evil.
 import ccd
 import json
 import hashlib
+
+from datetime import datetime
+from functools import partial
 from pandas import to_datetime
-
-import firebird
-from firebird import products
-
-from firebird import SPARK_MASTER, SPARK_EXECUTOR_IMAGE
-from firebird import SPARK_EXECUTOR_CORES, SPARK_EXECUTOR_FORCE_PULL
-from firebird import SPECS_URL, CHIPS_URL
-
-# TODO: THESE SHOULD BE COMING FROM CHIP SPECS
-from firebird import X_PIXEL_DIM, Y_PIXEL_DIM
-
-from firebird import simplify_objects
-from firebird import dtstr_to_ordinal
-from firebird import rsort
-
-from firebird.validation import *
-
-# from firebird.aardvark import pyccd_chip_spec_queries
-from firebird.aardvark import chip_specs
-from firebird.chip import ids as chip_ids
-from firebird.chip import locations
-from firebird.chip import snap
-
-from firebird import aardvark as a
-
 from pyspark import SparkConf
 from pyspark import SparkContext
 
-from firebird.cassandra import execute as cassandra_execute
-from firebird.cassandra import RESULT_INPUT
-from firebird.cassandra import INSERT_CQL
-
-
-from functools import partial
+import firebird as fb
+from firebird import aardvark as a
+from firebird import cassandra as cass
+from firebird import chip
+from firebird import products
+from firebird import validation as valid
 
 
 def chip_spec_urls(url):
@@ -112,7 +94,7 @@ def pyccd_dates(dates):
     :param dates: A sequence of date strings
     :returns: A sequence of formatted and sorted ordinal dates
     """
-    return sorted([dtstr_to_ordinal(d) for d in dates], reverse=True)
+    return sorted([fb.dtstr_to_ordinal(d) for d in dates], reverse=True)
 
 
 def csort(chips):
@@ -121,7 +103,7 @@ def csort(chips):
     :param chips: sequence of chips
     :returns: sorted sequence of chips
     """
-    return tuple(rsort(chips, key=lambda c: c['acquired']))
+    return tuple(fb.rsort(chips, key=lambda c: c['acquired']))
 
 
 def pyccd_rdd(specs_url, chips_url, x, y, acquired):
@@ -157,7 +139,7 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
     rods  = {k: to_rod(v, dates, specs[k]) for k,v in chips.items()}
 
     del chips
-    
+
     rods  = {k: a.locrods(locs, r) for k,r in rods.items()}
 
     yield to_pyccd(rods, pyccd_dates(dates))
@@ -167,13 +149,13 @@ def simplify_detect_results(results):
     ''' Convert child objects inside CCD results from NamedTuples to Dictionaries '''
     output = dict()
     for key in results.keys():
-        output[key] = simplify_objects(results[key])
+        output[key] = fb.simplify_objects(results[key])
     return output
 
 
 def detect(column, row, bands, chip_x, chip_y):
     """ Return results of ccd.detect for a given stack of data at a particular x and y """
-    output = RESULT_INPUT.copy()
+    output = cass.RESULT_INPUT.copy()
     try:
         _results = ccd.detect(blues    = bands['blue'].values[:, row, column],
                               greens   = bands['green'].values[:, row, column],
@@ -183,25 +165,25 @@ def detect(column, row, bands, chip_x, chip_y):
                               swir2s   = bands['swir2'].values[:, row, column],
                               thermals = bands['thermal'].values[:, row, column],
                               quality  = bands['cfmask'].values[:, row, column],
-                              dates    = [dtstr_to_ordinal(str(to_datetime(i)), False) for i in bands['dates']])
+                              dates    = [fb.dtstr_to_ordinal(str(to_datetime(i)), False) for i in bands['dates']])
         output['result'] = json.dumps(simplify_detect_results(_results))
         output['result_ok'] = True
         output['algorithm'] = _results['algorithm']
         output['chip_x'] = chip_x
         output['chip_y'] = chip_y
     except Exception as e:
-        firebird.logger.error("Exception running ccd.detect: {}".format(e))
+        fb.logger.error("Exception running ccd.detect: {}".format(e))
         output['result'] = ''
         output['result_ok'] = False
 
-    output['x'] = chip_x + (column * X_PIXEL_DIM)
-    output['y'] = chip_y + (row * Y_PIXEL_DIM)
+    output['x'] = chip_x + (column * fb.X_PIXEL_DIM)
+    output['y'] = chip_y + (row * fb.Y_PIXEL_DIM)
     output['result_md5'] = hashlib.md5(output['result'].encode('UTF-8')).hexdigest()
     output['result_produced'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
     output['inputs_md5'] = 'not implemented'
     # writes to cassandra happen from node doing the work
     # don't want to collect all chip records on driver host
-    cassandra_execute(INSERT_CQL, [output])
+    cass.execute(cass.INSERT_CQL, [output])
     return output
 
 
@@ -225,30 +207,30 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
     # if we can't get our Spark ducks in a row, no reason to continue
     try:
         conf = (SparkConf().setAppName("lcmap-firebird-{}".format(datetime.now().strftime('%Y-%m-%d-%I:%M')))
-                .setMaster(SPARK_MASTER)
-                .set("spark.mesos.executor.docker.image", SPARK_EXECUTOR_IMAGE)
-                .set("spark.executor.cores", SPARK_EXECUTOR_CORES)
-                .set("spark.mesos.executor.docker.forcePullImage", SPARK_EXECUTOR_FORCE_PULL))
+                .setMaster(fb.SPARK_MASTER)
+                .set("spark.mesos.executor.docker.image", fb.SPARK_EXECUTOR_IMAGE)
+                .set("spark.executor.cores", fb.SPARK_EXECUTOR_CORES)
+                .set("spark.mesos.executor.docker.forcePullImage", fb.SPARK_EXECUTOR_FORCE_PULL))
         sc = SparkContext(conf=conf)
     except Exception as e:
-        firebird.logger.info("Exception creating SparkContext: {}".format(e))
+        fb.logger.info("Exception creating SparkContext: {}".format(e))
         raise e
 
     # validate arguments
-    if not valid_acquired(acquired):
+    if not valid.acquired(acquired):
         raise Exception("Invalid acquired param: {}".format(acquired))
 
-    if not valid_coords(ulx, uly, lrx, lry):
+    if not valid.coords(ulx, uly, lrx, lry):
         raise Exception("Bounding coords appear invalid: {}".format((ulx, uly, lrx, lry)))
 
-    if not valid_ord(ord_date):
+    if not valid.ord(ord_date):
         raise Exception("Invalid ordinal date value: {}".format(ord_date))
 
     try:
         # organize required data
-        band_queries = pyccd_chip_spec_queries(SPECS_URL)
+        band_queries = pyccd_chip_spec_queries(fb.SPECS_URL)
         # assuming chip-specs are identical for a location across the bands
-        chipids = chip_ids(ulx, uly, lrx, lry, chip_specs(band_queries['blue']))
+        chipids = chip.ids(ulx, uly, lrx, lry, a.chip_specs(band_queries['blue']))
 
         for ids in chipids:
             # ccd results by chip
@@ -256,7 +238,7 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
             # spark prefers task sizes of 100kb or less, means ccd results results in a 1 per work bucket rdd
             # still based on the assumption of 100x100 pixel chips
             # ccd_rdd = sc.parallelize(ccd_data, 10000)
-            pyccd_inputs = pyccd_rdd(SPECS_URL, CHIPS_URL, *ids, acquired)
+            pyccd_inputs = pyccd_rdd(fb.SPECS_URL, fb.CHIPS_URL, *ids, acquired)
             ccd_rdd = sc.parallelize(pyccd_inputs, 10000)
             for x_index in range(0, 100):
                 for y_index in range(0, 100):
@@ -277,7 +259,7 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
                             ccd_map.foreach(lambda i: products.run('qa', i, ord_date))
 
     except Exception as e:
-        firebird.logger.info("Exception running Spark job: {}".format(e))
+        fb.logger.info("Exception running Spark job: {}".format(e))
         raise e
     finally:
         # make sure to stop the SparkContext
