@@ -1,4 +1,4 @@
-from firebird.driver import csort
+from firebird import driver as driver
 from hypothesis import given
 import hypothesis.strategies as st
 import urllib
@@ -12,7 +12,7 @@ def test_chip_spec_urls(url):
         url = urllib.parse.urlparse(query)
         assert url.scheme
         assert url.netloc
-    urls = chip_spec_urls(url)
+    urls = driver.chip_spec_urls(url)
     [check(url) for url in urls.values()]
 
 
@@ -22,7 +22,7 @@ def test_csort():
     inputs.append({'acquired': '2017-04-01'})
     inputs.append({'acquired': '2017-01-01'})
     inputs.append({'acquired': '2016-04-01'})
-    results = csort(inputs)
+    results = driver.csort(inputs)
     assert(results[0]['acquired'] > results[1]['acquired'] >
            results[2]['acquired'] > results[3]['acquired'])
 
