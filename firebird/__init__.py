@@ -78,7 +78,7 @@ def simplify_objects(obj):
 
 def rsort(iterable, key=None):
     """Reverse sorts an iterable"""
-    return sorted(iterable, key, reverse=True)
+    return sorted(iterable, key=key, reverse=True)
 
 
 def compose(*functions):
