@@ -9,7 +9,6 @@ from firebird import products
 
 from firebird import SPARK_MASTER, SPARK_EXECUTOR_IMAGE
 from firebird import SPARK_EXECUTOR_CORES, SPARK_EXECUTOR_FORCE_PULL
-from firebird import AARDVARK_SPECS_URL
 from firebird import SPECS_URL, CHIPS_URL
 
 # TODO: THESE SHOULD BE COMING FROM CHIP SPECS
@@ -21,18 +20,22 @@ from firebird import rsort
 
 from firebird.validation import *
 
-from firebird.aardvark import pyccd_chip_spec_queries, chip_specs
-
+# from firebird.aardvark import pyccd_chip_spec_queries
+from firebird.aardvark import chip_specs
 from firebird.chip import ids as chip_ids
-from pyspark   import SparkConf, SparkContext
+from firebird.chip import locations
+from firebird.chip import snap
+
+from firebird import aardvark as a
+
+from pyspark import SparkConf
+from pyspark import SparkContext
 
 from firebird.cassandra import execute as cassandra_execute
 from firebird.cassandra import RESULT_INPUT
 from firebird.cassandra import INSERT_CQL
 
-import aardvark as a
-from chip import locations
-from chip import snap
+
 from functools import partial
 
 
@@ -142,12 +145,19 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
 
     # get all the specs, ubids, chips, intersecting dates and rods
     specs = {k: a.chip_specs(v) for k,v in a.chip_spec_urls(specs_url).items()}
+
     ubids = {k: a.ubids(v) for k,v in specs.items()}
+
     chips = {k: csort(pchips(url=chips_url, ubids=u)) for k,u in ubids.items()}
+
     dates = a.intersection(map(a.dates, [c for c in chips.values()]))
+
     locs  = chip.locations(*chip.snap(x, y, specs[0]), specs[0]) # first is ok
+
     rods  = {k: to_rod(v, dates, specs[k]) for k,v in chips.items()}
+
     del chips
+    
     rods  = {k: a.locrods(locs, r) for k,r in rods.items()}
 
     yield to_pyccd(rods, pyccd_dates(dates))
@@ -236,7 +246,7 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
 
     try:
         # organize required data
-        band_queries = pyccd_chip_spec_queries(AARDVARK_SPECS_URL)
+        band_queries = pyccd_chip_spec_queries(SPECS_URL)
         # assuming chip-specs are identical for a location across the bands
         chipids = chip_ids(ulx, uly, lrx, lry, chip_specs(band_queries['blue']))
 
@@ -247,7 +257,7 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
             # still based on the assumption of 100x100 pixel chips
             # ccd_rdd = sc.parallelize(ccd_data, 10000)
             pyccd_inputs = pyccd_rdd(SPECS_URL, CHIPS_URL, *ids, acquired)
-            ccd_rdd = sc.parallelize(pyccd_inputs), 10000)
+            ccd_rdd = sc.parallelize(pyccd_inputs, 10000)
             for x_index in range(0, 100):
                 for y_index in range(0, 100):
                     ccd_map = ccd_rdd.map(lambda i: detect(x_index, y_index, i, i[0][0], i[0][1])).persist()
