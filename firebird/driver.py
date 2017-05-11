@@ -131,11 +131,11 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
 
     locs  = chip.locations(*chip.snap(x, y, specs[0]), specs[0]) # first is ok
 
-    rods  = {k: to_rod(v, dates, specs[k]) for k,v in chips.items()}
+    add_loc = partial(a.locrods, locs)
+
+    rods  = {k: add_loc(to_rod(v, dates, specs[k])) for k,v in chips.items()}
 
     del chips
-
-    rods  = {k: a.locrods(locs, r) for k,r in rods.items()}
 
     yield to_pyccd(rods, pyccd_dates(dates))
 
