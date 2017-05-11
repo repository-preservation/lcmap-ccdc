@@ -1,42 +1,39 @@
-import firebird, ccd, json, hashlib
-from firebird import products
+from datetime import datetime
+import ccd
+import json
+import hashlib
 from pandas import to_datetime
-from firebird  import SPARK_MASTER, SPARK_EXECUTOR_IMAGE, SPARK_EXECUTOR_CORES, SPARK_EXECUTOR_FORCE_PULL
-from firebird  import AARDVARK_SPECS_URL, X_PIXEL_DIM, Y_PIXEL_DIM
-from firebird  import simplify_objects, dtstr_to_ordinal
-from .validation import *
-from .aardvark import pyccd_chip_spec_queries, chip_specs
-from .chip     import ids as chip_ids
+
+import firebird
+from firebird import products
+
+from firebird import SPARK_MASTER, SPARK_EXECUTOR_IMAGE
+from firebird import SPARK_EXECUTOR_CORES, SPARK_EXECUTOR_FORCE_PULL
+from firebird import AARDVARK_SPECS_URL
+from firebird import SPECS_URL, CHIPS_URL
+
+# TODO: THESE SHOULD BE COMING FROM CHIP SPECS
+from firebird import X_PIXEL_DIM, Y_PIXEL_DIM
+
+from firebird import simplify_objects
+from firebird import dtstr_to_ordinal
+from firebird import rsort
+
+from firebird.validation import *
+
+from firebird.aardvark import pyccd_chip_spec_queries, chip_specs
+
+from firebird.chip import ids as chip_ids
 from pyspark   import SparkConf, SparkContext
-from datetime  import datetime
-from .cassandra import execute as cassandra_execute
-from .cassandra import RESULT_INPUT
-from .cassandra import INSERT_CQL
+
+from firebird.cassandra import execute as cassandra_execute
+from firebird.cassandra import RESULT_INPUT
+from firebird.cassandra import INSERT_CQL
 
 import aardvark as a
-#from aardvark import chip_specs
-#from aardvark import byubid
-#from aardvark import ubid
-#from aardvark import chips
-#from aardvark import sort
-#from aardvark import dates
-#from aardvark import intersection
-#from aardvark import trim
-#from aardvark import to_numpy
-#from aardvark import rods
-#from aardvark import locrods
-
 from chip import locations
 from chip import snap
-
 from functools import partial
-
-
-# to be replaced by dave's official function names
-#
-from .aardvark import spicey_meatball, spicey_meatball_dates
-#
-#
 
 
 def chip_spec_urls(url):
@@ -62,85 +59,98 @@ def chip_spec_urls(url):
             'swir1s':   ''.join([url, '?q=tags:swir1 AND sr']),
             'swir2s':   ''.join([url, '?q=tags:swir2 AND sr']),
             'thermals': ''.join([url, '?q=tags:bt AND thermal AND NOT tirs2']),
-            'quality': ''.join([url, '?q=tags:pixelqa'])}
+            'quality':  ''.join([url, '?q=tags:pixelqa'])}
 
 
-def query(x, y, acquired, chips_endpoint, chip_spec_endpoint):
-    """ Retrieves chips and chip_specs for the supplied parameters """
-    return {'chips': a.sort(a.chips(chips_endpoint, x, y, acquired, ubids)),
-            'specs': chip_specs(chip_spec_endpoint)}
+def to_rod(chips, dates, specs):
+    """ Function to convert chips to rods.
+        Exists primarily to clean up syntax """
+    return a.rods(a.to_numpy(a.trim(chips, dates), a.byubid(specs)))
 
 
-def transform(data, common_dates, locations):
-    return compose(partial(a.trim, common_dates=common_date),
-                   partial(a.to_numpy, chip_specs_byubid=a.byubid(data['specs']),
-                   a.rods,
-                   partial(a.locrods, locations=locations))
+def to_pyccd(located_rods_by_spectra, dates):
+    """Organizes rods by xy instead of by spectrum
+    :param located_rods_by_spectra: dict of dicts, keyed first by spectra
+                                    then by coordinate
+    :returns: Generated tuple of tuples
+    :example:
+    located_rods_by_spectra parameter:
+    {'red':   {(0, 0): [110, 110, 234, 664], (0, 1): [23, 887, 110, 111]}}
+    {'green': {(0, 0): [120, 112, 224, 624], (0, 1): [33, 387, 310, 511]}}
+    {'blue':  {(0, 0): [128, 412, 244, 654], (0, 1): [73, 987, 119, 191]}}
+    ...
 
-               
-def transform(data, common_dates, locations):
-    """ Mutate the data dictionary chips with the proper transformations to
-    generate a dictionary of rods with location information.
-    :param data: dict containing 'specs' and 'chips' keys
-    :common_dates: Set of dates to include in transformed output
-    :returns: A tuple of dates and rods """
-    data['chips'] = a.trim(data['chips'], common_dates)
-    data['chips'] = a.to_numpy(data['chips'], a.byubid(data['specs']))
-    data['rods'] = a.rods(data['chips'])
-    data['rods'] = a.locrods(locations, data['chips']))
-    data.pop('chips') if 'chips' in data
-    data.pop('chip_specs') if 'chip_specs' in data
-
-    return firebird.dtstr_to_ordinal(a.dates(data['chips'])), a.locrods(locations, data['chips'])
-
-
-def rods_by_xy(dates, xys, rods):
-
+    returns:
+    (((0, 0): {'red':   [110, 110, 234, 664],
+               'green': [120, 112, 224, 624],
+               'blue':  [128, 412, 244, 654], ... },
+      (0, 1): {'red':   [23, 887, 110, 111],
+               'green': [33, 387, 310, 511],
+               'blue':  [73, 987, 119, 191], ...}))
+    ...
+    """
     def colors(spectra, rods, xy):
         return {spec: rods[spec][xy] for spec in spectra}
 
-    rainbow = partial(colors, spectra=rods.keys(), rods=rods)
-    yield rainbow(xy)) for xy in xys
+    def add_dates(rainbow, dates):
+        rainbow['dates'] = dates
+        return rainbow
 
-    tuple([xy, {'dates': dates}.update((xy) for xy in xys)}])
+    # alias the descriptive name down to something that doesn't take up a line
+    locrods  = located_rods_by_spectra
+    spectra  = rods.keys()
+    location = rods[spectra[0]].keys()
+    rainbow  = partial(dated_colors, spectra=rods.keys(), rods=rods)
+    yield tuple((xy, add_dates(rainbow(xy), dates)) for xy in xys)
 
 
-def pyccd_rdd(chip_specs_endpoint, chips_endpoint, x, y, acquired):
+def pyccd_dates(dates):
+    """ Formats the pyccd date array.
+    :param dates: A sequence of date strings
+    :returns: A sequence of formatted and sorted ordinal dates
+    """
+    return sorted([dtstr_to_ordinal(d) for d in dates], reverse=True)
 
-    pquery = partial(query, x=x, y=y, acquired=acquired,
-                     chips_endpoint=chips_endpoint)
 
-    # get all the query urls
-    urls = chip_spec_urls(chip_specs_endpoint)
+def csort(chips):
+    """
+    Sorts all the returned chips by date.
+    :param chips: sequence of chips
+    :returns: sorted sequence of chips
+    """
+    return tuple(rsort(chips, key=lambda c: c['acquired']))
 
-    # query for data (chips + chip_specs) organized by spectral key
-    # TODO: parallelizable by spectra if desired
-    data = {spectra: pquery(url) for spectra, url in urls.iteritems}
 
-    # find the common dates for all chips in all spectra
-    common_dates = a.intersection(map(a.dates, data.values()['chips']))
+def pyccd_rdd(specs_url, chips_url, x, y, acquired):
+    """
+    :param specs_url: URL to the chip specs host:port/context
+    :param chips_url: URL to the chips host:port/context
+    :param x: x coodinate contained within the extents of a pyccd rdd (chip)
+    :param y: y coodinate contained within the extents of a pyccd rdd (chip)
+    :param acquired: Date range string as start/end, ISO 8601 date format
+    :returns: A tuple of tuples.
+    (((x1, y1), {'dates': [],  'reds': [],     'greens': [],
+                 'blues': [],  'nirs1': [],    'swir1s': [],
+                 'swir2s': [], 'thermals': [], 'quality': []}),
+     ((x1, y2): {'dates': [],  'reds': [],     'greens': [],
+                 'blues': [],  'nirs1': [],    'swir1s': [],
+                 'swir2s': [], 'thermals': [], 'quality': []},))
+    """
+    # create a partial function initialized with x, y and acquired since
+    # those are static for this call to pyccd_rdd
+    pchips = partial(a.chips, x=x, y=y, acquired=acquired)
 
-    # just pick the first chip spec for now.  If the chips are not symmetrical
-    # then there are big problems with data ingest.
-    # This will need to be made more robust later if each chip doesn't not have
-    # the same geometry and resolution
-    fspec = data['specs'][0]
-    locations = chip.locations(*chip.snap(x, y, fspec), fspec)
+    # get all the specs, ubids, chips, intersecting dates and rods
+    specs = {k: a.chip_specs(v) for k,v in a.chip_spec_urls(specs_url).items()}
+    ubids = {k: a.ubids(v) for k,v in specs.items()}
+    chips = {k: csort(pchips(url=chips_url, ubids=u)) for k,u in ubids.items()}
+    dates = a.intersection(map(a.dates, [c for c in chips.values()]))
+    locs  = chip.locations(*chip.snap(x, y, specs[0]), specs[0]) # first is ok
+    rods  = {k: to_rod(v, dates, specs[k]) for k,v in chips.items()}
+    del chips
+    rods  = {k: a.locrods(locs, r) for k,r in rods.items()}
 
-    # transform each spectra to rods with locations
-    # this is a dict of dicts:
-    # {spectra: {'dates': [date1, date2, date3],
-    #            'rods': {(x1,y1):[ts1, ts2], (x2,y2):[ts1, ts2]]]}
-    data = {k, transform(v, common_dates, locations)) for k, v in data}
-
-    # perform final transformation, emitting a list of dictionaries
-    # with a rod for each spectra plus a date array organized by x,y
-    # ((x, y): {'dates': [], 'reds': [], 'greens': [],
-    #           'blues': [], 'nirs1': [], 'swir1s': [],
-    #           'swir2s': [], 'thermals': [], quality: []},)
-    xys = data[spectra[0]]['rods'].keys()
-    dates = data[spectra[0]]['dates']
-    yield rods_by_xy(dates, xys, locrods)
+    yield to_pyccd(rods, pyccd_dates(dates))
 
 
 def simplify_detect_results(results):
@@ -183,22 +193,6 @@ def detect(column, row, bands, chip_x, chip_y):
     # don't want to collect all chip records on driver host
     cassandra_execute(INSERT_CQL, [output])
     return output
-
-
-def assemble_ccd_data(chip_coords, acquired, band_queries):
-    '''
-    Gather data necessary for input into the CCD algorithm
-    :param chip_coords: Coordinates of chips to acquire data for
-    :param acquired: Start and end dates for querying data
-    :param band_queries: The actual queries used to retrieve each bands UBIDs
-    :return: A dictionary of band data for a given chip of landsat data.
-    '''
-    ccd_data = {}
-    for band in band_queries:
-        ccd_data[band] = spicey_meatball(chip_coords, acquired, band_queries[band])
-    # toss this over the fence to aardvark for now
-    ccd_data['dates'] = spicey_meatball_dates(ccd_data['blue'])
-    return ccd_data
 
 
 def run(acquired, ulx, uly, lrx, lry, ord_date,
@@ -248,10 +242,12 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
 
         for ids in chipids:
             # ccd results by chip
-            ccd_data = assemble_ccd_data(ids, acquired, band_queries)
+            #ccd_data = assemble_ccd_data(ids, acquired, band_queries)
             # spark prefers task sizes of 100kb or less, means ccd results results in a 1 per work bucket rdd
             # still based on the assumption of 100x100 pixel chips
-            ccd_rdd = sc.parallelize(ccd_data, 10000)
+            # ccd_rdd = sc.parallelize(ccd_data, 10000)
+            pyccd_inputs = pyccd_rdd(SPECS_URL, CHIPS_URL, *ids, acquired)
+            ccd_rdd = sc.parallelize(pyccd_inputs), 10000)
             for x_index in range(0, 100):
                 for y_index in range(0, 100):
                     ccd_map = ccd_rdd.map(lambda i: detect(x_index, y_index, i, i[0][0], i[0][1])).persist()
