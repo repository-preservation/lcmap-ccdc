@@ -121,6 +121,7 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
     pchips = partial(a.chips, x=x, y=y, acquired=acquired)
 
     # get all the specs, ubids, chips, intersecting dates and rods
+    # keep track of the spectra they are associated with via dict key 'k'
     specs = {k: a.chip_specs(v) for k,v in a.chip_spec_urls(specs_url).items()}
 
     ubids = {k: a.ubids(v) for k,v in specs.items()}
