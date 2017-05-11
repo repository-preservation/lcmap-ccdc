@@ -1,7 +1,5 @@
-from firebird.aardvark import pyccd_chip_spec_queries
 from firebird.aardvark import ubids
 from firebird.aardvark import byubid
-from firebird.aardvark import sort
 from firebird.aardvark import dates
 from firebird.aardvark import intersection
 from firebird.aardvark import trim
