@@ -82,16 +82,6 @@ def chips(url, x, y, acquired, ubids):
                                            'acquired': acquired,
                                            'ubid': ubids}).json())
 
-
-def sort(chips):
-    """
-    Sorts all the returned chips by date.
-    :param chips: sequence of chips
-    :returns: sorted sequence of chips
-    """
-    return tuple(sorted(chips, key=lambda c: c['acquired'], reverse=True))
-
-
 def dates(chips):
     """
     Dates for a sequence of chips
