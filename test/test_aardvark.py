@@ -15,23 +15,9 @@ from base64 import b64encode
 from functools import reduce
 from functools import partial
 from itertools import product
-from hypothesis import given
-import hypothesis.strategies as st
-import urllib
+
 import numpy as np
 from numpy.random import randint
-
-@given(url=st.sampled_from(('http://localhost',
-                            'https://localhost',
-                            'http://localhost/',
-                            'http://127.0.0.1')))
-def test_pyccd_chip_spec_queries(url):
-    def check(query):
-        url = urllib.parse.urlparse(query)
-        assert url.scheme
-        assert url.netloc
-    queries = pyccd_chip_spec_queries(url)
-    [check(query) for query in queries.values()]
 
 
 def test_byubid():
@@ -54,17 +40,6 @@ def test_ubids():
 
 def test_ubids_from_chip_specs():
     assert len(ubids(chip_specs('blue'))) == 4
-
-
-def test_sort():
-    inputs = list()
-    inputs.append({'acquired': '2015-04-01'})
-    inputs.append({'acquired': '2017-04-01'})
-    inputs.append({'acquired': '2017-01-01'})
-    inputs.append({'acquired': '2016-04-01'})
-    results = sort(inputs)
-    assert(results[0]['acquired'] > results[1]['acquired'] >
-           results[2]['acquired'] > results[3]['acquired'])
 
 
 def test_dates():
