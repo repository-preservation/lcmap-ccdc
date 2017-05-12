@@ -1,6 +1,5 @@
 """ Functions for working with files in python """
 import os
-
 from firebird import logger
 
 
