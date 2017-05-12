@@ -1,4 +1,6 @@
 import math
+import numpy as np
+from base64 import b64decode
 
 
 def difference(point, interval):
@@ -48,8 +50,7 @@ def near(point, interval, offset):
     """
     # original clojure code
     # (-> point (- offset) (/ interval) (Math/floor) (* interval) (+ offset)))
-
-    return ((math.floor ((point - offset) / interval)) * interval) + offset
+    return ((math.floor((point - offset) / interval)) * interval) + offset
 
 
 def point_to_chip(x, y, x_interval, y_interval, x_offset, y_offset):
@@ -96,12 +97,12 @@ def snap(x, y, chip_spec):
     :param y: y coordinate
     :param chip_spec: parameters for a chip's grid system
     :returns: tuple of chip x & y
-  """
-    chip_x  = chip_spec['chip_x']
-    chip_y  = chip_spec['chip_y']
+    """
+    chip_x = chip_spec['chip_x']
+    chip_y = chip_spec['chip_y']
     shift_x = chip_spec['shift_x']
     shift_y = chip_spec['shift_y']
-    chip    = point_to_chip(x, y, chip_x, chip_y, shift_x, shift_y)
+    chip = point_to_chip(x, y, chip_x, chip_y, shift_x, shift_y)
     return int(chip[0]), int(chip[1])
 
 
@@ -120,11 +121,53 @@ def ids(ulx, uly, lrx, lry, chip_spec):
     >>> chip_ids = ids(1000, -1000, -500, 500, chip_spec)
     ((-1000, 500), (-500, 500), (-1000, -500), (-500, -500))
     """
-    chip_x = chip_spec['chip_x']   # e.g.  3000 meters, width of chip
-    chip_y = chip_spec['chip_y']   # e.g. -3000 meters, height of chip
+    chip_width = chip_spec['chip_x']    # e.g.  3000 meters, width of chip
+    chip_height = chip_spec['chip_y']   # e.g. -3000 meters, height of chip
 
     start_x, start_y = snap(ulx, uly, chip_spec)
-    end_x,   end_y   = snap(lrx, lry, chip_spec)
+    end_x, end_y = snap(lrx, lry, chip_spec)
 
-    yield ((x, y) for x in range(start_x, end_x + chip_x, chip_x)
-                  for y in range(start_y, end_y + chip_y, chip_y))
+    yield ((x, y) for x in np.arange(start_x, end_x + chip_width, chip_width)
+                  for y in np.arange(start_y, end_y + chip_height, chip_height))
+
+
+def to_numpy(chip, chip_spec):
+    """
+    Removes base64 encoding of chip data and converts it to a numpy array
+    :param chip: A chip
+    :param chip_spec: Corresponding chip_spec
+    :returns: A decoded chip with data as a shaped numpy array
+    """
+    shape = chip_spec['data_shape']
+    dtype = chip_spec['data_type'].lower()
+    cdata = b64decode(chip['data'])
+
+    chip['data'] = np.frombuffer(cdata, dtype).reshape(*shape)
+    return chip
+
+
+def locations(startx, starty, chip_spec):
+    """
+    Computes locations for array elements that fall within the shape
+    specified by chip_spec['data_shape'] using the startx and starty as
+    the origin.  locations() does not snap() the startx and starty... this
+    should be done prior to calling locations() if needed.
+    :param startx: x coordinate (longitude) of upper left pixel of chip
+    :param starty: y coordinate (latitude) of upper left pixel of chip
+    :returns: A two (three) dimensional numpy array of [x, y] coordinates
+    """
+    cw = chip_spec['data_shape'][0] # 100
+    ch = chip_spec['data_shape'][1] # 100
+
+    pw = chip_spec['pixel_x'] # 30 meters
+    ph = chip_spec['pixel_y'] # -30 meters
+
+    # determine ends
+    endx = startx + cw * pw
+    endy = starty + ch * ph
+
+    # build arrays of end - start / step shape
+    # flatten into 1d, concatenate and reshape to fit chip
+    x, y = np.mgrid[startx:endx:pw, starty:endy:ph]
+    matrix = np.c_[x.ravel(), y.ravel()]
+    return np.reshape(matrix, (cw, ch, 2))
