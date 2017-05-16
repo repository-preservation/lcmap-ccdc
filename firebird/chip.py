@@ -129,6 +129,11 @@ def ids(ulx, uly, lrx, lry, chip_spec):
 
     yield ((x, y) for x in np.arange(start_x, end_x + chip_width, chip_width)
                   for y in np.arange(start_y, end_y + chip_height, chip_height))
+    #_output = []
+    # for x in np.arange(start_x, end_x + chip_width, chip_width):
+    #     for y in np.arange(start_y, end_y + chip_height, chip_height):
+    #         _output.append((x, y))
+    # return _output
 
 
 def to_numpy(chip, chip_spec):
