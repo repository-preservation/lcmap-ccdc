@@ -22,7 +22,7 @@ setup(name='lcmap-firebird',
       license='Unlicense',
       packages=['firebird'],
       install_requires=[
-          'cassandra-driver',
+          #'cassandra-driver',
           'numpy',
           'xarray',
           'pandas',
