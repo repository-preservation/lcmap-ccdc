@@ -82,7 +82,7 @@ def to_pyccd(located_rods_by_spectra, dates):
     spectra   = tuple(locrods.keys())
     locations = locrods[spectra[0]].keys()
     rainbow   = partial(colors, spectra=locrods.keys(), rods=locrods)
-    yield tuple((xy, add_dates(rainbow(xy), dates)) for xy in locations)
+    yield tuple((xy, add_dates(rainbow(xy=xy), dates)) for xy in locations)
     #return tuple((xy, add_dates(rainbow(xy=xy), dates)) for xy in locations)
 
 def pyccd_dates(dates):
@@ -135,7 +135,7 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
 
     add_loc = partial(a.locrods, locs)
 
-    rods  = {k: add_loc(to_rod(v, dates, specs[k])) for k,v in chips.items()}
+    rods  = {k: add_loc(to_rod(v, dates, specs[k])) for k, v in chips.items()}
 
     del chips
 
@@ -185,7 +185,8 @@ def detect(column, row, bands, chip_x, chip_y):
 
 
 def run(acquired, ulx, uly, lrx, lry, prod_date,
-        lastchange=False, changemag=False, changedate=False, seglength=False, qa=False):
+        lastchange=False, changemag=False, changedate=False, seglength=False, qa=False,
+        parallelization=10000, xrange=100, yrange=100):
     '''
     Primary function for the driver module in lcmap-firebird.  Default behavior is to generate ALL the level2 products, unless specific products are requested.
     :param acquired: Date values for selecting input products. ISO format, joined with '/': <start date>/<end date> .
@@ -198,7 +199,10 @@ def run(acquired, ulx, uly, lrx, lry, prod_date,
     :param changemag: Generate changemag product.
     :param changedate: Generate changedate product.
     :param seglength: Generate seglength product.
-    :param qa: Generate QA product
+    :param qa: Generate QA product.
+    :param parallelization: How many parts to divide pyccd input data into for spark parallelization.
+    :param xrange: number of pixels to process for a chip in the x direction. For testing purposes. 
+    :param yrange: number of pixels to process for a chip in the y direction. For testing purposes.
     :return: True
     '''
     # if we can't get our Spark ducks in a row, no reason to continue
@@ -230,15 +234,12 @@ def run(acquired, ulx, uly, lrx, lry, prod_date,
         chipids = chip.ids(ulx, uly, lrx, lry, a.chip_specs(band_queries['blues'])[0])
 
         for ids in chipids:
-            # ccd results by chip
-            #ccd_data = assemble_ccd_data(ids, acquired, band_queries)
             # spark prefers task sizes of 100kb or less, means ccd results results in a 1 per work bucket rdd
             # still based on the assumption of 100x100 pixel chips
-            # ccd_rdd = sc.parallelize(ccd_data, 10000)
             pyccd_inputs = pyccd_rdd(fb.SPECS_URL, fb.CHIPS_URL, ids[0], ids[1], acquired)
-            ccd_rdd = sc.parallelize(pyccd_inputs, 10000)
-            for x_index in range(0, 100):
-                for y_index in range(0, 100):
+            ccd_rdd = sc.parallelize(pyccd_inputs, parallelization)
+            for x_index in range(0, xrange):
+                for y_index in range(0, yrange):
                     ccd_map = ccd_rdd.map(lambda i: detect(x_index, y_index, i, i[0][0], i[0][1])).persist()
                     if {False} == {lastchange, changemag, changedate, seglength, qa}:
                         # if you didn't specify, you get everything

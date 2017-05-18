@@ -1,5 +1,7 @@
-from firebird import driver as driver
+from firebird import driver
+from firebird.mocks import aardvark as ma
 from hypothesis import given
+from mock import patch
 import hypothesis.strategies as st
 import urllib
 
@@ -39,6 +41,15 @@ def test_pyccd_dates():
     assert 1 > 0
 
 
+@patch('firebird.aardvark.chips', ma.chips)
+@patch('firebird.aardvark.chip_specs', ma.chip_specs)
 def test_pyccd_rdd():
-    assert 1 > 0
+    _rdd = driver.pyccd_rdd('http://localhost', 'http://localhost', -100200, 300400, '1980-01-01/2015-12-31')
+    # wonkiness to deal with the generator business
+    _g = [[z for z in i] for i in _rdd][0]
+    r1 = _g[0][0]
+    assert len(_g[0]) == 10000
+    assert isinstance(r1, tuple)
+    assert isinstance(r1[0], tuple)
+    assert isinstance(r1[1], dict)
 
