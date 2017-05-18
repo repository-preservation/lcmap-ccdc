@@ -34,6 +34,7 @@ Apache Spark based product generation for LCMAP.
 ## Testing
 ```bash
  make docker-deps-up
+ make docker-db-test-schema
  nose2
  make docker-deps-down
 ```
