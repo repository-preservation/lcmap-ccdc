@@ -10,7 +10,7 @@ from pyspark import SparkContext
 
 import firebird as fb
 from firebird import aardvark as a
-from firebird import cassandra as cass
+from firebird import datastore as cass
 from firebird import chip
 from firebird import dtstr_to_ordinal as dto
 from firebird import products
