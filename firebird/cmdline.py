@@ -1,41 +1,26 @@
 import click
-import argparse
-
 from firebird import driver
 
-parser = argparse.ArgumentParser(description="Driver for LCMAP product generation")
-# could get cute here and loop this, leaving unwound for now
-parser.add_argument('-prd', dest='prod_date')
-parser.add_argument('-acq', dest='acquired')
-parser.add_argument('-ulx', dest='ulx')
-parser.add_argument('-uly', dest='uly')
-parser.add_argument('-lrx', dest='lrx')
-parser.add_argument('-lry', dest='lry')
-parser.add_argument('-lastchange', dest='lastchange', action='store_true')
-parser.add_argument('-changemag',  dest='changemag',  action='store_true')
-parser.add_argument('-changedate', dest='changedate', action='store_true')
-parser.add_argument('-seglength',  dest='seglength',  action='store_true')
-parser.add_argument('-qa',         dest='qa',         action='store_true')
 
-args = parser.parse_args()
-
-
-@click.group
-def cli():
-    print("Starting firebird...")
-
-
-@cli.command
-def run(acquired, ulx, uly, lrx, lry, prod_date,
-        lastchange=False, changemag=False, changedate=False, seglength=False, qa=False):
-    return driver.run(acquired, ulx, uly, lrx, lry, prod_date, lastchange, changemag, changedate, seglength, qa)
-
-
-@cli.command
-def products():
-    pass
-
+@click.command()
+@click.option('--prd',        prompt='production date')
+@click.option('--acq',        prompt='acquired dates')
+@click.option('--ulx',        prompt='upper left x coordinate')
+@click.option('--uly',        prompt='upper left y coordinate')
+@click.option('--lrx',        prompt='lower right x coordinate')
+@click.option('--lry',        prompt='lower right y coordinate')
+@click.option('--lastchange', default=True)
+@click.option('--changemag',  default=True)
+@click.option('--changedate', default=True)
+@click.option('--seglength',  default=True)
+@click.option('--qa',         default=True)
+@click.option('--par',        default=10000)
+@click.option('--xr',         default=100)
+@click.option('--yr',         default=100)
+def run(prd, acq, ulx, uly, lrx, lry, lastchange, changemag, changedate, seglength, qa, par, xr, yr):
+    driver.run(acquired=acq, ulx=ulx, uly=uly, lrx=lrx, lry=lry, prod_date=prd, lastchange=lastchange,
+               changemag=changemag, changedate=changedate, seglength=seglength, qa=qa, parallelization=par,
+               xrange=xr, yrange=yr)
 
 if __name__ == "__main__":
-    run(args.acquired, args.ulx, args.uly, args.lrx, args.lry, args.prod_date,
-        args.lastchange, args.changemag, args.changedate, args.seglength, args.qa)
+    run()
