@@ -83,7 +83,7 @@ def to_pyccd(located_rods_by_spectra, dates):
     locations = locrods[spectra[0]].keys()
     rainbow   = partial(colors, spectra=locrods.keys(), rods=locrods)
     yield tuple((xy, add_dates(rainbow(xy=xy), dates)) for xy in locations)
-    #return tuple((xy, add_dates(rainbow(xy=xy), dates)) for xy in locations)
+
 
 def pyccd_dates(dates):
     """ Formats the pyccd date array.
@@ -140,7 +140,7 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
     del chips
 
     yield to_pyccd(rods, pyccd_dates(dates))
-    #return to_pyccd(rods, pyccd_dates(dates))
+
 
 def simplify_detect_results(results):
     ''' Convert child objects inside CCD results from NamedTuples to Dictionaries '''
@@ -201,8 +201,8 @@ def run(acquired, ulx, uly, lrx, lry, prod_date,
     :param seglength: Generate seglength product.
     :param qa: Generate QA product.
     :param parallelization: How many parts to divide pyccd input data into for spark parallelization.
-    :param xrange: number of pixels to process for a chip in the x direction. For testing purposes. 
-    :param yrange: number of pixels to process for a chip in the y direction. For testing purposes.
+    :param xrange: number of pixels to process for a chip on the x axis. For testing purposes. 
+    :param yrange: number of pixels to process for a chip on the y axis. For testing purposes.
     :return: True
     '''
     # if we can't get our Spark ducks in a row, no reason to continue
