@@ -1,4 +1,4 @@
-from firebird.cassandra import execute, INSERT_CQL
+from firebird.datastore import execute, INSERT_CQL
 from datetime import datetime
 
 _d = datetime.strptime('2014-07-30T06:51:36Z', '%Y-%m-%dT%H:%M:%SZ')
