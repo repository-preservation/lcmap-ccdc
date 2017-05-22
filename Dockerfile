@@ -8,11 +8,11 @@ COPY resources /app/resources
 COPY setup.py /app
 COPY version.py /app
 RUN mkdir -p /app/test/resources/data
-COPY test/resources/data/chip-specs app/test/resources/data/chip-specs
-COPY test/resources/data/chips app/test/resources/data/chips
-COPY test/fixtures.py app/test
-COPY test/__init__.py app/test
-COPY test/shared.py app/test
+COPY test/resources/data/chip-specs /app/test/resources/data/chip-specs
+COPY test/resources/data/chips /app/test/resources/data/chips
+COPY test/fixtures.py /app/test
+COPY test/__init__.py /app/test
+COPY test/shared.py /app/test
 #COPY test /app/test
 COPY notebooks /app/notebooks
 #preposition numpy with conda to avoid compiling from scratch
