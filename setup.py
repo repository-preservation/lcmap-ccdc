@@ -27,7 +27,7 @@ setup(name='lcmap-firebird',
           'xarray',
           'pandas',
           'requests',
-          'lcmap-pyccd==1.3.1',
+          'lcmap-pyccd==1.4.0rc1',
           'pyspark==2.1',
       ],
       # List additional groups of dependencies here (e.g. development
