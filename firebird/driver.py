@@ -90,7 +90,7 @@ def pyccd_dates(dates):
     :param dates: A sequence of date strings
     :returns: A sequence of formatted and sorted ordinal dates
     """
-    return sorted([fb.dtstr_to_ordinal(d) for d in dates], reverse=True)
+    return fb.rsort([fb.dtstr_to_ordinal(d) for d in dates])
 
 
 def csort(chips):
