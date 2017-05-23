@@ -1,9 +1,13 @@
+import os
+# hack, till we get some bit-packed QA test data
+os.environ.update({'CCD_QA_BITPACKED': 'False'})
 from firebird import driver
 from firebird.mocks import aardvark as ma
 from hypothesis import given
 from mock import patch
 import hypothesis.strategies as st
 import urllib
+
 
 @given(url=st.sampled_from(('http://localhost',
                             'https://localhost',
@@ -39,6 +43,17 @@ def test_to_pyccd():
 
 def test_pyccd_dates():
     assert 1 > 0
+
+
+@patch('firebird.aardvark.chips', ma.chips)
+@patch('firebird.aardvark.chip_specs', ma.chip_specs)
+def test_detect():
+    _rdd = driver.pyccd_rdd('http://localhost', 'http://localhost', -100200, 300400, '1980-01-01/2015-12-31')
+    # wonkiness to deal with the generator business
+    _g = [[z for z in i] for i in _rdd][0]
+    inputs = _g[0][0]
+    results = driver.detect(111111, 222222, inputs[1], 33333, 44444)
+    assert results['result_ok'] is True
 
 
 @patch('firebird.aardvark.chips', ma.chips)
