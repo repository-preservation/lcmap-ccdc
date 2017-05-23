@@ -24,6 +24,8 @@ SPARK_EXECUTOR_IMAGE      = os.getenv('SPARK_EXECUTOR_IMAGE')
 SPARK_EXECUTOR_CORES      = os.getenv('SPARK_EXECUTOR_CORES', 1)
 SPARK_EXECUTOR_FORCE_PULL = os.getenv('SPARK_EXECUTOR_FORCE_PULL', 'false')
 
+QA_BIT_PACKED              = os.getenv('CCD_QA_BITPACKED', 'True')
+
 # TODO: This needs to be passed in from the command line
 BEGINNING_OF_TIME         = os.getenv('BEGINNING_OF_TIME', date(year=1982, month=1, day=1).toordinal())
 
