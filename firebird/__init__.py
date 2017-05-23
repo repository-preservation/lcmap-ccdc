@@ -50,10 +50,9 @@ def minbox(points):
     pass
 
 
-def dtstr_to_ordinal(dtstr, iso=True):
+def dtstr_to_ordinal(dtstr):
     """ Return ordinal from string formatted date"""
-    _fmt = '%Y-%m-%dT%H:%M:%SZ' if iso else '%Y-%m-%d %H:%M:%S'
-    _dt = datetime.strptime(dtstr, _fmt)
+    _dt = datetime.strptime(dtstr.split('T' if 'T' in dtstr else ' ')[0], '%Y-%m-%d')
     return _dt.toordinal()
 
 

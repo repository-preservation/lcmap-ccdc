@@ -1,9 +1,9 @@
 import numpy as np
 import json
 from datetime import date
-from .cassandra import execute as cassandra_execute
-from .cassandra import RESULT_INPUT
-from .cassandra import INSERT_CQL
+from .datastore import execute as cassandra_execute
+from .datastore import RESULT_INPUT
+from .datastore import INSERT_CQL
 from datetime import datetime
 
 from firebird import BEGINNING_OF_TIME

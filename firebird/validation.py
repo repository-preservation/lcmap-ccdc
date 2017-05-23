@@ -1,6 +1,4 @@
 import re
-from datetime import date
-#from firebird import LCMAP_PRODUCT_DICT
 
 
 def acquired(ad):
@@ -20,15 +18,8 @@ def coords(ulx, uly, lrx, lry):
     return True
 
 
-def ord(od):
-    try:
-        date.fromordinal(int(od))
-    except:
+def prod(pd):
+    # 1980-01-01
+    if not re.match('^[0-9]{4}-[0-9]{2}-[0-9]{2}$', pd):
         return False
     return True
-
-
-#def valid_prods(prods):
-#    if not set(prods.split(',')) <= set(LCMAP_PRODUCT_DICT):
-#        return False
-#    return True
