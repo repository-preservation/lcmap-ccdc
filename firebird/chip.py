@@ -121,14 +121,14 @@ def ids(ulx, uly, lrx, lry, chip_spec):
     >>> chip_ids = ids(1000, -1000, -500, 500, chip_spec)
     ((-1000, 500), (-500, 500), (-1000, -500), (-500, -500))
     """
-    chip_width = chip_spec['chip_x']    # e.g.  3000 meters, width of chip
-    chip_height = chip_spec['chip_y']   # e.g. -3000 meters, height of chip
+    cwidth = chip_spec['chip_x']    # e.g.  3000 meters, width of chip
+    cheight = chip_spec['chip_y']   # e.g. -3000 meters, height of chip
 
     start_x, start_y = snap(ulx, uly, chip_spec)
     end_x, end_y = snap(lrx, lry, chip_spec)
 
-    yield ((x, y) for x in np.arange(start_x, end_x + chip_width, chip_width)
-                  for y in np.arange(start_y, end_y + chip_height, chip_height))
+    return tuple((x, y) for x in np.arange(start_x, end_x + cwidth, cwidth)
+                        for y in np.arange(start_y, end_y + cheight, cheight))
 
 
 def to_numpy(chip, chip_spec):
