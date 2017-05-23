@@ -10,8 +10,9 @@ from pyspark import SparkContext
 
 import firebird as fb
 from firebird import aardvark as a
-from firebird import cassandra as cass
+from firebird import datastore as cass
 from firebird import chip
+from firebird import dtstr_to_ordinal as dto
 from firebird import products
 from firebird import validation as valid
 
@@ -78,10 +79,10 @@ def to_pyccd(located_rods_by_spectra, dates):
 
     # alias the descriptive name down to something that doesn't take up a line
     locrods   = located_rods_by_spectra
-    spectra   = locrods.keys()
+    spectra   = tuple(locrods.keys())
     locations = locrods[spectra[0]].keys()
-    rainbow   = partial(dated_colors, spectra=locrods.keys(), rods=locrods)
-    yield tuple((xy, add_dates(rainbow(xy), dates)) for xy in locations)
+    rainbow   = partial(colors, spectra=locrods.keys(), rods=locrods)
+    yield tuple((xy, add_dates(rainbow(xy=xy), dates)) for xy in locations)
 
 
 def pyccd_dates(dates):
@@ -89,7 +90,7 @@ def pyccd_dates(dates):
     :param dates: A sequence of date strings
     :returns: A sequence of formatted and sorted ordinal dates
     """
-    return sorted([fb.dtstr_to_ordinal(d) for d in dates], reverse=True)
+    return fb.rsort([fb.dtstr_to_ordinal(d) for d in dates])
 
 
 def csort(chips):
@@ -122,19 +123,21 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
 
     # get all the specs, ubids, chips, intersecting dates and rods
     # keep track of the spectra they are associated with via dict key 'k'
-    specs = {k: a.chip_specs(v) for k,v in a.chip_spec_urls(specs_url).items()}
+    specs = {k: a.chip_specs(v) for k, v in chip_spec_urls(specs_url).items()}
 
-    ubids = {k: a.ubids(v) for k,v in specs.items()}
+    ubids = {k: a.ubids(v) for k, v in specs.items()}
 
-    chips = {k: csort(pchips(url=chips_url, ubids=u)) for k,u in ubids.items()}
+    chips = {k: csort(pchips(url=chips_url, ubids=u)) for k, u in ubids.items()}
 
     dates = a.intersection(map(a.dates, [c for c in chips.values()]))
 
-    locs  = chip.locations(*chip.snap(x, y, specs[0]), specs[0]) # first is ok
+    bspecs = specs['blues']
+
+    locs = chip.locations(*chip.snap(x, y, bspecs[0]), bspecs[0]) # first is ok
 
     add_loc = partial(a.locrods, locs)
 
-    rods  = {k: add_loc(to_rod(v, dates, specs[k])) for k,v in chips.items()}
+    rods = {k: add_loc(to_rod(v, dates, specs[k])) for k, v in chips.items()}
 
     del chips
 
@@ -161,7 +164,7 @@ def detect(column, row, bands, chip_x, chip_y):
                               swir2s   = bands['swir2'].values[:, row, column],
                               thermals = bands['thermal'].values[:, row, column],
                               quality  = bands['cfmask'].values[:, row, column],
-                              dates    = [fb.dtstr_to_ordinal(str(to_datetime(i)), False) for i in bands['dates']])
+                              dates    = [dto(str(to_datetime(i))) for i in bands['dates']])
         output['result'] = json.dumps(simplify_detect_results(_results))
         output['result_ok'] = True
         output['algorithm'] = _results['algorithm']
@@ -183,8 +186,9 @@ def detect(column, row, bands, chip_x, chip_y):
     return output
 
 
-def run(acquired, ulx, uly, lrx, lry, ord_date,
-        lastchange=False, changemag=False, changedate=False, seglength=False, qa=False):
+def run(acquired, ulx, uly, lrx, lry, prod_date,
+        lastchange=False, changemag=False, changedate=False, seglength=False, qa=False,
+        parallelization=10000, xrange=100, yrange=100):
     '''
     Primary function for the driver module in lcmap-firebird.  Default behavior is to generate ALL the level2 products, unless specific products are requested.
     :param acquired: Date values for selecting input products. ISO format, joined with '/': <start date>/<end date> .
@@ -197,7 +201,10 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
     :param changemag: Generate changemag product.
     :param changedate: Generate changedate product.
     :param seglength: Generate seglength product.
-    :param qa: Generate QA product
+    :param qa: Generate QA product.
+    :param parallelization: How many parts to divide pyccd input data into for spark parallelization.
+    :param xrange: number of pixels to process for a chip on the x axis. For testing purposes.
+    :param yrange: number of pixels to process for a chip on the y axis. For testing purposes.
     :return: True
     '''
     # if we can't get our Spark ducks in a row, no reason to continue
@@ -219,40 +226,37 @@ def run(acquired, ulx, uly, lrx, lry, ord_date,
     if not valid.coords(ulx, uly, lrx, lry):
         raise Exception("Bounding coords appear invalid: {}".format((ulx, uly, lrx, lry)))
 
-    if not valid.ord(ord_date):
-        raise Exception("Invalid ordinal date value: {}".format(ord_date))
+    if not valid.prod(prod_date):
+        raise Exception("Invalid product date value: {}".format(prod_date))
 
     try:
         # organize required data
-        band_queries = pyccd_chip_spec_queries(fb.SPECS_URL)
+        band_queries = chip_spec_urls(fb.SPECS_URL)
         # assuming chip-specs are identical for a location across the bands
-        chipids = chip.ids(ulx, uly, lrx, lry, a.chip_specs(band_queries['blue']))
+        chipids = chip.ids(ulx, uly, lrx, lry, a.chip_specs(band_queries['blues'])[0])
 
         for ids in chipids:
-            # ccd results by chip
-            #ccd_data = assemble_ccd_data(ids, acquired, band_queries)
             # spark prefers task sizes of 100kb or less, means ccd results results in a 1 per work bucket rdd
             # still based on the assumption of 100x100 pixel chips
-            # ccd_rdd = sc.parallelize(ccd_data, 10000)
-            pyccd_inputs = pyccd_rdd(fb.SPECS_URL, fb.CHIPS_URL, *ids, acquired)
-            ccd_rdd = sc.parallelize(pyccd_inputs, 10000)
-            for x_index in range(0, 100):
-                for y_index in range(0, 100):
+            pyccd_inputs = pyccd_rdd(fb.SPECS_URL, fb.CHIPS_URL, ids[0], ids[1], acquired)
+            ccd_rdd = sc.parallelize(pyccd_inputs, parallelization)
+            for x_index in range(0, xrange):
+                for y_index in range(0, yrange):
                     ccd_map = ccd_rdd.map(lambda i: detect(x_index, y_index, i, i[0][0], i[0][1])).persist()
                     if {False} == {lastchange, changemag, changedate, seglength, qa}:
                         # if you didn't specify, you get everything
-                        ccd_map.foreach(lambda i: products.run('all', i, ord_date))
+                        ccd_map.foreach(lambda i: products.run('all', i, prod_date))
                     else:
                         if lastchange:
-                            ccd_map.foreach(lambda i: products.run('lastchange', i, ord_date))
+                            ccd_map.foreach(lambda i: products.run('lastchange', i, dto(prod_date)))
                         if changemag:
-                            ccd_map.foreach(lambda i: products.run('changemag', i, ord_date))
+                            ccd_map.foreach(lambda i: products.run('changemag', i, dto(prod_date)))
                         if changedate:
-                            ccd_map.foreach(lambda i: products.run('changedate', i, ord_date))
+                            ccd_map.foreach(lambda i: products.run('changedate', i, dto(prod_date)))
                         if seglength:
-                            ccd_map.foreach(lambda i: products.run('seglength', i, ord_date))
+                            ccd_map.foreach(lambda i: products.run('seglength', i, dto(prod_date)))
                         if qa:
-                            ccd_map.foreach(lambda i: products.run('qa', i, ord_date))
+                            ccd_map.foreach(lambda i: products.run('qa', i, dto(prod_date)))
 
     except Exception as e:
         fb.logger.info("Exception running Spark job: {}".format(e))
