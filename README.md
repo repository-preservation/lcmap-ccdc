@@ -57,6 +57,7 @@ Configuration via environment variables
 | AARDVARK_PORT | '5678' | Aardvark port |
 | AARDVARK_TILESPECS | '/landsat/tile-specs' | Tile-specs url |
 | BEGINNING_OF_TIME | 723546 | Ordinal date for use in seglength product calculation |
+| CCD_QA_BITPACKED  | True | Flag for indicating if Landsat Quality data is bitpacked or not |
 
 
 * Command line
