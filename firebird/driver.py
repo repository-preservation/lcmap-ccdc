@@ -150,19 +150,32 @@ def simplify_detect_results(results):
     return output
 
 
-def detect(column, row, bands, chip_x, chip_y):
+def detect(chip_x, chip_y, bands, pix_x, pix_y):
     """ Return results of ccd.detect for a given stack of data at a particular x and y """
     output = cass.RESULT_INPUT.copy()
+
+    ccd_params = {}
+    if fb.QA_BIT_PACKED is not 'True':
+        ccd_params = {'QA_BITPACKED': False,
+                      'QA_FILL': 255,
+                      'QA_CLEAR': 0,
+                      'QA_WATER': 1,
+                      'QA_SHADOW': 2,
+                      'QA_SNOW': 3,
+                      'QA_CLOUD': 4}
+
+
     try:
-        _results = ccd.detect(blues    = bands['blue'].values[:, row, column],
-                              greens   = bands['green'].values[:, row, column],
-                              reds     = bands['red'].values[:, row, column],
-                              nirs     = bands['nir'].values[:, row, column],
-                              swir1s   = bands['swir1'].values[:, row, column],
-                              swir2s   = bands['swir2'].values[:, row, column],
-                              thermals = bands['thermal'].values[:, row, column],
-                              quality  = bands['cfmask'].values[:, row, column],
-                              dates    = [dto(str(to_datetime(i))) for i in bands['dates']])
+        _results = ccd.detect(dates=bands['dates'],
+                              blues=bands['blues'],
+                              greens=bands['greens'],
+                              reds=bands['reds'],
+                              nirs=bands['nirs'],
+                              swir1s=bands['swir1s'],
+                              swir2s=bands['swir2s'],
+                              thermals=bands['thermals'],
+                              quality=bands['quality'],
+                              params=ccd_params)
         output['result'] = json.dumps(simplify_detect_results(_results))
         output['result_ok'] = True
         output['algorithm'] = _results['algorithm']
@@ -173,10 +186,10 @@ def detect(column, row, bands, chip_x, chip_y):
         output['result'] = ''
         output['result_ok'] = False
 
-    output['x'] = chip_x + (column * fb.X_PIXEL_DIM)
-    output['y'] = chip_y + (row * fb.Y_PIXEL_DIM)
+    output['x'] = pix_x
+    output['y'] = pix_y
     output['result_md5'] = hashlib.md5(output['result'].encode('UTF-8')).hexdigest()
-    output['result_produced'] = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
+    output['result_produced'] = datetime.now()
     output['inputs_md5'] = 'not implemented'
     # writes to cassandra happen from node doing the work
     # don't want to collect all chip records on driver host
@@ -238,23 +251,21 @@ def run(acquired, ulx, uly, lrx, lry, prod_date,
             # still based on the assumption of 100x100 pixel chips
             pyccd_inputs = pyccd_rdd(fb.SPECS_URL, fb.CHIPS_URL, ids[0], ids[1], acquired)
             ccd_rdd = sc.parallelize(pyccd_inputs, parallelization)
-            for x_index in range(0, xrange):
-                for y_index in range(0, yrange):
-                    ccd_map = ccd_rdd.map(lambda i: detect(x_index, y_index, i, i[0][0], i[0][1])).persist()
-                    if {False} == {lastchange, changemag, changedate, seglength, qa}:
-                        # if you didn't specify, you get everything
-                        ccd_map.foreach(lambda i: products.run('all', i, prod_date))
-                    else:
-                        if lastchange:
-                            ccd_map.foreach(lambda i: products.run('lastchange', i, dto(prod_date)))
-                        if changemag:
-                            ccd_map.foreach(lambda i: products.run('changemag', i, dto(prod_date)))
-                        if changedate:
-                            ccd_map.foreach(lambda i: products.run('changedate', i, dto(prod_date)))
-                        if seglength:
-                            ccd_map.foreach(lambda i: products.run('seglength', i, dto(prod_date)))
-                        if qa:
-                            ccd_map.foreach(lambda i: products.run('qa', i, dto(prod_date)))
+            ccd_map = ccd_rdd.map(lambda i: detect(ids[0], ids[1], i[1], i[0][0], i[0][1])).persist()
+            if {False} == {lastchange, changemag, changedate, seglength, qa}:
+                # if you didn't specify, you get everything
+                ccd_map.foreach(lambda i: products.run('all', i, prod_date))
+            else:
+                if lastchange:
+                    ccd_map.foreach(lambda i: products.run('lastchange', i, dto(prod_date)))
+                if changemag:
+                    ccd_map.foreach(lambda i: products.run('changemag', i, dto(prod_date)))
+                if changedate:
+                    ccd_map.foreach(lambda i: products.run('changedate', i, dto(prod_date)))
+                if seglength:
+                    ccd_map.foreach(lambda i: products.run('seglength', i, dto(prod_date)))
+                if qa:
+                    ccd_map.foreach(lambda i: products.run('qa', i, dto(prod_date)))
 
     except Exception as e:
         fb.logger.info("Exception running Spark job: {}".format(e))
