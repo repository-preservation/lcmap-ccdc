@@ -131,11 +131,13 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
 
     dates = a.intersection(map(a.dates, [c for c in chips.values()]))
 
-    locs  = chip.locations(*chip.snap(x, y, specs['blues'][0]), specs['blues'][0]) # first is ok
+    bspecs = specs['blues']
+
+    locs = chip.locations(*chip.snap(x, y, bspecs[0]), bspecs[0]) # first is ok
 
     add_loc = partial(a.locrods, locs)
 
-    rods  = {k: add_loc(to_rod(v, dates, specs[k])) for k, v in chips.items()}
+    rods = {k: add_loc(to_rod(v, dates, specs[k])) for k, v in chips.items()}
 
     del chips
 
@@ -201,7 +203,7 @@ def run(acquired, ulx, uly, lrx, lry, prod_date,
     :param seglength: Generate seglength product.
     :param qa: Generate QA product.
     :param parallelization: How many parts to divide pyccd input data into for spark parallelization.
-    :param xrange: number of pixels to process for a chip on the x axis. For testing purposes. 
+    :param xrange: number of pixels to process for a chip on the x axis. For testing purposes.
     :param yrange: number of pixels to process for a chip on the y axis. For testing purposes.
     :return: True
     '''
