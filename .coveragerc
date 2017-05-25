@@ -5,5 +5,8 @@ omit    = lib/*
           bin/*
           lib64/*
           include/*
+          version.py
+          setup.py
+          firebird/mocks/*
 [html]
 directory = test/coverage
