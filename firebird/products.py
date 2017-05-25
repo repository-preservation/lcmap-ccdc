@@ -113,15 +113,15 @@ def run(alg, ccdres, ord_date):
     if alg in ('all', 'qa'):
         _prods['qa'] = qa(models, ord_date)
 
-    _now = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
+    _now = datetime.now()
     for _p in _prods:
         _r = RESULT_INPUT.copy()
-        _r['tile_x']          = ccdres['tile_x']
-        _r['tile_y']          = ccdres['tile_y']
+        _r['chip_x']          = ccdres['chip_x']
+        _r['chip_y']          = ccdres['chip_y']
         _r['x']               = ccdres['x']
         _r['y']               = ccdres['y']
         _r['algorithm']       = _p
-        _r['result']          = _prods[_p]
+        _r['result']          = str(_prods[_p])
         _r['result_ok']       = True
         _r['result_produced'] = _now
         _results.append(_r)
