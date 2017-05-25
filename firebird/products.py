@@ -39,10 +39,11 @@ def changemag(models, ord_date):
     ret = 0
     if ord_date > 0:
         query_date = date.fromordinal(ord_date)
+        magnitudes = [models[i]['magnitude'] for i in models if i in ('nir', 'swir1', 'swir2', 'green', 'red')]
         for m in models:
             break_date = date.fromordinal(m['break_day'])
             if (query_date.year == break_date.year) and m['change_probability'] == 1:
-                ret = np.linalg.norm(m['magnitudes'][1:-1])
+                ret = np.linalg.norm(magnitudes)
                 break
 
     return ret
