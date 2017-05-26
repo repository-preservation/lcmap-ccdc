@@ -2,11 +2,11 @@ import glob
 import json
 import os
 import itertools
+import test
 from firebird.files import read
 
-CWD = os.path.dirname(os.path.realpath(__file__))
-BJD = os.path.join(CWD, 'resources/data/chips/band-json')
-
+CHIPS_DIR = test.test_data_config()['chips_dir']
+SPECS_DIR = test.test_data_config()['specs_dir']
 
 def flatten(iterable):
     """
@@ -17,7 +17,7 @@ def flatten(iterable):
     return itertools.chain.from_iterable(iterable)
 
 
-def chips(spectra, root_dir=BJD):
+def chips(spectra, root_dir=CHIPS_DIR):
     """
     Return chips for named spectra
     :param spectra: red, green, blue, nir, swir1, swir2, thermal or cfmask
@@ -30,7 +30,7 @@ def chips(spectra, root_dir=BJD):
     return flatten(chips)
 
 
-def chip_specs(spectra, root_dir=os.path.join(CWD, 'resources/data/chip-specs')):
+def chip_specs(spectra, root_dir=SPECS_DIR):
     """
     Returns chip specs for the named spectra.
     :param spectra: red, green, blue, nir, swir1, swir2, thermal or cfmask
@@ -42,7 +42,7 @@ def chip_specs(spectra, root_dir=os.path.join(CWD, 'resources/data/chip-specs'))
     return json.loads(read(filenames[0]))
 
 
-def chip_ids(root_dir=BJD):
+def chip_ids(root_dir=CHIPS_DIR):
     """
     Returns chip ids for available chip data in root_dir
     :param root_dir: directory where band data resides
@@ -53,4 +53,3 @@ def chip_ids(root_dir=BJD):
         return _fs[1], _fs[2]
 
     return tuple({getxy(i) for i in glob.glob(''.join([root_dir, os.sep, '*blue*']))})
-

@@ -1,14 +1,14 @@
-"""
-import logging
 import os
 
-LOGGING_LEVEL = os.getenv('LOGGING_LEVEL', 'DEBUG')
+CWD = os.path.dirname(os.path.realpath(__file__))
 
-# configure logging
-__numeric_level = getattr(logging, LOGGING_LEVEL.upper(), None)
-if not isinstance(__numeric_level, int):
-    raise ValueError('Invalid log level: %s' % LOGGING_LEVEL)
-logging.basicConfig(format='%(asctime)s %(message)s',
-                    datefmt='%m/%d/%Y %I:%M:%S %p',
-                    level=__numeric_level)
-"""
+def data_config():
+    """ Controls the test data that is loaded into the system """
+    return {'x': -1821585,
+            'y': 2891595,
+            'acquired': '1982-01-01/2015-12-12',
+            'dataset_name': 'ARD',
+            'specs_url': os.getenv('SPECS_URL'),
+            'chips_url': os.getenv('CHIPS_URL'),
+            'chips_dir': os.path.join(CWD, 'resources/data/chips'),
+            'specs_dir': os.path.join(CWD, 'resources/data/specs')}

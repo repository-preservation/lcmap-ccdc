@@ -3,6 +3,7 @@ import sys
 import logging
 import numpy as np
 import functools
+import itertools
 from datetime import datetime, date
 
 AARDVARK = os.getenv('AARDVARK', 'http://localhost:5678')
@@ -86,3 +87,21 @@ def compose(*functions):
     def compose2(f, g):
         return lambda x: f(g(x))
     return functools.reduce(compose2, functions, lambda x: x)
+
+
+def flatten(iterable):
+    """
+    Reduce dimensionality of iterable containing iterables
+    :param iterable: A multi-dimensional iterable
+    :returns: A one dimensional iterable
+    """
+    return itertools.chain.from_iterable(iterable)
+
+
+def flattend(dicts):
+    """ Combines a sequence of dicts into a single dict.
+    :params dicts: A sequence of dicts
+    :returns: A single dict"""
+    return {k:v for d in dicts for k, v in d.items()}
+
+    
