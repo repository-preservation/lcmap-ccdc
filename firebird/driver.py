@@ -31,7 +31,7 @@ def chip_spec_urls(url):
      'swir1s':   'http://host/v1/landsat/chip-specs?q=tags:swir1 AND sr'
      'swir2s':   'http://host/v1/landsat/chip-specs?q=tags:swir2 AND sr'
      'thermals': 'http://host/v1/landsat/chip-specs?q=tags:thermal AND ta'
-     'quality': 'http://host/v1/landsat/chip-specs?q=tags:qa AND tags:pixel'}
+     'quality': 'http://host/v1/landsat/chip-specs?q=tags:pixelqa'}
     """
     return {'reds':     ''.join([url, '?q=tags:red AND sr']),
             'greens':   ''.join([url, '?q=tags:green AND sr']),
@@ -82,7 +82,7 @@ def to_pyccd(located_rods_by_spectra, dates):
     spectra   = tuple(locrods.keys())
     locations = locrods[spectra[0]].keys()
     rainbow   = partial(colors, spectra=locrods.keys(), rods=locrods)
-    yield tuple((xy, add_dates(rainbow(xy=xy), dates)) for xy in locations)
+    return tuple((xy, add_dates(rainbow(xy=xy), dates)) for xy in locations)
 
 
 def pyccd_dates(dates):
@@ -141,7 +141,7 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
 
     del chips
 
-    yield to_pyccd(rods, pyccd_dates(dates))
+    return to_pyccd(rods, pyccd_dates(dates))
 
 
 def simplify_detect_results(results):
@@ -176,20 +176,20 @@ def detect(chip_x, chip_y, bands, pix_x, pix_y):
                               swir1s=bands['swir1s'],
                               swir2s=bands['swir2s'],
                               thermals=bands['thermals'],
-                              quality=bands['quality'],
+                              quality=bands['pixelqas'],
                               params=ccd_params)
         output['result'] = json.dumps(simplify_detect_results(_results))
         output['result_ok'] = True
         output['algorithm'] = _results['algorithm']
-        output['chip_x'] = chip_x
-        output['chip_y'] = chip_y
+        output['chip_x'] = int(chip_x)
+        output['chip_y'] = int(chip_y)
     except Exception as e:
         fb.logger.error("Exception running ccd.detect: {}".format(e))
         output['result'] = ''
         output['result_ok'] = False
 
-    output['x'] = pix_x
-    output['y'] = pix_y
+    output['x'] = int(pix_x)
+    output['y'] = int(pix_y)
     output['result_md5'] = hashlib.md5(output['result'].encode('UTF-8')).hexdigest()
     output['result_produced'] = datetime.now()
     output['inputs_md5'] = 'not implemented'
