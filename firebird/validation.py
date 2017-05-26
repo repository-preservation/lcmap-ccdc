@@ -10,7 +10,7 @@ def acquired(ad):
 
 def coords(ulx, uly, lrx, lry):
     try:
-        for __ in ((ulx, lrx), (uly, lry)):
+        for __ in ((ulx, lrx), (lry, uly)):
             if not float(__[0]) < float(__[1]):
                 return False
     except:
