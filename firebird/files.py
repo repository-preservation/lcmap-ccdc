@@ -57,3 +57,16 @@ def delete(path):
 
 def exists(path):
     return os.path.exists(path) and os.path.isfile(path)
+
+
+def mkdirs(filename):
+    """
+    Ensures the set of directories exist for the supplied filename.
+    :param filename: Full path to where the file should live
+    :returns: Full file path if the directories were created or None
+    """
+    try:
+        os.makedirs(os.path.dirname(filename), exist_ok=True)
+        return filename
+    except:
+        return None
