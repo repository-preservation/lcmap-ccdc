@@ -77,6 +77,16 @@ def test_detect():
 
 @patch('firebird.aardvark.chips', ma.chips)
 @patch('firebird.aardvark.chip_specs', ma.chip_specs)
+def test_detect_ccd_exception():
+    _rdd = driver.pyccd_rdd('http://localhost', 'http://localhost', -100200, 300400, '1980-01-01/2015-12-31')
+    band_dict = _rdd[0][1]
+    band_dict.pop('reds')
+    results = driver.detect(111111, 222222, band_dict, 33333, 44444)
+    assert results['result_ok'] is False
+
+
+@patch('firebird.aardvark.chips', ma.chips)
+@patch('firebird.aardvark.chip_specs', ma.chip_specs)
 def test_pyccd_rdd():
     _rdd = driver.pyccd_rdd('http://localhost', 'http://localhost', -100200, 300400, '1980-01-01/2015-12-31')
     assert len(_rdd) == 10000
