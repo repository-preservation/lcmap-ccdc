@@ -8,5 +8,7 @@ omit    = lib/*
           version.py
           setup.py
           firebird/mocks/*
+          firebird/cmdline.py
+          test/fixtures.py
 [html]
 directory = test/coverage
