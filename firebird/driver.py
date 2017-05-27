@@ -155,7 +155,6 @@ def simplify_detect_results(results):
 def detect(chip_x, chip_y, bands, pix_x, pix_y):
     """ Return results of ccd.detect for a given stack of data at a particular x and y """
     output = cass.RESULT_INPUT.copy()
-
     ccd_params = {}
     if fb.QA_BIT_PACKED is not 'True':
         ccd_params = {'QA_BITPACKED': False,
@@ -176,7 +175,7 @@ def detect(chip_x, chip_y, bands, pix_x, pix_y):
                               swir1s=bands['swir1s'],
                               swir2s=bands['swir2s'],
                               thermals=bands['thermals'],
-                              quality=bands['pixelqas'],
+                              quality=bands['quality'],
                               params=ccd_params)
         output['result'] = json.dumps(simplify_detect_results(_results))
         output['result_ok'] = True

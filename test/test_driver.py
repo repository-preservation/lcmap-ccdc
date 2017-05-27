@@ -47,7 +47,7 @@ def test_pyccd_dates():
 def test_detect():
     inputs = driver.pyccd_rdd('http://localhost', 'http://localhost',
                               -100200, 300400, '1980-01-01/2015-12-31')
-    results = driver.detect(123, 456, inputs[0][1], 123, 456)
+    results = driver.detect(*inputs[0][0], inputs[0][1], *inputs[0][0])
     assert results['result_ok'] is True
 
 
