@@ -8,15 +8,32 @@ from datetime import datetime
 
 from firebird import BEGINNING_OF_TIME
 
+def ccd(pyccd_rdd):
+    """ Execute ccd.detect """
+    try:
+        return ccd.detect(dates=pyccd_rdd['dates'],
+                          blues=pyccd_rdd['blues'],
+                          greens=pyccd_rdd['greens'],
+                          reds=pyccd_rdd['reds'],
+                          nirs=pyccd_rdd['nirs'],
+                          swir1s=pyccd_rdd['swir1s'],
+                          swir2s=pyccd_rdd['swir2s'],
+                          thermals=pyccd_rdd['thermals'],
+                          quality=pyccd_rdd['quality'],
+                          params=fb.ccd_params())
+    except Exception as e:
+        fb.logger.error("Exception running ccd.detect: {}".format(e))
 
-def result_to_models(inresult):
+    return output
+
+
+def result_to_models(result):
     '''
     Function to extract the change_models dictionary from the CCD results
     :param inresult: CCD result object
     :return: dict
     '''
-    _rjson = json.loads(inresult['result'])
-    return _rjson['change_models']
+    return json.loads(result['result'])['change_models']
 
 
 def lastchange(models, ord_date):
