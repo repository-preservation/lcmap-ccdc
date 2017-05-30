@@ -224,3 +224,11 @@ def locrods(locations, rods):
     flat_locs = locations.reshape(locations.shape[0] * locations.shape[1], -1)
     flat_rods = rods.reshape(rods.shape[0] * rods.shape[1], -1)
     return {tuple(k):v for k,v in zip(flat_locs, flat_rods)}
+
+
+def clip(locrods, bbox):
+    """
+    Filters out locrods that do not fall within the bbox
+    :param locrods: A dict of locrods (x, y): [1, 2, 3, 4, 5]
+    :param bbox: ulx, uly, lrx, lry
+    """
