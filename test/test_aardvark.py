@@ -6,8 +6,8 @@ from firebird.aardvark import trim
 from firebird.aardvark import to_numpy
 from firebird.aardvark import rods
 from firebird.aardvark import locrods
-from fixtures import chip_specs
-from fixtures import flatten
+import firebird as fb
+from data import chip_specs
 
 from base64 import b64encode
 from functools import reduce
@@ -130,7 +130,7 @@ def test_rods():
     # [11, 21, 31, 12, 22, 32, 13, 23, 33, 14, 24, 34, 15, 25, 35, 16, 26 ...]
     # This alone should serve as all the evidence needed to prove that
     # imperative programming is bad for everyone involved.  I am very sorry.
-    fchips = list(flatten([c['data'].flatten() for c in chips]))
+    fchips = list(fb.flatten([c['data'].flatten() for c in chips]))
     jump = reduce(lambda accum, v: accum + v, pillar.shape) # 9
     modulus = pillar.shape[0] # 3
     for i, val in enumerate(pillar.flatten()):
