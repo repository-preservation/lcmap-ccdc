@@ -39,7 +39,8 @@ Apache Spark based product generation for LCMAP.
 
 ## Refreshing Test Data
 Occasionally it is necessary to update the test data located under
-```test/resources/data1
+```
+test/resources/data1
 ```  
 
 There are two functions which can be run from a repl.  After updates the
@@ -77,16 +78,5 @@ Configuration via environment variables
 | BEGINNING_OF_TIME | 723546 | Ordinal date for use in seglength product calculation |
 | CCD_QA_BITPACKED  | True | Flag for indicating if Landsat Quality data is bitpacked or not |
 
-
-* Command line
-```bash
-```
-
-* Jupyter
-```bash
-```
-
-## Implementation Wants
-* Utilize xarray for input handling
-* All code should be written according to functional principles... immutability, purity, substitution, statelessness.
-* Code should be written according to functional principles wherever possible... immutability, purity, substitution, statelessness.
+## Development
+Apache Spark is functional programming for cluster computing therefore firebird strives to ensure all of it's code follows functional principles of using immutable data (where possible), using functions as the primary unit of abstraction, and composing functions (placing them together) rather than complecting code (intermingling concepts).
