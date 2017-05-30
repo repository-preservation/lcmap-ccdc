@@ -2,10 +2,8 @@ import os
 # hack, till we get some bit-packed QA test data
 os.environ.update({'CCD_QA_BITPACKED': 'False'})
 from firebird import driver
-from firebird.mocks import aardvark as ma
-from firebird.mocks import chip as mc
-from firebird.mocks import sparkcon
-from firebird.mocks import driver as md
+from test.mocks import chip as mc, aardvark as ma, driver as md
+from test.mocks import sparkcon
 from hypothesis import given
 from mock import patch
 import hypothesis.strategies as st

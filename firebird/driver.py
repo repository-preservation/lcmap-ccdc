@@ -4,17 +4,13 @@ import json
 
 from datetime import datetime
 from functools import partial
-from pandas import to_datetime
 
 import firebird as fb
 from firebird import aardvark as a
 from firebird import datastore as cass
 from firebird import chip
-from firebird import dtstr_to_ordinal as dto
 from firebird import products
 from firebird import validation as valid
-from firebird import sparkcon
-from firebird import ccd_params
 
 
 def chip_spec_urls(url):
@@ -165,7 +161,7 @@ def detect(chip_x, chip_y, bands, pix_x, pix_y):
                               swir2s=bands['swir2s'],
                               thermals=bands['thermals'],
                               quality=bands['quality'],
-                              params=ccd_params())
+                              params=fb.ccd_params())
         output['result'] = json.dumps(simplify_detect_results(_results))
         output['result_ok'] = True
         output['algorithm'] = _results['algorithm']
@@ -189,7 +185,7 @@ def detect(chip_x, chip_y, bands, pix_x, pix_y):
 
 def run(acquired, ulx, uly, lrx, lry, prod_date,
         lastchange=False, changemag=False, changedate=False, seglength=False, qa=False,
-        parallelization=10000, sparkcon=sparkcon):
+        parallelization=10000, sparkcon=fb.sparkcon):
     '''
     Primary function for the driver module in lcmap-firebird.  Default behavior is to generate ALL the level2 products, unless specific products are requested.
     :param acquired: Date values for selecting input products. ISO format, joined with '/': <start date>/<end date> .
@@ -235,18 +231,18 @@ def run(acquired, ulx, uly, lrx, lry, prod_date,
             ccd_map = ccd_rdd.map(lambda i: detect(ids[0], ids[1], i[1], int(i[0][0]), int(i[0][1]))).persist()
             if {False} == {lastchange, changemag, changedate, seglength, qa}:
                 # if you didn't specify, you get everything
-                ccd_map.foreach(lambda i: products.run('all', i, dto(prod_date)))
+                ccd_map.foreach(lambda i: products.run('all', i, fb.dto(prod_date)))
             else:
                 if lastchange:
-                    ccd_map.foreach(lambda i: products.run('lastchange', i, dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('lastchange', i, fb.dto(prod_date)))
                 if changemag:
-                    ccd_map.foreach(lambda i: products.run('changemag', i, dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('changemag', i, fb.dto(prod_date)))
                 if changedate:
-                    ccd_map.foreach(lambda i: products.run('changedate', i, dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('changedate', i, fb.dto(prod_date)))
                 if seglength:
-                    ccd_map.foreach(lambda i: products.run('seglength', i, dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('seglength', i, fb.dto(prod_date)))
                 if qa:
-                    ccd_map.foreach(lambda i: products.run('qa', i, dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('qa', i, fb.dto(prod_date)))
 
     except Exception as e:
         fb.logger.info("Exception running Spark job: {}".format(e))
