@@ -1,5 +1,6 @@
 from firebird import driver
-from test.mocks import aardvark as ma
+from test.mocks import chip as mc, aardvark as ma, driver as md
+from test.mocks import sparkcon
 from hypothesis import given
 from mock import patch
 import hypothesis.strategies as st
@@ -42,6 +43,25 @@ def test_pyccd_dates():
     assert 1 > 0
 
 
+@patch('firebird.chip.ids', mc.ids)
+@patch('firebird.aardvark.chips', ma.chips)
+@patch('firebird.aardvark.chip_specs', ma.chip_specs)
+@patch('firebird.driver.pyccd_rdd', md.pyccd_rdd)
+@patch('firebird.validation.acquired', lambda d: True)
+@patch('firebird.validation.coords', lambda ulx, uly, lrx, lry: True)
+@patch('firebird.validation.prod', lambda p: True)
+def test_run():
+    # mocking driver's pyccd_rdd func because we dont need to run ccd.detect on 10k pixels
+    acq = "01-01-1969/12-31-1999"
+    ulx = -100300
+    uly = 200000
+    lrx = -100000
+    lry = 1999970
+    prd = '1984-04-01'
+    run_resp = driver.run(acq, ulx, uly, lrx, lry, prd, parallelization=1, sparkcon=sparkcon)
+    assert run_resp is True
+
+
 @patch('firebird.aardvark.chips', ma.chips)
 @patch('firebird.aardvark.chip_specs', ma.chip_specs)
 def test_detect():
@@ -49,6 +69,16 @@ def test_detect():
                               -100200, 300400, '1980-01-01/2015-12-31')
     results = driver.detect(*inputs[0][0], inputs[0][1], *inputs[0][0])
     assert results['result_ok'] is True
+
+
+@patch('firebird.aardvark.chips', ma.chips)
+@patch('firebird.aardvark.chip_specs', ma.chip_specs)
+def test_detect_ccd_exception():
+    _rdd = driver.pyccd_rdd('http://localhost', 'http://localhost', -100200, 300400, '1980-01-01/2015-12-31')
+    band_dict = _rdd[0][1]
+    band_dict.pop('reds')
+    results = driver.detect(111111, 222222, band_dict, 33333, 44444)
+    assert results['result_ok'] is False
 
 
 @patch('firebird.aardvark.chips', ma.chips)

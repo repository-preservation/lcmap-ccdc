@@ -10,4 +10,3 @@ def test_save_detect():
                'result': 'a pile of result', 'result_produced': _d, 'result_md5': 'result_md5',
                'x': -134567, 'chip_y': 888999}
     assert execute(INSERT_CQL, [results])
-    
