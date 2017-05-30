@@ -23,12 +23,10 @@ Apache Spark based product generation for LCMAP.
 ```
 
 * Clone this repo, install deps and submodules
-```bash 
+```bash
    $ git clone git@github.com:usgs-eros/lcmap-firebird
    $ cd lcmap-firebird
    $ pip install -e .
-   $ git submodule init
-   $ git submodule update
 ```
 
 ## Testing
@@ -37,6 +35,26 @@ Apache Spark based product generation for LCMAP.
  make docker-db-test-schema
  nose2
  make docker-deps-down
+```
+
+## Refreshing Test Data
+Occasionally it is necessary to update the test data located under
+```test/resources/data1
+```  
+
+There are two functions which can be run from a repl.  After updates the
+new test data should be committed to the firebird project.  
+
+Make sure the environment variables are set prior to importing test.
+
+```
+>>> import os
+>>> os.environ['CHIPS_URL'] = 'http://host/v1/landsat/chips'
+>>> os.environ['SPECS_URL'] = 'http://host/v1/landsat/chip-specs'
+>>>
+>>> from test import data
+>>> data.update_specs()
+>>> data.update_chips()
 ```
 
 ## Usage
