@@ -1,14 +1,11 @@
-import os
-# hack, till we get some bit-packed QA test data
-os.environ.update({'CCD_QA_BITPACKED': 'False'})
 from firebird import driver
 from test.mocks import chip as mc, aardvark as ma, driver as md
 from test.mocks import sparkcon
 from hypothesis import given
 from mock import patch
 import hypothesis.strategies as st
+import os
 import urllib
-
 
 @given(url=st.sampled_from(('http://localhost',
                             'https://localhost',
@@ -68,8 +65,9 @@ def test_run():
 @patch('firebird.aardvark.chips', ma.chips)
 @patch('firebird.aardvark.chip_specs', ma.chip_specs)
 def test_detect():
-    _rdd = driver.pyccd_rdd('http://localhost', 'http://localhost', -100200, 300400, '1980-01-01/2015-12-31')
-    results = driver.detect(111111, 222222, _rdd[0][1], 33333, 44444)
+    inputs = driver.pyccd_rdd('http://localhost', 'http://localhost',
+                              -100200, 300400, '1980-01-01/2015-12-31')
+    results = driver.detect(*inputs[0][0], inputs[0][1], *inputs[0][0])
     assert results['result_ok'] is True
 
 
@@ -86,9 +84,9 @@ def test_detect_ccd_exception():
 @patch('firebird.aardvark.chips', ma.chips)
 @patch('firebird.aardvark.chip_specs', ma.chip_specs)
 def test_pyccd_rdd():
-    _rdd = driver.pyccd_rdd('http://localhost', 'http://localhost', -100200, 300400, '1980-01-01/2015-12-31')
-    assert len(_rdd) == 10000
-    assert isinstance(_rdd[0], tuple)
-    assert isinstance(_rdd[0][0], tuple)
-    assert isinstance(_rdd[0][1], dict)
-
+    inputs = driver.pyccd_rdd('http://localhost', 'http://localhost',
+                              -100200, 300400, '1980-01-01/2015-12-31')
+    assert len(inputs) == 10000
+    assert isinstance(inputs[0], tuple)
+    assert isinstance(inputs[0][0], tuple)
+    assert isinstance(inputs[0][1], dict)
