@@ -98,12 +98,11 @@ def csort(chips):
     return tuple(fb.rsort(chips, key=lambda c: c['acquired']))
 
 
-def pyccd_rdd(specs_url, chips_url, x, y, acquired):
+def pyccd_inputs(point, specs_url, chips_url, acquired):
     """
+    :param point: A tuple of (x, y) which is within the extents of a chip
     :param specs_url: URL to the chip specs host:port/context
     :param chips_url: URL to the chips host:port/context
-    :param x: x coodinate contained within the extents of a pyccd rdd (chip)
-    :param y: y coodinate contained within the extents of a pyccd rdd (chip)
     :param acquired: Date range string as start/end, ISO 8601 date format
     :returns: A tuple of tuples.
     (((x1, y1), {'dates': [],  'reds': [],     'greens': [],
@@ -115,7 +114,7 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
     """
     # create a partial function initialized with x, y and acquired since
     # those are static for this call to pyccd_rdd
-    pchips = partial(a.chips, x=x, y=y, acquired=acquired)
+    pchips = partial(a.chips, x=point[0], y=point[1], acquired=acquired)
 
     # get all the specs, ubids, chips, intersecting dates and rods
     # keep track of the spectra they are associated with via dict key 'k'
@@ -129,7 +128,7 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
 
     bspecs = specs['blues']
 
-    locs = chip.locations(*chip.snap(x, y, bspecs[0]), bspecs[0]) # first is ok
+    locs = chip.locations(*chip.snap(*point, bspecs[0]), bspecs[0])
 
     add_loc = partial(a.locrods, locs)
 
@@ -141,108 +140,88 @@ def pyccd_rdd(specs_url, chips_url, x, y, acquired):
 
 
 def simplify_detect_results(results):
-    ''' Convert child objects inside CCD results from NamedTuples to Dictionaries '''
+    ''' Convert child objects inside CCD results from NamedTuples to dicts '''
     output = dict()
     for key in results.keys():
         output[key] = fb.simplify_objects(results[key])
     return output
 
 
-def detect(chip_x, chip_y, bands, pix_x, pix_y):
-    """ Return results of ccd.detect for a given stack of data at a particular x and y """
-    output = cass.RESULT_INPUT.copy()
-    try:
-        _results = ccd.detect(dates=bands['dates'],
-                              blues=bands['blues'],
-                              greens=bands['greens'],
-                              reds=bands['reds'],
-                              nirs=bands['nirs'],
-                              swir1s=bands['swir1s'],
-                              swir2s=bands['swir2s'],
-                              thermals=bands['thermals'],
-                              quality=bands['quality'],
-                              params=fb.ccd_params())
-        output['result'] = json.dumps(simplify_detect_results(_results))
-        output['result_ok'] = True
-        output['algorithm'] = _results['algorithm']
-        output['chip_x'] = int(chip_x)
-        output['chip_y'] = int(chip_y)
-    except Exception as e:
-        fb.logger.error("Exception running ccd.detect: {}".format(e))
-        output['result'] = ''
-        output['result_ok'] = False
-
-    output['x'] = int(pix_x)
-    output['y'] = int(pix_y)
-    output['result_md5'] = hashlib.md5(output['result'].encode('UTF-8')).hexdigest()
-    output['result_produced'] = datetime.now()
-    output['inputs_md5'] = 'not implemented'
-    # writes to cassandra happen from node doing the work
-    # don't want to collect all chip records on driver host
-    cass.execute(cass.INSERT_CQL, [output])
-    return output
-
-
-def run(acquired, ulx, uly, lrx, lry, prod_date,
-        lastchange=False, changemag=False, changedate=False, seglength=False, qa=False,
-        parallelization=10000, sparkcon=fb.sparkcon):
+def run(acquired, ulx, uly, lrx, lry, prod_date, ccd=False,
+        lastchange=False, changemag=False, changedate=False, seglength=False,
+        qa=False, sparkcontext=fb.sparkcontext):
     '''
-    Primary function for the driver module in lcmap-firebird.  Default behavior is to generate ALL the level2 products, unless specific products are requested.
-    :param acquired: Date values for selecting input products. ISO format, joined with '/': <start date>/<end date> .
-    :param ulx: Upper left x coordinate for area to generate CCD and Level2 product results.
-    :param uly: Upper left y coordinate for area to generate CCD and Level2 product results.
-    :param lrx: Lower right x coordinate for area to generate CCD and Level2 product results.
-    :param lry: Lower right y coordinate for area to generate CCD and Level2 product results.
-    :param ord_date: Ordinal date for which to generate Level2 products.
+    Primary function for the driver module in lcmap-firebird.
+    Default behavior is to generate ALL the products
+    :param acquired: Date values for selecting input products.
+                     ISO format, joined with '/': <start date>/<end date>.
+    :param ulx: Upper left x coordinate of area to generate products
+    :param uly: Upper left y coordinate for area to generate products
+    :param lrx: Lower right x coordinate for area to generate products
+    :param lry: Lower right y coordinate for area to generate products
+    :param ord_date: Ordinal date for which to generate products
     :param lastchange: Generate lastchange product.
     :param changemag: Generate changemag product.
     :param changedate: Generate changedate product.
     :param seglength: Generate seglength product.
     :param qa: Generate QA product.
-    :param parallelization: How many parts to divide pyccd input data into for spark parallelization.
-    :param sparkcon: Function which returns a SparkContext object
+    :param sparkcontext: Function which returns a SparkContext object
     :return: True
     '''
 
     # Get the SparkContext
-    sc = sparkcon()
+    sc = sparkcontext()
 
     # validate arguments
     if not valid.acquired(acquired):
-        raise Exception("Invalid acquired param: {}".format(acquired))
+        raise Exception("Acquired param is invalid: {}".format(acquired))
 
     if not valid.coords(ulx, uly, lrx, lry):
-        raise Exception("Bounding coords appear invalid: {}".format((ulx, uly, lrx, lry)))
+        raise Exception("invalid bbox: {}".format((ulx, uly, lrx, lry)))
 
     if not valid.prod(prod_date):
         raise Exception("Invalid product date value: {}".format(prod_date))
 
     try:
-        # organize required data
-        band_queries = chip_spec_urls(fb.SPECS_URL)
-        # assuming chip-specs are identical for a location across the bands
-        chipids = chip.ids(ulx, uly, lrx, lry, a.chip_specs(band_queries['blues'])[0])
+        # retrieve a chip spec so we can generate chip ids
+        spec = a.specs(chip_spec_urls(fb.SPECS_URL)['blues'])[0]
+        cids = chip.ids(ulx, uly, lrx, lry, spec)
 
-        for ids in chipids:
-            # spark prefers task sizes of 100kb or less, means ccd results results in a 1 per work bucket rdd
-            # still based on the assumption of 100x100 pixel chips
-            pyccd_inputs = pyccd_rdd(fb.SPECS_URL, fb.CHIPS_URL, ids[0], ids[1], acquired)
-            ccd_rdd = sc.parallelize(pyccd_inputs, parallelization)
-            ccd_map = ccd_rdd.map(lambda i: detect(ids[0], ids[1], i[1], int(i[0][0]), int(i[0][1]))).persist()
-            if {False} == {lastchange, changemag, changedate, seglength, qa}:
-                # if you didn't specify, you get everything
-                ccd_map.foreach(lambda i: products.run('all', i, fb.dtstr_to_ordinal(prod_date)))
-            else:
-                if lastchange:
-                    ccd_map.foreach(lambda i: products.run('lastchange', i, fb.dtstr_to_ordinal(prod_date)))
-                if changemag:
-                    ccd_map.foreach(lambda i: products.run('changemag', i, fb.dtstr_to_ordinal(prod_date)))
-                if changedate:
-                    ccd_map.foreach(lambda i: products.run('changedate', i, fb.dtstr_to_ordinal(prod_date)))
-                if seglength:
-                    ccd_map.foreach(lambda i: products.run('seglength', i, fb.dtstr_to_ordinal(prod_date)))
-                if qa:
-                    ccd_map.foreach(lambda i: products.run('qa', i, fb.dtstr_to_ordinal(prod_date)))
+        # everything from here down is an RDD or broadcast variable.
+        # Don't mix up driver memory locations with what's on the cluster.
+        chips_url    = sc.broadcast(fb.CHIPS_URL)
+        specs_url    = sc.broadcast(fb.SPECS_URL)
+        acquired     = sc.broadcast(acquired)
+        spec         = sc.broadcast(spec)
+        product_date = sc.broadcast(fb.dtstr_to_ordinal(prod_date))
+
+        # create chip id RDD so we can parallelize data query and prep
+        chip_ids = sc.parallelize(cids, partition_count, len(cids)))
+
+        # query data and transform it into pyccd input format
+        inputs = chip_ids.map(partial(pyccd_inputs,
+                                      specs_url=specs_url,
+                                      chips_url=chips_url,
+                                      acquired=acquired)).persist()
+
+        # repartition to achieve maximum parallelism
+        ccd_inputs = inputs.repartition(len(inputs))
+
+        # create product rdds
+        detected   = ccd_inputs.mapValues(products.ccd).persist()
+
+        lastchange = detected.mapValues(partial(products.lastchange,
+                                                ord_date=product_date))
+        changemag  = detected.mapValues(partial(products.changemag,
+                                                ord_date=product_date))
+        changedate = detected.mapValues(partial(products.changedate,
+                                                ord_date=product_date))
+        seglength  = detected.mapValues(partial(products.seglength,
+                                                ord_date=product_date,
+                                                bot=))
+        qa         = detected.mapValues(partial(products.qa,
+                                                ord_date=product_date))
+
 
     except Exception as e:
         fb.logger.info("Exception running Spark job: {}".format(e))

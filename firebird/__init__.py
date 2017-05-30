@@ -5,13 +5,14 @@ import numpy as np
 import functools
 import itertools
 from datetime import datetime, date
+from dateutil import parser
 from pyspark import SparkConf, SparkContext
 
 AARDVARK = os.getenv('AARDVARK', 'http://localhost:5678')
 AARDVARK_SPECS = os.getenv('AARDVARK_SPECS', '/v1/landsat/chip-specs')
-SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
 AARDVARK_CHIPS = os.getenv('AARDVARK_CHIPS', '/v1/landsat/chips')
 CHIPS_URL = ''.join([AARDVARK, AARDVARK_CHIPS])
+SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
 
 CASSANDRA_CONTACT_POINTS  = os.getenv('CASSANDRA_CONTACT_POINTS', '0.0.0.0')
 CASSANDRA_USER            = os.getenv('CASSANDRA_USER')
@@ -49,13 +50,14 @@ logger = logging.getLogger('firebird')
 logger.setLevel(LOG_LEVEL)
 
 
-def sparkcon():
+def sparkcontext():
     try:
         conf = (SparkConf().setAppName("lcmap-firebird-{}".format(datetime.now().strftime('%Y-%m-%d-%I:%M')))
                 .setMaster(SPARK_MASTER)
                 .set("spark.mesos.executor.docker.image", SPARK_EXECUTOR_IMAGE)
                 .set("spark.executor.cores", SPARK_EXECUTOR_CORES)
-                .set("spark.mesos.executor.docker.forcePullImage", SPARK_EXECUTOR_FORCE_PULL))
+                .set("spark.mesos.executor.docker.forcePullImage",
+                     SPARK_EXECUTOR_FORCE_PULL))
         return SparkContext(conf=conf)
     except Exception as e:
         logger.info("Exception creating SparkContext: {}".format(e))
@@ -63,16 +65,16 @@ def sparkcon():
 
 
 def ccd_params():
-    _p = {}
+    params = {}
     if QA_BIT_PACKED is not 'True':
-        _p = {'QA_BITPACKED': False,
-              'QA_FILL': 255,
-              'QA_CLEAR': 0,
-              'QA_WATER': 1,
-              'QA_SHADOW': 2,
-              'QA_SNOW': 3,
-              'QA_CLOUD': 4}
-    return _p
+        params = {'QA_BITPACKED': False,
+                  'QA_FILL': 255,
+                  'QA_CLEAR': 0,
+                  'QA_WATER': 1,
+                  'QA_SHADOW': 2,
+                  'QA_SNOW': 3,
+                  'QA_CLOUD': 4}
+    return params
 
 
 def minbox(points):
@@ -82,8 +84,7 @@ def minbox(points):
 
 def dtstr_to_ordinal(dtstr):
     """ Return ordinal from string formatted date"""
-    _dt = datetime.strptime(dtstr.split('T' if 'T' in dtstr else ' ')[0], '%Y-%m-%d')
-    return _dt.toordinal()
+    return parser.parse(dtstr).toordinal()
 
 
 def simplify_objects(obj):
@@ -130,5 +131,3 @@ def flattend(dicts):
     :params dicts: A sequence of dicts
     :returns: A single dict"""
     return {k:v for d in dicts for k, v in d.items()}
-
-    
