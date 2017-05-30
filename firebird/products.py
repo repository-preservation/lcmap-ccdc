@@ -39,10 +39,11 @@ def changemag(models, ord_date):
     ret = 0
     if ord_date > 0:
         query_date = date.fromordinal(ord_date)
+        magnitudes = [models[i]['magnitude'] for i in models if i in ('nir', 'swir1', 'swir2', 'green', 'red')]
         for m in models:
             break_date = date.fromordinal(m['break_day'])
             if (query_date.year == break_date.year) and m['change_probability'] == 1:
-                ret = np.linalg.norm(m['magnitudes'][1:-1])
+                ret = np.linalg.norm(magnitudes)
                 break
 
     return ret
@@ -113,15 +114,15 @@ def run(alg, ccdres, ord_date):
     if alg in ('all', 'qa'):
         _prods['qa'] = qa(models, ord_date)
 
-    _now = datetime.now().strftime('%Y-%m-%dT%H:%M:%SZ')
+    _now = datetime.now()
     for _p in _prods:
         _r = RESULT_INPUT.copy()
-        _r['tile_x']          = ccdres['tile_x']
-        _r['tile_y']          = ccdres['tile_y']
+        _r['chip_x']          = ccdres['chip_x']
+        _r['chip_y']          = ccdres['chip_y']
         _r['x']               = ccdres['x']
         _r['y']               = ccdres['y']
         _r['algorithm']       = _p
-        _r['result']          = _prods[_p]
+        _r['result']          = str(_prods[_p])
         _r['result_ok']       = True
         _r['result_produced'] = _now
         _results.append(_r)
