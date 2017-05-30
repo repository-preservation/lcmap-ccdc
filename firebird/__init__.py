@@ -5,6 +5,7 @@ import numpy as np
 import functools
 import itertools
 from datetime import datetime, date
+from pyspark import SparkConf, SparkContext
 
 AARDVARK = os.getenv('AARDVARK', 'http://localhost:5678')
 AARDVARK_SPECS = os.getenv('AARDVARK_SPECS', '/v1/landsat/chip-specs')
@@ -46,6 +47,32 @@ logging.getLogger("").setLevel(logging.WARNING)
 # let firebird.* modules use configuration value
 logger = logging.getLogger('firebird')
 logger.setLevel(LOG_LEVEL)
+
+
+def sparkcon():
+    try:
+        conf = (SparkConf().setAppName("lcmap-firebird-{}".format(datetime.now().strftime('%Y-%m-%d-%I:%M')))
+                .setMaster(SPARK_MASTER)
+                .set("spark.mesos.executor.docker.image", SPARK_EXECUTOR_IMAGE)
+                .set("spark.executor.cores", SPARK_EXECUTOR_CORES)
+                .set("spark.mesos.executor.docker.forcePullImage", SPARK_EXECUTOR_FORCE_PULL))
+        return SparkContext(conf=conf)
+    except Exception as e:
+        logger.info("Exception creating SparkContext: {}".format(e))
+        raise e
+
+
+def ccd_params():
+    _p = {}
+    if QA_BIT_PACKED is not 'True':
+        _p = {'QA_BITPACKED': False,
+              'QA_FILL': 255,
+              'QA_CLEAR': 0,
+              'QA_WATER': 1,
+              'QA_SHADOW': 2,
+              'QA_SNOW': 3,
+              'QA_CLOUD': 4}
+    return _p
 
 
 def minbox(points):
