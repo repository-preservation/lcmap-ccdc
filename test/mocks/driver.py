@@ -1,8 +1,9 @@
-from firebird.mocks import aardvark as ma
+from functools import partial
+
 from firebird import aardvark as a
 from firebird import chip
-from functools import partial
 from firebird.driver import chip_spec_urls, csort, to_rod, to_pyccd, pyccd_dates
+from test.mocks import aardvark as ma
 
 
 def pyccd_rdd(specs_url, chips_url, x, y, acquired):
