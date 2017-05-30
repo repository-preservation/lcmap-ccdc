@@ -4,15 +4,11 @@ import json
 
 from datetime import datetime
 from functools import partial
-from pandas import to_datetime
-from pyspark import SparkConf
-from pyspark import SparkContext
 
 import firebird as fb
 from firebird import aardvark as a
 from firebird import datastore as cass
 from firebird import chip
-from firebird import dtstr_to_ordinal as dto
 from firebird import products
 from firebird import validation as valid
 
@@ -155,17 +151,6 @@ def simplify_detect_results(results):
 def detect(chip_x, chip_y, bands, pix_x, pix_y):
     """ Return results of ccd.detect for a given stack of data at a particular x and y """
     output = cass.RESULT_INPUT.copy()
-    ccd_params = {}
-    if fb.QA_BIT_PACKED is not 'True':
-        ccd_params = {'QA_BITPACKED': False,
-                      'QA_FILL': 255,
-                      'QA_CLEAR': 0,
-                      'QA_WATER': 1,
-                      'QA_SHADOW': 2,
-                      'QA_SNOW': 3,
-                      'QA_CLOUD': 4}
-
-
     try:
         _results = ccd.detect(dates=bands['dates'],
                               blues=bands['blues'],
@@ -176,7 +161,7 @@ def detect(chip_x, chip_y, bands, pix_x, pix_y):
                               swir2s=bands['swir2s'],
                               thermals=bands['thermals'],
                               quality=bands['quality'],
-                              params=ccd_params)
+                              params=fb.ccd_params())
         output['result'] = json.dumps(simplify_detect_results(_results))
         output['result_ok'] = True
         output['algorithm'] = _results['algorithm']
@@ -200,7 +185,7 @@ def detect(chip_x, chip_y, bands, pix_x, pix_y):
 
 def run(acquired, ulx, uly, lrx, lry, prod_date,
         lastchange=False, changemag=False, changedate=False, seglength=False, qa=False,
-        parallelization=10000, xrange=100, yrange=100):
+        parallelization=10000, sparkcon=fb.sparkcon):
     '''
     Primary function for the driver module in lcmap-firebird.  Default behavior is to generate ALL the level2 products, unless specific products are requested.
     :param acquired: Date values for selecting input products. ISO format, joined with '/': <start date>/<end date> .
@@ -215,21 +200,12 @@ def run(acquired, ulx, uly, lrx, lry, prod_date,
     :param seglength: Generate seglength product.
     :param qa: Generate QA product.
     :param parallelization: How many parts to divide pyccd input data into for spark parallelization.
-    :param xrange: number of pixels to process for a chip on the x axis. For testing purposes.
-    :param yrange: number of pixels to process for a chip on the y axis. For testing purposes.
+    :param sparkcon: Function which returns a SparkContext object
     :return: True
     '''
-    # if we can't get our Spark ducks in a row, no reason to continue
-    try:
-        conf = (SparkConf().setAppName("lcmap-firebird-{}".format(datetime.now().strftime('%Y-%m-%d-%I:%M')))
-                .setMaster(fb.SPARK_MASTER)
-                .set("spark.mesos.executor.docker.image", fb.SPARK_EXECUTOR_IMAGE)
-                .set("spark.executor.cores", fb.SPARK_EXECUTOR_CORES)
-                .set("spark.mesos.executor.docker.forcePullImage", fb.SPARK_EXECUTOR_FORCE_PULL))
-        sc = SparkContext(conf=conf)
-    except Exception as e:
-        fb.logger.info("Exception creating SparkContext: {}".format(e))
-        raise e
+
+    # Get the SparkContext
+    sc = sparkcon()
 
     # validate arguments
     if not valid.acquired(acquired):
@@ -252,21 +228,21 @@ def run(acquired, ulx, uly, lrx, lry, prod_date,
             # still based on the assumption of 100x100 pixel chips
             pyccd_inputs = pyccd_rdd(fb.SPECS_URL, fb.CHIPS_URL, ids[0], ids[1], acquired)
             ccd_rdd = sc.parallelize(pyccd_inputs, parallelization)
-            ccd_map = ccd_rdd.map(lambda i: detect(ids[0], ids[1], i[1], i[0][0], i[0][1])).persist()
+            ccd_map = ccd_rdd.map(lambda i: detect(ids[0], ids[1], i[1], int(i[0][0]), int(i[0][1]))).persist()
             if {False} == {lastchange, changemag, changedate, seglength, qa}:
                 # if you didn't specify, you get everything
-                ccd_map.foreach(lambda i: products.run('all', i, prod_date))
+                ccd_map.foreach(lambda i: products.run('all', i, fb.dto(prod_date)))
             else:
                 if lastchange:
-                    ccd_map.foreach(lambda i: products.run('lastchange', i, dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('lastchange', i, fb.dto(prod_date)))
                 if changemag:
-                    ccd_map.foreach(lambda i: products.run('changemag', i, dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('changemag', i, fb.dto(prod_date)))
                 if changedate:
-                    ccd_map.foreach(lambda i: products.run('changedate', i, dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('changedate', i, fb.dto(prod_date)))
                 if seglength:
-                    ccd_map.foreach(lambda i: products.run('seglength', i, dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('seglength', i, fb.dto(prod_date)))
                 if qa:
-                    ccd_map.foreach(lambda i: products.run('qa', i, dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('qa', i, fb.dto(prod_date)))
 
     except Exception as e:
         fb.logger.info("Exception running Spark job: {}".format(e))
