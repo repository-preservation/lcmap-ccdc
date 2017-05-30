@@ -231,18 +231,18 @@ def run(acquired, ulx, uly, lrx, lry, prod_date,
             ccd_map = ccd_rdd.map(lambda i: detect(ids[0], ids[1], i[1], int(i[0][0]), int(i[0][1]))).persist()
             if {False} == {lastchange, changemag, changedate, seglength, qa}:
                 # if you didn't specify, you get everything
-                ccd_map.foreach(lambda i: products.run('all', i, fb.dto(prod_date)))
+                ccd_map.foreach(lambda i: products.run('all', i, fb.dtstr_to_ordinal(prod_date)))
             else:
                 if lastchange:
-                    ccd_map.foreach(lambda i: products.run('lastchange', i, fb.dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('lastchange', i, fb.dtstr_to_ordinal(prod_date)))
                 if changemag:
-                    ccd_map.foreach(lambda i: products.run('changemag', i, fb.dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('changemag', i, fb.dtstr_to_ordinal(prod_date)))
                 if changedate:
-                    ccd_map.foreach(lambda i: products.run('changedate', i, fb.dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('changedate', i, fb.dtstr_to_ordinal(prod_date)))
                 if seglength:
-                    ccd_map.foreach(lambda i: products.run('seglength', i, fb.dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('seglength', i, fb.dtstr_to_ordinal(prod_date)))
                 if qa:
-                    ccd_map.foreach(lambda i: products.run('qa', i, fb.dto(prod_date)))
+                    ccd_map.foreach(lambda i: products.run('qa', i, fb.dtstr_to_ordinal(prod_date)))
 
     except Exception as e:
         fb.logger.info("Exception running Spark job: {}".format(e))
