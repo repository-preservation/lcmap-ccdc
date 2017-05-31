@@ -52,7 +52,8 @@ logger.setLevel(LOG_LEVEL)
 
 def sparkcontext():
     try:
-        conf = (SparkConf().setAppName("lcmap-firebird-{}".format(datetime.now().strftime('%Y-%m-%d-%I:%M')))
+        ts = datetime.now().isoformat()
+        conf = (SparkConf().setAppName("lcmap-firebird-{}".format(ts))
                 .setMaster(SPARK_MASTER)
                 .set("spark.mesos.executor.docker.image", SPARK_EXECUTOR_IMAGE)
                 .set("spark.executor.cores", SPARK_EXECUTOR_CORES)
@@ -78,8 +79,13 @@ def ccd_params():
 
 
 def minbox(points):
-    """ Returns the minimal bounding box necessary to contain points """
-    pass
+    """ Returns the minimal bounding box necessary to contain points
+    :param points: A sequence of (x,y) points: ((0,0), (40, 55), (66, 22))
+    :return: dict with ulx, uly, lrx, lry
+    """
+    x = [point[0] for point in points]
+    y = [point[1] for point in points]
+    return {'ulx': min(x), 'lrx': max(x), 'lry': min(y), 'uly': max(y)}
 
 
 def dtstr_to_ordinal(dtstr):

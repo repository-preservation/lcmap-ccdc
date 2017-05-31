@@ -1,30 +1,33 @@
-import numpy as np
+import ccd as pyccd
 import json
+import numpy as np
 from datetime import date
-from .datastore import execute as cassandra_execute
-from .datastore import RESULT_INPUT
-from .datastore import INSERT_CQL
 from datetime import datetime
+from firebird import datastore as ds
 
-from firebird import BEGINNING_OF_TIME
 
 def ccd(pyccd_rdd):
-    """ Execute ccd.detect """
+    '''
+    Execute ccd.detect
+    :param pyccd_rdd: RDD generated from pyccd_inputs ((x, y): data)
+    :return: A dict of pyccd results
+    '''
+    x, y = pyccd_rdd[0]
+    data = pyccd_rdd[1]
     try:
-        return ccd.detect(dates=pyccd_rdd['dates'],
-                          blues=pyccd_rdd['blues'],
-                          greens=pyccd_rdd['greens'],
-                          reds=pyccd_rdd['reds'],
-                          nirs=pyccd_rdd['nirs'],
-                          swir1s=pyccd_rdd['swir1s'],
-                          swir2s=pyccd_rdd['swir2s'],
-                          thermals=pyccd_rdd['thermals'],
-                          quality=pyccd_rdd['quality'],
-                          params=fb.ccd_params())
+        results = pyccd.detect(dates=data['dates'],
+                               blues=data['blues'],
+                               greens=data['greens'],
+                               reds=data['reds'],
+                               nirs=data['nirs'],
+                               swir1s=data['swir1s'],
+                               swir2s=data['swir2s'],
+                               thermals=data['thermals'],
+                               quality=data['quality'],
+                               params=fb.ccd_params())
+        return ((x, y, pyccd.__algorithm__), results)
     except Exception as e:
         fb.logger.error("Exception running ccd.detect: {}".format(e))
-
-    return output
 
 
 def result_to_models(result):
@@ -78,7 +81,7 @@ def changedate(models, ord_date):
     return ret
 
 
-def seglength(models, ord_date, bot=BEGINNING_OF_TIME):
+def seglength(models, ord_date, bot=fb.BEGINNING_OF_TIME):
     ret = 0
     if ord_date > 0:
         all_dates = [bot]
@@ -94,7 +97,7 @@ def seglength(models, ord_date, bot=BEGINNING_OF_TIME):
     return ret
 
 
-def qa(models, ord_date):
+def curveqa(models, ord_date):
     ret = 0
     if ord_date > 0:
         for m in models:
@@ -145,5 +148,5 @@ def run(alg, ccdres, ord_date):
         _results.append(_r)
 
     # save results
-    cassandra_execute(INSERT_CQL, _results)
+    ds.execute(ds.INSERT_CQL, _results)
     return True
