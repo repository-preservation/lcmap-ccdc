@@ -1,4 +1,3 @@
-import ccd
 import hashlib
 import json
 
@@ -7,7 +6,7 @@ from functools import partial
 
 import firebird as fb
 from firebird import aardvark as a
-from firebird import datastore as cass
+from firebird import datastore
 from firebird import chip
 from firebird import products
 from firebird import validation as valid
@@ -27,7 +26,7 @@ def chip_spec_urls(url):
      'swir1s':   'http://host/v1/landsat/chip-specs?q=tags:swir1 AND sr'
      'swir2s':   'http://host/v1/landsat/chip-specs?q=tags:swir2 AND sr'
      'thermals': 'http://host/v1/landsat/chip-specs?q=tags:thermal AND ta'
-     'quality': 'http://host/v1/landsat/chip-specs?q=tags:pixelqa'}
+     'quality':  'http://host/v1/landsat/chip-specs?q=tags:pixelqa'}
     """
     return {'reds':     ''.join([url, '?q=tags:red AND sr']),
             'greens':   ''.join([url, '?q=tags:green AND sr']),
@@ -46,10 +45,10 @@ def to_rod(chips, dates, specs):
 
 
 def to_pyccd(located_rods_by_spectra, dates):
-    """Organizes rods by xy instead of by spectrum
+    """ Organizes rods by xy instead of by spectrum
     :param located_rods_by_spectra: dict of dicts, keyed first by spectra
                                     then by coordinate
-    :returns: Generated tuple of tuples
+    :returns: Tuple of tuples
     :example:
     located_rods_by_spectra parameter:
     {'red':   {(0, 0): [110, 110, 234, 664], (0, 1): [23, 887, 110, 111]}}
@@ -127,13 +126,10 @@ def pyccd_inputs(point, specs_url, chips_url, acquired):
     dates = a.intersection(map(a.dates, [c for c in chips.values()]))
 
     bspecs = specs['blues']
-
     locs = chip.locations(*chip.snap(*point, bspecs[0]), bspecs[0])
 
     add_loc = partial(a.locrods, locs)
-
     rods = {k: add_loc(to_rod(v, dates, specs[k])) for k, v in chips.items()}
-
     del chips
 
     return to_pyccd(rods, pyccd_dates(dates))
@@ -147,84 +143,151 @@ def simplify_detect_results(results):
     return output
 
 
-def run(acquired, ulx, uly, lrx, lry, prod_date, ccd=False,
-        lastchange=False, changemag=False, changedate=False, seglength=False,
-        qa=False, sparkcontext=fb.sparkcontext):
+def startdate(acquired):
+    return acquired.split('/')[0]
+
+
+def enddate(acquired):
+    return acquired.split('/')[1]
+
+
+def products_graph(chip_ids_rdd, broadcast):
+    """ Product graph for firebird products
+    :param chip_ids_rdd: An RDD with the chip ids to generate products
+    :param broadcast: References to variables on the cluster
+    :return: dict keyed by product with lazy RDD as value
+    """
+    bc = broadcast
+
+    # query data and transform it into pyccd input format
+    inputs = chip_ids.map(partial(pyccd_inputs,
+                                  specs_url=bc['specs_url'],
+                                  chips_url=bc['chips_url'],
+                                  acquired=bc['acquired'])).persist()
+
+    # repartition to achieve maximum parallelism and create product RDDs
+    ccd = inputs.repartition(len(inputs)).map(products.ccd).persist()
+
+    # how the eff are we going to generate multiple products based on a
+    # sequence of dates?
+
+    lastchange = ccd.mapValues(partial(products.lastchange,
+                                       ord_date=bc['product_date']))
+    changemag  = ccd.mapValues(partial(products.changemag,
+                                       ord_date=bc['product_date']))
+    changedate = ccd.mapValues(partial(products.changedate,
+                                       ord_date=bc['product_date']))
+    seglength  = ccd.mapValues(partial(products.seglength,
+                                       ord_date=bc['product_date'],
+                                       bot=bc['ordinal_start_date']))
+    curveqa    = ccd.mapValues(partial(products.curveqa,
+                                       ord_date=bc['product_date']))
+
+    return {'inputs': inputs,
+            'ccd': ccd,
+            'seglength': seglength,
+            'changemag': changemag,
+            'lastchange': lastchange,
+            'curveqa': curveqa}
+
+
+def broadcast(chip_url, specs_url, acquired, spec, product_date, clip,
+              products, sparkcontext):
+    """ Sets variables on the cluster to make them available to cluster
+    operations.
+    :param chip_url: Endpoint for chips
+    :param spec_url: Endpoint for specs
+    :param acquired: Date range for input data query
+    :param spec: A spec representing the chip geometry
+    :param product_date: Date to produce a product
+    :param clip: Should product outputs be filtered to exclude points that do
+                 not fall within the requested bounds. True/False
+    :param products: Sequence of products that were requested
+    :param sparkcontext: An active spark context for the spark cluster
+    :return: dict of cluster references for each variable
+    """
+    sc = sparkcontext
+    return {'chips_url':    sc.broadcast(chips_url),
+            'specs_url':    sc.broadcast(specs_url),
+            'acquired':     sc.broadcast(acquired),
+            'spec':         sc.broadcast(spec),
+            'product_date': sc.broadcast(product_dates),
+            'start_date':   sc.broadcast(startdate(acquired)),
+            'clip':         sc.broadcast(clip)}
+
+
+def chipid_rdd(chip_ids, sparkcontext):
+    """
+    Creates and returns an RDD for chip ids
+    :param chip_ids: A sequence of chip ids
+    :param sparkcontext: Context pointed to a spark cluster
+    :return: An RDD of chip_ids
+    """
+    return sparkcontext.parallelize(chip_ids, len(chip_ids)))
+
+
+def store(products, products_rdd):
+    for p in products:
+       datastore.save([x for x in products_rdd[p].toLocalIterator()])
+
+
+def run(acquired, bounds, products, product_dates, clip,
+        sparkcontext=fb.sparkcontext):
+
     '''
     Primary function for the driver module in lcmap-firebird.
-    Default behavior is to generate ALL the products
     :param acquired: Date values for selecting input products.
                      ISO format, joined with '/': <start date>/<end date>.
-    :param ulx: Upper left x coordinate of area to generate products
-    :param uly: Upper left y coordinate for area to generate products
-    :param lrx: Lower right x coordinate for area to generate products
-    :param lry: Lower right y coordinate for area to generate products
-    :param ord_date: Ordinal date for which to generate products
-    :param lastchange: Generate lastchange product.
-    :param changemag: Generate changemag product.
-    :param changedate: Generate changedate product.
-    :param seglength: Generate seglength product.
-    :param qa: Generate QA product.
+    :param bounds: Upper left x coordinate of area to generate products
+    :param clip: If True, filters out locations that do not fit within a minbox
+                 of the bounds.
+    :param products: A sequence of product names to deliver
+    :param product_dates:  A sequence of iso format product dates to deliver
     :param sparkcontext: Function which returns a SparkContext object
     :return: True
     '''
 
-    # Get the SparkContext
-    sc = sparkcontext()
-
     # validate arguments
     if not valid.acquired(acquired):
-        raise Exception("Acquired param is invalid: {}".format(acquired))
-
-    if not valid.coords(ulx, uly, lrx, lry):
-        raise Exception("invalid bbox: {}".format((ulx, uly, lrx, lry)))
+        raise Exception("Acquired dates are invalid: {}".format(acquired))
 
     if not valid.prod(prod_date):
         raise Exception("Invalid product date value: {}".format(prod_date))
 
+    sc = sparkcontext
+
+    bbox = fb.minbox(bounds)
+
     try:
         # retrieve a chip spec so we can generate chip ids
         spec = a.specs(chip_spec_urls(fb.SPECS_URL)['blues'])[0]
-        cids = chip.ids(ulx, uly, lrx, lry, spec)
 
-        # everything from here down is an RDD or broadcast variable.
-        # Don't mix up driver memory locations with what's on the cluster.
-        chips_url    = sc.broadcast(fb.CHIPS_URL)
-        specs_url    = sc.broadcast(fb.SPECS_URL)
-        acquired     = sc.broadcast(acquired)
-        spec         = sc.broadcast(spec)
-        product_date = sc.broadcast(fb.dtstr_to_ordinal(prod_date))
+        # put the variables we need on the cluster to make them available
+        # to distributed functions.  They're in a dictionary to help
+        # differentiate variables that have not been broadcast and to make
+        # a testable function out of it
+        bc = broadcast(fb.CHIPS_URL, fb.SPECS_URL, acquired, spec,
+                       product_dates, clip, products, sc)
 
-        # create chip id RDD so we can parallelize data query and prep
-        chip_ids = sc.parallelize(cids, partition_count, len(cids)))
+        # everything from here down is an RDD/broadcast variable/cluster op.
+        # Don't mix up driver memory locations and cluster memory locations
+        # chipid_rdd can accept a non broadcast set of variables because it is
+        # the initial RDD.
+        products_rdds = products_graph(chipid_rdd(chip.ids(bbox['ulx'],
+                                                           bbox['uly'],
+                                                           bbox['lrx'],
+                                                           bbox['lry'],
+                                                           spec)), bc)
 
-        # query data and transform it into pyccd input format
-        inputs = chip_ids.map(partial(pyccd_inputs,
-                                      specs_url=specs_url,
-                                      chips_url=chips_url,
-                                      acquired=acquired)).persist()
-
-        # repartition to achieve maximum parallelism
-        ccd_inputs = inputs.repartition(len(inputs))
-
-        # create product rdds
-        detected   = ccd_inputs.mapValues(products.ccd).persist()
-
-        lastchange = detected.mapValues(partial(products.lastchange,
-                                                ord_date=product_date))
-        changemag  = detected.mapValues(partial(products.changemag,
-                                                ord_date=product_date))
-        changedate = detected.mapValues(partial(products.changedate,
-                                                ord_date=product_date))
-        seglength  = detected.mapValues(partial(products.seglength,
-                                                ord_date=product_date,
-                                                bot=))
-        qa         = detected.mapValues(partial(products.qa,
-                                                ord_date=product_date))
-
+        # product call graphs are created but not realized.  Do something with
+        # whichever one you want in order to cause the computation to occur
+        # (example: if curveqa is requested, save it and it will compute)
+        # how am i going to get a cassandra connection from each node without
+        # creating 10,000 connections?
+        return store(products, products_rdds)
 
     except Exception as e:
-        fb.logger.info("Exception running Spark job: {}".format(e))
+        fb.logger.info("Exception generating firebird products: {}".format(e))
         raise e
     finally:
         # make sure to stop the SparkContext

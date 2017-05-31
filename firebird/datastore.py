@@ -1,16 +1,11 @@
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
-
-from firebird import CASSANDRA_CONTACT_POINTS
-from firebird import CASSANDRA_USER
-from firebird import CASSANDRA_PASS
-from firebird import CASSANDRA_KEYSPACE
-from firebird import CASSANDRA_RESULTS_TABLE
-
 from datetime import datetime
+import firebird as fb
 
-auth_provider = PlainTextAuthProvider(username=CASSANDRA_USER, password=CASSANDRA_PASS)
-cluster = Cluster(CASSANDRA_CONTACT_POINTS.split(','), auth_provider=auth_provider)
+
+auth_provider = PlainTextAuthProvider(username=fb.CASSANDRA_USER, password=fb.CASSANDRA_PASS)
+cluster = Cluster(fb.CASSANDRA_CONTACT_POINTS.split(','), auth_provider=auth_provider)
 
 RESULT_INPUT = {'chip_x': int(),
                 'chip_y': int(),
@@ -24,7 +19,7 @@ RESULT_INPUT = {'chip_x': int(),
                 'result_md5': ''}
 
 INSERT_CQL = "INSERT INTO {}.{} (y, chip_x, chip_y, algorithm, x, result_ok, inputs_md5, result, result_produced, " \
-             "result_md5) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)".format(CASSANDRA_KEYSPACE, CASSANDRA_RESULTS_TABLE)
+             "result_md5) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)".format(fb.CASSANDRA_KEYSPACE, fb.CASSANDRA_RESULTS_TABLE)
 
 
 def execute(statement, args):
@@ -39,12 +34,26 @@ def execute(statement, args):
     return True
 
 
-def save(chip_x, chip_y, x, y, algorithm, results, result_ok=True):
+def read(ulx, uly, lrx, lry, algorithm):
+    """ Loads all algorithm results from the datastore and returns them
+    with location information.
+    :param ulx: Upper left x coordinate
+    :param uly: Upper left y coordinate
+    :param lyx: Lower right x coordinate
+    :param lry: Lower right y coordinate
+    :param algorithm: Name of algorithm
+    :return:
+    ((x1, y1, algorithm): algorithm_results,
+     (x1, y2, algorithm): algorithm_results,)
+    """
+    pass
+
+
+def save(chip_x, chip_y, x, y, algorithm, result, result_ok):
     # format the results
     # coerce values
     # save to cassandra
 
-    """ Execute ccd.detect """
     output = cass.RESULT_INPUT.copy()
     output['chip_x'] = int(chip_x)
     output['chip_y'] = int(chip_y)
