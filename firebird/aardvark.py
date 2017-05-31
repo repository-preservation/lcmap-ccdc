@@ -232,3 +232,4 @@ def clip(locrods, bbox):
     :param locrods: A dict of locrods (x, y): [1, 2, 3, 4, 5]
     :param bbox: ulx, uly, lrx, lry
     """
+    pass

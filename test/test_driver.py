@@ -58,7 +58,7 @@ def test_run():
     lrx = -100000
     lry = 1999970
     prd = '1984-04-01'
-    run_resp = driver.run(acq, ulx, uly, lrx, lry, prd, parallelization=1, sparkcon=sparkcon)
+    run_resp = driver.run(acq, ulx, uly, lrx, lry, prd, parallelization=1, sparkcontext=sparkcontext)
     assert run_resp is True
 
 
