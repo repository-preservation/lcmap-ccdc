@@ -29,8 +29,6 @@ SPARK_EXECUTOR_FORCE_PULL = os.getenv('SPARK_EXECUTOR_FORCE_PULL', 'false')
 
 QA_BIT_PACKED              = os.getenv('CCD_QA_BITPACKED', 'True')
 
-# TODO: This needs to be passed in from the command line
-BEGINNING_OF_TIME         = os.getenv('BEGINNING_OF_TIME', date(year=1982, month=1, day=1).toordinal())
 
 # TODO: These are obtained from chip specs
 X_PIXEL_DIM               = int(os.getenv('X_PIXEL_DIM', 30))
@@ -83,8 +81,7 @@ def minbox(points):
     :param points: A sequence of (x,y) points: ((0,0), (40, 55), (66, 22))
     :return: dict with ulx, uly, lrx, lry
     """
-    x = [point[0] for point in points]
-    y = [point[1] for point in points]
+    x, y = [point[0] for point in points], [point[1] for point in points]
     return {'ulx': min(x), 'lrx': max(x), 'lry': min(y), 'uly': max(y)}
 
 
