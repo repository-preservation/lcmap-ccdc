@@ -8,7 +8,7 @@ def acquired(ad):
     return True
 
 
-def coords(ulx, uly, lrx, lry):
+def bounds(bounds):
     try:
         for __ in ((ulx, lrx), (lry, uly)):
             if not float(__[0]) < float(__[1]):
