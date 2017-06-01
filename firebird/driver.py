@@ -48,7 +48,7 @@ def to_pyccd(located_rods_by_spectra, dates):
     """ Organizes rods by xy instead of by spectrum
     :param located_rods_by_spectra: dict of dicts, keyed first by spectra
                                     then by coordinate
-    :returns: Tuple of tuples
+    :returns: List of tuples
     :example:
     located_rods_by_spectra parameter:
     {'red':   {(0, 0): [110, 110, 234, 664], (0, 1): [23, 887, 110, 111]}}
@@ -57,10 +57,10 @@ def to_pyccd(located_rods_by_spectra, dates):
     ...
 
     returns:
-    (((0, 0): {'red':   [110, 110, 234, 664],
+    (((0, 0), {'red':   [110, 110, 234, 664],
                'green': [120, 112, 224, 624],
-               'blue':  [128, 412, 244, 654], ... },
-      (0, 1): {'red':   [23, 887, 110, 111],
+               'blue':  [128, 412, 244, 654], ... }),
+     ((0, 1), {'red':   [23, 887, 110, 111],
                'green': [33, 387, 310, 511],
                'blue':  [73, 987, 119, 191], ...}))
     ...
@@ -77,7 +77,7 @@ def to_pyccd(located_rods_by_spectra, dates):
     spectra   = tuple(locrods.keys())
     locations = locrods[spectra[0]].keys()
     rainbow   = partial(colors, spectra=locrods.keys(), rods=locrods)
-    return tuple((xy, add_dates(rainbow(xy=xy), dates)) for xy in locations)
+    return tuple([(xy, add_dates(rainbow(xy=xy), dates)) for xy in locations])
 
 
 def pyccd_dates(dates):
@@ -97,27 +97,32 @@ def csort(chips):
     return tuple(fb.rsort(chips, key=lambda c: c['acquired']))
 
 
-def pyccd_inputs(point, specs_url, chips_url, acquired):
+def pyccd_inputs(point, specs_url, specs_fn, chips_url, chips_fn, acquired):
     """
     :param point: A tuple of (x, y) which is within the extents of a chip
     :param specs_url: URL to the chip specs host:port/context
+    :param specs_fn:  Function that accepts a url query and returns chip specs
     :param chips_url: URL to the chips host:port/context
+    :param chips_fn:  Function that accepts x, y, acquired, url, ubids and
+                      returns chips.
     :param acquired: Date range string as start/end, ISO 8601 date format
     :returns: A tuple of tuples.
     (((x1, y1), {'dates': [],  'reds': [],     'greens': [],
                  'blues': [],  'nirs1': [],    'swir1s': [],
                  'swir2s': [], 'thermals': [], 'quality': []}),
-     ((x1, y2): {'dates': [],  'reds': [],     'greens': [],
+     ((x1, y2), {'dates': [],  'reds': [],     'greens': [],
                  'blues': [],  'nirs1': [],    'swir1s': [],
-                 'swir2s': [], 'thermals': [], 'quality': []},))
+                 'swir2s': [], 'thermals': [], 'quality': []}))
     """
     # create a partial function initialized with x, y and acquired since
     # those are static for this call to pyccd_rdd
-    pchips = partial(a.chips, x=point[0], y=point[1], acquired=acquired)
+    #pchips = partial(a.chips, x=point[0], y=point[1], acquired=acquired)
+    pchips = partial(chips_fn, x=point[0], y=point[1], acquired=acquired)
 
     # get all the specs, ubids, chips, intersecting dates and rods
     # keep track of the spectra they are associated with via dict key 'k'
-    specs = {k: a.chip_specs(v) for k, v in chip_spec_urls(specs_url).items()}
+    #specs = {k: a.chip_specs(v) for k, v in chip_spec_urls(specs_url).items()}
+    specs = {k: specs_fn(v) for k, v in chip_spec_urls(specs_url).items()}
 
     ubids = {k: a.ubids(v) for k, v in specs.items()}
 
@@ -161,29 +166,42 @@ def products_graph(chip_ids_rdd, broadcast):
     bc = broadcast
 
     # query data and transform it into pyccd input format
-    inputs = chip_ids.map(partial(pyccd_inputs,
-                                  specs_url=bc['specs_url'].value,
-                                  chips_url=bc['chips_url'].value,
-                                  acquired=bc['acquired'].value)).persist()
+    inputs = chip_ids_rdd.map(partial(pyccd_inputs,
+                                      specs_url=bc['specs_url'].value,
+                                      specs_fn=bc['specs_fn'].value,
+                                      chips_url=bc['chips_url'].value,
+                                      chips_fn=bc['chips_fn'].value,
+                                      acquired=bc['acquired'].value))\
+                                      .flatMap(lambda x: x).repartition(32)\
+                                      .setName('PYCCD INPUTS')
 
-    # repartition to achieve maximum parallelism
-    ccd = inputs.repartition(len(inputs)).map(products.ccd).persist()
+    ccd = inputs.map(products.ccd).setName('CCD').persist()
 
     # how the eff are we going to generate multiple products based on a
     # sequence of dates?
+    # TODO: Add clipping based on 'clip' and 'bbox' vars
 
     lastchange = ccd.mapValues(partial(products.lastchange,
-                                       ord_date=bc['product_date'].value))
-    changemag  = ccd.mapValues(partial(products.changemag,
-                                       ord_date=bc['product_date'].value))
-    changedate = ccd.mapValues(partial(products.changedate,
-                                       ord_date=bc['product_date'].value))
-    seglength  = ccd.mapValues(partial(products.seglength,
-                                       ord_date=bc['product_date'].value,
-                                       bot=bc['start_date'].value))
-    curveqa    = ccd.mapValues(partial(products.curveqa,
-                                       ord_date=bc['product_date'].value))
+                                       ord_date=bc['product_dates'].value))\
+                                       .setName("LASTCHANGE")
 
+    changemag  = ccd.mapValues(partial(products.changemag,
+                                       ord_date=bc['product_dates'].value))\
+                                       .setName('CHANGEMAG')
+
+    changedate = ccd.mapValues(partial(products.changedate,
+                                       ord_date=bc['product_dates'].value))\
+                                       .setName('CHANGEDATE')
+
+    seglength = ccd.mapValues(partial(products.seglength,
+                                      ord_date=bc['product_dates'].value,
+                                      bot=bc['start_date'].value))\
+                                      .setName('SEGLENGTH')
+
+    curveqa = ccd.mapValues(partial(products.curveqa,
+                                    ord_date=bc['product_dates'].value))\
+                                    .setName("CURVEQA")
+        
     return {'inputs': inputs,
             'ccd': ccd,
             'lastchange': lastchange,
@@ -192,12 +210,15 @@ def products_graph(chip_ids_rdd, broadcast):
             'curveqa': curveqa}
 
 
-def broadcast(chips_url, specs_url, acquired, spec, product_dates, start_date,
-              clip, products, bbox, sparkcontext):
+def broadcast(chips_url, chips_fn, specs_url, specs_fn, acquired, spec,
+              product_dates, start_date, clip, products, bbox, sparkcontext):
     """ Sets variables on the cluster to make them available to cluster
     operations.
     :param chips_url: Endpoint for chips
+    :param chips_fn: Function that supplies chips given x, y, acquired, ubids
+                     and url
     :param specs_url: Endpoint for specs
+    :param specs_fn: Function that returns specs given a query url
     :param acquired: Date range for input data query
     :param spec: A spec representing the chip geometry
     :param product_dates: Date to produce a product
@@ -211,7 +232,9 @@ def broadcast(chips_url, specs_url, acquired, spec, product_dates, start_date,
     """
     sc = sparkcontext
     return {'chips_url':     sc.broadcast(chips_url),
+            'chips_fn':      sc.broadcast(chips_fn),
             'specs_url':     sc.broadcast(specs_url),
+            'specs_fn':      sc.broadcast(specs_fn),
             'acquired':      sc.broadcast(acquired),
             'spec':          sc.broadcast(spec),
             'product_dates': sc.broadcast(product_dates),
@@ -228,7 +251,9 @@ def chipid_rdd(chip_ids, sparkcontext):
     :param sparkcontext: Context pointed to a spark cluster
     :return: An RDD of chip_ids
     """
-    return sparkcontext.parallelize(chip_ids, len(chip_ids))
+    chipids = sparkcontext.parallelize(chip_ids, len(chip_ids))
+    chipids.setName("chip ids")
+    return chipids
 
 
 def store(products, products_rdd):
@@ -236,8 +261,8 @@ def store(products, products_rdd):
        datastore.save([x for x in products_rdd[p].toLocalIterator()])
 
 
-def run(acquired, bounds, products, product_dates, clip,
-        sparkcontext=fb.sparkcontext):
+def run(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
+        specs_fn=a.chip_specs, sparkcontext=fb.sparkcontext):
 
     '''
     Primary function for the driver module in lcmap-firebird.
@@ -265,15 +290,24 @@ def run(acquired, bounds, products, product_dates, clip,
 
     try:
         # retrieve a chip spec so we can generate chip ids
-        spec = a.specs(chip_spec_urls(fb.SPECS_URL)['blues'])[0]
+        spec = a.chip_specs(chip_spec_urls(fb.SPECS_URL)['blues'])[0]
 
         # put the variables we need on the cluster to make them available
         # to distributed functions.  They're in a dictionary to help
         # differentiate variables that have not been broadcast and to make
         # a testable function out of it
-        bc = broadcast(fb.CHIPS_URL, fb.SPECS_URL, acquired, spec,
-                       product_dates, start_date(acquired), clip, products,
-                       bbox, sc)
+        bc = broadcast(chips_url=fb.CHIPS_URL,
+                       chips_fn=chips_fn,
+                       specs_url=fb.SPECS_URL,
+                       specs_fn=specs_fn,
+                       acquired=acquired,
+                       spec=spec,
+                       product_dates=product_dates,
+                       start_date=start_date(acquired),
+                       clip=clip,
+                       products=products,
+                       bbox=bbox,
+                       sparkcontext=sc)
 
         # everything from here down is an RDD/broadcast variable/cluster op.
         # Don't mix up driver memory locations and cluster memory locations
