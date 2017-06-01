@@ -90,10 +90,10 @@ def test_products_graph():
                           start_date="1982-01-01",
                           clip=7,
                           products=8,
-                          bbox=9, 
+                          bbox=9,
                           sparkcontext=sc)
     driver.products_graph(chip_ids_rdd, broadcast)
-
+    # TODO: Pick it up from here
 
 #@patch('firebird.chip.ids', mc.ids)
 #@patch('firebird.aardvark.chips', ma.chips)
