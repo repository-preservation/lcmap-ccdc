@@ -1,4 +1,4 @@
-import pyspark
+from firebird import aardvark as a
 from firebird import driver
 from hypothesis import given
 from mock import patch
@@ -6,9 +6,14 @@ from test.mocks import aardvark as ma
 from test.mocks import chip as mc
 from test.mocks import driver as md
 from test.mocks import sparkcon
+
+import firebird as fb
 import hypothesis.strategies as st
+import pyspark
 import os
+import socket
 import urllib
+
 
 @given(url=st.sampled_from(('http://localhost',
                             'https://localhost',
@@ -55,45 +60,87 @@ def test_enddate():
 
 
 def test_broadcast():
-    sc = pyspark.SparkContext(appName="test_broadcast")
-    bc = driver.broadcast(chips_url=1, specs_url=2, acquired=3, spec=4,
-                          product_dates=5, start_date=6, clip=7, products=8,
-                          bbox=9, sparkcontext=sc)
-    assert bc['chips_url'].value == 1
-    assert bc['specs_url'].value == 2
-    assert bc['acquired'].value == 3
-    assert bc['spec'].value == 4
-    assert bc['product_dates'].value == 5
-    assert bc['start_date'].value == 6
-    assert bc['clip'].value == 7
-    assert bc['products'].value == 8
-    assert bc['bbox'].value == 9
-    sc.stop()
+    sc = None
+    try:
+        sc = pyspark.SparkContext(appName="test_broadcast")
+        bc = driver.broadcast(chips_url=1, specs_url=2, acquired=3, spec=4,
+                              product_dates=5, start_date=6, clip=7, products=8,
+                              bbox=9, sparkcontext=sc)
+        assert bc['chips_url'].value == 1
+        assert bc['specs_url'].value == 2
+        assert bc['acquired'].value == 3
+        assert bc['spec'].value == 4
+        assert bc['product_dates'].value == 5
+        assert bc['start_date'].value == 6
+        assert bc['clip'].value == 7
+        assert bc['products'].value == 8
+        assert bc['bbox'].value == 9
+    finally:
+        if sc is not None:
+            sc.stop()
 
 
 def test_chipid_rdd():
-    sc = pyspark.SparkContext(appName="test_chipid_rdd")
-    data = (1, 2, 3)
-    rdd = driver.chipid_rdd(data, sc)
-    assert set(rdd.collect()) == set(data)
-    assert rdd.getNumPartitions() == 3
-    sc.stop()
+    sc = None
+    try:
+        sc = pyspark.SparkContext(appName="test_chipid_rdd")
+        data = (1, 2, 3)
+        rdd = driver.chipid_rdd(data, sc)
+        assert set(rdd.collect()) == set(data)
+        assert rdd.getNumPartitions() == 3
+    finally:
+        if sc is not None:
+            sc.stop()
 
 
 def test_products_graph():
-    sc = pyspark.SparkContext(appName="test_products_graph")
-    bc = driver.broadcast(chips_url="http://localhost",
-                          specs_url="http://localhost",
-                          acquired="1982-01-01/1999-01-01",
-                          spec=4,
-                          product_dates=5,
-                          start_date="1982-01-01",
-                          clip=7,
-                          products=8,
-                          bbox=9,
-                          sparkcontext=sc)
-    driver.products_graph(chip_ids_rdd, broadcast)
-    # TODO: Pick it up from here
+    sc = None
+    try:
+        #c = pyspark.SparkConf()\
+        #        .set('spark.driver.memory', '4g')\
+        #        .set('spark.driver.host', fb.DRIVER_HOST)\
+        #        .set('spark.driver.port', 0)\
+        #        .set('spark.master', 'spark://local[*]')\
+        #        .set('spark.rdd.compress', 'True')\
+        #        .set('spark.serializer.objectStreamReset', '100')\
+        #        .set('spark.submit.deployMode', 'client')\
+        #        .set('spark.app.name', 'test_products_graph')\
+        #        .set('spark.app.id', 'local-1496335206639')\
+        #        .set('spark.executor.id', 'driver')
+        c = pyspark.SparkConf().set('spark.driver.memory', '4g')
+
+
+        print(c.getAll())
+
+        sc = pyspark.SparkContext(conf=c)
+        spec = ma.chip_specs(driver.chip_spec_urls(fb.SPECS_URL)['blues'])[0]
+        bc = driver.broadcast(chips_url='http://localhost',
+                              chips_fn=ma.chips,
+                              specs_url='http://localhost',
+                              specs_fn=ma.chip_specs,
+                              acquired='1982-01-01/2015-12-12',
+                              spec=spec,
+                              product_dates=['2014-12-12'],
+                              start_date='2014-12-12',
+                              clip=False,
+                              products=['ccd'],
+                              bbox={'ulx':-1821585, 'uly':2891595,
+                                    'lrx':-1824585, 'lry':2888595},
+                              sparkcontext=sc)
+
+        rdd = driver.chipid_rdd([(-1821585, 2891595)], sc)
+        assert rdd.getNumPartitions() == 1
+        assert rdd.count() == 1
+
+        graph = driver.products_graph(rdd, bc)
+        assert graph['inputs'].count() == 10000
+        #print(graph['inputs'].first()[0])
+        print("CCD FIRST")
+        print(graph['ccd'].first())
+
+    finally:
+        if sc is not None:
+            sc.stop()
 
 #@patch('firebird.chip.ids', mc.ids)
 #@patch('firebird.aardvark.chips', ma.chips)
@@ -114,13 +161,17 @@ def test_products_graph():
 #    assert run_resp is True
 
 
-@patch('firebird.aardvark.chips', ma.chips)
-@patch('firebird.aardvark.chip_specs', ma.chip_specs)
 def test_pyccd_inputs():
-    inputs = driver.pyccd_inputs((-100200, 300400),
-                                 'http://localhost', 'http://localhost',
-                                 '1980-01-01/2015-12-31')
+    # rdd should be shaped: ( ((),{}), ((),{}), ((),{}) )
+    inputs = driver.pyccd_inputs(point=(-182000, 300400),
+                                 specs_url='http://localhost',
+                                 specs_fn=ma.chip_specs,
+                                 chips_url='http://localhost',
+                                 chips_fn=ma.chips,
+                                 acquired='1980-01-01/2015-12-31')
     assert len(inputs) == 10000
+    assert isinstance(inputs, dict)
     assert isinstance(inputs[0], tuple)
     assert isinstance(inputs[0][0], tuple)
     assert isinstance(inputs[0][1], dict)
+    assert len(inputs[0][0]) == 2

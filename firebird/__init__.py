@@ -1,24 +1,31 @@
-import os
-import sys
-import logging
-import numpy as np
+from datetime import datetime
+from datetime import date
+from dateutil import parser
+from pyspark import SparkConf
+from pyspark import SparkContext
 import functools
 import itertools
-from datetime import datetime, date
-from dateutil import parser
-from pyspark import SparkConf, SparkContext
+import logging
+import numpy as np
+import os
+import socket
+import sys
 
-AARDVARK = os.getenv('AARDVARK', 'http://localhost:5678')
-AARDVARK_SPECS = os.getenv('AARDVARK_SPECS', '/v1/landsat/chip-specs')
-AARDVARK_CHIPS = os.getenv('AARDVARK_CHIPS', '/v1/landsat/chips')
-CHIPS_URL = ''.join([AARDVARK, AARDVARK_CHIPS])
-SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
+HOST = socket.gethostbyname(socket.getfqdn())
+
+AARDVARK                  = os.getenv('AARDVARK', 'http://localhost:5678')
+AARDVARK_SPECS            = os.getenv('AARDVARK_SPECS', '/v1/landsat/chip-specs')
+AARDVARK_CHIPS            = os.getenv('AARDVARK_CHIPS', '/v1/landsat/chips')
+CHIPS_URL                 = ''.join([AARDVARK, AARDVARK_CHIPS])
+SPECS_URL                 = ''.join([AARDVARK, AARDVARK_SPECS])
 
 CASSANDRA_CONTACT_POINTS  = os.getenv('CASSANDRA_CONTACT_POINTS', '0.0.0.0')
 CASSANDRA_USER            = os.getenv('CASSANDRA_USER')
 CASSANDRA_PASS            = os.getenv('CASSANDRA_PASS')
 CASSANDRA_KEYSPACE        = os.getenv('CASSANDRA_KEYSPACE', 'lcmap_changes_local')
 CASSANDRA_RESULTS_TABLE   = os.getenv('CASSANDRA_RESULTS_TABLE', 'results')
+
+DRIVER_HOST               = os.getenv('DRIVER_HOST', HOST)
 
 LOG_LEVEL                 = os.getenv('FIREBIRD_LOG_LEVEL', 'INFO')
 
@@ -77,16 +84,16 @@ def ccd_params():
 
 
 def minbox(points):
-    """ Returns the minimal bounding box necessary to contain points
+    ''' Returns the minimal bounding box necessary to contain points
     :param points: A sequence of (x,y) points: ((0,0), (40, 55), (66, 22))
     :return: dict with ulx, uly, lrx, lry
-    """
+    '''
     x, y = [point[0] for point in points], [point[1] for point in points]
     return {'ulx': min(x), 'lrx': max(x), 'lry': min(y), 'uly': max(y)}
 
 
 def dtstr_to_ordinal(dtstr):
-    """ Return ordinal from string formatted date"""
+    ''' Return ordinal from string formatted date'''
     return parser.parse(dtstr).toordinal()
 
 
