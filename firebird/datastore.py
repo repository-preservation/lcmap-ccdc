@@ -4,8 +4,15 @@ from datetime import datetime
 import firebird as fb
 
 
-auth_provider = PlainTextAuthProvider(username=fb.CASSANDRA_USER, password=fb.CASSANDRA_PASS)
-cluster = Cluster(fb.CASSANDRA_CONTACT_POINTS.split(','), auth_provider=auth_provider)
+def connect():
+    '''Creates a connection to a Cassandra cluster.'''
+    auth_provider = PlainTextAuthProvider(username=fb.CASSANDRA_USER,
+                                          password=fb.CASSANDRA_PASS)
+    cluster = Cluster(fb.CASSANDRA_CONTACT_POINTS.split(','),
+                      auth_provider=auth_provider)
+
+    return cluster.connect()
+
 
 RESULT_INPUT = {'chip_x': int(),
                 'chip_y': int(),
@@ -22,15 +29,13 @@ INSERT_CQL = "INSERT INTO {}.{} (y, chip_x, chip_y, algorithm, x, result_ok, inp
              "result_md5) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)".format(fb.CASSANDRA_KEYSPACE, fb.CASSANDRA_RESULTS_TABLE)
 
 
-def execute(statement, args):
+def execute(statement, args, connection):
     try:
-        with cluster.connect() as session:
-            for _ag in args:
-                prepared = session.prepare(statement)
-                session.execute(prepared, _ag)
+        for _ag in args:
+            prepared = connection.prepare(statement)
+            connection.execute(prepared, _ag)
     except Exception as e:
         raise e
-
     return True
 
 
