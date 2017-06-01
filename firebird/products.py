@@ -1,4 +1,5 @@
 import ccd as pyccd
+import firebird as fb
 import json
 import numpy as np
 from datetime import date
@@ -25,7 +26,7 @@ def ccd(pyccd_rdd):
                                thermals=data['thermals'],
                                quality=data['quality'],
                                params=fb.ccd_params())
-        return ((x, y, pyccd.__algorithm__), results)
+        return ((x, y, pyccd.algorithm), results)
     except Exception as e:
         fb.logger.error("Exception running ccd.detect: {}".format(e))
 
@@ -81,7 +82,7 @@ def changedate(models, ord_date):
     return ret
 
 
-def seglength(models, ord_date, bot=fb.BEGINNING_OF_TIME):
+def seglength(models, ord_date, bot):
     ret = 0
     if ord_date > 0:
         all_dates = [bot]
