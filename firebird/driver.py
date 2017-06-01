@@ -162,9 +162,9 @@ def products_graph(chip_ids_rdd, broadcast):
 
     # query data and transform it into pyccd input format
     inputs = chip_ids.map(partial(pyccd_inputs,
-                                  specs_url=bc['specs_url'],
-                                  chips_url=bc['chips_url'],
-                                  acquired=bc['acquired'])).persist()
+                                  specs_url=bc['specs_url'].value,
+                                  chips_url=bc['chips_url'].value,
+                                  acquired=bc['acquired'].value)).persist()
 
     # repartition to achieve maximum parallelism
     ccd = inputs.repartition(len(inputs)).map(products.ccd).persist()
@@ -173,16 +173,16 @@ def products_graph(chip_ids_rdd, broadcast):
     # sequence of dates?
 
     lastchange = ccd.mapValues(partial(products.lastchange,
-                                       ord_date=bc['product_date']))
+                                       ord_date=bc['product_date'].value))
     changemag  = ccd.mapValues(partial(products.changemag,
-                                       ord_date=bc['product_date']))
+                                       ord_date=bc['product_date'].value))
     changedate = ccd.mapValues(partial(products.changedate,
-                                       ord_date=bc['product_date']))
+                                       ord_date=bc['product_date'].value))
     seglength  = ccd.mapValues(partial(products.seglength,
-                                       ord_date=bc['product_date'],
-                                       bot=bc['ordinal_start_date']))
+                                       ord_date=bc['product_date'].value,
+                                       bot=bc['start_date'].value))
     curveqa    = ccd.mapValues(partial(products.curveqa,
-                                       ord_date=bc['product_date']))
+                                       ord_date=bc['product_date'].value))
 
     return {'inputs': inputs,
             'ccd': ccd,
@@ -192,15 +192,16 @@ def products_graph(chip_ids_rdd, broadcast):
             'curveqa': curveqa}
 
 
-def broadcast(chip_url, specs_url, acquired, spec, product_date, clip,
-              products, bbox, sparkcontext):
+def broadcast(chips_url, specs_url, acquired, spec, product_dates, start_date,
+              clip, products, bbox, sparkcontext):
     """ Sets variables on the cluster to make them available to cluster
     operations.
-    :param chip_url: Endpoint for chips
-    :param spec_url: Endpoint for specs
+    :param chips_url: Endpoint for chips
+    :param specs_url: Endpoint for specs
     :param acquired: Date range for input data query
     :param spec: A spec representing the chip geometry
-    :param product_date: Date to produce a product
+    :param product_dates: Date to produce a product
+    :param start_date: Date to use
     :param clip: Should product outputs be filtered to exclude points that do
                  not fall within the requested bounds. True/False
     :param products: Sequence of products that were requested
@@ -209,15 +210,15 @@ def broadcast(chip_url, specs_url, acquired, spec, product_date, clip,
     :return: dict of cluster references for each variable
     """
     sc = sparkcontext
-    return {'chips_url':    sc.broadcast(chips_url),
-            'specs_url':    sc.broadcast(specs_url),
-            'acquired':     sc.broadcast(acquired),
-            'spec':         sc.broadcast(spec),
-            'product_date': sc.broadcast(product_dates),
-            'start_date':   sc.broadcast(startdate(acquired)),
-            'clip':         sc.broadcast(clip),
-            'products':     sc.broadcast(products),
-            'bbox':         sc.broadcast(bbox)}
+    return {'chips_url':     sc.broadcast(chips_url),
+            'specs_url':     sc.broadcast(specs_url),
+            'acquired':      sc.broadcast(acquired),
+            'spec':          sc.broadcast(spec),
+            'product_dates': sc.broadcast(product_dates),
+            'start_date':    sc.broadcast(start_date),
+            'clip':          sc.broadcast(clip),
+            'products':      sc.broadcast(products),
+            'bbox':          sc.broadcast(bbox)}
 
 
 def chipid_rdd(chip_ids, sparkcontext):
@@ -271,7 +272,8 @@ def run(acquired, bounds, products, product_dates, clip,
         # differentiate variables that have not been broadcast and to make
         # a testable function out of it
         bc = broadcast(fb.CHIPS_URL, fb.SPECS_URL, acquired, spec,
-                       product_dates, clip, products, bbox, sc)
+                       product_dates, start_date(acquired), clip, products,
+                       bbox, sc)
 
         # everything from here down is an RDD/broadcast variable/cluster op.
         # Don't mix up driver memory locations and cluster memory locations

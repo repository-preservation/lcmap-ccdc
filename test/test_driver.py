@@ -1,8 +1,11 @@
+import pyspark
 from firebird import driver
-from test.mocks import chip as mc, aardvark as ma, driver as md
-from test.mocks import sparkcon
 from hypothesis import given
 from mock import patch
+from test.mocks import aardvark as ma
+from test.mocks import chip as mc
+from test.mocks import driver as md
+from test.mocks import sparkcon
 import hypothesis.strategies as st
 import os
 import urllib
@@ -41,6 +44,55 @@ def test_to_pyccd():
 
 def test_pyccd_dates():
     assert 1 > 0
+
+
+def test_startdate():
+    assert driver.startdate('1980-01-01/1982-01-01') == '1980-01-01'
+
+
+def test_enddate():
+    assert driver.enddate('1980-01-01/1982-01-01') == '1982-01-01'
+
+
+def test_broadcast():
+    sc = pyspark.SparkContext(appName="test_broadcast")
+    bc = driver.broadcast(chips_url=1, specs_url=2, acquired=3, spec=4,
+                          product_dates=5, start_date=6, clip=7, products=8,
+                          bbox=9, sparkcontext=sc)
+    assert bc['chips_url'].value == 1
+    assert bc['specs_url'].value == 2
+    assert bc['acquired'].value == 3
+    assert bc['spec'].value == 4
+    assert bc['product_dates'].value == 5
+    assert bc['start_date'].value == 6
+    assert bc['clip'].value == 7
+    assert bc['products'].value == 8
+    assert bc['bbox'].value == 9
+    sc.stop()
+
+
+def test_chipid_rdd():
+    sc = pyspark.SparkContext(appName="test_chipid_rdd")
+    data = (1, 2, 3)
+    rdd = driver.chipid_rdd(data, sc)
+    assert set(rdd.collect()) == set(data)
+    assert rdd.getNumPartitions() == 3
+    sc.stop()
+
+
+def test_products_graph():
+    sc = pyspark.SparkContext(appName="test_products_graph")
+    bc = driver.broadcast(chips_url="http://localhost",
+                          specs_url="http://localhost",
+                          acquired="1982-01-01/1999-01-01",
+                          spec=4,
+                          product_dates=5,
+                          start_date="1982-01-01",
+                          clip=7,
+                          products=8,
+                          bbox=9, 
+                          sparkcontext=sc)
+    driver.products_graph(chip_ids_rdd, broadcast)
 
 
 #@patch('firebird.chip.ids', mc.ids)
