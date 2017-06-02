@@ -34,11 +34,6 @@ SPARK_EXECUTOR_FORCE_PULL = os.getenv('SPARK_EXECUTOR_FORCE_PULL', 'false')
 QA_BIT_PACKED              = os.getenv('CCD_QA_BITPACKED', 'True')
 
 
-# TODO: These are obtained from chip specs
-X_PIXEL_DIM               = int(os.getenv('X_PIXEL_DIM', 30))
-Y_PIXEL_DIM               = int(os.getenv('Y_PIXEL_DIM', -30))
-
-
 logging.basicConfig(stream=sys.stdout,
                     level=LOG_LEVEL,
                     format='%(asctime)s %(module)s::%(funcName)-20s - %(message)s',
