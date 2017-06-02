@@ -59,6 +59,13 @@ def save(chip_x, chip_y, x, y, algorithm, result, result_ok):
     # coerce values
     # save to cassandra
 
+    # Cassandra products keyspace
+    # Tables need to be by H&V for tiles.  H1V1.  Need tile specs to calculate.
+    # key needs to be chip_x, chip_y, x, y, algorithm, date (as string)
+    # date as string, can be either the date of the product (date of map)
+    # or the acquired date range for ccd results or wahtever else.
+    # Must have it though to be able to store date based products
+
     output = cass.RESULT_INPUT.copy()
     output['chip_x'] = int(chip_x)
     output['chip_y'] = int(chip_y)

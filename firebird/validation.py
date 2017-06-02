@@ -1,8 +1,5 @@
 import re
 
-
-
-
 def bounds(bounds):
     try:
         for __ in ((ulx, lrx), (lry, uly)):
