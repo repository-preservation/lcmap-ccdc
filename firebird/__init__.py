@@ -1,6 +1,3 @@
-from datetime import datetime
-from datetime import date
-from dateutil import parser
 from pyspark import SparkConf
 from pyspark import SparkContext
 import functools
@@ -83,18 +80,14 @@ def ccd_params():
     return params
 
 
+@functools.lru_cache(maxsize=128, typed=True)
 def minbox(points):
     ''' Returns the minimal bounding box necessary to contain points
-    :param points: A sequence of (x,y) points: ((0,0), (40, 55), (66, 22))
+    :param points: A tuple of (x,y) points: ((0,0), (40, 55), (66, 22))
     :return: dict with ulx, uly, lrx, lry
     '''
     x, y = [point[0] for point in points], [point[1] for point in points]
     return {'ulx': min(x), 'lrx': max(x), 'lry': min(y), 'uly': max(y)}
-
-
-def dtstr_to_ordinal(dtstr):
-    ''' Return ordinal from string formatted date'''
-    return parser.parse(dtstr).toordinal()
 
 
 def simplify_objects(obj):
@@ -141,3 +134,21 @@ def flattend(dicts):
     :params dicts: A sequence of dicts
     :returns: A single dict"""
     return {k:v for d in dicts for k, v in d.items()}
+
+
+def false(v):
+    '''
+    Returns true is v is False, 0 or 'False' (case insensitive)
+    :param v: A value
+    :return: Boolean
+    '''
+    return v is not None and (v == 0 or str(v).strip().lower() == 'false')
+
+
+def true(v):
+    '''
+    Returns true is v is True, 1 or 'True' (case insensitive)
+    :param v: A value
+    :return: Boolean
+    '''
+    return v is not None and (v == 1 or str(v).strip().lower() == 'true')

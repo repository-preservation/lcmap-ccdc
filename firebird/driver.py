@@ -6,6 +6,7 @@ from functools import partial
 
 import firebird as fb
 from firebird import aardvark as a
+from firebird import date as d
 from firebird import datastore
 from firebird import chip
 from firebird import products
@@ -85,7 +86,7 @@ def pyccd_dates(dates):
     :param dates: A sequence of date strings
     :returns: A sequence of formatted and sorted ordinal dates
     """
-    return fb.rsort([fb.dtstr_to_ordinal(d) for d in dates])
+    return fb.rsort([fd.to_ordinal(d) for d in dates])
 
 
 def csort(chips):
@@ -149,60 +150,81 @@ def simplify_detect_results(results):
     return output
 
 
-def startdate(acquired):
-    return acquired.split('/')[0]
+def points_in_box(value, bbox, enforce):
+    '''
+    Determines if a point value fits within a bounding box (edges inclusive)
+    Useful as a filtering function with conditional enforcement.
+
+    :param value: Two element tuple or list (x,y)
+    :param bbox: dict with keys: ulx, uly, lrx, lry
+    :param enforce: Boolean, whether to apply this function or not.
+    :return: Boolean
+    '''
+    def fits(value, bbox):
+        x,y = value
+        return float(x) >= float(bbox['ulx']) and
+               float(x) <= float(bbox['lrx']) and
+               float(y) >= float(bbox['lry']) and
+               float(y) <= float(bbox['uly'])
+
+    return fb.false(enforce) or fits(value, bbox)
 
 
-def enddate(acquired):
-    return acquired.split('/')[1]
-
-
-def products_graph(chip_ids_rdd, broadcast):
+def products_graph(jobconf, sparkcontext):
     """ Product graph for firebird products
-    :param chip_ids_rdd: An RDD with the chip ids to generate products
-    :param broadcast: References to variables on the cluster
+    :param jobconf: dict of broadcast variables
+    :param sparkcontext: Configured spark context
     :return: dict keyed by product with lazy RDD as value
     """
-    bc = broadcast
+    jc = jobconf
+
+    chipids = sparkcontext.parallelize(jc['chipids'].value,
+                                       jc['chipid_partitions'].value)\
+                                      .setName("CHIP IDS").persist()
 
     # query data and transform it into pyccd input format
-    inputs = chip_ids_rdd.map(partial(pyccd_inputs,
-                                      specs_url=bc['specs_url'].value,
-                                      specs_fn=bc['specs_fn'].value,
-                                      chips_url=bc['chips_url'].value,
-                                      chips_fn=bc['chips_fn'].value,
-                                      acquired=bc['acquired'].value))\
-                                      .flatMap(lambda x: x).repartition(32)\
-                                      .setName('PYCCD INPUTS')
+    inputs = chipids.map(partial(pyccd_inputs,
+                                 specs_url=jc['specs_url'].value,
+                                 specs_fn=jc['specs_fn'].value,
+                                 chips_url=jc['chips_url'].value,
+                                 chips_fn=jc['chips_fn'].value,
+                                 acquired=jc['acquired'].value))\
+                                 .flatMap(lambda x: x)\
+                                 .filter(partial(points_in_box,
+                                                 bbox=jc['bbox'].value,
+                                                 enforce=jc['clip'].value))\
+                                 .repartition(jc['product_partitions'])\
+                                 .setName('PYCCD INPUTS').persist()
+
 
     ccd = inputs.map(products.ccd).setName('CCD').persist()
 
     # how the eff are we going to generate multiple products based on a
     # sequence of dates?
-    # TODO: Add clipping based on 'clip' and 'bbox' vars
 
     lastchange = ccd.mapValues(partial(products.lastchange,
-                                       ord_date=bc['product_dates'].value))\
+                                       ord_date=jc['product_dates'].value))\
                                        .setName("LASTCHANGE")
 
     changemag  = ccd.mapValues(partial(products.changemag,
-                                       ord_date=bc['product_dates'].value))\
+                                       ord_date=jc['product_dates'].value))\
                                        .setName('CHANGEMAG')
 
     changedate = ccd.mapValues(partial(products.changedate,
-                                       ord_date=bc['product_dates'].value))\
+                                       ord_date=jc['product_dates'].value))\
                                        .setName('CHANGEDATE')
 
     seglength = ccd.mapValues(partial(products.seglength,
-                                      ord_date=bc['product_dates'].value,
-                                      bot=bc['start_date'].value))\
+                                      ord_date=jc['product_dates'].value,
+                                      bot=d.startdate(jc['start_date'].value)))\
                                       .setName('SEGLENGTH')
 
     curveqa = ccd.mapValues(partial(products.curveqa,
-                                    ord_date=bc['product_dates'].value))\
+                                    ord_date=jc['product_dates'].value))\
                                     .setName("CURVEQA")
-        
-    return {'inputs': inputs,
+
+    return {'chipids': chipids,
+            'inputs': inputs,
             'ccd': ccd,
             'lastchange': lastchange,
             'changemag': changemag,
@@ -210,55 +232,18 @@ def products_graph(chip_ids_rdd, broadcast):
             'curveqa': curveqa}
 
 
-def broadcast(chips_url, chips_fn, specs_url, specs_fn, acquired, spec,
-              product_dates, start_date, clip, products, bbox, sparkcontext):
+def broadcast(context, sparkcontext):
     """ Sets variables on the cluster to make them available to cluster
     operations.
-    :param chips_url: Endpoint for chips
-    :param chips_fn: Function that supplies chips given x, y, acquired, ubids
-                     and url
-    :param specs_url: Endpoint for specs
-    :param specs_fn: Function that returns specs given a query url
-    :param acquired: Date range for input data query
-    :param spec: A spec representing the chip geometry
-    :param product_dates: Date to produce a product
-    :param start_date: Date to use
-    :param clip: Should product outputs be filtered to exclude points that do
-                 not fall within the requested bounds. True/False
-    :param products: Sequence of products that were requested
-    :param bbox: Bounding box for requested area, dict with ulx, uly, lrx, lry
+    :param context: dict of key: values to broadcast to the cluster
     :param sparkcontext: An active spark context for the spark cluster
-    :return: dict of cluster references for each variable
+    :return: dict of cluster references for each key: value pair
     """
-    sc = sparkcontext
-    return {'chips_url':     sc.broadcast(chips_url),
-            'chips_fn':      sc.broadcast(chips_fn),
-            'specs_url':     sc.broadcast(specs_url),
-            'specs_fn':      sc.broadcast(specs_fn),
-            'acquired':      sc.broadcast(acquired),
-            'spec':          sc.broadcast(spec),
-            'product_dates': sc.broadcast(product_dates),
-            'start_date':    sc.broadcast(start_date),
-            'clip':          sc.broadcast(clip),
-            'products':      sc.broadcast(products),
-            'bbox':          sc.broadcast(bbox)}
+    return {k: sparkcontext.broadcast(v) for k,v in context}
 
 
-def chipid_rdd(chip_ids, sparkcontext):
-    """
-    Creates and returns an RDD for chip ids
-    :param chip_ids: A sequence of chip ids
-    :param sparkcontext: Context pointed to a spark cluster
-    :return: An RDD of chip_ids
-    """
-    chipids = sparkcontext.parallelize(chip_ids, len(chip_ids))
-    chipids.setName("chip ids")
-    return chipids
-
-
-def store(products, products_rdd):
-    for p in products:
-       datastore.save([x for x in products_rdd[p].toLocalIterator()])
+def save(products, products_rdd):
+    return [products_rdd[p].foreach(datastore.save) for p in products]
 
 
 def run(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
@@ -276,60 +261,71 @@ def run(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
     :param sparkcontext: Function which returns a SparkContext object
     :return: True
     '''
-
-    # validate arguments
-    if not valid.acquired(acquired):
-        raise Exception("Acquired dates are invalid: {}".format(acquired))
-
-    if not valid.prod(prod_date):
-        raise Exception("Invalid product date value: {}".format(prod_date))
-
-    sc = sparkcontext
-
-    bbox = fb.minbox(bounds)
+    # raises appropriate exceptions on error
+    validation.validate(acquired=acquired,
+                        bounds=bounds,
+                        products=products,
+                        product_dates=product_dates,
+                        clip=clip,
+                        chips_fn=chips_fn,
+                        specs_fn=specs_fn)
 
     try:
         # retrieve a chip spec so we can generate chip ids
-        spec = a.chip_specs(chip_spec_urls(fb.SPECS_URL)['blues'])[0]
+        spec = specs_fn(chip_spec_urls(fb.SPECS_URL)['blues'])[0]
 
-        # put the variables we need on the cluster to make them available
+        # put the values we need on the cluster to make them available
         # to distributed functions.  They're in a dictionary to help
         # differentiate variables that have not been broadcast and to make
         # a testable function out of it
-        bc = broadcast(chips_url=fb.CHIPS_URL,
-                       chips_fn=chips_fn,
-                       specs_url=fb.SPECS_URL,
-                       specs_fn=specs_fn,
-                       acquired=acquired,
-                       spec=spec,
-                       product_dates=product_dates,
-                       start_date=start_date(acquired),
-                       clip=clip,
-                       products=products,
-                       bbox=bbox,
-                       sparkcontext=sc)
+        # Broadcast variables are read-only on every node and must fit
+        # in memory.
+        jobconf = broadcast({'acquired': acquired,
+                             'bbox': fb.minbox(bounds),
+                             'chip_ids': chip.ids(ulx=fb.minbox(bounds)['ulx'],
+                                                  uly=fb.minbox(bounds)['uly'],
+                                                  lrx=fb.minbox(bounds)['lrx'],
+                                                  lry=fb.minbox(bounds)['lry'],
+                                                  chip_spec=spec),
+                             'chipid_partitions': 10,
+                             'chips_fn': chips_fn,
+                             'chips_url': fb.CHIPS_URL,
+                             'clip': clip,
+                             'products': products,
+                             'product_dates': product_dates,
+                             'product_partitions': 2000,
+                              # should be able to pull this from the
+                              # specs_fn and specs_url but this lets us
+                              # do it once without beating aardvark up.
+                              'reference_spec': spec,
+                              'specs_url': fb.SPECS_URL,
+                              'specs_fn': specs_fn},
+                             sparkcontext=sparkcontext)
+
+        fb.logger.info('Initializing product graph:\n{}'\
+                       .format({k:v.value for k,v in jobconf})
 
         # everything from here down is an RDD/broadcast variable/cluster op.
         # Don't mix up driver memory locations and cluster memory locations
-        # chipid_rdd can accept a non broadcast set of variables because it is
+        # chipid_rdd accepts a non broadcast set of variables because it is
         # the initial RDD.
-        products_rdds = products_graph(chipid_rdd(chip.ids(bbox['ulx'],
-                                                           bbox['uly'],
-                                                           bbox['lrx'],
-                                                           bbox['lry'],
-                                                           spec)), bc)
+        products_rdds = products_graph(jobconf, sparkcontext)
+
+        fb.logger.info('Product graph created:\n{}'\
+                       .format(products_rdds.keys()))
 
         # product call graphs are created but not realized.  Do something with
         # whichever one you want in order to cause the computation to occur
         # (example: if curveqa is requested, save it and it will compute)
         # how am i going to get a cassandra connection from each node without
         # creating 10,000 connections?
-        return store(products, products_rdds)
+        return save(products, products_rdds)
 
     except Exception as e:
         fb.logger.info("Exception generating firebird products: {}".format(e))
         raise e
     finally:
         # make sure to stop the SparkContext
-        sc.stop()
+        if sparkcontext is not None:
+            sparkcontext.stop()
     return True
