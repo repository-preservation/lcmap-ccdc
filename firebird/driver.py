@@ -233,12 +233,13 @@ def products_graph(jobconf, sparkcontext):
 
 
 def broadcast(context, sparkcontext):
-    """ Sets variables on the cluster to make them available to cluster
+    '''
+    Sets variables on the cluster to make them available to cluster
     operations.
     :param context: dict of key: values to broadcast to the cluster
     :param sparkcontext: An active spark context for the spark cluster
     :return: dict of cluster references for each key: value pair
-    """
+    '''
     return {k: sparkcontext.broadcast(v) for k,v in context}
 
 
