@@ -34,7 +34,7 @@ def ccd(pyccd_rdd):
 def result_to_models(result):
     '''
     Function to extract the change_models dictionary from the CCD results
-    :param inresult: CCD result object
+    :param result: CCD result object
     :return: dict
     '''
     return json.loads(result['result'])['change_models']
