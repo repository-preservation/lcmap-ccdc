@@ -1,9 +1,9 @@
 import re
 
-
-def acquired(ad):
+def acquired(acquired):
     # 1980-01-01/2015-12-31
-    if not re.match('^[0-9]{4}-[0-9]{2}-[0-9]{2}\/[0-9]{4}-[0-9]{2}-[0-9]{2}$', ad):
+    regex = '^[0-9]{4}-[0-9]{2}-[0-9]{2}\/[0-9]{4}-[0-9]{2}-[0-9]{2}$'
+    if not re.match(regex, ad):
         return False
     return True
 
@@ -23,3 +23,48 @@ def prod(pd):
     if not re.match('^[0-9]{4}-[0-9]{2}-[0-9]{2}$', pd):
         return False
     return True
+
+
+def acquired(acquired):
+    pass
+
+
+def bounds(bounds):
+    pass
+
+
+def products(products):
+    pass
+
+
+def product_dates(product_dates):
+    pass
+
+
+def clip(clip):
+    pass
+
+
+def chips_fn(chips_fn):
+    pass
+
+
+def specs_fn(specs_fn):
+    pass
+
+
+def validate(acquired, bounds, products, product_dates, clip, chips_fn,
+             specs_fn):
+    acquired(acquired)
+    bounds(bounds)
+    products(products)
+    product_dates(product_dates)
+    clip(clip)
+    chips_fn(chips_fn)
+    specs_fn(specs_fn)
+
+    if not acquired(acquired):
+        raise Exception("Acquired dates are invalid: {}".format(acquired))
+
+    if not valid.prod(prod_date):
+        raise Exception("Invalid product date value: {}".format(prod_date))
