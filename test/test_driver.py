@@ -51,30 +51,25 @@ def test_pyccd_dates():
     assert 1 > 0
 
 
-def test_startdate():
-    assert driver.startdate('1980-01-01/1982-01-01') == '1980-01-01'
-
-
-def test_enddate():
-    assert driver.enddate('1980-01-01/1982-01-01') == '1982-01-01'
-
-
 def test_broadcast():
     sc = None
     try:
         sc = pyspark.SparkContext(appName="test_broadcast")
-        bc = driver.broadcast(chips_url=1, specs_url=2, acquired=3, spec=4,
-                              product_dates=5, start_date=6, clip=7, products=8,
-                              bbox=9, sparkcontext=sc)
-        assert bc['chips_url'].value == 1
-        assert bc['specs_url'].value == 2
-        assert bc['acquired'].value == 3
-        assert bc['spec'].value == 4
-        assert bc['product_dates'].value == 5
-        assert bc['start_date'].value == 6
-        assert bc['clip'].value == 7
-        assert bc['products'].value == 8
-        assert bc['bbox'].value == 9
+        bc = driver.broadcast({'a': 'a',
+                               'true': True,
+                               'list': [1, 2, 3],
+                               'set': set([1, 2, 3]),
+                               'tuple': tuple([1, 2, 3]),
+                               'dict': dict({'a': 1}),
+                               'num': 3}, sparkcontext=sc)
+
+        assert bc['a'].value == 'a'
+        assert bc['true'].value == True
+        assert bc['list'].value == [1, 2, 3]
+        assert bc['set'].value == {1, 2, 3}
+        assert bc['tuple'].value == (1, 2, 3)
+        assert bc['dict'].value == {'a': 1}
+        assert bc['num'].value == 3
     finally:
         if sc is not None:
             sc.stop()
@@ -132,12 +127,12 @@ def test_products_graph():
         assert rdd.getNumPartitions() == 1
         assert rdd.count() == 1
 
-        graph = driver.products_graph(rdd, bc)
-        assert graph['inputs'].count() == 10000
-        #print(graph['inputs'].first()[0])
-        print("CCD FIRST")
-        print(graph['ccd'].first())
-
+        graph = driver.products_graph(rdd, bc, 10000)
+        #assert graph['inputs'].count() == 10000
+        print("CCD Take 2")
+        #print(graph['ccd'].take(2))
+        #assert graph['ccd'].count() == 10000
+        graph['ccd'].first()
     finally:
         if sc is not None:
             sc.stop()
