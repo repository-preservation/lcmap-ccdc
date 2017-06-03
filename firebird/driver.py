@@ -1,17 +1,14 @@
-import hashlib
-import json
-
-from datetime import datetime
-from functools import partial
-
-import firebird as fb
 from firebird import aardvark as a
-from firebird import date as d
+from firebird import date as fd
 from firebird import datastore
 from firebird import chip
 from firebird import products
 from firebird import validation as valid
+from functools import partial
 
+import firebird as fb
+import hashlib
+import json
 
 def chip_spec_urls(url):
     """
@@ -150,24 +147,24 @@ def simplify_detect_results(results):
     return output
 
 
-def points_in_box(value, bbox, enforce):
+def points_filter(value, bbox, enforce):
     '''
     Determines if a point value fits within a bounding box (edges inclusive)
     Useful as a filtering function with conditional enforcement.
 
-    :param value: Two element tuple or list (x,y)
+    :param value: Tuple: ((x,y), (data))
     :param bbox: dict with keys: ulx, uly, lrx, lry
     :param enforce: Boolean, whether to apply this function or not.
     :return: Boolean
     '''
-    def fits(value, bbox):
-        x,y = value
-        return float(x) >= float(bbox['ulx']) and
-               float(x) <= float(bbox['lrx']) and
-               float(y) >= float(bbox['lry']) and
+    def fits(point, bbox):
+        x,y = point
+        return float(x) >= float(bbox['ulx']) and\
+               float(x) <= float(bbox['lrx']) and\
+               float(y) >= float(bbox['lry']) and\
                float(y) <= float(bbox['uly'])
 
-    return fb.false(enforce) or fits(value, bbox)
+    return fb.false(enforce) or fits(value[0], bbox)
 
 
 def products_graph(jobconf, sparkcontext):
@@ -190,17 +187,19 @@ def products_graph(jobconf, sparkcontext):
                                  chips_fn=jc['chips_fn'].value,
                                  acquired=jc['acquired'].value))\
                                  .flatMap(lambda x: x)\
-                                 .filter(partial(points_in_box,
-                                                 bbox=jc['bbox'].value,
+                                 .filter(partial(points_filter,
+                                                 bbox=jc['clip_box'].value,
                                                  enforce=jc['clip'].value))\
-                                 .repartition(jc['product_partitions'])\
+                                 .repartition(jc['product_partitions'].value)\
                                  .setName('PYCCD INPUTS').persist()
 
 
     ccd = inputs.map(products.ccd).setName('CCD').persist()
 
-    # how the eff are we going to generate multiple products based on a
-    # sequence of dates?
+    # TODO: how are we going to generate multiple products based on a
+    # sequence of dates?  Products function might need to accept the list of
+    # dates and return proper rdd'd data structure with
+    # ((x, y, algorithm, product_date_str), data) in order to be saveable
 
     lastchange = ccd.mapValues(partial(products.lastchange,
                                        ord_date=jc['product_dates'].value))\
@@ -216,7 +215,7 @@ def products_graph(jobconf, sparkcontext):
 
     seglength = ccd.mapValues(partial(products.seglength,
                                       ord_date=jc['product_dates'].value,
-                                      bot=d.startdate(jc['start_date'].value)))\
+                                      bot=fd.startdate(jc['acquired'].value)))\
                                       .setName('SEGLENGTH')
 
     curveqa = ccd.mapValues(partial(products.curveqa,
@@ -240,7 +239,7 @@ def broadcast(context, sparkcontext):
     :param sparkcontext: An active spark context for the spark cluster
     :return: dict of cluster references for each key: value pair
     '''
-    return {k: sparkcontext.broadcast(v) for k,v in context}
+    return {k: sparkcontext.broadcast(v) for k,v in context.items()}
 
 
 def save(products, products_rdd):
@@ -304,7 +303,7 @@ def run(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
                              sparkcontext=sparkcontext)
 
         fb.logger.info('Initializing product graph:\n{}'\
-                       .format({k:v.value for k,v in jobconf})
+                       .format({k:v.value for k,v in jobconf}))
 
         # everything from here down is an RDD/broadcast variable/cluster op.
         # Don't mix up driver memory locations and cluster memory locations
