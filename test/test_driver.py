@@ -1,4 +1,5 @@
 from firebird import aardvark as a
+from firebird import chip
 from firebird import driver
 from hypothesis import given
 from mock import patch
@@ -102,37 +103,40 @@ def test_products_graph():
         #        .set('spark.app.name', 'test_products_graph')\
         #        .set('spark.app.id', 'local-1496335206639')\
         #        .set('spark.executor.id', 'driver')
-        c = pyspark.SparkConf().set('spark.driver.memory', '4g')
+        # c = pyspark.SparkConf().set('spark.driver.memory', '1g')
+        
+        # we just want to test 1 point only.
+        bounds = ((-1821585, 2891595),)
 
-
-        print(c.getAll())
-
-        sc = pyspark.SparkContext(conf=c)
         spec = ma.chip_specs(driver.chip_spec_urls(fb.SPECS_URL)['blues'])[0]
-        bc = driver.broadcast(chips_url='http://localhost',
-                              chips_fn=ma.chips,
-                              specs_url='http://localhost',
-                              specs_fn=ma.chip_specs,
-                              acquired='1982-01-01/2015-12-12',
-                              spec=spec,
-                              product_dates=['2014-12-12'],
-                              start_date='2014-12-12',
-                              clip=False,
-                              products=['ccd'],
-                              bbox={'ulx':-1821585, 'uly':2891595,
-                                    'lrx':-1824585, 'lry':2888595},
-                              sparkcontext=sc)
 
-        rdd = driver.chipid_rdd([(-1821585, 2891595)], sc)
-        assert rdd.getNumPartitions() == 1
-        assert rdd.count() == 1
+        sc = pyspark.SparkContext()
 
-        graph = driver.products_graph(rdd, bc, 10000)
-        #assert graph['inputs'].count() == 10000
-        print("CCD Take 2")
-        #print(graph['ccd'].take(2))
-        #assert graph['ccd'].count() == 10000
-        graph['ccd'].first()
+        bc = driver.broadcast({'acquired': '1982-01-01/2015-12-12',
+                               'clip_box': fb.minbox(bounds),
+                               'chipids': bounds,
+                               'chipid_partitions': 1,
+                               'chips_fn': ma.chips,
+                               'chips_url': 'http://localhost',
+                               'clip': True,
+                               'products': ['ccd'],
+                               'product_dates': ['2014-12-12'],
+                               'product_partitions': 1,
+                                # should be able to pull this from the
+                                # specs_fn and specs_url but this lets us
+                                # do it once without beating aardvark up.
+                                'reference_spec': spec,
+                                'specs_url': 'http://localhost',
+                                'specs_fn': ma.chip_specs},
+                                sparkcontext=sc)
+        graph = driver.products_graph(bc, sc)
+
+        assert graph['chipids'].getNumPartitions() == 1
+        assert graph['chipids'].count() == 1
+        assert graph['inputs'].getNumPartitions() == 1
+        assert graph['inputs'].count() == 1
+        assert graph['ccd'].getNumPartitions() == 1
+        assert graph['ccd'].count() == 1
     finally:
         if sc is not None:
             sc.stop()
