@@ -52,6 +52,22 @@ def test_pyccd_dates():
     assert 1 > 0
 
 
+def test_pyccd_inputs():
+    # data should be shaped: ( ((),{}), ((),{}), ((),{}) )
+    inputs = driver.pyccd_inputs(point=(-182000, 300400),
+                                 specs_url='http://localhost',
+                                 specs_fn=ma.chip_specs,
+                                 chips_url='http://localhost',
+                                 chips_fn=ma.chips,
+                                 acquired='1980-01-01/2015-12-31')
+    assert len(inputs) == 10000
+    assert isinstance(inputs, dict)
+    assert isinstance(inputs[0], tuple)
+    assert isinstance(inputs[0][0], tuple)
+    assert isinstance(inputs[0][1], dict)
+    assert len(inputs[0][0]) == 2
+
+
 def test_broadcast():
     sc = None
     try:
@@ -76,6 +92,7 @@ def test_broadcast():
             sc.stop()
 
 
+'''
 def test_chipid_rdd():
     sc = None
     try:
@@ -87,6 +104,8 @@ def test_chipid_rdd():
     finally:
         if sc is not None:
             sc.stop()
+'''
+
 
 
 def test_products_graph():
@@ -141,6 +160,17 @@ def test_products_graph():
         if sc is not None:
             sc.stop()
 
+
+def test_init():
+    #init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
+    #     specs_fn=a.chip_specs, sparkcontext=fb.sparkcontext()):
+    pass
+
+
+def test_save():
+    pass
+
+
 #@patch('firebird.chip.ids', mc.ids)
 #@patch('firebird.aardvark.chips', ma.chips)
 #@patch('firebird.aardvark.chip_specs', ma.chip_specs)
@@ -158,19 +188,3 @@ def test_products_graph():
 #    prd = '1984-04-01'
 #    run_resp = driver.run(acq, ulx, uly, lrx, lry, prd, parallelization=1, sparkcontext=sparkcontext)
 #    assert run_resp is True
-
-
-def test_pyccd_inputs():
-    # rdd should be shaped: ( ((),{}), ((),{}), ((),{}) )
-    inputs = driver.pyccd_inputs(point=(-182000, 300400),
-                                 specs_url='http://localhost',
-                                 specs_fn=ma.chip_specs,
-                                 chips_url='http://localhost',
-                                 chips_fn=ma.chips,
-                                 acquired='1980-01-01/2015-12-31')
-    assert len(inputs) == 10000
-    assert isinstance(inputs, dict)
-    assert isinstance(inputs[0], tuple)
-    assert isinstance(inputs[0][0], tuple)
-    assert isinstance(inputs[0][1], dict)
-    assert len(inputs[0][0]) == 2

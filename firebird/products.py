@@ -1,34 +1,10 @@
-import ccd as pyccd
-import firebird as fb
 import json
 import numpy as np
 from datetime import date
 from datetime import datetime
 from firebird import datastore as ds
 
-
-def ccd(pyccd_rdd):
-    '''
-    Execute ccd.detect
-    :param pyccd_rdd: RDD generated from pyccd_inputs ((x, y): data)
-    :return: A dict of pyccd results
-    '''
-    x, y = pyccd_rdd[0]
-    data = pyccd_rdd[1]
-    try:
-        results = pyccd.detect(dates=data['dates'],
-                               blues=data['blues'],
-                               greens=data['greens'],
-                               reds=data['reds'],
-                               nirs=data['nirs'],
-                               swir1s=data['swir1s'],
-                               swir2s=data['swir2s'],
-                               thermals=data['thermals'],
-                               quality=data['quality'],
-                               params=fb.ccd_params())
-        return ((x, y, pyccd.algorithm), results)
-    except Exception as e:
-        fb.logger.error("Exception running ccd.detect: {}".format(e))
+version = '0.1'
 
 
 def result_to_models(result):

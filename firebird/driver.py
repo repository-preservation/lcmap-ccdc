@@ -1,8 +1,8 @@
 from firebird import aardvark as a
-from firebird import date as fd
+from firebird import dates as fd
 from firebird import datastore as ds
 from firebird import chip
-from firebird import products
+from firebird import rdds
 from firebird import validation as valid
 from functools import partial
 
@@ -177,7 +177,7 @@ def products_graph(jobconf, sparkcontext):
 
     chipids = sparkcontext.parallelize(jc['chipids'].value,
                                        jc['chipid_partitions'].value)\
-                                      .setName("CHIP IDS").persist()
+                                      .setName("CHIP IDS")
 
     # query data and transform it into pyccd input format
     inputs = chipids.map(partial(pyccd_inputs,
@@ -190,45 +190,43 @@ def products_graph(jobconf, sparkcontext):
                                  .filter(partial(points_filter,
                                                  bbox=jc['clip_box'].value,
                                                  enforce=jc['clip'].value))\
+                                 .map(lambda x: ((x[0][0], x[0][1],
+                                                  'inputs',
+                                                  jc['acquired'].value),
+                                                  x[1]))\
                                  .repartition(jc['product_partitions'].value)\
-                                 .setName('PYCCD INPUTS').persist()
+                                 .setName('PYCCD INPUTS')
 
-
-    ccd = inputs.map(products.ccd).setName('CCD').persist()
+    ccd = inputs.map(rdds.ccd).setName('CCD').persist()
 
     # TODO: how are we going to generate multiple products based on a
-    # sequence of dates?  Products function might need to accept the list of
-    # dates and return proper rdd'd data structure with
+    # sequence of dates?  We don't do loops nor nested loops in
+    # Spark since it's functional programming.
+    # Answer: use rdd.cartesian to build the permutations that need to be
+    #         produced
+    #
     # ((x, y, algorithm, product_date_str), data) in order to be saveable
 
-    lastchange = ccd.mapValues(partial(products.lastchange,
-                                       ord_date=jc['product_dates'].value))\
-                                       .setName("LASTCHANGE")
+    # cartesian will create an rdd that looks like:
+    # (((x, y, algorithm, product_date_str), data), product_date)
+    ccd_dates = ccd.cartesian(sc.parallelize(jc['product_dates'].value))
 
-    changemag  = ccd.mapValues(partial(products.changemag,
-                                       ord_date=jc['product_dates'].value))\
-                                       .setName('CHANGEMAG')
+    lastchange = ccd_dates.map(rdds.lastchange).setName('LASTCHANGE')
 
-    changedate = ccd.mapValues(partial(products.changedate,
-                                       ord_date=jc['product_dates'].value))\
-                                       .setName('CHANGEDATE')
+    changemag  = ccd_dates.map(rdds.changemag).setName('CHANGEMAG')
 
-    seglength = ccd.mapValues(partial(products.seglength,
-                                      ord_date=jc['product_dates'].value,
-                                      bot=fd.startdate(jc['acquired'].value)))\
-                                      .setName('SEGLENGTH')
+    changedate = ccd_dates.map(rdds.changedate).setName('CHANGEDATE')
 
-    curveqa = ccd.mapValues(partial(products.curveqa,
-                                    ord_date=jc['product_dates'].value))\
-                                    .setName("CURVEQA")
+    seglength = ccd_dates.map(rdds.seglength).setName('SEGLENGTH')
 
-    return {'chipids': {'rdd': chipids, 'iwds': False},
-            'inputs': {'rdd': inputs, 'iwds': False},
-            'ccd': {'rdd': ccd, 'iwds': True},
-            'lastchange': {'rdd': lastchange, 'iwds': True},
-            'changemag': {'rdd': changemag, 'iwds': True},
-            'seglength': {'rdd': seglength, 'iwds': True},
-            'curveqa': {'rdd': curveqa, 'iwds': True}}
+    curveqa = ccd_dates.map(rdds.curveqa).setName('CURVEQA')
+
+    return {'inputs': inputs,
+            'ccd': ccd,
+            'lastchange': lastchange,
+            'changemag': changemag,
+            'seglength': seglength,
+            'curveqa': curveqa}
 
 
 def training_graph(product_graph, sparkcontext):
@@ -237,6 +235,12 @@ def training_graph(product_graph, sparkcontext):
     # spark cassandra connector, especially if we are going to train on results
     # that already exist in cassandra.  Don't implement this without a
     # significant amount of hammock and whiteboard time.
+    #
+    # In order to send in appropriate chip ids to init, it will have
+    # to accept chip ids instead of bounds and the bounds to chip id
+    # determination will have to be done by whatever calls it.  This will
+    # be necessary as training requires additional areas besides the area
+    # one is actually attempting to train on.
     pass
 
 
@@ -245,7 +249,14 @@ def classification_graph(product_graph, sparkcontext):
     # #1 - There are ccd results and
     # #2 - The classifier has been trained.
     # Dont just jam these two things into this rdd graph setup.  Find the
-    # cleanest way to represent and handle it.
+    # cleanest way to represent and handle it.  It might require running
+    # ccd first, training second and classification third.  Or they might all
+    # be able to be put into the same graph and run at the same time.
+    #
+    # Regardless, all this data will need to be persisted so after its all
+    # working we will probably need the ability to load data from iwds,
+    # determine what else is needed (what areas are missing based on the
+    # request) conditionally produce it, then proceed with the operations
     pass
 
 
@@ -275,6 +286,31 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
     :param sparkcontext: A Spark Context
     :return: True
     '''
+    # right now we are accepting bounds.  The bounds may be a 1 to N points.
+    # This allows us to request any arbitrary area to process, even polygons.
+    # We minbox the geometry and run that.  If clip is True we also don't
+    # process locations that dont fit within the requested bounds.  This allows
+    # us to run just a handful of pixels for evaluation rather than an entire
+    # chip.
+    #
+    # The save functionality will allow us to save to iwds and/or to local
+    # files.  This should help speed up evaluation of algorithm changes.
+    #
+    # In order to implement training however, init will need to accept
+    # chipids only and the caller will have to make calls to chip.ids(bbox)
+    # to determine which ones to run.  The bbox clipping will still
+    # be enabled however for test, eval, or just sanity.
+    #
+    # To run an entire ARD tile, one only need request a bbox with it's
+    # bounds in a single request rather than making 2500 requests with the
+    # current lcmap-changes and lcmap-change-worker.  We'll have to be
+    # careful of course not to launch a DOS attack on aardvark when doing this
+    # by controlling the # of chipid partitions.
+    #
+    # Likewise when saving results, we will have to control the # of
+    # partitions and thus control the parallelism we are throwing at Cassandra
+    # TODO: Probably need another partition control flag for saving. 
+
     # raises appropriate exceptions on error
     validation.validate(acquired=acquired,
                         bounds=bounds,
@@ -294,6 +330,8 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
         # a testable function out of it
         # Broadcast variables are read-only on every node and must fit
         # in memory.
+        # everything from here down is an RDD/broadcast variable/cluster op.
+        # Don't mix up driver memory locations and cluster memory locations
         jobconf = broadcast({'acquired': acquired,
                              'bbox': fb.minbox(bounds),
                              'chip_ids': chip.ids(ulx=fb.minbox(bounds)['ulx'],
@@ -319,9 +357,7 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
         fb.logger.info('Initializing product graph:\n{}'\
                        .format({k:v.value for k,v in jobconf}))
 
-        # everything from here down is an RDD/broadcast variable/cluster op.
-        # Don't mix up driver memory locations and cluster memory locations
-        products_rdds = products_graph(jobconf, sparkcontext)
+        graph = products_graph(jobconf, sparkcontext)
 
         fb.logger.info('Product graph created:\n{}'\
                        .format(products_rdds.keys()))
@@ -331,7 +367,7 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
         # (example: if curveqa is requested, save it and it will compute)
         # TODO: how am i going to get a cassandra connection from each
         # without creating 10,000 connections?
-        return {'products': products_rdds,
+        return {'products': graph,
                 'jobconf': jobconf,
                 'sparkcontext': sparkcontext}
 
@@ -341,20 +377,19 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
 
 
 def save(graph, directory, iwds, sparkcontext=fb.sparkcontext):
-         try:
+     try:
 
-             datastore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
+         datastore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
+         filestore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
 
-             filestore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
+         datastore.save(graph) if iwds
+         filestore.save(graph) if directory == directory_something
 
-             datastore.save(graph) if iwds == fb.true(iwds)
-             filestore.save(graph) if directory == directory_something
+         [graph[p].foreach(datastore.save) for p in products]
+         [graph[p].foreach(filestore.save) for p in products]
 
-             [graph['products'][p].foreach(datastore.save) for p in products]
-             [graph['products'][p].foreach(filestore.save) for p in products]
-
-             #graph['products'][p].toLocalIterator()(partial(files.append(path='/directory/product-partition.txt'))) for p in products
-         finally:
-             # make sure to stop the SparkContext
-             if sparkcontext is not None:
-                 sparkcontext.stop()
+         #graph['products'][p].toLocalIterator()(partial(files.append(path='/directory/product-partition.txt'))) for p in products
+     finally:
+         # make sure to stop the SparkContext
+         if sparkcontext is not None:
+             sparkcontext.stop()
