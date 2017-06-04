@@ -1,6 +1,6 @@
 from firebird import aardvark as a
 from firebird import date as fd
-from firebird import datastore
+from firebird import datastore as ds
 from firebird import chip
 from firebird import products
 from firebird import validation as valid
@@ -222,18 +222,36 @@ def products_graph(jobconf, sparkcontext):
                                     ord_date=jc['product_dates'].value))\
                                     .setName("CURVEQA")
 
-    return {'chipids': chipids,
-            'inputs': inputs,
-            'ccd': ccd,
-            'lastchange': lastchange,
-            'changemag': changemag,
-            'seglength': seglength,
-            'curveqa': curveqa}
+    return {'chipids': {'rdd': chipids, 'iwds': False},
+            'inputs': {'rdd': inputs, 'iwds': False},
+            'ccd': {'rdd': ccd, 'iwds': True},
+            'lastchange': {'rdd': lastchange, 'iwds': True},
+            'changemag': {'rdd': changemag, 'iwds': True},
+            'seglength': {'rdd': seglength, 'iwds': True},
+            'curveqa': {'rdd': curveqa, 'iwds': True}}
+
+
+def training_graph(product_graph, sparkcontext):
+    # training_chipids()
+    # TODO: This might require switching to the dataframe api and the
+    # spark cassandra connector, especially if we are going to train on results
+    # that already exist in cassandra.  Don't implement this without a
+    # significant amount of hammock and whiteboard time.
+    pass
+
+
+def classification_graph(product_graph, sparkcontext):
+    # Same as the training graph.  This cannot run unless
+    # #1 - There are ccd results and
+    # #2 - The classifier has been trained.
+    # Dont just jam these two things into this rdd graph setup.  Find the
+    # cleanest way to represent and handle it.
+    pass
 
 
 def broadcast(context, sparkcontext):
     '''
-    Sets variables on the cluster to make them available to cluster
+    Sets read-only values on the cluster to make them available to cluster
     operations.
     :param context: dict of key: values to broadcast to the cluster
     :param sparkcontext: An active spark context for the spark cluster
@@ -242,15 +260,11 @@ def broadcast(context, sparkcontext):
     return {k: sparkcontext.broadcast(v) for k,v in context.items()}
 
 
-def save(products, products_rdd):
-    return [products_rdd[p].foreach(datastore.save) for p in products]
-
-
-def run(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
-        specs_fn=a.chip_specs, sparkcontext=fb.sparkcontext):
+def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
+         specs_fn=a.chip_specs, sparkcontext=fb.sparkcontext()):
 
     '''
-    Primary function for the driver module in lcmap-firebird.
+    Constructs product graph and prepares Spark for execution
     :param acquired: Date values for selecting input products.
                      ISO format, joined with '/': <start date>/<end date>.
     :param bounds: Upper left x coordinate of area to generate products
@@ -258,7 +272,7 @@ def run(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
                  of the bounds.
     :param products: A sequence of product names to deliver
     :param product_dates:  A sequence of iso format product dates to deliver
-    :param sparkcontext: Function which returns a SparkContext object
+    :param sparkcontext: A Spark Context
     :return: True
     '''
     # raises appropriate exceptions on error
@@ -307,8 +321,6 @@ def run(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
 
         # everything from here down is an RDD/broadcast variable/cluster op.
         # Don't mix up driver memory locations and cluster memory locations
-        # chipid_rdd accepts a non broadcast set of variables because it is
-        # the initial RDD.
         products_rdds = products_graph(jobconf, sparkcontext)
 
         fb.logger.info('Product graph created:\n{}'\
@@ -317,15 +329,32 @@ def run(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
         # product call graphs are created but not realized.  Do something with
         # whichever one you want in order to cause the computation to occur
         # (example: if curveqa is requested, save it and it will compute)
-        # how am i going to get a cassandra connection from each node without
-        # creating 10,000 connections?
-        return save(products, products_rdds)
+        # TODO: how am i going to get a cassandra connection from each
+        # without creating 10,000 connections?
+        return {'products': products_rdds,
+                'jobconf': jobconf,
+                'sparkcontext': sparkcontext}
 
     except Exception as e:
         fb.logger.info("Exception generating firebird products: {}".format(e))
         raise e
-    finally:
-        # make sure to stop the SparkContext
-        if sparkcontext is not None:
-            sparkcontext.stop()
-    return True
+
+
+def save(graph, directory, iwds, sparkcontext=fb.sparkcontext):
+         try:
+
+             datastore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
+
+             filestore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
+
+             datastore.save(graph) if iwds == fb.true(iwds)
+             filestore.save(graph) if directory == directory_something
+
+             [graph['products'][p].foreach(datastore.save) for p in products]
+             [graph['products'][p].foreach(filestore.save) for p in products]
+
+             #graph['products'][p].toLocalIterator()(partial(files.append(path='/directory/product-partition.txt'))) for p in products
+         finally:
+             # make sure to stop the SparkContext
+             if sparkcontext is not None:
+                 sparkcontext.stop()
