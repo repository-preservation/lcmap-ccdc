@@ -104,7 +104,7 @@ def test_products_graph():
         #        .set('spark.app.id', 'local-1496335206639')\
         #        .set('spark.executor.id', 'driver')
         # c = pyspark.SparkConf().set('spark.driver.memory', '1g')
-        
+
         # we just want to test 1 point only.
         bounds = ((-1821585, 2891595),)
 
@@ -113,30 +113,30 @@ def test_products_graph():
         sc = pyspark.SparkContext()
 
         bc = driver.broadcast({'acquired': '1982-01-01/2015-12-12',
-                               'clip_box': fb.minbox(bounds),
                                'chipids': bounds,
                                'chipid_partitions': 1,
                                'chips_fn': ma.chips,
                                'chips_url': 'http://localhost',
                                'clip': True,
+                               'clip_box': fb.minbox(bounds),
                                'products': ['ccd'],
                                'product_dates': ['2014-12-12'],
                                'product_partitions': 1,
-                                # should be able to pull this from the
-                                # specs_fn and specs_url but this lets us
-                                # do it once without beating aardvark up.
-                                'reference_spec': spec,
-                                'specs_url': 'http://localhost',
-                                'specs_fn': ma.chip_specs},
-                                sparkcontext=sc)
+                               # should be able to pull this from the
+                               # specs_fn and specs_url but this lets us
+                               # do it once without beating aardvark up.
+                               'reference_spec': spec,
+                               'specs_url': 'http://localhost',
+                               'specs_fn': ma.chip_specs},
+                              sparkcontext=sc)
         graph = driver.products_graph(bc, sc)
 
-        assert graph['chipids'].getNumPartitions() == 1
-        assert graph['chipids'].count() == 1
-        assert graph['inputs'].getNumPartitions() == 1
-        assert graph['inputs'].count() == 1
-        assert graph['ccd'].getNumPartitions() == 1
-        assert graph['ccd'].count() == 1
+        assert graph['chipids']['rdd'].getNumPartitions() == 1
+        assert graph['chipids']['rdd'].count() == 1
+        assert graph['inputs']['rdd'].getNumPartitions() == 1
+        assert graph['inputs']['rdd'].count() == 1
+        assert graph['ccd']['rdd'].getNumPartitions() == 1
+        assert graph['ccd']['rdd'].count() == 1
     finally:
         if sc is not None:
             sc.stop()

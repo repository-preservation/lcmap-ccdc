@@ -39,7 +39,7 @@ def execute(statement, args, connection):
     return True
 
 
-def read(ulx, uly, lrx, lry, algorithm):
+def read(chip_x, chip_y, ulx, uly, lrx, lry, algorithm, datestring):
     """ Loads all algorithm results from the datastore and returns them
     with location information.
     :param ulx: Upper left x coordinate
@@ -47,9 +47,10 @@ def read(ulx, uly, lrx, lry, algorithm):
     :param lyx: Lower right x coordinate
     :param lry: Lower right y coordinate
     :param algorithm: Name of algorithm
+    :param datestring: String with date or date range
     :return:
-    ((x1, y1, algorithm): algorithm_results,
-     (x1, y2, algorithm): algorithm_results,)
+    ((x1, y1, algorithm, datestring): algorithm_results,
+     (x1, y2, algorithm, datestring): algorithm_results,)
     """
     pass
 
