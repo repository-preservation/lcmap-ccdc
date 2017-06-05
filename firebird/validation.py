@@ -1,4 +1,5 @@
 from firebird import dates as d
+import firebird as fb
 import re
 
 
@@ -12,53 +13,46 @@ def bounds(bounds):
     return True
 
 
-def prod(pd):
-    # 1980-01-01
-    if not re.match('^[0-9]{4}-[0-9]{2}-[0-9]{2}$', pd):
-        return False
-    return True
+def check_acquired(a):
+    if not d.is_acquired(a):
+        raise Exception("Acquired dates are invalid: {}".format(acquired))
 
 
-def acquired(a):
-    return d.is_acquired(a)
-
-
-def bounds(bounds):
+def check_bounds(bounds):
     pass
 
 
-def products(products):
+def check_products(products):
     pass
 
 
-def product_dates(product_dates):
+def check_product_dates(product_dates):
+    def check(date):
+        if not re.match('^[0-9]{4}-[0-9]{2}-[0-9]{2}$', date):
+            raise Exception("Invalid product date value: {}".format(date))
+
+    [check(d) for d in product_dates]
+
+
+def check_clip(clip):
+    if not fb.true(clip) or fb.false(clip):
+        raise Exception("Clip must be True or False")
+
+
+def check_chips_fn(chips_fn):
     pass
 
 
-def clip(clip):
-    pass
-
-
-def chips_fn(chips_fn):
-    pass
-
-
-def specs_fn(specs_fn):
+def check_specs_fn(specs_fn):
     pass
 
 
 def validate(acquired, bounds, products, product_dates, clip, chips_fn,
              specs_fn):
-    acquired(acquired)
-    bounds(bounds)
-    products(products)
-    product_dates(product_dates)
-    clip(clip)
-    chips_fn(chips_fn)
-    specs_fn(specs_fn)
-
-    if not acquired(acquired):
-        raise Exception("Acquired dates are invalid: {}".format(acquired))
-
-    if not valid.prod(prod_date):
-        raise Exception("Invalid product date value: {}".format(prod_date))
+    check_acquired(acquired)
+    check_bounds(bounds)
+    check_products(products)
+    check_product_dates(product_dates)
+    check_clip(clip)
+    check_chips_fn(chips_fn)
+    check_specs_fn(specs_fn)

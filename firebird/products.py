@@ -1,19 +1,9 @@
-import json
 import numpy as np
 from datetime import date
 from datetime import datetime
 from firebird import datastore as ds
 
 version = '0.1'
-
-
-def result_to_models(result):
-    '''
-    Function to extract the change_models dictionary from the CCD results
-    :param result: CCD result object
-    :return: dict
-    '''
-    return json.loads(result['result'])['change_models']
 
 
 def lastchange(models, ord_date):
@@ -79,6 +69,6 @@ def curveqa(models, ord_date):
     if ord_date > 0:
         for m in models:
             if m['start_day'] <= ord_date <= m['end_day']:
-                ret = m['qa']
+                ret = m['curve_qa']
                 break
     return ret

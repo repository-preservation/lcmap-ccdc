@@ -3,7 +3,7 @@ from firebird import dates as fd
 from firebird import datastore as ds
 from firebird import chip
 from firebird import rdds
-from firebird import validation as valid
+from firebird import validation
 from functools import partial
 
 import firebird as fb
@@ -139,14 +139,6 @@ def pyccd_inputs(point, specs_url, specs_fn, chips_url, chips_fn, acquired):
     return to_pyccd(rods, pyccd_dates(dates))
 
 
-def simplify_detect_results(results):
-    ''' Convert child objects inside CCD results from NamedTuples to dicts '''
-    output = dict()
-    for key in results.keys():
-        output[key] = fb.simplify_objects(results[key])
-    return output
-
-
 def points_filter(value, bbox, enforce):
     '''
     Determines if a point value fits within a bounding box (edges inclusive)
@@ -176,9 +168,9 @@ def products_graph(jobconf, sparkcontext):
     jc = jobconf
     sc = sparkcontext
 
-    chipids = sparkcontext.parallelize(jc['chipids'].value,
-                                       jc['chipid_partitions'].value)\
-                                      .setName("CHIP IDS")
+    chipids = sc.parallelize(jc['chip_ids'].value,
+                             jc['initial_partitions'].value)\
+                             .setName("CHIP IDS")
 
     # query data and transform it into pyccd input format
     inputs = chipids.map(partial(pyccd_inputs,
@@ -272,8 +264,12 @@ def broadcast(context, sparkcontext):
     return {k: sparkcontext.broadcast(v) for k,v in context.items()}
 
 
-def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
-         specs_fn=a.chip_specs, sparkcontext=fb.sparkcontext):
+def init(acquired, bounds, clip, products, product_dates,
+         chips_fn=a.chips,
+         specs_fn=a.chip_specs,
+         initial_partitions=fb.INITIAL_PARTITION_COUNT,
+         product_partitions=fb.PRODUCT_PARTITION_COUNT,
+         sparkcontext=fb.sparkcontext):
 
     '''
     Constructs product graph and prepares Spark for execution
@@ -284,7 +280,11 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
                  of the bounds.
     :param products: A sequence of product names to deliver
     :param product_dates:  A sequence of iso format product dates to deliver
-    :param sparkcontext: A Spark Context
+    :param chips_fn: Function to return chips: chips(url, x, y, acquired, ubids)
+    :param specs_fn: Function to return specs: chip_specs(query)
+    :param initial_partitions: Number of partitions for initial query
+    :param product_partitions: Number of partitions for product generation
+    :param sparkcontext: A function to create a SparkContext
     :return: True
     '''
     # right now we are accepting bounds.  The bounds may be a 1 to N points.
@@ -336,19 +336,19 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
         # everything from here down is an RDD/broadcast variable/cluster op.
         # Don't mix up driver memory locations and cluster memory locations
         jobconf = broadcast({'acquired': acquired,
-                             'bbox': fb.minbox(bounds),
+                             'clip_box': fb.minbox(bounds),
                              'chip_ids': chip.ids(ulx=fb.minbox(bounds)['ulx'],
                                                   uly=fb.minbox(bounds)['uly'],
                                                   lrx=fb.minbox(bounds)['lrx'],
                                                   lry=fb.minbox(bounds)['lry'],
                                                   chip_spec=spec),
-                             'chipid_partitions': 10,
                              'chips_fn': chips_fn,
                              'chips_url': fb.CHIPS_URL,
                              'clip': clip,
+                             'initial_partitions': initial_partitions,
                              'products': products,
                              'product_dates': product_dates,
-                             'product_partitions': 2000,
+                             'product_partitions': product_partitions,
                               # should be able to pull this from the
                               # specs_fn and specs_url but this lets us
                               # do it once without beating aardvark up.
@@ -358,12 +358,12 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
                              sparkcontext=sc)
 
         fb.logger.info('Initializing product graph:\n{}'\
-                       .format({k:v.value for k,v in jobconf}))
+                       .format({k:v.value for k,v in jobconf.items()}))
 
-        graph = products_graph(jobconf, sparkcontext)
+        graph = products_graph(jobconf, sc)
 
         fb.logger.info('Product graph created:\n{}'\
-                       .format(products_rdds.keys()))
+                       .format(graph.keys()))
 
         # product call graphs are created but not realized.  Do something with
         # whichever one you want in order to cause the computation to occur
