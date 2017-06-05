@@ -37,4 +37,4 @@ def is_acquired(acquired):
     '''
     # 1980-01-01/2015-12-31
     regex = '^[0-9]{4}-[0-9]{2}-[0-9]{2}\/[0-9]{4}-[0-9]{2}-[0-9]{2}$'
-    return bool(re.match(regex, a))
+    return bool(re.match(regex, acquired))

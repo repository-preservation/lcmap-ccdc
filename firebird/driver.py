@@ -174,6 +174,7 @@ def products_graph(jobconf, sparkcontext):
     :return: dict keyed by product with lazy RDD as value
     """
     jc = jobconf
+    sc = sparkcontext
 
     chipids = sparkcontext.parallelize(jc['chipids'].value,
                                        jc['chipid_partitions'].value)\
@@ -272,7 +273,7 @@ def broadcast(context, sparkcontext):
 
 
 def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
-         specs_fn=a.chip_specs, sparkcontext=fb.sparkcontext()):
+         specs_fn=a.chip_specs, sparkcontext=fb.sparkcontext):
 
     '''
     Constructs product graph and prepares Spark for execution
@@ -309,7 +310,7 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
     #
     # Likewise when saving results, we will have to control the # of
     # partitions and thus control the parallelism we are throwing at Cassandra
-    # TODO: Probably need another partition control flag for saving. 
+    # TODO: Probably need another partition control flag for saving.
 
     # raises appropriate exceptions on error
     validation.validate(acquired=acquired,
@@ -321,6 +322,8 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
                         specs_fn=specs_fn)
 
     try:
+        sc = sparkcontext()
+
         # retrieve a chip spec so we can generate chip ids
         spec = specs_fn(chip_spec_urls(fb.SPECS_URL)['blues'])[0]
 
@@ -352,7 +355,7 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
                               'reference_spec': spec,
                               'specs_url': fb.SPECS_URL,
                               'specs_fn': specs_fn},
-                             sparkcontext=sparkcontext)
+                             sparkcontext=sc)
 
         fb.logger.info('Initializing product graph:\n{}'\
                        .format({k:v.value for k,v in jobconf}))
@@ -369,27 +372,26 @@ def init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
         # without creating 10,000 connections?
         return {'products': graph,
                 'jobconf': jobconf,
-                'sparkcontext': sparkcontext}
+                'sparkcontext': sc}
 
     except Exception as e:
         fb.logger.info("Exception generating firebird products: {}".format(e))
         raise e
 
+#def save(graph, directory, iwds, sparkcontext=fb.sparkcontext):
+#     try:
 
-def save(graph, directory, iwds, sparkcontext=fb.sparkcontext):
-     try:
+#         datastore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
+#         filestore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
 
-         datastore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
-         filestore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
+#         datastore.save(graph) if iwds is True
+#         filestore.save(graph) if directory == directory_something
 
-         datastore.save(graph) if iwds
-         filestore.save(graph) if directory == directory_something
-
-         [graph[p].foreach(datastore.save) for p in products]
-         [graph[p].foreach(filestore.save) for p in products]
+#         [graph[p].foreach(datastore.save) for p in products]
+#         [graph[p].foreach(filestore.save) for p in products]
 
          #graph['products'][p].toLocalIterator()(partial(files.append(path='/directory/product-partition.txt'))) for p in products
-     finally:
+#     finally:
          # make sure to stop the SparkContext
-         if sparkcontext is not None:
-             sparkcontext.stop()
+#         if sparkcontext is not None:
+#             sparkcontext.stop()

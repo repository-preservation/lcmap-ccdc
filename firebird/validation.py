@@ -1,4 +1,6 @@
+from firebird import dates as d
 import re
+
 
 def bounds(bounds):
     try:
@@ -17,8 +19,8 @@ def prod(pd):
     return True
 
 
-def acquired(acquired):
-    pass
+def acquired(a):
+    return d.is_acquired(a)
 
 
 def bounds(bounds):

@@ -100,5 +100,5 @@ def curveqa(rdd):
     y = rdd[0][0][1]
     data = rdd[0][1]
     date = fd.to_ordinal(rdd[1])
-    return ((x, y, 'curveqa-{}'.format(products.version)}, rdd[1]),
+    return ((x, y, 'curveqa-{}'.format(products.version), rdd[1]),
             products.curveqa(data, ord_date=date))
