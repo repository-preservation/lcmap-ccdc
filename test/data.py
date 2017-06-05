@@ -1,3 +1,15 @@
+'''
+Functions for working with test data.
+This module allows firebird to test using local data rather than
+requiring external systems such as aardvark to be available.
+
+Mock servers (such as aardvark) live in the test.mocks directory, not here.
+
+There are functions contained for updating the test data that lives under
+test/resources/data.  The locations of this data is controlled by values
+in test/__init__.py
+'''
+
 import glob
 import json
 import os

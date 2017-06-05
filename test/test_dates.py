@@ -1,10 +1,10 @@
-from firebird import date as d
+from firebird import dates as d
 
 
 def test_to_ordinal():
     assert d.to_ordinal('1999-01-01') == 729755
     assert d.to_ordinal('1999/11/01') == 730059
-    assert d.to_ordinal('2001') == 730638
+    assert d.to_ordinal('2001') == 730641
 
 
 def test_startdate():

@@ -1,5 +1,6 @@
 from pyspark import SparkConf
 from pyspark import SparkContext
+import datetime
 import functools
 import itertools
 import logging
@@ -49,7 +50,7 @@ logger.setLevel(LOG_LEVEL)
 
 def sparkcontext():
     try:
-        ts = datetime.now().isoformat()
+        ts = datetime.datetime.now().isoformat()
         conf = (SparkConf().setAppName("lcmap-firebird-{}".format(ts))
                 .setMaster(SPARK_MASTER)
                 .set("spark.mesos.executor.docker.image", SPARK_EXECUTOR_IMAGE)
