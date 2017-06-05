@@ -15,7 +15,7 @@ def bounds(bounds):
 
 def check_acquired(a):
     if not d.is_acquired(a):
-        raise Exception("Acquired dates are invalid: {}".format(acquired))
+        raise Exception("Acquired dates are invalid: {}".format(a))
 
 
 def check_bounds(bounds):

@@ -2,11 +2,19 @@ from firebird import validation
 
 
 def test_acquired_true():
-    assert validation.acquired("1980-01-01/2015-12-31") is True
+    try:
+        validation.check_acquired("1980-01-01/2015-12-31")
+        assert True
+    except:
+        assert False
 
 
 def test_acquired_false():
-    assert validation.acquired("1980-01-01|2015-12-31") is False
+    try:
+        validation.check_acquired("1980-01-01|2015-12-31") is False
+        assert False
+    except:
+        assert True
 
 
 #def test_coords_true():
@@ -21,9 +29,15 @@ def test_acquired_false():
 #    assert validation.coords(1, 4, 3, None) is False
 
 
-def test_prod_true():
-    assert validation.prod("1980-01-01") is True
+def test_product_dates():
+    try:
+        validation.check_product_dates(["1980-01-01"])
+        assert True
+    except:
+        assert False
 
-
-def test_prod_false():
-    assert validation.prod("1980/01/01") is False
+    try:
+        validation.check_product_dates(["1980/01/01"]) is False
+        assert False
+    except:
+        assert True
