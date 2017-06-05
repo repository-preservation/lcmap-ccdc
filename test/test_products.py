@@ -1,7 +1,5 @@
-from firebird import driver
 from firebird import products
 from firebird import dates as d
-from test.mocks import aardvark as ma
 
 
 def test_lastchange():
