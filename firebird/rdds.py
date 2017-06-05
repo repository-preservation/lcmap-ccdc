@@ -4,6 +4,24 @@ import ccd as pyccd
 import firebird as fb
 
 
+def simplify_detect_results(results):
+    ''' Convert child objects inside CCD results from NamedTuples to dicts '''
+    output = dict()
+    for key in results.keys():
+        output[key] = fb.simplify_objects(results[key])
+    return output
+
+
+def result_to_models(result):
+    '''
+    Function to extract the change_models dictionary from the CCD results
+    :param result: CCD result object
+    :return: list
+    '''
+    #raise Exception("JSONING:{}".format(result))
+    return simplify_detect_results(result)['change_models']
+
+
 def ccd(rdd):
     '''
     Execute ccd.detect
@@ -43,7 +61,7 @@ def lastchange(rdd):
     data = rdd[0][1]
     date = fd.to_ordinal(rdd[1])
     return ((x, y, 'lastchange-{}'.format(products.version), rdd[1]),
-            products.lastchange(data, ord_date=date))
+            products.lastchange(result_to_models(data), ord_date=date))
 
 
 def changemag(rdd):
@@ -58,7 +76,7 @@ def changemag(rdd):
     date = fd.to_ordinal(rdd[1])
 
     return ((x, y, 'changemag-{}'.format(products.version), rdd[1]),
-            products.changemag(data, ord_date=date))
+            products.changemag(result_to_models(data), ord_date=date))
 
 
 def changedate(rdd):
@@ -72,7 +90,7 @@ def changedate(rdd):
     data = rdd[0][1]
     date = fd.to_ordinal(rdd[1])
     return ((x, y, 'changedate-{}'.format(products.version), rdd[1]),
-            products.changedate(data, ord_date=date))
+            products.changedate(result_to_models(data), ord_date=date))
 
 
 def seglength(rdd):
@@ -87,7 +105,7 @@ def seglength(rdd):
     date = fd.to_ordinal(rdd[1])
     bot = fd.to_ordinal(fd.startdate(rdd[0][0][3]))
     return ((x, y, 'seglength-{}'.format(products.version), rdd[1]),
-            products.seglength(data, ord_date=date, bot=bot))
+            products.seglength(result_to_models(data), ord_date=date, bot=bot))
 
 
 def curveqa(rdd):
@@ -101,4 +119,4 @@ def curveqa(rdd):
     data = rdd[0][1]
     date = fd.to_ordinal(rdd[1])
     return ((x, y, 'curveqa-{}'.format(products.version), rdd[1]),
-            products.curveqa(data, ord_date=date))
+            products.curveqa(result_to_models(data), ord_date=date))
