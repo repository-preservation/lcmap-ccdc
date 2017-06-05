@@ -2,16 +2,12 @@ from firebird import aardvark as a
 from firebird import chip
 from firebird import driver
 from hypothesis import given
-from mock import patch
 from test.mocks import aardvark as ma
-from test.mocks import chip as mc
-from test.mocks import driver as md
-from test.mocks import sparkcon
 
 import firebird as fb
 import hypothesis.strategies as st
-import pyspark
 import os
+import pyspark
 import socket
 import urllib
 
@@ -142,7 +138,7 @@ def test_products_graph():
         if sc is not None:
             sc.stop()
 
-    
+
 def test_init():
     sc = None
     try:
@@ -196,24 +192,6 @@ def test_init():
         if sc is not None:
             sc.stop()
 
+
 def test_save():
     pass
-
-
-#@patch('firebird.chip.ids', mc.ids)
-#@patch('firebird.aardvark.chips', ma.chips)
-#@patch('firebird.aardvark.chip_specs', ma.chip_specs)
-#@patch('firebird.driver.pyccd_rdd', md.pyccd_rdd)
-#@patch('firebird.validation.acquired', lambda d: True)
-#@patch('firebird.validation.coords', lambda ulx, uly, lrx, lry: True)
-#@patch('firebird.validation.prod', lambda p: True)
-#def test_run():
-    # mocking driver's pyccd_rdd func because we dont need to run ccd.detect on 10k pixels
-#    acq = "01-01-1969/12-31-1999"
-#    ulx = -100300
-#    uly = 200000
-#    lrx = -100000
-#    lry = 1999970
-#    prd = '1984-04-01'
-#    run_resp = driver.run(acq, ulx, uly, lrx, lry, prd, parallelization=1, sparkcontext=sparkcontext)
-#    assert run_resp is True
