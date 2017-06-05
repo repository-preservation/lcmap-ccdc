@@ -2,11 +2,6 @@ from firebird import driver
 from firebird import products
 from firebird import dates as d
 from test.mocks import aardvark as ma
-from test.shared import simplified_detect_results
-
-
-def test_result_to_models():
-    assert products.result_to_models({'result': '{"change_models": "foo bar"}'}) == "foo bar"
 
 
 def test_lastchange():
@@ -33,5 +28,5 @@ def test_seglength():
 def test_qa():
     assert products.curveqa([{'start_day': d.to_ordinal("1986-04-01"),
                               'end_day': d.to_ordinal("1988-07-01"),
-                              'qa': 999}],
+                              'curve_qa': 999}],
                              d.to_ordinal('1987-01-01')) == 999

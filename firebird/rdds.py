@@ -15,7 +15,7 @@ def simplify_detect_results(results):
 def result_to_models(result):
     '''
     Function to extract the change_models dictionary from the CCD results
-    :param result: CCD result object
+    :param result: CCD result object (dict)
     :return: list
     '''
     #raise Exception("JSONING:{}".format(result))
