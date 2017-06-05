@@ -61,7 +61,7 @@ def test_pyccd_inputs():
                                  chips_fn=ma.chips,
                                  acquired='1980-01-01/2015-12-31')
     assert len(inputs) == 10000
-    assert isinstance(inputs, dict)
+    assert isinstance(inputs, tuple)
     assert isinstance(inputs[0], tuple)
     assert isinstance(inputs[0][0], tuple)
     assert isinstance(inputs[0][1], dict)
@@ -107,7 +107,6 @@ def test_chipid_rdd():
 '''
 
 
-
 def test_products_graph():
     sc = None
     try:
@@ -150,12 +149,10 @@ def test_products_graph():
                               sparkcontext=sc)
         graph = driver.products_graph(bc, sc)
 
-        assert graph['chipids']['rdd'].getNumPartitions() == 1
-        assert graph['chipids']['rdd'].count() == 1
-        assert graph['inputs']['rdd'].getNumPartitions() == 1
-        assert graph['inputs']['rdd'].count() == 1
-        assert graph['ccd']['rdd'].getNumPartitions() == 1
-        assert graph['ccd']['rdd'].count() == 1
+        assert graph['inputs'].getNumPartitions() == 1
+        assert graph['inputs'].count() == 1
+        assert graph['ccd'].getNumPartitions() == 1
+        assert graph['ccd'].count() == 1
     finally:
         if sc is not None:
             sc.stop()
