@@ -357,12 +357,12 @@ def init(acquired, bounds, clip, products, product_dates,
                               'specs_fn': specs_fn},
                              sparkcontext=sc)
 
-        fb.logger.info('Initializing product graph:\n{}'\
+        fb.logger.info('Initializing product graph:{}'\
                        .format({k:v.value for k,v in jobconf.items()}))
 
         graph = products_graph(jobconf, sc)
 
-        fb.logger.info('Product graph created:\n{}'\
+        fb.logger.info('Product graph created:{}'\
                        .format(graph.keys()))
 
         # product call graphs are created but not realized.  Do something with
