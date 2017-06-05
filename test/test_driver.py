@@ -92,21 +92,6 @@ def test_broadcast():
             sc.stop()
 
 
-'''
-def test_chipid_rdd():
-    sc = None
-    try:
-        sc = pyspark.SparkContext(appName="test_chipid_rdd")
-        data = (1, 2, 3)
-        rdd = driver.chipid_rdd(data, sc)
-        assert set(rdd.collect()) == set(data)
-        assert rdd.getNumPartitions() == 3
-    finally:
-        if sc is not None:
-            sc.stop()
-'''
-
-
 def test_products_graph():
     sc = None
     try:
@@ -131,8 +116,8 @@ def test_products_graph():
         sc = pyspark.SparkContext()
 
         bc = driver.broadcast({'acquired': '1982-01-01/2015-12-12',
-                               'chipids': bounds,
-                               'chipid_partitions': 1,
+                               'chip_ids': bounds,
+                               'initial_partitions': 1,
                                'chips_fn': ma.chips,
                                'chips_url': 'http://localhost',
                                'clip': True,
@@ -157,11 +142,59 @@ def test_products_graph():
         if sc is not None:
             sc.stop()
 
+    return {'inputs': inputs,
+            'ccd': ccd,
+            'lastchange': lastchange,
+            'changemag': changemag,
+            'seglength': seglength,
+            'curveqa': curveqa}
+
 
 def test_init():
-    #init(acquired, bounds, products, product_dates, clip, chips_fn=a.chips,
-    #     specs_fn=a.chip_specs, sparkcontext=fb.sparkcontext()):
-    pass
+    acquired = '1982-01-01/2015-12-12'
+    bounds = ((-1821585, 2891595),)
+    products = ['inputs', 'ccd', 'lastchange',
+                'changemag', 'seglength', 'curveqa']
+    product_dates = ['2014-12-12']
+    spec = ma.chip_specs(driver.chip_spec_urls(fb.SPECS_URL)['blues'])[0]
+
+    job = driver.init(acquired=acquired,
+                      bounds=bounds,
+                      products=products,
+                      product_dates=product_dates,
+                      clip=True,
+                      chips_fn=ma.chips,
+                      initial_partitions=2,
+                      product_partitions=2,
+                      specs_fn=ma.chip_specs,
+                      sparkcontext=pyspark.SparkContext)
+
+    jc = job['jobconf']
+    assert jc['acquired'].value == '1982-01-01/2015-12-12'
+    assert jc['chip_ids'].value == chip.ids(ulx=fb.minbox(bounds)['ulx'],
+                                            uly=fb.minbox(bounds)['uly'],
+                                            lrx=fb.minbox(bounds)['lrx'],
+                                            lry=fb.minbox(bounds)['lry'],
+                                            chip_spec=spec)
+    assert jc['chips_fn'].value == ma.chips
+    assert jc['chips_url'].value == fb.CHIPS_URL
+    assert jc['clip'].value == True
+    assert jc['clip_box'].value == fb.minbox(bounds)
+    assert jc['products'].value == products
+    assert jc['product_dates'].value == product_dates
+    assert jc['reference_spec'].value is not None
+    assert isinstance(jc['reference_spec'].value, dict)
+    assert jc['specs_url'].value == fb.SPECS_URL
+    assert jc['specs_fn'].value == ma.chip_specs
+    assert isinstance(jc['initial_partitions'].value, int)
+    assert isinstance(jc['product_partitions'].value, int)
+
+    assert isinstance(job['sparkcontext'].startTime, int)
+
+    def check_count(p):
+        assert p.count() == 1
+
+    [check_count(job['products'][p]) for p in products]
 
 
 def test_save():
