@@ -1,7 +1,7 @@
 import click as c
 from firebird import driver
 
-available_products = driver.products_graph().keys()
+products = driver.available_products()
 
 
 @c.group()
@@ -11,7 +11,7 @@ def fbcmd():
 
 @fbcmd.command()
 def products():
-    return available_products
+    return products
 
 
 @fbcmd.command()
@@ -28,7 +28,7 @@ def train(from_iwds, acquired, bounds, products, product_dates):
 @c.option('--clip', '-c', is_flag=True)
 @c.option('--directory', '-d')
 @c.option('--iwds', '-i', is_flag=True)
-@c.option('--products', '-p', type=c.Choice(available_products, multiple=True)
+@c.option('--products', '-p', type=c.Choice(products, multiple=True)
 @c.option('--product_dates', '-d', multiple=True)
 def save(acquired, bounds, clip, directory, iwds, product, product_dates):
     return driver.save(acquired=acquired,

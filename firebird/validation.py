@@ -23,7 +23,11 @@ def check_bounds(bounds):
 
 
 def check_products(products):
-    pass
+    available = fb.available_products()
+    p = set(products)
+    unavailable = p - p.intersection(available)
+    if unavailable:
+        raise Exception("Invalid product(s):{}".format(unavailable))
 
 
 def check_product_dates(product_dates):
