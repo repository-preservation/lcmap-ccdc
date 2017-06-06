@@ -55,7 +55,7 @@ def read(chip_x, chip_y, ulx, uly, lrx, lry, algorithm, datestring):
     pass
 
 
-def save(chip_x, chip_y, x, y, algorithm, result, result_ok):
+def save(chip_x, chip_y, x, y, algorithm, product_date, result):
     # format the results
     # coerce values
     # save to cassandra

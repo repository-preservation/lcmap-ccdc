@@ -28,14 +28,12 @@ CREATE TABLE IF NOT EXISTS lcmap_changes_local.products(
     x int,
     y int,
     product_date text,
+    production_date timestamp,
     result text,
     result_md5 text,
     result_error text,
-    result_produced timestamp,
-    inputs_url text STATIC,
-    inputs_md5 text STATIC,
-    job uuid,
-    PRIMARY KEY ((chip_x, chip_y, algorithm), x, y, product_date)
+    job_conf text STATIC,
+    PRIMARY KEY ((chip_x, chip_y, algorithm, product_date), x, y)
 )
 WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };

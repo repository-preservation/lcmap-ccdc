@@ -80,6 +80,15 @@ def ccd_params():
     return params
 
 
+def available_products():
+    '''
+    Products that can be requested from firebird.
+    :return: Set of available products
+    '''
+    return set(['inputs', 'ccd', 'lastchange', 'changemag', 'changedate',
+                'seglength', 'curveqa'])
+
+
 @functools.lru_cache(maxsize=128, typed=True)
 def minbox(points):
     ''' Returns the minimal bounding box necessary to contain points
@@ -107,6 +116,11 @@ def simplify_objects(obj):
     else:
         # should be a serializable type
         return obj
+
+
+def sort(iterable, key=None):
+    """Sorts an iterable"""
+    return sorted(iterable, key=key, reverse=False)
 
 
 def rsort(iterable, key=None):
@@ -152,3 +166,14 @@ def true(v):
     :return: Boolean
     '''
     return v is not None and (v == 1 or str(v).strip().lower() == 'true')
+
+
+def broadcast(context, sparkcontext):
+    '''
+    Sets read-only values on the cluster to make them available to cluster
+    operations.
+    :param context: dict of key: values to broadcast to the cluster
+    :param sparkcontext: An active spark context for the spark cluster
+    :return: dict of cluster references for each key: value pair
+    '''
+    return {k: sparkcontext.broadcast(v) for k,v in context.items()}
