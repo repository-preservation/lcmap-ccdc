@@ -44,7 +44,7 @@ def is_acquired(acquired):
 
 
 def sort(datestrings):
-    """ Formats the inputs date array.
+    """ Sorts sequences of datestrings.
     :param datestrings: A sequence of date strings
     :returns: A sequence of formatted and sorted ordinal dates
     """
@@ -52,7 +52,7 @@ def sort(datestrings):
 
 
 def rsort(datestrings):
-    """ Formats the inputs date array.
+    """ Reverse sorts sequences of datestrings.
     :param datestrings: A sequence of date strings
     :returns: A sequence of formatted and reverse sorted ordinal dates
     """

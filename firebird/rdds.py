@@ -144,7 +144,7 @@ def points_filter(value, bbox, enforce):
     return fb.false(enforce) or fits(value[0], bbox)
 
 
-def products(jobconf=None, sparkcontext=None):
+def products(jobconf, sparkcontext):
     """ Product graph for firebird products
     :param jobconf: dict of broadcast variables
     :param sparkcontext: Configured spark context
@@ -159,25 +159,25 @@ def products(jobconf=None, sparkcontext=None):
                              .setName("CHIP IDS")
 
     # query data and transform it into pyccd input format
-    _inputs = _chipids.map(partial(inputs.pyccd,
-                                   specs_url=jc['specs_url'].value,
-                                   specs_fn=jc['specs_fn'].value,
-                                   chips_url=jc['chips_url'].value,
-                                   chips_fn=jc['chips_fn'].value,
-                                   acquired=jc['acquired'].value,
-                                   queries=jc['chip_spec_queries'].value))\
-                                   .flatMap(lambda x: x)\
-                                   .filter(partial(points_filter,
-                                                   bbox=jc['clip_box'].value,
-                                                   enforce=jc['clip'].value))\
-                                   .map(lambda x: ((x[0][0], x[0][1],
-                                                    'inputs',
-                                                    jc['acquired'].value),
-                                                    x[1]))\
-                                   .repartition(jc['product_partitions'].value)\
-                                   .setName('PYCCD INPUTS')
+    _in = _chipids.map(partial(inputs.pyccd,
+                               specs_url=jc['specs_url'].value,
+                               specs_fn=jc['specs_fn'].value,
+                               chips_url=jc['chips_url'].value,
+                               chips_fn=jc['chips_fn'].value,
+                               acquired=jc['acquired'].value,
+                               queries=jc['chip_spec_queries'].value))\
+                               .flatMap(lambda x: x)\
+                               .filter(partial(points_filter,
+                                               bbox=jc['clip_box'].value,
+                                               enforce=jc['clip_box'].value))\
+                               .map(lambda x: ((x[0][0], x[0][1],
+                                                'inputs',
+                                                jc['acquired'].value),
+                                                x[1]))\
+                               .repartition(jc['product_partitions'].value)\
+                               .setName('PYCCD INPUTS')
 
-    _ccd = _inputs.map(pyccd).setName('CCD').persist()
+    _ccd = _in.map(pyccd).setName('CCD').persist()
 
     # cartesian will create an rdd that looks like:
     # (((x, y, algorithm, product_date_str), data), product_date)
@@ -189,7 +189,7 @@ def products(jobconf=None, sparkcontext=None):
     _seglength  = _ccd_dates.map(seglength).setName('SEGLENGTH')
     _curveqa    = _ccd_dates.map(curveqa).setName('CURVEQA')
 
-    return {'inputs': _inputs, 'ccd': _ccd, 'lastchange': _lastchange,
+    return {'inputs': _in, 'ccd': _ccd, 'lastchange': _lastchange,
             'changemag': _changemag, 'changedate': _changedate,
             'seglength': _seglength, 'curveqa': _curveqa}
 
