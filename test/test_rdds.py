@@ -72,7 +72,6 @@ def test_products():
                            'chips_fn': ma.chips,
                            'chip_spec_queries': queries,
                            'chips_url': 'http://localhost',
-                           'clip': True,
                            'clip_box': fb.minbox(bounds),
                            'products': ['ccd'],
                            'product_dates': ['2014-12-12'],
