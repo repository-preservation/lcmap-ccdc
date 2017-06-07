@@ -47,13 +47,13 @@ def to_pyccd(located_rods_by_spectra, dates):
     return tuple([(xy, add_dates(rainbow(xy=xy), dates)) for xy in locations])
 
 
-def sort(chips):
+def sort(chips, key=lambda c: c['acquired']):
     """
     Sorts all the returned chips by date.
     :param chips: sequence of chips
     :returns: sorted sequence of chips
     """
-    return tuple(fb.rsort(chips, key=lambda c: c['acquired']))
+    return tuple(fb.rsort(chips, key=key))
 
 
 def pyccd(point, specs_url, specs_fn, chips_url, chips_fn, acquired, queries):

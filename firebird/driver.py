@@ -35,28 +35,29 @@ def chip_spec_queries(url):
             'thermals': ''.join([url, '?q=tags:bt AND thermal AND NOT tirs2']),
             'quality':  ''.join([url, '?q=tags:pixelqa'])}
 
+#:param bounds: Upper left x coordinate of area to generate products
 
-def init(acquired, bounds, clip, products, product_dates,
+def init(acquired, chip_ids, products, product_dates, sparkcontext,
          chips_fn=a.chips,
          specs_fn=a.chip_specs,
+         clip_box=None,
          initial_partitions=fb.INITIAL_PARTITION_COUNT,
-         product_partitions=fb.PRODUCT_PARTITION_COUNT,
-         sparkcontext=fb.sparkcontext):
+         product_partitions=fb.PRODUCT_PARTITION_COUNT):
 
     '''
     Constructs product graph and prepares Spark for execution
     :param acquired: Date values for selecting input products.
                      ISO format, joined with '/': <start date>/<end date>.
-    :param bounds: Upper left x coordinate of area to generate products
-    :param clip: If True, filters out locations that do not fit within a minbox
-                 of the bounds.
+    :param chip_ids: Sequence of chip_ids (x, y)
+    :param clip_box: Clip outputs that only fit within the supplied box.  If
+                     None, no clipping is performed and full chips are produced.
     :param products: A sequence of product names to deliver
     :param product_dates:  A sequence of iso format product dates to deliver
     :param chips_fn: Function to return chips: chips(url, x, y, acquired, ubids)
     :param specs_fn: Function to return specs: chip_specs(query)
     :param initial_partitions: Number of partitions for initial query
     :param product_partitions: Number of partitions for product generation
-    :param sparkcontext: A function to create a SparkContext
+    :param sparkcontext: A SparkContext
     :return: True
     '''
     # right now we are accepting bounds.  The bounds may be a 1 to N points.
@@ -89,13 +90,11 @@ def init(acquired, bounds, clip, products, product_dates,
                         bounds=bounds,
                         products=products,
                         product_dates=product_dates,
-                        clip=clip,
+                        clip_box=clip_box,
                         chips_fn=chips_fn,
                         specs_fn=specs_fn)
 
     try:
-        sc = sparkcontext()
-
         # retrieve a chip spec so we can generate chip ids
         queries = chip_spec_queries(fb.SPECS_URL)
         spec = specs_fn(queries['blues'])[0]
@@ -110,16 +109,12 @@ def init(acquired, bounds, clip, products, product_dates,
         # everything from here down is an RDD/broadcast variable/cluster op.
         # Don't mix up driver memory locations and cluster memory locations
         jobconf = fb.broadcast({'acquired': acquired,
-                                'clip_box': fb.minbox(bounds),
-                                'chip_ids': chip.ids(ulx=fb.minbox(bounds)['ulx'],
-                                                     uly=fb.minbox(bounds)['uly'],
-                                                     lrx=fb.minbox(bounds)['lrx'],
-                                                     lry=fb.minbox(bounds)['lry'],
-                                                     chip_spec=spec),
+                                'clip_box': clip_box,
+                                'chip_ids': chip_ids,
                                 'chips_fn': chips_fn,
                                 'chip_spec_queries': queries,
                                 'chips_url': fb.CHIPS_URL,
-                                'clip': clip,
+                                'clip_box': clip_box,
                                 'initial_partitions': initial_partitions,
                                 'products': products,
                                 'product_dates': product_dates,
@@ -130,12 +125,12 @@ def init(acquired, bounds, clip, products, product_dates,
                                  'reference_spec': spec,
                                  'specs_url': fb.SPECS_URL,
                                  'specs_fn': specs_fn},
-                                sparkcontext=sc)
+                                sparkcontext=sparkcontext)
 
         fb.logger.info('Initializing product graph:{}'\
                        .format({k:v.value for k,v in jobconf.items()}))
 
-        graph = rdds.products(jobconf, sc)
+        graph = rdds.products(jobconf, sparkcontext)
 
         fb.logger.info('Product graph created:{}'\
                        .format(graph.keys()))
@@ -145,13 +140,44 @@ def init(acquired, bounds, clip, products, product_dates,
         # (example: if curveqa is requested, save it and it will compute)
         # TODO: how am i going to get a cassandra connection from each
         # without creating 10,000 connections?
-        return {'products': graph,
-                'jobconf': jobconf,
-                'sparkcontext': sc}
+        return {'products': graph, 'jobconf': jobconf}
 
     except Exception as e:
         fb.logger.info("Exception generating firebird products: {}".format(e))
         raise e
+
+
+def temp(bounds):
+    # fb.minbox(bounds)
+    spec = a.chip_specs(driver.chip_spec_queries(fb.CHIPS_URL))
+    ids = chip.ids(ulx=fb.minbox(bounds)['ulx'],
+                   uly=fb.minbox(bounds)['uly'],
+                   lrx=fb.minbox(bounds)['lrx'],
+                   lry=fb.minbox(bounds)['lry'],
+                   chip_spec=spec)
+
+
+def products():
+    pass
+
+
+def train():
+    pass
+
+
+def classify():
+    pass
+
+
+def download():
+    pass
+
+
+def save(products, product_dates, directory=None, iwds=False, sparkcontext=fb.sparkcontext):
+    sc = sparkcontext()
+
+    pass
+
 
 #def save(graph, directory, iwds, sparkcontext=fb.sparkcontext):
 #     try:
