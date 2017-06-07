@@ -20,7 +20,7 @@ def test_chip_spec_queries(url):
     def check(query):
         url = urllib.parse.urlparse(query)
         assert url.scheme
-        assert url.netloc
+        assert url.netlocs
     urls = driver.chip_spec_queries(url)
     [check(url) for url in urls.values()]
 
@@ -29,18 +29,19 @@ def test_init():
     sc = None
     try:
         acquired = '1982-01-01/2015-12-12'
-        bounds = ((-1821585, 2891595),)
+        chip_ids = ((-1821585, 2891595),)
+        clip_box = chip.ids(fb.minbox(chip_ids))
         products = ['inputs', 'ccd', 'lastchange',
                     'changemag', 'seglength', 'curveqa']
         product_dates = ['2014-12-12']
         spec = ma.chip_specs(driver.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
 
         job = driver.init(acquired=acquired,
-                          bounds=bounds,
                           products=products,
                           product_dates=product_dates,
-                          clip=True,
+                          clip_box=clip_box,
                           chips_fn=ma.chips,
+                          chip_ids=chip_ids,
                           initial_partitions=2,
                           product_partitions=2,
                           specs_fn=ma.chip_specs,

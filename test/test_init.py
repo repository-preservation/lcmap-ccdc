@@ -35,6 +35,7 @@ def test_broadcast():
                            'set': set([1, 2, 3]),
                            'tuple': tuple([1, 2, 3]),
                            'dict': dict({'a': 1}),
+                           'none': None,
                            'num': 3}, sparkcontext=sc)
 
         assert bc['a'].value == 'a'
@@ -44,6 +45,7 @@ def test_broadcast():
         assert bc['tuple'].value == (1, 2, 3)
         assert bc['dict'].value == {'a': 1}
         assert bc['num'].value == 3
+        assert bc['none'].value == None
     finally:
         if sc is not None:
             sc.stop()
