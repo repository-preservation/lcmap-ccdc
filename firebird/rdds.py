@@ -124,14 +124,14 @@ def curveqa(rdd):
             fp.curveqa(result_to_models(data), ord_date=date))
 
 
-def points_filter(value, bbox, enforce):
+def fits_in_box(value, bbox):
     '''
     Determines if a point value fits within a bounding box (edges inclusive)
     Useful as a filtering function with conditional enforcement.
+    If bbox is None then fits_in_box always returns True
 
     :param value: Tuple: ((x,y), (data))
     :param bbox: dict with keys: ulx, uly, lrx, lry
-    :param enforce: Boolean, whether to apply this function or not.
     :return: Boolean
     '''
     def fits(point, bbox):
@@ -141,7 +141,7 @@ def points_filter(value, bbox, enforce):
                float(y) >= float(bbox['lry']) and\
                float(y) <= float(bbox['uly'])
 
-    return fb.false(enforce) or fits(value[0], bbox)
+    return bbox is None or fits(value[0], bbox)
 
 
 def products(jobconf, sparkcontext):
@@ -167,9 +167,8 @@ def products(jobconf, sparkcontext):
                                acquired=jc['acquired'].value,
                                queries=jc['chip_spec_queries'].value))\
                                .flatMap(lambda x: x)\
-                               .filter(partial(points_filter,
-                                               bbox=jc['clip_box'].value,
-                                               enforce=jc['clip_box'].value))\
+                               .filter(partial(fits_in_box,
+                                               bbox=jc['clip_box'].value))\
                                .map(lambda x: ((x[0][0], x[0][1],
                                                 'inputs',
                                                 jc['acquired'].value),
@@ -196,6 +195,8 @@ def products(jobconf, sparkcontext):
 
 def train(product_graph, sparkcontext):
     # training_chipids()
+    # requires ancillary data such as DEM, trends, et. al.
+    # 
     # TODO: This might require switching to the dataframe api and the
     # spark cassandra connector, especially if we are going to train on results
     # that already exist in cassandra.  Don't implement this without a

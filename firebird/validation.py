@@ -38,9 +38,8 @@ def check_product_dates(product_dates):
     [check(d) for d in product_dates]
 
 
-def check_clip(clip):
-    if not fb.true(clip) or fb.false(clip):
-        raise Exception("Clip must be True or False")
+def check_clip_box(clip):
+    pass
 
 
 def check_chips_fn(chips_fn):
@@ -51,12 +50,11 @@ def check_specs_fn(specs_fn):
     pass
 
 
-def validate(acquired, bounds, products, product_dates, clip, chips_fn,
+def validate(acquired, products, product_dates, clip_box, chips_fn,
              specs_fn):
     check_acquired(acquired)
-    check_bounds(bounds)
     check_products(products)
     check_product_dates(product_dates)
-    check_clip(clip)
+    check_clip_box(clip_box)
     check_chips_fn(chips_fn)
     check_specs_fn(specs_fn)
