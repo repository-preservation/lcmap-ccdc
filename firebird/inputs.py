@@ -76,26 +76,25 @@ def pyccd(point, specs_url, specs_fn, chips_url, chips_fn, acquired, queries):
     """
     # create a partial function initialized with x, y and acquired since
     # those are static for this call to pyccd_rdd
-    #pchips = partial(a.chips, x=point[0], y=point[1], acquired=acquired)
     pchips = partial(chips_fn, x=point[0], y=point[1], acquired=acquired)
 
     # get all the specs, ubids, chips, intersecting dates and rods
     # keep track of the spectra they are associated with via dict key 'k'
-    #specs = {k: a.chip_specs(v) for k, v in chip_spec_urls(specs_url).items()}
     specs = {k: specs_fn(v) for k, v in queries.items()}
 
     ubids = {k: a.ubids(v) for k, v in specs.items()}
 
     chips = {k: sort(pchips(url=chips_url, ubids=u)) for k, u in ubids.items()}
 
-    dates = a.intersection(map(a.dates, [c for c in chips.values()]))
+    dstrings = a.intersection(map(a.dates, [c for c in chips.values()]))
+    dates = fb.rsort(map(fdates.to_ordinal, dstrings))
 
     bspecs = specs['blues']
 
     locs = chip.locations(*chip.snap(*point, bspecs[0]), bspecs[0])
 
     add_loc = partial(a.locrods, locs)
-    rods = {k: add_loc(to_rod(v, dates, specs[k])) for k, v in chips.items()}
+    rods = {k: add_loc(to_rod(v, dstrings, specs[k])) for k, v in chips.items()}
     del chips
 
-    return to_pyccd(rods, fdates.rsort(dates))
+    return to_pyccd(rods, dates)

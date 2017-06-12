@@ -20,7 +20,7 @@ def test_chip_spec_queries(url):
     def check(query):
         url = urllib.parse.urlparse(query)
         assert url.scheme
-        assert url.netlocs
+        assert url.netloc
     urls = driver.chip_spec_queries(url)
     [check(url) for url in urls.values()]
 
@@ -28,38 +28,37 @@ def test_chip_spec_queries(url):
 def test_init():
     sc = None
     try:
+        sc = pyspark.SparkContext(appName="test_driver")
+        spec = ma.chip_specs(driver.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
         acquired = '1982-01-01/2015-12-12'
         chip_ids = ((-1821585, 2891595),)
-        clip_box = chip.ids(fb.minbox(chip_ids))
+        clip_box = fb.minbox(chip_ids)
         products = ['inputs', 'ccd', 'lastchange',
                     'changemag', 'seglength', 'curveqa']
         product_dates = ['2014-12-12']
-        spec = ma.chip_specs(driver.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
 
         job = driver.init(acquired=acquired,
+                          chip_ids=chip_ids,
                           products=products,
                           product_dates=product_dates,
-                          clip_box=clip_box,
+                          sparkcontext=sc,
                           chips_fn=ma.chips,
-                          chip_ids=chip_ids,
+                          specs_fn=ma.chip_specs,
+                          clip_box=clip_box,
                           initial_partitions=2,
                           product_partitions=2,
-                          specs_fn=ma.chip_specs,
-                          sparkcontext=pyspark.SparkContext)
+                          )
 
         jc = job['jobconf']
-        sc = job['sparkcontext']
 
         assert jc['acquired'].value == '1982-01-01/2015-12-12'
-        assert jc['chip_ids'].value == chip.ids(ulx=fb.minbox(bounds)['ulx'],
-                                                uly=fb.minbox(bounds)['uly'],
-                                                lrx=fb.minbox(bounds)['lrx'],
-                                                lry=fb.minbox(bounds)['lry'],
-                                                chip_spec=spec)
+        assert jc['chip_ids'].value == chip_ids
         assert jc['chips_fn'].value == ma.chips
         assert jc['chips_url'].value == fb.CHIPS_URL
-        assert jc['clip'].value == True
-        assert jc['clip_box'].value == fb.minbox(bounds)
+        assert jc['clip_box'].value['ulx'] == clip_box['ulx']
+        assert jc['clip_box'].value['uly'] == clip_box['uly']
+        assert jc['clip_box'].value['lrx'] == clip_box['lrx']
+        assert jc['clip_box'].value['lry'] == clip_box['lry']
         assert jc['products'].value == products
         assert jc['product_dates'].value == product_dates
         assert jc['reference_spec'].value is not None
@@ -68,8 +67,6 @@ def test_init():
         assert jc['specs_fn'].value == ma.chip_specs
         assert isinstance(jc['initial_partitions'].value, int)
         assert isinstance(jc['product_partitions'].value, int)
-
-        assert isinstance(job['sparkcontext'].startTime, int)
 
         def check_count(p):
             assert p.count() == 1

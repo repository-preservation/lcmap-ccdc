@@ -176,4 +176,4 @@ def broadcast(context, sparkcontext):
     :param sparkcontext: An active spark context for the spark cluster
     :return: dict of cluster references for each key: value pair
     '''
-    return {k: sparkcontext.broadcast(v) for k,v in context.items()}
+    return {k: sparkcontext.broadcast(value=v) for k,v in context.items()}

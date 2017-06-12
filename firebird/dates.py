@@ -1,7 +1,5 @@
 from dateutil import parser
-
 import firebird as fb
-
 import re
 
 
@@ -41,19 +39,3 @@ def is_acquired(acquired):
     # 1980-01-01/2015-12-31
     regex = '^[0-9]{4}-[0-9]{2}-[0-9]{2}\/[0-9]{4}-[0-9]{2}-[0-9]{2}$'
     return bool(re.match(regex, acquired))
-
-
-def sort(datestrings):
-    """ Sorts sequences of datestrings.
-    :param datestrings: A sequence of date strings
-    :returns: A sequence of formatted and sorted ordinal dates
-    """
-    return fb.sort([to_ordinal(d) for d in datestrings])
-
-
-def rsort(datestrings):
-    """ Reverse sorts sequences of datestrings.
-    :param datestrings: A sequence of date strings
-    :returns: A sequence of formatted and reverse sorted ordinal dates
-    """
-    return fb.rsort([to_ordinal(d) for d in datestrings])

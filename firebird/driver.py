@@ -87,7 +87,6 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
 
     # raises appropriate exceptions on error
     validation.validate(acquired=acquired,
-                        bounds=bounds,
                         products=products,
                         product_dates=product_dates,
                         clip_box=clip_box,
@@ -108,24 +107,25 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
         # in memory.
         # everything from here down is an RDD/broadcast variable/cluster op.
         # Don't mix up driver memory locations and cluster memory locations
-        jobconf = fb.broadcast({'acquired': acquired,
-                                'clip_box': clip_box,
-                                'chip_ids': chip_ids,
-                                'chips_fn': chips_fn,
-                                'chip_spec_queries': queries,
-                                'chips_url': fb.CHIPS_URL,
-                                'clip_box': clip_box,
-                                'initial_partitions': initial_partitions,
-                                'products': products,
-                                'product_dates': product_dates,
-                                'product_partitions': product_partitions,
-                                 # should be able to pull this from the
-                                 # specs_fn and specs_url but this lets us
-                                 # do it once without beating aardvark up.
-                                 'reference_spec': spec,
-                                 'specs_url': fb.SPECS_URL,
-                                 'specs_fn': specs_fn},
-                                sparkcontext=sparkcontext)
+        jobconf = fb.broadcast(
+                      context={'acquired': acquired,
+                               'clip_box': clip_box,
+                               'chip_ids': chip_ids,
+                               'chips_fn': chips_fn,
+                               'chip_spec_queries': queries,
+                               'chips_url': fb.CHIPS_URL,
+                               'clip_box': clip_box,
+                               'initial_partitions': initial_partitions,
+                               'products': products,
+                               'product_dates': product_dates,
+                               'product_partitions': product_partitions,
+                                # should be able to pull this from the
+                                # specs_fn and specs_url but this lets us
+                                # do it once without beating aardvark up.
+                                'reference_spec': spec,
+                                'specs_url': fb.SPECS_URL,
+                                'specs_fn': specs_fn},
+                      sparkcontext=sparkcontext)
 
         fb.logger.info('Initializing product graph:{}'\
                        .format({k:v.value for k,v in jobconf.items()}))
