@@ -1,16 +1,60 @@
 from firebird import dates as fd
 from firebird import inputs
+from firebird import functions as f
 from firebird import products as fp
 from functools import partial
+from functools import wraps
 import ccd
 import firebird as fb
+
+
+# TODO: try/except calls to run products in product functions.
+
+def algorithm(name, version):
+    '''
+    Standardizes algorithm name and version representation.
+    :param name: Name of algorithm
+    :param version: Version of algorithm
+    :return: name_version
+    '''
+    return '{}_{}'.format(name, version)
+
+
+def e(ver, xidx, yidx, eidx, didx):
+    '''
+    Intercepts calls to rdd functions, checks for previous errors and returns
+    a default error message for the function rather than executing it.
+    :param ver:  Version of the wrapped function.  Included in resulting RDD
+    :param xidx: Index of the x coordinate in the input RDD
+    :param yidx: Index of the y coordinate in the input RDD
+    :param eidx: Index of the errors element in the input RDD
+    :param didx: Index of the datestr in the input RDD which will be included
+                  in the output RDD.
+    :return: Either a properly formatted RDD tuple or the result of executing
+             the RDD function.
+    '''
+    def decorator(rdd):
+        @wraps(f)
+        def wrapper(rdd):
+            err = f.extract(rdd, eidx)
+            if err is not None:
+                x = f.extract(rdd, xidx)
+                y = f.extract(rdd, yidx)
+                d = f.extract(rdd, didx)
+                algname = algorithm(f.__name__, algversion)
+                err = 'Aborted due to error in input RDD:{}'.format(err)
+                # return properly formatted RDD with no result and an error
+                return ((x, y, algname, d), None, err)
+            else:
+                return f(rdd)
+     return wrapper
 
 
 def simplify_detect_results(results):
     ''' Convert child objects inside CCD results from NamedTuples to dicts '''
     output = dict()
     for key in results.keys():
-        output[key] = fb.simplify_objects(results[key])
+        output[key] = f.simplify_objects(results[key])
     return output
 
 
@@ -36,6 +80,7 @@ def pyccd(rdd):
     y = rdd[0][1]
     acquired = rdd[0][3]
     data = rdd[1]
+    #  errors = rdd[2]
     try:
         results = ccd.detect(dates=data['dates'],
                              blues=data['blues'],
@@ -47,58 +92,66 @@ def pyccd(rdd):
                              thermals=data['thermals'],
                              quality=data['quality'],
                              params=fb.ccd_params())
-        return ((x, y, ccd.algorithm, acquired), results)
-    except Exception as e:
-        fb.logger.error("Exception running ccd.detect: {}".format(e))
+    except Exception as errors:
+        fb.logger.error("Exception running ccd.detect: {}".format(errors))
+        return ((x, y, ccd.algorithm, acquired), None, errors)
+    else:
+        return ((x, y, ccd.algorithm, acquired), results, None)
 
 
+@e(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
 def lastchange(rdd):
     '''
     Create lastchange product
-    :param rdd: (((x, y, algorithm, acquired), data), product_date)
+    :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
     :return: ((x, y, algorithm, result))
     '''
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
     date = fd.to_ordinal(rdd[1])
-    return ((x, y, 'lastchange-{}'.format(fp.version), rdd[1]),
+    alg = algorithm(inspect.stack()[0][3], fp.version)
+    return ((x, y, alg, rdd[1]),
             fp.lastchange(result_to_models(data), ord_date=date))
 
 
+@e(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
 def changemag(rdd):
     '''
     Create changemag product
-    :param rdd: (((x, y, algorithm, acquired), data), product_date)
+    :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
     :return: ((x, y, algorithm, result))
     '''
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
     date = fd.to_ordinal(rdd[1])
-
-    return ((x, y, 'changemag-{}'.format(fp.version), rdd[1]),
+    alg = algorithm(inspect.stack()[0][3], fp.version)
+    return ((x, y, alg, rdd[1]),
             fp.changemag(result_to_models(data), ord_date=date))
 
 
+@e(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
 def changedate(rdd):
     '''
     Create changedate product
-    :param rdd: (((x, y, algorithm, acquired), data), product_date)
+    :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
     :return: ((x, y, algorithm, result))
     '''
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
     date = fd.to_ordinal(rdd[1])
-    return ((x, y, 'changedate-{}'.format(fp.version), rdd[1]),
+    alg = algorithm(inspect.stack()[0][3], fp.version)
+    return ((x, y, alg, rdd[1]),
             fp.changedate(result_to_models(data), ord_date=date))
 
 
+@e(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
 def seglength(rdd):
     '''
     Create seglength product
-    :param rdd: (((x, y, algorithm, acquired), data), product_date)
+    :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
     :return: ((x, y, algorithm, result))
     '''
     x = rdd[0][0][0]
@@ -106,21 +159,24 @@ def seglength(rdd):
     data = rdd[0][1]
     date = fd.to_ordinal(rdd[1])
     bot = fd.to_ordinal(fd.startdate(rdd[0][0][3]))
-    return ((x, y, 'seglength-{}'.format(fp.version), rdd[1]),
+    alg = algorithm(inspect.stack()[0][3], fp.version)
+    return ((x, y, alg, rdd[1]),
             fp.seglength(result_to_models(data), ord_date=date, bot=bot))
 
 
+@e(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
 def curveqa(rdd):
     '''
     Create curveqa product
-    :param rdd: (((x, y, algorithm, acquired), data), product_date)
+    :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
     :return: ((x, y, algorithm, result))
     '''
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
     date = fd.to_ordinal(rdd[1])
-    return ((x, y, 'curveqa-{}'.format(fp.version), rdd[1]),
+    alg = algorithm(inspect.stack()[0][3], fp.version)
+    return ((x, y, alg, rdd[1]),
             fp.curveqa(result_to_models(data), ord_date=date))
 
 
@@ -135,11 +191,11 @@ def fits_in_box(value, bbox):
     :return: Boolean
     '''
     def fits(point, bbox):
-        x,y = point
-        return float(x) >= float(bbox['ulx']) and\
-               float(x) <= float(bbox['lrx']) and\
-               float(y) >= float(bbox['lry']) and\
-               float(y) <= float(bbox['uly'])
+        x, y = point
+        return (float(x) >= float(bbox['ulx']) and
+                float(x) <= float(bbox['lrx']) and
+                float(y) >= float(bbox['lry']) and
+                float(y) <= float(bbox['uly']))
 
     return bbox is None or fits(value[0], bbox)
 
@@ -156,7 +212,7 @@ def products(jobconf, sparkcontext):
 
     _chipids = sc.parallelize(jc['chip_ids'].value,
                               jc['initial_partitions'].value)\
-                             .setName("CHIP IDS")
+                              .setName("CHIP IDS")
 
     # query data and transform it into pyccd input format
     _in = _chipids.map(partial(inputs.pyccd,
@@ -174,29 +230,29 @@ def products(jobconf, sparkcontext):
                                                 jc['acquired'].value),
                                                 x[1]))\
                                .repartition(jc['product_partitions'].value)\
-                               .setName('PYCCD INPUTS')
+                               .setName('pyccd_inputs')
 
-    _ccd = _in.map(pyccd).setName('CCD').persist()
+    _ccd = _in.map(pyccd).setName(ccd.algorithm).persist()
 
     # cartesian will create an rdd that looks like:
     # (((x, y, algorithm, product_date_str), data), product_date)
-    _ccd_dates  = _ccd.cartesian(sc.parallelize(jc['product_dates'].value))
+    _ccd_dates = _ccd.cartesian(sc.parallelize(jc['product_dates'].value))
 
-    _lastchange = _ccd_dates.map(lastchange).setName('LASTCHANGE')
-    _changemag  = _ccd_dates.map(changemag).setName('CHANGEMAG')
-    _changedate = _ccd_dates.map(changedate).setName('CHANGEDATE')
-    _seglength  = _ccd_dates.map(seglength).setName('SEGLENGTH')
-    _curveqa    = _ccd_dates.map(curveqa).setName('CURVEQA')
+    _lc = _ccd_dates.map(lastchange).setName('lastchange_v1')
+    _cm = _ccd_dates.map(changemag).setName('changemag_v1')
+    _cd = _ccd_dates.map(changedate).setName('changedate_v1')
+    _sl = _ccd_dates.map(seglength).setName('seglength_v1')
+    _qa = _ccd_dates.map(curveqa).setName('curveqa_v1')
 
-    return {'inputs': _in, 'ccd': _ccd, 'lastchange': _lastchange,
-            'changemag': _changemag, 'changedate': _changedate,
-            'seglength': _seglength, 'curveqa': _curveqa}
+    return {'inputs': _in, 'ccd': _ccd, 'lastchange': _lc,
+            'changemag': _cm, 'changedate': _cd,
+            'seglength': _sl, 'curveqa': _qa}
 
 
 def train(product_graph, sparkcontext):
     # training_chipids()
     # requires ancillary data such as DEM, trends, et. al.
-    # 
+    #
     # TODO: This might require switching to the dataframe api and the
     # spark cassandra connector, especially if we are going to train on results
     # that already exist in cassandra.  Don't implement this without a

@@ -15,6 +15,8 @@ Apache Spark based product generation for LCMAP.
 
 * Install Conda (works with miniconda3 version 4.3.16)
 
+* Install sbt - http://www.scala-sbt.org/0.13/docs/Installing-sbt-on-Linux.html
+
 * Create and activate a conda environment
 ```bash
    $ conda config --add channels conda-forge
@@ -22,7 +24,7 @@ Apache Spark based product generation for LCMAP.
    $ source activate firebird
 ```
 
-* Clone this repo, install deps and submodules
+* Clone this repo, install deps
 ```bash
    $ git clone git@github.com:usgs-eros/lcmap-firebird
    $ cd lcmap-firebird
@@ -76,17 +78,3 @@ Configuration via environment variables
 | AARDVARK_TILESPECS | '/landsat/tile-specs' | Tile-specs url |
 | BEGINNING_OF_TIME | 723546 | Ordinal date for use in seglength product calculation |
 | CCD_QA_BITPACKED  | True | Flag for indicating if Landsat Quality data is bitpacked or not |
-
-
-* Command line
-```bash
-```
-
-* Jupyter
-```bash
-```
-
-## Implementation Wants
-* Utilize xarray for input handling
-* All code should be written according to functional principles... immutability, purity, substitution, statelessness.
-* Code should be written according to functional principles wherever possible... immutability, purity, substitution, statelessness.

@@ -82,6 +82,7 @@ def chips(url, x, y, acquired, ubids):
                                            'acquired': acquired,
                                            'ubid': ubids}).json())
 
+
 def dates(chips):
     """
     Dates for a sequence of chips
@@ -89,19 +90,6 @@ def dates(chips):
     :returns: sequence of dates
     """
     return tuple([c['acquired'] for c in chips])
-
-
-def intersection(items):
-    """
-    Returns the intersecting set contained in items
-    :param items: Two dimensional sequence of items
-    :returns: Intersecting set of items
-    :example:
-    >>> items = [[1, 2, 3], [2, 3, 4], [3, 4, 5]]
-    >>> intersection(items)
-    {3}
-    """
-    return set.intersection(*(map(lambda x: set(x), items)))
 
 
 def trim(chips, dates):
@@ -161,7 +149,7 @@ def rods(chips):
            [[ 17, 27, 37], [ 18, 28, 38], [ 19, 29, 39]]])
     """
     master = np.conj([c['data'] for c in chips])
-    return np.hstack(master.T).reshape(*master[0].shape,-1)
+    return np.hstack(master.T).reshape(*master[0].shape, -1)
 
 
 def locrods(locations, rods):
@@ -223,4 +211,4 @@ def locrods(locations, rods):
     """
     flat_locs = locations.reshape(locations.shape[0] * locations.shape[1], -1)
     flat_rods = rods.reshape(rods.shape[0] * rods.shape[1], -1)
-    return {tuple(k):v for k,v in zip(flat_locs, flat_rods)}
+    return {tuple(k): v for k, v in zip(flat_locs, flat_rods)}
