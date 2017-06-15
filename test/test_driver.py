@@ -1,6 +1,7 @@
 from firebird import aardvark as a
 from firebird import chip
 from firebird import driver
+from firebird import functions as f
 from hypothesis import given
 from test.mocks import aardvark as ma
 
@@ -32,7 +33,7 @@ def test_init():
         spec = ma.chip_specs(driver.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
         acquired = '1982-01-01/2015-12-12'
         chip_ids = ((-1821585, 2891595),)
-        clip_box = fb.minbox(chip_ids)
+        clip_box = f.minbox(chip_ids)
         products = ['inputs', 'ccd', 'lastchange',
                     'changemag', 'seglength', 'curveqa']
         product_dates = ['2014-12-12']

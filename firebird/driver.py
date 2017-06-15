@@ -1,14 +1,15 @@
 from firebird import aardvark as a
+from firebird import chip
 from firebird import dates as fd
 from firebird import datastore as ds
-from firebird import chip
+from firebird import functions as f
 from firebird import rdds
 from firebird import validation
 from functools import partial
 
 import firebird as fb
 import hashlib
-import json
+
 
 def chip_spec_queries(url):
     """
@@ -35,7 +36,6 @@ def chip_spec_queries(url):
             'thermals': ''.join([url, '?q=tags:bt AND thermal AND NOT tirs2']),
             'quality':  ''.join([url, '?q=tags:pixelqa'])}
 
-#:param bounds: Upper left x coordinate of area to generate products
 
 def init(acquired, chip_ids, products, product_dates, sparkcontext,
          chips_fn=a.chips,
@@ -50,11 +50,11 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
                      ISO format, joined with '/': <start date>/<end date>.
     :param chip_ids: Sequence of chip_ids (x, y)
     :param clip_box: Clip outputs that only fit within the supplied box.  If
-                     None, no clipping is performed and full chips are produced.
+                     None, no clipping is performed and full chips are produced
     :param products: A sequence of product names to deliver
     :param product_dates:  A sequence of iso format product dates to deliver
-    :param chips_fn: Function to return chips: chips(url, x, y, acquired, ubids)
-    :param specs_fn: Function to return specs: chip_specs(query)
+    :param chips_fn: func to return chips: chips(url, x, y, acquired, ubids)
+    :param specs_fn: func to return specs: chip_specs(query)
     :param initial_partitions: Number of partitions for initial query
     :param product_partitions: Number of partitions for product generation
     :param sparkcontext: A SparkContext
@@ -98,7 +98,6 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
         queries = chip_spec_queries(fb.SPECS_URL)
         spec = specs_fn(queries['blues'])[0]
 
-
         # put the values we need on the cluster to make them available
         # to distributed functions.  They're in a dictionary to help
         # differentiate variables that have not been broadcast and to make
@@ -107,32 +106,32 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
         # in memory.
         # everything from here down is an RDD/broadcast variable/cluster op.
         # Don't mix up driver memory locations and cluster memory locations
-        jobconf = fb.broadcast(
-                      context={'acquired': acquired,
-                               'clip_box': clip_box,
-                               'chip_ids': chip_ids,
-                               'chips_fn': chips_fn,
-                               'chip_spec_queries': queries,
-                               'chips_url': fb.CHIPS_URL,
-                               'clip_box': clip_box,
-                               'initial_partitions': initial_partitions,
-                               'products': products,
-                               'product_dates': product_dates,
-                               'product_partitions': product_partitions,
-                                # should be able to pull this from the
-                                # specs_fn and specs_url but this lets us
-                                # do it once without beating aardvark up.
-                                'reference_spec': spec,
-                                'specs_url': fb.SPECS_URL,
-                                'specs_fn': specs_fn},
-                      sparkcontext=sparkcontext)
+        jobconf = f.broadcast(
+                     context={'acquired': acquired,
+                              'clip_box': clip_box,
+                              'chip_ids': chip_ids,
+                              'chips_fn': chips_fn,
+                              'chip_spec_queries': queries,
+                              'chips_url': fb.CHIPS_URL,
+                              'clip_box': clip_box,
+                              'initial_partitions': initial_partitions,
+                              'products': products,
+                              'product_dates': product_dates,
+                              'product_partitions': product_partitions,
+                              # should be able to pull this from the
+                              # specs_fn and specs_url but this lets us
+                              # do it once without beating aardvark up.
+                              'reference_spec': spec,
+                              'specs_url': fb.SPECS_URL,
+                              'specs_fn': specs_fn},
+                     sparkcontext=sparkcontext)
 
-        fb.logger.info('Initializing product graph:{}'\
-                       .format({k:v.value for k,v in jobconf.items()}))
+        fb.logger.info('Initializing product graph:{}'
+                       .format({k: v.value for k, v in jobconf.items()}))
 
         graph = rdds.products(jobconf, sparkcontext)
 
-        fb.logger.info('Product graph created:{}'\
+        fb.logger.info('Product graph created:{}'
                        .format(graph.keys()))
 
         # product call graphs are created but not realized.  Do something with
