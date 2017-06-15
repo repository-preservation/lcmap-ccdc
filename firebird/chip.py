@@ -156,11 +156,11 @@ def locations(startx, starty, chip_spec):
     :param starty: y coordinate (latitude) of upper left pixel of chip
     :returns: A two (three) dimensional numpy array of [x, y] coordinates
     """
-    cw = chip_spec['data_shape'][0] # 100
-    ch = chip_spec['data_shape'][1] # 100
+    cw = chip_spec['data_shape'][0]  # 100
+    ch = chip_spec['data_shape'][1]  # 100
 
-    pw = chip_spec['pixel_x'] # 30 meters
-    ph = chip_spec['pixel_y'] # -30 meters
+    pw = chip_spec['pixel_x']  # 30 meters
+    ph = chip_spec['pixel_y']  # -30 meters
 
     # determine ends
     endx = startx + cw * pw

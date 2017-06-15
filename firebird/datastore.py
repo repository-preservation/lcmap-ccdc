@@ -1,17 +1,46 @@
+from cassandra import ConsistencyLevel
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 from datetime import datetime
 import firebird as fb
 
 
+def pk(x, y, chip_spec):
+    '''
+    Generates a primary key for a given x, y and chip_spec
+    :param x: X coordinate
+    :param y: Y coordinate
+    :chip_spec: Chip spec representing the geometry of x and y
+    :return: Tuple of values representing a primary key
+    '''
+    chip_x, chip_y = chip.snap(x, y, chip_spec)
+    return (chip_x, chip_y, x, y)
+
+
+def tablename(algorithm, version):
+    return '{}-{}'.format(algorithm, version)
+
+
 def connect():
-    '''Creates a connection to a Cassandra cluster.'''
+    '''Creates a session on a Cassandra cluster.'''
     auth_provider = PlainTextAuthProvider(username=fb.CASSANDRA_USER,
                                           password=fb.CASSANDRA_PASS)
     cluster = Cluster(fb.CASSANDRA_CONTACT_POINTS.split(','),
                       auth_provider=auth_provider)
 
-    return cluster.connect()
+    return cluster.connect(fb.CASSANDRA_KEYSPACE)
+
+
+def prepare(statement, session):
+    '''
+    Prepares a statement and configures proper consistency level.
+    :param statement: The statement to prepare
+    :param session: The session to prepare the statement on
+    :return: A prepared statement ready for arguments
+    '''
+    stmt = session.prepare(statement)
+    stmt.consistency_level = ConsistencyLevel.QUORUM
+    return stmt
 
 
 RESULT_INPUT = {'chip_x': int(),
@@ -29,11 +58,11 @@ INSERT_CQL = "INSERT INTO {}.{} (y, chip_x, chip_y, algorithm, x, result_ok, inp
              "result_md5) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)".format(fb.CASSANDRA_KEYSPACE, fb.CASSANDRA_RESULTS_TABLE)
 
 
-def execute(statement, args, connection):
+def execute(statement, args, session):
     try:
         for _ag in args:
-            prepared = connection.prepare(statement)
-            connection.execute(prepared, _ag)
+            prepared = session.prepare(statement)
+            session.execute(prepared, _ag)
     except Exception as e:
         raise e
     return True

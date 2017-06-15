@@ -20,6 +20,7 @@ from urllib.parse import urlparse
 import firebird as fb
 from firebird import aardvark as a
 from firebird import driver as d
+from firebird import functions as f
 from firebird import files
 
 CHIPS_DIR = test.data_config()['chips_dir']
@@ -36,7 +37,7 @@ def chips(spectra, root_dir=CHIPS_DIR):
     path = ''.join([root_dir, os.sep, '*', spectra, '*'])
     filenames = glob.glob(path)
     chips = [json.loads(files.read(filename)) for filename in filenames]
-    return tuple(fb.flatten(chips))
+    return tuple(f.flatten(chips))
 
 
 def chip_specs(spectra, root_dir=SPECS_DIR):
@@ -74,7 +75,7 @@ def spectra_index(specs):
     def rekey_by_ubid(chip_spec, spectra):
         return dict((ubid, spectra) for ubid in a.ubids(chip_spec))
 
-    return fb.flattend([rekey_by_ubid(cs, s) for s, cs in specs.items()])
+    return f.flattend([rekey_by_ubid(cs, s) for s, cs in specs.items()])
 
 
 def spectra_from_specfile(filename):

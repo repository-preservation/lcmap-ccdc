@@ -1,5 +1,6 @@
 from collections import namedtuple
 from firebird import driver
+from firebird import functions as f
 from firebird import rdds
 from test.mocks import aardvark as ma
 import firebird as fb
@@ -66,23 +67,23 @@ def test_products():
 
         sc = pyspark.SparkContext()
 
-        bc = fb.broadcast({'acquired': '1982-01-01/2015-12-12',
-                           'chip_ids': bounds,
-                           'initial_partitions': 1,
-                           'chips_fn': ma.chips,
-                           'chip_spec_queries': queries,
-                           'chips_url': 'http://localhost',
-                           'clip_box': fb.minbox(bounds),
-                           'products': ['ccd'],
-                           'product_dates': ['2014-12-12'],
-                           'product_partitions': 1,
-                           # should be able to pull this from the
-                           # specs_fn and specs_url but this lets us
-                           # do it once without beating aardvark up.
-                           'reference_spec': spec,
-                           'specs_url': 'http://localhost',
-                           'specs_fn': ma.chip_specs},
-                          sparkcontext=sc)
+        bc = f.broadcast({'acquired': '1982-01-01/2015-12-12',
+                          'chip_ids': bounds,
+                          'initial_partitions': 1,
+                          'chips_fn': ma.chips,
+                          'chip_spec_queries': queries,
+                          'chips_url': 'http://localhost',
+                          'clip_box': f.minbox(bounds),
+                          'products': ['ccd'],
+                          'product_dates': ['2014-12-12'],
+                          'product_partitions': 1,
+                          # should be able to pull this from the
+                          # specs_fn and specs_url but this lets us
+                          # do it once without beating aardvark up.
+                          'reference_spec': spec,
+                          'specs_url': 'http://localhost',
+                          'specs_fn': ma.chip_specs},
+                         sparkcontext=sc)
         graph = rdds.products(bc, sc)
 
         assert graph['inputs'].getNumPartitions() == 1
