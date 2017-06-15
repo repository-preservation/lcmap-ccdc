@@ -1,6 +1,7 @@
 from firebird import aardvark as a
 from firebird import chip
 from firebird import dates as fdates
+from firebird import functions as f
 from functools import partial
 import firebird as fb
 
@@ -53,7 +54,7 @@ def sort(chips, key=lambda c: c['acquired']):
     :param chips: sequence of chips
     :returns: sorted sequence of chips
     """
-    return tuple(fb.rsort(chips, key=key))
+    return tuple(f.rsort(chips, key=key))
 
 
 def pyccd(point, specs_url, specs_fn, chips_url, chips_fn, acquired, queries):
@@ -86,8 +87,8 @@ def pyccd(point, specs_url, specs_fn, chips_url, chips_fn, acquired, queries):
 
     chips = {k: sort(pchips(url=chips_url, ubids=u)) for k, u in ubids.items()}
 
-    dstrings = a.intersection(map(a.dates, [c for c in chips.values()]))
-    dates = fb.rsort(map(fdates.to_ordinal, dstrings))
+    dstrings = f.intersection(map(a.dates, [c for c in chips.values()]))
+    dates = f.rsort(map(fdates.to_ordinal, dstrings))
 
     bspecs = specs['blues']
 
