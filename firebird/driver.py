@@ -12,8 +12,7 @@ import hashlib
 
 
 def chip_spec_queries(url):
-    """
-    A map of pyccd spectra to chip-spec queries
+    """A map of pyccd spectra to chip-spec queries
     :param url: full url (http://host:port/context) for chip-spec endpoint
     :return: map of spectra to chip spec queries
     :example:
@@ -44,8 +43,7 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
          initial_partitions=fb.INITIAL_PARTITION_COUNT,
          product_partitions=fb.PRODUCT_PARTITION_COUNT):
 
-    '''
-    Constructs product graph and prepares Spark for execution
+    """Constructs product graph and prepares Spark for execution
     :param acquired: Date values for selecting input products.
                      ISO format, joined with '/': <start date>/<end date>.
     :param chip_ids: Sequence of chip_ids (x, y)
@@ -59,7 +57,7 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
     :param product_partitions: Number of partitions for product generation
     :param sparkcontext: A SparkContext
     :return: True
-    '''
+    """
     # right now we are accepting bounds.  The bounds may be a 1 to N points.
     # This allows us to request any arbitrary area to process, even polygons.
     # We minbox the geometry and run that.  If clip is True we also don't

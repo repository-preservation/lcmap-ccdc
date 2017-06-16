@@ -7,13 +7,12 @@ import firebird as fb
 
 
 def to_rod(chips, dates, specs):
-    """ Function to convert chips to rods.
-        Exists primarily to clean up syntax """
+    """Function to convert chips to rods. Exists primarily to clean up syntax"""
     return a.rods(a.to_numpy(a.trim(chips, dates), a.byubid(specs)))
 
 
 def to_pyccd(located_rods_by_spectra, dates):
-    """ Organizes rods by xy instead of by spectrum
+    """Organizes rods by xy instead of by spectrum
     :param located_rods_by_spectra: dict of dicts, keyed first by spectra
                                     then by coordinate
     :returns: List of tuples
@@ -49,8 +48,7 @@ def to_pyccd(located_rods_by_spectra, dates):
 
 
 def sort(chips, key=lambda c: c['acquired']):
-    """
-    Sorts all the returned chips by date.
+    """Sorts all the returned chips by date.
     :param chips: sequence of chips
     :returns: sorted sequence of chips
     """
@@ -58,7 +56,7 @@ def sort(chips, key=lambda c: c['acquired']):
 
 
 def pyccd(point, specs_url, specs_fn, chips_url, chips_fn, acquired, queries):
-    """
+    """Builds inputs for the pyccd algorithm.
     :param point: A tuple of (x, y) which is within the extents of a chip
     :param specs_url: URL to the chip specs host:port/context
     :param specs_fn:  Function that accepts a url query and returns chip specs

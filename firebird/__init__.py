@@ -79,10 +79,9 @@ def ccd_params():
 
 
 def available_products():
-    '''
-    Products that can be requested from firebird.
+    """Products that can be requested from firebird.
     :return: Set of available products
-    '''
+    """
     jobconf = {'chip_ids': None,
                'initial_partitions': None,
                'specs_url': None,
