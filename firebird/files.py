@@ -1,4 +1,4 @@
-""" Functions for working with files in python """
+"""Functions for working with files in python"""
 import os
 from firebird import logger
 
@@ -60,8 +60,7 @@ def exists(path):
 
 
 def mkdirs(filename):
-    """
-    Ensures the set of directories exist for the supplied filename.
+    """Ensures the set of directories exist for the supplied filename.
     :param filename: Full path to where the file should live
     :returns: Full file path if the directories were created or None
     """

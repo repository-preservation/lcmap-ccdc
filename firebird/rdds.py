@@ -11,19 +11,17 @@ import firebird as fb
 # TODO: try/except calls to run products in product functions.
 
 def algorithm(name, version):
-    '''
-    Standardizes algorithm name and version representation.
+    """Standardizes algorithm name and version representation.
     :param name: Name of algorithm
     :param version: Version of algorithm
     :return: name_version
-    '''
+    """
     return '{}_{}'.format(name, version)
 
 
-def e(ver, xidx, yidx, eidx, didx):
-    '''
-    Intercepts calls to rdd functions, checks for previous errors and returns
-    a default error message for the function rather than executing it.
+def preverrs(ver, xidx, yidx, eidx, didx):
+    """Intercepts calls to rdd transformations, checks for previous errors and
+    returns a default error message for the function rather than executing it.
     :param ver:  Version of the wrapped function.  Included in resulting RDD
     :param xidx: Index of the x coordinate in the input RDD
     :param yidx: Index of the y coordinate in the input RDD
@@ -32,26 +30,26 @@ def e(ver, xidx, yidx, eidx, didx):
                   in the output RDD.
     :return: Either a properly formatted RDD tuple or the result of executing
              the RDD function.
-    '''
-    def decorator(rdd):
-        @wraps(f)
+    """
+    def decorator(func):
+        @wraps(func)
         def wrapper(rdd):
             err = f.extract(rdd, eidx)
             if err is not None:
                 x = f.extract(rdd, xidx)
                 y = f.extract(rdd, yidx)
                 d = f.extract(rdd, didx)
-                algname = algorithm(f.__name__, algversion)
+                algname = algorithm(func.__name__, algversion)
                 err = 'Aborted due to error in input RDD:{}'.format(err)
                 # return properly formatted RDD with no result and an error
                 return ((x, y, algname, d), None, err)
             else:
-                return f(rdd)
-     return wrapper
+                return func(rdd)
+        return wrapper
 
 
 def simplify_detect_results(results):
-    ''' Convert child objects inside CCD results from NamedTuples to dicts '''
+    """Convert child objects inside CCD results from NamedTuples to dicts"""
     output = dict()
     for key in results.keys():
         output[key] = f.simplify_objects(results[key])
@@ -59,23 +57,21 @@ def simplify_detect_results(results):
 
 
 def result_to_models(result):
-    '''
-    Function to extract the change_models dictionary from the CCD results
+    """Function to extract the change_models dictionary from the CCD results
     :param result: CCD result object (dict)
     :return: list
-    '''
+    """
     #raise Exception("JSONING:{}".format(result))
     return simplify_detect_results(result)['change_models']
 
 
 def pyccd(rdd):
-    '''
-    Execute ccd.detect
+    """Execute ccd.detect
     :param rdd: Tuple of (tuple, dict) generated from pyccd_inputs
                 ((x, y, algorithm, datestring): data)
     :return: A tuple of (tuple, dict) with pyccd results
              ((x, y, algorithm, acquired), results)
-    '''
+    """
     x = rdd[0][0]
     y = rdd[0][1]
     acquired = rdd[0][3]
@@ -99,13 +95,12 @@ def pyccd(rdd):
         return ((x, y, ccd.algorithm, acquired), results, None)
 
 
-@e(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
+@preverrs(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
 def lastchange(rdd):
-    '''
-    Create lastchange product
+    """Create lastchange product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
     :return: ((x, y, algorithm, result))
-    '''
+    """
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
@@ -115,13 +110,12 @@ def lastchange(rdd):
             fp.lastchange(result_to_models(data), ord_date=date))
 
 
-@e(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
+@preverrs(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
 def changemag(rdd):
-    '''
-    Create changemag product
+    """Create changemag product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
     :return: ((x, y, algorithm, result))
-    '''
+    """
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
@@ -131,13 +125,12 @@ def changemag(rdd):
             fp.changemag(result_to_models(data), ord_date=date))
 
 
-@e(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
+@preverrs(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
 def changedate(rdd):
-    '''
-    Create changedate product
+    """Create changedate product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
     :return: ((x, y, algorithm, result))
-    '''
+    """
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
@@ -147,13 +140,12 @@ def changedate(rdd):
             fp.changedate(result_to_models(data), ord_date=date))
 
 
-@e(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
+@preverrs(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
 def seglength(rdd):
-    '''
-    Create seglength product
+    """Create seglength product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
     :return: ((x, y, algorithm, result))
-    '''
+    """
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
@@ -164,13 +156,12 @@ def seglength(rdd):
             fp.seglength(result_to_models(data), ord_date=date, bot=bot))
 
 
-@e(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
+@preverrs(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
 def curveqa(rdd):
-    '''
-    Create curveqa product
+    """Create curveqa product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
     :return: ((x, y, algorithm, result))
-    '''
+    """
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
@@ -181,15 +172,14 @@ def curveqa(rdd):
 
 
 def fits_in_box(value, bbox):
-    '''
-    Determines if a point value fits within a bounding box (edges inclusive)
+    """Determines if a point value fits within a bounding box (edges inclusive)
     Useful as a filtering function with conditional enforcement.
     If bbox is None then fits_in_box always returns True
 
     :param value: Tuple: ((x,y), (data))
     :param bbox: dict with keys: ulx, uly, lrx, lry
     :return: Boolean
-    '''
+    """
     def fits(point, bbox):
         x, y = point
         return (float(x) >= float(bbox['ulx']) and
@@ -201,7 +191,7 @@ def fits_in_box(value, bbox):
 
 
 def products(jobconf, sparkcontext):
-    """ Product graph for firebird products
+    """Product graph for firebird products
     :param jobconf: dict of broadcast variables
     :param sparkcontext: Configured spark context
     :return: dict keyed by product with lazy RDD as value

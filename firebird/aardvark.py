@@ -26,8 +26,7 @@ from firebird import chip
 
 
 def chip_specs(query):
-    """
-    Queries aardvark and returns chip_specs
+    """Queries aardvark and returns chip_specs
     :param query: full url query for aardvark
     :returns: sequence of chip specs
     :example:
@@ -38,8 +37,7 @@ def chip_specs(query):
 
 
 def byubid(chip_specs):
-    """
-    Organizes chip_specs by ubid
+    """Organizes chip_specs by ubid
     :param chip_specs: a sequence of chip specs
     :returns: a dict of chip_specs keyed by ubid
     """
@@ -47,8 +45,7 @@ def byubid(chip_specs):
 
 
 def ubids(chip_specs):
-    """
-    Extract ubids from a sequence of chip_specs
+    """Extract ubids from a sequence of chip_specs
     :param chip_specs: a sequence of chip_spec dicts
     :returns: a sequence of ubids
     """
@@ -56,8 +53,7 @@ def ubids(chip_specs):
 
 
 def chips(url, x, y, acquired, ubids):
-    """
-    Returns aardvark chips for given x, y, date range and ubid sequence
+    """Returns aardvark chips for given x, y, date range and ubid sequence
     :param url: full url to aardvark endpoint
     :param x: longitude
     :param y: latitude
@@ -84,8 +80,7 @@ def chips(url, x, y, acquired, ubids):
 
 
 def dates(chips):
-    """
-    Dates for a sequence of chips
+    """Dates for a sequence of chips
     :param chips: sequence of chips
     :returns: sequence of dates
     """
@@ -93,8 +88,7 @@ def dates(chips):
 
 
 def trim(chips, dates):
-    """
-    Eliminates chips that are not from the specified dates
+    """Eliminates chips that are not from the specified dates
     :param chips: Sequence of chips
     :param dates: Sequence of dates
     :returns: Sequence of filtered chips
@@ -103,8 +97,7 @@ def trim(chips, dates):
 
 
 def to_numpy(chips, chip_specs_byubid):
-    """
-    Converts the data for a sequence of chips to numpy arrays
+    """Converts the data for a sequence of chips to numpy arrays
     :param chips: a sequence of chips
     :param chip_specs_byubid: chip_spec dict keyed by ubid
     :returns: sequence of chips with data as numpy arrays
@@ -113,8 +106,7 @@ def to_numpy(chips, chip_specs_byubid):
 
 
 def rods(chips):
-    """
-    Accepts sequences of chips and returns
+    """Accepts sequences of chips and returns
     time series pixel rods organized by x, y, t for all chips.
     Chips should be sorted as desired before calling rods() as outputs
     preserve input order.
@@ -153,8 +145,7 @@ def rods(chips):
 
 
 def locrods(locations, rods):
-    """
-    Combines location information with pixel rods.
+    """Combines location information with pixel rods.
     :param locations:  Chip shaped numpy array of locations
     :param rods: Chip shaped numpy array of rods
     :returns: dict of (location): rod for each location and rod in the arrays.
@@ -195,7 +186,7 @@ def locrods(locations, rods):
            [112,  87, 231, 111],
            [112,  45,  47, 112]])
 
-    Then the locations and rods are zipped together into a dictionary
+    Then the locations and rods are zipped together via a dictionary
     comprehension and returned.
     {
      (0, 0): [110, 110, 234, 664],
