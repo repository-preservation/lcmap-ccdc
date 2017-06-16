@@ -4,8 +4,7 @@ from base64 import b64decode
 
 
 def difference(point, interval):
-    """
-    Calculate difference between a point and 'prior' point on an interval.
+    """Calculate difference between a point and 'prior' point on an interval.
 
     The value of this function can be used to answer the question,
     what do I subtract from a point to find the point of the nearest
@@ -30,8 +29,7 @@ def difference(point, interval):
 
 
 def near(point, interval, offset):
-    """
-    Find nearest point given an interval and offset.
+    """Find nearest point given an interval and offset.
 
     The nearest point will be lesser than the point for a positive
     interval, and greater than the point for a negative interval as
@@ -54,8 +52,7 @@ def near(point, interval, offset):
 
 
 def point_to_chip(x, y, x_interval, y_interval, x_offset, y_offset):
-    """
-    Find the nearest containing chip's point.
+    """Find the nearest containing chip's point.
 
     The resulting `x` value will be less than or equal to the input
     while the resulting `y` value will be greater than or equal.
@@ -86,8 +83,7 @@ def point_to_chip(x, y, x_interval, y_interval, x_offset, y_offset):
 
 
 def snap(x, y, chip_spec):
-    """
-    Transform an arbitrary projection system coordinate (x,y) into the
+    """Transform an arbitrary projection system coordinate (x,y) into the
     coordinate of the chip that contains it.
 
     This function only works when working with points on a cartesian plane,
@@ -107,8 +103,8 @@ def snap(x, y, chip_spec):
 
 
 def ids(ulx, uly, lrx, lry, chip_spec):
-    """
-    Returns all the chip ids that are needed to cover a supplied bounding box.
+    """Returns all the chip ids that are needed to cover a supplied bounding
+    box.
 
     :param ulx: upper left x coordinate
     :param uly: upper left y coordinate
@@ -132,8 +128,7 @@ def ids(ulx, uly, lrx, lry, chip_spec):
 
 
 def to_numpy(chip, chip_spec):
-    """
-    Removes base64 encoding of chip data and converts it to a numpy array
+    """Removes base64 encoding of chip data and converts it to a numpy array
     :param chip: A chip
     :param chip_spec: Corresponding chip_spec
     :returns: A decoded chip with data as a shaped numpy array
@@ -147,8 +142,7 @@ def to_numpy(chip, chip_spec):
 
 
 def locations(startx, starty, chip_spec):
-    """
-    Computes locations for array elements that fall within the shape
+    """Computes locations for array elements that fall within the shape
     specified by chip_spec['data_shape'] using the startx and starty as
     the origin.  locations() does not snap() the startx and starty... this
     should be done prior to calling locations() if needed.
