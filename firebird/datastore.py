@@ -6,13 +6,12 @@ import firebird as fb
 
 
 def pk(x, y, chip_spec):
-    '''
-    Generates a primary key for a given x, y and chip_spec
+    """Generates a primary key for a given x, y and chip_spec
     :param x: X coordinate
     :param y: Y coordinate
     :chip_spec: Chip spec representing the geometry of x and y
     :return: Tuple of values representing a primary key
-    '''
+    """
     chip_x, chip_y = chip.snap(x, y, chip_spec)
     return (chip_x, chip_y, x, y)
 
@@ -22,7 +21,7 @@ def tablename(algorithm, version):
 
 
 def connect():
-    '''Creates a session on a Cassandra cluster.'''
+    """Creates a session on a Cassandra cluster."""
     auth_provider = PlainTextAuthProvider(username=fb.CASSANDRA_USER,
                                           password=fb.CASSANDRA_PASS)
     cluster = Cluster(fb.CASSANDRA_CONTACT_POINTS.split(','),
@@ -32,12 +31,11 @@ def connect():
 
 
 def prepare(statement, session):
-    '''
-    Prepares a statement and configures proper consistency level.
+    """Prepares a statement and configures proper consistency level.
     :param statement: The statement to prepare
     :param session: The session to prepare the statement on
     :return: A prepared statement ready for arguments
-    '''
+    """
     stmt = session.prepare(statement)
     stmt.consistency_level = ConsistencyLevel.QUORUM
     return stmt
@@ -69,7 +67,7 @@ def execute(statement, args, session):
 
 
 def read(chip_x, chip_y, ulx, uly, lrx, lry, algorithm, datestring):
-    """ Loads all algorithm results from the datastore and returns them
+    """Loads all algorithm results from the datastore and returns them
     with location information.
     :param ulx: Upper left x coordinate
     :param uly: Upper left y coordinate

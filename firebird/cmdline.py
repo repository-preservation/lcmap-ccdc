@@ -21,13 +21,12 @@ def products():
 @c.option('--bounds', '-b', multiple=True)
 @c.option('--product', '-p')
 def count(bounds, product):
-    '''
-    Returns count of number of results given bounds and a product.  Bounds
+    """Returns count of number of results given bounds and a product.  Bounds
     will be minbox'd prior to calculation.
     :param bounds: Sequence of (x, y) sequences
     :param product: A firebird product
     :return: An integer count
-    '''
+    """
     pass
 
 
@@ -42,9 +41,7 @@ def chipids(bounds):
 @c.option('--bounds', '-b', multiple=True)
 @c.option('--product', '-p')
 def missing(bounds, product):
-    '''
-    Returns ids that do not exist within the given bounds
-    '''
+    """Returns ids that do not exist within the given bounds"""
     #  sc = fb.SparkContext()
     #  ss = sql.SparkSession(ss)
     #  ss.createDataFrame(fb.minbox(bounds).xys())
