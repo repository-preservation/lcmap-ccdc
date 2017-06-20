@@ -1,14 +1,11 @@
 from firebird import aardvark as a
 from firebird import chip
-from firebird import dates as fd
 from firebird import datastore as ds
 from firebird import functions as f
 from firebird import rdds
 from firebird import validation
 from functools import partial
-
 import firebird as fb
-import hashlib
 
 
 def chip_spec_queries(url):
@@ -58,15 +55,17 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
     :param sparkcontext: A SparkContext
     :return: True
     """
-    # right now we are accepting bounds.  The bounds may be a 1 to N points.
-    # This allows us to request any arbitrary area to process, even polygons.
-    # We minbox the geometry and run that.  If clip is True we also don't
-    # process locations that dont fit within the requested bounds.  This allows
-    # us to run just a handful of pixels for evaluation rather than an entire
-    # chip.
+    # If clip_box is supplied we don't process locations that dont fit within
+    # the requested bounds.  This allows us to run just a handful of pixels
+    # for evaluation rather than an entire chip.
     #
-    # The save functionality will allow us to save to iwds and/or to local
-    # files.  This should help speed up evaluation of algorithm changes.
+    # Higher level functions that call driver.init() should handle converting
+    # requests for bounding boxes or polygons (which are then converted to
+    # a minbox) to a set of chip ids.
+    #
+    # The save functionality will allow us to save to iwds.  There will also be
+    # an evaluate function which will save results to local files instead.
+    # This should help speed up evaluation of algorithm changes.
     #
     # In order to implement training however, init will need to accept
     # chipids only and the caller will have to make calls to chip.ids(bbox)

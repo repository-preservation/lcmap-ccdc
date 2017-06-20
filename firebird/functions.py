@@ -8,6 +8,24 @@ import json
 import numpy as np
 
 
+def first(sequence):
+    """
+    Returns the first element of the sequence
+    :param sequence: A Python sequence
+    :return: The first element of the sequence
+    """
+    return sequence[0]
+
+
+def rest(sequence):
+    """
+    Returns all but the first element of the sequence
+    :param sequence: A Python sequence
+    :return: All elements of the sequence except the first
+    """
+    return tuple(sequence[1:len(sequence)])
+
+
 def compose(*functions):
     def compose2(f, g):
         return lambda x: f(g(x))
@@ -22,24 +40,27 @@ def extract(sequence, elements):
                      to extract
     :return: The target element
     Example:
-    >>> inputs = [1, (2, 3), 4]
+    >>> inputs = [1, (2, 3, (4, 5)), 6]
     >>> extract(inputs, [0])
     >>> 1
     >>> extract(inputs, [1])
-    >>> (2, 3)
+    >>> (2, 3, (4, 5))
     >>> extract(inputs, [1, 0])
     >>> 2
     >>> extract(inputs, [1, 1])
     >>> 3
+    >>> extract(inputs, [1, 2])
+    >>> (4, 5)
+    >>> extract(inputs, [1, 2, 0])
+    >>> 4
     ...
     """
-    t = tuple(elements)
-    if len(t) == 0 or not getattr(sequence, '__iter__', False):
+    e = tuple(elements)
+    if len(e) == 0 or not getattr(sequence, '__iter__', False):
         return sequence
     else:
-        seq = sequence[t[0]]
-        rest = t[1:len(t)]
-        return extract(seq, rest)
+        seq = sequence[first(e)]
+        return extract(seq, rest(e))
 
 
 def flatten(iterable):
