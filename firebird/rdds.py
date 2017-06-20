@@ -1,11 +1,13 @@
+from firebird import ccd_params
 from firebird import dates as fd
-from firebird import inputs
 from firebird import functions as f
+from firebird import inputs
+from firebird import logger
 from firebird import products as fp
 from functools import partial
 from functools import wraps
 import ccd
-import firebird as fb
+import inspect
 
 
 # TODO: try/except calls to run products in product functions.
@@ -19,14 +21,16 @@ def algorithm(name, version):
     return '{}_{}'.format(name, version)
 
 
-def preverrs(ver, xidx, yidx, eidx, didx):
+def prerr(v, x, y, e, date):
     """Intercepts calls to rdd transformations, checks for previous errors and
     returns a default error message for the function rather than executing it.
-    :param ver:  Version of the wrapped function.  Included in resulting RDD
-    :param xidx: Index of the x coordinate in the input RDD
-    :param yidx: Index of the y coordinate in the input RDD
-    :param eidx: Index of the errors element in the input RDD
-    :param didx: Index of the datestr in the input RDD which will be included
+    Parameters allow dynamic mapping to x, y, errors and date elements within
+    RDDs of different shape.
+    :param v: Version of the wrapped function.  Included in resulting RDD
+    :param x: Index of the x coordinate in the input RDD
+    :param y: Index of the y coordinate in the input RDD
+    :param e: Index of the errors element in the input RDD
+    :param date: Index of the datestr in the input RDD which will be included
                   in the output RDD.
     :return: Either a properly formatted RDD tuple or the result of executing
              the RDD function.
@@ -34,18 +38,42 @@ def preverrs(ver, xidx, yidx, eidx, didx):
     def decorator(func):
         @wraps(func)
         def wrapper(rdd):
-            err = f.extract(rdd, eidx)
+            err = f.extract(rdd, e)
             if err is not None:
-                x = f.extract(rdd, xidx)
-                y = f.extract(rdd, yidx)
-                d = f.extract(rdd, didx)
-                algname = algorithm(func.__name__, algversion)
-                err = 'Aborted due to error in input RDD:{}'.format(err)
+                x = f.extract(rdd, x)
+                y = f.extract(rdd, y)
+                d = f.extract(rdd, date)
+                a = algorithm(func.__name__, ver)
+                err = 'previous-error[{}]:{}'.format(rdd.getName(), err)
                 # return properly formatted RDD with no result and an error
-                return ((x, y, algname, d), None, err)
+                return (key(x, y, a, d), None, err)
             else:
                 return func(rdd)
         return wrapper
+    return decorator
+
+
+def currerr(v, x, y, e, data):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(rdd):
+            try:
+                return func(rdd)
+            except Exception as errors:
+                x = f.extract(rdd, x)
+                y = f.extract(rdd, y)
+                d = f.extract(rdd, date)
+                a = algorithm(func.__name__, v)
+                logger.error("{}".format(func.__name__))
+                return ((x, y, a, d), None, errors)
+
+
+def guard(record_index):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(rdd):
+            return preverr(rdd) or tryexcept(func, rdd)
+
 
 
 def simplify_detect_results(results):
@@ -65,12 +93,14 @@ def result_to_models(result):
     return simplify_detect_results(result)['change_models']
 
 
+@preverr(v=ccd.algorithm, x=(0, 0), y=(0, 0), date=(0, 3), err=(2,))
+@currerr(v=ccd.algorithm, x=(0, 0), y=(0, 0), err=(0, 3), data=(1,))
 def pyccd(rdd):
     """Execute ccd.detect
     :param rdd: Tuple of (tuple, dict) generated from pyccd_inputs
                 ((x, y, algorithm, datestring): data)
     :return: A tuple of (tuple, dict) with pyccd results
-             ((x, y, algorithm, acquired), results)
+             ((x, y, algorithm, acquired), results, errors)
     """
     x = rdd[0][0]
     y = rdd[0][1]
@@ -87,30 +117,36 @@ def pyccd(rdd):
                              swir2s=data['swir2s'],
                              thermals=data['thermals'],
                              quality=data['quality'],
-                             params=fb.ccd_params())
+                             params=ccd_params())
     except Exception as errors:
-        fb.logger.error("Exception running ccd.detect: {}".format(errors))
+        logger.error("Exception running ccd.detect: {}".format(errors))
         return ((x, y, ccd.algorithm, acquired), None, errors)
     else:
         return ((x, y, ccd.algorithm, acquired), results, None)
 
+key=(0, 0), data=(0, 1), errs=(0, 2), date=(1)
 
-@preverrs(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
+@preverr(v=fp.version, x=(0, 0, 0), y=(0, 0, 1), date=(1,), err=(0, 2))
+@currerr(v=fp.version, x=(0, 0, 0), y=(0, 0, 1), data=(0, 1), err=(0, 2))
 def lastchange(rdd):
     """Create lastchange product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
-    :return: ((x, y, algorithm, result))
+    :return: ((x, y, algorithm, result, errors))
     """
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
     date = fd.to_ordinal(rdd[1])
     alg = algorithm(inspect.stack()[0][3], fp.version)
-    return ((x, y, alg, rdd[1]),
-            fp.lastchange(result_to_models(data), ord_date=date))
+    try:
+        return ((x, y, alg, rdd[1]),
+                fp.lastchange(result_to_models(data), ord_date=date), None)
+    except Exception as errors:
+        logger.errors("Exception running lastchange:{}".format(errors))
+        return ((x, y, alg, rdd[1]), None, errors)
 
 
-@preverrs(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
+@preverr(v=fp.version, x=(0, 0, 0), y=(0, 0, 1), date=(1,), err=[0, 2])
 def changemag(rdd):
     """Create changemag product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
@@ -125,7 +161,7 @@ def changemag(rdd):
             fp.changemag(result_to_models(data), ord_date=date))
 
 
-@preverrs(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
+@preverr(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1,), eidx=(0, 2))
 def changedate(rdd):
     """Create changedate product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
@@ -140,7 +176,7 @@ def changedate(rdd):
             fp.changedate(result_to_models(data), ord_date=date))
 
 
-@preverrs(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
+@preverr(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1,), eidx=(0, 2))
 def seglength(rdd):
     """Create seglength product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
@@ -156,7 +192,7 @@ def seglength(rdd):
             fp.seglength(result_to_models(data), ord_date=date, bot=bot))
 
 
-@preverrs(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1), eidx=[0, 2])
+@preverr(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1,), eidx=(0, 2))
 def curveqa(rdd):
     """Create curveqa product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
@@ -190,10 +226,27 @@ def fits_in_box(value, bbox):
     return bbox is None or fits(value[0], bbox)
 
 
+def labels(inputs=None, ccd=None, lastchange=None, changemag=None,
+           changedate=None, seglength=None, curveqa=None):
+    """Applies friendly names to products
+    :param inputs: Inputs rdd
+    :param ccd: CCD rdd
+    :param lastchange: Lastchange rdd
+    :param changemag: Changemag rdd
+    :param changedate: Changedate rdd
+    :param seglength: Seglength rdd
+    :param curvaqa: Curveqa rdd
+    :return: A dict of label:rdd
+    """
+    return {'inputs': inputs, 'ccd': ccd, 'lastchange': lastchange,
+            'changemag': changemag, 'changedate': changedate,
+            'seglength': seglength, 'curveqa': curveqa}
+
+
 def products(jobconf, sparkcontext):
     """Product graph for firebird products
     :param jobconf: dict of broadcast variables
-    :param sparkcontext: Configured spark context
+    :param sparkcontext: Configured spark context or None
     :return: dict keyed by product with lazy RDD as value
     """
 
@@ -234,9 +287,8 @@ def products(jobconf, sparkcontext):
     _sl = _ccd_dates.map(seglength).setName('seglength_v1')
     _qa = _ccd_dates.map(curveqa).setName('curveqa_v1')
 
-    return {'inputs': _in, 'ccd': _ccd, 'lastchange': _lc,
-            'changemag': _cm, 'changedate': _cd,
-            'seglength': _sl, 'curveqa': _qa}
+    return labels(inputs=_in, ccd=_ccd, lastchange=_lc, changemag=_cm,
+                  changedate=_cd, seglength=_sl, curveqa=_qa)
 
 
 def train(product_graph, sparkcontext):
