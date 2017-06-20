@@ -78,29 +78,6 @@ def ccd_params():
     return params
 
 
-def available_products():
-    """Products that can be requested from firebird.
-    :return: Set of available products
-    """
-    jobconf = {'chip_ids': None,
-               'initial_partitions': None,
-               'specs_url': None,
-               'specs_fn': None,
-               'chips_url': None,
-               'chips_fn': None,
-               'acquired': None,
-               'chip_spec_queries': None,
-               'clip_box': None,
-               'product_partitions': None}
-    sc = None
-    try:
-        sc = pyspark.SparkContext()
-        return set(firebird.rdds.products(jobconf, sc).keys())
-    finally:
-        if sc is not None:
-            sc.stop()
-
-
 def evaluate(acquired, bounds, clip, directory, product, product_dates):
     pass
 
