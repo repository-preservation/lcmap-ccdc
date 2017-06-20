@@ -1,5 +1,5 @@
 from firebird import dates as d
-import firebird as fb
+from firebird import rdds
 import re
 
 
@@ -23,7 +23,7 @@ def check_bounds(bounds):
 
 
 def check_products(products):
-    available = fb.available_products()
+    available = rdds.labels().keys()
     p = set(products)
     unavailable = p - p.intersection(available)
     if unavailable:
