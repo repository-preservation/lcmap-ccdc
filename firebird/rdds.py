@@ -7,10 +7,7 @@ from firebird import products as fp
 from functools import partial
 from functools import wraps
 import ccd
-import inspect
 
-
-# TODO: try/except calls to run products in product functions.
 
 def algorithm(name, version):
     """Standardizes algorithm name and version representation.
@@ -21,59 +18,78 @@ def algorithm(name, version):
     return '{}_{}'.format(name, version)
 
 
-def prerr(v, x, y, e, date):
-    """Intercepts calls to rdd transformations, checks for previous errors and
-    returns a default error message for the function rather than executing it.
-    Parameters allow dynamic mapping to x, y, errors and date elements within
-    RDDs of different shape.
-    :param v: Version of the wrapped function.  Included in resulting RDD
-    :param x: Index of the x coordinate in the input RDD
-    :param y: Index of the y coordinate in the input RDD
-    :param e: Index of the errors element in the input RDD
-    :param date: Index of the datestr in the input RDD which will be included
-                  in the output RDD.
+def success(x, y, algorithm, datestr, data):
+    """Formats an rdd transformation result.
+    :param x: x coordinate
+    :param y: y coordinate
+    :param algorithm: algorithm and version string
+    :param datestr: datestr that identifies the result
+    :param data: algorithm outputs
+    :return: ((x, y, algorithm, datestr), data, None)
+    """
+    return ((x, y, algorithm, datestr), data, None)
+
+
+def error(x, y, algorithm, datestr, errors):
+    """Format an rdd transformation error
+    :param x: x coordinate
+    :param y: y coordinate
+    :param algorithm: algorithm and version string
+    :param datestr: datestr that identifies the result
+    :param errors: algorithm errors
+    :return: ((x, y, algorithm, datestr), None, errors)
+    """
+    return ((x, y, algorithm, datestr), None, errors)
+
+
+def haserrors(x, y, algorithm, datestr, errs, rdd_name):
+    """Determines if previous errors exist and creates proper return value
+    if True.  If no error exists returns False.
+    :param x: x coordinate
+    :param y: y coordinate
+    :param algorithm: algorithm and version string
+    :param datestr: datestr for current RDD record
+    :param errs: Errors element from input RDD
+    :param rdd_name: Name of input RDD.
     :return: Either a properly formatted RDD tuple or the result of executing
              the RDD function.
     """
-    def decorator(func):
-        @wraps(func)
-        def wrapper(rdd):
-            err = f.extract(rdd, e)
-            if err is not None:
-                x = f.extract(rdd, x)
-                y = f.extract(rdd, y)
-                d = f.extract(rdd, date)
-                a = algorithm(func.__name__, ver)
-                err = 'previous-error[{}]:{}'.format(rdd.getName(), err)
-                # return properly formatted RDD with no result and an error
-                return (key(x, y, a, d), None, err)
-            else:
-                return func(rdd)
-        return wrapper
-    return decorator
+    if errs is None:
+        return False
+    else:
+        e = 'previous-error[{}]:{}'.format(rdd_name, errs)
+        return error(x, y, algorithm, datestr, e)
 
 
-def currerr(v, x, y, e, data):
-    def decorator(func):
-        @wraps(func)
-        def wrapper(rdd):
-            try:
-                return func(rdd)
-            except Exception as errors:
-                x = f.extract(rdd, x)
-                y = f.extract(rdd, y)
-                d = f.extract(rdd, date)
-                a = algorithm(func.__name__, v)
-                logger.error("{}".format(func.__name__))
-                return ((x, y, a, d), None, errors)
+def tryexcept(func, **kwargs, x, y, algorithm, datestr):
+    """Executes a function wrapped in try: except:.  Returns result
+    of success() or error().
+    :param func: function to execute
+    :param kwargs: keyword args for func
+    :param x: x coordinate
+    :param y: y coordinate
+    :param algorithm: algorithm and version string
+    :param datestr: date string that identifies this execution
+    :return: value of success() or error()
+    """
+    try:
+        return success(x, y, algorithm, datestr, func(kwargs))
+    except Exception as errs:
+        return error(x, y, algorithm, datestr, errs)
 
 
-def guard(record_index):
-    def decorator(func):
-        @wraps(func)
-        def wrapper(rdd):
-            return preverr(rdd) or tryexcept(func, rdd)
-
+def safely(func, kwargs, x, y, algorithm, datestr, result, errs, rdd_name):
+    """Runs a function for an input with exception handling applied
+    :param func: function to execute
+    :param kwargs: keyword args for func
+    :param x: x coordinate
+    :param y: y coordinate
+    :param algorithm: algorithm and version string
+    :param datestr: date string that identifies this execution
+    :return: value of success() or error()
+    """
+    return (haserrors(x, y, algorithm, datestr, result, errs, rdd_name) or
+            tryexcept(func, kwargs, x, y, algorithm, datestr))
 
 
 def simplify_detect_results(results):
@@ -89,12 +105,14 @@ def result_to_models(result):
     :param result: CCD result object (dict)
     :return: list
     """
-    #raise Exception("JSONING:{}".format(result))
-    return simplify_detect_results(result)['change_models']
+    return simplify_detect_results(result).get('change_models')
 
 
-@preverr(v=ccd.algorithm, x=(0, 0), y=(0, 0), date=(0, 3), err=(2,))
-@currerr(v=ccd.algorithm, x=(0, 0), y=(0, 0), err=(0, 3), data=(1,))
+def inputs(rdd):
+    # TODO: Fill this in
+    pass
+
+
 def pyccd(rdd):
     """Execute ccd.detect
     :param rdd: Tuple of (tuple, dict) generated from pyccd_inputs
@@ -105,29 +123,24 @@ def pyccd(rdd):
     x = rdd[0][0]
     y = rdd[0][1]
     acquired = rdd[0][3]
-    data = rdd[1]
-    #  errors = rdd[2]
-    try:
-        results = ccd.detect(dates=data['dates'],
-                             blues=data['blues'],
-                             greens=data['greens'],
-                             reds=data['reds'],
-                             nirs=data['nirs'],
-                             swir1s=data['swir1s'],
-                             swir2s=data['swir2s'],
-                             thermals=data['thermals'],
-                             quality=data['quality'],
-                             params=ccd_params())
-    except Exception as errors:
-        logger.error("Exception running ccd.detect: {}".format(errors))
-        return ((x, y, ccd.algorithm, acquired), None, errors)
-    else:
-        return ((x, y, ccd.algorithm, acquired), results, None)
+    data = rdd[1] or dict()
+    errs = rdd[2]
+    kwargs = {'dates': data.get('dates')
+              'blues': data.get('blues'),
+              'greens': data.get('greens'),
+              'reds': data.get('reds'),
+              'nirs': data.get('nirs'),
+              'swir1s': data.get('swir1s'),
+              'swir2s': data.get('swir2s'),
+              'thermals': data.get('thermals'),
+              'quality': data.get('quality'),
+              'param': ccd_params()}
 
-key=(0, 0), data=(0, 1), errs=(0, 2), date=(1)
+    return safely(func=ccd.detect, kwargs=kwargs, x=x, y=y,
+                  algorithm=ccd.algorithm, datestr=acquired, result=data,
+                  errs=errs, rdd_name=rdd.getName())
 
-@preverr(v=fp.version, x=(0, 0, 0), y=(0, 0, 1), date=(1,), err=(0, 2))
-@currerr(v=fp.version, x=(0, 0, 0), y=(0, 0, 1), data=(0, 1), err=(0, 2))
+
 def lastchange(rdd):
     """Create lastchange product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
@@ -136,17 +149,15 @@ def lastchange(rdd):
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
-    date = fd.to_ordinal(rdd[1])
-    alg = algorithm(inspect.stack()[0][3], fp.version)
-    try:
-        return ((x, y, alg, rdd[1]),
-                fp.lastchange(result_to_models(data), ord_date=date), None)
-    except Exception as errors:
-        logger.errors("Exception running lastchange:{}".format(errors))
-        return ((x, y, alg, rdd[1]), None, errors)
+    errs = rdd[0][2]
+    date = rdd[1]
+    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+
+    return safely(func=fp.lastchange, kwargs=kwargs, x=x, y=y,
+                  algorithm=algorithm('lastchange', fp.version()),
+                  datestr=date, result=data, errs=errs, rdd_name=rdd.getName())
 
 
-@preverr(v=fp.version, x=(0, 0, 0), y=(0, 0, 1), date=(1,), err=[0, 2])
 def changemag(rdd):
     """Create changemag product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
@@ -155,13 +166,15 @@ def changemag(rdd):
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
-    date = fd.to_ordinal(rdd[1])
-    alg = algorithm(inspect.stack()[0][3], fp.version)
-    return ((x, y, alg, rdd[1]),
-            fp.changemag(result_to_models(data), ord_date=date))
+    errs = rdd[0][2]
+    date = rdd[1]
+    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+
+    return safely(func=fp.changemag, kwargs=kwargs, x=x, y=y,
+                  algorithm=algorithm('changemag', fp.version), datestr=date,
+                  result=data, errs=errs, rdd_name=rdd.getName())
 
 
-@preverr(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1,), eidx=(0, 2))
 def changedate(rdd):
     """Create changedate product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
@@ -170,13 +183,15 @@ def changedate(rdd):
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
-    date = fd.to_ordinal(rdd[1])
-    alg = algorithm(inspect.stack()[0][3], fp.version)
-    return ((x, y, alg, rdd[1]),
-            fp.changedate(result_to_models(data), ord_date=date))
+    errs = rdd[0][2]
+    date = rdd[1]
+    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+
+    return safely(func=fp.changedate, kwargs=kwargs, x=x, y=y,
+                  algorithm=algorithm('changedate', fp.version), datestr=date,
+                  result=data, errs=errs, rdd_name=rdd.getName())
 
 
-@preverr(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1,), eidx=(0, 2))
 def seglength(rdd):
     """Create seglength product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
@@ -184,15 +199,19 @@ def seglength(rdd):
     """
     x = rdd[0][0][0]
     y = rdd[0][0][1]
+    acquired = rdd[0][0][3]
     data = rdd[0][1]
-    date = fd.to_ordinal(rdd[1])
-    bot = fd.to_ordinal(fd.startdate(rdd[0][0][3]))
-    alg = algorithm(inspect.stack()[0][3], fp.version)
-    return ((x, y, alg, rdd[1]),
-            fp.seglength(result_to_models(data), ord_date=date, bot=bot))
+    errs = rdd[0][2]
+    date = rdd[1]
+    kwargs = {'models': result_to_models(data),
+              'ord_date': fd.to_ordinal(date),
+              'bot': fd.to_ordinal(fd.startdate(acquired))}
+
+    return safely(func=fp.seglength, kwargs=kwargs, x=x, y=y,
+                  algorithm=algorithm('seglength', fp.version), datestr=date,
+                  result=data, errs=errs, rdd_name=rdd.getName())
 
 
-@preverr(ver=fp.version, xidx=(0, 0, 0), yidx=(0, 0, 1), didx=(1,), eidx=(0, 2))
 def curveqa(rdd):
     """Create curveqa product
     :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
@@ -201,10 +220,13 @@ def curveqa(rdd):
     x = rdd[0][0][0]
     y = rdd[0][0][1]
     data = rdd[0][1]
-    date = fd.to_ordinal(rdd[1])
-    alg = algorithm(inspect.stack()[0][3], fp.version)
-    return ((x, y, alg, rdd[1]),
-            fp.curveqa(result_to_models(data), ord_date=date))
+    errs = rdd[0][2]
+    date = rdd[1]
+    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+
+    return safely(func=fp.curveqa, kwargs=kwargs, x=x, y=y,
+                  algorithm=algorithm('curveqa', fp.version), datestr=date,
+                  result=data, errs=errs, rdd_name=rdd.getName())
 
 
 def fits_in_box(value, bbox):
