@@ -108,11 +108,6 @@ def result_to_models(result):
     return simplify_detect_results(result).get('change_models')
 
 
-def inputs(rdd):
-    # TODO: Fill this in
-    pass
-
-
 def pyccd(rdd):
     """Execute ccd.detect
     :param rdd: Tuple of (tuple, dict) generated from pyccd_inputs
@@ -125,7 +120,7 @@ def pyccd(rdd):
     acquired = rdd[0][3]
     data = rdd[1] or dict()
     errs = rdd[2]
-    kwargs = {'dates': data.get('dates')
+    kwargs = {'dates': data.get('dates'),
               'blues': data.get('blues'),
               'greens': data.get('greens'),
               'reds': data.get('reds'),
@@ -290,10 +285,10 @@ def products(jobconf, sparkcontext):
                                .flatMap(lambda x: x)\
                                .filter(partial(fits_in_box,
                                                bbox=jc['clip_box'].value))\
-                               .map(lambda x: ((x[0][0], x[0][1],
-                                                'inputs',
-                                                jc['acquired'].value),
-                                                x[1]))\
+                               .map(lambda x: (success(x[0][0], x[0][1],
+                                                       'inputs',
+                                                       jc['acquired'].value),
+                                                       x[1]))\
                                .repartition(jc['product_partitions'].value)\
                                .setName('pyccd_inputs')
 
