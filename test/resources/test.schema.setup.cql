@@ -8,7 +8,7 @@ CREATE TABLE IF NOT EXISTS lcmap_changes_local.jobconf (
     PRIMARY KEY (id)
 )
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
-AND COMPACTION = { 'class' : 'LeveledCompactionStrategy' }
+AND COMPACTION = { 'class' : 'LeveledCompactionStrategy' };
 
 
 CREATE TABLE IF NOT EXISTS lcmap_changes_local.inputs_2017_06_08(
