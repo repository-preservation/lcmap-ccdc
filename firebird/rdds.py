@@ -18,86 +18,89 @@ def algorithm(name, version):
     return '{}_{}'.format(name, version)
 
 
-def success(x, y, algorithm, datestr, data):
+def success(x, y, alg, datestr, result):
     """Formats an rdd transformation result.
     :param x: x coordinate
     :param y: y coordinate
-    :param algorithm: algorithm and version string
+    :param alg: algorithm and version string
     :param datestr: datestr that identifies the result
-    :param data: algorithm outputs
-    :return: ((x, y, algorithm, datestr), data, None)
+    :param result: algorithm outputs
+    :return: ((x, y, alg, datestr), result, None)
     """
-    return ((x, y, algorithm, datestr), data, None)
+    return ((x, y, alg, datestr), result, None)
 
 
-def error(x, y, algorithm, datestr, errors):
+def error(x, y, alg, datestr, errors):
     """Format an rdd transformation error
     :param x: x coordinate
     :param y: y coordinate
-    :param algorithm: algorithm and version string
+    :param alg: algorithm and version string
     :param datestr: datestr that identifies the result
     :param errors: algorithm errors
-    :return: ((x, y, algorithm, datestr), None, errors)
+    :return: ((x, y, alg, datestr), None, errors)
     """
-    return ((x, y, algorithm, datestr), None, errors)
+    return ((x, y, alg, datestr), None, errors)
 
 
-def haserrors(x, y, algorithm, datestr, errs, rdd_name):
+def haserrors(x, y, alg, datestr, errors):
     """Determines if previous errors exist and creates proper return value
     if True.  If no error exists returns False.
     :param x: x coordinate
     :param y: y coordinate
-    :param algorithm: algorithm and version string
+    :param alg: algorithm and version string
     :param datestr: datestr for current RDD record
     :param errs: Errors element from input RDD
-    :param rdd_name: Name of input RDD.
     :return: Either a properly formatted RDD tuple or the result of executing
              the RDD function.
     """
-    if errs is None:
+    if errors is None:
         return False
     else:
-        e = 'previous-error[{}]:{}'.format(rdd_name, errs)
-        return error(x, y, algorithm, datestr, e)
+        e = 'previous-error:{}'.format(errors)
+        return error(x=x, y=y, alg=alg, datestr=datestr, errors=e)
 
 
-def tryexcept(func, **kwargs, x, y, algorithm, datestr):
+def tryexcept(func, kwargs, x, y, alg, datestr):
     """Executes a function wrapped in try: except:.  Returns result
     of success() or error().
     :param func: function to execute
     :param kwargs: keyword args for func
     :param x: x coordinate
     :param y: y coordinate
-    :param algorithm: algorithm and version string
+    :param alg: algorithm and version string
     :param datestr: date string that identifies this execution
     :return: value of success() or error()
     """
     try:
-        return success(x, y, algorithm, datestr, func(kwargs))
+        return success(x=x, y=y, alg=alg, datestr=datestr,
+                       result=func(**kwargs))
     except Exception as errs:
-        return error(x, y, algorithm, datestr, errs)
+        return error(x=x, y=y, alg=alg, datestr=datestr, errors=errs)
 
 
-def safely(func, kwargs, x, y, algorithm, datestr, result, errs, rdd_name):
+def safely(func, kwargs, x, y, alg, datestr, errors):
     """Runs a function for an input with exception handling applied
     :param func: function to execute
     :param kwargs: keyword args for func
     :param x: x coordinate
     :param y: y coordinate
-    :param algorithm: algorithm and version string
+    :param alg: algorithm and version string
     :param datestr: date string that identifies this execution
+    :param errors: value of input rdd tuple position for errors.
     :return: value of success() or error()
     """
-    return (haserrors(x, y, algorithm, datestr, result, errs, rdd_name) or
-            tryexcept(func, kwargs, x, y, algorithm, datestr))
+    return (haserrors(x=x, y=y, alg=alg, datestr=datestr, errors=errors) or
+            tryexcept(func=func, kwargs=kwargs, x=x, y=y, alg=alg,
+                      datestr=datestr))
 
 
 def simplify_detect_results(results):
     """Convert child objects inside CCD results from NamedTuples to dicts"""
-    output = dict()
-    for key in results.keys():
-        output[key] = f.simplify_objects(results[key])
-    return output
+
+    def simplify(result):
+        return {k: f.simplify_objects(v) for k, v in result.items()}
+
+    return simplify(results) if type(results) is dict else dict()
 
 
 def result_to_models(result):
@@ -131,9 +134,8 @@ def pyccd(rdd):
               'quality': data.get('quality'),
               'param': ccd_params()}
 
-    return safely(func=ccd.detect, kwargs=kwargs, x=x, y=y,
-                  algorithm=ccd.algorithm, datestr=acquired, result=data,
-                  errs=errs, rdd_name=rdd.getName())
+    return safely(func=ccd.detect, kwargs=kwargs, x=x, y=y, alg=ccd.algorithm,
+                  datestr=acquired, errors=errs)
 
 
 def lastchange(rdd):
@@ -149,8 +151,8 @@ def lastchange(rdd):
     kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
 
     return safely(func=fp.lastchange, kwargs=kwargs, x=x, y=y,
-                  algorithm=algorithm('lastchange', fp.version()),
-                  datestr=date, result=data, errs=errs, rdd_name=rdd.getName())
+                  alg=algorithm('lastchange', fp.version), datestr=date,
+                  errors=errs)
 
 
 def changemag(rdd):
@@ -166,8 +168,8 @@ def changemag(rdd):
     kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
 
     return safely(func=fp.changemag, kwargs=kwargs, x=x, y=y,
-                  algorithm=algorithm('changemag', fp.version), datestr=date,
-                  result=data, errs=errs, rdd_name=rdd.getName())
+                  alg=algorithm('changemag', fp.version), datestr=date,
+                  errors=errs)
 
 
 def changedate(rdd):
@@ -183,8 +185,8 @@ def changedate(rdd):
     kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
 
     return safely(func=fp.changedate, kwargs=kwargs, x=x, y=y,
-                  algorithm=algorithm('changedate', fp.version), datestr=date,
-                  result=data, errs=errs, rdd_name=rdd.getName())
+                  alg=algorithm('changedate', fp.version), datestr=date,
+                  errors=errs)
 
 
 def seglength(rdd):
@@ -203,8 +205,8 @@ def seglength(rdd):
               'bot': fd.to_ordinal(fd.startdate(acquired))}
 
     return safely(func=fp.seglength, kwargs=kwargs, x=x, y=y,
-                  algorithm=algorithm('seglength', fp.version), datestr=date,
-                  result=data, errs=errs, rdd_name=rdd.getName())
+                  alg=algorithm('seglength', fp.version), datestr=date,
+                  errors=errs)
 
 
 def curveqa(rdd):
@@ -220,8 +222,8 @@ def curveqa(rdd):
     kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
 
     return safely(func=fp.curveqa, kwargs=kwargs, x=x, y=y,
-                  algorithm=algorithm('curveqa', fp.version), datestr=date,
-                  result=data, errs=errs, rdd_name=rdd.getName())
+                  alg=algorithm('curveqa', fp.version), datestr=date,
+                  errors=errs)
 
 
 def fits_in_box(value, bbox):
@@ -270,26 +272,36 @@ def products(jobconf, sparkcontext):
     jc = jobconf
     sc = sparkcontext
 
-    _chipids = sc.parallelize(jc['chip_ids'].value,
-                              jc['initial_partitions'].value)\
-                              .setName("CHIP IDS")
+    acquired = jc['acquired'].value
+    specs_url = jc['specs_url'].value
+    specs_fn = jc['specs_fn'].value
+    chips_url=jc['chips_url'].value
+    chips_fn=jc['chips_fn'].value
+    queries = jc['chip_spec_queries'].value
+    clip_box = jc['clip_box'].value
+    initial_partitions = jc['initial_partitions'].value
+    product_partitions = jc['product_partitions'].value
+    chip_ids = jc['chip_ids'].value
+
+    _chipids = sc.parallelize(chip_ids, initial_partitions).setName("chip_ids")
 
     # query data and transform it into pyccd input format
     _in = _chipids.map(partial(inputs.pyccd,
-                               specs_url=jc['specs_url'].value,
-                               specs_fn=jc['specs_fn'].value,
-                               chips_url=jc['chips_url'].value,
-                               chips_fn=jc['chips_fn'].value,
-                               acquired=jc['acquired'].value,
-                               queries=jc['chip_spec_queries'].value))\
+                               specs_url=specs_url,
+                               specs_fn=specs_fn,
+                               chips_url=chips_url,
+                               chips_fn=chips_fn,
+                               acquired=acquired,
+                               queries=queries))\
                                .flatMap(lambda x: x)\
                                .filter(partial(fits_in_box,
-                                               bbox=jc['clip_box'].value))\
-                               .map(lambda x: (success(x[0][0], x[0][1],
-                                                       'inputs',
-                                                       jc['acquired'].value),
-                                                       x[1]))\
-                               .repartition(jc['product_partitions'].value)\
+                                               bbox=clip_box))\
+                               .map(lambda x: (success(x=x[0][0],
+                                                       y=x[0][1],
+                                                       alg='inputs',
+                                                       datestr=acquired,
+                                                       result=x[1])))\
+                               .repartition(product_partitions)\
                                .setName('pyccd_inputs')
 
     _ccd = _in.map(pyccd).setName(ccd.algorithm).persist()
