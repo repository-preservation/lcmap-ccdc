@@ -78,11 +78,11 @@ def ccd_params():
     return params
 
 
-def evaluate(acquired, bounds, clip, directory, product, product_dates):
+def evaluate(acquired, bounds, clip, products, product_dates, directory):
     pass
 
 
-def save(acquired, bounds, clip, product, product_dates):
+def save(acquired, bounds, clip, products, product_dates):
     pass
 
 

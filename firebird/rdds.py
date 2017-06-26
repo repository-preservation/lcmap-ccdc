@@ -269,19 +269,18 @@ def products(jobconf, sparkcontext):
     :return: dict keyed by product with lazy RDD as value
     """
 
-    jc = jobconf
     sc = sparkcontext
 
-    acquired = jc['acquired'].value
-    specs_url = jc['specs_url'].value
-    specs_fn = jc['specs_fn'].value
-    chips_url=jc['chips_url'].value
-    chips_fn=jc['chips_fn'].value
-    queries = jc['chip_spec_queries'].value
-    clip_box = jc['clip_box'].value
-    initial_partitions = jc['initial_partitions'].value
-    product_partitions = jc['product_partitions'].value
-    chip_ids = jc['chip_ids'].value
+    acquired = jobconf['acquired'].value
+    specs_url = jobconf['specs_url'].value
+    specs_fn = jobconf['specs_fn'].value
+    chips_url = jobconf['chips_url'].value
+    chips_fn = jobconf['chips_fn'].value
+    queries = jobconf['chip_spec_queries'].value
+    clip_box = jobconf['clip_box'].value
+    initial_partitions = jobconf['initial_partitions'].value
+    product_partitions = jobconf['product_partitions'].value
+    chip_ids = jobconf['chip_ids'].value
 
     _chipids = sc.parallelize(chip_ids, initial_partitions).setName("chip_ids")
 
@@ -298,7 +297,8 @@ def products(jobconf, sparkcontext):
                                                bbox=clip_box))\
                                .map(lambda x: (success(x=x[0][0],
                                                        y=x[0][1],
-                                                       alg='inputs',
+                                                       alg=algorithm('inputs',
+                                                                     'v1'),
                                                        datestr=acquired,
                                                        result=x[1])))\
                                .repartition(product_partitions)\
