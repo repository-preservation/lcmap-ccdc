@@ -22,6 +22,13 @@ Apache Spark based product generation for LCMAP.
    $ source activate firebird
 ```
 
+* Install Maven3
+
+* Install the spark-cassandra connector
+```bash
+   $ mvn -DgroupId=com.datastax.spark -DartifactId=	spark-cassandra-connector_2.11 -Dversion=2.0.2 dependency:get
+```
+
 * Clone this repo, install deps and submodules
 ```bash
    $ git clone git@github.com:usgs-eros/lcmap-firebird
