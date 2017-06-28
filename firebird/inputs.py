@@ -24,7 +24,8 @@ def add_dates(dates, dods, key='dates'):
     def update(d, v):
         d.update({key: v})
         return d
-    return {k: update(v, dates) for k, v in d.items()}
+
+    return {k: update(v, dates) for k, v in dods.items()}
 
 
 def identify(chip_x, chip_y, rod):
@@ -75,16 +76,17 @@ def pyccd(point, specs_url, specs_fn, chips_url, chips_fn, acquired, queries):
     chip_locations = fchips.locations(chip_x, chip_y, blue_chip_spec)
 
     # LETS MAKE SOME RODS :-)  (life (is (way better) (with s-expressions)))
-    return tuple(k, add_dates(
-                        f.rsort(map(fdates.to_ordinal, dstrs)),
-                        f.flip_keys(
-                            identify(
-                                chip_x,
-                                chip_y,
-                                frods.locate(
-                                    chip_locations,
-                                    frods.from_chips(
-                                        fchips.to_numpy(
-                                            fchips.trim(v, dstrs),
-                                            fspecs.byubid(specs[k])))))))
-            for k, v in chips.items())
+    rods = add_dates(f.rsort(map(fdates.to_ordinal, dstrs)),
+                     f.flip_keys(
+                         {k: identify(
+                                 chip_x,
+                                 chip_y,
+                                 frods.locate(
+                                     chip_locations,
+                                     frods.from_chips(
+                                         fchips.to_numpy(
+                                             fchips.trim(v, dstrs),
+                                             fspecs.byubid(specs[k])))))
+                          for k, v in chips.items()}))
+
+    return tuple((k, v) for k, v in rods.items())

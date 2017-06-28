@@ -1,4 +1,3 @@
-from firebird import driver
 from firebird import inputs
 from test.mocks import aardvark as ma
 import firebird as fb
@@ -36,10 +35,10 @@ def test_pyccd_inputs():
                         chips_url='http://localhost',
                         chips_fn=ma.chips,
                         acquired='1980-01-01/2015-12-31',
-                        queries=driver.chip_spec_queries(fb.CHIPS_URL))
+                        queries=fb.chip_spec_queries(fb.CHIPS_URL))
     assert len(data) == 10000
     assert isinstance(data, tuple)
     assert isinstance(data[0], tuple)
     assert isinstance(data[0][0], tuple)
     assert isinstance(data[0][1], dict)
-    assert len(data[0][0]) == 2
+    assert len(data[0][0]) == 4

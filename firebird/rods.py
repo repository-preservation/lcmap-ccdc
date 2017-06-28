@@ -1,3 +1,5 @@
+import numpy as np
+
 def from_chips(chips):
     """Accepts sequences of chips and returns
     time series pixel rods organized by x, y, t for all chips.

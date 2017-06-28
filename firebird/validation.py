@@ -1,9 +1,10 @@
 from firebird import dates as fd
-from firebird import rdds
+from firebird import transforms
 import re
 
 
 def bounds(bounds):
+    #return len(bounds) > 0 and
     try:
         for __ in ((ulx, lrx), (lry, uly)):
             if not float(__[0]) < float(__[1]):
@@ -23,7 +24,7 @@ def check_bounds(bounds):
 
 
 def check_products(products):
-    available = rdds.labels().keys()
+    available = transforms.labels().keys()
     p = set(products)
     unavailable = p - p.intersection(available)
     if unavailable:

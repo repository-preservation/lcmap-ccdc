@@ -1,5 +1,6 @@
 """functions.py is a module of generalized, reusable functions"""
 
+from functools import reduce
 from functools import singledispatch
 import functools
 import hashlib
@@ -203,6 +204,7 @@ def flip_keys(dods):
               'blue':  [73, 987, 119, 191], ... }}
     ...
     """
+
     def flip(innerkeys, outerkeys, inputs):
         for ik in innerkeys:
             yield({ik: {ok: inputs[ok][ik] for ok in outerkeys}})
