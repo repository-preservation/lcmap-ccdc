@@ -1,5 +1,6 @@
 from pyspark import SparkConf
 from pyspark import SparkContext
+from pyspark import sql
 import datetime
 import logging
 import os
@@ -78,21 +79,26 @@ def ccd_params():
     return params
 
 
-def evaluate(acquired, bounds, clip, products, product_dates, directory):
-    pass
-
-
-def save(acquired, bounds, clip, products, product_dates):
-    pass
-
-
-def count(bounds, product):
-    pass
-
-
-def missing(bounds, product):
-    pass
-
-
-def errors(bounds, product):
-    pass
+def chip_spec_queries(url):
+    """A map of pyccd spectra to chip-spec queries
+    :param url: full url (http://host:port/context) for chip-spec endpoint
+    :return: map of spectra to chip spec queries
+    :example:
+    >>> chip_spec_queries('http://host/v1/landsat/chip-specs')
+    {'reds':     'http://host/v1/landsat/chip-specs?q=tags:red AND sr',
+     'greens':   'http://host/v1/landsat/chip-specs?q=tags:green AND sr'
+     'blues':    'http://host/v1/landsat/chip-specs?q=tags:blue AND sr'
+     'nirs':     'http://host/v1/landsat/chip-specs?q=tags:nir AND sr'
+     'swir1s':   'http://host/v1/landsat/chip-specs?q=tags:swir1 AND sr'
+     'swir2s':   'http://host/v1/landsat/chip-specs?q=tags:swir2 AND sr'
+     'thermals': 'http://host/v1/landsat/chip-specs?q=tags:thermal AND ta'
+     'quality':  'http://host/v1/landsat/chip-specs?q=tags:pixelqa'}
+    """
+    return {'reds':     ''.join([url, '?q=tags:red AND sr']),
+            'greens':   ''.join([url, '?q=tags:green AND sr']),
+            'blues':    ''.join([url, '?q=tags:blue AND sr']),
+            'nirs':     ''.join([url, '?q=tags:nir AND sr']),
+            'swir1s':   ''.join([url, '?q=tags:swir1 AND sr']),
+            'swir2s':   ''.join([url, '?q=tags:swir2 AND sr']),
+            'thermals': ''.join([url, '?q=tags:bt AND thermal AND NOT tirs2']),
+            'quality':  ''.join([url, '?q=tags:pixelqa'])}
