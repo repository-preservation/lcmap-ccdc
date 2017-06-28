@@ -18,8 +18,10 @@ def algorithm(name, version):
     return '{}_{}'.format(name, version)
 
 
-def success(x, y, alg, datestr, result):
+def success(chip_x, chip_y, x, y, alg, datestr, result):
     """Formats an rdd transformation result.
+    :param chip_x: x coordinate of source chip id
+    :param chip_y: y coordinate of source chip id
     :param x: x coordinate
     :param y: y coordinate
     :param alg: algorithm and version string
@@ -27,11 +29,13 @@ def success(x, y, alg, datestr, result):
     :param result: algorithm outputs
     :return: ((x, y, alg, datestr), result, None)
     """
-    return ((x, y, alg, datestr), result, None)
+    return ((chip_x, chip_y, x, y, alg, datestr), result, None)
 
 
-def error(x, y, alg, datestr, errors):
+def error(chip_x, chip_y, x, y, alg, datestr, errors):
     """Format an rdd transformation error
+    :param chip_x: x coordinate of source chip id
+    :param chip_y: y coordinate of source chip id
     :param x: x coordinate
     :param y: y coordinate
     :param alg: algorithm and version string
@@ -42,9 +46,11 @@ def error(x, y, alg, datestr, errors):
     return ((x, y, alg, datestr), None, errors)
 
 
-def haserrors(x, y, alg, datestr, errors):
+def haserrors(chip_x, chip_y, x, y, alg, datestr, errors):
     """Determines if previous errors exist and creates proper return value
     if True.  If no error exists returns False.
+    :param chip_x: x coordinate of source chip id
+    :param chip_y: y coordinate of source chip id
     :param x: x coordinate
     :param y: y coordinate
     :param alg: algorithm and version string
@@ -57,14 +63,17 @@ def haserrors(x, y, alg, datestr, errors):
         return False
     else:
         e = 'previous-error:{}'.format(errors)
-        return error(x=x, y=y, alg=alg, datestr=datestr, errors=e)
+        return error(chip_x=chip_x, chip_y=chip_y, x=x, y=y, alg=alg,
+                     datestr=datestr, errors=e)
 
 
-def tryexcept(func, kwargs, x, y, alg, datestr):
+def tryexcept(func, kwargs, chip_x, chip_y, x, y, alg, datestr):
     """Executes a function wrapped in try: except:.  Returns result
     of success() or error().
     :param func: function to execute
     :param kwargs: keyword args for func
+    :param chip_x: x coordinate of source chip id
+    :param chip_y: y coordinate of source chip id
     :param x: x coordinate
     :param y: y coordinate
     :param alg: algorithm and version string
@@ -72,16 +81,19 @@ def tryexcept(func, kwargs, x, y, alg, datestr):
     :return: value of success() or error()
     """
     try:
-        return success(x=x, y=y, alg=alg, datestr=datestr,
-                       result=func(**kwargs))
+        return success(chip_x=chip_x, chip_y=chip_y, x=x, y=y, alg=alg,
+                       datestr=datestr, result=func(**kwargs))
     except Exception as errs:
-        return error(x=x, y=y, alg=alg, datestr=datestr, errors=errs)
+        return error(chip_x=chip_x, chip_y=chip_y, x=x, y=y, alg=alg,
+                     datestr=datestr, errors=errs)
 
 
-def safely(func, kwargs, x, y, alg, datestr, errors):
+def safely(func, kwargs, chip_x, chip_y, x, y, alg, datestr, errors):
     """Runs a function for an input with exception handling applied
     :param func: function to execute
     :param kwargs: keyword args for func
+    :param chip_x: x coordinate of source chip id
+    :param chip_y: y coordinate of source chip id
     :param x: x coordinate
     :param y: y coordinate
     :param alg: algorithm and version string
@@ -89,9 +101,10 @@ def safely(func, kwargs, x, y, alg, datestr, errors):
     :param errors: value of input rdd tuple position for errors.
     :return: value of success() or error()
     """
-    return (haserrors(x=x, y=y, alg=alg, datestr=datestr, errors=errors) or
-            tryexcept(func=func, kwargs=kwargs, x=x, y=y, alg=alg,
-                      datestr=datestr))
+    return (haserrors(chip_x=chip_x, chip_y=chip_y, x=x, y=y, alg=alg,
+                      datestr=datestr, errors=errors) or
+            tryexcept(func=func, kwargs=kwargs, chip_x=chip_x, chip_y=chip_y,
+                      x=x, y=y, alg=alg, datestr=datestr))
 
 
 def simplify_detect_results(results):
@@ -114,13 +127,15 @@ def result_to_models(result):
 def pyccd(rdd):
     """Execute ccd.detect
     :param rdd: Tuple of (tuple, dict) generated from pyccd_inputs
-                ((x, y, algorithm, datestring): data)
+                ((chip_x, chip_y, x, y, algorithm, datestring): data)
     :return: A tuple of (tuple, dict) with pyccd results
-             ((x, y, algorithm, acquired), results, errors)
+             ((chip_x, chip_y, x, y, algorithm, acquired), results, errors)
     """
-    x = rdd[0][0]
-    y = rdd[0][1]
-    acquired = rdd[0][3]
+    chip_x = rdd[0][0]
+    chip_y = rdd[0][1]
+    x = rdd[0][2]
+    y = rdd[0][3]
+    acquired = rdd[0][5]
     data = rdd[1] or dict()
     errs = rdd[2]
     kwargs = {'dates': data.get('dates'),
@@ -134,69 +149,82 @@ def pyccd(rdd):
               'quality': data.get('quality'),
               'param': ccd_params()}
 
-    return safely(func=ccd.detect, kwargs=kwargs, x=x, y=y, alg=ccd.algorithm,
-                  datestr=acquired, errors=errs)
+    return safely(func=ccd.detect, kwargs=kwargs, chip_x=chip_x, chip_y=chip_y,
+                  x=x, y=y, alg=ccd.algorithm, datestr=acquired, errors=errs)
 
 
 def lastchange(rdd):
     """Create lastchange product
-    :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
-    :return: ((x, y, algorithm, result, errors))
+    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+                 product_date)
+    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
-    x = rdd[0][0][0]
-    y = rdd[0][0][1]
+    chip_x = rdd[0][0][0]
+    chip_y = rdd[0][0][1]
+    x = rdd[0][0][2]
+    y = rdd[0][0][3]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
     kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
 
-    return safely(func=fp.lastchange, kwargs=kwargs, x=x, y=y,
+    return safely(func=fp.lastchange, kwargs=kwargs, chip_x=chip_x,
+                  chip_y=chip_y, x=x, y=y,
                   alg=algorithm('lastchange', fp.version), datestr=date,
                   errors=errs)
 
 
 def changemag(rdd):
     """Create changemag product
-    :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
-    :return: ((x, y, algorithm, result))
+    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+                 product_date)
+    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
-    x = rdd[0][0][0]
-    y = rdd[0][0][1]
+    chip_x = rdd[0][0][0]
+    chip_y = rdd[0][0][1]
+    x = rdd[0][0][2]
+    y = rdd[0][0][3]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
     kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
 
-    return safely(func=fp.changemag, kwargs=kwargs, x=x, y=y,
-                  alg=algorithm('changemag', fp.version), datestr=date,
-                  errors=errs)
+    return safely(func=fp.changemag, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
+                  chip_y=chip_y, alg=algorithm('changemag', fp.version),
+                  datestr=date, errors=errs)
 
 
 def changedate(rdd):
     """Create changedate product
-    :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
-    :return: ((x, y, algorithm, result))
+    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+                 product_date)
+    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
-    x = rdd[0][0][0]
-    y = rdd[0][0][1]
+    chip_x = rdd[0][0][0]
+    chip_y = rdd[0][0][1]
+    x = rdd[0][0][2]
+    y = rdd[0][0][3]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
     kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
 
-    return safely(func=fp.changedate, kwargs=kwargs, x=x, y=y,
-                  alg=algorithm('changedate', fp.version), datestr=date,
-                  errors=errs)
+    return safely(func=fp.changedate, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
+                  chip_y=chip_y, alg=algorithm('changedate', fp.version),
+                  datestr=date, errors=errs)
 
 
 def seglength(rdd):
     """Create seglength product
-    :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
-    :return: ((x, y, algorithm, result))
+    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+                 product_date)
+    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
-    x = rdd[0][0][0]
-    y = rdd[0][0][1]
-    acquired = rdd[0][0][3]
+    chip_x = rdd[0][0][0]
+    chip_y = rdd[0][0][1]
+    x = rdd[0][0][2]
+    y = rdd[0][0][3]
+    acquired = rdd[0][0][5]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
@@ -204,26 +232,29 @@ def seglength(rdd):
               'ord_date': fd.to_ordinal(date),
               'bot': fd.to_ordinal(fd.startdate(acquired))}
 
-    return safely(func=fp.seglength, kwargs=kwargs, x=x, y=y,
-                  alg=algorithm('seglength', fp.version), datestr=date,
-                  errors=errs)
+    return safely(func=fp.seglength, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
+                  chip_y=chip_y, alg=algorithm('seglength', fp.version),
+                  datestr=date, errors=errs)
 
 
 def curveqa(rdd):
     """Create curveqa product
-    :param rdd: (((x, y, algorithm, acquired), data, errors), product_date)
-    :return: ((x, y, algorithm, result))
+    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+                 product_date)
+    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
-    x = rdd[0][0][0]
-    y = rdd[0][0][1]
+    chip_x = rdd[0][0][0]
+    chip_y = rdd[0][0][1]
+    x = rdd[0][0][2]
+    y = rdd[0][0][3]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
     kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
 
-    return safely(func=fp.curveqa, kwargs=kwargs, x=x, y=y,
-                  alg=algorithm('curveqa', fp.version), datestr=date,
-                  errors=errs)
+    return safely(func=fp.curveqa, kwargs=kwargs, x=x, y=y,  chip_x=chip_x,
+                  chip_y=chip_y, alg=algorithm('curveqa', fp.version),
+                  datestr=date, errors=errs)
 
 
 def fits_in_box(value, bbox):
@@ -231,12 +262,12 @@ def fits_in_box(value, bbox):
     Useful as a filtering function with conditional enforcement.
     If bbox is None then fits_in_box always returns True
 
-    :param value: Tuple: ((x,y), (data))
+    :param value: Tuple: ((chip_x, chip_y, x, y), (data))
     :param bbox: dict with keys: ulx, uly, lrx, lry
     :return: Boolean
     """
     def fits(point, bbox):
-        x, y = point
+        _, _, x, y = point
         return (float(x) >= float(bbox['ulx']) and
                 float(x) <= float(bbox['lrx']) and
                 float(y) >= float(bbox['lry']) and
@@ -295,8 +326,10 @@ def products(jobconf, sparkcontext):
                                .flatMap(lambda x: x)\
                                .filter(partial(fits_in_box,
                                                bbox=clip_box))\
-                               .map(lambda x: (success(x=x[0][0],
-                                                       y=x[0][1],
+                               .map(lambda x: (success(chip_x=[0][0],
+                                                       chip_y=[0][1],
+                                                       x=x[0][2],
+                                                       y=x[0][3],
                                                        alg=algorithm('inputs',
                                                                      'v1'),
                                                        datestr=acquired,
