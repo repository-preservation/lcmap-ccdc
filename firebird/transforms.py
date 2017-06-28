@@ -43,7 +43,7 @@ def error(chip_x, chip_y, x, y, alg, datestr, errors):
     :param errors: algorithm errors
     :return: ((x, y, alg, datestr), None, errors)
     """
-    return ((x, y, alg, datestr), None, errors)
+    return ((chip_x, chip_y, x, y, alg, datestr), None, errors)
 
 
 def haserrors(chip_x, chip_y, x, y, alg, datestr, errors):
@@ -147,7 +147,7 @@ def pyccd(rdd):
               'swir2s': data.get('swir2s'),
               'thermals': data.get('thermals'),
               'quality': data.get('quality'),
-              'param': ccd_params()}
+              'params': ccd_params()}
 
     return safely(func=ccd.detect, kwargs=kwargs, chip_x=chip_x, chip_y=chip_y,
                   x=x, y=y, alg=ccd.algorithm, datestr=acquired, errors=errs)
@@ -316,6 +316,7 @@ def products(jobconf, sparkcontext):
     _chipids = sc.parallelize(chip_ids, initial_partitions).setName("chip_ids")
 
     # query data and transform it into pyccd input format
+
     _in = _chipids.map(partial(inputs.pyccd,
                                specs_url=specs_url,
                                specs_fn=specs_fn,
@@ -326,8 +327,8 @@ def products(jobconf, sparkcontext):
                                .flatMap(lambda x: x)\
                                .filter(partial(fits_in_box,
                                                bbox=clip_box))\
-                               .map(lambda x: (success(chip_x=[0][0],
-                                                       chip_y=[0][1],
+                               .map(lambda x: (success(chip_x=x[0][0],
+                                                       chip_y=x[0][1],
                                                        x=x[0][2],
                                                        y=x[0][3],
                                                        alg=algorithm('inputs',
@@ -341,7 +342,7 @@ def products(jobconf, sparkcontext):
 
     # cartesian will create an rdd that looks like:
     # (((x, y, algorithm, product_date_str), data), product_date)
-    _ccd_dates = _ccd.cartesian(sc.parallelize(jc['product_dates'].value))
+    _ccd_dates = _ccd.cartesian(sc.parallelize(jobconf['product_dates'].value))
 
     _lc = _ccd_dates.map(lastchange).setName('lastchange_v1')
     _cm = _ccd_dates.map(changemag).setName('changemag_v1')

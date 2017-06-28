@@ -19,8 +19,7 @@ from urllib.parse import urlparse
 
 import firebird as fb
 from firebird import chips as fc
-from firebird import chips_specs as fcs
-from firebird import driver as d
+from firebird import chip_specs as fcs
 from firebird import functions as f
 from firebird import files
 
@@ -87,7 +86,8 @@ def spec_query_id(url):
 
 def spec_query_ids(specs_url):
     """Returns the query portion of the chip_spec_url keyed to its spectra"""
-    return {k: spec_query_id(v) for k, v in d.chip_spec_urls(specs_url).items()}
+    return {k: spec_query_id(v)
+            for k, v in fb.chip_spec_urls(specs_url).items()}
 
 
 def spectra_from_queryid(queryid, root_dir=SPECS_DIR):
@@ -111,7 +111,7 @@ def test_specs(root_dir=SPECS_DIR):
 def live_specs(specs_url):
     """Returns a dict of all chip specs defined by the driver.chip_spec_urls
     keyed by spectra"""
-    return {k: fcs.get(v) for k, v in d.chip_spec_urls(specs_url).items()}
+    return {k: fcs.get(v) for k, v in fb.chip_spec_urls(specs_url).items()}
 
 
 def update_specs(conf=test.data_config()):
