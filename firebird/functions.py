@@ -154,16 +154,6 @@ def true(v):
     return v is not None and (v == 1 or str(v).strip().lower() == 'true')
 
 
-def broadcast(context, sparkcontext):
-    """Sets read-only values on the cluster to make them available to cluster
-    operations.
-    :param context: dict of key: values to broadcast to the cluster
-    :param sparkcontext: An active spark context for the spark cluster
-    :return: dict of cluster references for each key: value pair
-    """
-    return {k: sparkcontext.broadcast(value=v) for k,v in context.items()}
-
-
 @singledispatch
 def serialize(arg):
     """Converts datastructure to json, computes digest
@@ -187,3 +177,37 @@ def deserialize(string):
     :return: Data structure represented by :param string:
     """
     return json.loads(string)
+
+
+def flip_keys(dods):
+    """Accepts a dictionary of dictionaries and flips the outer and inner keys.
+    All inner dictionaries must have a consistent set of keys or key Exception
+    is raised.
+    :param dods: dict of dicts
+    :returns: dict of dicts with inner and outer keys flipped
+    :example:
+
+    input:
+
+    {'red':   {(0, 0): [110, 110, 234, 664], (0, 1): [23, 887, 110, 111]},
+     'green': {(0, 0): [120, 112, 224, 624], (0, 1): [33, 387, 310, 511]},
+     'blue':  {(0, 0): [128, 412, 244, 654], (0, 1): [73, 987, 119, 191]},
+    ...
+
+    output:
+    {(0, 0): {'red':   [110, 110, 234, 664],
+              'green': [120, 112, 224, 624],
+              'blue':  [128, 412, 244, 654], ... },
+     (0, 1), {'red':   [23, 887, 110, 111],
+              'green': [33, 387, 310, 511],
+              'blue':  [73, 987, 119, 191], ... }}
+    ...
+    """
+    def flip(innerkeys, outerkeys, inputs):
+        for ik in innerkeys:
+            yield({ik: {ok: inputs[ok][ik] for ok in outerkeys}})
+
+    outerkeys = set(dods.keys())
+    innerkeys = set(reduce(lambda accum, v: accum + v,
+                           [list(dods[ok].keys()) for ok in outerkeys]))
+    return merge(flip(innerkeys, outerkeys, dods))

@@ -1,5 +1,5 @@
 from firebird import aardvark as a
-from firebird import driver as d
+from firebird import actions
 import click as c
 import firebird as fb
 
@@ -67,12 +67,12 @@ def train(from_iwds, acquired, bounds, products, product_dates):
           multiple=True)
 @c.option('--product_dates', '-d', multiple=True)
 def evaluate(acquired, bounds, clip, directory, product, product_dates):
-    return driver.evaluate(acquired=acquired,
-                           bounds=bounds,
-                           clip=clip,
-                           directory=directory,
-                           products=products,
-                           product_dates=product_dates)
+    return actions.evaluate(acquired=acquired,
+                            bounds=bounds,
+                            clip=clip,
+                            directory=directory,
+                            products=products,
+                            product_dates=product_dates)
 
 
 @fbcmd.command()
@@ -83,11 +83,11 @@ def evaluate(acquired, bounds, clip, directory, product, product_dates):
           multiple=True)
 @c.option('--product_dates', '-d', multiple=True)
 def save(acquired, bounds, clip, product, product_dates):
-    return driver.save(acquired=acquired,
-                       bounds=bounds,
-                       clip=clip,
-                       products=products,
-                       product_dates=product_dates)
+    return actions.save(acquired=acquired,
+                        bounds=bounds,
+                        clip=clip,
+                        products=products,
+                        product_dates=product_dates)
 
 
 if __name__ == "__main__":

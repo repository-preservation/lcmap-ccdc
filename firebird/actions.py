@@ -1,41 +1,25 @@
-from firebird import aardvark as a
 from firebird import chip
-from firebird import datastore as ds
+from firebird import chip_specs
 from firebird import functions as f
-from firebird import rdds
+from firebird import transforms
 from firebird import validation
 from functools import partial
 import firebird as fb
 
 
-def chip_spec_queries(url):
-    """A map of pyccd spectra to chip-spec queries
-    :param url: full url (http://host:port/context) for chip-spec endpoint
-    :return: map of spectra to chip spec queries
-    :example:
-    >>> chip_spec_queries('http://host/v1/landsat/chip-specs')
-    {'reds':     'http://host/v1/landsat/chip-specs?q=tags:red AND sr',
-     'greens':   'http://host/v1/landsat/chip-specs?q=tags:green AND sr'
-     'blues':    'http://host/v1/landsat/chip-specs?q=tags:blue AND sr'
-     'nirs':     'http://host/v1/landsat/chip-specs?q=tags:nir AND sr'
-     'swir1s':   'http://host/v1/landsat/chip-specs?q=tags:swir1 AND sr'
-     'swir2s':   'http://host/v1/landsat/chip-specs?q=tags:swir2 AND sr'
-     'thermals': 'http://host/v1/landsat/chip-specs?q=tags:thermal AND ta'
-     'quality':  'http://host/v1/landsat/chip-specs?q=tags:pixelqa'}
+def broadcast(context, sparkcontext):
+    """Sets read-only values on the cluster to make them available to cluster
+    operations.
+    :param context: dict of key: values to broadcast to the cluster
+    :param sparkcontext: An active spark context for the spark cluster
+    :return: dict of cluster references for each key: value pair
     """
-    return {'reds':     ''.join([url, '?q=tags:red AND sr']),
-            'greens':   ''.join([url, '?q=tags:green AND sr']),
-            'blues':    ''.join([url, '?q=tags:blue AND sr']),
-            'nirs':     ''.join([url, '?q=tags:nir AND sr']),
-            'swir1s':   ''.join([url, '?q=tags:swir1 AND sr']),
-            'swir2s':   ''.join([url, '?q=tags:swir2 AND sr']),
-            'thermals': ''.join([url, '?q=tags:bt AND thermal AND NOT tirs2']),
-            'quality':  ''.join([url, '?q=tags:pixelqa'])}
+    return {k: sparkcontext.broadcast(value=v) for k,v in context.items()}
 
 
 def init(acquired, chip_ids, products, product_dates, sparkcontext,
-         chips_fn=a.chips,
-         specs_fn=a.chip_specs,
+         chips_fn=chips.get,
+         specs_fn=chip_specs.get,
          clip_box=None,
          initial_partitions=fb.INITIAL_PARTITION_COUNT,
          product_partitions=fb.PRODUCT_PARTITION_COUNT):
@@ -103,30 +87,30 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
         # in memory.
         # everything from here down is an RDD/broadcast variable/cluster op.
         # Don't mix up driver memory locations and cluster memory locations
-        jobconf = f.broadcast(
-                     context={'acquired': acquired,
-                              'clip_box': clip_box,
-                              'chip_ids': chip_ids,
-                              'chips_fn': chips_fn,
-                              'chip_spec_queries': queries,
-                              'chips_url': fb.CHIPS_URL,
-                              'clip_box': clip_box,
-                              'initial_partitions': initial_partitions,
-                              'products': products,
-                              'product_dates': product_dates,
-                              'product_partitions': product_partitions,
-                              # should be able to pull this from the
-                              # specs_fn and specs_url but this lets us
-                              # do it once without beating aardvark up.
-                              'reference_spec': spec,
-                              'specs_url': fb.SPECS_URL,
-                              'specs_fn': specs_fn},
-                     sparkcontext=sparkcontext)
+        jobconf = broadcast(
+                      context={'acquired': acquired,
+                               'clip_box': clip_box,
+                               'chip_ids': chip_ids,
+                               'chips_fn': chips_fn,
+                               'chip_spec_queries': queries,
+                               'chips_url': fb.CHIPS_URL,
+                               'clip_box': clip_box,
+                               'initial_partitions': initial_partitions,
+                               'products': products,
+                               'product_dates': product_dates,
+                               'product_partitions': product_partitions,
+                               # should be able to pull this from the
+                               # specs_fn and specs_url but this lets us
+                               # do it once without beating aardvark up.
+                               'reference_spec': spec,
+                               'specs_url': fb.SPECS_URL,
+                               'specs_fn': specs_fn},
+                      sparkcontext=sparkcontext)
 
         fb.logger.info('Initializing product graph:{}'
                        .format({k: v.value for k, v in jobconf.items()}))
 
-        graph = rdds.products(jobconf, sparkcontext)
+        graph = transforms.products(jobconf, sparkcontext)
 
         fb.logger.info('Product graph created:{}'
                        .format(graph.keys()))
@@ -143,20 +127,6 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
         raise e
 
 
-def temp(bounds):
-    # fb.minbox(bounds)
-    spec = a.chip_specs(driver.chip_spec_queries(fb.CHIPS_URL))
-    ids = chip.ids(ulx=fb.minbox(bounds)['ulx'],
-                   uly=fb.minbox(bounds)['uly'],
-                   lrx=fb.minbox(bounds)['lrx'],
-                   lry=fb.minbox(bounds)['lry'],
-                   chip_spec=spec)
-
-
-def products():
-    pass
-
-
 def train():
     pass
 
@@ -165,30 +135,31 @@ def classify():
     pass
 
 
-def download():
+def evaluate(acquired, bounds, clip, products, product_dates, directory):
     pass
 
 
-def save(products, product_dates, directory=None, iwds=False, sparkcontext=fb.sparkcontext):
-    sc = sparkcontext()
+def save(acquired, bounds, clip, products, product_dates):
 
+    def write(table, mode, rdd):
+        struct = [['chip_x', 'chip_y', 'x', 'y', 'algorithm', 'datestr'],
+                  'results', 'errors']
+        df = ss.createDataFrame(rdd, struct)
+        df.write.options(table=table, keyspace=fb.CASSANDRA_KEYSPACE).mode(mode).save()
+
+    spec = chip_specs.get(fb.chip_spec_queries(fb.CHIPS_URL)['blues'])[0]
+    ids  = chips.bounds_to_ids(bounds, spec)
+    job  = init(acquired, ids, products, product_dates, sparkcontext)
+    return [write(t, 'append', job[p]) for p in products]
+
+
+def count(bounds, product):
     pass
 
 
-#def save(graph, directory, iwds, sparkcontext=fb.sparkcontext):
-#     try:
+def missing(bounds, product):
+    pass
 
-#         datastore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
-#         filestore = partial(jobconf=jobconf, sparkcontext=sparkcontext)
 
-#         datastore.save(graph) if iwds is True
-#         filestore.save(graph) if directory == directory_something
-
-#         [graph[p].foreach(datastore.save) for p in products]
-#         [graph[p].foreach(filestore.save) for p in products]
-
-         #graph['products'][p].toLocalIterator()(partial(files.append(path='/directory/product-partition.txt'))) for p in products
-#     finally:
-         # make sure to stop the SparkContext
-#         if sparkcontext is not None:
-#             sparkcontext.stop()
+def errors(bounds, product):
+    pass
