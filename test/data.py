@@ -18,7 +18,8 @@ import test
 from urllib.parse import urlparse
 
 import firebird as fb
-from firebird import aardvark as a
+from firebird import chips as fc
+from firebird import chips_specs as fcs
 from firebird import driver as d
 from firebird import functions as f
 from firebird import files
@@ -69,7 +70,7 @@ def spectra_index(specs):
     :returns: A dict of ubid: spectra
     """
     def rekey_by_ubid(chip_spec, spectra):
-        return dict((ubid, spectra) for ubid in a.ubids(chip_spec))
+        return dict((ubid, spectra) for ubid in fcs.ubids(chip_spec))
 
     return f.merge([rekey_by_ubid(cs, s) for s, cs in specs.items()])
 
@@ -110,18 +111,18 @@ def test_specs(root_dir=SPECS_DIR):
 def live_specs(specs_url):
     """Returns a dict of all chip specs defined by the driver.chip_spec_urls
     keyed by spectra"""
-    return {k: a.chip_specs(v) for k, v in d.chip_spec_urls(specs_url).items()}
+    return {k: fcs.get(v) for k, v in d.chip_spec_urls(specs_url).items()}
 
 
 def update_specs(conf=test.data_config()):
     """Updates the spec test data"""
-    cs = live_specs(conf['specs_url'])
+    specs = live_specs(conf['specs_url'])
     qids = spec_query_ids(conf['specs_url'])
 
-    for spectra in cs.keys():
+    for spectra in specs.keys():
         filename = '{}_{}.json'.format(spectra, qids[spectra])
         output_file = os.path.join(conf['specs_dir'], filename)
-        files.write(files.mkdirs(output_file), json.dumps(cs[spectra]))
+        files.write(files.mkdirs(output_file), json.dumps(specs[spectra]))
 
 
 def update_chips(conf=test.data_config()):
@@ -132,12 +133,12 @@ def update_chips(conf=test.data_config()):
     acquired = conf['acquired']
     chips_url = conf['chips_url']
     chips_dir = conf['chips_dir']
-    cs = live_specs(conf['specs_url'])
+    specs = live_specs(conf['specs_url'])
 
-    for spectra in cs.keys():
+    for spectra in specs.keys():
         filename = '{}_{}_{}_{}_{}.json'.format(spectra, x, y, dname,
                                                 acquired.replace('/', '_'))
         output_file = os.path.join(chips_dir, filename)
         files.write(files.mkdirs(output_file),
-                    json.dumps(a.chips(chips_url, x, y, acquired,
-                                       a.ubids(cs[spectra]))))
+                    json.dumps(fc.get(chips_url, x, y, acquired,
+                                      fcs.ubids(specs[spectra]))))
