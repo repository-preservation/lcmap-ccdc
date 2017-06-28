@@ -1,4 +1,4 @@
-from firebird import chip
+from firebird import chips
 from firebird import chip_specs
 from firebird import functions as f
 from firebird import transforms
@@ -76,7 +76,7 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
 
     try:
         # retrieve a chip spec so we can generate chip ids
-        queries = chip_spec_queries(fb.SPECS_URL)
+        queries = fb.chip_spec_queries(fb.SPECS_URL)
         spec = specs_fn(queries['blues'])[0]
 
         # put the values we need on the cluster to make them available

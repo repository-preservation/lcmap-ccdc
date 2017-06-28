@@ -1,36 +1,39 @@
-from firebird import aardvark as a
-from firebird import chip
-from firebird import driver
+from firebird import actions as a
 from firebird import functions as f
-from hypothesis import given
 from test.mocks import aardvark as ma
-
 import firebird as fb
-import hypothesis.strategies as st
-import os
 import pyspark
-import socket
-import urllib
 
+def test_broadcast():
+    sc = None
+    try:
+        sc = pyspark.SparkContext(appName="test_broadcast")
+        bc = a.broadcast({'a': 'a',
+                          'true': True,
+                          'list': [1, 2, 3],
+                          'set': set([1, 2, 3]),
+                          'tuple': tuple([1, 2, 3]),
+                          'dict': dict({'a': 1}),
+                          'none': None,
+                          'num': 3}, sparkcontext=sc)
 
-@given(url=st.sampled_from(('http://localhost',
-                            'https://localhost',
-                            'http://localhost/',
-                            'http://127.0.0.1')))
-def test_chip_spec_queries(url):
-    def check(query):
-        url = urllib.parse.urlparse(query)
-        assert url.scheme
-        assert url.netloc
-    urls = driver.chip_spec_queries(url)
-    [check(url) for url in urls.values()]
-
+        assert bc['a'].value == 'a'
+        assert bc['true'].value == True
+        assert bc['list'].value == [1, 2, 3]
+        assert bc['set'].value == {1, 2, 3}
+        assert bc['tuple'].value == (1, 2, 3)
+        assert bc['dict'].value == {'a': 1}
+        assert bc['num'].value == 3
+        assert bc['none'].value == None
+    finally:
+        if sc is not None:
+            sc.stop()
 
 def test_init():
     sc = None
     try:
         sc = pyspark.SparkContext(appName="test_driver")
-        spec = ma.chip_specs(driver.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
+        spec = ma.chip_specs(fb.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
         acquired = '1982-01-01/2015-12-12'
         chip_ids = ((-1821585, 2891595),)
         clip_box = f.minbox(chip_ids)
@@ -38,17 +41,17 @@ def test_init():
                     'changemag', 'seglength', 'curveqa']
         product_dates = ['2014-12-12']
 
-        job = driver.init(acquired=acquired,
-                          chip_ids=chip_ids,
-                          products=products,
-                          product_dates=product_dates,
-                          sparkcontext=sc,
-                          chips_fn=ma.chips,
-                          specs_fn=ma.chip_specs,
-                          clip_box=clip_box,
-                          initial_partitions=2,
-                          product_partitions=2,
-                          )
+        job = a.init(acquired=acquired,
+                     chip_ids=chip_ids,
+                     products=products,
+                     product_dates=product_dates,
+                     sparkcontext=sc,
+                     chips_fn=ma.chips,
+                     specs_fn=ma.chip_specs,
+                     clip_box=clip_box,
+                     initial_partitions=2,
+                     product_partitions=2,
+                     )
 
         jc = job['jobconf']
 
@@ -76,7 +79,3 @@ def test_init():
     finally:
         if sc is not None:
             sc.stop()
-
-
-def test_save():
-    pass
