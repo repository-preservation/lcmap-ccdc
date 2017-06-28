@@ -1,4 +1,4 @@
-from firebird import dates as d
+from firebird import dates as fd
 from firebird import rdds
 import re
 
@@ -14,7 +14,7 @@ def bounds(bounds):
 
 
 def check_acquired(a):
-    if not d.is_acquired(a):
+    if not fd.is_acquired(a):
         raise Exception("Acquired dates are invalid: {}".format(a))
 
 
