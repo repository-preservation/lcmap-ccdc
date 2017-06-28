@@ -75,19 +75,16 @@ def pyccd(point, specs_url, specs_fn, chips_url, chips_fn, acquired, queries):
     chip_locations = fchips.locations(chip_x, chip_y, blue_chip_spec)
 
     # LETS MAKE SOME RODS :-)  (life (is (way better) (with s-expressions)))
-    rods = {k: add_dates(
-                   f.rsort(map(fdates.to_ordinal, dstrs)),
-                   f.flip_keys(
-                       identify(
-                           chip_x,
-                           chip_y,
-                           frods.locate(
-                               chip_locations,
-                               frods.from_chips(
-                                   fchips.to_numpy(
-                                       fchips.trim(v, dstrs),
-                                       fspecs.byubid(specs[k]))))))
-            for k, v in chips.items()}
-
-    # convert to tuple and return
-    return tuple((k, v) for k, v in rods.items())
+    return tuple(k, add_dates(
+                        f.rsort(map(fdates.to_ordinal, dstrs)),
+                        f.flip_keys(
+                            identify(
+                                chip_x,
+                                chip_y,
+                                frods.locate(
+                                    chip_locations,
+                                    frods.from_chips(
+                                        fchips.to_numpy(
+                                            fchips.trim(v, dstrs),
+                                            fspecs.byubid(specs[k])))))))
+            for k, v in chips.items())
