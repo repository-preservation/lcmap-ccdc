@@ -1,7 +1,7 @@
 from collections import namedtuple
-from firebird import driver
+from firebird import actions as a
 from firebird import functions as f
-from firebird import rdds
+from firebird import transforms
 from test.mocks import aardvark as ma
 import firebird as fb
 import pyspark
@@ -10,7 +10,7 @@ import pyspark
 def test_result_to_models():
     ChangeModel = namedtuple('ChangeModel', ['start_day', 'end_day'])
     m = ChangeModel(start_day='1980-01-01', end_day='2017-06-05')
-    result = rdds.result_to_models({'change_models': [m]})
+    result = transforms.result_to_models({'change_models': [m]})
     assert isinstance(result, list)
     assert 'start_day' in result[0]
     assert 'end_day' in result[0]
@@ -62,12 +62,12 @@ def test_products():
 
         # we just want to test 1 point only.
         bounds = ((-1821585, 2891595),)
-        queries = driver.chip_spec_queries(fb.SPECS_URL)
+        queries = fb.chip_spec_queries(fb.SPECS_URL)
         spec = ma.chip_specs(queries['blues'])[0]
 
         sc = pyspark.SparkContext()
 
-        bc = f.broadcast({'acquired': '1982-01-01/2015-12-12',
+        bc = a.broadcast({'acquired': '1982-01-01/2015-12-12',
                           'chip_ids': bounds,
                           'initial_partitions': 1,
                           'chips_fn': ma.chips,
@@ -84,7 +84,7 @@ def test_products():
                           'specs_url': 'http://localhost',
                           'specs_fn': ma.chip_specs},
                          sparkcontext=sc)
-        graph = rdds.products(bc, sc)
+        graph = transforms.products(bc, sc)
 
         assert graph['inputs'].getNumPartitions() == 1
         assert graph['inputs'].count() == 1
