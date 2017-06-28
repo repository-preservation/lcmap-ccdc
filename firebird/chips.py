@@ -1,6 +1,34 @@
 import math
 import numpy as np
+import requests
 from base64 import b64decode
+
+
+def get(url, x, y, acquired, ubids):
+    """Returns aardvark chips for given x, y, date range and ubid sequence
+    :param url: full url to aardvark endpoint
+    :param x: longitude
+    :param y: latitude
+    :param acquired: date range as iso8601 strings '2012-01-01/2014-01-03'
+    :param ubids: sequence of ubid strings
+    :type url: string
+    :type x: number
+    :type y: number
+    :type acquired: string
+    :type ubids: sequence
+    :returns: TBD
+
+    :example:
+    >>> chips(url='http://host:port/landsat/chips',
+              x=123456,
+              y=789456,
+              acquired='2012-01-01/2014-01-03',
+              ubids=['LANDSAT_7/ETM/sr_band1', 'LANDSAT_5/TM/sr_band1'])
+    """
+    return tuple(requests.get(url, params={'x': x,
+                                           'y': y,
+                                           'acquired': acquired,
+                                           'ubid': ubids}).json())
 
 
 def difference(point, interval):
@@ -127,18 +155,22 @@ def ids(ulx, uly, lrx, lry, chip_spec):
                         for y in np.arange(start_y, end_y + cheight, cheight))
 
 
-def to_numpy(chip, chip_spec):
-    """Removes base64 encoding of chip data and converts it to a numpy array
-    :param chip: A chip
-    :param chip_spec: Corresponding chip_spec
-    :returns: A decoded chip with data as a shaped numpy array
+def bounds_to_ids(bounds, spec):
+    """Returns chip ids from a sequence of bounds.  Performs minbox operation
+    on bounds, thus irregular geometries may be supplied.
+    :param bounds: A sequence of bounds.
+    :param spec: A chip spec representing chip geometry
+    :return: Tuple of chip ids
+    :example:
+    >>> ids = bounds_to_ids(bounds = ((112, 443), (112, 500), (100, 443)),
+                           spec=chip_spec)
+    >>> ((100, 500),)
     """
-    shape = chip_spec['data_shape']
-    dtype = chip_spec['data_type'].lower()
-    cdata = b64decode(chip['data'])
-
-    chip['data'] = np.frombuffer(cdata, dtype).reshape(*shape)
-    return chip
+    return ids(ulx=f.minbox(bounds)['ulx'],
+               uly=f.minbox(bounds)['uly'],
+               lrx=f.minbox(bounds)['lrx'],
+               lry=f.minbox(bounds)['lry'],
+               chip_spec=spec)
 
 
 def locations(startx, starty, chip_spec):
@@ -165,3 +197,43 @@ def locations(startx, starty, chip_spec):
     x, y = np.mgrid[startx:endx:pw, starty:endy:ph]
     matrix = np.c_[x.ravel(), y.ravel()]
     return np.reshape(matrix, (cw, ch, 2))
+
+
+def dates(chips):
+    """Dates for a sequence of chips
+    :param chips: sequence of chips
+    :returns: sequence of dates
+    """
+    return tuple([c['acquired'] for c in chips])
+
+
+def trim(chips, dates):
+    """Eliminates chips that are not from the specified dates
+    :param chips: Sequence of chips
+    :param dates: Sequence of dates
+    :returns: Sequence of filtered chips
+    """
+    return tuple(filter(lambda c: c['acquired'] in dates, chips))
+
+
+def chip_to_numpy(chip, chip_spec):
+    """Removes base64 encoding of chip data and converts it to a numpy array
+    :param chip: A chip
+    :param chip_spec: Corresponding chip_spec
+    :returns: A decoded chip with data as a shaped numpy array
+    """
+    shape = chip_spec['data_shape']
+    dtype = chip_spec['data_type'].lower()
+    cdata = b64decode(chip['data'])
+
+    chip['data'] = np.frombuffer(cdata, dtype).reshape(*shape)
+    return chip
+
+
+def to_numpy(chips, chip_specs_byubid):
+    """Converts the data for a sequence of chips to numpy arrays
+    :param chips: a sequence of chips
+    :param chip_specs_byubid: chip_spec dict keyed by ubid
+    :returns: sequence of chips with data as numpy arrays
+    """
+    return map(lambda c: chip_to_numpy(c, chip_specs_byubid[c['ubid']]), chips)

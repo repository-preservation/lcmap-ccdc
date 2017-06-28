@@ -1,50 +1,9 @@
-from firebird import aardvark as a
-from firebird import chip
+from firebird import chips as fchips
+from firebird import chip_specs as fspecs
 from firebird import dates as fdates
 from firebird import functions as f
-from functools import partial
+from firebird import rods as frods
 import firebird as fb
-
-
-def to_rod(chips, dates, specs):
-    """Function to convert chips to rods. Exists primarily to clean up syntax"""
-    return a.rods(a.to_numpy(a.trim(chips, dates), a.byubid(specs)))
-
-
-def to_pyccd(located_rods_by_spectra, dates):
-    """Organizes rods by xy instead of by spectrum
-    :param located_rods_by_spectra: dict of dicts, keyed first by spectra
-                                    then by coordinate
-    :returns: List of tuples
-    :example:
-    located_rods_by_spectra parameter:
-    {'red':   {(0, 0): [110, 110, 234, 664], (0, 1): [23, 887, 110, 111]}}
-    {'green': {(0, 0): [120, 112, 224, 624], (0, 1): [33, 387, 310, 511]}}
-    {'blue':  {(0, 0): [128, 412, 244, 654], (0, 1): [73, 987, 119, 191]}}
-    ...
-
-    returns:
-    (((0, 0), {'red':   [110, 110, 234, 664],
-               'green': [120, 112, 224, 624],
-               'blue':  [128, 412, 244, 654], ... }),
-     ((0, 1), {'red':   [23, 887, 110, 111],
-               'green': [33, 387, 310, 511],
-               'blue':  [73, 987, 119, 191], ...}))
-    ...
-    """
-    def colors(spectra, rods, xy):
-        return {spec: rods[spec][xy] for spec in spectra}
-
-    def add_dates(rainbow, dates):
-        rainbow['dates'] = dates
-        return rainbow
-
-    # alias the descriptive name down to something that doesn't take up a line
-    locrods   = located_rods_by_spectra
-    spectra   = tuple(locrods.keys())
-    locations = locrods[spectra[0]].keys()
-    rainbow   = partial(colors, spectra=locrods.keys(), rods=locrods)
-    return tuple([(xy, add_dates(rainbow(xy=xy), dates)) for xy in locations])
 
 
 def sort(chips, key=lambda c: c['acquired']):
@@ -53,6 +12,29 @@ def sort(chips, key=lambda c: c['acquired']):
     :returns: sorted sequence of chips
     """
     return tuple(f.rsort(chips, key=key))
+
+
+def add_dates(dates, dods, key='dates'):
+    """Inserts dates into each subdictionary of the parent dictionary.
+    :param dod: A dictionary of dictionaries
+    :param dates: A sequence of dates
+    :param key: Subdict key where dates values is inserted
+    :return: An updated dictionary of dictionaries with
+    """
+    def update(d, v):
+        d.update({key: v})
+        return d
+    return {k: update(v, dates) for k, v in d.items()}
+
+
+def identify(chip_x, chip_y, rod):
+    """Adds chip ids (chip_x, chip_y) to the key for each dict entry
+    :param chip_x: x coordinate that identifies the source chip
+    :param chip_y: y coordinate that identifies the source chip
+    :param rod: dict of (x, y): [values]
+    :return: dict of (chip_x, chip_y, x, y): [values]
+    """
+    return {(chip_x, chip_y, k[0], k[1]): v for k, v in rod.items()}
 
 
 def pyccd(point, specs_url, specs_fn, chips_url, chips_fn, acquired, queries):
@@ -66,34 +48,46 @@ def pyccd(point, specs_url, specs_fn, chips_url, chips_fn, acquired, queries):
     :param acquired: Date range string as start/end, ISO 8601 date format
     :param queries: dict of URL queries to retrieve chip specs keyed by spectra
     :returns: A tuple of tuples.
-    (((x1, y1), {'dates': [],  'reds': [],     'greens': [],
-                 'blues': [],  'nirs1': [],    'swir1s': [],
-                 'swir2s': [], 'thermals': [], 'quality': []}),
-     ((x1, y2), {'dates': [],  'reds': [],     'greens': [],
-                 'blues': [],  'nirs1': [],    'swir1s': [],
-                 'swir2s': [], 'thermals': [], 'quality': []}))
+    (((chip_x, chip_y, x1, y1), {'dates': [],  'reds': [],     'greens': [],
+                                 'blues': [],  'nirs1': [],    'swir1s': [],
+                                 'swir2s': [], 'thermals': [], 'quality': []}),
+     ((chip_x, chip_y, x1, y2), {'dates': [],  'reds': [],     'greens': [],
+                                 'blues': [],  'nirs1': [],    'swir1s': [],
+                                 'swir2s': [], 'thermals': [], 'quality': []}))
     """
-    # create a partial function initialized with x, y and acquired since
-    # those are static for this call to pyccd_rdd
-    pchips = partial(chips_fn, x=point[0], y=point[1], acquired=acquired)
 
-    # get all the specs, ubids, chips, intersecting dates and rods
+    # get all the specs, chips, intersecting dates and rods
     # keep track of the spectra they are associated with via dict key 'k'
     specs = {k: specs_fn(v) for k, v in queries.items()}
 
-    ubids = {k: a.ubids(v) for k, v in specs.items()}
+    chips = {k: sort(chips_fn(
+                         x=point[0],
+                         y=point[1],
+                         acquired=acquired,
+                         url=chips_url,
+                         ubids=fspecs.ubids(v)))
+            for k, v in specs.items()}
 
-    chips = {k: sort(pchips(url=chips_url, ubids=u)) for k, u in ubids.items()}
+    dstrs = f.intersection(map(fchips.dates, [c for c in chips.values()]))
 
-    dstrings = f.intersection(map(a.dates, [c for c in chips.values()]))
-    dates = f.rsort(map(fdates.to_ordinal, dstrings))
+    blue_chip_spec = specs['blues'][0]
+    chip_x, chip_y = fchips.snap(*point, blue_chip_spec)
+    chip_locations = fchips.locations(chip_x, chip_y, blue_chip_spec)
 
-    bspecs = specs['blues']
+    # LETS MAKE SOME RODS :-)  (life (is (way better) (with s-expressions)))
+    rods = {k: add_dates(
+                   f.rsort(map(fdates.to_ordinal, dstrs)),
+                   f.flip_keys(
+                       identify(
+                           chip_x,
+                           chip_y,
+                           frods.locate(
+                               chip_locations,
+                               frods.from_chips(
+                                   fchips.to_numpy(
+                                       fchips.trim(v, dstrs),
+                                       fspecs.byubid(specs[k]))))))
+            for k, v in chips.items()}
 
-    locs = chip.locations(*chip.snap(*point, bspecs[0]), bspecs[0])
-
-    add_loc = partial(a.locrods, locs)
-    rods = {k: add_loc(to_rod(v, dstrings, specs[k])) for k, v in chips.items()}
-    del chips
-
-    return to_pyccd(rods, dates)
+    # convert to tuple and return
+    return tuple((k, v) for k, v in rods.items())
