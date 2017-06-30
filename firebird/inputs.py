@@ -35,7 +35,7 @@ def identify(chip_x, chip_y, rod):
     :param rod: dict of (x, y): [values]
     :return: dict of (chip_x, chip_y, x, y): [values]
     """
-    return {(chip_x, chip_y, k[0], k[1]): v for k, v in rod.items()}
+    return {((chip_x, chip_y), k[0], k[1]): v for k, v in rod.items()}
 
 
 def pyccd(point, specs_url, specs_fn, chips_url, chips_fn, acquired, queries):
