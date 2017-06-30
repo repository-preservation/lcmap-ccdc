@@ -41,4 +41,4 @@ def test_pyccd_inputs():
     assert isinstance(data[0], tuple)
     assert isinstance(data[0][0], tuple)
     assert isinstance(data[0][1], dict)
-    assert len(data[0][0]) == 4
+    assert len(data[0][0]) == 3
