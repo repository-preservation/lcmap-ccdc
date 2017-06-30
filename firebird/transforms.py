@@ -29,7 +29,7 @@ def success(chip_x, chip_y, x, y, alg, datestr, result):
     :param result: algorithm outputs
     :return: ((x, y, alg, datestr), result, None)
     """
-    return ((chip_x, chip_y, x, y, alg, datestr), result, None)
+    return (((chip_x, chip_y), x, y, alg, datestr), result, None)
 
 
 def error(chip_x, chip_y, x, y, alg, datestr, errors):
@@ -43,7 +43,7 @@ def error(chip_x, chip_y, x, y, alg, datestr, errors):
     :param errors: algorithm errors
     :return: ((x, y, alg, datestr), None, errors)
     """
-    return ((chip_x, chip_y, x, y, alg, datestr), None, errors)
+    return (((chip_x, chip_y), x, y, alg, datestr), None, errors)
 
 
 def haserrors(chip_x, chip_y, x, y, alg, datestr, errors):
@@ -127,15 +127,15 @@ def result_to_models(result):
 def pyccd(rdd):
     """Execute ccd.detect
     :param rdd: Tuple of (tuple, dict) generated from pyccd_inputs
-                ((chip_x, chip_y, x, y, algorithm, datestring): data)
+                (((chip_x, chip_y), x, y, algorithm, datestring): data)
     :return: A tuple of (tuple, dict) with pyccd results
              ((chip_x, chip_y, x, y, algorithm, acquired), results, errors)
     """
-    chip_x = rdd[0][0]
-    chip_y = rdd[0][1]
-    x = rdd[0][2]
-    y = rdd[0][3]
-    acquired = rdd[0][5]
+    chip_x = rdd[0][0][0]
+    chip_y = rdd[0][0][1]
+    x = rdd[0][1]
+    y = rdd[0][2]
+    acquired = rdd[0][4]
     data = rdd[1] or dict()
     errs = rdd[2]
     kwargs = {'dates': data.get('dates'),
@@ -155,14 +155,14 @@ def pyccd(rdd):
 
 def lastchange(rdd):
     """Create lastchange product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+    :param rdd: ((((chip_x, chip_y), x, y, algorithm, acquired), data, errors),
                  product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
+    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
     """
-    chip_x = rdd[0][0][0]
-    chip_y = rdd[0][0][1]
-    x = rdd[0][0][2]
-    y = rdd[0][0][3]
+    chip_x = rdd[0][0][0][0]
+    chip_y = rdd[0][0][0][1]
+    x = rdd[0][0][1]
+    y = rdd[0][0][2]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
@@ -176,14 +176,14 @@ def lastchange(rdd):
 
 def changemag(rdd):
     """Create changemag product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+    :param rdd: ((((chip_x, chip_y), x, y, algorithm, acquired), data, errors),
                  product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
+    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
     """
-    chip_x = rdd[0][0][0]
-    chip_y = rdd[0][0][1]
-    x = rdd[0][0][2]
-    y = rdd[0][0][3]
+    chip_x = rdd[0][0][0][0]
+    chip_y = rdd[0][0][0][1]
+    x = rdd[0][0][1]
+    y = rdd[0][0][2]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
@@ -196,14 +196,14 @@ def changemag(rdd):
 
 def changedate(rdd):
     """Create changedate product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+    :param rdd: ((((chip_x, chip_y), x, y, algorithm, acquired), data, errors),
                  product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
+    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
     """
-    chip_x = rdd[0][0][0]
-    chip_y = rdd[0][0][1]
-    x = rdd[0][0][2]
-    y = rdd[0][0][3]
+    chip_x = rdd[0][0][0][0]
+    chip_y = rdd[0][0][0][1]
+    x = rdd[0][0][1]
+    y = rdd[0][0][2]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
@@ -216,15 +216,15 @@ def changedate(rdd):
 
 def seglength(rdd):
     """Create seglength product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+    :param rdd: ((((chip_x, chip_y), x, y, algorithm, acquired), data, errors),
                  product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
+    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
     """
-    chip_x = rdd[0][0][0]
-    chip_y = rdd[0][0][1]
-    x = rdd[0][0][2]
-    y = rdd[0][0][3]
-    acquired = rdd[0][0][5]
+    chip_x = rdd[0][0][0][0]
+    chip_y = rdd[0][0][0][1]
+    x = rdd[0][0][1]
+    y = rdd[0][0][2]
+    acquired = rdd[0][0][4]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
@@ -239,14 +239,14 @@ def seglength(rdd):
 
 def curveqa(rdd):
     """Create curveqa product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+    :param rdd: ((((chip_x, chip_y), x, y, algorithm, acquired), data, errors),
                  product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
+    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
     """
-    chip_x = rdd[0][0][0]
-    chip_y = rdd[0][0][1]
-    x = rdd[0][0][2]
-    y = rdd[0][0][3]
+    chip_x = rdd[0][0][0][0]
+    chip_y = rdd[0][0][0][1]
+    x = rdd[0][0][1]
+    y = rdd[0][0][2]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
@@ -267,7 +267,7 @@ def fits_in_box(value, bbox):
     :return: Boolean
     """
     def fits(point, bbox):
-        _, _, x, y = point
+        _, x, y = point
         return (float(x) >= float(bbox['ulx']) and
                 float(x) <= float(bbox['lrx']) and
                 float(y) >= float(bbox['lry']) and
@@ -327,10 +327,10 @@ def products(jobconf, sparkcontext):
                                .flatMap(lambda x: x)\
                                .filter(partial(fits_in_box,
                                                bbox=clip_box))\
-                               .map(lambda x: (success(chip_x=x[0][0],
-                                                       chip_y=x[0][1],
-                                                       x=x[0][2],
-                                                       y=x[0][3],
+                               .map(lambda x: (success(chip_x=x[0][0][0],
+                                                       chip_y=x[0][0][1],
+                                                       x=x[0][1],
+                                                       y=x[0][2],
                                                        alg=algorithm('inputs',
                                                                      'v1'),
                                                        datestr=acquired,

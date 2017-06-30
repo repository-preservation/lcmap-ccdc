@@ -28,7 +28,7 @@ STORAGE_PARTITION_COUNT = os.getenv('STORAGE_PARTITION_COUNT')
 
 DRIVER_HOST = os.getenv('DRIVER_HOST', HOST)
 
-LOG_LEVEL = os.getenv('FIREBIRD_LOG_LEVEL', 'INFO')
+LOG_LEVEL = os.getenv('FIREBIRD_LOG_LEVEL', 'WARN')
 
 SPARK_MASTER = os.getenv('SPARK_MASTER', 'spark://localhost:7077')
 SPARK_EXECUTOR_IMAGE = os.getenv('SPARK_EXECUTOR_IMAGE')
@@ -37,18 +37,42 @@ SPARK_EXECUTOR_FORCE_PULL = os.getenv('SPARK_EXECUTOR_FORCE_PULL', 'false')
 
 QA_BIT_PACKED = os.getenv('CCD_QA_BITPACKED', 'True')
 
-logging.basicConfig(
-    stream=sys.stdout,
-    level=LOG_LEVEL,
-    format='%(asctime)s %(module)s::%(funcName)-20s - %(message)s',
-    datefmt='%Y-%m-%d %H:%M:%S')
+# log format needs to be
+# 2017-06-29 13:09:04,109 DEBUG lcmap.aardvark.chip-spec - initializing GDAL
+# 2017-06-29 13:09:04,138 DEBUG lcmap.aardvark.chip - initializing GDAL
+# 2017-06-29 13:09:04,146 INFO  lcmap.aardvark.server - start server
+#
+# Normal python logging setup doesnt work even though the log level can be
+# passed into the SparkContext) for executors because it's actually the jvm
+# that's handling it.
+# In order to configure logging, need to manipulate the log4j.properties
+# instead of Python logging configs.
 
-# default all loggers to WARNING then explictly override below
-logging.getLogger("").setLevel(logging.WARNING)
+#logging.basicConfig(
+#    level=LOG_LEVEL,
+#    format='%(asctime)s %(levelname)s %(module)s.%(funcName)-20s - %(message)s',
+##    stream=sys.stdout)
 
-# let firebird.* modules use configuration value
 logger = logging.getLogger('firebird')
-logger.setLevel(LOG_LEVEL)
+
+
+def trace(msg):
+    logger.trace(msg)
+
+def debug(msg):
+    logger.debug(msg)
+
+def info(msg):
+    logger.info(msg)
+
+def warning(msg):
+    logger.warning(msg)
+
+def error(msg):
+    logger.error(msg)
+
+def fatal(msg):
+    logger.fatal(msg)
 
 
 def sparkcontext():

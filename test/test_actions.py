@@ -8,6 +8,7 @@ def test_broadcast():
     sc = None
     try:
         sc = pyspark.SparkContext(appName="test_broadcast")
+        sc.setLogLevel(fb.LOG_LEVEL)
         bc = a.broadcast({'a': 'a',
                           'true': True,
                           'list': [1, 2, 3],
@@ -29,10 +30,12 @@ def test_broadcast():
         if sc is not None:
             sc.stop()
 
+
 def test_init():
     sc = None
     try:
         sc = pyspark.SparkContext(appName="test_driver")
+        sc.setLogLevel(fb.LOG_LEVEL)
         spec = ma.chip_specs(fb.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
         acquired = '1982-01-01/2015-12-12'
         chip_ids = ((-1821585, 2891595),)
@@ -79,3 +82,7 @@ def test_init():
     finally:
         if sc is not None:
             sc.stop()
+
+
+def test_save():
+    pass
