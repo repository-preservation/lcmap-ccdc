@@ -55,26 +55,6 @@ QA_BIT_PACKED = os.getenv('CCD_QA_BITPACKED', 'True')
 
 logger = logging.getLogger('firebird')
 
-
-def trace(msg):
-    logger.trace(msg)
-
-def debug(msg):
-    logger.debug(msg)
-
-def info(msg):
-    logger.info(msg)
-
-def warning(msg):
-    logger.warning(msg)
-
-def error(msg):
-    logger.error(msg)
-
-def fatal(msg):
-    logger.fatal(msg)
-
-
 def sparkcontext():
     try:
         ts = datetime.datetime.now().isoformat()
