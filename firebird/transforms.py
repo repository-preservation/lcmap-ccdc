@@ -341,7 +341,7 @@ def products(jobconf, sparkcontext):
     _ccd = _in.map(pyccd).setName(ccd.algorithm).persist()
 
     # cartesian will create an rdd that looks like:
-    # (((x, y, algorithm, product_date_str), data), product_date)
+    # ((((chip_x, chip_y), x, y, alg, product_date_str), data), product_date)
     _ccd_dates = _ccd.cartesian(sc.parallelize(jobconf['product_dates'].value))
 
     _lc = _ccd_dates.map(lastchange).setName('lastchange_v1')

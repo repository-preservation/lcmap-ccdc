@@ -1,7 +1,6 @@
 import numpy as np
 from datetime import date
 from datetime import datetime
-from firebird import datastore as ds
 
 version = '0.1'
 
