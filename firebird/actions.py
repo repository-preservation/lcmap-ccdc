@@ -3,8 +3,11 @@ from firebird import chip_specs
 from firebird import functions as f
 from firebird import transforms
 from firebird import validation
-from functools import partial
+from pyspark import sql
 import firebird as fb
+import logging
+
+logger = logging.getLogger(__name__)
 
 
 def broadcast(context, sparkcontext):
@@ -107,13 +110,13 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
                                'specs_fn': specs_fn},
                       sparkcontext=sparkcontext)
 
-        fb.logger.info('Initializing product graph:{}'
-                       .format({k: v.value for k, v in jobconf.items()}))
+        logger.info('Initializing product graph ...')
+        logger.debug({k: v.value for k, v in jobconf.items()})
+
 
         graph = transforms.products(jobconf, sparkcontext)
 
-        fb.logger.info('Product graph created:{}'
-                       .format(graph.keys()))
+        logger.fatal('Product graph created ...')
 
         # product call graphs are created but not realized.  Do something with
         # whichever one you want in order to cause the computation to occur
@@ -123,7 +126,7 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
         return {'products': graph, 'jobconf': jobconf}
 
     except Exception as e:
-        fb.logger.info("Exception generating firebird products: {}".format(e))
+        fb.error("Exception generating firebird products: {}".format(e))
         raise e
 
 
@@ -140,17 +143,39 @@ def evaluate(acquired, bounds, clip, products, product_dates, directory):
 
 
 def save(acquired, bounds, clip, products, product_dates):
+    """Saves requested products to iwds
+    :param acquired: / separated datestrings in iso8601 format.  Used to
+                     determine the daterange of input data.
+    :param bounds: sequence of points ((x1, y1), (x2, y2), ...).  Bounds are
+                   minboxed and then corresponding chip ids are determined from
+                   the result.
+    :param clip: True, False.  If True any points not falling within the minbox
+                 of bounds are filtered out.
+    :param products: sequence of products to save
+    :param product_dates: sequence of product dates to produce and save
+    :return:
+    """
 
-    def write(table, mode, rdd):
-        struct = [['chip_x', 'chip_y', 'x', 'y', 'algorithm', 'datestr'],
+    def write(table, mode, rdd, sc):
+        options = {'table': table, 'keyspace': fb.CASSANDRA_KEYSPACE}
+        struct = [[['chip_x', 'chip_y'], 'x', 'y', 'algorithm', 'datestr'],
                   'results', 'errors']
-        df = ss.createDataFrame(rdd, struct)
-        df.write.options(table=table, keyspace=fb.CASSANDRA_KEYSPACE).mode(mode).save()
+        df = sql.createDataFrame(rdd.repartition(fb.STORAGE_PARTITION_COUNT),
+                                 struct)
+        return df.write.format('org.apache.spark.sql.cassandra')\
+                                .mode(mode).options(**options).save()
 
-    spec = chip_specs.get(fb.chip_spec_queries(fb.CHIPS_URL)['blues'])[0]
-    ids  = chips.bounds_to_ids(bounds, spec)
-    job  = init(acquired, ids, products, product_dates, sparkcontext)
-    return [write(t, 'append', job[p]) for p in products]
+    sc = None
+    try:
+        sc = fb.sparkcontext()
+        spec = chip_specs.get(fb.chip_spec_queries(fb.CHIPS_URL)['blues'])[0]
+        ids  = chips.bounds_to_ids(bounds, spec)
+        job  = init(acquired, ids, products, product_dates, sc)
+        return [write(job[p].getName(), 'append', job[p], sc) for p in products]
+    finally:
+        if sc is not None:
+            sc.close()
+            sc = None
 
 
 def count(bounds, product):
