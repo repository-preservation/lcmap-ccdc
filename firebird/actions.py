@@ -142,7 +142,7 @@ def evaluate(acquired, bounds, clip, products, product_dates, directory):
     pass
 
 
-def save(acquired, bounds, clip, products, product_dates):
+def save(acquired, bounds, products, product_dates, clip=False):
     """Saves requested products to iwds
     :param acquired: / separated datestrings in iso8601 format.  Used to
                      determine the daterange of input data.
@@ -157,25 +157,37 @@ def save(acquired, bounds, clip, products, product_dates):
     """
 
     def write(table, mode, rdd, sc):
-        options = {'table': table, 'keyspace': fb.CASSANDRA_KEYSPACE}
-        struct = [[['chip_x', 'chip_y'], 'x', 'y', 'algorithm', 'datestr'],
-                  'results', 'errors']
-        df = sql.createDataFrame(rdd.repartition(fb.STORAGE_PARTITION_COUNT),
-                                 struct)
+        options = {
+            'table': table,
+            'keyspace': fb.CASSANDRA_KEYSPACE,
+            'spark.cassandra.connection.host': fb.CASSANDRA_CONTACT_POINTS,
+            'spark.cassandra.auth.username': fb.CASSANDRA_USER,
+            'spark.cassandra.auth.password': fb.CASSANDRA_PASS
+        }
+        df = sql.createDataFrame(
+                 rdd.repartition(fb.STORAGE_PARTITION_COUNT),
+                 [[['chip_x', 'chip_y'], 'x', 'y', 'algorithm', 'datestr'],
+                  'results', 'errors'])
         return df.write.format('org.apache.spark.sql.cassandra')\
                                 .mode(mode).options(**options).save()
 
+
     sc = None
     try:
-        sc = fb.sparkcontext()
+        ss = sql.SparkSession(fb.sparkcontext())
+        sc = ss.SparkContext
         spec = chip_specs.get(fb.chip_spec_queries(fb.CHIPS_URL)['blues'])[0]
         ids  = chips.bounds_to_ids(bounds, spec)
-        job  = init(acquired, ids, products, product_dates, sc)
+        job  = init(acquired=acquired,
+                    chip_ids=ids,
+                    products=products,
+                    product_dates=product_dates,
+                    sparkcontext=sc,
+                    clip_box=f.minbox(bounds) if clip else None)
         return [write(job[p].getName(), 'append', job[p], sc) for p in products]
     finally:
         if sc is not None:
             sc.close()
-            sc = None
 
 
 def count(bounds, product):
