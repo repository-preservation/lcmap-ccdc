@@ -142,6 +142,23 @@ def evaluate(acquired, bounds, clip, products, product_dates, directory):
     pass
 
 
+def write(table, mode, dataframe):
+    """Write a dataframe to Cassandra
+    :param table: table name
+    :param mode: append, overwrite, error,
+    :param dataframe: A Spark DataFrame
+    """
+    options = {
+        'table': table,
+        'keyspace': fb.CASSANDRA_KEYSPACE,
+        'spark.cassandra.connection.host': fb.CASSANDRA_CONTACT_POINTS,
+        'spark.cassandra.auth.username': fb.CASSANDRA_USER,
+        'spark.cassandra.auth.password': fb.CASSANDRA_PASS
+    }
+    return dataframe.write.format('org.apache.spark.sql.cassandra')\
+                                  .mode(mode).options(**options).save()
+
+
 def save(acquired, bounds, products, product_dates, clip=False):
     """Saves requested products to iwds
     :param acquired: / separated datestrings in iso8601 format.  Used to
@@ -156,38 +173,39 @@ def save(acquired, bounds, products, product_dates, clip=False):
     :return:
     """
 
-    def write(table, mode, rdd, sc):
-        options = {
-            'table': table,
-            'keyspace': fb.CASSANDRA_KEYSPACE,
-            'spark.cassandra.connection.host': fb.CASSANDRA_CONTACT_POINTS,
-            'spark.cassandra.auth.username': fb.CASSANDRA_USER,
-            'spark.cassandra.auth.password': fb.CASSANDRA_PASS
-        }
-        df = sql.createDataFrame(
-                 rdd.repartition(fb.STORAGE_PARTITION_COUNT),
-                 [[['chip_x', 'chip_y'], 'x', 'y', 'algorithm', 'datestr'],
-                  'results', 'errors'])
-        return df.write.format('org.apache.spark.sql.cassandra')\
-                                .mode(mode).options(**options).save()
-
-
-    sc = None
+    ss = None
     try:
-        ss = sql.SparkSession(fb.sparkcontext())
-        sc = ss.SparkContext
+        ss = sql.getOrCreate(fb.sparkcontext())
+
         spec = chip_specs.get(fb.chip_spec_queries(fb.CHIPS_URL)['blues'])[0]
         ids  = chips.bounds_to_ids(bounds, spec)
-        job  = init(acquired=acquired,
-                    chip_ids=ids,
-                    products=products,
-                    product_dates=product_dates,
-                    sparkcontext=sc,
-                    clip_box=f.minbox(bounds) if clip else None)
-        return [write(job[p].getName(), 'append', job[p], sc) for p in products]
+
+        job, jobconf  = init(acquired=acquired,
+                             chip_ids=ids,
+                             products=products,
+                             product_dates=product_dates,
+                             sparkcontext=ss.sparkContext,
+                             clip_box=f.minbox(bounds) if clip else None)
+
+        # first, save the jobconf used to generate the products
+        sha, payload = f.serialize({k: v.value for k, v in jobconf})
+        jdf = ss.createDataFrame([[sha, payload]], ['id', 'config'])
+        write('jobconf', 'ignore', jdf)
+
+        # save all the products that were requested.  Add the jobconf id
+        # for cross referencing
+        structure = [[['chip_x', 'chip_y'], 'x', 'y', 'algorithm', 'datestr'],
+                      'results', 'errors', 'jobconf']]
+
+        for p in products:
+            df = ss.createDataFrame(
+                     job[p].repartition(fb.STORAGE_PARTITION_COUNT)\
+                     .map(lambda x: (x.__add__((sha,)))),
+                     structure)
+            yield write(job[p].getName(), 'append', df)
+
     finally:
-        if sc is not None:
-            sc.close()
+        ss.stop() if ss is not None
 
 
 def count(bounds, product):
