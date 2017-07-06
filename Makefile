@@ -25,9 +25,17 @@ docker-db-test-schema:
 docker-deps-down:
 	docker-compose -f resources/docker-compose.yml down
 
+spark-lib:
+	rm -rf lib
+	mkdir lib
+	wget -P lib https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.7.tgz
+	gunzip lib/*gz
+	tar -C lib -xvf lib/spark-2.1.1-bin-hadoop2.7.tar
+	rm lib/*tar
+	ln -s spark-2.1.1-bin-hadoop2.7 lib/spark
+	wget -P lib/spark/jars http://dl.bintray.com/spark-packages/maven/datastax/spark-cassandra-connector/2.0.1-s_2.11/spark-cassandra-connector-2.0.1-s_2.11.jar
+
 clean:
-	@rm -rf dist build lcmap_firebird.egg-info test/coverage
+	@rm -rf dist build lcmap_firebird.egg-info test/coverage lib/
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -delete
-
-
