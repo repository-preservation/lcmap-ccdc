@@ -14,13 +14,10 @@ Apache Spark based product generation for LCMAP.
 * Install Docker
 
 * Install Conda (works with miniconda3 version 4.3.16)
-
-* Install sbt - http://www.scala-sbt.org/0.13/docs/Installing-sbt-on-Linux.html
-
 * Create and activate a conda environment
 ```bash
    $ conda config --add channels conda-forge
-   $ conda create --name firebird python=3.5 pyspark -y
+   $ conda create --name firebird python=3.6 numpy pandas scipy -y
    $ source activate firebird
 ```
 
@@ -33,10 +30,12 @@ Apache Spark based product generation for LCMAP.
 
 ## Testing
 ```bash
- make docker-deps-up
- make docker-db-test-schema
- nose2
- make docker-deps-down
+ $ make spark-lib
+ $ make docker-deps-up
+ $ make docker-db-test-schema
+ $ . test_env
+ $ pytest
+ $ make docker-deps-down
 ```
 
 ## Refreshing Test Data
