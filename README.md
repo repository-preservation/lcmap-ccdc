@@ -13,6 +13,8 @@ Apache Spark based product generation for LCMAP.
 
 * Install Docker
 
+* Install Maven 3
+
 * Install Conda (works with miniconda3 version 4.3.16)
 * Create and activate a conda environment
 ```bash
