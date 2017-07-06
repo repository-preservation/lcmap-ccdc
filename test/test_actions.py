@@ -36,7 +36,8 @@ def test_broadcast():
 def test_init():
     sc = None
     try:
-        sc = pyspark.SparkContext(appName="test_init")
+        sc = pyspark.SparkContext(appName='test_init')
+
         sc.setLogLevel(fb.LOG_LEVEL)
         spec = ma.chip_specs(fb.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
         acquired = '1982-01-01/2015-12-12'
