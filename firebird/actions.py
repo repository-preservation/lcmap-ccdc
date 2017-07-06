@@ -17,7 +17,7 @@ def broadcast(context, sparkcontext):
     :param sparkcontext: An active spark context for the spark cluster
     :return: dict of cluster references for each key: value pair
     """
-    return {k: sparkcontext.broadcast(value=v) for k,v in context.items()}
+    return {k: sparkcontext.broadcast(value=v) for k, v in context.items()}
 
 
 def init(acquired, chip_ids, products, product_dates, sparkcontext,
@@ -40,7 +40,7 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
     :param initial_partitions: Number of partitions for initial query
     :param product_partitions: Number of partitions for product generation
     :param sparkcontext: A SparkContext
-    :return: True
+    :return: Tuple of the job graph, jobconf
     """
     # If clip_box is supplied we don't process locations that dont fit within
     # the requested bounds.  This allows us to run just a handful of pixels
@@ -110,23 +110,23 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
                                'specs_fn': specs_fn},
                       sparkcontext=sparkcontext)
 
-        logger.info('Initializing product graph ...')
+        logger.info('Initializing job graph ...')
         logger.debug({k: v.value for k, v in jobconf.items()})
 
 
-        graph = transforms.products(jobconf, sparkcontext)
+        job = transforms.products(jobconf, sparkcontext)
 
-        logger.fatal('Product graph created ...')
+        logger.fatal('Job graph created ...')
 
         # product call graphs are created but not realized.  Do something with
         # whichever one you want in order to cause the computation to occur
         # (example: if curveqa is requested, save it and it will compute)
         # TODO: how am i going to get a cassandra connection from each
         # without creating 10,000 connections?
-        return {'products': graph, 'jobconf': jobconf}
+        return job, jobconf
 
     except Exception as e:
-        fb.error("Exception generating firebird products: {}".format(e))
+        logger.error("Exception generating firebird products: {}".format(e))
         raise e
 
 
@@ -148,6 +148,7 @@ def write(table, mode, dataframe):
     :param mode: append, overwrite, error,
     :param dataframe: A Spark DataFrame
     """
+    print("Writing %s".format(dataframe))
     options = {
         'table': table,
         'keyspace': fb.CASSANDRA_KEYSPACE,
@@ -159,43 +160,49 @@ def write(table, mode, dataframe):
                                   .mode(mode).options(**options).save()
 
 
-def save(acquired, bounds, products, product_dates, clip=False):
+def save(acquired, bounds, products, product_dates, clip=False,
+         specs_fn=chip_specs.get, chips_fn=chips.get,
+         sparkcontext_fn=fb.sparkcontext):
     """Saves requested products to iwds
     :param acquired: / separated datestrings in iso8601 format.  Used to
                      determine the daterange of input data.
     :param bounds: sequence of points ((x1, y1), (x2, y2), ...).  Bounds are
                    minboxed and then corresponding chip ids are determined from
                    the result.
-    :param clip: True, False.  If True any points not falling within the minbox
-                 of bounds are filtered out.
     :param products: sequence of products to save
     :param product_dates: sequence of product dates to produce and save
-    :return:
+    :param clip: True, False.  If True any points not falling within the minbox
+                 of bounds are filtered out.
+    :return: iterator of results from calls to write()
     """
 
     ss = None
     try:
-        ss = sql.getOrCreate(fb.sparkcontext())
+        ss = sql.SparkSession(sparkcontext_fn())
 
-        spec = chip_specs.get(fb.chip_spec_queries(fb.CHIPS_URL)['blues'])[0]
+        spec = specs_fn(fb.chip_spec_queries(fb.CHIPS_URL)['blues'])[0]
         ids  = chips.bounds_to_ids(bounds, spec)
 
-        job, jobconf  = init(acquired=acquired,
-                             chip_ids=ids,
-                             products=products,
-                             product_dates=product_dates,
-                             sparkcontext=ss.sparkContext,
-                             clip_box=f.minbox(bounds) if clip else None)
+        job, jobconf = init(acquired=acquired,
+                            chip_ids=ids,
+                            products=products,
+                            product_dates=product_dates,
+                            specs_fn=specs_fn,
+                            chips_fn=chips_fn,
+                            sparkcontext=ss.sparkContext,
+                            clip_box=f.minbox(bounds) if clip else None)
 
         # first, save the jobconf used to generate the products
-        sha, payload = f.serialize({k: v.value for k, v in jobconf})
-        jdf = ss.createDataFrame([[sha, payload]], ['id', 'config'])
+        md5, cfg = f.serialize({k: f.represent(v.value)
+                                for k, v in jobconf.items()})
+
+        jdf = ss.createDataFrame([[md5, cfg]], ['id', 'config'])
         write('jobconf', 'ignore', jdf)
 
         # save all the products that were requested.  Add the jobconf id
         # for cross referencing
         structure = [[['chip_x', 'chip_y'], 'x', 'y', 'algorithm', 'datestr'],
-                      'results', 'errors', 'jobconf']]
+                      'results', 'errors', 'jobconf']
 
         for p in products:
             df = ss.createDataFrame(
@@ -205,7 +212,8 @@ def save(acquired, bounds, products, product_dates, clip=False):
             yield write(job[p].getName(), 'append', df)
 
     finally:
-        ss.stop() if ss is not None
+        if ss is not None:
+            ss.stop()
 
 
 def count(bounds, product):
