@@ -164,15 +164,6 @@ def true(v):
     return v is not None and (v == 1 or str(v).strip().lower() == 'true')
 
 
-def represent(item):
-    """Represents an item so it may be properly serialized
-    :param item: An item to be represented
-    :return: The original item if it is safe to serialize or the name of the
-             callable if callable(item) is True
-    """
-    return item.__name__ if callable(item) else repr(item)
-
-
 @singledispatch
 def serialize(arg):
     """Converts datastructure to json, computes digest
