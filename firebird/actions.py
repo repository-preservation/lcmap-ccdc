@@ -193,9 +193,7 @@ def save(acquired, bounds, products, product_dates, clip=False,
                             clip_box=f.minbox(bounds) if clip else None)
 
         # first, save the jobconf used to generate the products
-        md5, cfg = f.serialize({k: f.represent(v.value)
-                                for k, v in jobconf.items()})
-
+        md5, cfg = f.serialize({k: repr(v.value) for k, v in jobconf.items()})
         jdf = ss.createDataFrame([[md5, cfg]], ['id', 'config'])
         write('jobconf', 'ignore', jdf)
 
