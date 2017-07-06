@@ -33,9 +33,11 @@ spark-lib:
 	tar -C lib -xvf lib/spark-2.1.1-bin-hadoop2.7.tar
 	rm lib/*tar
 	ln -s spark-2.1.1-bin-hadoop2.7 lib/spark
-	wget -P lib/spark/jars http://dl.bintray.com/spark-packages/maven/datastax/spark-cassandra-connector/2.0.1-s_2.11/spark-cassandra-connector-2.0.1-s_2.11.jar
+	mvn dependency:copy-dependencies -DoutputDirectory=lib/spark/jars
+
+	# wget -P lib/spark/jars http://dl.bintray.com/spark-packages/maven/datastax/spark-cassandra-connector/2.0.1-s_2.11/spark-cassandra-connector-2.0.1-s_2.11.jar
 
 clean:
-	@rm -rf dist build lcmap_firebird.egg-info test/coverage lib/ derby.log spark-warehouse 
+	@rm -rf dist build lcmap_firebird.egg-info test/coverage lib/ derby.log spark-warehouse
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -delete
