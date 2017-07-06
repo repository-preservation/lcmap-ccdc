@@ -1,5 +1,6 @@
 """functions.py is a module of generalized, reusable functions"""
 
+from collections import OrderedDict
 from functools import reduce
 from functools import singledispatch
 import functools
@@ -110,6 +111,14 @@ def sha256(string):
     return hashlib.sha256(string.encode('UTF-8')).hexdigest()
 
 
+def md5(string):
+    """Computes and returns an md5 digest of the supplied string
+    :param string: string to digest
+    :return: digest value
+    """
+    return hashlib.md5(string.encode('UTF-8')).hexdigest()
+
+
 def simplify_objects(obj):
     if isinstance(obj, np.bool_):
         return bool(obj)
@@ -155,21 +164,31 @@ def true(v):
     return v is not None and (v == 1 or str(v).strip().lower() == 'true')
 
 
+def represent(item):
+    """Represents an item so it may be properly serialized
+    :param item: An item to be represented
+    :return: The original item if it is safe to serialize or the name of the
+             callable if callable(item) is True
+    """
+    return item.__name__ if callable(item) else repr(item)
+
+
 @singledispatch
 def serialize(arg):
     """Converts datastructure to json, computes digest
     :param dictionary: A python dict
     :return: Tuple of digest, json
     """
-    s = json.dumps(arg, sort_keys=True)
-    return digest(s), s
+    s = json.dumps(arg, sort_keys=True, separators=(',', ':'),
+                   ensure_ascii=True)
+    return md5(s), s
 
 
 @serialize.register(set)
 def _(arg):
     """Converts set to list then serializes the resulting value
     """
-    return serialize(list(arg))
+    return serialize(sorted(list(arg)))
 
 
 def deserialize(string):

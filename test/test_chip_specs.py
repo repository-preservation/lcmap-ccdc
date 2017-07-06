@@ -1,5 +1,5 @@
 from firebird import chip_specs as fcs
-import data as d
+from test import data as d
 
 
 def test_byubid():
