@@ -34,10 +34,7 @@ setup(name='lcmap-firebird',
       # for example:
       # $ pip install -e .[test]
       extras_require={
-          'test': ['nose2',
-                   'nose2-cov',
-                   'pytest',
-                   'pytest-env',
+          'test': ['pytest',
                    'hypothesis',
                    'mock',
                   ],

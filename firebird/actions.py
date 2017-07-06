@@ -148,7 +148,7 @@ def write(table, mode, dataframe):
     :param mode: append, overwrite, error,
     :param dataframe: A Spark DataFrame
     """
-    print("Writing %s".format(dataframe))
+    print("Writing {}".format(dataframe))
     options = {
         'table': table,
         'keyspace': fb.CASSANDRA_KEYSPACE,
@@ -195,19 +195,20 @@ def save(acquired, bounds, products, product_dates, clip=False,
         # first, save the jobconf used to generate the products
         md5, cfg = f.serialize({k: repr(v.value) for k, v in jobconf.items()})
         jdf = ss.createDataFrame([[md5, cfg]], ['id', 'config'])
-        write('jobconf', 'ignore', jdf)
+        write('jobconf', 'error', jdf)
 
         # save all the products that were requested.  Add the jobconf id
         # for cross referencing
-        structure = [[['chip_x', 'chip_y'], 'x', 'y', 'algorithm', 'datestr'],
-                      'results', 'errors', 'jobconf']
+        #structure = [[['chip_x', 'chip_y'], 'x', 'y', 'algorithm', 'datestr'],
+        #              'results', 'errors', 'jobconf']
 
-        for p in products:
-            df = ss.createDataFrame(
-                     job[p].repartition(fb.STORAGE_PARTITION_COUNT)\
-                     .map(lambda x: (x.__add__((sha,)))),
-                     structure)
-            yield write(job[p].getName(), 'append', df)
+        #for p in products:
+        #    df = ss.createDataFrame(
+        #             job[p].repartition(fb.STORAGE_PARTITION_COUNT)\
+        #             .map(lambda x: (x.__add__((sha,)))),
+        #             structure)
+        #    yield write(job[p].getName(), 'append', df)
+        return ['yes', 'no']
 
     finally:
         if ss is not None:
