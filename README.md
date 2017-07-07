@@ -11,11 +11,8 @@ Apache Spark based product generation for LCMAP.
 
 ## Setup
 
-* Install Docker
+* Install Docker, Maven and Conda
 
-* Install Maven 3
-
-* Install Conda (works with miniconda3 version 4.3.16)
 * Create and activate a conda environment
 ```bash
    $ conda config --add channels conda-forge
@@ -35,8 +32,7 @@ Apache Spark based product generation for LCMAP.
  $ make spark-lib
  $ make docker-deps-up
  $ make docker-db-test-schema
- $ . test_env
- $ pytest
+ $ make tests
  $ make docker-deps-down
 ```
 
