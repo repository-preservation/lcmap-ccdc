@@ -8,6 +8,7 @@ import hashlib
 import itertools
 import json
 import numpy as np
+import re
 
 
 def first(sequence):
@@ -223,3 +224,19 @@ def flip_keys(dods):
     innerkeys = set(reduce(lambda accum, v: accum + v,
                            [list(dods[ok].keys()) for ok in outerkeys]))
     return merge(flip(innerkeys, outerkeys, dods))
+
+
+def cqlstr(string):
+    """Makes a string safe to use in Cassandra CQL commands
+    :param string: The string to use in CQL
+    :return: A safe string replacement
+    """
+    return re.sub('[-:.]', '_', string)
+
+
+def represent(item):
+    """Represents callables and values consistently
+    :param item: The item to represent
+    :return: Item representation
+    """    
+    return repr(item.__name__) if callable(item) else repr(item)
