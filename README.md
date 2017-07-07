@@ -57,7 +57,7 @@ Make sure the environment variables are set prior to importing test.
 >>> data.update_chips()
 ```
 
-## Usage
+## Usage - WIP
 Configuration via environment variables
 
 | VARIABLE | DEFAULT | Description |
