@@ -1,10 +1,10 @@
 # pull the tag from version.py
 TAG=`cat version.py | grep '__version__ = ' | sed -e 's/__version__ = //g' | sed -e "s/'//g"`
-WORKERIMAGE=lcmap-firebird:$(TAG)
+WORKERIMAGE:=lcmap-firebird:$(TAG)
 
 vertest:
-	echo $(TAG)
-	echo $(WORKERIMAGE)
+	@echo TAG:$(TAG)
+	@echo WORKERIMAGE:$(WORKERIMAGE)
 
 docker-build:
 	docker build -t $(WORKERIMAGE) $(PWD)
@@ -25,9 +25,20 @@ docker-db-test-schema:
 docker-deps-down:
 	docker-compose -f resources/docker-compose.yml down
 
+spark-lib:
+	@rm -rf lib
+	@mkdir lib
+	wget -P lib https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.7.tgz
+	gunzip lib/*gz
+	tar -C lib -xvf lib/spark-2.1.1-bin-hadoop2.7.tar
+	rm lib/*tar
+	ln -s spark-2.1.1-bin-hadoop2.7 lib/spark
+	mvn dependency:copy-dependencies -DoutputDirectory=lib/spark/jars
+
+tests:
+	./test.sh
+
 clean:
-	@rm -rf dist build lcmap_firebird.egg-info test/coverage
+	@rm -rf dist build lcmap_firebird.egg-info test/coverage lib/ derby.log spark-warehouse
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -delete
-
-
