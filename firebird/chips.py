@@ -5,7 +5,6 @@ import numpy as np
 import requests
 
 
-
 def get(url, x, y, acquired, ubids):
     """Returns aardvark chips for given x, y, date range and ubid sequence
     :param url: full url to aardvark endpoint
@@ -129,7 +128,7 @@ def snap(x, y, chip_spec):
     shift_x = chip_spec['shift_x']
     shift_y = chip_spec['shift_y']
     chip = point_to_chip(x, y, chip_x, chip_y, shift_x, shift_y)
-    return int(chip[0]), int(chip[1])
+    return float(chip[0]), float(chip[1])
 
 
 def ids(ulx, uly, lrx, lry, chip_spec):
