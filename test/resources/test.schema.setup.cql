@@ -11,100 +11,112 @@ WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND COMPACTION = { 'class' : 'LeveledCompactionStrategy' };
 
 
-CREATE TABLE IF NOT EXISTS lcmap_changes_local.inputs_2017_06_08(
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.inputs_20170608(
     chip_x int,
     chip_y int,
     x int,
     y int,
+    datestr text,
     result text,
-    jobconf_id text,
-    PRIMARY KEY ((chip_x, chip_y), x, y)
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
 )
 WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
 
 
-CREATE TABLE IF NOT EXISTS lcmap_changes_local.lcmap_pyccd_2017_06_08(
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.lcmap_pyccd_1_4_0rc1(
     chip_x int,
     chip_y int,
     x int,
     y int,
+    datestr text,
     result text,
-    jobconf_id text,
-    PRIMARY KEY ((chip_x, chip_y), x, y)
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
 )
 WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
 
 
-CREATE TABLE IF NOT EXISTS lcmap_changes_local.lcmap_seglength_2017_06_08(
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.seglength_20170608(
     chip_x int,
     chip_y int,
     x int,
     y int,
-    date timestamp,
+    datestr text,
     result int,
-    jobconf_id text,
-    PRIMARY KEY ((chip_x, chip_y), date, x, y)
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
 )
 WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
 
 
-CREATE TABLE IF NOT EXISTS lcmap_changes_local.lcmap_changemag_2017_06_08(
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.changemag_20170608(
     chip_x int,
     chip_y int,
     x int,
     y int,
-    date timestamp,
+    datestr text,
     result int,
-    jobconf_id text,
-    PRIMARY KEY ((chip_x, chip_y), date, x, y)
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
 )
 WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
 
 
-CREATE TABLE IF NOT EXISTS lcmap_changes_local.lcmap_changedate_2017_06_08(
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.changedate_20170608(
     chip_x int,
     chip_y int,
     x int,
     y int,
-    date timestamp,
+    datestr text,
     result int,
-    jobconf_id text,
-    PRIMARY KEY ((chip_x, chip_y), date, x, y)
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
 )
 WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
 
 
-CREATE TABLE IF NOT EXISTS lcmap_changes_local.lcmap_lastchange_2017_06_08(
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.lastchange_20170608(
     chip_x int,
     chip_y int,
     x int,
     y int,
-    date timestamp,
+    datestr text,
     result int,
-    jobconf_id text,
-    PRIMARY KEY ((chip_x, chip_y), date, x, y)
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
 )
 WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
 
 
-CREATE TABLE IF NOT EXISTS lcmap_changes_local.lcmap_curveqa_2017_06_08(
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.curveqa_20170608(
     chip_x int,
     chip_y int,
     x int,
     y int,
-    date timestamp,
+    datestr text,
     result int,
-    jobconf_id text,
-    PRIMARY KEY ((chip_x, chip_y), date, x, y)
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
 )
 WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+
 
 
 CREATE TABLE IF NOT EXISTS lcmap_changes_local.training(
@@ -129,6 +141,9 @@ CREATE TABLE IF NOT EXISTS lcmap_changes_local.classification(
 )
 WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+
 
 
 CREATE KEYSPACE IF NOT EXISTS lcmap_ancillary_local

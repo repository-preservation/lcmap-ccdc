@@ -138,23 +138,22 @@ def classify():
     pass
 
 
-def evaluate(acquired, bounds, clip, products, product_dates, directory):
-    pass
-
-
-def write(table, mode, dataframe):
+def write(table, dataframe, mode='append'):
     """Write a dataframe to Cassandra
     :param table: table name
-    :param mode: append, overwrite, error,
+    :param mode: append, overwrite, error, ignore
     :param dataframe: A Spark DataFrame
     """
-    print("Writing {}".format(dataframe))
+    # https://github.com/datastax/spark-cassandra-connector/blob/master/doc/reference.md
     options = {
         'table': table,
         'keyspace': fb.CASSANDRA_KEYSPACE,
-        'spark.cassandra.connection.host': fb.CASSANDRA_CONTACT_POINTS,
         'spark.cassandra.auth.username': fb.CASSANDRA_USER,
-        'spark.cassandra.auth.password': fb.CASSANDRA_PASS
+        'spark.cassandra.auth.password': fb.CASSANDRA_PASS,
+        'spark.cassandra.connection.compression': 'LZ4',
+        'spark.cassandra.connection.host': fb.CASSANDRA_CONTACT_POINTS,
+        'spark.cassandra.input.consistency.level': 'QUORUM',
+        'spark.cassandra.output.consistency.level': 'QUORUM'
     }
     return dataframe.write.format('org.apache.spark.sql.cassandra')\
                                   .mode(mode).options(**options).save()
@@ -193,23 +192,29 @@ def save(acquired, bounds, products, product_dates, clip=False,
                             clip_box=f.minbox(bounds) if clip else None)
 
         # first, save the jobconf used to generate the products
-        md5, cfg = f.serialize({k: repr(v.value) for k, v in jobconf.items()})
+        md5, cfg = f.serialize({k: f.represent(v.value)
+                                for k, v in jobconf.items()})
         jdf = ss.createDataFrame([[md5, cfg]], ['id', 'config'])
-        write('jobconf', 'error', jdf)
+        write(table='jobconf', dataframe=jdf)
 
         # save all the products that were requested.  Add the jobconf id
-        # for cross referencing
-        #structure = [[['chip_x', 'chip_y'], 'x', 'y', 'algorithm', 'datestr'],
-        #              'results', 'errors', 'jobconf']
+        # for cross referencing.  Flatten the datastructure so it can be
+        # inserted.  DataFrame doesn't like nested sequences for
+        # field descriptions.
+        #rdd structure: [[['chip_x', 'chip_y'], 'x', 'y', 'algorithm', 'datestr'],
+        #                  'results', 'errors']
+        schema = ['chip_x', 'chip_y', 'x', 'y', 'datestr',
+                  'result', 'error', 'jobconf']
+        for p in products:
+            df = ss.createDataFrame(
+                job[p].map(lambda x: (float(x[0][0][0]), float(x[0][0][1]),
+                                      float(x[0][1]), float(x[0][2]),
+                                      str(x[0][4]),
+                                      str(x[1]), str(x[2]), str(md5)))\
+                                      .repartition(fb.STORAGE_PARTITION_COUNT),
+                schema=schema)
 
-        #for p in products:
-        #    df = ss.createDataFrame(
-        #             job[p].repartition(fb.STORAGE_PARTITION_COUNT)\
-        #             .map(lambda x: (x.__add__((sha,)))),
-        #             structure)
-        #    yield write(job[p].getName(), 'append', df)
-        return ['yes', 'no']
-
+            yield write(table=f.cqlstr(job[p].name()), dataframe=df)
     finally:
         if ss is not None:
             ss.stop()

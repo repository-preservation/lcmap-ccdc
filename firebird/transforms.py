@@ -332,23 +332,28 @@ def products(jobconf, sparkcontext):
                                                        x=x[0][1],
                                                        y=x[0][2],
                                                        alg=algorithm('inputs',
-                                                                     'v1'),
+                                                                     '20170608'),
                                                        datestr=acquired,
                                                        result=x[1])))\
                                .repartition(product_partitions)\
-                               .setName('pyccd_inputs')
+                               .setName(algorithm('inputs', '20170608'))
 
     _ccd = _in.map(pyccd).setName(ccd.algorithm).persist()
-
+    
     # cartesian will create an rdd that looks like:
     # ((((chip_x, chip_y), x, y, alg, product_date_str), data), product_date)
     _ccd_dates = _ccd.cartesian(sc.parallelize(jobconf['product_dates'].value))
 
-    _lc = _ccd_dates.map(lastchange).setName('lastchange_v1')
-    _cm = _ccd_dates.map(changemag).setName('changemag_v1')
-    _cd = _ccd_dates.map(changedate).setName('changedate_v1')
-    _sl = _ccd_dates.map(seglength).setName('seglength_v1')
-    _qa = _ccd_dates.map(curveqa).setName('curveqa_v1')
+    _lc = _ccd_dates.map(lastchange).setName(algorithm('lastchange',
+                                                       '20170608'))
+    _cm = _ccd_dates.map(changemag).setName(algorithm('changemag',
+                                                      '20170608'))
+    _cd = _ccd_dates.map(changedate).setName(algorithm('changedate',
+                                                       '20170608'))
+    _sl = _ccd_dates.map(seglength).setName(algorithm('seglength',
+                                                      '20170608'))
+    _qa = _ccd_dates.map(curveqa).setName(algorithm('curveqa',
+                                                    '20170608'))
 
     return labels(inputs=_in, ccd=_ccd, lastchange=_lc, changemag=_cm,
                   changedate=_cd, seglength=_sl, curveqa=_qa)
