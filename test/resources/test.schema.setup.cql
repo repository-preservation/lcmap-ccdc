@@ -1,26 +1,173 @@
 CREATE KEYSPACE IF NOT EXISTS lcmap_changes_local
 WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
 
-CREATE TABLE IF NOT EXISTS lcmap_changes_local.algorithms(
-    algorithm text PRIMARY KEY,
-    inputs_url_template text,
-    enabled boolean
-);
 
-CREATE TABLE IF NOT EXISTS lcmap_changes_local.results(
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.jobconf (
+    id text,
+    config text,
+    PRIMARY KEY (id)
+)
+WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
+AND COMPACTION = { 'class' : 'LeveledCompactionStrategy' };
+
+
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.inputs_20170608(
     chip_x int,
     chip_y int,
-    algorithm text,
+    x int,
+    y int,
+    datestr text,
+    result text,
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
+)
+WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
+AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.lcmap_pyccd_1_4_0rc1(
+    chip_x int,
+    chip_y int,
+    x int,
+    y int,
+    datestr text,
+    result text,
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
+)
+WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
+AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.seglength_20170608(
+    chip_x int,
+    chip_y int,
+    x int,
+    y int,
+    datestr text,
+    result int,
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
+)
+WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
+AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.changemag_20170608(
+    chip_x int,
+    chip_y int,
+    x int,
+    y int,
+    datestr text,
+    result int,
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
+)
+WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
+AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.changedate_20170608(
+    chip_x int,
+    chip_y int,
+    x int,
+    y int,
+    datestr text,
+    result int,
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
+)
+WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
+AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.lastchange_20170608(
+    chip_x int,
+    chip_y int,
+    x int,
+    y int,
+    datestr text,
+    result int,
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
+)
+WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
+AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.curveqa_20170608(
+    chip_x int,
+    chip_y int,
+    x int,
+    y int,
+    datestr text,
+    result int,
+    error text,
+    jobconf text,
+    PRIMARY KEY ((chip_x, chip_y), datestr, x, y)
+)
+WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
+AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+
+
+
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.training(
+    chip_x int,
+    chip_y int,
+    x int,
+    y int,
+    model text,
+    PRIMARY KEY ((chip_x, chip_y), x, y)
+)
+WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
+AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.classification(
+    chip_x int,
+    chip_y int,
     x int,
     y int,
     result text,
-    result_md5 text,
-    result_ok boolean,
-    result_produced timestamp,
-    tile_update_requested timestamp STATIC,
-    inputs_url text STATIC,
-    inputs_md5 text STATIC,
-    PRIMARY KEY ((chip_x, chip_y, algorithm), x, y)
+    PRIMARY KEY ((chip_x, chip_y), x, y)
+)
+WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
+AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+
+
+
+CREATE KEYSPACE IF NOT EXISTS lcmap_ancillary_local
+WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
+
+CREATE TABLE IF NOT EXISTS lcmap_ancillary_local.trends(
+    chip_x int,
+    chip_y int,
+    x int,
+    y int,
+    result float,
+    PRIMARY KEY ((chip_x, chip_y), x, y)
+)
+WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
+AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
+
+
+CREATE TABLE IF NOT EXISTS lcmap_ancillary_local.dem(
+    chip_x int,
+    chip_y int,
+    x int,
+    y int,
+    result float,
+    PRIMARY KEY ((chip_x, chip_y), x, y)
 )
 WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
