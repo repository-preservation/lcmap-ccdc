@@ -22,21 +22,19 @@ setup(name='lcmap-firebird',
       license='Unlicense',
       packages=['firebird'],
       install_requires=[
-          'cassandra-driver',
           'numpy',
           'xarray',
           'pandas',
           'requests',
+          'python-dateutil',
           'lcmap-pyccd==1.4.0rc1',
-          'pyspark==2.1',
       ],
       # List additional groups of dependencies here (e.g. development
       # dependencies). You can install these using the following syntax,
       # for example:
       # $ pip install -e .[test]
       extras_require={
-          'test': ['nose2',
-                   'nose2-cov',
+          'test': ['pytest',
                    'hypothesis',
                    'mock',
                   ],

@@ -11,18 +11,16 @@ Apache Spark based product generation for LCMAP.
 
 ## Setup
 
-* Install Docker
-
-* Install Conda (works with miniconda3 version 4.3.16)
+* Install Docker, Maven and Conda
 
 * Create and activate a conda environment
 ```bash
    $ conda config --add channels conda-forge
-   $ conda create --name firebird python=3.5 pyspark -y
+   $ conda create --name firebird python=3.6 numpy pandas scipy -y
    $ source activate firebird
 ```
 
-* Clone this repo, install deps and submodules
+* Clone this repo, install deps
 ```bash
    $ git clone git@github.com:usgs-eros/lcmap-firebird
    $ cd lcmap-firebird
@@ -31,10 +29,11 @@ Apache Spark based product generation for LCMAP.
 
 ## Testing
 ```bash
- make docker-deps-up
- make docker-db-test-schema
- nose2
- make docker-deps-down
+ $ make spark-lib
+ $ make docker-deps-up
+ $ make docker-db-test-schema
+ $ make tests
+ $ make docker-deps-down
 ```
 
 ## Refreshing Test Data
@@ -77,6 +76,8 @@ Configuration via environment variables
 | AARDVARK_TILESPECS | '/landsat/tile-specs' | Tile-specs url |
 | BEGINNING_OF_TIME | 723546 | Ordinal date for use in seglength product calculation |
 | CCD_QA_BITPACKED  | True | Flag for indicating if Landsat Quality data is bitpacked or not |
+
+=======
 
 ## Development
 Apache Spark is functional programming for cluster computing therefore firebird strives to ensure all of it's code follows functional principles of using immutable data (where possible), using functions as the primary unit of abstraction, and composing functions (placing them together) rather than complecting code (intermingling concepts).
