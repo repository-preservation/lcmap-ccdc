@@ -1,11 +1,39 @@
+from base64 import b64decode
+from firebird import functions as f
 import math
 import numpy as np
-from base64 import b64decode
+import requests
+
+
+def get(url, x, y, acquired, ubids):
+    """Returns aardvark chips for given x, y, date range and ubid sequence
+    :param url: full url to aardvark endpoint
+    :param x: longitude
+    :param y: latitude
+    :param acquired: date range as iso8601 strings '2012-01-01/2014-01-03'
+    :param ubids: sequence of ubid strings
+    :type url: string
+    :type x: number
+    :type y: number
+    :type acquired: string
+    :type ubids: sequence
+    :returns: TBD
+
+    :example:
+    >>> chips(url='http://host:port/landsat/chips',
+              x=123456,
+              y=789456,
+              acquired='2012-01-01/2014-01-03',
+              ubids=['LANDSAT_7/ETM/sr_band1', 'LANDSAT_5/TM/sr_band1'])
+    """
+    return tuple(requests.get(url, params={'x': x,
+                                           'y': y,
+                                           'acquired': acquired,
+                                           'ubid': ubids}).json())
 
 
 def difference(point, interval):
-    """
-    Calculate difference between a point and 'prior' point on an interval.
+    """Calculate difference between a point and 'prior' point on an interval.
 
     The value of this function can be used to answer the question,
     what do I subtract from a point to find the point of the nearest
@@ -30,8 +58,7 @@ def difference(point, interval):
 
 
 def near(point, interval, offset):
-    """
-    Find nearest point given an interval and offset.
+    """Find nearest point given an interval and offset.
 
     The nearest point will be lesser than the point for a positive
     interval, and greater than the point for a negative interval as
@@ -54,8 +81,7 @@ def near(point, interval, offset):
 
 
 def point_to_chip(x, y, x_interval, y_interval, x_offset, y_offset):
-    """
-    Find the nearest containing chip's point.
+    """Find the nearest containing chip's point.
 
     The resulting `x` value will be less than or equal to the input
     while the resulting `y` value will be greater than or equal.
@@ -86,8 +112,7 @@ def point_to_chip(x, y, x_interval, y_interval, x_offset, y_offset):
 
 
 def snap(x, y, chip_spec):
-    """
-    Transform an arbitrary projection system coordinate (x,y) into the
+    """Transform an arbitrary projection system coordinate (x,y) into the
     coordinate of the chip that contains it.
 
     This function only works when working with points on a cartesian plane,
@@ -103,12 +128,12 @@ def snap(x, y, chip_spec):
     shift_x = chip_spec['shift_x']
     shift_y = chip_spec['shift_y']
     chip = point_to_chip(x, y, chip_x, chip_y, shift_x, shift_y)
-    return int(chip[0]), int(chip[1])
+    return float(chip[0]), float(chip[1])
 
 
 def ids(ulx, uly, lrx, lry, chip_spec):
-    """
-    Returns all the chip ids that are needed to cover a supplied bounding box.
+    """Returns all the chip ids that are needed to cover a supplied bounding
+    box.
 
     :param ulx: upper left x coordinate
     :param uly: upper left y coordinate
@@ -131,9 +156,69 @@ def ids(ulx, uly, lrx, lry, chip_spec):
                         for y in np.arange(start_y, end_y + cheight, cheight))
 
 
-def to_numpy(chip, chip_spec):
+def bounds_to_ids(bounds, spec):
+    """Returns chip ids from a sequence of bounds.  Performs minbox operation
+    on bounds, thus irregular geometries may be supplied.
+    :param bounds: A sequence of bounds.
+    :param spec: A chip spec representing chip geometry
+    :return: Tuple of chip ids
+    :example:
+    >>> ids = bounds_to_ids(bounds = ((112, 443), (112, 500), (100, 443)),
+                           spec=chip_spec)
+    >>> ((100, 500),)
     """
-    Removes base64 encoding of chip data and converts it to a numpy array
+    return ids(ulx=f.minbox(bounds)['ulx'],
+               uly=f.minbox(bounds)['uly'],
+               lrx=f.minbox(bounds)['lrx'],
+               lry=f.minbox(bounds)['lry'],
+               chip_spec=spec)
+
+
+def locations(startx, starty, chip_spec):
+    """Computes locations for array elements that fall within the shape
+    specified by chip_spec['data_shape'] using the startx and starty as
+    the origin.  locations() does not snap() the startx and starty... this
+    should be done prior to calling locations() if needed.
+    :param startx: x coordinate (longitude) of upper left pixel of chip
+    :param starty: y coordinate (latitude) of upper left pixel of chip
+    :returns: A two (three) dimensional numpy array of [x, y] coordinates
+    """
+    cw = chip_spec['data_shape'][0]  # 100
+    ch = chip_spec['data_shape'][1]  # 100
+
+    pw = chip_spec['pixel_x']  # 30 meters
+    ph = chip_spec['pixel_y']  # -30 meters
+
+    # determine ends
+    endx = startx + cw * pw
+    endy = starty + ch * ph
+
+    # build arrays of end - start / step shape
+    # flatten into 1d, concatenate and reshape to fit chip
+    x, y = np.mgrid[startx:endx:pw, starty:endy:ph]
+    matrix = np.c_[x.ravel(), y.ravel()]
+    return np.reshape(matrix, (cw, ch, 2))
+
+
+def dates(chips):
+    """Dates for a sequence of chips
+    :param chips: sequence of chips
+    :returns: sequence of dates
+    """
+    return tuple([c['acquired'] for c in chips])
+
+
+def trim(chips, dates):
+    """Eliminates chips that are not from the specified dates
+    :param chips: Sequence of chips
+    :param dates: Sequence of dates
+    :returns: Sequence of filtered chips
+    """
+    return tuple(filter(lambda c: c['acquired'] in dates, chips))
+
+
+def chip_to_numpy(chip, chip_spec):
+    """Removes base64 encoding of chip data and converts it to a numpy array
     :param chip: A chip
     :param chip_spec: Corresponding chip_spec
     :returns: A decoded chip with data as a shaped numpy array
@@ -146,28 +231,10 @@ def to_numpy(chip, chip_spec):
     return chip
 
 
-def locations(startx, starty, chip_spec):
+def to_numpy(chips, chip_specs_byubid):
+    """Converts the data for a sequence of chips to numpy arrays
+    :param chips: a sequence of chips
+    :param chip_specs_byubid: chip_spec dict keyed by ubid
+    :returns: sequence of chips with data as numpy arrays
     """
-    Computes locations for array elements that fall within the shape
-    specified by chip_spec['data_shape'] using the startx and starty as
-    the origin.  locations() does not snap() the startx and starty... this
-    should be done prior to calling locations() if needed.
-    :param startx: x coordinate (longitude) of upper left pixel of chip
-    :param starty: y coordinate (latitude) of upper left pixel of chip
-    :returns: A two (three) dimensional numpy array of [x, y] coordinates
-    """
-    cw = chip_spec['data_shape'][0] # 100
-    ch = chip_spec['data_shape'][1] # 100
-
-    pw = chip_spec['pixel_x'] # 30 meters
-    ph = chip_spec['pixel_y'] # -30 meters
-
-    # determine ends
-    endx = startx + cw * pw
-    endy = starty + ch * ph
-
-    # build arrays of end - start / step shape
-    # flatten into 1d, concatenate and reshape to fit chip
-    x, y = np.mgrid[startx:endx:pw, starty:endy:ph]
-    matrix = np.c_[x.ravel(), y.ravel()]
-    return np.reshape(matrix, (cw, ch, 2))
+    return map(lambda c: chip_to_numpy(c, chip_specs_byubid[c['ubid']]), chips)

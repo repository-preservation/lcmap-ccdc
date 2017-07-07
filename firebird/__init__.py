@@ -1,61 +1,68 @@
-import os
-import sys
+from pyspark import SparkConf
+from pyspark import SparkContext
+from pyspark import sql
+import datetime
 import logging
-import numpy as np
-import functools
-import itertools
-from datetime import datetime, date
-from pyspark import SparkConf, SparkContext
+import os
+import socket
+import sys
+
+HOST = socket.gethostbyname(socket.getfqdn())
 
 AARDVARK = os.getenv('AARDVARK', 'http://localhost:5678')
 AARDVARK_SPECS = os.getenv('AARDVARK_SPECS', '/v1/landsat/chip-specs')
-SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
 AARDVARK_CHIPS = os.getenv('AARDVARK_CHIPS', '/v1/landsat/chips')
 CHIPS_URL = ''.join([AARDVARK, AARDVARK_CHIPS])
+SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
 
-CASSANDRA_CONTACT_POINTS  = os.getenv('CASSANDRA_CONTACT_POINTS', '0.0.0.0')
-CASSANDRA_USER            = os.getenv('CASSANDRA_USER')
-CASSANDRA_PASS            = os.getenv('CASSANDRA_PASS')
-CASSANDRA_KEYSPACE        = os.getenv('CASSANDRA_KEYSPACE', 'lcmap_changes_local')
-CASSANDRA_RESULTS_TABLE   = os.getenv('CASSANDRA_RESULTS_TABLE', 'results')
+CASSANDRA_CONTACT_POINTS = os.getenv('CASSANDRA_CONTACT_POINTS', HOST)
+CASSANDRA_USER = os.getenv('CASSANDRA_USER', 'cassandra')
+CASSANDRA_PASS = os.getenv('CASSANDRA_PASS', 'cassandra')
+CASSANDRA_KEYSPACE = os.getenv('CASSANDRA_KEYSPACE', 'lcmap_changes_local')
+CASSANDRA_JOBCONF_TABLE = os.getenv('CASSANDRA_JOBCONF_TABLE', 'jobconf')
 
-LOG_LEVEL                 = os.getenv('FIREBIRD_LOG_LEVEL', 'INFO')
+INITIAL_PARTITION_COUNT = os.getenv('INITIAL_PARTITION_COUNT', 1)
+PRODUCT_PARTITION_COUNT = os.getenv('PRODUCT_PARTITION_COUNT', 1)
+STORAGE_PARTITION_COUNT = os.getenv('STORAGE_PARTITION_COUNT', 1)
 
-SPARK_MASTER              = os.getenv('SPARK_MASTER', 'spark://localhost:7077')
-SPARK_EXECUTOR_IMAGE      = os.getenv('SPARK_EXECUTOR_IMAGE')
-SPARK_EXECUTOR_CORES      = os.getenv('SPARK_EXECUTOR_CORES', 1)
+DRIVER_HOST = os.getenv('DRIVER_HOST', HOST)
+
+LOG_LEVEL = os.getenv('FIREBIRD_LOG_LEVEL', 'WARN')
+
+SPARK_MASTER = os.getenv('SPARK_MASTER', 'spark://localhost:7077')
+SPARK_EXECUTOR_IMAGE = os.getenv('SPARK_EXECUTOR_IMAGE')
+SPARK_EXECUTOR_CORES = os.getenv('SPARK_EXECUTOR_CORES', 1)
 SPARK_EXECUTOR_FORCE_PULL = os.getenv('SPARK_EXECUTOR_FORCE_PULL', 'false')
 
-QA_BIT_PACKED              = os.getenv('CCD_QA_BITPACKED', 'True')
+QA_BIT_PACKED = os.getenv('CCD_QA_BITPACKED', 'True')
 
-# TODO: This needs to be passed in from the command line
-BEGINNING_OF_TIME         = os.getenv('BEGINNING_OF_TIME', date(year=1982, month=1, day=1).toordinal())
+# log format needs to be
+# 2017-06-29 13:09:04,109 DEBUG lcmap.aardvark.chip-spec - initializing GDAL
+# 2017-06-29 13:09:04,138 DEBUG lcmap.aardvark.chip - initializing GDAL
+# 2017-06-29 13:09:04,146 INFO  lcmap.aardvark.server - start server
+#
+# Normal python logging setup doesnt work even though the log level can be
+# passed into the SparkContext) for executors because it's actually the jvm
+# that's handling it.
+# In order to configure logging, need to manipulate the log4j.properties
+# instead of Python logging configs.
 
-# TODO: These are obtained from chip specs
-X_PIXEL_DIM               = int(os.getenv('X_PIXEL_DIM', 30))
-Y_PIXEL_DIM               = int(os.getenv('Y_PIXEL_DIM', -30))
+#logging.basicConfig(
+#    level=LOG_LEVEL,
+#    format='%(asctime)s %(levelname)s %(module)s.%(funcName)-20s - %(message)s',
+##    stream=sys.stdout)
 
-
-logging.basicConfig(stream=sys.stdout,
-                    level=LOG_LEVEL,
-                    format='%(asctime)s %(module)s::%(funcName)-20s - %(message)s',
-                    datefmt='%Y-%m-%d %H:%M:%S')
-
-# default all loggers to WARNING then explictly override below
-logging.getLogger("").setLevel(logging.WARNING)
-
-# let firebird.* modules use configuration value
 logger = logging.getLogger('firebird')
-logger.setLevel(LOG_LEVEL)
 
-
-def sparkcon():
+def sparkcontext():
     try:
-        conf = (SparkConf().setAppName("lcmap-firebird-{}".format(datetime.now().strftime('%Y-%m-%d-%I:%M')))
+        ts = datetime.datetime.now().isoformat()
+        conf = (SparkConf().setAppName("lcmap-firebird-{}".format(ts))
                 .setMaster(SPARK_MASTER)
                 .set("spark.mesos.executor.docker.image", SPARK_EXECUTOR_IMAGE)
                 .set("spark.executor.cores", SPARK_EXECUTOR_CORES)
-                .set("spark.mesos.executor.docker.forcePullImage", SPARK_EXECUTOR_FORCE_PULL))
+                .set("spark.mesos.executor.docker.forcePullImage",
+                     SPARK_EXECUTOR_FORCE_PULL))
         return SparkContext(conf=conf)
     except Exception as e:
         logger.info("Exception creating SparkContext: {}".format(e))
@@ -63,72 +70,38 @@ def sparkcon():
 
 
 def ccd_params():
-    _p = {}
+    params = {}
     if QA_BIT_PACKED is not 'True':
-        _p = {'QA_BITPACKED': False,
-              'QA_FILL': 255,
-              'QA_CLEAR': 0,
-              'QA_WATER': 1,
-              'QA_SHADOW': 2,
-              'QA_SNOW': 3,
-              'QA_CLOUD': 4}
-    return _p
+        params = {'QA_BITPACKED': False,
+                  'QA_FILL': 255,
+                  'QA_CLEAR': 0,
+                  'QA_WATER': 1,
+                  'QA_SHADOW': 2,
+                  'QA_SNOW': 3,
+                  'QA_CLOUD': 4}
+    return params
 
 
-def minbox(points):
-    """ Returns the minimal bounding box necessary to contain points """
-    pass
-
-
-def dtstr_to_ordinal(dtstr):
-    """ Return ordinal from string formatted date"""
-    _dt = datetime.strptime(dtstr.split('T' if 'T' in dtstr else ' ')[0], '%Y-%m-%d')
-    return _dt.toordinal()
-
-
-def simplify_objects(obj):
-    if isinstance(obj, np.bool_):
-        return bool(obj)
-    elif isinstance(obj, np.int64):
-        return int(obj)
-    elif isinstance(obj, tuple) and ('_asdict' in dir(obj)):
-        # looks like a namedtuple
-        _out = {}
-        objdict = obj._asdict()
-        for key in objdict.keys():
-            _out[key] = simplify_objects(objdict[key])
-        return _out
-    elif isinstance(obj, (list, np.ndarray, tuple)):
-        return [simplify_objects(i) for i in obj]
-    else:
-        # should be a serializable type
-        return obj
-
-
-def rsort(iterable, key=None):
-    """Reverse sorts an iterable"""
-    return sorted(iterable, key=key, reverse=True)
-
-
-def compose(*functions):
-    def compose2(f, g):
-        return lambda x: f(g(x))
-    return functools.reduce(compose2, functions, lambda x: x)
-
-
-def flatten(iterable):
+def chip_spec_queries(url):
+    """A map of pyccd spectra to chip-spec queries
+    :param url: full url (http://host:port/context) for chip-spec endpoint
+    :return: map of spectra to chip spec queries
+    :example:
+    >>> chip_spec_queries('http://host/v1/landsat/chip-specs')
+    {'reds':     'http://host/v1/landsat/chip-specs?q=tags:red AND sr',
+     'greens':   'http://host/v1/landsat/chip-specs?q=tags:green AND sr'
+     'blues':    'http://host/v1/landsat/chip-specs?q=tags:blue AND sr'
+     'nirs':     'http://host/v1/landsat/chip-specs?q=tags:nir AND sr'
+     'swir1s':   'http://host/v1/landsat/chip-specs?q=tags:swir1 AND sr'
+     'swir2s':   'http://host/v1/landsat/chip-specs?q=tags:swir2 AND sr'
+     'thermals': 'http://host/v1/landsat/chip-specs?q=tags:thermal AND ta'
+     'quality':  'http://host/v1/landsat/chip-specs?q=tags:pixelqa'}
     """
-    Reduce dimensionality of iterable containing iterables
-    :param iterable: A multi-dimensional iterable
-    :returns: A one dimensional iterable
-    """
-    return itertools.chain.from_iterable(iterable)
-
-
-def flattend(dicts):
-    """ Combines a sequence of dicts into a single dict.
-    :params dicts: A sequence of dicts
-    :returns: A single dict"""
-    return {k:v for d in dicts for k, v in d.items()}
-
-    
+    return {'reds':     ''.join([url, '?q=tags:red AND sr']),
+            'greens':   ''.join([url, '?q=tags:green AND sr']),
+            'blues':    ''.join([url, '?q=tags:blue AND sr']),
+            'nirs':     ''.join([url, '?q=tags:nir AND sr']),
+            'swir1s':   ''.join([url, '?q=tags:swir1 AND sr']),
+            'swir2s':   ''.join([url, '?q=tags:swir2 AND sr']),
+            'thermals': ''.join([url, '?q=tags:bt AND thermal AND NOT tirs2']),
+            'quality':  ''.join([url, '?q=tags:pixelqa'])}

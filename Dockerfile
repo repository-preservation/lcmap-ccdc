@@ -1,41 +1,40 @@
-#  Base this image off of Mesosphere instead of USGS 
-FROM usgseros/mesos-spark:latest
+#FROM usgseros/mesos-spark:latest
+FROM mesosphere/spark:1.1.0-2.1.1-hadoop-2.7
 MAINTAINER USGS LCMAP http://eros.usgs.gov
 
-# Question of whether Firebird actually needs to be installed in this container
-# If its sent as a Spark job dependency (on the SparkContext) then
-# updated code can be dynamically sent into Spark without rebuilding
-# the Docker image.  Probably best to just install all of Firebirds dependencies
-# into the Docker image instead.  Consider dynamically sending in pyccd as
-# as well so updated code can be run.
-# To enable this, Firebird and pyccd will both need to have .eggs or .zips
-# generated and then supplied to the SparkContext.
-RUN mkdir /app
-WORKDIR /app
-COPY firebird /app/firebird
-COPY README.md /app
-COPY resources /app/resources
-COPY setup.py /app
-COPY version.py /app
-RUN mkdir -p /app/test/resources/data
-COPY test/resources/data/chip-specs /app/test/resources/data/chip-specs
-COPY test/resources/data/chips /app/test/resources/data/chips
-COPY test/fixtures.py /app/test
-COPY test/__init__.py /app/test
-COPY test/shared.py /app/test
-#COPY test /app/test
-COPY notebooks /app/notebooks
+RUN apt-get update && apt-get install -y wget make --fix-missing
 
-# Install dependencies
-RUN apt-get update && apt-get -y install wget maven --fix-missing
-
-RUN mvn -DgroupId=com.datastax.spark -DartifactId=spark-cassandra-connector_2.11 -Dversion=2.0.2 dependency:get
-
+#preposition numpy with conda to avoid compiling from scratch
 RUN wget -O Miniconda3-latest.sh https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh; chmod 755 Miniconda3-latest.sh;
 RUN ./Miniconda3-latest.sh -b;
 ENV PATH="/root/miniconda3/bin:${PATH}"
 RUN conda config --add channels conda-forge;
-RUN conda install python=3.5 numpy pandas jupyter --yes
+RUN conda install python=3.6 numpy scipy pandas jupyter --yes
 
-RUN pip install -e .
+ENV PYSPARK_PYTHON=/root/miniconda3/bin/python3
+ENV SPARK_NO_DAEMONIZE "true"
+ENV MESOS_NATIVE_JAVA_LIBRARY /usr/lib/libmesos.so
+ENV SPARK_HOME /opt/spark/dist
+ENV PATH $SPARK_HOME/bin:$PATH
+ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/
+ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip
+ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/lib/pyspark.zip
+
+EXPOSE 7077
+EXPOSE 8081
+
+RUN mkdir /app
+WORKDIR /app
+
+COPY firebird /app/firebird
+COPY notebooks /app/notebooks
+COPY resources /app/resources
+COPY test /app/test
+COPY Makefile .
+COPY README.md .
+COPY setup.py .
+COPY unittest.cfg .
+COPY version.py .
+
+RUN make clean
 RUN pip install -e .[test]
