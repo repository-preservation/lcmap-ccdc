@@ -1,22 +1,8 @@
 import numpy as np
-import json
 from datetime import date
-from .datastore import execute as cassandra_execute
-from .datastore import RESULT_INPUT
-from .datastore import INSERT_CQL
 from datetime import datetime
 
-from firebird import BEGINNING_OF_TIME
-
-
-def result_to_models(inresult):
-    '''
-    Function to extract the change_models dictionary from the CCD results
-    :param inresult: CCD result object
-    :return: dict
-    '''
-    _rjson = json.loads(inresult['result'])
-    return _rjson['change_models']
+version = '0.1'
 
 
 def lastchange(models, ord_date):
@@ -61,7 +47,7 @@ def changedate(models, ord_date):
     return ret
 
 
-def seglength(models, ord_date, bot=BEGINNING_OF_TIME):
+def seglength(models, ord_date, bot):
     ret = 0
     if ord_date > 0:
         all_dates = [bot]
@@ -77,56 +63,11 @@ def seglength(models, ord_date, bot=BEGINNING_OF_TIME):
     return ret
 
 
-def qa(models, ord_date):
+def curveqa(models, ord_date):
     ret = 0
     if ord_date > 0:
         for m in models:
             if m['start_day'] <= ord_date <= m['end_day']:
-                ret = m['qa']
+                ret = m['curve_qa']
                 break
     return ret
-
-
-def run(alg, ccdres, ord_date):
-    '''
-    Function for calculating and persisting level2 products from CCD results
-    :param alg: Name of algorithm to run
-    :param ccdres: CCD result object
-    :param ord_date: Date to use for level2 product calculation
-    :return: True
-    '''
-    try:
-        models = result_to_models(ccdres)
-    except Exception:
-        return "json load error for ccdresult: {}".format(ccdres)
-
-    _prods = dict()
-    _results = list()
-
-    if alg in ('all', 'lastchange'):
-        _prods['lastchange'] = lastchange(models, ord_date)
-    if alg in ('all', 'changemag'):
-        _prods['changemag'] = changemag(models, ord_date)
-    if alg in ('all', 'changedate'):
-        _prods['changedate'] = changedate(models, ord_date)
-    if alg in ('all', 'seglength'):
-        _prods['seglength'] = seglength(models, ord_date)
-    if alg in ('all', 'qa'):
-        _prods['qa'] = qa(models, ord_date)
-
-    _now = datetime.now()
-    for _p in _prods:
-        _r = RESULT_INPUT.copy()
-        _r['chip_x']          = ccdres['chip_x']
-        _r['chip_y']          = ccdres['chip_y']
-        _r['x']               = ccdres['x']
-        _r['y']               = ccdres['y']
-        _r['algorithm']       = _p
-        _r['result']          = str(_prods[_p])
-        _r['result_ok']       = True
-        _r['result_produced'] = _now
-        _results.append(_r)
-
-    # save results
-    cassandra_execute(INSERT_CQL, _results)
-    return True
