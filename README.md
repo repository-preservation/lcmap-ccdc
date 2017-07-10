@@ -87,6 +87,7 @@ as they are specific to each environment.
 
 To enable ssl authentication, set the following environment variables at
 Docker image runtime and volume mount the necessary files.
+
 | VARIABLE | VALUE |
 | --- | --- |
 |LIBPROCESS_SSL_ENABLED | 1 |
