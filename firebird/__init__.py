@@ -9,32 +9,31 @@ import sys
 
 HOST = socket.gethostbyname(socket.getfqdn())
 
-AARDVARK = os.getenv('AARDVARK', 'http://localhost:5678')
-AARDVARK_SPECS = os.getenv('AARDVARK_SPECS', '/v1/landsat/chip-specs')
-AARDVARK_CHIPS = os.getenv('AARDVARK_CHIPS', '/v1/landsat/chips')
+AARDVARK = os.getenv('FB_AARDVARK', 'http://localhost:5678')
+AARDVARK_SPECS = os.getenv('FB_AARDVARK_SPECS', '/v1/landsat/chip-specs')
+AARDVARK_CHIPS = os.getenv('FB_AARDVARK_CHIPS', '/v1/landsat/chips')
 CHIPS_URL = ''.join([AARDVARK, AARDVARK_CHIPS])
 SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
 
-CASSANDRA_CONTACT_POINTS = os.getenv('CASSANDRA_CONTACT_POINTS', HOST)
-CASSANDRA_USER = os.getenv('CASSANDRA_USER', 'cassandra')
-CASSANDRA_PASS = os.getenv('CASSANDRA_PASS', 'cassandra')
-CASSANDRA_KEYSPACE = os.getenv('CASSANDRA_KEYSPACE', 'lcmap_changes_local')
-CASSANDRA_JOBCONF_TABLE = os.getenv('CASSANDRA_JOBCONF_TABLE', 'jobconf')
+CASSANDRA_CONTACT_POINTS = os.getenv('FB_CASSANDRA_CONTACT_POINTS', HOST)
+CASSANDRA_USER = os.getenv('FB_CASSANDRA_USER', 'cassandra')
+CASSANDRA_PASS = os.getenv('FB_CASSANDRA_PASS', 'cassandra')
+CASSANDRA_KEYSPACE = os.getenv('FB_CASSANDRA_KEYSPACE', 'lcmap_changes_local')
 
-INITIAL_PARTITION_COUNT = os.getenv('INITIAL_PARTITION_COUNT', 1)
-PRODUCT_PARTITION_COUNT = os.getenv('PRODUCT_PARTITION_COUNT', 1)
-STORAGE_PARTITION_COUNT = os.getenv('STORAGE_PARTITION_COUNT', 1)
+INITIAL_PARTITION_COUNT = os.getenv('FB_INITIAL_PARTITION_COUNT', 1)
+PRODUCT_PARTITION_COUNT = os.getenv('FB_PRODUCT_PARTITION_COUNT', 1)
+STORAGE_PARTITION_COUNT = os.getenv('FB_STORAGE_PARTITION_COUNT', 1)
 
-DRIVER_HOST = os.getenv('DRIVER_HOST', HOST)
+DRIVER_HOST = os.getenv('FB_DRIVER_HOST', HOST)
 
-LOG_LEVEL = os.getenv('FIREBIRD_LOG_LEVEL', 'WARN')
+LOG_LEVEL = os.getenv('FB_LOG_LEVEL', 'WARN')
 
 SPARK_MASTER = os.getenv('SPARK_MASTER', 'spark://localhost:7077')
 SPARK_EXECUTOR_IMAGE = os.getenv('SPARK_EXECUTOR_IMAGE')
 SPARK_EXECUTOR_CORES = os.getenv('SPARK_EXECUTOR_CORES', 1)
 SPARK_EXECUTOR_FORCE_PULL = os.getenv('SPARK_EXECUTOR_FORCE_PULL', 'false')
 
-QA_BIT_PACKED = os.getenv('CCD_QA_BITPACKED', 'True')
+QA_BIT_PACKED = os.getenv('FB_CCD_QA_BITPACKED', 'True')
 
 # log format needs to be
 # 2017-06-29 13:09:04,109 DEBUG lcmap.aardvark.chip-spec - initializing GDAL
