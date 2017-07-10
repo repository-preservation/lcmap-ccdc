@@ -57,25 +57,49 @@ Make sure the environment variables are set prior to importing test.
 >>> data.update_chips()
 ```
 
-## Usage - WIP
-Configuration via environment variables
-
+## Configuration
 | VARIABLE | DEFAULT | Description |
 | --- | --- | --- |
-| CASSANDRA_CONTACT_POINTS | '0.0.0.0' | Cassandra host IP |
-| CASSANDRA_USER | | DB username |
-| CASSANDRA_PASS | | DB password |
-| CASSANDRA_KEYSPACE | 'lcmap_local' | DB keyspace |
-| CASSANDRA_RESULTS_TABLE | 'results' | Name of table to store results |
+| FB_AARDVARK | 'http://localhost:5678' | Aardvark host:port |
+| FB_AARDVARK_SPECS |'/v1/landsat/chip-specs' | Aardvark chip specs resource path |
+| FB_AARDVARK_CHIPS | '/v1/landsat/chips' | Aardvark chips resource path |
+| FB_CASSANDRA_CONTACT_POINTS | $HOST | Cassandra host IP |
+| FB_CASSANDRA_USER | 'cassandra' | DB username |
+| FB_CASSANDRA_PASS | 'cassandra' | DB password |
+| FB_CASSANDRA_KEYSPACE | 'lcmap_changes_local' | DB keyspace |
+| FB_DRIVER_HOST | $HOST | Advertised Hostname from SparkContext to Executors |
+| FB_INITIAL_PARTITION_COUNT | 1 | Aardvark query parallelism
+| FB_PRODUCT_PARTITION_COUNT | 1 | Product generation parallelism
+| FB_STORAGE_PARTITION_COUNT | 1 | Cassandra storage parallelism
+| FB_LOG_LEVEL | 'WARN' | Firebird log4j logging level
+| FB_MESOS_USER | 'mesos' | Mesos username (only if running on Mesos) |
+| FB_MESOS_PASS | 'mesos' | Mesos password (only if running on Mesos) |
 | SPARK_MASTER | 'spark://localhost:7077' | Spark host |
 | SPARK_EXECUTOR_IMAGE | | Docker Image for Spark Executor |
-| SPARK_EXECUTOR_CORES | | Cores allocated per Spark Executor |
+| SPARK_EXECUTOR_CORES | 1 | Cores allocated per Spark Executor |
 | SPARK_EXECUTOR_FORCE_PULL | 'false' | Force fresh pull of Docker Image |
-| AARDVARK_HOST | 'localhost' | Aardvark host |
-| AARDVARK_PORT | '5678' | Aardvark port |
-| AARDVARK_TILESPECS | '/landsat/tile-specs' | Tile-specs url |
-| BEGINNING_OF_TIME | 723546 | Ordinal date for use in seglength product calculation |
-| CCD_QA_BITPACKED  | True | Flag for indicating if Landsat Quality data is bitpacked or not |
+| CCD_QA_BITPACKED  | 'True' | Landsat Quality data bitpacked T/F |
+
+## Enabling Mesos SSL Client Authentication
+Mesos authentication over SSL requires additional environment variables,
+certificates and keys.  These are not included with the published Docker image
+as they are specific to each environment.
+
+To enable ssl authentication, set the following environment variables at
+Docker image runtime and volume mount the necessary files.
+| VARIABLE | VALUE |
+| --- | --- |
+|LIBPROCESS_SSL_ENABLED | 1 |
+|LIBPROCESS_SSL_SUPPORT_DOWNGRADE | true |
+|LIBPROCESS_SSL_VERIFY_CERT | 0 |
+|LIBPROCESS_SSL_CERT_FILE | /path/to/mesos.cert |
+|LIBPROCESS_SSL_KEY_FILE | /path/to/mesos.key |
+|LIBPROCESS_SSL_CA_DIR | /path/to/mesos_certpack/ |
+|LIBPROCESS_SSL_CA_FILE | /path/to/cacert.crt |
+|LIBPROCESS_SSL_ENABLE_SSL_V3 | 0 |
+|LIBPROCESS_SSL_ENABLE_TLS_V1_0 | 0 |
+|LIBPROCESS_SSL_ENABLE_TLS_V1_1 | 0 |
+|LIBPROCESS_SSL_ENABLE_TLS_V1_2 | 1 |
 
 ## Development
 Apache Spark is functional programming for cluster computing therefore firebird strives to ensure all of it's code follows functional principles of using immutable data (where possible), using functions as the primary unit of abstraction, and composing functions (placing them together) rather than complecting code (intermingling concepts).
