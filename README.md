@@ -36,21 +36,16 @@ Apache Spark based product generation for LCMAP.
  $ make docker-deps-down
 ```
 
-## Refreshing Test Data
-Occasionally it is necessary to update the test data located under
-```
-test/resources/data1
-```  
-
-There are two functions which can be run from a repl.  After updates the
-new test data should be committed to the firebird project.  
-
-Make sure the environment variables are set prior to importing test.
+Occasionally chip and chip spec test data may need to be updated if the source
+specifications change. Execute ```data.update_specs()``` and ```data.update_chips()``` from
+a repl after setting the ```AARDVARK```, ```AARDVARK_SPECS``` and ```AARDVARK_CHIPS```
+environment variables.
 
 ```
 >>> import os
->>> os.environ['CHIPS_URL'] = 'http://host/v1/landsat/chips'
->>> os.environ['SPECS_URL'] = 'http://host/v1/landsat/chip-specs'
+>>> os.environ['AARDVARK'] = 'http://host:port'
+>>> os.environ['AARDVARK_SPECS'] = '/v1/landsat/chip-specs'
+>>> os.environ['AARDVARK_CHIPS'] = '/v1/landsat/chips'
 >>>
 >>> from test import data
 >>> data.update_specs()
@@ -67,13 +62,14 @@ Make sure the environment variables are set prior to importing test.
 | FB_CASSANDRA_USER | 'cassandra' | DB username |
 | FB_CASSANDRA_PASS | 'cassandra' | DB password |
 | FB_CASSANDRA_KEYSPACE | 'lcmap_changes_local' | DB keyspace |
-| FB_DRIVER_HOST | $HOST | Advertised Hostname from SparkContext to Executors |
+| FB_DRIVER_HOST | $HOST | Advertised hostname from SparkContext to executors |
 | FB_INITIAL_PARTITION_COUNT | 1 | Aardvark query parallelism
 | FB_PRODUCT_PARTITION_COUNT | 1 | Product generation parallelism
 | FB_STORAGE_PARTITION_COUNT | 1 | Cassandra storage parallelism
-| FB_LOG_LEVEL | 'WARN' | Firebird log4j logging level
-| FB_MESOS_USER | 'mesos' | Mesos username (only if running on Mesos) |
-| FB_MESOS_PASS | 'mesos' | Mesos password (only if running on Mesos) |
+| FB_LOG_LEVEL | 'WARN' | Firebird log4j level
+| FB_MESOS_USER | 'mesos' | Mesos username |
+| FB_MESOS_PASS | 'mesos' | Mesos password |
+| FB_MESOS_ROLE | 'mesos' | Mesos role |
 | SPARK_MASTER | 'spark://localhost:7077' | Spark host |
 | SPARK_EXECUTOR_IMAGE | | Docker Image for Spark Executor |
 | SPARK_EXECUTOR_CORES | 1 | Cores allocated per Spark Executor |
@@ -87,6 +83,7 @@ as they are specific to each environment.
 
 To enable ssl authentication, set the following environment variables at
 Docker image runtime and volume mount the necessary files.
+
 | VARIABLE | VALUE |
 | --- | --- |
 |LIBPROCESS_SSL_ENABLED | 1 |
