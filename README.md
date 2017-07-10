@@ -24,7 +24,7 @@ Apache Spark based product generation for LCMAP.
 ```bash
    $ git clone git@github.com:usgs-eros/lcmap-firebird
    $ cd lcmap-firebird
-   $ pip install -e .
+   $ pip install -e .[test]
 ```
 
 ## Testing
