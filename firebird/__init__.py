@@ -12,28 +12,25 @@ HOST = socket.gethostbyname(socket.getfqdn())
 AARDVARK = os.getenv('FB_AARDVARK', 'http://localhost:5678')
 AARDVARK_SPECS = os.getenv('FB_AARDVARK_SPECS', '/v1/landsat/chip-specs')
 AARDVARK_CHIPS = os.getenv('FB_AARDVARK_CHIPS', '/v1/landsat/chips')
-CHIPS_URL = ''.join([AARDVARK, AARDVARK_CHIPS])
-SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
-
 CASSANDRA_CONTACT_POINTS = os.getenv('FB_CASSANDRA_CONTACT_POINTS', HOST)
 CASSANDRA_USER = os.getenv('FB_CASSANDRA_USER', 'cassandra')
 CASSANDRA_PASS = os.getenv('FB_CASSANDRA_PASS', 'cassandra')
 CASSANDRA_KEYSPACE = os.getenv('FB_CASSANDRA_KEYSPACE', 'lcmap_changes_local')
-
-INITIAL_PARTITION_COUNT = os.getenv('FB_INITIAL_PARTITION_COUNT', 1)
-PRODUCT_PARTITION_COUNT = os.getenv('FB_PRODUCT_PARTITION_COUNT', 1)
-STORAGE_PARTITION_COUNT = os.getenv('FB_STORAGE_PARTITION_COUNT', 1)
-
+CHIPS_URL = ''.join([AARDVARK, AARDVARK_CHIPS])
 DRIVER_HOST = os.getenv('FB_DRIVER_HOST', HOST)
-
+INITIAL_PARTITION_COUNT = os.getenv('FB_INITIAL_PARTITION_COUNT', 1)
 LOG_LEVEL = os.getenv('FB_LOG_LEVEL', 'WARN')
-
+MESOS_USER = os.getenv('FB_MESOS_USER', 'mesos')
+MESOS_PASS = os.getenv('FB_MESOS_PASS', 'mesos')
+MESOS_ROLE = os.getenv('FB_MESOS_ROLE', 'mesos')
+PRODUCT_PARTITION_COUNT = os.getenv('FB_PRODUCT_PARTITION_COUNT', 1)
+QA_BIT_PACKED = os.getenv('FB_CCD_QA_BITPACKED', 'True')
 SPARK_MASTER = os.getenv('SPARK_MASTER', 'spark://localhost:7077')
 SPARK_EXECUTOR_IMAGE = os.getenv('SPARK_EXECUTOR_IMAGE')
 SPARK_EXECUTOR_CORES = os.getenv('SPARK_EXECUTOR_CORES', 1)
 SPARK_EXECUTOR_FORCE_PULL = os.getenv('SPARK_EXECUTOR_FORCE_PULL', 'false')
-
-QA_BIT_PACKED = os.getenv('FB_CCD_QA_BITPACKED', 'True')
+SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
+STORAGE_PARTITION_COUNT = os.getenv('FB_STORAGE_PARTITION_COUNT', 1)
 
 # log format needs to be
 # 2017-06-29 13:09:04,109 DEBUG lcmap.aardvark.chip-spec - initializing GDAL
@@ -53,15 +50,19 @@ QA_BIT_PACKED = os.getenv('FB_CCD_QA_BITPACKED', 'True')
 
 logger = logging.getLogger('firebird')
 
-def sparkcontext():
+def sparkcontext(cores=SPARK_EXECUTOR_CORES):
     try:
         ts = datetime.datetime.now().isoformat()
         conf = (SparkConf().setAppName("lcmap-firebird-{}".format(ts))
                 .setMaster(SPARK_MASTER)
                 .set("spark.mesos.executor.docker.image", SPARK_EXECUTOR_IMAGE)
-                .set("spark.executor.cores", SPARK_EXECUTOR_CORES)
+                .set("spark.executor.cores", cores)
+                .set("spark.mesos.principal", MESOS_USER)
+                .set("spark.mesos.secret", MESOS_PASS)
+                .set("spark.mesos.role", MESOS_ROLE)
                 .set("spark.mesos.executor.docker.forcePullImage",
-                     SPARK_EXECUTOR_FORCE_PULL))
+                     SPARK_EXECUTOR_FORCE_PULL),)
+
         return SparkContext(conf=conf)
     except Exception as e:
         logger.info("Exception creating SparkContext: {}".format(e))

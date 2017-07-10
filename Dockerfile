@@ -21,22 +21,10 @@ ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/
 ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip
 ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/lib/pyspark.zip
 
-# Enable Mesos authentication
-ENV LIBPROCESS_SSL_ENABLED 1
-ENV LIBPROCESS_SSL_SUPPORT_DOWNGRADE true
-ENV LIBPROCESS_SSL_VERIFY_CERT 0
-ENV LIBPROCESS_SSL_CERT_FILE /etc/mesos/mesos_certpack/mesos.cert
-ENV LIBPROCESS_SSL_KEY_FILE /etc/mesos/mesos_certpack/mesos.key
-ENV LIBPROCESS_SSL_CA_DIR /etc/mesos/mesos_certpack/
-ENV LIBPROCESS_SSL_CA_FILE /etc/mesos/mesos/certpack/DigiCertCA.crt
-ENV LIBPROCESS_SSL_ENABLE_SSL_V3 0
-ENV LIBPROCESS_SSL_ENABLE_TLS_V1_0 0
-ENV LIBPROCESS_SSL_ENABLE_TLS_V1_1 0
-ENV LIBPROCESS_SSL_ENABLE_TLS_V1_2 1
 
 EXPOSE 7077
 EXPOSE 8081
-
+EXPOSE 4040
 
 RUN mkdir /app
 WORKDIR /app
@@ -52,7 +40,6 @@ COPY README.md .
 COPY setup.py .
 COPY unittest.cfg .
 COPY version.py .
-
 
 
 # Install Cassandra Spark Connector
