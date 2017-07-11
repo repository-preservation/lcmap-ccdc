@@ -67,7 +67,6 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
     #
     # Likewise when saving results, we will have to control the # of
     # partitions and thus control the parallelism we are throwing at Cassandra
-    # TODO: Probably need another partition control flag for saving.
 
     # raises appropriate exceptions on error
     validation.validate(acquired=acquired,
@@ -113,16 +112,13 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
         logger.info('Initializing job graph ...')
         logger.debug({k: v.value for k, v in jobconf.items()})
 
-
         job = transforms.products(jobconf, sparkcontext)
 
-        logger.fatal('Job graph created ...')
+        logger.info('Job graph created ...')
 
         # product call graphs are created but not realized.  Do something with
         # whichever one you want in order to cause the computation to occur
         # (example: if curveqa is requested, save it and it will compute)
-        # TODO: how am i going to get a cassandra connection from each
-        # without creating 10,000 connections?
         return job, jobconf
 
     except Exception as e:
@@ -180,6 +176,7 @@ def save(acquired, bounds, products, product_dates, clip=False,
         ss = sql.SparkSession(sparkcontext_fn())
 
         spec = specs_fn(fb.chip_spec_queries(fb.CHIPS_URL)['blues'])[0]
+
         ids  = chips.bounds_to_ids(bounds, spec)
 
         job, jobconf = init(acquired=acquired,

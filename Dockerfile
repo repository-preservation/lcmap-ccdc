@@ -11,7 +11,6 @@ ENV PATH=/root/miniconda3/bin:${PATH}
 RUN conda config --add channels conda-forge;
 RUN conda install python=3.6 numpy scipy pandas jupyter --yes
 
-
 ENV PYSPARK_PYTHON /root/miniconda3/bin/python3
 ENV SPARK_NO_DAEMONIZE true
 ENV MESOS_NATIVE_JAVA_LIBRARY /usr/lib/libmesos.so
@@ -21,6 +20,10 @@ ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/
 ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip
 ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/lib/pyspark.zip
 
+RUN mkdir /releases/pyccd
+WORKDIR /releases/pyccd
+# RUN wget http://github.com/usgs-eros/lcmap-pyccd/archive/03.25.2017.zip
+RUN wget https://github.com/USGS-EROS/lcmap-pyccd/archive/v2017.06.20.zip
 
 EXPOSE 7077
 EXPOSE 8081
