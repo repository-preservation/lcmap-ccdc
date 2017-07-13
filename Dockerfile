@@ -20,12 +20,15 @@ ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/
 ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip
 ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/lib/pyspark.zip
 
-RUN mkdir /releases/pyccd
-WORKDIR /releases/pyccd
-# RUN wget http://github.com/usgs-eros/lcmap-pyccd/archive/03.25.2017.zip
-RUN wget https://github.com/USGS-EROS/lcmap-pyccd/archive/v2017.06.20.zip
+# these are for click to work with Python3
+ENV LC_ALL=C.UTF-8
+ENV LANG=C.UTF-8
 
-EXPOSE 7077
+RUN mkdir -p /algorithms
+WORKDIR /algorithms
+# RUN wget http://github.com/usgs-eros/lcmap-pyccd/archive/03.25.2017.zip
+RUN wget -O pyccd-v2017.06.20.zip https://github.com/USGS-EROS/lcmap-pyccd/archive/v2017.06.20.zip
+
 EXPOSE 8081
 EXPOSE 4040
 
@@ -44,9 +47,8 @@ COPY setup.py .
 COPY unittest.cfg .
 COPY version.py .
 
-
 # Install Cassandra Spark Connector
 RUN mvn dependency:copy-dependencies -DoutputDirectory=$SPARK_HOME/jars
 
 RUN make clean
-RUN pip install -e .[test]
+RUN pip install -e .[test, dev]

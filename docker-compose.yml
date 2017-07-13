@@ -24,8 +24,5 @@ services:
       - "4040:4040"
     volumes:
       - .:/code
-    
-    command: spark-submit --py-files file:///releases/pyccd/v2017.06.20.zip firebird save --products seglength --acquired 1980-01-01/2016-12-12 --product_dates --bounds (11231,32143),(23423,342323)
 
-
-
+    command: spark-submit --py-files file:///releases/pyccd/v2017.06.20.zip firebird save -p seglength --acquired 1980-01-01/2016-12-12 -d -b (11231,32143),(23423,342323)
