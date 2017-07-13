@@ -76,6 +76,10 @@ environment variables.
 | SPARK_EXECUTOR_FORCE_PULL | 'false' | Force fresh pull of Docker Image |
 | CCD_QA_BITPACKED  | 'True' | Landsat Quality data bitpacked T/F |
 
+
+## Running
+`alias firebird='docker run --rm --name fb lcmap-firebird:2017.04.25 firebird'``
+
 ## Enabling Mesos SSL Client Authentication
 Mesos authentication over SSL requires additional environment variables,
 certificates and keys.  These are not included with the published Docker image
