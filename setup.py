@@ -41,7 +41,7 @@ setup(name='lcmap-firebird',
       #test_suite='nose.collector',
       #tests_require=['nose', 'nose-cover3'],
       entry_points={
-          'console_scripts': ['firebird=firebird.cmdline:main'],
+          'console_scripts': ['firebird=firebird.cmdline:cli'],
       },
       include_package_data=True,
       zip_safe=False)
