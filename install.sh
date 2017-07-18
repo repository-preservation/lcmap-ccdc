@@ -19,10 +19,11 @@ export FIREBIRD_SPARK_EXECUTOR_FORCE_PULL=false
 export FIREBIRD_SPARK_TOTAL_EXECUTOR_CORES=1000
 export FIREBIRD_STORAGE_PARTITION_COUNT=1
 
-BASE="docker run -it --rm --name fb $FIREBIRD_SPARK_EXECUTOR_IMAGE"
+BASE="docker run --network=host -it --rm  $FIREBIRD_SPARK_EXECUTOR_IMAGE"
 
+alias firebird-version="$BASE firebird show version"
 alias firebird-products="$BASE firebird show products"
 alias firebird-algorithms="$BASE firebird show algorithms"
 alias firebird-notebook="$BASE jupyter --ip=$HOSTNAME notebook"
 alias firebird-shell="$BASE /bin/bash"
-alias firebird-save="$BASE spark-submit --py-files file:///releases/pyccd/v2017.06.20.zip firebird save"
+alias firebird-save="$BASE spark-submit --py-files local:///algorithms/pyccd-v2017.06.20.zip firebird save"

@@ -61,14 +61,25 @@ def pyccd(point, specs_url, specs_fn, chips_url, chips_fn, acquired, queries):
     # keep track of the spectra they are associated with via dict key 'k'
     specs = {k: specs_fn(v) for k, v in queries.items()}
 
-    chips = {k: sort(chips_fn(
-                         x=point[0],
-                         y=point[1],
-                         acquired=acquired,
-                         url=chips_url,
-                         ubids=fspecs.ubids(v)))
-            for k, v in specs.items()}
+    chips = ({k: sort(chips_fn(
+                          x=point[0],
+                          y=point[1],
+                          acquired=acquired,
+                          url=chips_url,
+                          ubids=fspecs.ubids(v)))
+             for k, v in specs.items()})
 
+    # TODO: stop the qa dates from being included here or it will mess up
+    # the check_dates results.
+    #intersect = f.intersection(map(fchips.dates, [c for c in chips.values()]))
+    #union = set(map(fchips.dates, [v for k, v in chips.values() if k != 'qa']))
+    # we have an odd case here where all dates for all ubids should match
+    # except for the qa band, which has extra values because 100% fill chips
+    # were not removed from them during ingest.  Hopefully this changes.  This
+    # function doesn't know anything about one band (or ubid) from the next
+    # and nor should it.
+    # Going to compare all bands except qa here and make sure they match up.
+    # The extra all fill qa chips will be filtered out below in the trim() call.
     dstrs = f.intersection(map(fchips.dates, [c for c in chips.values()]))
 
     blue_chip_spec = specs['blues'][0]
