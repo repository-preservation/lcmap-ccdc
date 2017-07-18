@@ -1,4 +1,3 @@
-#FROM usgseros/mesos-spark:latest
 FROM mesosphere/spark:1.1.0-2.1.1-hadoop-2.7
 MAINTAINER USGS LCMAP http://eros.usgs.gov
 
@@ -26,7 +25,6 @@ ENV LANG=C.UTF-8
 
 RUN mkdir -p /algorithms
 WORKDIR /algorithms
-# RUN wget http://github.com/usgs-eros/lcmap-pyccd/archive/03.25.2017.zip
 RUN wget -O pyccd-v2017.06.20.zip https://github.com/USGS-EROS/lcmap-pyccd/archive/v2017.06.20.zip
 
 EXPOSE 8081
@@ -45,11 +43,11 @@ COPY Makefile .
 COPY pom.xml .
 COPY README.md .
 COPY setup.py .
-COPY unittest.cfg .
 COPY version.py .
 
 # Install Cassandra Spark Connector
 RUN mvn dependency:copy-dependencies -DoutputDirectory=$SPARK_HOME/jars
 
 RUN make clean
-RUN pip install -e .[test, dev]
+RUN pip install -e .[test]
+RUN pip install -e .[dev]
