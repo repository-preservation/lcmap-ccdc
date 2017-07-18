@@ -6,6 +6,7 @@ from functools import reduce
 from itertools import product
 from numpy.random import randint
 import numpy as np
+import pytest
 
 
 def test_difference():
@@ -68,6 +69,24 @@ def test_trim():
     trimmed = fc.trim(inputs, included)
     assert len(list(trimmed)) == len(included)
     assert set(included) == set(map(lambda x: x['acquired'], trimmed))
+
+
+def test_check():
+    inputs = list()
+    inputs.append({'include': True, 'acquired': '2015-04-01'})
+    inputs.append({'include': True, 'acquired': '2017-04-01'})
+    inputs.append({'include': False, 'acquired': '2017-01-01'})
+    inputs.append({'include': True, 'acquired': '2016-04-01'})
+    included = tuple(filter(lambda d: d['include'] is True, inputs))
+    included_dates = fc.dates(included)
+
+    with pytest.raises(Exception) as ex:
+        fc.check(inputs, included_dates)
+
+    with pytest.raises(Exception) as ex:
+        fc.check(inputs[0:2], included_dates)
+
+    assert fc.check(included, included_dates) == included
 
 
 def test_to_numpy():

@@ -1,9 +1,11 @@
 from base64 import b64decode
 from firebird import functions as f
+import logging
 import math
 import numpy as np
 import requests
 
+logger = logging.getLogger(__name__)
 
 def get(url, x, y, acquired, ubids):
     """Returns aardvark chips for given x, y, date range and ubid sequence
@@ -215,6 +217,35 @@ def trim(chips, dates):
     :returns: Sequence of filtered chips
     """
     return tuple(filter(lambda c: c['acquired'] in dates, chips))
+
+
+def check(chips, dates):
+    """Ensures a complete set of chips exist when compared to a set of dates
+    :param chips: Sequence of chips
+    :param dates: Sequence of dates
+    :returns: Sequence of chips or exception
+    """
+    cdates = list(map(lambda c: c['acquired'], chips))
+    cdateset = set(cdates)
+    dateset  = set(dates)
+    datelength = len(dates)
+    chiplength = len(chips)
+
+    if cdateset == dateset and datelength == chiplength:
+        return tuple(chips)
+    else:
+        extras = cdates - dates
+        missing = dates - cdates
+        ubids = set(map(lambda c: c['ubid'], chips))
+        msg = ("Inconsistent chip set for ubids:{} "
+               "Dates count:{} Chips count:{} "
+               "Extra dates:{} Missing dates:{}".format(ubids,
+                                                        datelength,
+                                                        chiplength,
+                                                        extras,
+                                                        missing))
+        logger.error(msg)
+        raise Exception(msg)
 
 
 def chip_to_numpy(chip, chip_spec):
