@@ -9,4 +9,4 @@ __version__ = '2017.04.25'
 __name = 'lcmap-firebird'
 __algorithm__ = '-'.join([__name, __version__])
 
-__pyccd_version__ = '1.3.1'
+#__pyccd_version__ = '1.3.1'
