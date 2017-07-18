@@ -31,6 +31,7 @@ RUN wget -O pyccd-v2017.06.20.zip https://github.com/USGS-EROS/lcmap-pyccd/archi
 
 EXPOSE 8081
 EXPOSE 4040
+EXPOSE 8888
 
 RUN mkdir /app
 WORKDIR /app
