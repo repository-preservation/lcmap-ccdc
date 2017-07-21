@@ -26,9 +26,9 @@ export FIREBIRD_LOG_LEVEL=WARN
 # export LIBPROCESS_SSL_ENABLE_TLS_V1_1	0
 # export LIBPROCESS_SSL_ENABLE_TLS_V1_2	1
 
-SPARK_EXECUTOR_IMAGE=lcmap-firebird:2017.04.25
+IMAGE=lcmap-firebird:2017.04.25
 VOLUME=`echo ~/.certs`:/certs
-BASE="docker run -v $VOLUME --network=host -it --rm  $SPARK_EXECUTOR_IMAGE"
+BASE="docker run -v $VOLUME --network=host -it --rm  $IMAGE"
 
 alias firebird-version="$BASE firebird show version"
 alias firebird-products="$BASE firebird show products"
@@ -51,6 +51,6 @@ alias firebird-save="$BASE spark-submit \
                            --conf spark.mesos.secret=mesos \
                            --conf spark.mesos.role=mesos \
                            --conf spark.mesos.executor.docker.forcePullImage=false \
-                           --conf spark.mesos.executor.docker.image=$SPARK_EXECUTOR_IMAGE \
+                           --conf spark.mesos.executor.docker.image=$IMAGE \
                            --conf spark.submit.pyFiles=local:///algorithms/pyccd-v2017.06.20.zip \
                            /app/firebird/cmdline.py save"
