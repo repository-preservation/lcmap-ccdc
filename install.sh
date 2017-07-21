@@ -28,7 +28,7 @@ export FIREBIRD_LOG_LEVEL=WARN
 
 IMAGE=lcmap-firebird:2017.04.25
 VOLUME=`echo ~/.certs`:/certs
-BASE="docker run -v $VOLUME --network=host -it --rm  $IMAGE"
+BASE="docker run -v $VOLUME --network=host -it --rm $IMAGE"
 
 alias firebird-version="$BASE firebird show version"
 alias firebird-products="$BASE firebird show products"
