@@ -41,8 +41,8 @@ def algorithms():
 
 
 @cli.command()
-@c.argument('--bounds', '-b')
-@c.argument('--product', '-p')
+@c.option('--bounds', '-b', required=True)
+@c.option('--product', '-p', required=True)
 def count(bounds, product):
     """Returns count of number of results given bounds and a product.  Bounds
     will be minbox'd prior to calculation.
@@ -54,25 +54,32 @@ def count(bounds, product):
 
 
 @show.command()
-@c.argument('--bounds', '-b')
+@c.option('--bounds', '-b', required=True)
 def chipids(bounds):
     spec = chip_specs.get(d.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
     return chip.ids(fb.minbox(bounds), spec)
 
 
 @cli.command()
-@c.option('--acquired', '-a')
-@c.option('--bounds', '-b', multiple=True)
+@c.option('--acquired', '-a', required=True)
+@c.option('--bounds', '-b', required=True)
+@c.option('--products', '-p', required=True)
+@c.option('--product_dates', '-d', required=True)
 @c.option('--clip', '-c', is_flag=True)
-@c.option('--products', '-p', type=c.Choice(list_products()),
-          multiple=True)
-@c.option('--product_dates', '-d', multiple=True)
-def save(acquired, bounds, clip, product, product_dates):
-    return actions.save(acquired=acquired,
-                        bounds=bounds,
-                        clip=clip,
-                        products=products(),
-                        product_dates=product_dates)
+def save(acquired, bounds, products, product_dates, clip):
+    print('cmdline saving')
+    results = actions.save(acquired=acquired,
+                           bounds=bounds,
+                           clip=clip,
+                           products=products,
+                           product_dates=product_dates)
+    return list(results)
+
+
+@cli.command()
+@c.option('--name', '-n', required=True)
+def test(name):
+    c.echo(name)
 
 
 if __name__ == "__main__":
