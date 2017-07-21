@@ -11,14 +11,24 @@ export FIREBIRD_PRODUCT_PARTITION_COUNT=1
 export FIREBIRD_STORAGE_PARTITION_COUNT=1
 export FIREBIRD_LOG_LEVEL=WARN
 
-#ts = datetime.datetime.now().isoformat()
-#conf = (SparkConf().setAppName("lcmap-firebird-{}".format(ts))
-#
-#  TODO: add volumes that need to be mounted for certificates and keys.
-#        These should never be checked into a codebase.
-#
+# Mesos authentication over SSL only.
+# Mount docker volume paths to match certificate and key file paths.
+# These are obtained from sysadmins only.  Do not commit to public repos.
+# export LIBPROCESS_SSL_ENABLED	1
+# export LIBPROCESS_SSL_SUPPORT_DOWNGRADE	true
+# export LIBPROCESS_SSL_VERIFY_CERT	0
+# export LIBPROCESS_SSL_CERT_FILE	/certs/mesos.cert
+# export LIBPROCESS_SSL_KEY_FILE	/certs/mesos.key
+# export LIBPROCESS_SSL_CA_DIR	/certs/mesos_certpack/
+# export LIBPROCESS_SSL_CA_FILE	/certs/cacert.crt
+# export LIBPROCESS_SSL_ENABLE_SSL_V3	0
+# export LIBPROCESS_SSL_ENABLE_TLS_V1_0	0
+# export LIBPROCESS_SSL_ENABLE_TLS_V1_1	0
+# export LIBPROCESS_SSL_ENABLE_TLS_V1_2	1
+
 SPARK_EXECUTOR_IMAGE=lcmap-firebird:2017.04.25
-BASE="docker run --network=host -it --rm  $SPARK_EXECUTOR_IMAGE"
+VOLUME=echo ~/.certs:/certs
+BASE="docker run -v $VOLUME --network=host -it --rm  $SPARK_EXECUTOR_IMAGE"
 
 alias firebird-version="$BASE firebird show version"
 alias firebird-products="$BASE firebird show products"
