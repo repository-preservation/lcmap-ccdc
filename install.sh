@@ -27,7 +27,7 @@ export FIREBIRD_LOG_LEVEL=WARN
 # export LIBPROCESS_SSL_ENABLE_TLS_V1_2	1
 
 SPARK_EXECUTOR_IMAGE=lcmap-firebird:2017.04.25
-VOLUME=echo ~/.certs:/certs
+VOLUME=`echo ~/.certs`:/certs
 BASE="docker run -v $VOLUME --network=host -it --rm  $SPARK_EXECUTOR_IMAGE"
 
 alias firebird-version="$BASE firebird show version"
