@@ -231,11 +231,11 @@ def check(chips, dates):
     datelength = len(dates)
     chiplength = len(chips)
 
-    if cdateset == dateset and datelength == chiplength:
+    if sorted(dates) == sorted(cdates):
         return tuple(chips)
     else:
-        extras = cdates - dates
-        missing = dates - cdates
+        extras = cdateset - dateset
+        missing = dateset - cdateset
         ubids = set(map(lambda c: c['ubid'], chips))
         msg = ("Inconsistent chip set for ubids:{} "
                "Dates count:{} Chips count:{} "
