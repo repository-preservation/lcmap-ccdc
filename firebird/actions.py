@@ -6,6 +6,7 @@ from firebird import validation
 from pyspark import sql
 import firebird as fb
 import logging
+import pyspark
 
 logger = logging.getLogger(__name__)
 
@@ -67,6 +68,8 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
     #
     # Likewise when saving results, we will have to control the # of
     # partitions and thus control the parallelism we are throwing at Cassandra
+
+    print('initing stuff and things...')
 
     # raises appropriate exceptions on error
     validation.validate(acquired=acquired,
@@ -157,7 +160,7 @@ def write(table, dataframe, mode='append'):
 
 def save(acquired, bounds, products, product_dates, clip=False,
          specs_fn=chip_specs.get, chips_fn=chips.get,
-         sparkcontext_fn=fb.sparkcontext):
+         sparkcontext_fn=pyspark.SparkContext):
     """Saves requested products to iwds
     :param acquired: / separated datestrings in iso8601 format.  Used to
                      determine the daterange of input data.
@@ -170,6 +173,7 @@ def save(acquired, bounds, products, product_dates, clip=False,
                  of bounds are filtered out.
     :return: iterator of results from calls to write()
     """
+    print('saving stuff and things...')
 
     ss = None
     try:
