@@ -13,6 +13,10 @@ export FIREBIRD_LOG_LEVEL=WARN
 
 #ts = datetime.datetime.now().isoformat()
 #conf = (SparkConf().setAppName("lcmap-firebird-{}".format(ts))
+#
+#  TODO: add volumes that need to be mounted for certificates and keys.
+#        These should never be checked into a codebase.
+#
 SPARK_EXECUTOR_IMAGE=lcmap-firebird:2017.04.25
 BASE="docker run --network=host -it --rm  $SPARK_EXECUTOR_IMAGE"
 
