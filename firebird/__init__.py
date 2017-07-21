@@ -1,11 +1,6 @@
-from pyspark import SparkConf
-from pyspark import SparkContext
-from pyspark import sql
-import datetime
 import logging
 import os
 import socket
-import sys
 
 HOST = socket.gethostbyname(socket.getfqdn())
 
@@ -17,18 +12,10 @@ CASSANDRA_USER = os.getenv('FIREBIRD_CASSANDRA_USER', 'cassandra')
 CASSANDRA_PASS = os.getenv('FIREBIRD_CASSANDRA_PASS', 'cassandra')
 CASSANDRA_KEYSPACE = os.getenv('FIREBIRD_CASSANDRA_KEYSPACE', 'lcmap_changes_local')
 CHIPS_URL = ''.join([AARDVARK, AARDVARK_CHIPS])
-DRIVER_HOST = os.getenv('FIREBIRD_DRIVER_HOST', HOST)
 INITIAL_PARTITION_COUNT = os.getenv('FIREBIRD_INITIAL_PARTITION_COUNT', 1)
 LOG_LEVEL = os.getenv('FIREBIRD_LOG_LEVEL', 'WARN')
-MESOS_USER = os.getenv('FIREBIRD_MESOS_USER', 'mesos')
-MESOS_PASS = os.getenv('FIREBIRD_MESOS_PASS', 'mesos')
-MESOS_ROLE = os.getenv('FIREBIRD_MESOS_ROLE', 'mesos')
 PRODUCT_PARTITION_COUNT = os.getenv('FIREBIRD_PRODUCT_PARTITION_COUNT', 1)
 QA_BIT_PACKED = os.getenv('FIREBIRD_CCD_QA_BITPACKED', 'True')
-SPARK_MASTER = os.getenv('FIREBIRD_SPARK_MASTER', 'spark://localhost:7077')
-SPARK_EXECUTOR_IMAGE = os.getenv('FIREBIRD_SPARK_EXECUTOR_IMAGE')
-SPARK_EXECUTOR_CORES = os.getenv('FIREBIRD_SPARK_EXECUTOR_CORES', 1)
-SPARK_EXECUTOR_FORCE_PULL = os.getenv('FIREBIRD_SPARK_EXECUTOR_FORCE_PULL', 'false')
 SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
 STORAGE_PARTITION_COUNT = os.getenv('FIREBIRD_STORAGE_PARTITION_COUNT', 1)
 
@@ -49,24 +36,6 @@ STORAGE_PARTITION_COUNT = os.getenv('FIREBIRD_STORAGE_PARTITION_COUNT', 1)
 ##    stream=sys.stdout)
 
 logger = logging.getLogger('firebird')
-
-def sparkcontext(cores=SPARK_EXECUTOR_CORES):
-    try:
-        ts = datetime.datetime.now().isoformat()
-        conf = (SparkConf().setAppName("lcmap-firebird-{}".format(ts))
-                .setMaster(SPARK_MASTER)
-                .set("spark.mesos.executor.docker.image", SPARK_EXECUTOR_IMAGE)
-                .set("spark.executor.cores", cores)
-                .set("spark.mesos.principal", MESOS_USER)
-                .set("spark.mesos.secret", MESOS_PASS)
-                .set("spark.mesos.role", MESOS_ROLE)
-                .set("spark.mesos.executor.docker.forcePullImage",
-                     SPARK_EXECUTOR_FORCE_PULL),)
-
-        return SparkContext(conf=conf)
-    except Exception as e:
-        logger.info("Exception creating SparkContext: {}".format(e))
-        raise e
 
 
 def ccd_params():

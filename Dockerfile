@@ -8,7 +8,8 @@ RUN wget -O Miniconda3-latest.sh https://repo.continuum.io/miniconda/Miniconda3-
 RUN ./Miniconda3-latest.sh -b;
 ENV PATH=/root/miniconda3/bin:${PATH}
 RUN conda config --add channels conda-forge;
-RUN conda install python=3.6 numpy scipy pandas jupyter --yes
+#RUN conda install python=3.6 cython numpy scipy pandas jupyter --yes
+RUN conda install python=3.6 cython jupyter --yes
 
 ENV PYSPARK_PYTHON /root/miniconda3/bin/python3
 ENV SPARK_NO_DAEMONIZE true
