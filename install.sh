@@ -13,7 +13,7 @@ export FIREBIRD_LOG_LEVEL=WARN
 
 # Mesos authentication over SSL only.
 # Mount docker volume paths to match certificate and key file paths.
-# These are obtained from sysadmins only.  Do not commit to public repos.
+# These are obtained from sysadmins.  Do not commit to public repos.
 # export LIBPROCESS_SSL_ENABLED	1
 # export LIBPROCESS_SSL_SUPPORT_DOWNGRADE	true
 # export LIBPROCESS_SSL_VERIFY_CERT	0
