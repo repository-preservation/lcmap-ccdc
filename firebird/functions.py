@@ -238,5 +238,17 @@ def represent(item):
     """Represents callables and values consistently
     :param item: The item to represent
     :return: Item representation
-    """    
+    """
     return repr(item.__name__) if callable(item) else repr(item)
+
+
+def isnumeric(value):
+    """Does a string value represent a number (positive or negative?)
+    :param value: A string
+    :return: True or False
+    """
+    try:
+        float(value)
+        return True
+    except:
+        return False
