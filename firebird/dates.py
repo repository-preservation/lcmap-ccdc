@@ -29,9 +29,12 @@ def enddate(acquired):
 
 def is_acquired(acquired):
     """Is the date string a / seperated date range in iso8601 format?
+    Is the start date less than or equal to the end date?
     :param acquired: A date string
     :return: Boolean
     """
     # 1980-01-01/2015-12-31
     regex = '^[0-9]{4}-[0-9]{2}-[0-9]{2}\/[0-9]{4}-[0-9]{2}-[0-9]{2}$'
-    return bool(re.match(regex, acquired))
+
+    return (bool(re.match(regex, acquired)) and
+            to_ordinal(startdate(acquired)) <= to_ordinal(enddate(acquired)))

@@ -2,7 +2,6 @@ from firebird import chips
 from firebird import chip_specs
 from firebird import functions as f
 from firebird import transforms
-from firebird import validation
 from pyspark import sql
 import firebird as fb
 import logging
@@ -72,12 +71,12 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
     print('initing stuff and things...')
 
     # raises appropriate exceptions on error
-    validation.validate(acquired=acquired,
-                        products=products,
-                        product_dates=product_dates,
-                        clip_box=clip_box,
-                        chips_fn=chips_fn,
-                        specs_fn=specs_fn)
+    #validation.validate(acquired=acquired,
+    #                    products=products,
+    #                    product_dates=product_dates,
+    #                    clip_box=clip_box,
+    #                    chips_fn=chips_fn,
+    #                    specs_fn=specs_fn)
 
     try:
         # retrieve a chip spec so we can generate chip ids
