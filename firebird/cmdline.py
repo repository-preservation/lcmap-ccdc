@@ -75,10 +75,12 @@ def save(acquired, bounds, products, product_dates, clip):
                   products=products,
                   product_dates=product_dates)
 
-    # TODO: convert bounds to numbers from string sequence.
+    # convert bounds to numbers from string sequence.
+    fbounds = map(lambda n: (float(n[0]),float(n[1])),
+                  map(lambda x: x.split(','), bounds))
 
     results = actions.save(acquired=acquired,
-                           bounds=bounds,
+                           bounds=list(fbounds),
                            clip=clip,
                            products=products,
                            product_dates=product_dates)
