@@ -68,6 +68,7 @@ def chipids(bounds):
 @c.option('--product_dates', '-d', required=True, multiple=True)
 @c.option('--clip', '-c', is_flag=True)
 def save(acquired, bounds, products, product_dates, clip):
+    # TODO: handle accepting tile ids
 
     validate.save(acquired=acquired,
                   bounds=bounds,
