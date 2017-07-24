@@ -69,13 +69,13 @@ def chipids(bounds):
 @c.option('--clip', '-c', is_flag=True)
 def save(acquired, bounds, products, product_dates, clip):
 
-    print("BOUNDS:{}".format(bounds))
-
     validate.save(acquired=acquired,
                   bounds=bounds,
                   clip=clip,
                   products=products,
                   product_dates=product_dates)
+
+    # TODO: convert bounds to numbers from string sequence.
 
     results = actions.save(acquired=acquired,
                            bounds=bounds,
