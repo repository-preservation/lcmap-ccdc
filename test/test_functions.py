@@ -24,3 +24,11 @@ def test_rsort():
 
 def test_compose():
     assert 1 > 0
+
+
+def test_isnumeric():
+    good = ['1', '-1', '0', '1.0', '-1.0']
+    assert all(map(f.isnumeric, good))
+
+    bad = ['a', 'a1', '1a']
+    assert not all(map(f.isnumeric, bad))
