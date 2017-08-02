@@ -1,11 +1,11 @@
 from firebird import ccd_params
-from firebird import dates as fd
-from firebird import functions as f
-from firebird import inputs
-from firebird import logger
 from firebird import products as fp
 from functools import partial
 from functools import wraps
+from merlin import dates as md
+from merlin import functions as f
+from merlin import timeseries
+
 import ccd
 
 
@@ -166,7 +166,7 @@ def lastchange(rdd):
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
-    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+    kwargs = {'models': result_to_models(data), 'ord_date': md.to_ordinal(date)}
 
     return safely(func=fp.lastchange, kwargs=kwargs, chip_x=chip_x,
                   chip_y=chip_y, x=x, y=y,
@@ -187,7 +187,7 @@ def changemag(rdd):
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
-    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+    kwargs = {'models': result_to_models(data), 'ord_date': md.to_ordinal(date)}
 
     return safely(func=fp.changemag, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
                   chip_y=chip_y, alg=algorithm('changemag', fp.version),
@@ -207,7 +207,7 @@ def changedate(rdd):
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
-    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+    kwargs = {'models': result_to_models(data), 'ord_date': md.to_ordinal(date)}
 
     return safely(func=fp.changedate, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
                   chip_y=chip_y, alg=algorithm('changedate', fp.version),
@@ -229,8 +229,8 @@ def seglength(rdd):
     errs = rdd[0][2]
     date = rdd[1]
     kwargs = {'models': result_to_models(data),
-              'ord_date': fd.to_ordinal(date),
-              'bot': fd.to_ordinal(fd.startdate(acquired))}
+              'ord_date': md.to_ordinal(date),
+              'bot': md.to_ordinal(md.startdate(acquired))}
 
     return safely(func=fp.seglength, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
                   chip_y=chip_y, alg=algorithm('seglength', fp.version),
@@ -250,7 +250,7 @@ def curveqa(rdd):
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
-    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+    kwargs = {'models': result_to_models(data), 'ord_date': md.to_ordinal(date)}
 
     return safely(func=fp.curveqa, kwargs=kwargs, x=x, y=y,  chip_x=chip_x,
                   chip_y=chip_y, alg=algorithm('curveqa', fp.version),
@@ -317,7 +317,7 @@ def products(jobconf, sparkcontext):
 
     # query data and transform it into pyccd input format
 
-    _in = _chipids.map(partial(inputs.pyccd,
+    _in = _chipids.map(partial(timeseries.pyccd,
                                specs_url=specs_url,
                                specs_fn=specs_fn,
                                chips_url=chips_url,
@@ -339,7 +339,7 @@ def products(jobconf, sparkcontext):
                                .setName(algorithm('inputs', '20170608'))
 
     _ccd = _in.map(pyccd).setName(ccd.algorithm).persist()
-    
+
     # cartesian will create an rdd that looks like:
     # ((((chip_x, chip_y), x, y, alg, product_date_str), data), product_date)
     _ccd_dates = _ccd.cartesian(sc.parallelize(jobconf['product_dates'].value))
