@@ -2,6 +2,7 @@ from firebird import actions
 from firebird import chip_specs
 from firebird import files
 from firebird import transforms
+from firebird import validate
 import click as c
 import firebird as fb
 import os
@@ -62,14 +63,25 @@ def chipids(bounds):
 
 @cli.command()
 @c.option('--acquired', '-a', required=True)
-@c.option('--bounds', '-b', required=True)
-@c.option('--products', '-p', required=True)
-@c.option('--product_dates', '-d', required=True)
+@c.option('--bounds', '-b', required=True, multiple=True)
+@c.option('--products', '-p', required=True, multiple=True)
+@c.option('--product_dates', '-d', required=True, multiple=True)
 @c.option('--clip', '-c', is_flag=True)
 def save(acquired, bounds, products, product_dates, clip):
-    print('cmdline saving')
+    # TODO: handle accepting tile ids
+
+    validate.save(acquired=acquired,
+                  bounds=bounds,
+                  clip=clip,
+                  products=products,
+                  product_dates=product_dates)
+
+    # convert bounds to numbers from string sequence.
+    fbounds = map(lambda n: (float(n[0]),float(n[1])),
+                  map(lambda x: x.split(','), bounds))
+
     results = actions.save(acquired=acquired,
-                           bounds=bounds,
+                           bounds=list(fbounds),
                            clip=clip,
                            products=products,
                            product_dates=product_dates)
