@@ -1,5 +1,4 @@
 from firebird import transforms
-from firebird import validation
 from merlin import chips
 from merlin import chip_specs
 from merlin import functions as f
@@ -72,12 +71,12 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
     print('initing stuff and things...')
 
     # raises appropriate exceptions on error
-    validation.validate(acquired=acquired,
-                        products=products,
-                        product_dates=product_dates,
-                        clip_box=clip_box,
-                        chips_fn=chips_fn,
-                        specs_fn=specs_fn)
+    #validation.validate(acquired=acquired,
+    #                    products=products,
+    #                    product_dates=product_dates,
+    #                    clip_box=clip_box,
+    #                    chips_fn=chips_fn,
+    #                    specs_fn=specs_fn)
 
     try:
         # retrieve a chip spec so we can generate chip ids

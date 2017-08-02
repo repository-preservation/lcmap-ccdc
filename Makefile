@@ -13,17 +13,17 @@ docker-shell:
 	docker run -it --entrypoint=/bin/bash usgseros/$(WORKERIMAGE)
 
 docker-deps-up:
-	docker-compose -f resources/docker-compose.yml up -d
+	docker-compose -f test/resources/docker-compose.yml up -d
 
 docker-deps-up-nodaemon:
-	docker-compose -f resources/docker-compose.yml up
+	docker-compose -f test/resources/docker-compose.yml up
 
 docker-db-test-schema:
 	docker cp test/resources/test.schema.setup.cql worker-cassandra:/
 	docker exec -u root worker-cassandra cqlsh localhost -f test.schema.setup.cql
 
 docker-deps-down:
-	docker-compose -f resources/docker-compose.yml down
+	docker-compose -f test/resources/docker-compose.yml down
 
 spark-lib:
 	@rm -rf lib
