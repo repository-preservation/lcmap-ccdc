@@ -1,8 +1,8 @@
-from firebird import chips
-from firebird import chip_specs
-from firebird import functions as f
 from firebird import transforms
 from firebird import validation
+from merlin import chips
+from merlin import chip_specs
+from merlin import functions as f
 from pyspark import sql
 import firebird as fb
 import logging
