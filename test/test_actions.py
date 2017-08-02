@@ -1,7 +1,7 @@
 from firebird import actions as a
-from firebird import functions as f
 from functools import partial
-from test.mocks import aardvark as ma
+from merlin import functions as f
+from merlin.support import aardvark as ma
 import firebird as fb
 import os
 import pyspark
