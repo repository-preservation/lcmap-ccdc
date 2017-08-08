@@ -22,6 +22,7 @@ setup(name='lcmap-firebird',
       license='Unlicense',
       packages=['firebird'],
       install_requires=[
+          'gdal',
           'lcmap-merlin>=0.5.2',
       ],
       # List additional groups of dependencies here (e.g. development
