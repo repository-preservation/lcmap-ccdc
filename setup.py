@@ -23,7 +23,8 @@ setup(name='lcmap-firebird',
       packages=['firebird'],
       install_requires=[
           'gdal',
-          'lcmap-merlin>=0.5.2',
+          'cytoolz',
+          'lcmap-merlin==1.0rc3',
       ],
       # List additional groups of dependencies here (e.g. development
       # dependencies). You can install these using the following syntax,

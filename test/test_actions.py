@@ -102,6 +102,11 @@ def test_save():
                          specs_fn=ma.chip_specs,
                          sparkcontext_fn=partial(pyspark.SparkContext,
                                                  appName="test_save"))
+
+        print("RESULTS TYPE:{}".format(type(list(results))))
+
+        print("RESULTS LEN:{}".format(len(list(results))))
+
         for r in results:
             print("Save result:{}".format(r))
 
