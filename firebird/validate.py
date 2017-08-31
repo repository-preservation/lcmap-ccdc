@@ -3,6 +3,35 @@ from merlin import dates as md
 from merlin import functions
 import re
 
+
+def is_false(v):
+    """Determines if a value is false.
+
+    Args:
+        v - a value
+
+    Returns:
+        bool: True if v is not None and v is False or 'false' (case insensitive)
+    """
+
+    return (v is not None and
+            (v == False or (type(v) is str and v.lower() == 'false')))
+
+
+def is_true(v):
+    """Determines if a value is true.
+
+    Args:
+        v - a value
+
+    Returns:
+        bool: True if v is not None and v is True or 'true' (case insensitive)
+    """
+
+    return (v is not None and
+            (v == True or (type(v) is str and v.lower() == 'true')))
+
+
 def _acquired(a):
     """Checks acquired date range as supplied by cmdline
     :param a: Date range string in iso8601 format separated by /
@@ -18,7 +47,10 @@ def _clip(c):
     :param c: Clip parameter
     :return: True or Exception
     """
-    if functions.false(c) or functions.true(c):
+    print("C:{}".format(c))
+    print("C TYPE:{}".format(type(c)))
+
+    if is_false(c) or is_true(c):
         return True
     raise Exception("Clip must be true or false")
 
