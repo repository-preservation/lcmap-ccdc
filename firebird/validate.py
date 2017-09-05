@@ -1,14 +1,43 @@
-from firebird import dates as fd
-from firebird import functions
 from firebird import transforms
+from merlin import dates as md
+from merlin import functions
 import re
+
+
+def is_false(v):
+    """Determines if a value is false.
+
+    Args:
+        v - a value
+
+    Returns:
+        bool: True if v is not None and v is False or 'false' (case insensitive)
+    """
+
+    return (v is not None and
+            (v == False or (type(v) is str and v.lower() == 'false')))
+
+
+def is_true(v):
+    """Determines if a value is true.
+
+    Args:
+        v - a value
+
+    Returns:
+        bool: True if v is not None and v is True or 'true' (case insensitive)
+    """
+
+    return (v is not None and
+            (v == True or (type(v) is str and v.lower() == 'true')))
+
 
 def _acquired(a):
     """Checks acquired date range as supplied by cmdline
     :param a: Date range string in iso8601 format separated by /
     :return: True if ok, Exception otherwise.
     """
-    if not fd.is_acquired(a):
+    if not md.is_acquired(a):
         raise Exception("Invalid acquired dates:{}".format(a))
     return True
 
@@ -18,7 +47,10 @@ def _clip(c):
     :param c: Clip parameter
     :return: True or Exception
     """
-    if functions.false(c) or functions.true(c):
+    print("C:{}".format(c))
+    print("C TYPE:{}".format(type(c)))
+
+    if is_false(c) or is_true(c):
         return True
     raise Exception("Clip must be true or false")
 
@@ -57,9 +89,9 @@ def _product_dates(acquired, product_dates):
     def check(date):
         if not re.match('^[0-9]{4}-[0-9]{2}-[0-9]{2}$', date):
             raise Exception("Invalid product date value: {}".format(date))
-        start = fd.to_ordinal(fd.startdate(acquired))
-        end = fd.to_ordinal(fd.enddate(acquired))
-        val = fd.to_ordinal(date)
+        start = md.to_ordinal(md.startdate(acquired))
+        end = md.to_ordinal(md.enddate(acquired))
+        val = md.to_ordinal(date)
         if val < start or val > end:
             raise Exception("Product date {} out of range{}".format(date,
                                                                     acquired))

@@ -1,11 +1,11 @@
-""" Module specifically to hold version information.  The reason this                                                                                       
+""" Module specifically to hold version information.  The reason this
 exists is the version information is needed in setup.py for install.
 If these values were defined in pw/__init__.py then install
 would fail because there are other dependencies imported in
 pw/__init__.py that are not present until after
 install. Do not import anything into this module."""
 
-__version__ = '2017.04.25'
+__version__ = '2017.08.31'
 __name = 'lcmap-firebird'
 __algorithm__ = '-'.join([__name, __version__])
 

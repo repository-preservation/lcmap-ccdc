@@ -1,12 +1,13 @@
 from firebird import ccd_params
-from firebird import dates as fd
-from firebird import functions as f
-from firebird import inputs
-from firebird import logger
 from firebird import products as fp
 from functools import partial
 from functools import wraps
+from merlin import chips
+from merlin import dates
+from merlin import functions as f
+from merlin import timeseries
 import ccd
+import merlin
 
 
 def algorithm(name, version):
@@ -27,9 +28,9 @@ def success(chip_x, chip_y, x, y, alg, datestr, result):
     :param alg: algorithm and version string
     :param datestr: datestr that identifies the result
     :param result: algorithm outputs
-    :return: ((x, y, alg, datestr), result, None)
+    :return: (chip_x, chip_y, x, y, alg, datestr, result, None)
     """
-    return (((chip_x, chip_y), x, y, alg, datestr), result, None)
+    return ((chip_x, chip_y, x, y, alg, datestr), result, None)
 
 
 def error(chip_x, chip_y, x, y, alg, datestr, errors):
@@ -41,9 +42,9 @@ def error(chip_x, chip_y, x, y, alg, datestr, errors):
     :param alg: algorithm and version string
     :param datestr: datestr that identifies the result
     :param errors: algorithm errors
-    :return: ((x, y, alg, datestr), None, errors)
+    :return: ((chip_x, chip_y, x, y, alg, datestr), None, errors)
     """
-    return (((chip_x, chip_y), x, y, alg, datestr), None, errors)
+    return ((chip_x, chip_y, x, y, alg, datestr), None, errors)
 
 
 def haserrors(chip_x, chip_y, x, y, alg, datestr, errors):
@@ -127,15 +128,15 @@ def result_to_models(result):
 def pyccd(rdd):
     """Execute ccd.detect
     :param rdd: Tuple of (tuple, dict) generated from pyccd_inputs
-                (((chip_x, chip_y), x, y, algorithm, datestring): data)
+                ((chip_x, chip_y, x, y, algorithm, datestring), data, errors)
     :return: A tuple of (tuple, dict) with pyccd results
              ((chip_x, chip_y, x, y, algorithm, acquired), results, errors)
     """
-    chip_x = rdd[0][0][0]
-    chip_y = rdd[0][0][1]
-    x = rdd[0][1]
-    y = rdd[0][2]
-    acquired = rdd[0][4]
+    chip_x = rdd[0][0]
+    chip_y = rdd[0][1]
+    x = rdd[0][2]
+    y = rdd[0][3]
+    acquired = rdd[0][5]
     data = rdd[1] or dict()
     errs = rdd[2]
     kwargs = {'dates': data.get('dates'),
@@ -155,18 +156,19 @@ def pyccd(rdd):
 
 def lastchange(rdd):
     """Create lastchange product
-    :param rdd: ((((chip_x, chip_y), x, y, algorithm, acquired), data, errors),
+    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
                  product_date)
-    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
+    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
-    chip_x = rdd[0][0][0][0]
-    chip_y = rdd[0][0][0][1]
-    x = rdd[0][0][1]
-    y = rdd[0][0][2]
+    chip_x = rdd[0][0][0]
+    chip_y = rdd[0][0][1]
+    x = rdd[0][0][2]
+    y = rdd[0][0][3]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
-    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+    kwargs = {'models': result_to_models(data),
+              'ord_date': dates.to_ordinal(date)}
 
     return safely(func=fp.lastchange, kwargs=kwargs, chip_x=chip_x,
                   chip_y=chip_y, x=x, y=y,
@@ -176,18 +178,19 @@ def lastchange(rdd):
 
 def changemag(rdd):
     """Create changemag product
-    :param rdd: ((((chip_x, chip_y), x, y, algorithm, acquired), data, errors),
+    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
                  product_date)
-    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
+    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
-    chip_x = rdd[0][0][0][0]
-    chip_y = rdd[0][0][0][1]
-    x = rdd[0][0][1]
-    y = rdd[0][0][2]
+    chip_x = rdd[0][0][0]
+    chip_y = rdd[0][0][1]
+    x = rdd[0][0][2]
+    y = rdd[0][0][3]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
-    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+    kwargs = {'models': result_to_models(data),
+              'ord_date': dates.to_ordinal(date)}
 
     return safely(func=fp.changemag, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
                   chip_y=chip_y, alg=algorithm('changemag', fp.version),
@@ -196,18 +199,19 @@ def changemag(rdd):
 
 def changedate(rdd):
     """Create changedate product
-    :param rdd: ((((chip_x, chip_y), x, y, algorithm, acquired), data, errors),
+    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
                  product_date)
     :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
     """
-    chip_x = rdd[0][0][0][0]
-    chip_y = rdd[0][0][0][1]
-    x = rdd[0][0][1]
-    y = rdd[0][0][2]
+    chip_x = rdd[0][0][0]
+    chip_y = rdd[0][0][1]
+    x = rdd[0][0][2]
+    y = rdd[0][0][3]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
-    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+    kwargs = {'models': result_to_models(data),
+              'ord_date': dates.to_ordinal(date)}
 
     return safely(func=fp.changedate, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
                   chip_y=chip_y, alg=algorithm('changedate', fp.version),
@@ -216,21 +220,21 @@ def changedate(rdd):
 
 def seglength(rdd):
     """Create seglength product
-    :param rdd: ((((chip_x, chip_y), x, y, algorithm, acquired), data, errors),
+    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
                  product_date)
-    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
+    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
-    chip_x = rdd[0][0][0][0]
-    chip_y = rdd[0][0][0][1]
-    x = rdd[0][0][1]
-    y = rdd[0][0][2]
-    acquired = rdd[0][0][4]
+    chip_x = rdd[0][0][0]
+    chip_y = rdd[0][0][1]
+    x = rdd[0][0][2]
+    y = rdd[0][0][3]
+    acquired = rdd[0][0][5]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
     kwargs = {'models': result_to_models(data),
-              'ord_date': fd.to_ordinal(date),
-              'bot': fd.to_ordinal(fd.startdate(acquired))}
+              'ord_date': dates.to_ordinal(date),
+              'bot': dates.to_ordinal(dates.startdate(acquired))}
 
     return safely(func=fp.seglength, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
                   chip_y=chip_y, alg=algorithm('seglength', fp.version),
@@ -239,18 +243,19 @@ def seglength(rdd):
 
 def curveqa(rdd):
     """Create curveqa product
-    :param rdd: ((((chip_x, chip_y), x, y, algorithm, acquired), data, errors),
+    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
                  product_date)
-    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
+    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
-    chip_x = rdd[0][0][0][0]
-    chip_y = rdd[0][0][0][1]
-    x = rdd[0][0][1]
-    y = rdd[0][0][2]
+    chip_x = rdd[0][0][0]
+    chip_y = rdd[0][0][1]
+    x = rdd[0][0][2]
+    y = rdd[0][0][3]
     data = rdd[0][1]
     errs = rdd[0][2]
     date = rdd[1]
-    kwargs = {'models': result_to_models(data), 'ord_date': fd.to_ordinal(date)}
+    kwargs = {'models': result_to_models(data),
+              'ord_date': dates.to_ordinal(date)}
 
     return safely(func=fp.curveqa, kwargs=kwargs, x=x, y=y,  chip_x=chip_x,
                   chip_y=chip_y, alg=algorithm('curveqa', fp.version),
@@ -267,7 +272,7 @@ def fits_in_box(value, bbox):
     :return: Boolean
     """
     def fits(point, bbox):
-        _, x, y = point
+        _, _, x, y = point
         return (float(x) >= float(bbox['ulx']) and
                 float(x) <= float(bbox['lrx']) and
                 float(y) >= float(bbox['lry']) and
@@ -303,7 +308,7 @@ def products(jobconf, sparkcontext):
     sc = sparkcontext
 
     acquired = jobconf['acquired'].value
-    specs_url = jobconf['specs_url'].value
+    #specs_url = jobconf['specs_url'].value
     specs_fn = jobconf['specs_fn'].value
     chips_url = jobconf['chips_url'].value
     chips_fn = jobconf['chips_fn'].value
@@ -317,8 +322,11 @@ def products(jobconf, sparkcontext):
 
     # query data and transform it into pyccd input format
 
-    _in = _chipids.map(partial(inputs.pyccd,
-                               specs_url=specs_url,
+    _in = _chipids.map(partial(merlin.create,
+                               dates_fn=partial(
+                                           f.chexists,
+                                           check_fn=timeseries.symmetric_dates,
+                                           keys=['quality']),
                                specs_fn=specs_fn,
                                chips_url=chips_url,
                                chips_fn=chips_fn,
@@ -327,10 +335,10 @@ def products(jobconf, sparkcontext):
                                .flatMap(lambda x: x)\
                                .filter(partial(fits_in_box,
                                                bbox=clip_box))\
-                               .map(lambda x: (success(chip_x=x[0][0][0],
-                                                       chip_y=x[0][0][1],
-                                                       x=x[0][1],
-                                                       y=x[0][2],
+                               .map(lambda x: (success(chip_x=x[0][0],
+                                                       chip_y=x[0][1],
+                                                       x=x[0][2],
+                                                       y=x[0][3],
                                                        alg=algorithm('inputs',
                                                                      '20170608'),
                                                        datestr=acquired,
@@ -339,7 +347,7 @@ def products(jobconf, sparkcontext):
                                .setName(algorithm('inputs', '20170608'))
 
     _ccd = _in.map(pyccd).setName(ccd.algorithm).persist()
-    
+
     # cartesian will create an rdd that looks like:
     # ((((chip_x, chip_y), x, y, alg, product_date_str), data), product_date)
     _ccd_dates = _ccd.cartesian(sc.parallelize(jobconf['product_dates'].value))
