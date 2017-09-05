@@ -1,5 +1,5 @@
 from firebird import products
-from firebird import dates as d
+from merlin import dates as d
 
 
 def test_lastchange():
