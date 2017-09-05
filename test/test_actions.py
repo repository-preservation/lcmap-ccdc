@@ -1,7 +1,7 @@
 from firebird import actions as a
-from firebird import functions as f
 from functools import partial
-from test.mocks import aardvark as ma
+from merlin import functions as f
+from merlin.support import aardvark as ma
 import firebird as fb
 import os
 import pyspark
@@ -102,6 +102,11 @@ def test_save():
                          specs_fn=ma.chip_specs,
                          sparkcontext_fn=partial(pyspark.SparkContext,
                                                  appName="test_save"))
+
+        print("RESULTS TYPE:{}".format(type(list(results))))
+
+        print("RESULTS LEN:{}".format(len(list(results))))
+
         for r in results:
             print("Save result:{}".format(r))
 

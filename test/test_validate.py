@@ -12,10 +12,10 @@ def test_acquired():
 
 
 def test_clip():
-    validate._clip('false')
+    validate._clip('FalSe')
     validate._clip(False)
     validate._clip(0)
-    validate._clip('true')
+    validate._clip('tRuE')
     validate._clip(True)
     validate._clip(1)
 
