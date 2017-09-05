@@ -1,7 +1,7 @@
-from firebird import chips
-from firebird import chip_specs
-from firebird import functions as f
 from firebird import transforms
+from merlin import chips
+from merlin import chip_specs
+from merlin import functions as f
 from pyspark import sql
 import firebird as fb
 import logging
@@ -180,10 +180,10 @@ def save(acquired, bounds, products, product_dates, clip=False,
 
         spec = specs_fn(fb.chip_spec_queries(fb.CHIPS_URL)['blues'])[0]
 
-        ids  = chips.bounds_to_ids(bounds, spec)
+        coordinates  = chips.bounds_to_coordinates(bounds, spec)
 
         job, jobconf = init(acquired=acquired,
-                            chip_ids=ids,
+                            chip_ids=coordinates,
                             products=products,
                             product_dates=product_dates,
                             specs_fn=specs_fn,
@@ -201,15 +201,15 @@ def save(acquired, bounds, products, product_dates, clip=False,
         # for cross referencing.  Flatten the datastructure so it can be
         # inserted.  DataFrame doesn't like nested sequences for
         # field descriptions.
-        #rdd structure: [[['chip_x', 'chip_y'], 'x', 'y', 'algorithm', 'datestr'],
+        #rdd structure: [['chip_x', 'chip_y', 'x', 'y', 'algorithm', 'datestr'],
         #                  'results', 'errors']
         schema = ['chip_x', 'chip_y', 'x', 'y', 'datestr',
                   'result', 'error', 'jobconf']
         for p in products:
             df = ss.createDataFrame(
-                job[p].map(lambda x: (float(x[0][0][0]), float(x[0][0][1]),
-                                      float(x[0][1]), float(x[0][2]),
-                                      str(x[0][4]),
+                job[p].map(lambda x: (float(x[0][0]), float(x[0][1]),
+                                      float(x[0][2]), float(x[0][3]),
+                                      str(x[0][5]),
                                       str(x[1]), str(x[2]), str(md5)))\
                                       .repartition(fb.STORAGE_PARTITION_COUNT),
                 schema=schema)
