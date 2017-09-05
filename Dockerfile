@@ -26,7 +26,6 @@ ENV LANG=C.UTF-8
 RUN mkdir -p /algorithms
 WORKDIR /algorithms
 RUN wget -O pyccd-v2017.06.20.zip https://github.com/USGS-EROS/lcmap-pyccd/archive/v2017.06.20.zip
-
 EXPOSE 8081
 EXPOSE 4040
 EXPOSE 8888
@@ -35,7 +34,7 @@ RUN mkdir /app
 WORKDIR /app
 
 COPY firebird /app/firebird
-COPY notebooks /app/notebooks
+COPY notebooks /app/notebook
 COPY resources /app/resources
 COPY test /app/test
 COPY .test_env .
