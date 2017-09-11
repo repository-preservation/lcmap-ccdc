@@ -19,7 +19,7 @@ def algorithm(name, version):
     return '{}_{}'.format(name, version)
 
 
-def success(chip_x, chip_y, x, y, alg, datestr, result):
+def result(chip_x, chip_y, x, y, alg, datestr, data):
     """Formats an rdd transformation result.
     :param chip_x: x coordinate of source chip id
     :param chip_y: y coordinate of source chip id
@@ -27,28 +27,27 @@ def success(chip_x, chip_y, x, y, alg, datestr, result):
     :param y: y coordinate
     :param alg: algorithm and version string
     :param datestr: datestr that identifies the result
-    :param result: algorithm outputs
-    :return: (chip_x, chip_y, x, y, alg, datestr, result, None)
+    :param data: algorithm outputs
+    :return: {chip_x, chip_y, x, y, alg, datestr, data}
     """
-
-    return ((chip_x, chip_y, x, y, alg, datestr), result, None)
-
-
-def error(chip_x, chip_y, x, y, alg, datestr, errors):
-    """Format an rdd transformation error
-    :param chip_x: x coordinate of source chip id
-    :param chip_y: y coordinate of source chip id
-    :param x: x coordinate
-    :param y: y coordinate
-    :param alg: algorithm and version string
-    :param datestr: datestr that identifies the result
-    :param errors: algorithm errors
-    :return: ((chip_x, chip_y, x, y, alg, datestr), None, errors)
-    """
-    return ((chip_x, chip_y, x, y, alg, datestr), None, errors)
+    return {'chip_x': chip_x,
+            'chip_y': chip_y,
+            'x': x,
+            'y': y,
+            'alg': alg,
+            'datestr': datestr,
+            'data': data}
 
 
-def haserrors(chip_x, chip_y, x, y, alg, datestr, errors):
+def success(chip_x, chip_y, x, y, alg, datestr, data):
+    return merge(result(**kwargs), {'error': 0})
+
+
+def error(chip_x, chip_y, x, y, alg, datestr, data):
+    return merge(result(**kwargs), {'error': 1})
+
+
+def haserrors(result):
     """Determines if previous errors exist and creates proper return value
     if True.  If no error exists returns False.
     :param chip_x: x coordinate of source chip id
@@ -61,12 +60,11 @@ def haserrors(chip_x, chip_y, x, y, alg, datestr, errors):
     :return: Either a properly formatted RDD tuple or the result of executing
              the RDD function.
     """
-    if errors is None:
+    if not get('error', result, False):
         return False
     else:
-        e = 'previous-error:{}'.format(errors)
-        return error(chip_x=chip_x, chip_y=chip_y, x=x, y=y, alg=alg,
-                     datestr=datestr, errors=e)
+        return merge(result,
+                     {'error': 'previous-error:{}'.format(get('data', result))})
 
 
 def tryexcept(func, kwargs, chip_x, chip_y, x, y, alg, datestr):
@@ -84,10 +82,10 @@ def tryexcept(func, kwargs, chip_x, chip_y, x, y, alg, datestr):
     """
     try:
         return success(chip_x=chip_x, chip_y=chip_y, x=x, y=y, alg=alg,
-                       datestr=datestr, result=func(**kwargs))
+                       datestr=datestr, data=func(**kwargs))
     except Exception as errs:
         return error(chip_x=chip_x, chip_y=chip_y, x=x, y=y, alg=alg,
-                     datestr=datestr, errors=errs)
+                     datestr=datestr, data=errs)
 
 
 def safely(func, kwargs, chip_x, chip_y, x, y, alg, datestr, errors):
