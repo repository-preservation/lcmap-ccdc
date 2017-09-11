@@ -1,52 +1,59 @@
-FROM mesosphere/spark:1.1.0-2.1.1-hadoop-2.7
-MAINTAINER USGS LCMAP http://eros.usgs.gov
+FROM centos:7
+LABEL maintainer="USGS EROS LCMAP http://eros.usgs.gov http://github.com/usgs-eros"
+LABEL description="CentOS based Mesos Image for LCMAP"
 
-RUN apt-get update && apt-get install -y wget make maven --fix-missing
+ENV SPARK_HOME=/opt/spark
+ENV SPARK_NO_DAEMONIZE=true
+ENV PYSPARK_PYTHON=/home/firebird/miniconda3/bin/python3
+ENV MESOS_NATIVE_JAVA_LIBRARY=/usr/lib/libmesos.so
+ENV PATH=/home/firebird/miniconda3/bin:$SPARK_HOME/bin:${PATH}
+ENV PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip:$SPARK_HOME/python/lib/pyspark.zip
 
-# preposition numpy with conda to avoid compiling from scratch
-RUN wget -O Miniconda3-latest.sh https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh; chmod 755 Miniconda3-latest.sh;
-RUN ./Miniconda3-latest.sh -b;
-ENV PATH=/root/miniconda3/bin:${PATH}
-RUN conda config --add channels conda-forge;
-RUN conda install python=3.6 cython jupyter gdal numpy scipy pandas --yes
+ENV LC_ALL=en_US.UTF-8 \
+    LANG=en_US.UTF-8
 
-ENV PYSPARK_PYTHON /root/miniconda3/bin/python3
-ENV SPARK_NO_DAEMONIZE true
-ENV MESOS_NATIVE_JAVA_LIBRARY /usr/lib/libmesos.so
-ENV SPARK_HOME /opt/spark/dist
-ENV PATH $SPARK_HOME/bin:$PATH
-ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/
-ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip
-ENV PYTHONPATH $PYTHONPATH:$SPARK_HOME/python/lib/pyspark.zip
+EXPOSE 8081 4040 8888
 
-# these are for click to work with Python3
-ENV LC_ALL=C.UTF-8
-ENV LANG=C.UTF-8
+RUN yum update -y && \
+    yum install -y bzip2 java-1.8.0-openjdk-devel.i686 && \
+    yum -y install http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm && \
+    yum install -y mesos  && \
+    yum -y downgrade mesos-1.1.0
 
-RUN mkdir -p /algorithms
-WORKDIR /algorithms
-RUN wget -O pyccd-v2017.06.20.zip https://github.com/USGS-EROS/lcmap-pyccd/archive/v2017.06.20.zip
-EXPOSE 8081
-EXPOSE 4040
-EXPOSE 8888
+RUN cd /opt && \
+    curl https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz -o spark.tgz && \
+    tar -zxf spark.tgz && \
+    rm -rf spark.tgz && \
+    ln -s spark-* spark
 
-RUN mkdir /app
-WORKDIR /app
+RUN adduser -ms /bin/bash firebird
+USER firebird
+WORKDIR /home/firebird
 
-COPY firebird /app/firebird
-COPY notebooks /app/notebook
-COPY resources /app/resources
-COPY test /app/test
-COPY .test_env .
+RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -o mc.sh && \
+    chmod 755 mc.sh && \
+    ./mc.sh -b && \
+    rm -rf mc.sh && \
+    conda config --add channels conda-forge && \
+    conda install cython gdal --yes && \
+    conda clean --all
+
+COPY firebird .
+COPY notebooks notebook
+COPY resources .
+COPY test .
 COPY Makefile .
 COPY pom.xml .
 COPY README.md .
 COPY setup.py .
 COPY version.py .
 
-# Install Cassandra Spark Connector
-RUN mvn dependency:copy-dependencies -DoutputDirectory=$SPARK_HOME/jars
+USER root
+RUN cd /home/firebird && \
+    yum install -y maven && \
+    mvn dependency:copy-dependencies -DoutputDirectory=$SPARK_HOME/jars && \
+    yum erase -y maven && \
+    yum clean all
 
-RUN make clean
-RUN pip install -e .[test]
-RUN pip install -e .[dev]
+
+WORKDIR /home/firebird
