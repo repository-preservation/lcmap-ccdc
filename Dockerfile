@@ -55,5 +55,5 @@ RUN cd /home/firebird && \
     yum erase -y maven && \
     yum clean all
 
-
+# USER firebird
 WORKDIR /home/firebird
