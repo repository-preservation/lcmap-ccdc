@@ -13,13 +13,12 @@ RUN yum update -y && \
     yum install -y sudo \
                    bzip2 \
                    java-1.8.0-openjdk-devel.i686 \
-                   http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm \
-                   mesos && \
+                   http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-1.noarch.rpm mesos && \
     yum -y downgrade mesos-1.1.0
 
 ##########################################################################
 # Add a user to run as inside the container.  This will prevent accidental
-# foo while mounting volumes.  To enable access between external and 
+# foo while mounting volumes.  To enable access between external and
 # internal users on mounted volume files, set 'other' perms appropriately.
 ##########################################################################
 RUN adduser -ms /bin/bash app && \
@@ -63,7 +62,6 @@ COPY Makefile .
 COPY pom.xml .
 COPY README.md .
 COPY setup.py .
-COPY version.py .
 
 RUN sudo chown -R app:app .
 
@@ -72,4 +70,3 @@ RUN cd $HOME && \
     sudo mvn dependency:copy-dependencies -DoutputDirectory=$SPARK_HOME/jars && \
     sudo yum erase -y maven && \
     sudo yum clean all
-
