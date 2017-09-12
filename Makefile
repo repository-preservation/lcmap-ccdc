@@ -28,11 +28,12 @@ docker-deps-down:
 spark-lib:
 	@rm -rf lib
 	@mkdir lib
-	wget -P lib https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.7.tgz
+	# wget -P lib https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.7.tgz
+	wget -P lib https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
 	gunzip lib/*gz
-	tar -C lib -xvf lib/spark-2.1.1-bin-hadoop2.7.tar
+	tar -C lib -xvf lib/spark-2.2.0-bin-hadoop2.7.tar
 	rm lib/*tar
-	ln -s spark-2.1.1-bin-hadoop2.7 lib/spark
+	ln -s spark-2.2.0-bin-hadoop2.7 lib/spark
 	mvn dependency:copy-dependencies -DoutputDirectory=lib/spark/jars
 
 tests:
