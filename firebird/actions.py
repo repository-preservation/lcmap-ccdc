@@ -103,11 +103,7 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
                                'products': products,
                                'product_dates': product_dates,
                                'product_partitions': product_partitions,
-                               # should be able to pull this from the
-                               # specs_fn and specs_url but this lets us
-                               # do it once without beating aardvark up.
                                'reference_spec': spec,
-                               'specs_url': fb.SPECS_URL,
                                'specs_fn': specs_fn},
                       sparkcontext=sparkcontext)
 
