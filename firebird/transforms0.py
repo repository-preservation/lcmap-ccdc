@@ -9,6 +9,8 @@ from merlin import timeseries
 import ccd
 import merlin
 
+# dataframes from dict rdds
+# ss.createDataFrame(rdd, ['chip_x', 'chip_y', 'x', 'y'])
 
 def algorithm(name, version):
     """Standardizes algorithm name and version representation.
@@ -40,11 +42,11 @@ def result(chip_x, chip_y, x, y, alg, datestr, data):
 
 
 def success(chip_x, chip_y, x, y, alg, datestr, data):
-    return merge(result(**kwargs), {'error': 0})
+    return merge(result(chip_x, chip_y, x, y, alg, datestr, data), {'error': 0})
 
 
 def error(chip_x, chip_y, x, y, alg, datestr, data):
-    return merge(result(**kwargs), {'error': 1})
+    return merge(result(chip_x, chip_y, x, y, alg, datestr, data), {'error': 1})
 
 
 def haserrors(result):
@@ -60,7 +62,7 @@ def haserrors(result):
     :return: Either a properly formatted RDD tuple or the result of executing
              the RDD function.
     """
-    if not get('error', result, False):
+    if get('error', result, False) is False:
         return False
     else:
         return merge(result,
@@ -88,7 +90,7 @@ def tryexcept(func, kwargs, chip_x, chip_y, x, y, alg, datestr):
                      datestr=datestr, data=errs)
 
 
-def safely(func, kwargs, chip_x, chip_y, x, y, alg, datestr, errors):
+def safely(func, kwargs, chip_x, chip_y, x, y, alg, datestr, is_error):
     """Runs a function for an input with exception handling applied
     :param func: function to execute
     :param kwargs: keyword args for func
@@ -202,26 +204,24 @@ def changedate(rdd):
                  product_date)
     :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
     """
-    chip_x = rdd[0][0][0]
-    chip_y = rdd[0][0][1]
-    x = rdd[0][0][2]
-    y = rdd[0][0][3]
-    data = rdd[0][1]
-    errs = rdd[0][2]
-    date = rdd[1]
-    kwargs = {'models': result_to_models(data),
-              'ord_date': dates.to_ordinal(date)}
 
-    return safely(func=fp.changedate, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
-                  chip_y=chip_y, alg=algorithm('changedate', fp.version),
-                  datestr=date, errors=errs)
+    return safely(func=fp.changedate,
+                  kwargs={'models': result_to_models(rdd['data']),
+                          'ord_date': dates.to_ordinal(rdd['datestr'])},
+                  x=rdd['x'],
+                  y=rdd['y'],
+                  chip_x=rdd['chip_x'],
+                  chip_y=rdd['chip_y'],
+                  alg=algorithm('changedate', fp.version),
+                  datestr=rdd['datestr'],
+                  error=rdd['error'])
 
 
 def seglength(rdd):
     """Create seglength product
     :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
                  product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
+    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))r
     """
     chip_x = rdd[0][0][0]
     chip_y = rdd[0][0][1]
@@ -307,7 +307,6 @@ def products(jobconf, sparkcontext):
     sc = sparkcontext
 
     acquired = jobconf['acquired'].value
-    #specs_url = jobconf['specs_url'].value
     specs_fn = jobconf['specs_fn'].value
     chips_url = jobconf['chips_url'].value
     chips_fn = jobconf['chips_fn'].value
@@ -366,7 +365,35 @@ def products(jobconf, sparkcontext):
                   changedate=_cd, seglength=_sl, curveqa=_qa)
 
 
-def train(product_graph, sparkcontext):
+def inputs(chip_ids, jobconf, sparkcontext):
+    pass
+
+
+def change_models(inputs, jobconf, sparkcontext):
+    pass
+
+
+def seglength(change_models, jobconf, sparkcontext):
+    pass
+
+
+def changemag(change_models, jobconf, sparkcontext):
+    pass
+
+
+def changedate(change_models, jobconf, sparkcontext):
+    pass
+
+
+def curveqa(change_models, jobconf, sparkcontext):
+    pass
+
+
+def lastchange(change_models, jobconf, sparkcontext):
+    pass
+
+
+def train(change_models, jobconf, sparkcontext):
     # training_chipids()
     # requires ancillary data such as DEM, trends, et. al.
     #
@@ -383,7 +410,7 @@ def train(product_graph, sparkcontext):
     pass
 
 
-def classify(product_graph, sparkcontext):
+def classify(jobconf, sparkcontext):
     # Same as the training graph.  This cannot run unless
     # #1 - There are ccd results and
     # #2 - The classifier has been trained.
