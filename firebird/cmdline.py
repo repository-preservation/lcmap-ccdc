@@ -41,19 +41,6 @@ def algorithms():
             os.listdir('/algorithms')) or "No algorithms available.")
 
 
-@cli.command()
-@c.option('--bounds', '-b', required=True)
-@c.option('--product', '-p', required=True)
-def count(bounds, product):
-    """Returns count of number of results given bounds and a product.  Bounds
-    will be minbox'd prior to calculation.
-    :param bounds: Sequence of (x, y) sequences
-    :param product: A firebird product
-    :return: An integer count
-    """
-    pass
-
-
 @show.command()
 @c.option('--bounds', '-b', required=True)
 def chip_coordinates(bounds):
