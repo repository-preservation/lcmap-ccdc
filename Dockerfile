@@ -56,7 +56,7 @@ RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -
     conda clean --all
 
 COPY firebird firebird
-COPY notebooks notebook
+COPY notebook notebook
 COPY resources resources
 COPY test test
 COPY Makefile .
