@@ -70,7 +70,6 @@ def test_init():
         assert jobconf['product_dates'].value == product_dates
         assert jobconf['reference_spec'].value is not None
         assert isinstance(jobconf['reference_spec'].value, dict)
-        assert jobconf['specs_url'].value == fb.SPECS_URL
         assert jobconf['specs_fn'].value == ma.chip_specs
         assert isinstance(jobconf['initial_partitions'].value, int)
         assert isinstance(jobconf['product_partitions'].value, int)
