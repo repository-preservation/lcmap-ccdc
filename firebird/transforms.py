@@ -201,7 +201,7 @@ def changedate(rdd):
     """Create changedate product
     :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
                  product_date)
-    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
+    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
     chip_x = rdd[0][0][0]
     chip_y = rdd[0][0][1]
@@ -308,7 +308,6 @@ def products(jobconf, sparkcontext):
     sc = sparkcontext
 
     acquired = jobconf['acquired'].value
-    #specs_url = jobconf['specs_url'].value
     specs_fn = jobconf['specs_fn'].value
     chips_url = jobconf['chips_url'].value
     chips_fn = jobconf['chips_fn'].value

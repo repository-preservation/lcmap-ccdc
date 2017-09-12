@@ -1,8 +1,8 @@
 from firebird import actions
-from firebird import chip_specs
-from firebird import files
 from firebird import transforms
 from firebird import validate
+from merlin import chip_specs
+from merlin import files
 import click as c
 import firebird as fb
 import os
@@ -56,7 +56,7 @@ def count(bounds, product):
 
 @show.command()
 @c.option('--bounds', '-b', required=True)
-def chipids(bounds):
+def chip_coordinates(bounds):
     spec = chip_specs.get(d.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
     return chip.ids(fb.minbox(bounds), spec)
 
@@ -80,13 +80,12 @@ def save(acquired, bounds, products, product_dates, clip):
     fbounds = map(lambda n: (float(n[0]),float(n[1])),
                   map(lambda x: x.split(','), bounds))
 
-    results = actions.save(acquired=acquired,
-                           bounds=list(fbounds),
-                           clip=clip,
-                           products=products,
-                           product_dates=product_dates)
-    return list(results)
-
+    return list(actions.save(acquired=acquired,
+                             bounds=list(fbounds),
+                             clip=clip,
+                             products=products,
+                             product_dates=product_dates))
+    
 
 @cli.command()
 @c.option('--name', '-n', required=True)
