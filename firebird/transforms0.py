@@ -12,6 +12,7 @@ import merlin
 # dataframes from dict rdds
 # ss.createDataFrame(rdd, ['chip_x', 'chip_y', 'x', 'y'])
 
+
 def algorithm(name, version):
     """Standardizes algorithm name and version representation.
     :param name: Name of algorithm
@@ -21,7 +22,7 @@ def algorithm(name, version):
     return '{}_{}'.format(name, version)
 
 
-def result(chip_x, chip_y, x, y, alg, datestr, data):
+def result(chip_x, chip_y, x, y, alg, datestr):
     """Formats an rdd transformation result.
     :param chip_x: x coordinate of source chip id
     :param chip_y: y coordinate of source chip id
@@ -37,16 +38,15 @@ def result(chip_x, chip_y, x, y, alg, datestr, data):
             'x': x,
             'y': y,
             'alg': alg,
-            'datestr': datestr,
-            'data': data}
+            'datestr': datestr}
 
 
 def success(chip_x, chip_y, x, y, alg, datestr, data):
-    return merge(result(chip_x, chip_y, x, y, alg, datestr, data), {'error': 0})
+    return merge(result(chip_x, chip_y, x, y, alg, datestr), {'result': data})
 
 
 def error(chip_x, chip_y, x, y, alg, datestr, data):
-    return merge(result(chip_x, chip_y, x, y, alg, datestr, data), {'error': 1})
+    return merge(result(chip_x, chip_y, x, y, alg, datestr), {'error': data})
 
 
 def haserrors(result):
@@ -62,11 +62,11 @@ def haserrors(result):
     :return: Either a properly formatted RDD tuple or the result of executing
              the RDD function.
     """
-    if get('error', result, False) is False:
-        return False
+    if 'error' in result:
+        msg = 'upstream->{}:{}'
+        return merge(result, {'error': msg.format(alg, get('error', result))})
     else:
-        return merge(result,
-                     {'error': 'previous-error:{}'.format(get('data', result))})
+        return False
 
 
 def tryexcept(func, kwargs, chip_x, chip_y, x, y, alg, datestr):
@@ -90,7 +90,7 @@ def tryexcept(func, kwargs, chip_x, chip_y, x, y, alg, datestr):
                      datestr=datestr, data=errs)
 
 
-def safely(func, kwargs, chip_x, chip_y, x, y, alg, datestr, is_error):
+def safely(func, kwargs, chip_x, chip_y, x, y, alg, datestr, errors):
     """Runs a function for an input with exception handling applied
     :param func: function to execute
     :param kwargs: keyword args for func
@@ -128,31 +128,22 @@ def result_to_models(result):
 
 def pyccd(rdd):
     """Execute ccd.detect
-    :param rdd: Tuple of (tuple, dict) generated from pyccd_inputs
-                ((chip_x, chip_y, x, y, algorithm, datestring), data, errors)
-    :return: A tuple of (tuple, dict) with pyccd results
-             ((chip_x, chip_y, x, y, algorithm, acquired), results, errors)
+    :param rdd: dict of chip_x, chip_y, x, y, alg, datestr, results, errors
+                generated from pyccd_inputs
+    :return: dict of pyccd results
+             {chip_x, chip_y, x, y, algorithm, acquired, results, errors}
     """
-    chip_x = rdd[0][0]
-    chip_y = rdd[0][1]
-    x = rdd[0][2]
-    y = rdd[0][3]
-    acquired = rdd[0][5]
-    data = rdd[1] or dict()
-    errs = rdd[2]
-    kwargs = {'dates': data.get('dates'),
-              'blues': data.get('blues'),
-              'greens': data.get('greens'),
-              'reds': data.get('reds'),
-              'nirs': data.get('nirs'),
-              'swir1s': data.get('swir1s'),
-              'swir2s': data.get('swir2s'),
-              'thermals': data.get('thermals'),
-              'quality': data.get('quality'),
-              'params': ccd_params()}
 
-    return safely(func=ccd.detect, kwargs=kwargs, chip_x=chip_x, chip_y=chip_y,
-                  x=x, y=y, alg=ccd.algorithm, datestr=acquired, errors=errs)
+    return safely(func=ccd.detect,
+                  kwargs=merge(get(rdd, 'result', {}),
+                               {'params': ccd_params()}),
+                  chip_x=rdd['chip_x'],
+                  chip_y=rdd['chip_y'],
+                  x=rdd['x'],
+                  y=rdd['y'],
+                  alg=ccd.algorithm,
+                  datestr=rdd['acquired'],
+                  errors=rdd['errors'])
 
 
 def lastchange(rdd):
