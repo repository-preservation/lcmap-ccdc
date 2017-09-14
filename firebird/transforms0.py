@@ -365,12 +365,21 @@ def products(jobconf, sparkcontext):
                   changedate=_cd, seglength=_sl, curveqa=_qa)
 
 
-def inputs(chip_ids, jobconf, sparkcontext):
-    pass
+def chipids(jobconf, sparkcontext):
+    return sc.parallelize(
+               jobconf['chip_ids'].value,
+               jobconf['initial_partitions'].value).setName('chipids')
 
 
-def change_models(inputs, jobconf, sparkcontext):
-    pass
+def timeseries(chip_ids, jobconf, sparkcontext):
+    return inputs.get(chip_ids, jobconf, sparkcontext)
+
+
+def changemodels(time_series, jobconf, sparkcontext):
+    existing = changemodels.get(jobconf, sparkcontext)
+    missing = changemodels.diff(existing, jobconf, sparkcontext)
+    new = changemodels.make(missing, timeseries, sparkcontext)
+    return changemodels.merge([new, existing], sparkcontext)
 
 
 def seglength(change_models, jobconf, sparkcontext):
