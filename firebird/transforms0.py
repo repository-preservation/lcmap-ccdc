@@ -363,37 +363,23 @@ def chipids(jobconf, sparkcontext):
 
 
 def timeseries(chip_ids, jobconf, sparkcontext):
-    return inputs.get(chip_ids, jobconf, sparkcontext)
+    return chip_ids.map(partial(merlin.create,
+                                dates_fn=jobconf['dates_fn'].value,
+                                specs_fn=jobconf['specs_fn'].value,
+                                chips_url=jobconf['chips_url'].value,
+                                chips_fn=jobconf['chips_fn'].value,
+                                acquired=jobconf['acquired'].value,
+                                queries=jobconf['queries'].value))
 
 
 def changemodels(time_series, jobconf, sparkcontext):
     existing = changemodels.get(jobconf, sparkcontext)
-    missing = changemodels.diff(existing, jobconf, sparkcontext)
-    new = changemodels.make(missing, timeseries, sparkcontext)
-    return changemodels.merge([new, existing], sparkcontext)
+    missing  = changemodels.diff(existing, jobconf, sparkcontext)
+    created  = changemodels.make(missing, timeseries, sparkcontext)
+    return changemodels.merge([created, existing], sparkcontext)
 
 
-def seglength(change_models, jobconf, sparkcontext):
-    pass
-
-
-def changemag(change_models, jobconf, sparkcontext):
-    pass
-
-
-def changedate(change_models, jobconf, sparkcontext):
-    pass
-
-
-def curveqa(change_models, jobconf, sparkcontext):
-    pass
-
-
-def lastchange(change_models, jobconf, sparkcontext):
-    pass
-
-
-def train(change_models, jobconf, sparkcontext):
+def trainingmodels(change_models, jobconf, sparkcontext):
     # training_chipids()
     # requires ancillary data such as DEM, trends, et. al.
     #
@@ -423,4 +409,24 @@ def classify(jobconf, sparkcontext):
     # working we will probably need the ability to load data from iwds,
     # determine what else is needed (what areas are missing based on the
     # request) conditionally produce it, then proceed with the operations
+    pass
+
+
+def seglength(change_models_with_product_date, jobconf, sparkcontext):
+    pass
+
+
+def changemag(change_models, jobconf, sparkcontext):
+    pass
+
+
+def changedate(change_models, jobconf, sparkcontext):
+    pass
+
+
+def curveqa(change_models, jobconf, sparkcontext):
+    pass
+
+
+def lastchange(change_models, jobconf, sparkcontext):
     pass

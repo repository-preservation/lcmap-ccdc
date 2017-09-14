@@ -1,3 +1,5 @@
+from firebird import jobconf
+from firebird import write
 from firebird import transforms
 from merlin import chips
 from merlin import chip_specs
@@ -8,16 +10,6 @@ import logging
 import pyspark
 
 logger = logging.getLogger(__name__)
-
-
-def broadcast(context, sparkcontext):
-    """Sets read-only values on the cluster to make them available to cluster
-    operations.
-    :param context: dict of key: values to broadcast to the cluster
-    :param sparkcontext: An active spark context for the spark cluster
-    :return: dict of cluster references for each key: value pair
-    """
-    return {k: sparkcontext.broadcast(value=v) for k, v in context.items()}
 
 
 def init(acquired, chip_ids, products, product_dates, sparkcontext,
@@ -91,66 +83,43 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
         # in memory.
         # everything from here down is an RDD/broadcast variable/cluster op.
         # Don't mix up driver memory locations and cluster memory locations
-        jobconf = broadcast(
-                      context={'acquired': acquired,
-                               'clip_box': clip_box,
-                               'chip_ids': chip_ids,
-                               'chips_fn': chips_fn,
-                               'chip_spec_queries': queries,
-                               'chips_url': fb.CHIPS_URL,
-                               'clip_box': clip_box,
-                               'initial_partitions': initial_partitions,
-                               'products': products,
-                               'product_dates': product_dates,
-                               'product_partitions': product_partitions,
-                               'reference_spec': spec,
-                               'specs_fn': specs_fn},
-                      sparkcontext=sparkcontext)
+
 
         logger.info('Initializing job graph ...')
-        logger.debug({k: v.value for k, v in jobconf.items()})
 
-        job = transforms.products(jobconf, sparkcontext)
+        jc = jobconf.create(acquired=acquired,
+                            chip_ids=chip_ids,
+                            products=products,
+                            product_dates=product_dates,
+                            sparkcontext=sparkcontext,
+                            chips_fn=chips.get,
+                            specs_fn=chip_specs.get,
+                            clip_box=None,
+                            initial_partitions=fb.INITIAL_PARTITION_COUNT,
+                            product_partitions=fb.PRODUCT_PARTITION_COUNT)
+
+        job = transforms.products(jc, sparkcontext)
 
         logger.info('Job graph created ...')
 
         # product call graphs are created but not realized.  Do something with
         # whichever one you want in order to cause the computation to occur
         # (example: if curveqa is requested, save it and it will compute)
-        return job, jobconf
+        return job, jc
 
     except Exception as e:
         logger.error("Exception generating firebird products: {}".format(e))
         raise e
 
 
-def train():
-    pass
+def train(tilename):
+    chip_ids = chips.bounds_to_coordinates(
+                   tile.neighbors(tile.bounds(tilename), tilespec), refspec)
+    job, jc = init()
 
 
 def classify():
     pass
-
-
-def write(table, dataframe, mode='append'):
-    """Write a dataframe to Cassandra
-    :param table: table name
-    :param mode: append, overwrite, error, ignore
-    :param dataframe: A Spark DataFrame
-    """
-    # https://github.com/datastax/spark-cassandra-connector/blob/master/doc/reference.md
-    options = {
-        'table': table,
-        'keyspace': fb.CASSANDRA_KEYSPACE,
-        'spark.cassandra.auth.username': fb.CASSANDRA_USER,
-        'spark.cassandra.auth.password': fb.CASSANDRA_PASS,
-        'spark.cassandra.connection.compression': 'LZ4',
-        'spark.cassandra.connection.host': fb.CASSANDRA_CONTACT_POINTS,
-        'spark.cassandra.input.consistency.level': 'QUORUM',
-        'spark.cassandra.output.consistency.level': 'QUORUM'
-    }
-    return dataframe.write.format('org.apache.spark.sql.cassandra')\
-                                  .mode(mode).options(**options).save()
 
 
 def save(acquired, bounds, products, product_dates, clip=False,
@@ -178,20 +147,16 @@ def save(acquired, bounds, products, product_dates, clip=False,
 
         coordinates  = chips.bounds_to_coordinates(bounds, spec)
 
-        job, jobconf = init(acquired=acquired,
-                            chip_ids=coordinates,
-                            products=products,
-                            product_dates=product_dates,
-                            specs_fn=specs_fn,
-                            chips_fn=chips_fn,
-                            sparkcontext=ss.sparkContext,
-                            clip_box=f.minbox(bounds) if clip else None)
+        job, conf = init(acquired=acquired,
+                         chip_ids=coordinates,
+                         products=products,
+                         product_dates=product_dates,
+                         specs_fn=specs_fn,
+                         chips_fn=chips_fn,
+                         sparkcontext=ss.sparkContext,
+                         clip_box=f.minbox(bounds) if clip else None)
 
-        # first, save the jobconf used to generate the products
-        md5, cfg = f.serialize({k: f.represent(v.value)
-                                for k, v in jobconf.items()})
-        jdf = ss.createDataFrame([[md5, cfg]], ['id', 'config'])
-        write(table='jobconf', dataframe=jdf)
+        md5, _ = jobconf.save(conf, ss)
 
         # save all the products that were requested.  Add the jobconf id
         # for cross referencing.  Flatten the datastructure so it can be
@@ -225,4 +190,12 @@ def missing(bounds, product):
 
 
 def errors(bounds, product):
+    pass
+
+
+def models():
+    pass
+
+
+def rasters():
     pass
