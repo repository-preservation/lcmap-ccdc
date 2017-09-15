@@ -146,112 +146,6 @@ def pyccd(rdd):
                   errors=rdd['errors'])
 
 
-def lastchange(rdd):
-    """Create lastchange product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
-    """
-    chip_x = rdd[0][0][0]
-    chip_y = rdd[0][0][1]
-    x = rdd[0][0][2]
-    y = rdd[0][0][3]
-    data = rdd[0][1]
-    errs = rdd[0][2]
-    date = rdd[1]
-    kwargs = {'models': result_to_models(data),
-              'ord_date': dates.to_ordinal(date)}
-
-    return safely(func=fp.lastchange, kwargs=kwargs, chip_x=chip_x,
-                  chip_y=chip_y, x=x, y=y,
-                  alg=algorithm('lastchange', fp.version), datestr=date,
-                  errors=errs)
-
-
-def changemag(rdd):
-    """Create changemag product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
-    """
-    chip_x = rdd[0][0][0]
-    chip_y = rdd[0][0][1]
-    x = rdd[0][0][2]
-    y = rdd[0][0][3]
-    data = rdd[0][1]
-    errs = rdd[0][2]
-    date = rdd[1]
-    kwargs = {'models': result_to_models(data),
-              'ord_date': dates.to_ordinal(date)}
-
-    return safely(func=fp.changemag, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
-                  chip_y=chip_y, alg=algorithm('changemag', fp.version),
-                  datestr=date, errors=errs)
-
-
-def changedate(rdd):
-    """Create changedate product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
-    """
-
-    return safely(func=fp.changedate,
-                  kwargs={'models': result_to_models(rdd['data']),
-                          'ord_date': dates.to_ordinal(rdd['datestr'])},
-                  x=rdd['x'],
-                  y=rdd['y'],
-                  chip_x=rdd['chip_x'],
-                  chip_y=rdd['chip_y'],
-                  alg=algorithm('changedate', fp.version),
-                  datestr=rdd['datestr'],
-                  error=rdd['error'])
-
-
-def seglength(rdd):
-    """Create seglength product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))r
-    """
-    chip_x = rdd[0][0][0]
-    chip_y = rdd[0][0][1]
-    x = rdd[0][0][2]
-    y = rdd[0][0][3]
-    acquired = rdd[0][0][5]
-    data = rdd[0][1]
-    errs = rdd[0][2]
-    date = rdd[1]
-    kwargs = {'models': result_to_models(data),
-              'ord_date': dates.to_ordinal(date),
-              'bot': dates.to_ordinal(dates.startdate(acquired))}
-
-    return safely(func=fp.seglength, kwargs=kwargs, x=x, y=y, chip_x=chip_x,
-                  chip_y=chip_y, alg=algorithm('seglength', fp.version),
-                  datestr=date, errors=errs)
-
-
-def curveqa(rdd):
-    """Create curveqa product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
-    """
-    chip_x = rdd[0][0][0]
-    chip_y = rdd[0][0][1]
-    x = rdd[0][0][2]
-    y = rdd[0][0][3]
-    data = rdd[0][1]
-    errs = rdd[0][2]
-    date = rdd[1]
-    kwargs = {'models': result_to_models(data),
-              'ord_date': dates.to_ordinal(date)}
-
-    return safely(func=fp.curveqa, kwargs=kwargs, x=x, y=y,  chip_x=chip_x,
-                  chip_y=chip_y, alg=algorithm('curveqa', fp.version),
-                  datestr=date, errors=errs)
-
-
 def fits_in_box(value, bbox):
     """Determines if a point value fits within a bounding box (edges inclusive)
     Useful as a filtering function with conditional enforcement.
@@ -335,98 +229,121 @@ def products(jobconf, sparkcontext):
                                .repartition(product_partitions)\
                                .setName(algorithm('inputs', '20170608'))
 
-    _ccd = _in.map(pyccd).setName(ccd.algorithm).persist()
 
-    # cartesian will create an rdd that looks like:
-    # ((((chip_x, chip_y), x, y, alg, product_date_str), data), product_date)
-    _ccd_dates = _ccd.cartesian(sc.parallelize(jobconf['product_dates'].value))
-
-    _lc = _ccd_dates.map(lastchange).setName(algorithm('lastchange',
-                                                       '20170608'))
-    _cm = _ccd_dates.map(changemag).setName(algorithm('changemag',
-                                                      '20170608'))
-    _cd = _ccd_dates.map(changedate).setName(algorithm('changedate',
-                                                       '20170608'))
-    _sl = _ccd_dates.map(seglength).setName(algorithm('seglength',
-                                                      '20170608'))
-    _qa = _ccd_dates.map(curveqa).setName(algorithm('curveqa',
-                                                    '20170608'))
 
     return labels(inputs=_in, ccd=_ccd, lastchange=_lc, changemag=_cm,
                   changedate=_cd, seglength=_sl, curveqa=_qa)
 
 
 def chipids(jobconf, sparkcontext):
-    return sc.parallelize(
-               jobconf['chip_ids'].value,
-               jobconf['initial_partitions'].value).setName('chipids')
+    return sparkcontext.parallelize(
+            jobconf['chip_ids'].value,
+            jobconf['initial_partitions'].value).setName('chipids')
 
 
-def timeseries(chip_ids, jobconf, sparkcontext):
-    return chip_ids.map(partial(merlin.create,
-                                dates_fn=jobconf['dates_fn'].value,
-                                specs_fn=jobconf['specs_fn'].value,
-                                chips_url=jobconf['chips_url'].value,
-                                chips_fn=jobconf['chips_fn'].value,
-                                acquired=jobconf['acquired'].value,
-                                queries=jobconf['queries'].value))
+def timeseries(rdd, jobconf, sparkcontext):
+    return rdd.map(partial(merlin.create,
+                           dates_fn=jobconf['dates_fn'].value,
+                           specs_fn=jobconf['specs_fn'].value,
+                           chips_url=jobconf['chips_url'].value,
+                           chips_fn=jobconf['chips_fn'].value,
+                           acquired=jobconf['acquired'].value,
+                           queries=jobconf['queries'].value))\
+                           .setName(algorithm('merlin', '1.0'))
 
 
-def changemodels(time_series, jobconf, sparkcontext):
+def changemodels(rdd, jobconf, sparkcontext):
     existing = changemodels.get(jobconf, sparkcontext)
     missing  = changemodels.diff(existing, jobconf, sparkcontext)
-    created  = changemodels.make(missing, timeseries, sparkcontext)
+    created  = changemodels.make(missing, rdd, sparkcontext)
     return changemodels.merge([created, existing], sparkcontext)
 
 
-def trainingmodels(change_models, jobconf, sparkcontext):
-    # training_chipids()
-    # requires ancillary data such as DEM, trends, et. al.
-    #
-    # TODO: This might require switching to the dataframe api and the
-    # spark cassandra connector, especially if we are going to train on results
-    # that already exist in cassandra.  Don't implement this without a
-    # significant amount of hammock and whiteboard time.
-    #
-    # In order to send in appropriate chip ids to init, it will have
-    # to accept chip ids instead of bounds and the bounds to chip id
-    # determination will have to be done by whatever calls it.  This will
-    # be necessary as training requires additional areas besides the area
-    # one is actually attempting to train on.
-    pass
+def product_dates(rdd, jobconf, sparkcontext):
+    return rdd.cartesian(sc.parallelize(jobconf['product_dates'].value))
 
 
-def classify(jobconf, sparkcontext):
-    # Same as the training graph.  This cannot run unless
-    # #1 - There are ccd results and
-    # #2 - The classifier has been trained.
-    # Dont just jam these two things into this rdd graph setup.  Find the
-    # cleanest way to represent and handle it.  It might require running
-    # ccd first, training second and classification third.  Or they might all
-    # be able to be put into the same graph and run at the same time.
-    #
-    # Regardless, all this data will need to be persisted so after its all
-    # working we will probably need the ability to load data from iwds,
-    # determine what else is needed (what areas are missing based on the
-    # request) conditionally produce it, then proceed with the operations
-    pass
+def seglength(rdd, jobconf, sparkcontext):
+
+    kwargs = {'models': result_to_models(rdd['results']),
+              'ord_date': dates.to_ordinal(rdd['product_date']),
+              'bot': dates.to_ordinal(dates.startdate(rdd['acquired']))}
+
+    return rdd.map(safely(func=fp.seglength,
+                          kwargs=kwargs,
+                          chip_x=rdd['chip_x'],
+                          chip_y=rdd['chip_y'],
+                          x=rdd['x'],
+                          y=rdd['y'],
+                          alg=algorithm('seglength', fp.version),
+                          datestr=rdd['date'],
+                          errors=rdd['errors']))\
+                          .setName(algorithm('seglength', '20170608'))
 
 
-def seglength(change_models_with_product_date, jobconf, sparkcontext):
-    pass
+def changemag(rdd, jobconf, sparkcontext):
+
+    kwargs = {'models': result_to_models(rdd['results']),
+              'ord_date': dates.to_ordinal(rdd['product_date'])}
+
+    return rdd.map(safely(func=fp.changemag,
+                          kwargs=kwargs,
+                          chip_x=rdd['chip_x'],
+                          chip_y=rdd['chip_y'],
+                          x=rdd['x'],
+                          y=rdd['y'],
+                          alg=algorithm('changemag', fp.version),
+                          datestr=rdd['date'],
+                          errors=rdd['errors']))\
+                          .setName(algorithm('changemag', '20170608'))
 
 
-def changemag(change_models, jobconf, sparkcontext):
-    pass
+def changedate(rdd, jobconf, sparkcontext):
+
+    kwargs = {'models': result_to_models(rdd['results']),
+              'ord_date': dates.to_ordinal(rdd['product_date'])}
+
+    return rdd.map(safely(func=fp.changedate,
+                          kwargs=kwargs,
+                          chip_x=rdd['chip_x'],
+                          chip_y=rdd['chip_y'],
+                          x=rdd['x'],
+                          y=rdd['y'],
+                          alg=algorithm('changedate', fp.version),
+                          datestr=rdd['datestr'],
+                          error=rdd['error']))\
+                          .setName(algorithm('changedate', fp.version))
 
 
-def changedate(change_models, jobconf, sparkcontext):
-    pass
+def curveqa(rdd, jobconf, sparkcontext):
 
+    kwargs = {'models': result_to_models(rdd['results']),
+              'ord_date': dates.to_ordinal(rdd['product_date'])}
 
-def curveqa(change_models, jobconf, sparkcontext):
-    pass
+    return rdd.map(safely(func=fp.curveqa,
+                          kwargs=kwargs,
+                          chip_x=rdd['chip_x'],
+                          chip_y=rdd['chip_y'],
+                          x=rdd['x'],
+                          y=rdd['y'],
+                          alg=algorithm('curveqa', fp.version),
+                          datestr=rdd['date'],
+                          errors=rdd['errors']))\
+                          .setName(algorithm('curveqa', '20170608'))
 
 
 def lastchange(change_models, jobconf, sparkcontext):
-    pass
+
+    kwargs = {'models': result_to_models(rdd['results']),
+              'ord_date': dates.to_ordinal(rdd['product_date'])}
+
+    return rdd.map(safely(func=fp.lastchange,
+                          kwargs=kwargs,
+                          chip_x=rdd['chip_x'],
+                          chip_y=rdd['chip_y'],
+                          x=rdd['x'],
+                          y=rdd['y'],
+                          alg=algorithm('lastchange', fp.version),
+                          datestr=rdd['date'],
+                          errors=rdd['errors']))\
+                          .setName(algorithm('lastchange', '20170608'))

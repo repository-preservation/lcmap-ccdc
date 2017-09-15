@@ -113,12 +113,22 @@ def init(acquired, chip_ids, products, product_dates, sparkcontext,
 
 
 def train(tilename):
-    chip_ids = chips.bounds_to_coordinates(
-                   tile.neighbors(tile.bounds(tilename), tilespec), refspec)
-    job, jc = init()
-
-
-def classify():
+    #  -----------------------------------
+    #  Generating training data for a tile
+    #  -----------------------------------
+    # 1 -  identify tile id (upper left x & y) from tile name
+    # 2 -  identify tile neighbors
+    # 3 -  minbox these nine tiles
+    # 4 -  identify the chips in this minbox
+    # 5 -  query for trends data that fits in this box
+    # 6 -  filter chip ids that do not have corresponding trends data
+    # 7 -  determine what change_models already exist for this filtered dataset
+    # 8 -  produce and persist the ones that don't exist
+    # 9 -  retrieve ancillary data for neighbor minbox
+    # 10 - filter & join ancillary data to match trends
+    # 11 - create the training model
+    # 12 - persist the training model
+    #
     pass
 
 
@@ -158,12 +168,6 @@ def save(acquired, bounds, products, product_dates, clip=False,
 
         md5, _ = jobconf.save(conf, ss)
 
-        # save all the products that were requested.  Add the jobconf id
-        # for cross referencing.  Flatten the datastructure so it can be
-        # inserted.  DataFrame doesn't like nested sequences for
-        # field descriptions.
-        #rdd structure: [['chip_x', 'chip_y', 'x', 'y', 'algorithm', 'datestr'],
-        #                  'results', 'errors']
         schema = ['chip_x', 'chip_y', 'x', 'y', 'datestr',
                   'result', 'error', 'jobconf']
         for p in products:
@@ -179,23 +183,3 @@ def save(acquired, bounds, products, product_dates, clip=False,
     finally:
         if ss is not None:
             ss.stop()
-
-
-def count(bounds, product):
-    pass
-
-
-def missing(bounds, product):
-    pass
-
-
-def errors(bounds, product):
-    pass
-
-
-def models():
-    pass
-
-
-def rasters():
-    pass
