@@ -253,6 +253,8 @@ def timeseries(rdd, jobconf, sparkcontext):
 
 
 def changemodels(rdd, jobconf, sparkcontext):
+    df = read.cassandra(ccd.algorithm)
+
     existing = changemodels.get(jobconf, sparkcontext)
     missing  = changemodels.diff(existing, jobconf, sparkcontext)
     created  = changemodels.make(missing, rdd, sparkcontext)

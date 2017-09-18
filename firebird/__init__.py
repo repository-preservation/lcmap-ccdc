@@ -35,20 +35,31 @@ STORAGE_PARTITION_COUNT = os.getenv('FIREBIRD_STORAGE_PARTITION_COUNT', 1)
 #    format='%(asctime)s %(levelname)s %(module)s.%(funcName)-20s - %(message)s',
 ##    stream=sys.stdout)
 
-logger = logging.getLogger('firebird')
-
 
 def ccd_params():
-    params = {}
-    if QA_BIT_PACKED is not 'True':
-        params = {'QA_BITPACKED': False,
-                  'QA_FILL': 255,
-                  'QA_CLEAR': 0,
-                  'QA_WATER': 1,
-                  'QA_SHADOW': 2,
-                  'QA_SNOW': 3,
-                  'QA_CLOUD': 4}
-    return params
+
+    params = {'QA_BITPACKED': False,
+              'QA_FILL': 255,
+              'QA_CLEAR': 0,
+              'QA_WATER': 1,
+              'QA_SHADOW': 2,
+              'QA_SNOW': 3,
+              'QA_CLOUD': 4}
+
+    return params if QA_BIT_PACKED is not 'True' else {}
+
+
+# https://docs.datastax.com/en/datastax_enterprise/4.8/datastax_enterprise/spark/sparkCassProps.html
+def cassandra_options(table):
+    return {'table': table,
+            'keyspace': fb.CASSANDRA_KEYSPACE,
+            'spark.cassandra.auth.username': fb.CASSANDRA_USER,
+            'spark.cassandra.auth.password': fb.CASSANDRA_PASS,
+            'spark.cassandra.connection.compression': 'LZ4',
+            'spark.cassandra.connection.host': fb.CASSANDRA_CONTACT_POINTS,
+            'spark.cassandra.input.consistency.level': 'QUORUM',
+            'spark.cassandra.output.consistency.level': 'QUORUM'}
+
 
 
 def chip_spec_queries(url):

@@ -1,4 +1,3 @@
-from firebird import io
 import firebird as fb
 
 
@@ -12,7 +11,7 @@ def cassandra(table, dataframe, mode='append'):
 
     return dataframe.write.format('org.apache.spark.sql.cassandra')\
                                   .mode(mode)\
-                                  .options(**io.cassandra_options).save()
+                                  .options(**fb.cassandra_options(table)).save()
 
 def s3(table, dataframe, mode='append'):
     pass
