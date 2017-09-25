@@ -1,6 +1,6 @@
-# pull the tag from version.py
-TAG=`cat version.py | grep '__version__ = ' | sed -e 's/__version__ = //g' | sed -e "s/'//g"`
-WORKERIMAGE:=lcmap-firebird:$(TAG)
+# pull the tag from version.txt
+TAG:=`cat version.txt`
+WORKERIMAGE:=usgseros/lcmap-firebird:$(TAG)
 
 vertest:
 	@echo TAG:$(TAG)
@@ -28,7 +28,6 @@ docker-deps-down:
 spark-lib:
 	@rm -rf lib
 	@mkdir lib
-	# wget -P lib https://d3kbcqa49mib13.cloudfront.net/spark-2.1.1-bin-hadoop2.7.tgz
 	wget -P lib https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
 	gunzip lib/*gz
 	tar -C lib -xvf lib/spark-2.2.0-bin-hadoop2.7.tar

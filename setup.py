@@ -6,8 +6,13 @@ def readme():
         return f.read()
 
 
+def version():
+    with open('version.txt') as h:
+        return h.read().strip()
+
+
 setup(name='lcmap-firebird',
-      version='2017.09.05',
+      version=version(),
       description='Apache Spark based product generation for LCMAP',
       long_description=readme(),
       classifiers=[
