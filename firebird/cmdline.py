@@ -1,3 +1,5 @@
+from cytoolz import first
+from cytoolz import second
 from firebird import actions
 from firebird import transforms
 from firebird import validate
@@ -6,6 +8,7 @@ from merlin import files
 import click as c
 import firebird as fb
 import os
+import pyspark
 
 
 def list_products():
@@ -44,7 +47,8 @@ def algorithms():
 @show.command()
 @c.option('--bounds', '-b', required=True)
 def chip_coordinates(bounds):
-    spec = chip_specs.get(d.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
+    #spec = chip_specs.get(d.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
+    spec = first(chip_specs.get(first(d.chip_spec_queries(fb.SPECS_URL))))
     return chip.ids(fb.minbox(bounds), spec)
 
 
@@ -53,7 +57,7 @@ def chip_coordinates(bounds):
 @c.option('--bounds', '-b', required=True, multiple=True)
 @c.option('--products', '-p', required=True, multiple=True)
 @c.option('--product_dates', '-d', required=True, multiple=True)
-@c.option('--clip', '-c', is_flag=True)
+@c.option('--clip', '-c', is_flag=True, default=False)
 def save(acquired, bounds, products, product_dates, clip):
     # TODO: handle accepting tile ids
 
@@ -67,18 +71,15 @@ def save(acquired, bounds, products, product_dates, clip):
     fbounds = map(lambda n: (float(n[0]),float(n[1])),
                   map(lambda x: x.split(','), bounds))
 
-    return list(actions.save(acquired=acquired,
-                             bounds=list(fbounds),
-                             clip=clip,
-                             products=products,
-                             product_dates=product_dates))
-    
-
-@cli.command()
-@c.option('--name', '-n', required=True)
-def test(name):
-    c.echo(name)
-
+    results = list(actions.counts(
+                       actions.save(acquired=acquired,
+                                    bounds=list(fbounds),
+                                    clip=clip,
+                                    products=products,
+                                    product_dates=product_dates,
+                                    spark_context=pyspark.SparkContext())))
+    print(results)
+    return results
 
 if __name__ == "__main__":
     cli()

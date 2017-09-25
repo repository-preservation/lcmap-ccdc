@@ -9,6 +9,10 @@ Apache Spark based product generation for LCMAP.
 * Connect to remote, local or embedded Spark clusters.
 * Execute Jupyter Notebooks inside the Firebird Docker image using the same libraries as the ops system.
 
+## Usage
+```bash
+   $ firebird-save -a 1980-01-01/2017-01-01 -b -1821585,2891595 -p seglength -p ccd -d 2014-01-01
+```
 ## Setup
 
 * Install Docker, Maven and Conda
