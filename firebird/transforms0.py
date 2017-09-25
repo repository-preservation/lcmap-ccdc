@@ -134,9 +134,10 @@ def pyccd(rdd):
              {chip_x, chip_y, x, y, algorithm, acquired, results, errors}
     """
 
+    kwargs = merge(get(rdd, 'result', {}), {'params': ccd_params()})
+
     return safely(func=ccd.detect,
-                  kwargs=merge(get(rdd, 'result', {}),
-                               {'params': ccd_params()}),
+                  kwargs=kwargs,
                   chip_x=rdd['chip_x'],
                   chip_y=rdd['chip_y'],
                   x=rdd['x'],
@@ -390,37 +391,4 @@ def curveqa(change_models, jobconf, sparkcontext):
 
 
 def lastchange(change_models, jobconf, sparkcontext):
-    pass
-
-
-def train(change_models, jobconf, sparkcontext):
-    # training_chipids()
-    # requires ancillary data such as DEM, trends, et. al.
-    #
-    # TODO: This might require switching to the dataframe api and the
-    # spark cassandra connector, especially if we are going to train on results
-    # that already exist in cassandra.  Don't implement this without a
-    # significant amount of hammock and whiteboard time.
-    #
-    # In order to send in appropriate chip ids to init, it will have
-    # to accept chip ids instead of bounds and the bounds to chip id
-    # determination will have to be done by whatever calls it.  This will
-    # be necessary as training requires additional areas besides the area
-    # one is actually attempting to train on.
-    pass
-
-
-def classify(jobconf, sparkcontext):
-    # Same as the training graph.  This cannot run unless
-    # #1 - There are ccd results and
-    # #2 - The classifier has been trained.
-    # Dont just jam these two things into this rdd graph setup.  Find the
-    # cleanest way to represent and handle it.  It might require running
-    # ccd first, training second and classification third.  Or they might all
-    # be able to be put into the same graph and run at the same time.
-    #
-    # Regardless, all this data will need to be persisted so after its all
-    # working we will probably need the ability to load data from iwds,
-    # determine what else is needed (what areas are missing based on the
-    # request) conditionally produce it, then proceed with the operations
     pass
