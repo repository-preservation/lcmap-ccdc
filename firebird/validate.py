@@ -3,7 +3,6 @@ from merlin import dates as md
 from merlin import functions
 import re
 
-
 def is_false(v):
     """Determines if a value is false.
 
@@ -47,8 +46,6 @@ def _clip(c):
     :param c: Clip parameter
     :return: True or Exception
     """
-    print("C:{}".format(c))
-    print("C TYPE:{}".format(type(c)))
 
     if is_false(c) or is_true(c):
         return True
@@ -112,5 +109,5 @@ def save(acquired, bounds, products, product_dates, clip):
     _bounds(bounds)
     _clip(clip)
     _products(products)
-    _product_dates(product_dates)
+    _product_dates(acquired=acquired, product_dates=product_dates)
     return True

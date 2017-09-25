@@ -299,14 +299,14 @@ def labels(inputs=None, ccd=None, lastchange=None, changemag=None,
             'seglength': seglength, 'curveqa': curveqa}
 
 
-def products(jobconf, sparkcontext):
+def products(jobconf, spark_context):
     """Product graph for firebird products
     :param jobconf: dict of broadcast variables
-    :param sparkcontext: Configured spark context or None
+    :param spark_context: Configured spark context or None
     :return: dict keyed by product with lazy RDD as value
     """
 
-    sc = sparkcontext
+    sc = spark_context
 
     acquired = jobconf['acquired'].value
     specs_fn = jobconf['specs_fn'].value
@@ -367,7 +367,7 @@ def products(jobconf, sparkcontext):
                   changedate=_cd, seglength=_sl, curveqa=_qa)
 
 
-def train(product_graph, sparkcontext):
+def train(product_graph, spark_context):
     # training_chipids()
     # requires ancillary data such as DEM, trends, et. al.
     #
@@ -384,7 +384,7 @@ def train(product_graph, sparkcontext):
     pass
 
 
-def classify(product_graph, sparkcontext):
+def classify(product_graph, spark_context):
     # Same as the training graph.  This cannot run unless
     # #1 - There are ccd results and
     # #2 - The classifier has been trained.

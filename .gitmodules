@@ -1,3 +1,0 @@
-[submodule "test/resources/data"]
-	path = test/resources/data
-	url = https://github.com/usgs-eros/lcmap-test-data
