@@ -84,7 +84,7 @@ def test_products():
                           'reference_spec': spec,
                           'specs_url': 'http://localhost',
                           'specs_fn': ma.chip_specs},
-                         sparkcontext=sc)
+                         spark_context=sc)
         graph = transforms.products(bc, sc)
 
         assert graph['inputs'].getNumPartitions() == 1

@@ -4,6 +4,7 @@ from merlin import chips
 from merlin import chip_specs
 from merlin import functions as f
 from pyspark import sql
+from pyspark.sql.types import FloatType
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StringType
 from pyspark.sql.types import StructField
@@ -116,16 +117,16 @@ def write(table, dataframe, mode='append'):
 
 def jobconf_schema():
     return StructType([StructField('id', StringType(), nullable=False),
-                       StructField('conf', StringType(), nullable=False)])
+                       StructField('config', StringType(), nullable=False)])
 
 
 def result_schema():
     """Dataframe schema for results"""
 
-    fields = [StructField('chip_x', IntegerType(), nullable=False),
-              StructField('chip_y', IntegerType(), nullable=False),
-              StructField('x', IntegerType(), nullable=False),
-              StructField('y', IntegerType(), nullable=False),
+    fields = [StructField('chip_x', FloatType(), nullable=False),
+              StructField('chip_y', FloatType(), nullable=False),
+              StructField('x', FloatType(), nullable=False),
+              StructField('y', FloatType(), nullable=False),
               StructField('datestr', StringType(), nullable=False),
               StructField('result', StringType(), nullable=True),
               StructField('error', StringType(), nullable=True),
