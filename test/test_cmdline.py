@@ -11,6 +11,6 @@ def test_save():
 
     runner = CliRunner()
     result = runner.invoke(cmdline.save, [acquired, bounds, products, product_dates, clip])
-    assert 1 < 0
+    #assert 1 < 0
     print(result)
     #assert all([p in result for p in products])
