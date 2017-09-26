@@ -18,7 +18,7 @@ def test_broadcast():
                           'tuple': tuple([1, 2, 3]),
                           'dict': dict({'a': 1}),
                           'none': None,
-                          'num': 3}, sparkcontext=sc)
+                          'num': 3}, spark_context=sc)
 
         assert bc['a'].value == 'a'
         assert bc['true'].value == True
@@ -51,10 +51,11 @@ def test_init():
                               chip_ids=chip_ids,
                               products=products,
                               product_dates=product_dates,
-                              sparkcontext=sc,
+                              spark_context=sc,
                               chips_fn=ma.chips,
                               specs_fn=ma.chip_specs,
                               clip_box=clip_box,
+                              refspec=spec,
                               initial_partitions=2,
                               product_partitions=2,)
 
@@ -91,24 +92,27 @@ def test_save():
         products = ['inputs', 'ccd', 'lastchange',
                     'changemag', 'seglength', 'curveqa']
         product_dates = ['2014-12-12']
+        sc = None
+        try:
+            sc = pyspark.SparkContext(appName="test_save")
+            results = a.save(acquired=acquired,
+                             bounds=chip_ids,
+                             products=products,
+                             product_dates=product_dates,
+                             clip=True,
+                             chips_fn=ma.chips,
+                             specs_fn=ma.chip_specs,
+                             spark_context=sc)
 
-        results = a.save(acquired=acquired,
-                         bounds=chip_ids,
-                         products=products,
-                         product_dates=product_dates,
-                         clip=True,
-                         chips_fn=ma.chips,
-                         specs_fn=ma.chip_specs,
-                         sparkcontext_fn=partial(pyspark.SparkContext,
-                                                 appName="test_save"))
+            print("RESULTS TYPE:{}".format(type(list(results))))
+            print("RESULTS LEN:{}".format(len(list(results))))
 
-        print("RESULTS TYPE:{}".format(type(list(results))))
+            for r in results:
+                print("Save result:{}".format(r))
 
-        print("RESULTS LEN:{}".format(len(list(results))))
-
-        for r in results:
-            print("Save result:{}".format(r))
-
-        # TODO: Read the results back out and verify they are what we thought
-        # they should be.  Will require implementing read() in actions.py
-        # using the DataFrame API
+            # TODO: Read the results back out and verify they are what we thought
+            # they should be.  Will require implementing read() in actions.py
+            # using the DataFrame API
+        finally:
+           if sc is not None:
+               sc.stop()

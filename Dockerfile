@@ -67,7 +67,7 @@ COPY version.txt .
 
 RUN sudo chown -R app:app .
 
-RUN pip install -e .[test]
+RUN pip install -e .[test,dev]
 
 RUN cd $HOME && \
     sudo yum install -y maven && \
