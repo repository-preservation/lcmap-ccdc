@@ -2,7 +2,7 @@ FROM centos:7.3.1611
 
 LABEL maintainer="USGS EROS LCMAP http://eros.usgs.gov http://github.com/usgs-eros/lcmap-firebird"
 LABEL description="CentOS based Spark-Mesos image for LCMAP"
-LABEL org.apache.mesos.version=1.1.0
+LABEL org.apache.mesos.version=1.4.0
 LABEL org.apache.spark.version=2.2.0
 LABEL net.java.openjdk.version=1.8.0
 LABEL org.python.version=3.6
@@ -14,7 +14,7 @@ RUN yum update -y && \
     yum install -y sudo gcc bzip2 java-1.8.0-openjdk-devel.x86_64 && \
     yum install -y http://repos.mesosphere.io/el/7/noarch/RPMS/mesosphere-el-repo-7-3.noarch.rpm && \
     yum install -y mesos && \
-    yum -y downgrade mesos-1.1.0
+    yum -y downgrade mesos-1.4.0
 
 RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 
@@ -23,12 +23,12 @@ RUN localedef -i en_US -f UTF-8 en_US.UTF-8
 # foo while mounting volumes.  To enable access between external and
 # internal users on mounted volume files, set 'other' perms appropriately.
 ##########################################################################
-RUN adduser -ms /bin/bash app && \
-    echo "app ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/app && \
-    chmod 0440 /etc/sudoers.d/app
+RUN adduser -ms /bin/bash lcmap && \
+    echo "lcmap ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/lcmap && \
+    chmod 0440 /etc/sudoers.d/lcmap
 
-ENV HOME=/home/app
-ENV USER=app
+ENV HOME=/home/lcmap
+ENV USER=lcmap
 USER $USER
 WORKDIR $HOME
 ##########################################################################
@@ -65,7 +65,7 @@ COPY README.md .
 COPY setup.py .
 COPY version.txt .
 
-RUN sudo chown -R app:app .
+RUN sudo chown -R lcmap:lcmap .
 
 RUN pip install -e .[test,dev]
 
