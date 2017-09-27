@@ -4,7 +4,6 @@ from firebird import actions
 from firebird import transforms
 from firebird import validate
 from merlin import chip_specs
-from merlin import files
 import click as c
 import firebird as fb
 import os
@@ -47,8 +46,8 @@ def algorithms():
 @show.command()
 @c.option('--bounds', '-b', required=True)
 def chip_coordinates(bounds):
-    #spec = chip_specs.get(d.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
-    spec = first(chip_specs.get(first(d.chip_spec_queries(fb.SPECS_URL))))
+    queries = d.chip_spec_queries(fb.SPECS_URL)
+    spec = first(chip_specs.get(first(queries[first(queries)])))
     return chip.ids(fb.minbox(bounds), spec)
 
 
@@ -71,15 +70,23 @@ def save(acquired, bounds, products, product_dates, clip):
     fbounds = map(lambda n: (float(n[0]),float(n[1])),
                   map(lambda x: x.split(','), bounds))
 
-    results = list(actions.counts(
-                       actions.save(acquired=acquired,
-                                    bounds=list(fbounds),
-                                    clip=clip,
-                                    products=products,
-                                    product_dates=product_dates,
-                                    spark_context=pyspark.SparkContext())))
-    print(results)
-    return results
+    spark_context = None
+    try:
+        spark_context = pyspark.SparkContext()
+
+        results = list(actions.counts(
+                           actions.save(acquired=acquired,
+                                        bounds=list(fbounds),
+                                        clip=clip,
+                                        products=products,
+                                        product_dates=product_dates,
+                                        spark_context=spark_context)))
+        print(results)
+        return results
+    finally:
+        if spark_context is not None:
+            spark_context.close()
+
 
 if __name__ == "__main__":
     cli()

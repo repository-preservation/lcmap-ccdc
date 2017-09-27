@@ -5,7 +5,6 @@ from merlin import chip_specs
 from merlin import functions as f
 from pyspark import sql
 from pyspark.sql.types import FloatType
-from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StringType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
@@ -116,6 +115,8 @@ def write(table, dataframe, mode='append'):
 
 
 def jobconf_schema():
+    """Dataframe schema for jobconfs"""
+
     return StructType([StructField('id', StringType(), nullable=False),
                        StructField('config', StringType(), nullable=False)])
 
@@ -149,80 +150,50 @@ def save(acquired, bounds, products, product_dates, spark_context, clip=False,
         spark_context: a spark cluster connection
         clip (bool): If True any points not falling within the minbox of bounds
                      are filtered out.
+                     
     Returns:
         generator: {product: dataframe}
     """
 
-    ss = None
-    try:
-        ss = sql.SparkSession(spark_context)
-        queries = fb.chip_spec_queries(fb.SPECS_URL)
-        spec = first(specs_fn(queries[first(queries)]))
-        print("SPEC")
-        print(spec)
-        coordinates  = chips.bounds_to_coordinates(tuple(bounds), spec)
-        #spec = specs_fn(fb.chip_spec_queries(fb.SPECS_URL)['blues'])[0]
-        #print("Acquired:{}".format(acquired))
-        #print("Bounds:{}".format(bounds))
-        #print("Products:{}".format(products))
-        #print("Product Dates:{}".format(product_dates))
-        #print("Clip:{}".format(clip))
-        #print("specs_fn:{}".format(specs_fn))
-        #print("chips_fn:{}".format(chips_fn))
-        #print("sparkcontext_fn:{}".format(sparkcontext_fn))
-        #print("------------------------------------------------------")
-        #import os
-        #for k,v in os.environ.items():
-        #    print("{}:{}".format(k,v))
-        #print("------------------------------------------------------")
-        #print("SPEC")
-        #print(type(spec))
-        #print(spec)
+    ss = sql.SparkSession(spark_context)
+    queries = fb.chip_spec_queries(fb.SPECS_URL)
+    spec = first(specs_fn(queries[first(queries)]))
+    coordinates  = chips.bounds_to_coordinates(tuple(bounds), spec)
 
-        job, jobconf = init(acquired=acquired,
-                            chip_ids=coordinates,
-                            products=products,
-                            product_dates=product_dates,
-                            specs_fn=specs_fn,
-                            refspec=spec,
-                            chips_fn=chips_fn,
-                            spark_context=spark_context,
-                            clip_box=f.minbox(bounds) if clip else None)
+    job, jobconf = init(acquired=acquired,
+                        chip_ids=coordinates,
+                        products=products,
+                        product_dates=product_dates,
+                        specs_fn=specs_fn,
+                        refspec=spec,
+                        chips_fn=chips_fn,
+                        spark_context=spark_context,
+                        clip_box=f.minbox(bounds) if clip else None)
 
-        # first, save the jobconf used to generate the products
-        md5, cfg = f.serialize({k: f.represent(v.value)
-                                for k, v in jobconf.items()})
+    # first, save the jobconf used to generate the products
+    md5, cfg = f.serialize({k: f.represent(v.value)
+                            for k, v in jobconf.items()})
 
-        write(table='jobconf',
-              dataframe=ss.createDataFrame([[md5, cfg]], jobconf_schema()))
+    write(table='jobconf',
+          dataframe=ss.createDataFrame([[md5, cfg]], jobconf_schema()))
 
-        # rdd structure: [['chip_x', 'chip_y', 'x', 'y', 'algorithm', 'datestr'],
-        #                  'results', 'errors']
-        # schema = ['chip_x', 'chip_y', 'x', 'y', 'datestr',
-        #          'result', 'error', 'jobconf']
-        for p in products:
-            df = ss.createDataFrame(
-                job[p].map(lambda x: (float(x[0][0]), float(x[0][1]),
-                                      float(x[0][2]), float(x[0][3]),
-                                      str(x[0][5]),
-                                      str(x[1]), str(x[2]), str(md5)))\
-                                      .repartition(fb.STORAGE_PARTITION_COUNT),
-                schema=result_schema())
+    for p in products:
+        df = ss.createDataFrame(
+            job[p].map(lambda x: (float(x[0][0]), float(x[0][1]),
+                                  float(x[0][2]), float(x[0][3]),
+                                  str(x[0][5]),
+                                  str(x[1]), str(x[2]), str(md5)))\
+                                  .repartition(fb.STORAGE_PARTITION_COUNT),
+            schema=result_schema())
 
-            yield {p: write(table=f.cqlstr(job[p].name()), dataframe=df)}
-    finally:
-        # this is a problem if you are going to do any more operations against
-        # spark.
-        #if ss is not None:
-            #ss.stop()
-        pass
+        yield {p: write(table=f.cqlstr(job[p].name()), dataframe=df)}
 
 
 def count(dataframe):
     """Generates the success and error count for a dataframe"""
 
-    return {'success': dataframe.where(dataframe['result'] != 'null').count(),
-            'error': dataframe.where(dataframe['error'] != 'null').count()}
+    return {'success': dataframe.where(dataframe['result'] != 'None').count(),
+            'error': dataframe.where(dataframe['error'] != 'None').count()}
 
 
 def counts(product_dataframes):
@@ -236,4 +207,3 @@ def counts(product_dataframes):
     """
     pds = product_dataframes
     return {p: count(df) for pd in pds for p, df in pd.items()}
-    # return {p: count(dataframe) for p, dataframe in product_dataframes.items()}
