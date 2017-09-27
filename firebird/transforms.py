@@ -318,6 +318,10 @@ def products(jobconf, spark_context):
     product_partitions = jobconf['product_partitions'].value
     chip_ids = jobconf['chip_ids'].value
 
+    # print("INITIAL PARTITIONS:{}".format(initial_partitions))
+    # print("PRODUCT PARTITIONS:{}".format(product_partitions))
+    # print("CHIP IDS:{}".format(chip_ids))
+
     _chipids = sc.parallelize(chip_ids, initial_partitions).setName("chip_ids")
 
     # query data and transform it into pyccd input format
@@ -344,13 +348,15 @@ def products(jobconf, spark_context):
                                                        datestr=acquired,
                                                        result=x[1])))\
                                .repartition(product_partitions)\
-                               .setName(algorithm('inputs', '20170608'))
+                               .setName(algorithm('inputs', '20170608'))\
+                               .persist()
 
     _ccd = _in.map(pyccd).setName(ccd.algorithm).persist()
 
     # cartesian will create an rdd that looks like:
     # ((((chip_x, chip_y), x, y, alg, product_date_str), data), product_date)
-    _ccd_dates = _ccd.cartesian(sc.parallelize(jobconf['product_dates'].value))
+    _ccd_dates = _ccd.cartesian(sc.parallelize(jobconf['product_dates'].value))\
+                 .setName('ccd_dates').persist()
 
     _lc = _ccd_dates.map(lastchange).setName(algorithm('lastchange',
                                                        '20170608'))

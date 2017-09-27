@@ -2,8 +2,9 @@ import logging
 import os
 import socket
 
+# All of these are evaluated at import time!!!  That means the env vars need
+# to be set before the firebird module is imported.  Not.  Good.
 HOST = socket.gethostbyname(socket.getfqdn())
-
 AARDVARK = os.getenv('FIREBIRD_AARDVARK', 'http://localhost:5678')
 AARDVARK_SPECS = os.getenv('FIREBIRD_AARDVARK_SPECS', '/v1/landsat/chip-specs')
 AARDVARK_CHIPS = os.getenv('FIREBIRD_AARDVARK_CHIPS', '/v1/landsat/chips')
@@ -12,12 +13,12 @@ CASSANDRA_USER = os.getenv('FIREBIRD_CASSANDRA_USER', 'cassandra')
 CASSANDRA_PASS = os.getenv('FIREBIRD_CASSANDRA_PASS', 'cassandra')
 CASSANDRA_KEYSPACE = os.getenv('FIREBIRD_CASSANDRA_KEYSPACE', 'lcmap_changes_local')
 CHIPS_URL = ''.join([AARDVARK, AARDVARK_CHIPS])
-INITIAL_PARTITION_COUNT = os.getenv('FIREBIRD_INITIAL_PARTITION_COUNT', 1)
+INITIAL_PARTITION_COUNT = int(os.getenv('FIREBIRD_INITIAL_PARTITION_COUNT', 1))
 LOG_LEVEL = os.getenv('FIREBIRD_LOG_LEVEL', 'WARN')
-PRODUCT_PARTITION_COUNT = os.getenv('FIREBIRD_PRODUCT_PARTITION_COUNT', 1)
+PRODUCT_PARTITION_COUNT = int(os.getenv('FIREBIRD_PRODUCT_PARTITION_COUNT', 1))
 QA_BIT_PACKED = os.getenv('FIREBIRD_CCD_QA_BITPACKED', 'True')
 SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
-STORAGE_PARTITION_COUNT = os.getenv('FIREBIRD_STORAGE_PARTITION_COUNT', 1)
+STORAGE_PARTITION_COUNT = int(os.getenv('FIREBIRD_STORAGE_PARTITION_COUNT', 1))
 
 # log format needs to be
 # 2017-06-29 13:09:04,109 DEBUG lcmap.aardvark.chip-spec - initializing GDAL
