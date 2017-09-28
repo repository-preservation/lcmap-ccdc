@@ -66,7 +66,7 @@
                    --bounds -1821585,2891595 \
                    --products seglength \
                    --products ccd \
-                   --product_dates 2014-01-01
+                   --product_dates 2014-01-01 \
                    --clip
 ```
 
@@ -95,7 +95,7 @@
                    --bounds -1821585,2911595 \
                    --products seglength \
                    --products ccd \
-                   --product_dates 2014-01-01
+                   --product_dates 2014-01-01 \
                    --clip
 ```
 
