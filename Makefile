@@ -9,6 +9,10 @@ vertest:
 docker-build:
 	docker build -t $(WORKERIMAGE) $(PWD)
 
+docker-push:
+	docker login
+	docker push $WORKERIMAGE
+
 docker-shell:
 	docker run -it --entrypoint=/bin/bash usgseros/$(WORKERIMAGE)
 
