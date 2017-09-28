@@ -7,7 +7,7 @@
 * That allows you to make LCMAP products on 2000 cores as easily as you can on 1
 * It has a built-in pyspark shell for ad-hoc cluster operations
 * And a built-in Jupyter Notebook server for development and analysis
-* Firebird includes a Apache Cassandra server to save development results
+* Firebird includes an Apache Cassandra server to save development results
 
 ## What's this you say?
 * Yes
