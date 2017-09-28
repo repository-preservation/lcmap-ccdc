@@ -140,7 +140,7 @@
  $ make docker-deps-down
 ```
 
-* Cut a branch, do some work, write some tests, update some docs, push to github
+* Cut a branch, do some work, write some tests, update the docs, push to github
 
 * Build a Docker image to test locally
 ```bash
