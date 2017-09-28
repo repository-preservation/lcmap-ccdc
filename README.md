@@ -26,8 +26,6 @@
 * Performs massively parallel product generation
 * Saves results to Apache Cassandra
 
-* Select LCMAP ARD products based on time, space, spectra and product.
-
 ## How do I get it?
 ```bash
    $ wget https://raw.githubusercontent.com/USGS-EROS/lcmap-firebird/master/firebird.install.example -O firebird.install
