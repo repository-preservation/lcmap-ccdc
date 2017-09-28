@@ -75,6 +75,21 @@
    $ firebird-products
 ```
 
+## You seem to like seglength, ccd and 2014-01-01
+```bash
+   $ firebird-save --acquired 1980-01-01/2017-01-01 \
+                   --bounds -1821585,2891595 \
+                   --products curveqa \
+                   --product_dates 2010-01-01 \
+                   --product_dates 2011-01-01 \
+                   --product_dates 2012-01-01 \
+                   --product_dates 2013-01-01 \
+                   --product_dates 2015-01-01 \
+                   --product_dates 2016-01-01 \
+                   --product_dates 2017-01-01 \
+                   --clip
+```
+
 ## How do I run a bigger area?
 ```bash
    $ firebird-save --acquired 1980-01-01/2017-01-01 \
