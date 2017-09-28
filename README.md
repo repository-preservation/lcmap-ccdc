@@ -113,6 +113,15 @@
                    --clip
 ```
 
+## Where do the results get saved?
+In a table matching the algorithm + version, in a keyspace configured in
+firebird.install.  Tables and keyspaces must be created before running Firebird,
+presumably by Cassandra admins.  
+
+If you are running the local Cassandra image, you are the Cassandra admin.  
+In that case, edit ```test/resources/test.schema.setup.cql```
+then run ```$ make docker-db-test-schema```.
+
 ## Developing Firebird
 
 * Install Docker, Maven and Conda
