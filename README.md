@@ -1,19 +1,102 @@
 # lcmap-firebird
-Apache Spark based product generation for LCMAP.
+... makes LCMAP products.
 
-## Planned Features
-* Run and retrieve results and job status for all LCMAP products from the command line.
-* Run jobs synchronously or asynchronously.
-* Retrieve model inputs from LCMAP HTTP services or local files, determine availability, generate status reports.
-* Save science model outputs to Apache Cassandra, local files, or stdout.
-* Connect to remote, local or embedded Spark clusters.
-* Execute Jupyter Notebooks inside the Firebird Docker image using the same libraries as the ops system.
+## What is lcmap-firebird?
+* It is a command line interface
+* Built on Apache Spark and Docker
+* That allows you to make LCMAP products on 2000 cores as easily as you can on 1
+* It has a built-in pyspark shell for ad-hoc cluster operations
+* And a built-in Jupyter Notebook server for development and analysis
+* Firebird includes a Apache Cassandra server to save development results
 
-## Usage
+## What's this you say?
+* Yes
+* It is both an operations and development environment
+* It is *really* parallel in either case
+
+## As a development and analysis environment
+* Notebooks can be uploaded or mounted via a volume, but controlled and managed
+  externally
+* Once ready for primetime, code may be merged into lcmap-firebird directly or
+  via library
+* Results are savable to Cassandra anywhere: Cloud, cluster, dev server, etc
+
+## The Firebird Spark Python Library
+* Obtains input data via HTTP
+* Performs massively parallel product generation
+* Saves results to Apache Cassandra
+
+* Select LCMAP ARD products based on time, space, spectra and product.
+
+## How do I get it?
+```bash
+   $ wget http://thefile -O firebird.install
+```
+
+## How do I configure it?
+```bash
+   $ vi firebird.install
+```
+
+## How do I install it?
+```bash
+   $ source firebird.install
+```
+
+## How do I use it?
 ```bash
    $ firebird-save -a 1980-01-01/2017-01-01 -b -1821585,2891595 -p seglength -p ccd -d 2014-01-01
 ```
-## Setup
+
+## Once more?
+```bash
+   $ firebird-save --acquired 1980-01-01/2017-01-01 \
+                   --bounds -1821585,2891595 \
+                   --products seglength \
+                   --products ccd \
+                   --product_dates 2014-01-01
+```
+
+## How do I just run a single point instead?
+```bash
+   $ firebird-save --acquired 1980-01-01/2017-01-01 \
+                   --bounds -1821585,2891595 \
+                   --products seglength \
+                   --products ccd \
+                   --product_dates 2014-01-01
+                   --clip
+```
+
+## How do I find out what products I can run?
+```bash
+   $ firebird-products
+```
+
+## How do I run a bigger area?
+```bash
+   $ firebird-save --acquired 1980-01-01/2017-01-01 \
+                   --bounds -1791585,2891595 \
+                   --bounds -1821585,2891595 \
+                   --bounds -1791585,2911595 \
+                   --bounds -1821585,2911595 \
+                   --products seglength \
+                   --products ccd \
+                   --product_dates 2014-01-01
+```
+
+## How do I run a triangle instead?
+```bash
+   $ firebird-save --acquired 1980-01-01/2017-01-01 \
+                   --bounds -1791585,2891595 \
+                   --bounds -1821585,2891595 \
+                   --bounds -1821585,2911595 \
+                   --products seglength \
+                   --products ccd \
+                   --product_dates 2014-01-01
+                   --clip
+```
+
+## Developing Firebird
 
 * Install Docker, Maven and Conda
 
@@ -31,7 +114,7 @@ Apache Spark based product generation for LCMAP.
    $ pip install -e .[test]
 ```
 
-## Testing
+* Run tests
 ```bash
  $ make spark-lib
  $ make docker-deps-up
@@ -40,36 +123,21 @@ Apache Spark based product generation for LCMAP.
  $ make docker-deps-down
 ```
 
-Occasionally chip and chip spec test data may need to be updated if the source
-specifications change. Execute ```data.update_specs()``` and ```data.update_chips()``` from
-a repl after setting the ```AARDVARK```, ```AARDVARK_SPECS``` and ```AARDVARK_CHIPS```
-environment variables.
-
+* Build Docker image
 ```
->>> import os
->>> os.environ['AARDVARK'] = 'http://host:port'
->>> os.environ['AARDVARK_SPECS'] = '/v1/landsat/chip-specs'
->>> os.environ['AARDVARK_CHIPS'] = '/v1/landsat/chips'
->>>
->>> from test import data
->>> data.update_specs()
->>> data.update_chips()
+    $ vi version.txt
+    $ make docker-build
 ```
 
-## Jupyter Notebooks
-```firebird-notebook``` will start a jupyter notebook server and expose it on
-port 8888.  The example notebooks in firebird/notebooks are copied into the
-Docker image at build time and are available to this server.
+* Publish Docker image
+```
+    $ docker login
+    $ docker push usgseros/lcmap-firebird:<TAG>
+```
 
-In order to persist updates to a notebook, a volume can be mounted
-at ```/app/notebook``` via install.sh.
-
-## Configuration
-
-## Running
-`alias firebird='docker run --rm --name fb lcmap-firebird:2017.04.25 firebird'``
-
-## Enabling Mesos SSL Client Authentication
-
-## Development
-Apache Spark is functional programming for cluster computing therefore firebird strives to ensure all of it's code follows functional principles of using immutable data (where possible), using functions as the primary unit of abstraction, and composing functions (placing them together) rather than complecting code (intermingling concepts).
+## Development Philosophy
+Apache Spark is functional programming for cluster computing therefore
+Firebird strives to ensure all of it's code follows functional principles of
+using immutable data (where possible), using functions as the primary unit of
+abstraction, and composing functions (placing them together) rather than
+complecting code (intermingling concepts).
