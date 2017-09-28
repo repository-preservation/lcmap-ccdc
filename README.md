@@ -18,7 +18,7 @@
 * Notebooks can be uploaded or mounted via a volume, but controlled and managed
   externally
 * Once ready for primetime, code may be merged into lcmap-firebird directly or
-  via library
+  via library.  [See how you do that here.](#developing-firebird)
 * Results are savable to Cassandra anywhere: Cloud, cluster, dev server, etc
 
 ## The Firebird Spark Python Library
