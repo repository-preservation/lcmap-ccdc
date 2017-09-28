@@ -85,7 +85,7 @@ def save(acquired, bounds, products, product_dates, clip):
         return results
     finally:
         if spark_context is not None:
-            spark_context.close()
+            spark_context.stop()
 
 
 if __name__ == "__main__":
