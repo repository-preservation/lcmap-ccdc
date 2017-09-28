@@ -30,7 +30,12 @@
 
 ## How do I get it?
 ```bash
-   $ wget http://thefile -O firebird.install
+   $ wget https://raw.githubusercontent.com/USGS-EROS/lcmap-firebird/master/firebird.install.example -O firebird.install
+```
+
+## It wasn't there.  How do I get the latest development version?
+```bash
+   $ wget https://raw.githubusercontent.com/USGS-EROS/lcmap-firebird/develop/firebird.install.example -O firebird.install
 ```
 
 ## How do I configure it?
@@ -111,7 +116,7 @@
 ```bash
    $ git clone git@github.com:usgs-eros/lcmap-firebird
    $ cd lcmap-firebird
-   $ pip install -e .[test]
+   $ pip install -e .[test,dev]
 ```
 
 * Run tests
@@ -123,16 +128,18 @@
  $ make docker-deps-down
 ```
 
-* Build Docker image
-```
+* Cut a branch, do some work, write some tests, update some docs, push to github
+
+* Build a Docker image to test locally
+```bash
     $ vi version.txt
     $ make docker-build
+    $ vi firebird.install # point to new version that was just built
 ```
 
-* Publish Docker image
-```
-    $ docker login
-    $ docker push usgseros/lcmap-firebird:<TAG>
+* Publish the Docker image so it will be available to a cluster
+```bash
+    $ make docker-push
 ```
 
 ## Development Philosophy
