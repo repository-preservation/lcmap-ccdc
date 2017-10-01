@@ -1,3 +1,5 @@
+""" WIP """
+
 from firebird import ccd_params
 from firebird import products as fp
 from functools import partial
@@ -14,25 +16,10 @@ import merlin
 
 
 def algorithm(name, version):
-    """Standardizes algorithm name and version representation.
-    :param name: Name of algorithm
-    :param version: Version of algorithm
-    :return: name_version
-    """
     return '{}_{}'.format(name, version)
 
 
 def result(chip_x, chip_y, x, y, alg, datestr):
-    """Formats an rdd transformation result.
-    :param chip_x: x coordinate of source chip id
-    :param chip_y: y coordinate of source chip id
-    :param x: x coordinate
-    :param y: y coordinate
-    :param alg: algorithm and version string
-    :param datestr: datestr that identifies the result
-    :param data: algorithm outputs
-    :return: {chip_x, chip_y, x, y, alg, datestr, data}
-    """
     return {'chip_x': chip_x,
             'chip_y': chip_y,
             'x': x,
@@ -50,18 +37,7 @@ def error(chip_x, chip_y, x, y, alg, datestr, data):
 
 
 def haserrors(result):
-    """Determines if previous errors exist and creates proper return value
-    if True.  If no error exists returns False.
-    :param chip_x: x coordinate of source chip id
-    :param chip_y: y coordinate of source chip id
-    :param x: x coordinate
-    :param y: y coordinate
-    :param alg: algorithm and version string
-    :param datestr: datestr for current RDD record
-    :param errs: Errors element from input RDD
-    :return: Either a properly formatted RDD tuple or the result of executing
-             the RDD function.
-    """
+
     if 'error' in result:
         msg = 'upstream->{}:{}'
         return merge(result, {'error': msg.format(alg, get('error', result))})
@@ -70,18 +46,7 @@ def haserrors(result):
 
 
 def tryexcept(func, kwargs, chip_x, chip_y, x, y, alg, datestr):
-    """Executes a function wrapped in try: except:.  Returns result
-    of success() or error().
-    :param func: function to execute
-    :param kwargs: keyword args for func
-    :param chip_x: x coordinate of source chip id
-    :param chip_y: y coordinate of source chip id
-    :param x: x coordinate
-    :param y: y coordinate
-    :param alg: algorithm and version string
-    :param datestr: date string that identifies this execution
-    :return: value of success() or error()
-    """
+
     try:
         return success(chip_x=chip_x, chip_y=chip_y, x=x, y=y, alg=alg,
                        datestr=datestr, data=func(**kwargs))
@@ -91,18 +56,7 @@ def tryexcept(func, kwargs, chip_x, chip_y, x, y, alg, datestr):
 
 
 def safely(func, kwargs, chip_x, chip_y, x, y, alg, datestr, errors):
-    """Runs a function for an input with exception handling applied
-    :param func: function to execute
-    :param kwargs: keyword args for func
-    :param chip_x: x coordinate of source chip id
-    :param chip_y: y coordinate of source chip id
-    :param x: x coordinate
-    :param y: y coordinate
-    :param alg: algorithm and version string
-    :param datestr: date string that identifies this execution
-    :param errors: value of input rdd tuple position for errors.
-    :return: value of success() or error()
-    """
+
     return (haserrors(chip_x=chip_x, chip_y=chip_y, x=x, y=y, alg=alg,
                       datestr=datestr, errors=errors) or
             tryexcept(func=func, kwargs=kwargs, chip_x=chip_x, chip_y=chip_y,
@@ -110,7 +64,6 @@ def safely(func, kwargs, chip_x, chip_y, x, y, alg, datestr, errors):
 
 
 def simplify_detect_results(results):
-    """Convert child objects inside CCD results from NamedTuples to dicts"""
 
     def simplify(result):
         return {k: f.simplify_objects(v) for k, v in result.items()}
@@ -119,20 +72,10 @@ def simplify_detect_results(results):
 
 
 def result_to_models(result):
-    """Function to extract the change_models dictionary from the CCD results
-    :param result: CCD result object (dict)
-    :return: list
-    """
     return simplify_detect_results(result).get('change_models')
 
 
 def pyccd(rdd):
-    """Execute ccd.detect
-    :param rdd: dict of chip_x, chip_y, x, y, alg, datestr, results, errors
-                generated from pyccd_inputs
-    :return: dict of pyccd results
-             {chip_x, chip_y, x, y, algorithm, acquired, results, errors}
-    """
 
     kwargs = merge(get(rdd, 'result', {}), {'params': ccd_params()})
 
@@ -148,11 +91,7 @@ def pyccd(rdd):
 
 
 def lastchange(rdd):
-    """Create lastchange product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
-    """
+
     chip_x = rdd[0][0][0]
     chip_y = rdd[0][0][1]
     x = rdd[0][0][2]
@@ -170,11 +109,7 @@ def lastchange(rdd):
 
 
 def changemag(rdd):
-    """Create changemag product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
-    """
+
     chip_x = rdd[0][0][0]
     chip_y = rdd[0][0][1]
     x = rdd[0][0][2]
@@ -191,11 +126,6 @@ def changemag(rdd):
 
 
 def changedate(rdd):
-    """Create changedate product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: (((chip_x, chip_y), x, y, algorithm, result, errors))
-    """
 
     return safely(func=fp.changedate,
                   kwargs={'models': result_to_models(rdd['data']),
@@ -210,11 +140,7 @@ def changedate(rdd):
 
 
 def seglength(rdd):
-    """Create seglength product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))r
-    """
+
     chip_x = rdd[0][0][0]
     chip_y = rdd[0][0][1]
     x = rdd[0][0][2]
@@ -233,11 +159,7 @@ def seglength(rdd):
 
 
 def curveqa(rdd):
-    """Create curveqa product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
-    """
+
     chip_x = rdd[0][0][0]
     chip_y = rdd[0][0][1]
     x = rdd[0][0][2]
@@ -254,14 +176,7 @@ def curveqa(rdd):
 
 
 def fits_in_box(value, bbox):
-    """Determines if a point value fits within a bounding box (edges inclusive)
-    Useful as a filtering function with conditional enforcement.
-    If bbox is None then fits_in_box always returns True
 
-    :param value: Tuple: ((chip_x, chip_y, x, y), (data))
-    :param bbox: dict with keys: ulx, uly, lrx, lry
-    :return: Boolean
-    """
     def fits(point, bbox):
         _, _, x, y = point
         return (float(x) >= float(bbox['ulx']) and
@@ -274,27 +189,13 @@ def fits_in_box(value, bbox):
 
 def labels(inputs=None, ccd=None, lastchange=None, changemag=None,
            changedate=None, seglength=None, curveqa=None):
-    """Applies friendly names to products
-    :param inputs: Inputs rdd
-    :param ccd: CCD rdd
-    :param lastchange: Lastchange rdd
-    :param changemag: Changemag rdd
-    :param changedate: Changedate rdd
-    :param seglength: Seglength rdd
-    :param curvaqa: Curveqa rdd
-    :return: A dict of label:rdd
-    """
+
     return {'inputs': inputs, 'ccd': ccd, 'lastchange': lastchange,
             'changemag': changemag, 'changedate': changedate,
             'seglength': seglength, 'curveqa': curveqa}
 
 
 def products(jobconf, sparkcontext):
-    """Product graph for firebird products
-    :param jobconf: dict of broadcast variables
-    :param sparkcontext: Configured spark context or None
-    :return: dict keyed by product with lazy RDD as value
-    """
 
     sc = sparkcontext
 
