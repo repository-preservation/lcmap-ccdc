@@ -18,10 +18,15 @@ logger = logging.getLogger(__name__)
 def broadcast(context, spark_context):
     """Sets read-only values on the cluster to make them available to cluster
     operations.
-    :param context: dict of key: values to broadcast to the cluster
-    :param spark_context: An active spark context for the spark cluster
-    :return: dict of cluster references for each key: value pair
+
+    Args:
+        context (dict): key:values to broadcast to the cluster
+        spark_context: An active spark context for the spark cluster
+
+    Returns:
+        dict: cluster references for each key: value pair
     """
+
     return {k: spark_context.broadcast(value=v) for k, v in context.items()}
 
 
@@ -92,10 +97,16 @@ def init(acquired, chip_ids, products, product_dates, spark_context, refspec,
 
 def write(table, dataframe, mode='append'):
     """Write a dataframe to Cassandra
-    :param table: table name
-    :param mode: append, overwrite, error, ignore
-    :param dataframe: A Spark DataFrame
+
+    Args:
+        table (str): table name
+        mode (str): append, overwrite, error, ignore
+        dataframe: A Spark DataFrame
+
+    Returns:
+        The Spark DataFrame from the dataframe argument.
     """
+
     # https://github.com/datastax/spark-cassandra-connector/blob/master/doc/reference.md
     options = {
         'table': table,
@@ -115,14 +126,22 @@ def write(table, dataframe, mode='append'):
 
 
 def jobconf_schema():
-    """Dataframe schema for jobconfs"""
+    """Dataframe schema for jobconfs
+
+    Returns:
+        pyspark.sql.types.StructType: Schema for jobconf
+    """
 
     return StructType([StructField('id', StringType(), nullable=False),
                        StructField('config', StringType(), nullable=False)])
 
 
 def result_schema():
-    """Dataframe schema for results"""
+    """Dataframe schema for results
+
+    Returns:
+        pyspark.sql.types.StructType: Schema for result
+    """
 
     fields = [StructField('chip_x', FloatType(), nullable=False),
               StructField('chip_y', FloatType(), nullable=False),
@@ -150,7 +169,7 @@ def save(acquired, bounds, products, product_dates, spark_context, clip=False,
         spark_context: a spark cluster connection
         clip (bool): If True any points not falling within the minbox of bounds
                      are filtered out.
-                     
+
     Returns:
         generator: {product: dataframe}
     """
@@ -190,7 +209,14 @@ def save(acquired, bounds, products, product_dates, spark_context, clip=False,
 
 
 def count(dataframe):
-    """Generates the success and error count for a dataframe"""
+    """Generates the success and error count for a dataframe
+
+    Args:
+        dataframe: A Spark DataFrame
+
+    Returns:
+        dict: 'success' and 'error' count for the provided dataframe
+    """
 
     return {'success': dataframe.where(dataframe['result'] != 'None').count(),
             'error': dataframe.where(dataframe['error'] != 'None').count()}
@@ -200,10 +226,11 @@ def counts(product_dataframes):
     """Generates and returns success and error counts per product
 
     Args:
-        product_dataframes (dict) - {product:dataframe}
+        product_dataframes (dict): {product:dataframe}
 
     Returns:
-        dict - {product:{'success':count, 'error':count}}
+        dict: {product:{'success':count, 'error':count}}
     """
+
     pds = product_dataframes
     return {p: count(df) for pd in pds for p, df in pd.items()}

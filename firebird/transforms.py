@@ -12,23 +12,32 @@ import merlin
 
 def algorithm(name, version):
     """Standardizes algorithm name and version representation.
-    :param name: Name of algorithm
-    :param version: Version of algorithm
-    :return: name_version
+
+    Args:
+        name (str): Algorithm name
+        version (str): Algorithm version
+
+    Returns:
+        str: name_version
     """
+
     return '{}_{}'.format(name, version)
 
 
 def success(chip_x, chip_y, x, y, alg, datestr, result):
     """Formats an rdd transformation result.
-    :param chip_x: x coordinate of source chip id
-    :param chip_y: y coordinate of source chip id
-    :param x: x coordinate
-    :param y: y coordinate
-    :param alg: algorithm and version string
-    :param datestr: datestr that identifies the result
-    :param result: algorithm outputs
-    :return: (chip_x, chip_y, x, y, alg, datestr, result, None)
+
+    Args:
+        chip_x (float): x coordinate of source chip id
+        chip_y (float): y coordinate of source chip id
+        x (float): x coordinate
+        y (float): y coordinate
+        alg (str): algorithm and version string
+        datestr (str): datestr that identifies the result
+        result (str): algorithm outputs
+
+    Returns:
+        tuple: ((chip_x, chip_y, x, y, alg, datestr), result, None)
     """
 
     return ((chip_x, chip_y, x, y, alg, datestr), result, None)
@@ -36,31 +45,40 @@ def success(chip_x, chip_y, x, y, alg, datestr, result):
 
 def error(chip_x, chip_y, x, y, alg, datestr, errors):
     """Format an rdd transformation error
-    :param chip_x: x coordinate of source chip id
-    :param chip_y: y coordinate of source chip id
-    :param x: x coordinate
-    :param y: y coordinate
-    :param alg: algorithm and version string
-    :param datestr: datestr that identifies the result
-    :param errors: algorithm errors
-    :return: ((chip_x, chip_y, x, y, alg, datestr), None, errors)
+
+    Args:
+        chip_x (float): x coordinate of source chip id
+        chip_y (float): y coordinate of source chip id
+        x (float): x coordinate
+        y (float): y coordinate
+        alg (str): algorithm and version string
+        datestr (str): datestr that identifies the result
+        errors (str): algorithm errors
+
+    Returns:
+        tuple: ((chip_x, chip_y, x, y, alg, datestr), None, errors)
     """
+
     return ((chip_x, chip_y, x, y, alg, datestr), None, errors)
 
 
 def haserrors(chip_x, chip_y, x, y, alg, datestr, errors):
     """Determines if previous errors exist and creates proper return value
     if True.  If no error exists returns False.
-    :param chip_x: x coordinate of source chip id
-    :param chip_y: y coordinate of source chip id
-    :param x: x coordinate
-    :param y: y coordinate
-    :param alg: algorithm and version string
-    :param datestr: datestr for current RDD record
-    :param errs: Errors element from input RDD
-    :return: Either a properly formatted RDD tuple or the result of executing
-             the RDD function.
+
+    Args:
+        chip_x (float): x coordinate of source chip id
+        chip_y (float): y coordinate of source chip id
+        x (float): x coordinate
+        y (float): y coordinate
+        alg (str): algorithm and version string
+        datestr (str): datestr for current RDD record
+        errs (str): Errors element from input RDD
+
+    Returns:
+        False or tuple: Either False if no errors or an error()
     """
+
     if errors is None:
         return False
     else:
@@ -72,16 +90,21 @@ def haserrors(chip_x, chip_y, x, y, alg, datestr, errors):
 def tryexcept(func, kwargs, chip_x, chip_y, x, y, alg, datestr):
     """Executes a function wrapped in try: except:.  Returns result
     of success() or error().
-    :param func: function to execute
-    :param kwargs: keyword args for func
-    :param chip_x: x coordinate of source chip id
-    :param chip_y: y coordinate of source chip id
-    :param x: x coordinate
-    :param y: y coordinate
-    :param alg: algorithm and version string
-    :param datestr: date string that identifies this execution
-    :return: value of success() or error()
+
+    Args:
+        func (func): function to execute
+        kwargs (dict): keyword args for func
+        chip_x (float): x coordinate of source chip id
+        chip_y (float): y coordinate of source chip id
+        x (float): x coordinate
+        y (float): y coordinate
+        alg (str): algorithm and version string
+        datestr (str): date string that identifies this execution
+
+    Returns:
+        tuple: value of success() or error()
     """
+
     try:
         return success(chip_x=chip_x, chip_y=chip_y, x=x, y=y, alg=alg,
                        datestr=datestr, result=func(**kwargs))
@@ -92,25 +115,37 @@ def tryexcept(func, kwargs, chip_x, chip_y, x, y, alg, datestr):
 
 def safely(func, kwargs, chip_x, chip_y, x, y, alg, datestr, errors):
     """Runs a function for an input with exception handling applied
-    :param func: function to execute
-    :param kwargs: keyword args for func
-    :param chip_x: x coordinate of source chip id
-    :param chip_y: y coordinate of source chip id
-    :param x: x coordinate
-    :param y: y coordinate
-    :param alg: algorithm and version string
-    :param datestr: date string that identifies this execution
-    :param errors: value of input rdd tuple position for errors.
-    :return: value of success() or error()
+
+    Args:
+     func (func): function to execute
+     kwargs (dict): keyword args for func
+     chip_x (float): x coordinate of source chip id
+     chip_y (float): y coordinate of source chip id
+     x (float): x coordinate
+     y (float): y coordinate
+     alg (str): algorithm and version string
+     datestr (str): date string that identifies this execution
+     errors (str): value of input rdd tuple position for errors.
+
+    Returns:
+        tuple: value of success() or error()
     """
+
     return (haserrors(chip_x=chip_x, chip_y=chip_y, x=x, y=y, alg=alg,
                       datestr=datestr, errors=errors) or
             tryexcept(func=func, kwargs=kwargs, chip_x=chip_x, chip_y=chip_y,
                       x=x, y=y, alg=alg, datestr=datestr))
 
 
-def simplify_detect_results(results):
-    """Convert child objects inside CCD results from NamedTuples to dicts"""
+def ccdresults_to_dict(results):
+    """Convert child objects inside CCD results from NamedTuples to dicts
+
+    Args:
+        results (dict): pyccd results
+
+    Returns:
+        dict: pyccd results with namedtuples converted to dicts
+    """
 
     def simplify(result):
         return {k: f.simplify_objects(v) for k, v in result.items()}
@@ -120,19 +155,29 @@ def simplify_detect_results(results):
 
 def result_to_models(result):
     """Function to extract the change_models dictionary from the CCD results
-    :param result: CCD result object (dict)
-    :return: list
+
+    Args:
+        result (dict): CCD result object
+
+    Returns:
+       dict: ccd result with nametuples converted to dicts
     """
-    return simplify_detect_results(result).get('change_models')
+
+    return ccdresults_to_dict(result).get('change_models')
 
 
 def pyccd(rdd):
     """Execute ccd.detect
-    :param rdd: Tuple of (tuple, dict) generated from pyccd_inputs
-                ((chip_x, chip_y, x, y, algorithm, datestring), data, errors)
-    :return: A tuple of (tuple, dict) with pyccd results
-             ((chip_x, chip_y, x, y, algorithm, acquired), results, errors)
+
+    Args:
+        rdd (rdd): Tuple of (tuple, dict) generated from pyccd_inputs
+                   ((chip_x, chip_y, x, y, algorithm, datestring), data, errors)
+
+    Returns:
+        tuple: tuple of (tuple, dict) with pyccd results
+               ((chip_x, chip_y, x, y, algorithm, acquired), results, errors)
     """
+
     chip_x = rdd[0][0]
     chip_y = rdd[0][1]
     x = rdd[0][2]
@@ -157,10 +202,14 @@ def pyccd(rdd):
 
 def lastchange(rdd):
     """Create lastchange product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
+
+    Args:
+        rdd (rdd): (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+                      product_date)
+    Returns:
+        tuple: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
+
     chip_x = rdd[0][0][0]
     chip_y = rdd[0][0][1]
     x = rdd[0][0][2]
@@ -179,10 +228,15 @@ def lastchange(rdd):
 
 def changemag(rdd):
     """Create changemag product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
+
+    Args:
+        rdd (rdd): (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+                      product_date)
+
+    Return:
+        tuple: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
+
     chip_x = rdd[0][0][0]
     chip_y = rdd[0][0][1]
     x = rdd[0][0][2]
@@ -200,10 +254,15 @@ def changemag(rdd):
 
 def changedate(rdd):
     """Create changedate product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
+
+    Args:
+        rdd (rdd): (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+                      product_date)
+
+    Returns:
+        tuple: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
+
     chip_x = rdd[0][0][0]
     chip_y = rdd[0][0][1]
     x = rdd[0][0][2]
@@ -221,10 +280,15 @@ def changedate(rdd):
 
 def seglength(rdd):
     """Create seglength product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
+
+    Args:
+        rdd (rdd): (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+                      product_date)
+
+    Returns:
+        tuple: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
+
     chip_x = rdd[0][0][0]
     chip_y = rdd[0][0][1]
     x = rdd[0][0][2]
@@ -244,10 +308,15 @@ def seglength(rdd):
 
 def curveqa(rdd):
     """Create curveqa product
-    :param rdd: (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
-                 product_date)
-    :return: ((chip_x, chip_y, x, y, algorithm, result, errors))
+
+    Args:
+        rdd (rdd): (((chip_x, chip_y, x, y, algorithm, acquired), data, errors),
+                      product_date)
+
+    Returns:
+        tuple: ((chip_x, chip_y, x, y, algorithm, result, errors))
     """
+
     chip_x = rdd[0][0][0]
     chip_y = rdd[0][0][1]
     x = rdd[0][0][2]
@@ -268,10 +337,14 @@ def fits_in_box(value, bbox):
     Useful as a filtering function with conditional enforcement.
     If bbox is None then fits_in_box always returns True
 
-    :param value: Tuple: ((chip_x, chip_y, x, y), (data))
-    :param bbox: dict with keys: ulx, uly, lrx, lry
-    :return: Boolean
+    Args:
+        value (tuple): ((chip_x, chip_y, x, y), (data))
+        bbox (dict): ulx, uly, lrx, lry
+
+    Returns:
+       bool
     """
+
     def fits(point, bbox):
         _, _, x, y = point
         return (float(x) >= float(bbox['ulx']) and
@@ -284,16 +357,21 @@ def fits_in_box(value, bbox):
 
 def labels(inputs=None, ccd=None, lastchange=None, changemag=None,
            changedate=None, seglength=None, curveqa=None):
-    """Applies friendly names to products
-    :param inputs: Inputs rdd
-    :param ccd: CCD rdd
-    :param lastchange: Lastchange rdd
-    :param changemag: Changemag rdd
-    :param changedate: Changedate rdd
-    :param seglength: Seglength rdd
-    :param curvaqa: Curveqa rdd
-    :return: A dict of label:rdd
+    """Associates friendly names to products
+
+    Args:
+        inputs (rdd): Inputs rdd
+        ccd (rdd): CCD rdd
+        lastchange (rdd): Lastchange rdd
+        changemag (rdd): Changemag rdd
+        changedate (rdd): Changedate rdd
+        seglength (rdd): Seglength rdd
+        curvaqa (rdd): Curveqa rdd
+
+    Returns:
+        dict: {label:rdd}
     """
+
     return {'inputs': inputs, 'ccd': ccd, 'lastchange': lastchange,
             'changemag': changemag, 'changedate': changedate,
             'seglength': seglength, 'curveqa': curveqa}
@@ -301,9 +379,13 @@ def labels(inputs=None, ccd=None, lastchange=None, changemag=None,
 
 def products(jobconf, spark_context):
     """Product graph for firebird products
-    :param jobconf: dict of broadcast variables
-    :param spark_context: Configured spark context or None
-    :return: dict keyed by product with lazy RDD as value
+
+    Args:
+        jobconf (dict): broadcast variables
+        spark_context: Configured spark context or None
+
+    Returns:
+        dict: {product: rdd}
     """
 
     sc = spark_context
@@ -318,13 +400,7 @@ def products(jobconf, spark_context):
     product_partitions = jobconf['product_partitions'].value
     chip_ids = jobconf['chip_ids'].value
 
-    # print("INITIAL PARTITIONS:{}".format(initial_partitions))
-    # print("PRODUCT PARTITIONS:{}".format(product_partitions))
-    # print("CHIP IDS:{}".format(chip_ids))
-
     _chipids = sc.parallelize(chip_ids, initial_partitions).setName("chip_ids")
-
-    # query data and transform it into pyccd input format
 
     _in = _chipids.map(partial(merlin.create,
                                dates_fn=partial(
