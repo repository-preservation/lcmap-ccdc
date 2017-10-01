@@ -23,8 +23,8 @@ docker-deps-up-nodaemon:
 	docker-compose -f test/resources/docker-compose.yml up
 
 docker-db-test-schema:
-	docker cp test/resources/test.schema.setup.cql worker-cassandra:/
-	docker exec -u root worker-cassandra cqlsh localhost -f test.schema.setup.cql
+	docker cp test/resources/schema.setup.cql firebird-cassandra:/
+	docker exec -u root firebird-cassandra cqlsh localhost -f schema.setup.cql
 
 docker-deps-down:
 	docker-compose -f test/resources/docker-compose.yml down
