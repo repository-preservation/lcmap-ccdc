@@ -1,0 +1,14 @@
+[run]
+branch  = True
+source  = firebird
+omit    = lib/*
+          bin/*
+          lib64/*
+          include/*
+          version.py
+          setup.py
+          firebird/mocks/*
+          firebird/cmdline.py
+          test/fixtures.py
+[html]
+directory = test/coverage
