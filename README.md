@@ -113,6 +113,11 @@
                    --clip
 ```
 
+## I ran a really large area and got out of memory errors.
+Edit ```firebird.install``` and add more memory to the executors.  
+It is helpful to calculate how much data you will be working with ahead of
+time based on your query bounds, acquired range and products.
+
 ## Where do the results get saved?
 In a table matching the algorithm + version, in a keyspace configured
 in ```firebird.install```.  Tables and keyspaces must be created before running
