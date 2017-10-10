@@ -13,10 +13,13 @@ LCMAP Science Execution Environment
 ## As a development and analysis environment
 * Jupyter Notebooks & Apache Cassandra (included)
 * Notebooks uploaded or mounted via a volume 
-* Examples provided. Development and analysis Notebooks are controlled outside Firebird however.
-* Comes with the Firebird Spark Python library for working with chips, chip-specs and creating time-series data
-* Code may be moved to operations [by merging it directly into lcmap-firebird or included it via library.](#developing-firebird)
 * Results are savable to Cassandra anywhere: Cloud, cluster, dev server, local, etc
+* Comes with the Firebird Spark Python library for working with chips, chip-specs and creating time-series data
+
+## Streamlined Research to Operations
+* Development and analysis Notebooks are controlled outside Firebird.
+* Code may be moved to operations [by merging it directly into lcmap-firebird or included it via library.](#developing-firebird)
+
 
 ## Get Started
 ```bash
