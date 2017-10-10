@@ -1,131 +1,32 @@
 # lcmap-firebird
-... makes LCMAP products.
+LCMAP Science Execution Environment
 
 ## What is lcmap-firebird?
-* It is a command line interface
-* Built on Apache Spark and Docker
-* That allows you to make LCMAP products on 2000 cores as easily as you can on 1
-* It has a built-in Pyspark shell for ad-hoc cluster operations
-* And a built-in Jupyter Notebook server for development and analysis
-* Firebird includes an Apache Cassandra server to save development and ad-hoc results
+* LCMAP product generation, development and analysis
+* Built on Apache Spark, Apache Mesos, Docker and Python3
+* Runs on 2000 cores as easily as it runs on 1
 
-## What's this you say?
-* Yes
-* It is both an operations and development environment
-* It is *really* parallel in either case
+## As an operations environment
+* Command line interface
+* System requirements: Bash, Docker, Mesos keys/credentials (optional)
 
 ## As a development and analysis environment
-* Notebooks can be uploaded or mounted via a volume, but controlled and managed
-  externally
-* Once ready for primetime, [code may be merged into lcmap-firebird directly or via library.](#developing-firebird)
-* Results are savable to Cassandra anywhere: Cloud, cluster, dev server, etc
+* Jupyter Notebooks & Apache Cassandra (included)
+* Notebooks uploaded or mounted via a volume 
+* Examples provided. Development and analysis Notebooks are controlled outside Firebird however.
+* Comes with the Firebird Spark Python library for working with chips, chip-specs and creating time-series data
+* Code may be moved to operations [by merging it directly into lcmap-firebird or included it via library.](#developing-firebird)
+* Results are savable to Cassandra anywhere: Cloud, cluster, dev server, local, etc
 
-## The Firebird Spark Python Library
-* Obtains input data via HTTP
-* Performs massively parallel product generation
-* Saves results to Apache Cassandra
-
-## How do I get it?
+## Get Started
 ```bash
    $ wget https://raw.githubusercontent.com/USGS-EROS/lcmap-firebird/master/firebird.install.example -O firebird.install
-```
-
-## It wasn't there.  How do I get the latest development version?
-```bash
-   $ wget https://raw.githubusercontent.com/USGS-EROS/lcmap-firebird/develop/firebird.install.example -O firebird.install
-```
-
-## How do I configure it?
-```bash
-   $ vi firebird.install
-```
-
-## How do I install it?
-```bash
+   $ emacs firebird.install
    $ source firebird.install
+   $ firebird-save -a 1980-01-01/2017-01-01 -b -1821585,2891595 -p seglength -p ccd -d 2014-01-01 
 ```
 
-## How do I use it?
-```bash
-   $ firebird-save -a 1980-01-01/2017-01-01 -b -1821585,2891595 -p seglength -p ccd -d 2014-01-01
-```
-
-## Once more?
-```bash
-   $ firebird-save --acquired 1980-01-01/2017-01-01 \
-                   --bounds -1821585,2891595 \
-                   --products seglength \
-                   --products ccd \
-                   --product_dates 2014-01-01
-```
-
-## How do I just run a single point instead?
-```bash
-   $ firebird-save --acquired 1980-01-01/2017-01-01 \
-                   --bounds -1821585,2891595 \
-                   --products seglength \
-                   --products ccd \
-                   --product_dates 2014-01-01 \
-                   --clip
-```
-
-## How do I find out what products I can run?
-```bash
-   $ firebird-products
-```
-
-## You seem to like seglength, ccd and 2014-01-01
-```bash
-   $ firebird-save --acquired 1980-01-01/2017-01-01 \
-                   --bounds -1821585,2891595 \
-                   --products curveqa \
-                   --product_dates 2010-01-01 \
-                   --product_dates 2011-01-01 \
-                   --product_dates 2012-01-01 \
-                   --product_dates 2013-01-01 \
-                   --product_dates 2015-01-01 \
-                   --product_dates 2016-01-01 \
-                   --product_dates 2017-01-01 \
-                   --clip
-```
-
-## How do I run a bigger area?
-```bash
-   $ firebird-save --acquired 1980-01-01/2017-01-01 \
-                   --bounds -1791585,2891595 \
-                   --bounds -1821585,2891595 \
-                   --bounds -1791585,2911595 \
-                   --bounds -1821585,2911595 \
-                   --products seglength \
-                   --products ccd \
-                   --product_dates 2014-01-01
-```
-
-## How do I run a triangle instead?
-```bash
-   $ firebird-save --acquired 1980-01-01/2017-01-01 \
-                   --bounds -1791585,2891595 \
-                   --bounds -1821585,2891595 \
-                   --bounds -1821585,2911595 \
-                   --products seglength \
-                   --products ccd \
-                   --product_dates 2014-01-01 \
-                   --clip
-```
-
-## I ran a really large area and got out of memory errors.
-Edit ```firebird.install``` and add more memory to the executors.  
-It is helpful to calculate how much data you will be working with ahead of
-time based on your query bounds, acquired range and products.
-
-## Where do the results get saved?
-In a table matching the algorithm + version, in a keyspace configured
-in ```firebird.install```.  Tables and keyspaces must be created before running
-Firebird, presumably by Cassandra admins.  
-
-If you are running the local Cassandra image, you are the Cassandra admin.  
-In that case, edit ```test/resources/test.schema.setup.cql```
-then run ```$ make docker-db-test-schema```.
+## Read [Frequently Asked Questions](faq.md)
 
 ## Developing Firebird
 
@@ -148,19 +49,19 @@ then run ```$ make docker-db-test-schema```.
 * Run tests
 ```bash
  $ make spark-lib
- $ make docker-deps-up
- $ make docker-db-test-schema
+ $ make deps-up
+ $ make db-schema
  $ make tests
- $ make docker-deps-down
+ $ make deps-down
 ```
 
 * Cut a branch, do some work, write some tests, update the docs, push to github
 
 * Build a Docker image to test locally
 ```bash
-    $ vi version.txt
+    $ emacs version.txt
     $ make docker-build
-    $ vi firebird.install # point to new version that was just built
+    $ emacs firebird.install # point to new version that was just built
 ```
 
 * Publish the Docker image so it will be available to a cluster
@@ -170,7 +71,7 @@ then run ```$ make docker-db-test-schema```.
 
 ## Development Philosophy
 Apache Spark is functional programming for cluster computing therefore
-Firebird strives to ensure all of it's code follows functional principles of
-using immutable data (where possible), using functions as the primary unit of
-abstraction, and composing functions (placing them together) rather than
-complecting code (intermingling concepts).
+Firebird strives to ensure all of it's code follows functional principles:
+data is immutable, functions are the primary unit of abstraction, and functional 
+composition rather than intermingling concepts (complecting.)
+

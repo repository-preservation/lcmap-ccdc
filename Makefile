@@ -16,18 +16,15 @@ docker-push:
 docker-shell:
 	docker run -it --entrypoint=/bin/bash usgseros/$(WORKERIMAGE)
 
-docker-deps-up:
-	docker-compose -f test/resources/docker-compose.yml up -d
-
-docker-deps-up-nodaemon:
+deps-up:
 	docker-compose -f test/resources/docker-compose.yml up
 
-docker-db-test-schema:
+deps-down: 
+	docker-compose -f test/resources/docker-compose.yml down
+
+db-schema:
 	docker cp test/resources/schema.setup.cql firebird-cassandra:/
 	docker exec -u root firebird-cassandra cqlsh localhost -f schema.setup.cql
-
-docker-deps-down:
-	docker-compose -f test/resources/docker-compose.yml down
 
 spark-lib:
 	@rm -rf lib
