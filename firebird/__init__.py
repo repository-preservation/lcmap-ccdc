@@ -3,7 +3,7 @@ import os
 import socket
 
 # All of these are evaluated at import time!!!  That means the env vars need
-# to be set before the firebird module is imported.  Not.  Good.
+# to be set before the firebird module is imported.  
 HOST = socket.gethostbyname(socket.getfqdn())
 AARDVARK = os.getenv('FIREBIRD_AARDVARK', 'http://localhost:5678')
 AARDVARK_SPECS = os.getenv('FIREBIRD_AARDVARK_SPECS', '/v1/landsat/chip-specs')
@@ -20,23 +20,22 @@ QA_BIT_PACKED = os.getenv('FIREBIRD_CCD_QA_BITPACKED', 'True')
 SPECS_URL = ''.join([AARDVARK, AARDVARK_SPECS])
 STORAGE_PARTITION_COUNT = int(os.getenv('FIREBIRD_STORAGE_PARTITION_COUNT', 1))
 
-# log format needs to be
-# 2017-06-29 13:09:04,109 DEBUG lcmap.aardvark.chip-spec - initializing GDAL
-# 2017-06-29 13:09:04,138 DEBUG lcmap.aardvark.chip - initializing GDAL
-# 2017-06-29 13:09:04,146 INFO  lcmap.aardvark.server - start server
-#
-# Normal python logging setup doesnt work even though the log level can be
-# passed into the SparkContext) for executors because it's actually the jvm
-# that's handling it.
-# In order to configure logging, need to manipulate the log4j.properties
-# instead of Python logging configs.
+# Must obtain a logger from log4j since the jvm is what is actually 
+# doing all the logging under the covers for PySpark.
+# Format and logging configuration is handled through log4j.properties.
 
-#logging.basicConfig(
-#    level=LOG_LEVEL,
-#    format='%(asctime)s %(levelname)s %(module)s.%(funcName)-20s - %(message)s',
-##    stream=sys.stdout)
+def get_logger(sc, name):
+    """Get PySpark configured logger
+    
+    Args:
+        sc: SparkContext
+        name (str): Name of the logger (category)
 
-logger = logging.getLogger('firebird')
+    Returns:
+        Logger instance
+    """
+
+    return sc._jvm.org.apache.log4j.LogManager.getLogger(name)
 
 
 def ccd_params():
