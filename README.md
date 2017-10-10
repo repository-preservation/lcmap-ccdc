@@ -8,7 +8,7 @@ LCMAP Science Execution Environment
 
 ## As an operations environment
 * Command line interface
-* System requirements: Bash, Docker, Mesos keys/credentials (optional)
+* System requirements: Bash & Docker
 
 ## As a development and analysis environment
 * Jupyter Notebooks & Apache Cassandra (included)
