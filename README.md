@@ -76,5 +76,5 @@ LCMAP Science Execution Environment
 Apache Spark is functional programming for cluster computing therefore
 Firebird strives to ensure all of it's code follows functional principles:
 data is immutable, functions are the primary unit of abstraction, and functional 
-composition rather than intermingling concepts (complecting.)
+composition over complecting concepts.
 
