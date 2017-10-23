@@ -34,8 +34,9 @@ Get Started
    $ source firebird.install
    $ firebird-save -a 1980-01-01/2017-01-01 -b -1821585,2891595 -p seglength -p ccd -d 2014-01-01 
 
-Read [Frequently Asked Questions](docs/faq.md)
+Read `Frequently Asked Questions <docs/faq.md>`_
 ----------------------------------------------
+
 
 Developing Firebird
 -------------------
