@@ -2,10 +2,10 @@ Is this all the documentation that is available?
 ------------------------------------------------
 For version 0.5, yes.  For version 1.0 proper documentation will be published to readthedocs.org.
 
-**What credentials and keys do I need to run Firebird?**
+What credentials and keys do I need to run Firebird?
 ----------------------------------------------------
 
-As an **operations** environment, Firebird runs Spark in Docker on Mesos, and saves it's results to Cassandra.  Therefore the following are necessary
+As an operations environment, Firebird runs Spark in Docker on Mesos and saves it's results to Cassandra.  The following information is necessary to run Firebird in ops.  All values are set in ::code::install.sh.
 
 * Mesos keys, credentials, and master url(s)
 * Cassandra credentials and contact point url
@@ -13,7 +13,7 @@ As an **operations** environment, Firebird runs Spark in Docker on Mesos, and sa
 * Network access to all deployed services
 * Full name and tag of Docker image to use from hub.docker.com.
 
-In addition to this, you will need to control your performance levels and resources utilization via the following:
+To control performance levels and resources utilization:
 
 * `INITIAL_PARTITION_COUNT`
 * `PRODUCT_PARTITION_COUNT`
@@ -22,7 +22,7 @@ In addition to this, you will need to control your performance levels and resour
 * `DRIVER_MEMORY`
 * `EXECUTOR_MEMORY`
 
-If you are running the PySpark shell configure these as well:
+For the PySpark shell:
 
 * `PYSPARK_CORES`
 * `PYSPARK_DRIVER_MEMORY`
