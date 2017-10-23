@@ -5,7 +5,7 @@ For version 0.5, yes.  For version 1.0 proper documentation will be published to
 What credentials and keys do I need to run Firebird?
 ----------------------------------------------------
 
-As an operations environment, Firebird runs Spark in Docker on Mesos and saves it's results to Cassandra.  Set the following items in :code:`install.sh` prior to running Firebird.
+As an operations environment, Firebird runs Spark in Docker on Mesos and saves it's results to Cassandra.  Set the following items in :code:`install.sh`.
 
 * Mesos keys, credentials, and master url(s)
 * Cassandra credentials and contact point url
