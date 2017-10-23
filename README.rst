@@ -57,7 +57,7 @@ Developing Firebird
    $ pip install -e .[test,dev]
 
 * Run tests
-.. code-block::bash
+.. code-block:: bash
 
    $ make spark-lib
    $ make deps-up
@@ -68,14 +68,14 @@ Developing Firebird
 * Cut a branch, do some work, write some tests, update the docs, push to github
 
 * Build a Docker image to test locally
-.. code-block::bash
+.. code-block:: bash
 
    $ emacs version.txt
    $ make docker-build
    $ emacs firebird.install # point to new version that was just built
 
 * Publish the Docker image so it will be available to a cluster
-.. code-block::bash
+.. code-block:: bash
 
    $ make docker-push
 
