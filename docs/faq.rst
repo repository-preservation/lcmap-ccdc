@@ -1,6 +1,6 @@
 Is this all the documentation that is available?
 ------------------------------------------------
-For version 0.5, yes.  For version 1.0 proper documentation will be published to readthedocs.org.
+For version 0.5, yes.  For version 1.0 proper documentation will be published to https://readthedocs.org.
 
 What credentials and keys do I need to run Firebird?
 ----------------------------------------------------
