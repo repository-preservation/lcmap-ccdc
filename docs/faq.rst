@@ -5,6 +5,7 @@ For version 0.5, yes.  For version 1.0 proper documentation will be published to
 What credentials and keys do I need to run Firebird?
 ----------------------------------------------------
 As an operations environment, Firebird runs Spark in Docker on Mesos, and saves it's results to Cassandra.  Therefore the following are necessary
+
 * Mesos keys, credentials, and master url(s)
 * Cassandra credentials and contact point url
 * LCMAP Aardvark (or LCMAP Chipmunk) urls
@@ -12,6 +13,7 @@ As an operations environment, Firebird runs Spark in Docker on Mesos, and saves 
 * Full name and tag of Docker image to use from hub.docker.com.
 
 In addition to this, you will need to control your performance levels and resources utilization via the following:
+
 * `INITIAL_PARTITION_COUNT`
 * `PRODUCT_PARTITION_COUNT`
 * `STORAGE_PARTITION_COUNT`
@@ -20,6 +22,7 @@ In addition to this, you will need to control your performance levels and resour
 * `EXECUTOR_MEMORY`
 
 If you are running the PySpark shell configure these as well:
+
 * `PYSPARK_CORES`
 * `PYSPARK_DRIVER_MEMORY`
 * `PYSPARK_EXECUTOR_MEMROY`
@@ -102,7 +105,7 @@ How do I run a triangle instead?
 
 I ran a really large area and got out of memory errors.
 -------------------------------------------------------
-Edit `firebird.install` and add more memory to the executors.  
+Edit :code:`firebird.install` and add more memory to the executors.  
 It is helpful to calculate how much data you will be working with ahead of
 time based on your query bounds, acquired range and products.
 
@@ -111,13 +114,13 @@ Keep in mind that each partition of data must fit in memory for an executor.
 Where do the results get saved?
 -------------------------------
 In a table matching the algorithm + version, in a keyspace configured
-in `firebird.install`.  Tables and keyspaces must be created before running
+in :code:`firebird.install`.  Tables and keyspaces must be created before running
 Firebird, presumably by Cassandra admins.
 
 If you are running the local Cassandra image, you are the Cassandra admin.
-In that case, edit `test/resources/test.schema.setup.cql`
-then run `$ make docker-db-test-schema`.
+In that case, edit :code:`test/resources/test.schema.setup.cql`
+then run :code:`$ make docker-db-test-schema`.
 
 How do I run the included Apache Cassandra server?
 --------------------------------------------------
-`make deps-up` followed by `make db-schema`.
+:code:`make deps-up` followed by :code:`make db-schema`.
