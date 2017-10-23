@@ -1,3 +1,4 @@
+
 # lcmap-firebird
 LCMAP Science Execution Environment
 
@@ -29,7 +30,7 @@ LCMAP Science Execution Environment
    $ firebird-save -a 1980-01-01/2017-01-01 -b -1821585,2891595 -p seglength -p ccd -d 2014-01-01 
 ```
 
-## Read [Frequently Asked Questions](faq.md)
+## Read [Frequently Asked Questions](docs/faq.md)
 
 ## Developing Firebird
 
