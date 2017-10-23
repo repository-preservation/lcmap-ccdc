@@ -29,6 +29,7 @@ Streamlined Research to Operations
 Get Started
 -----------
 .. code-block:: bash
+
    $ wget https://raw.githubusercontent.com/USGS-EROS/lcmap-firebird/master/firebird.install.example -O firebird.install
    $ emacs firebird.install
    $ source firebird.install
@@ -36,7 +37,6 @@ Get Started
 
 Read `Frequently Asked Questions <docs/faq.md>`_
 ----------------------------------------------
-
 
 Developing Firebird
 -------------------
