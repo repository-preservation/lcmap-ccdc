@@ -122,7 +122,7 @@ Firebird, presumably by Cassandra admins.
 
 If you are running the local Cassandra image, you are the Cassandra admin.
 In that case, edit :code:`test/resources/schema.setup.cql`
-then run :code:`$ make db-schema`.
+then run :code:`make db-schema`.
 
 How do I run the included Apache Cassandra server?
 --------------------------------------------------
