@@ -23,7 +23,7 @@ As a development and analysis environment
 Streamlined Research to Operations
 ----------------------------------
 * Development and analysis Notebooks are controlled outside Firebird.
-* Code may be moved to operations [by merging it directly into lcmap-firebird or included it via library.](#developing-firebird)
+* Code may be moved to operations `by merging it directly into lcmap-firebird or included it via library. <#developing-firebird>`_
 
 
 Get Started
