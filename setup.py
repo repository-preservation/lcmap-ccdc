@@ -30,7 +30,7 @@ setup(name='lcmap-firebird',
           'gdal',
           'cytoolz',
           'lcmap-merlin==1.0',
-          'lcmap-pyccd==2017.8.18',
+          'lcmap-pyccd==2017.10.27',
       ],
       # List additional groups of dependencies here (e.g. development
       # dependencies). You can install these using the following syntax,

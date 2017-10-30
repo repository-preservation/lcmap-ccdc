@@ -26,7 +26,7 @@ WITH COMPRESSION = { 'sstable_compression' : 'LZ4Compressor' }
 AND  COMPACTION = { 'class' :  'LeveledCompactionStrategy' };
 
 
-CREATE TABLE IF NOT EXISTS lcmap_changes_local.lcmap_pyccd_2017_08_18(
+CREATE TABLE IF NOT EXISTS lcmap_changes_local.lcmap_pyccd_2017_10_27(
     chip_x int,
     chip_y int,
     x int,
