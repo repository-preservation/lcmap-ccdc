@@ -53,7 +53,7 @@ RUN curl https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -
     ./mc.sh -b && \
     rm -rf mc.sh && \
     conda config --add channels conda-forge && \
-    conda install cython gdal --yes
+    conda install python=3.6.2 pyzmq cython gdal --yes
 
 COPY firebird firebird
 COPY notebook notebook
@@ -61,7 +61,7 @@ COPY resources resources
 COPY test test
 COPY Makefile .
 COPY pom.xml .
-COPY README.md .
+COPY README.rst .
 COPY setup.py .
 COPY version.txt .
 COPY log4j.properties $SPARK_HOME/conf/log4j.properties
