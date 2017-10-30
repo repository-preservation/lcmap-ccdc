@@ -43,5 +43,3 @@ clean:
 	@rm -rf dist build lcmap_firebird.egg-info test/coverage lib/ derby.log spark-warehouse
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -delete
-
-
