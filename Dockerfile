@@ -64,7 +64,7 @@ COPY pom.xml .
 COPY README.md .
 COPY setup.py .
 COPY version.txt .
-
+COPY log4j.properties $SPARK_HOME/conf/log4j.properties
 RUN sudo chown -R lcmap:lcmap .
 
 RUN pip install -e .[test,dev]
