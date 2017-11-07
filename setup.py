@@ -26,14 +26,8 @@ setup(name='lcmap-firebird',
       author_email='',
       license='Unlicense',
       packages=['firebird'],
-      #install_requires=[
-      #    'gdal',
-      #    'cytoolz',
-      #    'lcmap-merlin==1.0.2',
-      #    'lcmap-pyccd==2017.10.27',
-      #],
       install_requires=[
-          'lcmap-merlin==1.0.2',
+          'lcmap-merlin>=1.0.3',
           'lcmap-pyccd==2017.10.27',
       ],
       # List additional groups of dependencies here (e.g. development
