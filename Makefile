@@ -1,20 +1,27 @@
 # pull the tag from version.txt
 TAG:=`cat version.txt`
-WORKERIMAGE:=usgseros/lcmap-firebird:$(TAG)
+OPERATOR_IMAGE:=usgseros/lcmap-firebird
+DEVELOPER_IMAGE:=$(OPERATOR_IMAGE)-developer
 
 vertest:
 	@echo TAG:$(TAG)
-	@echo WORKERIMAGE:$(WORKERIMAGE)
+	@echo OPERATORIMAGE:$(OPERATOR_IMAGE)
+	@echo DEVELOPERIMAGE:$(DEVELOPER_IMAGE)
 
 docker-build:
-	docker build -t $(WORKERIMAGE) $(PWD)
+	docker build -f docker/operator/Dockerfile -t $(OPERATOR_IMAGE):$(TAG) -t $(OPERATOR_IMAGE):latest $(PWD)
+	docker tag $(OPERATOR_IMAGE):$(TAG) firebird_base
+	docker build -f docker/developer/Dockerfile -t $(DEVELOPER_IMAGE):$(TAG) -t $(DEVELOPER_IMAGE):latest $(PWD)
 
 docker-push:
 	docker login
-	docker push $(WORKERIMAGE)
+	docker push $(OPERATOR_IMAGE):$(TAG)
+	docker push $(OPERATOR_IMAGE):latest
+	docker push $(DEVELOPER_IMAGE):$(TAG)
+	docker push $(DEVELOPER_IMAGE):latest
 
 docker-shell:
-	docker run -it --entrypoint=/bin/bash usgseros/$(WORKERIMAGE)
+	docker run -it --entrypoint=/bin/bash usgseros/$(DEVELOPER_IMAGE):latest
 
 deps-up:
 	docker-compose -f test/resources/docker-compose.yml up
@@ -34,7 +41,7 @@ spark-lib:
 	tar -C lib -xvf lib/spark-2.2.0-bin-hadoop2.7.tar
 	rm lib/*tar
 	ln -s spark-2.2.0-bin-hadoop2.7 lib/spark
-	mvn dependency:copy-dependencies -DoutputDirectory=lib/spark/jars
+	mvn dependency:copy-dependencies -f resources/pom.xml -DoutputDirectory=lib/spark/jars
 
 tests:
 	./test.sh
