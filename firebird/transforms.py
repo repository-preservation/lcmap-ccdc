@@ -424,8 +424,8 @@ def products(jobconf, spark_context):
                                                        datestr=acquired,
                                                        result=x[1])))\
                                .repartition(product_partitions)\
-                               .setName(algorithm('inputs', '20170608'))\
-                               .persist()
+                               .setName(algorithm('inputs', '20170608'))# \
+                               # .persist()
 
     _ccd = _in.map(pyccd).setName(ccd.algorithm).persist()
 
