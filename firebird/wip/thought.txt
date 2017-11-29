@@ -1,0 +1,61 @@
+Nouns
+
+bounds
+timeseries - date/date
+models
+ancillaries
+products - date
+results - general functions on result structures
+
+Timeseries
+----------
+Can be loaded from Cassandra or produced from Chipmunk.  Spectral bands.
+- read(bounds, timerange)
+- write()
+- create(bounds, timerange, ubids=defaulted)
+
+Ancillaries
+-----------
+Can be loaded from Cassandra or produced from Chipmunk.  Single date values.
+- read(bounds, timerange)
+- write()
+- create(bounds, timerange, ubids=defaulted)
+
+Pyccd
+-----
+Can be loaded from Cassandra or produced from timeseries.
+- read(bounds)
+- write()
+- create(timeseries)
+
+Training
+--------
+Can be loaded from Cassandra or produced from pyccd and ancillary.
+- read(bounds)
+- write()
+- create(bounds)
+
+Classification
+--------------
+Can be loaded from Cassandra or produced from trained classifiers.
+- read(bounds)
+- write()
+- create(bounds)
+
+Results
+-------
+Given a set of bounds and an rdd, what data is missing from the rdd?
+Given an rdd, what items are in error?
+Given an rdd, how many items are there?
+Provide function to create a success() result.
+Provide function to create an error() result.
+
+JobConf
+-------
+- read(hashcode)
+- write(hashcode, {})
+- create({})
+
+CLI
+---
+- expose cwr for each Noun via command prompt.
