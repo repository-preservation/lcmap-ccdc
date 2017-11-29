@@ -1,20 +1,21 @@
 # pull the tag from version.txt
 TAG:=`cat version.txt`
-WORKERIMAGE:=usgseros/lcmap-firebird:$(TAG)
+IMAGE:=usgseros/lcmap-firebird
 
 vertest:
 	@echo TAG:$(TAG)
-	@echo WORKERIMAGE:$(WORKERIMAGE)
+	@echo IMAGE:$(IMAGE)
 
 docker-build:
-	docker build -t $(WORKERIMAGE) $(PWD)
+	docker build -t $(IMAGE):$(TAG) -t $(IMAGE):latest $(PWD)
 
 docker-push:
 	docker login
-	docker push $(WORKERIMAGE)
+	docker push $(IMAGE):$(TAG)
+	docker push $(IMAGE):latest
 
 docker-shell:
-	docker run -it --entrypoint=/bin/bash usgseros/$(WORKERIMAGE)
+	docker run -it --entrypoint=/bin/bash $(IMAGE):latest
 
 deps-up:
 	docker-compose -f test/resources/docker-compose.yml up
@@ -34,7 +35,7 @@ spark-lib:
 	tar -C lib -xvf lib/spark-2.2.0-bin-hadoop2.7.tar
 	rm lib/*tar
 	ln -s spark-2.2.0-bin-hadoop2.7 lib/spark
-	mvn dependency:copy-dependencies -DoutputDirectory=lib/spark/jars
+	mvn dependency:copy-dependencies -f pom.xml -DoutputDirectory=lib/spark/jars
 
 tests:
 	./test.sh

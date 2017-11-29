@@ -2,7 +2,7 @@ from setuptools import setup
 
 
 def readme():
-    with open('README.md') as f:
+    with open('README.rst') as f:
         return f.read()
 
 
@@ -27,10 +27,8 @@ setup(name='lcmap-firebird',
       license='Unlicense',
       packages=['firebird'],
       install_requires=[
-          'gdal',
-          'cytoolz',
-          'lcmap-merlin==1.0',
-          'lcmap-pyccd==2017.8.18',
+          'lcmap-merlin>=1.0.3',
+          'lcmap-pyccd==2017.10.27',
       ],
       # List additional groups of dependencies here (e.g. development
       # dependencies). You can install these using the following syntax,
