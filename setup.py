@@ -7,7 +7,7 @@ def readme():
 
 
 def version():
-    with open('version.txt') as h:
+    with open('resources/version.txt') as h:
         return h.read().strip()
 
 
