@@ -1,4 +1,0 @@
-ARG from_image
-FROM $from_image
-
-RUN pip install -e .[test,dev]

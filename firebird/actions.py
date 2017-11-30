@@ -1,4 +1,5 @@
 from cytoolz import first
+from cytoolz import second
 from firebird import transforms
 from merlin import chips
 from merlin import chip_specs
@@ -171,7 +172,9 @@ def save(acquired, bounds, products, product_dates, spark_context, clip=False,
             job[p].map(lambda x: (float(x[0][0]), float(x[0][1]),
                                   float(x[0][2]), float(x[0][3]),
                                   str(x[0][5]),
-                                  str(x[1]), str(x[2]), str(md5)))\
+                                  second(f.serialize(x[1])),
+                                  second(f.serialize(x[2])),
+                                  str(md5)))\
                                   .repartition(fb.STORAGE_PARTITION_COUNT),
             schema=result_schema())
 
