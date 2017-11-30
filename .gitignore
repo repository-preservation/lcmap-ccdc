@@ -90,3 +90,4 @@ ENV/
 .ropeproject
 
 install.sh
+resources/spark/
