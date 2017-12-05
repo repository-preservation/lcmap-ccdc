@@ -69,6 +69,7 @@ COPY firebird firebird/firebird
 COPY notebook firebird/notebook
 COPY test firebird/test
 COPY log4j.properties $SPARK_HOME/conf/log4j.properties
+RUN ln -s firebird/notebook notebook
 
 # Install spark-cassandra-connector
 RUN cd $HOME/firebird && \
