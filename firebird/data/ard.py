@@ -48,11 +48,6 @@ def read(chip_x, chip_y, acquired=None):
     # else:
     #     return df.filter(df.chip_x == chip_x, df.chip_y == chip_y, df.datestr == acquired)
     raise NotImplemented
-  
-def write(rdd, jobconf):
-    #return cassandra.write('timeseries',
-    #                       dataframe(rdd, results.schema(StringType()))
-    raise NotImplemented
 
 
 def execute(acquired, bounds, refspec, chips_fn=None, specs_fn=None):
