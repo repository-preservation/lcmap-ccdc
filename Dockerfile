@@ -1,9 +1,7 @@
 FROM usgseros/lcmap-spark:1.0.1-develop
 
-RUN sudo /usr/local/bin/conda install scipy scikit-learn=0.18 --yes
-
-# Copy firebird project artifacts into image
-RUN mkdir -p firebird
+RUN  sudo /usr/local/bin/conda install scipy scikit-learn=0.18 --yes
+RUN  mkdir -p firebird
 COPY .test_env test.sh setup.py version.txt Makefile README.rst ./firebird/
 COPY firebird firebird/firebird
 COPY test firebird/test
