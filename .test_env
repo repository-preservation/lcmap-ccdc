@@ -1,4 +1,4 @@
-export SPARK_HOME="${SPARK_HOME:=$(pwd)/lib/spark}"
+export SPARK_HOME="${SPARK_HOME:=$(pwd)/resources/spark}"
 export PATH=$PATH:$SPARK_HOME/bin
 export PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python/lib/pyspark.zip
 export PYTHONPATH=$PYTHONPATH:$SPARK_HOME/python/lib/py4j-0.10.4-src.zip

@@ -28,19 +28,18 @@ db-schema:
 	docker exec -u root firebird-cassandra cqlsh localhost -f schema.setup.cql
 
 spark-lib:
-	@rm -rf lib
-	@mkdir lib
-	wget -P lib https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
-	gunzip lib/*gz
-	tar -C lib -xvf lib/spark-2.2.0-bin-hadoop2.7.tar
-	rm lib/*tar
-	ln -s spark-2.2.0-bin-hadoop2.7 lib/spark
-	mvn dependency:copy-dependencies -f pom.xml -DoutputDirectory=lib/spark/jars
+	@rm -rf resources/spark
+	@mkdir -p resources
+	@wget -P resources https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
+	tar -C resources -zxf resources/spark-2.2.0-bin-hadoop2.7.tgz
+	mv resources/spark-2.2.0-bin-hadoop2.7 resources/spark
+	rm resources/spark-2.2.0-bin-hadoop2.7.tgz
+	mvn dependency:copy-dependencies -f resources/pom.xml -DoutputDirectory=spark/jars
 
 tests:
 	./test.sh
 
 clean:
-	@rm -rf dist build lcmap_firebird.egg-info test/coverage lib/ derby.log spark-warehouse
+	@rm -rf dist build lcmap_firebird.egg-info test/coverage derby.log spark-warehouse
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -delete
