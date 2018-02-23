@@ -91,3 +91,6 @@ ENV/
 
 install.sh
 resources/spark
+
+# Ignore emacs tmp files
+\#*\#
