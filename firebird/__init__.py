@@ -16,7 +16,7 @@ CASSANDRA_PASS     = os.getenv('CASSANDRA_PASS', 'cassandra')
 CASSANDRA_KEYSPACE = os.getenv('CASSANDRA_KEYSPACE', 'firebird_local')
 INPUT_PARTITIONS   = int(os.getenv('INPUT_PARTITIONS', 1))
 PRODUCT_PARTITIONS = int(os.getenv('PRODUCT_PARTITIONS', 1))
-LOG_LEVEL          = os.getenv('LOG_LEVEL', 'WARN')
+LOG_LEVEL          = os.getenv('LOG_LEVEL', 'INFO')
 ARD_CFG            = merlin.cfg.get(profile='chipmunk-ard', env={'CHIPMUNK_URL': ARD_CHIPMUNK}) 
 AUX_CFG            = merlin.cfg.get(profile='chipmunk-aux', env={'CHIPMUNK_URL': AUX_CHIPMUNK}) 
 
@@ -31,7 +31,7 @@ def context(name):
         A Spark context
     """
     
-    return SparkContext.getOrCreate(conf=SparkConf().setAppName(name))
+    return SparkContext.getOrCreate(conf=SparkConf().setAppName(name).setLogLevel(LOG_LEVEL))
 
 
 # Must obtain a logger from log4j since the jvm is what is actually 
@@ -48,6 +48,8 @@ def logger(context, name):
     Returns:
         Logger instance
     """
-
-    return context._jvm.org.apache.log4j.LogManager.getLogger(name)
+    
+    log4j = context._jvm.org.apache.log4j
+    log4j.LogManager.getRootLogger().setLevel(LOG_LEVEL)
+    return log4j.LogManager.getLogger(name)
 
