@@ -56,19 +56,6 @@ def products():
 
 
 @show.command()
-def algorithms():
-    """Click cli command for available Firebird algorithms (deprecated)
-
-    Returns:
-        sequence: algorithms
-    """
-
-    c.echo((os.path.exists('/algorithms') and
-            os.path.isdir('/algorithms') and
-            os.listdir('/algorithms')) or "No algorithms available.")
-
-
-@show.command()
 @c.option('--bounds', '-b', required=True)
 def chip_coordinates(bounds):
     """Click cli command to display chip coordinates from a set of bounds
@@ -89,7 +76,6 @@ def chip_coordinates(bounds):
 @c.option('--acquired', '-a', required=True)
 @c.option('--bounds', '-b', required=True, multiple=True)
 @c.option('--products', '-p', required=True, multiple=True)
-@c.option('--product_dates', '-d', required=True, multiple=True)
 @c.option('--clip', '-c', is_flag=True, default=False)
 def save(acquired, bounds, products, product_dates, clip):
     """Click cli command to generate and save Firebird products
@@ -110,8 +96,7 @@ def save(acquired, bounds, products, product_dates, clip):
     validate.save(acquired=acquired,
                   bounds=bounds,
                   clip=clip,
-                  products=products,
-                  product_dates=product_dates)
+                  products=products)
 
     # convert bounds to numbers from string sequence.
     fbounds = map(lambda n: (float(n[0]),float(n[1])),
@@ -126,9 +111,7 @@ def save(acquired, bounds, products, product_dates, clip):
                                         bounds=list(fbounds),
                                         clip=clip,
                                         products=products,
-                                        product_dates=product_dates,
                                         spark_context=spark_context)))
-        print(results)
         return results
     finally:
         if spark_context is not None:
