@@ -9,6 +9,7 @@ Prerequisites:
 cli.py should be added to setup.py as an entry_point console script.  After installing the Firebird python package, it would then be invoked as the entrypoint of the Firebird Docker image.
 """
 
+from cytoolz  import do
 from cytoolz  import excepts
 from cytoolz  import partial
 from cytoolz  import thread_first
@@ -68,12 +69,12 @@ def changedetection(x, y, acquired):
                                          y=y,
                                          acquired=acquired)))
 
-        return thread_first(timeseries.execute(sc=sc, chips=chips, acquired=acquired),
-                            partial(pyccd.execute, sc=sc),
-                            partial(pyccd.dataframe, sc=sc),
-                            partial(pyccd.write, sc=sc))
-    except Exception as e:
-        log.error('error:{}'.format(e))
+        return excepts(Exception,
+                       thread_first(timeseries.execute(sc=sc, chips=chips, acquired=acquired),
+                                    partial(pyccd.execute, sc=sc),
+                                    partial(pyccd.dataframe, sc=sc),
+                                    partial(pyccd.write, sc=sc)),
+                       do(log.error, 'error:{}'.format(e)))()
     finally:
         excepts(Exception, sc.stop(), lambda _: None)()
 
