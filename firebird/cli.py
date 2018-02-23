@@ -76,7 +76,7 @@ def changedetection(x, y, acquired):
                                     partial(pyccd.write, sc=sc)),
                        do(log.error, 'error:{}'.format(e)))()
     finally:
-        excepts(Exception, sc.stop(), lambda _: None)()
+        excepts(Exception, sc.stop, lambda _: None)()
 
 
 @click.command()
