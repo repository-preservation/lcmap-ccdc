@@ -40,6 +40,6 @@ tests:
 	./test.sh
 
 clean:
-	@rm -rf dist build lcmap_firebird.egg-info test/coverage derby.log spark-warehouse
+	@rm -rf dist build lcmap_firebird.egg-info test/coverage derby.log metastore_db spark-warehouse
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -delete
