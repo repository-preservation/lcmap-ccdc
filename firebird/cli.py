@@ -9,6 +9,7 @@ Prerequisites:
 cli.py should be added to setup.py as an entry_point console script.  After installing the Firebird python package, it would then be invoked as the entrypoint of the Firebird Docker image.
 """
 
+from cytoolz  import excepts
 from cytoolz  import partial
 from cytoolz  import thread_first
 from firebird import ARD
@@ -53,23 +54,28 @@ def changedetection(x, y, acquired):
     sc           = firebird.context(name=name)
     log          = firebird.logger(context=sc, name=name)
     
-    log.info('{}:{}{}'.format(name, tilex, tiley))
+    try:    
+        log.info('{}{}'.format(tilex, tiley))
     
-    log.debug('{}:{}'.format(name, dictionary(name=name,
-                                              grid=grid,
-                                              snap_fn=snap_fn,
-                                              tilex=tilex,
-                                              tiley=tiley,
-                                              tile_extents=tile_extents,
-                                              chips=chips,
-                                              x=x,
-                                              y=y,
-                                              acquired=acquired)))
+        log.debug('{}'.format(dictionary(name=name,
+                                         grid=grid,
+                                         snap_fn=snap_fn,
+                                         tilex=tilex,
+                                         tiley=tiley,
+                                         tile_extents=tile_extents,
+                                         chips=chips,
+                                         x=x,
+                                         y=y,
+                                         acquired=acquired)))
 
-    return thread_first(timeseries.execute(sc=sc, chips=chips, acquired=acquired),
-                        partial(pyccd.execute, sc=sc),
-                        partial(pyccd.dataframe, sc=sc),
-                        partial(pyccd.write, sc=sc))
+        return thread_first(timeseries.execute(sc=sc, chips=chips, acquired=acquired),
+                            partial(pyccd.execute, sc=sc),
+                            partial(pyccd.dataframe, sc=sc),
+                            partial(pyccd.write, sc=sc))
+    except Exception as e:
+        log.error('error:{}'.format(e))
+    finally:
+        excepts(Exception, sc.stop(), lambda _: None)()
 
 
 @click.command()

@@ -1,3 +1,5 @@
+from pyspark import SparkConf
+from pyspark import SparkContext
 import logging
 import merlin
 import os
@@ -17,6 +19,19 @@ PRODUCT_PARTITIONS = int(os.getenv('PRODUCT_PARTITIONS', 1))
 LOG_LEVEL          = os.getenv('LOG_LEVEL', 'WARN')
 ARD_CFG            = merlin.cfg.get(profile='chipmunk-ard', env={'CHIPMUNK_URL': ARD_CHIPMUNK}) 
 AUX_CFG            = merlin.cfg.get(profile='chipmunk-aux', env={'CHIPMUNK_URL': AUX_CHIPMUNK}) 
+
+
+def context(name):
+    """ Create or return a Spark Context
+
+    Args:
+        name (str): Name of the application
+
+    Returns:
+        A Spark context
+    """
+    
+    return SparkContext.getOrCreate(conf=SparkConf().setAppName(name))
 
 
 # Must obtain a logger from log4j since the jvm is what is actually 
