@@ -31,7 +31,7 @@ def execute(sc, ids, acquired, cfg):
         cfg: A Merlin configuration
 
     Returns:
-        RDD of time series: ((chipx, chipy, x, y, acquired), {data}) 
+        RDD of time series: ((chipx, chipy, x, y, dates), {data}) 
 
     Example:
     >>> execute(sc, [(0,0)], '1980-01-01/2017-01-01', {a_merlin_cfg})
@@ -51,7 +51,7 @@ def execute(sc, ids, acquired, cfg):
     fn = partial(merlin.create, acquired=acquired, cfg=cfg)
     return ids.map(lambda xy: fn(x=first(xy), y=second(xy)))\
               .flatMap(lambda x: x)\
-              .map(lambda x: tuple([(int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3]), acquired), x[1]]))\
+              .map(lambda x: ((int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3])), x[1]))\
               .repartition(firebird.PRODUCT_PARTITIONS)\
               .setName(__name__)
 

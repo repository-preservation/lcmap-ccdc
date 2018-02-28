@@ -1,20 +1,21 @@
+from cytoolz import assoc
+from cytoolz import second
 from firebird import logger
+from merlin.functions import cqlstr
+from merlin.functions import serialize
 from pyspark import sql
-from pyspark.sql.functions import col
-from pyspark.sql.functions import size
 from pyspark.sql.types import ArrayType
-from pyspark.sql.types import BooleanType
-from pyspark.sql.types import FloatType
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StringType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
 
 import ccd
+import firebird
 
+"""
+def model_schema():
 
-def schema():
-   
     spectra= StructType([StructField('magnitude', FloatType()),
                          StructField('rmse', FloatType()),
                          StructField('coefficients', ArrayType(FloatType())),
@@ -34,26 +35,42 @@ def schema():
                         StructField('swir2', spectra),
                         StructField('thermal', spectra)])
 
-    ccd = StructType([StructField('algorithm', StringType()),
-                      StructField('processing_mask', ArrayType(IntegerType())),
-                      StructField('procedure', StringType()),
-                      StructField('change_models', ArrayType(model))])
-
     result = StructType([StructField('chipx', IntegerType(), nullable=False),
                          StructField('chipy', IntegerType(), nullable=False),
                          StructField('x', IntegerType(), nullable=False),
                          StructField('y', IntegerType(), nullable=False),
-                         StructField('acquired', StringType(), nullable=False),
-                         StructField('algorithm', StringType(), nullable=False),
-                         StructField('processing_mask', ArrayType(IntegerType()), nullable=False),
+                         StructField('dates', ArrayType(IntegerType()), nullable=False),
+                         StructField('mask', ArrayType(IntegerType()), nullable=False),
                          StructField('procedure', StringType(), nullable=False),
-                         StructField('change_models', ArrayType(model), nullable=False)])
+                         StructField('models', ArrayType(model), nullable=False)])
+
+    return result
+"""
+
+def schema():
+   
+    result = StructType([StructField('chipx', IntegerType(), nullable=False),
+                         StructField('chipy', IntegerType(), nullable=False),
+                         StructField('x', IntegerType(), nullable=False),
+                         StructField('y', IntegerType(), nullable=False),
+                         StructField('dates', ArrayType(IntegerType()), nullable=False),
+                         StructField('mask', ArrayType(IntegerType()), nullable=False),
+                         StructField('procedure', StringType(), nullable=False),
+                         StructField('models', StringType(), nullable=False)])
                          
     return result
 
 
-# Probably not necessary as the shape already matches this coming in
 def inputs(timeseries):
+    """Reshape timeseries to match what ccd expects
+    
+    Args:
+        timeseries (dict): timeseries input for ccd
+
+    Returns:
+        dict: reshaped input for ccd
+    """
+    
     return {'dates'   : timeseries.get('dates'),
             'blues'   : timeseries.get('blues'),
             'greens'  : timeseries.get('greens'),
@@ -72,10 +89,12 @@ def unpack(result):
         result (dict): A Pyccd result
 
     Returns:
-        tuple: (algorithm, processing_mask, procedure, change_models)
+        tuple: (processing_mask, procedure, change_models)
     """
     
-    return tuple([result.get('algorithm'), result.get('processing_mask'), result.get('procedure'), result.get('change_models')])
+    return tuple([result.get('processing_mask'),
+                  result.get('procedure'),
+                  second(serialize(result.get('change_models')))])
 
 
 def dataframe(sc, rdd):
@@ -94,15 +113,13 @@ def dataframe(sc, rdd):
     return sql.SparkSession(sc).createDataFrame(r, schema=schema())
     
 
-def read(tilex, tiley, acquired, algorithm):
+def read(tilex, tiley):
     """Reads a tile of change results from Cassandra
 
     Args:
         tilex (int): tile x coordinate
         tiley (int): tile y coordinate
-        acquired (str): ISO8601 date range used to generate change results
-        algorithm (str): Algorithm version used to generate change results
-
+        
     Returns:
         A spark dataframe conforming to pyccd.schema
     """
@@ -110,9 +127,26 @@ def read(tilex, tiley, acquired, algorithm):
 
 
 def write(sc, dataframe):
+        
+    options = {
+        'table': cqlstr(ccd.algorithm),
+        'keyspace': firebird.CASSANDRA_KEYSPACE,
+        'spark.cassandra.auth.username': firebird.CASSANDRA_USER,
+        'spark.cassandra.auth.password': firebird.CASSANDRA_PASS,
+        'spark.cassandra.connection.compression': 'LZ4',
+        'spark.cassandra.connection.host': firebird.CASSANDRA_HOST,
+        'spark.cassandra.connection.port': firebird.CASSANDRA_PORT,
+        'spark.cassandra.input.consistency.level': 'QUORUM',
+        'spark.cassandra.output.consistency.level': 'QUORUM'
+    }
+
+    msg = assoc(options, 'spark.cassandra.auth.password', 'XXXXX')
+    logger(sc, name=__name__).info('writing dataframe:{}'.format(msg))
     
-    logger(sc, name=__name__).info('dataframe sample:{}'.format(dataframe.where(size(col('change_models')) > 0).first()))
-    return None
+    dataframe.write.format('org.apache.spark.sql.cassandra')\
+                   .mode('append').options(**options).save()
+
+    return dataframe
 
 
 def execute(sc, timeseries):
@@ -127,7 +161,6 @@ def execute(sc, timeseries):
     """
     
     logger(context=sc, name=__name__).info('executing change detection')
-    return timeseries.map(lambda t: (*t[0], ccd.detect(**inputs(t[1]))))
+    return timeseries.map(lambda t: (*t[0], t[1].get('dates'), ccd.detect(**inputs(t[1]))))
 
-    #log.info("ccd detect:{}".format(rdd.count()))
-    #log.info('mapped inputs:{}'.format(timeseries.map(inputs).first()))
+

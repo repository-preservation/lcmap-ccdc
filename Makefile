@@ -18,14 +18,14 @@ docker-shell:
 	docker run -it --entrypoint=/bin/bash $(IMAGE):latest
 
 deps-up:
-	docker-compose -f test/resources/docker-compose.yml up
+	docker-compose -f resources/docker-compose.yml up
 
 deps-down: 
-	docker-compose -f test/resources/docker-compose.yml down
+	docker-compose -f resources/docker-compose.yml down
 
 db-schema:
-	docker cp test/resources/schema.setup.cql firebird-cassandra:/
-	docker exec -u root firebird-cassandra cqlsh localhost -f schema.setup.cql
+	docker cp resources/schema.cql firebird-cassandra:/
+	docker exec -u root firebird-cassandra cqlsh localhost -f schema.cql
 
 spark-lib:
 	@rm -rf resources/spark
