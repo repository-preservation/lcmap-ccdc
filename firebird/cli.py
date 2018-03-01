@@ -9,67 +9,100 @@ Prerequisites:
 cli.py should be added to setup.py as an entry_point console script.  After installing the Firebird python package, it would then be invoked as the entrypoint of the Firebird Docker image.
 """
 
-from cytoolz  import partial
-from cytoolz  import thread_first
-from firebird import ARD
-from firebird import logger
+from cytoolz   import do
+from cytoolz   import filter
+from cytoolz   import first
+from cytoolz   import take
+from cytoolz   import thread_first
+from firebird  import ARD
+from firebird  import logger
+from functools import partial
+from merlin.functions import dictionary
 from merlin.geometry import extents
 from merlin.geometry import coordinates
 
+import firebird
 import classification
 import click
 import pyccd
+import timeseries
 import training
+import traceback
+
+def context_settings():
+    """Normalized tokens for Click cli
+
+    Returns:
+        dict
+    """
+
+    return dict(token_normalize_func=lambda x: x.lower())
 
 
-def dictionary(**kwargs):
-    """Converts kwargs to a dictionary."""
-    return kwargs
+@click.group(context_settings=context_settings())
+def entrypoint():
+    """Placeholder function to group Click commands"""
+
+    pass
 
 
-@click.command()
-@click.option('--x', required=True)
-@click.option('--y', required=True)
-@click.option('--acquired', required=True)
-def changedetection(x, y, acquired):
+@entrypoint.command()
+@click.option('--x', '-x', required=True)
+@click.option('--y', '-y', required=True)
+@click.option('--acquired', '-a', required=True)
+@click.option('--number', '-n', required=False, default=2500)
+def changedetection(x, y, acquired, number=2500):
     """Run change detection for a tile over a time range and save results to Cassandra.
-    
+ool    
     Args:
         x (int): tile x coordinate
         y (int): tile y coordinate
         acquired (str): ISO8601 date range
-
+        number (int): Number of chips to run change detection on.  Testing only.
     Returns:
         TBD
 
     """
+    sc = None
+    try:
+        name         = 'changedetection'
+        sc           = firebird.context(name=name)
+        log          = firebird.logger(context=sc, name=name)
+        grid         = ARD.get('grid_fn')()
+        chip_grid    = first(filter(lambda x: x['name'] == 'chip', grid))
+        tile_grid    = first(filter(lambda x: x['name'] == 'tile', grid))
+        snap_fn      = ARD.get('snap_fn')
+        tilex, tiley = snap_fn(x=x, y=y).get('tile').get('proj-pt')
+        tile_extents = extents(ulx=tilex, uly=tiley, grid=tile_grid)
+        chips        = coordinates(tile_extents, grid=chip_grid, snap_fn=snap_fn)
+            
+        log.info('{}'.format(dictionary(name=name,
+                                        grid=grid,
+                                        snap_fn=snap_fn,
+                                        tilex=tilex,
+                                        tiley=tiley,
+                                        tile_extents=tile_extents,
+                                        chips_count=len(chips),
+                                        x=x,
+                                        y=y,
+                                        acquired=acquired)))
 
-    name         = 'changedetection'
-    grid         = ARD.get('grid_fn')()
-    snap_fn      = ARD.get('snap_fn')
-    tilex, tiley = snap_fn(x=x, y=y).get('tile').get('proj-pt')
-    tile_extents = extents(ulx=tilex, uly=tiley, grid=tg)
-    chips        = coordinates(tile_extents, grid=grid.get('chips'), snap_fn=snap_fn)
-    sc           = firebird.context(name=name)
-    log          = firebird.logger(context=sc, name=name)
-    
-    log.info('{}:{}{}'.format(name, tilex, tiley))
-    
-    log.debug('{}:{}'.format(name, dictionary(name=name,
-                                              grid=grid,
-                                              snap_fn=snap_fn,
-                                              tilex=tilex,
-                                              tiley=tiley,
-                                              tile_extents=tile_extents,
-                                              chips=chips,
-                                              x=x,
-                                              y=y,
-                                              acquired=acquired)))
+        ts = timeseries.execute(sc=sc,
+                                acquired=acquired,
+                                cfg=ARD,
+                                ids=timeseries.ids(sc=sc, chips=take(int(number), chips))).cache()
 
-    return thread_first(timeseries.execute(sc=sc, chips=chips, acquired=acquired),
-                        partial(pyccd.execute, sc=sc),
-                        partial(pyccd.dataframe, sc=sc),
-                        partial(pyccd.write, sc=sc))
+        df1 = timeseries.write(sc=sc, dataframe=timeseries.dataframe(sc=sc, rdd=ts))
+        df2 = pyccd.write(sc=sc, dataframe=pyccd.dataframe(sc=sc, rdd=pyccd.execute(sc=sc, timeseries=ts)))
+
+        return {'timeseries': df1, 'pyccd': df2}
+    
+    except Exception as e:
+        print('error:{}'.format(e))
+        traceback.print_exc()
+    finally:
+        if sc is not None:
+            sc.stop()
 
 
 @click.command()
@@ -86,6 +119,16 @@ def classify():
     pass
 
 
+@click.group()
+def show():
+    pass
+
+
+@show.command()
+def models():
+    pass
+
+
 @show.command()
 def tile():
     """Display tile status
@@ -98,12 +141,5 @@ def tile():
     pass
 
 
-@show.command()
-def models():
-    pass
-
-
-@click.group()
-def show():
-    pass
-
+if __name__ == '__main__':
+    entrypoint()

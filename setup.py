@@ -27,7 +27,7 @@ setup(name='lcmap-firebird',
       license='Unlicense',
       packages=['firebird'],
       install_requires=[
-          'lcmap-merlin>=2.1.0',
+          'lcmap-merlin>=2.2.0',
           'lcmap-pyccd==2017.10.27',
       ],
       # List additional groups of dependencies here (e.g. development
