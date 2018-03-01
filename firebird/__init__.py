@@ -24,7 +24,22 @@ ARD                                = merlin.cfg.get(profile='chipmunk-ard', env=
 AUX                                = merlin.cfg.get(profile='chipmunk-aux', env={'CHIPMUNK_URL': AUX_CHIPMUNK}) 
 
 
-def context(name):
+# state variable for the SparkContext
+__ctx = None
+
+
+def start(name):
+    __ctx = SparkContext.getOrCreate(SparkConf().setAppName(name))
+    return __ctx
+
+    
+def stop():
+    if __ctx is not None:
+        __ctx.stop()
+        __ctx = None
+
+
+def context():
     """ Create or return a Spark Context
 
     Args:
@@ -34,14 +49,14 @@ def context(name):
         A Spark context
     """
 
-    return SparkContext.getOrCreate(conf=SparkConf().setAppName(name))
+    return __ctx
  
 
 # Must obtain a logger from log4j since the jvm is what is actually 
 # doing all the logging under the covers for PySpark.
 # Format and logging configuration is handled through log4j.properties.
 
-def logger(context, name):
+def logger(name):
     """Get PySpark configured logger
     
     Args:
@@ -52,4 +67,4 @@ def logger(context, name):
         Logger instance
     """
     
-    return context._jvm.org.apache.log4j.LogManager.getLogger(name)
+    return context()._jvm.org.apache.log4j.LogManager.getLogger(name)

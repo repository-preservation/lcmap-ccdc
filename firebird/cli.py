@@ -22,12 +22,15 @@ from merlin.geometry import extents
 from merlin.geometry import coordinates
 
 import firebird
+import cassandra
 import classification
 import click
+import grids
 import pyccd
 import timeseries
 import training
 import traceback
+
 
 def context_settings():
     """Normalized tokens for Click cli
@@ -63,59 +66,49 @@ ool
         TBD
 
     """
-    sc = None
+    
     try:
-        name         = 'changedetection'
-        sc           = firebird.context(name=name)
-        log          = firebird.logger(context=sc, name=name)
-        grid         = ARD.get('grid_fn')()
-        chip_grid    = first(filter(lambda x: x['name'] == 'chip', grid))
-        tile_grid    = first(filter(lambda x: x['name'] == 'tile', grid))
-        snap_fn      = ARD.get('snap_fn')
-        tilex, tiley = snap_fn(x=x, y=y).get('tile').get('proj-pt')
-        tile_extents = extents(ulx=tilex, uly=tiley, grid=tile_grid)
-        chips        = coordinates(tile_extents, grid=chip_grid, snap_fn=snap_fn)
-            
-        log.info('{}'.format(dictionary(name=name,
-                                        grid=grid,
-                                        snap_fn=snap_fn,
-                                        tilex=tilex,
-                                        tiley=tiley,
-                                        tile_extents=tile_extents,
-                                        chips_count=len(chips),
-                                        x=x,
-                                        y=y,
-                                        acquired=acquired)))
+        firebird.start('changedetection')
 
-        ts = timeseries.execute(sc=sc,
-                                acquired=acquired,
-                                cfg=ARD,
-                                ids=timeseries.ids(sc=sc, chips=take(int(number), chips))).cache()
+        info = logger('changedetection').info
+        tile = grids.tile(x=x, y=y, cfg=ARD)
+        
+        info(str(merge(tile, {'acquired': acquired, 'chips': len(tile['chips'])})))
 
-        df1 = timeseries.write(sc=sc, dataframe=timeseries.dataframe(sc=sc, rdd=ts))
-        df2 = pyccd.write(sc=sc, dataframe=pyccd.dataframe(sc=sc, rdd=pyccd.execute(sc=sc, timeseries=ts)))
-
-        return {'timeseries': df1, 'pyccd': df2}
+        ard = timeseries.ard(acquired, timeseries.ids(chips)).cache()
+        ccd = pyccd.dataframe(pyccd.execute(ard))
+        
+        cassandra.write(ard.select(['chipx', 'chipy', 'ard.dates']), cqlstr('ard.dates'))
+        cassandra.write(ccd, cqlstr)
+        
+        return {'ard': ard, 'pyccd': ccd}
     
     except Exception as e:
         print('error:{}'.format(e))
         traceback.print_exc()
     finally:
-        if sc is not None:
-            sc.stop()
+        firebird.stop()
 
 
 @click.command()
-@click.option('--acquired', '-a', required=True)
-@click.option('--point', '-p', required=True)
-def train():
+@click.option('--x', '-x', required=True)
+@click.option('--y', '-y', required=True)
+def train(x, y):
+    # find a tile for x, y
+    # get the tiles neighbor tiles
+    # get the chip ids for all 9 tiles
+    # get AUX data to cover all 9 tiles
+    # filter 
     pass
 
 
 @click.command()
+@click.option('--x', '-x,' requried=True)
+@click.option('--y', '-y', required=True)
 @click.option('--acquired', '-a', required=True)
-@click.option('--point', '-p', required=True)
-def classify():
+def classify(x, y, acquired):
+    tile = tile(x, y)
+    # tile.keys == 'x', 'y', 'extents', 'chips', 'near':{'tiles': [], 'chips': []}'
     pass
 
 

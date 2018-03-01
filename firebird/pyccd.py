@@ -123,20 +123,20 @@ def read(sc, tilex, tiley):
     pass
 
 
-def write(sc, dataframe):
-    """Writes a dataframe to persistent storage
-
-    Args:
-        sc: Spark Context
-        dataframe: Dataframe to persist
-
-    Returns:
-        dataframe
-    """
-    
-    return cassandra.write(sc=sc,
-                           dataframe=dataframe,
-                           options=cassandra.options(table=cqlstr(ccd.algorithm)))
+#def write(sc, dataframe):
+#    """Writes a dataframe to persistent storage
+#
+#    Args:
+#        sc: Spark Context
+#        dataframe: Dataframe to persist
+#
+#    Returns:
+#        dataframe
+#    """
+#    
+#    return cassandra.write(sc=sc,
+#                           dataframe=dataframe,
+#                           options=cassandra.options(table=cqlstr(ccd.algorithm)))
     
 
 def execute(sc, timeseries):
@@ -155,4 +155,6 @@ def execute(sc, timeseries):
     return ts.map(lambda t: (*t[0], ccd.detect(**inputs(t[1]))))
             
 
-
+def udf():
+    """Dataframe user defined function for pyccd"""
+    pass

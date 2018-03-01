@@ -30,19 +30,22 @@ def read():
     pass
 
 
-def write(sc, dataframe, options):
-    """Write a dataframe to cassandra using options.
+def write(sc, dataframe, table):
+    """Write a dataframe to cassandra using options.  
+
+    Dataframe must conform to the table schema.
     
     Args:
         sc: Spark Context
         dataframe: The dataframe to write
-        options: Cassandra options
+        table: Cassandra table to write dataframe to
 
     Returns:
         dataframe
     """
-     
-    msg = assoc(options, 'spark.cassandra.auth.password', 'XXXXX')
+
+    opts = options(table)
+    msg  = assoc(opts, 'spark.cassandra.auth.password', 'XXXXX')
     firebird.logger(sc, name=__name__).info('writing dataframe:{}'.format(msg))
     return dataframe.write.format('org.apache.spark.sql.cassandra')\
-                          .mode('append').options(**options).save()
+                          .mode('append').options(**opts).save()
