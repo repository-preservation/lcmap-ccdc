@@ -87,11 +87,16 @@ ool
                                         y=y,
                                         acquired=acquired)))
 
-        return thread_first(timeseries.ids(sc=sc, chips=take(int(number), chips)),
-                            partial(timeseries.execute, sc, acquired=acquired, cfg=ARD),
-                            partial(pyccd.execute, sc),
-                            partial(pyccd.dataframe, sc),
-                            partial(pyccd.write, sc))
+        ts = timeseries.execute(sc=sc,
+                                acquired=acquired,
+                                cfg=ARD,
+                                ids=timeseries.ids(sc=sc, chips=take(int(number), chips))).cache()
+
+        df1 = timeseries.write(sc=sc, dataframe=timeseries.dataframe(sc=sc, rdd=ts))
+        df2 = pyccd.write(sc=sc, dataframe=pyccd.dataframe(sc=sc, rdd=pyccd.execute(sc=sc, timeseries=ts)))
+
+        return {'timeseries': df1, 'pyccd': df2}
+    
     except Exception as e:
         print('error:{}'.format(e))
         traceback.print_exc()

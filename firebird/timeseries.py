@@ -1,7 +1,15 @@
-from cytoolz   import first
-from cytoolz   import second
+from cytoolz import assoc
+from cytoolz import first
+from cytoolz import second
 from firebird import logger
 from functools import partial
+from pyspark import sql
+from pyspark.sql.types import ArrayType
+from pyspark.sql.types import IntegerType
+from pyspark.sql.types import StructField
+from pyspark.sql.types import StructType
+
+import cassandra
 import firebird
 import merlin
 
@@ -19,6 +27,31 @@ def ids(sc, chips):
     
     logger(context=sc, name=__name__).info('loading chip ids')
     return sc.parallelize(chips, firebird.INPUT_PARTITIONS)
+
+
+def schema():
+     return StructType([StructField('chipx', IntegerType(), nullable=False),
+                        StructField('chipy', IntegerType(), nullable=False),
+                        StructField('dates', ArrayType(IntegerType()), nullable=False)])
+
+
+def dataframe(sc, rdd):
+    logger(sc, name=__name__).info('converting to dataframe')
+    r = rdd.map(lambda r: (r[0][0], r[0][1], r[1].get('dates')))
+    return sql.SparkSession(sc).createDataFrame(r, schema=schema())
+
+
+def write(sc, dataframe):
+    """Write a timeseries dataframe to persistent storage
+
+    Args:
+        sc: Spark Context
+        dataframe: Dataframe to persist
+    """
+
+    return cassandra.write(sc=sc,
+                           dataframe=dataframe,
+                           options=cassandra.options(table='timeseries'))
 
 
 def execute(sc, ids, acquired, cfg):
@@ -54,5 +87,6 @@ def execute(sc, ids, acquired, cfg):
               .map(lambda x: ((int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3])), x[1]))\
               .repartition(firebird.PRODUCT_PARTITIONS)\
               .setName(__name__)
+
 
 

@@ -10,6 +10,7 @@ from pyspark.sql.types import StringType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
 
+import cassandra
 import ccd
 import firebird
 
@@ -48,18 +49,14 @@ def model_schema():
 """
 
 def schema():
-   
-    result = StructType([StructField('chipx', IntegerType(), nullable=False),
-                         StructField('chipy', IntegerType(), nullable=False),
-                         StructField('x', IntegerType(), nullable=False),
-                         StructField('y', IntegerType(), nullable=False),
-                         StructField('dates', ArrayType(IntegerType()), nullable=False),
-                         StructField('mask', ArrayType(IntegerType()), nullable=False),
-                         StructField('procedure', StringType(), nullable=False),
-                         StructField('models', StringType(), nullable=False)])
-                         
-    return result
-
+    return StructType([StructField('chipx', IntegerType(), nullable=False),
+                       StructField('chipy', IntegerType(), nullable=False),
+                       StructField('x', IntegerType(), nullable=False),
+                       StructField('y', IntegerType(), nullable=False),
+                       StructField('mask', ArrayType(IntegerType()), nullable=False),
+                       StructField('procedure', StringType(), nullable=False),
+                       StructField('models', StringType(), nullable=False)])
+           
 
 def inputs(timeseries):
     """Reshape timeseries to match what ccd expects
@@ -109,11 +106,11 @@ def dataframe(sc, rdd):
     """
 
     logger(sc, name=__name__).info('converting to dataframe')
-    r = rdd.map(lambda r: (r[0], r[1], r[2], r[3], r[4], *unpack(r[5])))
+    r = rdd.map(lambda r: (r[0], r[1], r[2], r[3], *unpack(r[4])))
     return sql.SparkSession(sc).createDataFrame(r, schema=schema())
     
 
-def read(tilex, tiley):
+def read(sc, tilex, tiley):
     """Reads a tile of change results from Cassandra
 
     Args:
@@ -127,27 +124,20 @@ def read(tilex, tiley):
 
 
 def write(sc, dataframe):
-        
-    options = {
-        'table': cqlstr(ccd.algorithm),
-        'keyspace': firebird.CASSANDRA_KEYSPACE,
-        'spark.cassandra.auth.username': firebird.CASSANDRA_USER,
-        'spark.cassandra.auth.password': firebird.CASSANDRA_PASS,
-        'spark.cassandra.connection.compression': 'LZ4',
-        'spark.cassandra.connection.host': firebird.CASSANDRA_HOST,
-        'spark.cassandra.connection.port': firebird.CASSANDRA_PORT,
-        'spark.cassandra.input.consistency.level': 'QUORUM',
-        'spark.cassandra.output.consistency.level': 'QUORUM'
-    }
+    """Writes a dataframe to persistent storage
 
-    msg = assoc(options, 'spark.cassandra.auth.password', 'XXXXX')
-    logger(sc, name=__name__).info('writing dataframe:{}'.format(msg))
+    Args:
+        sc: Spark Context
+        dataframe: Dataframe to persist
+
+    Returns:
+        dataframe
+    """
     
-    dataframe.write.format('org.apache.spark.sql.cassandra')\
-                   .mode('append').options(**options).save()
-
-    return dataframe
-
+    return cassandra.write(sc=sc,
+                           dataframe=dataframe,
+                           options=cassandra.options(table=cqlstr(ccd.algorithm)))
+    
 
 def execute(sc, timeseries):
     """Run pyccd against a timeseries
@@ -160,7 +150,9 @@ def execute(sc, timeseries):
         RDD of pyccd results
     """
     
+    ts = timeseries.cache()
     logger(context=sc, name=__name__).info('executing change detection')
-    return timeseries.map(lambda t: (*t[0], t[1].get('dates'), ccd.detect(**inputs(t[1]))))
+    return ts.map(lambda t: (*t[0], ccd.detect(**inputs(t[1]))))
+            
 
 
