@@ -12,19 +12,15 @@ cli.py should be added to setup.py as an entry_point console script.  After inst
 from cytoolz   import do
 from cytoolz   import filter
 from cytoolz   import first
-from cytoolz   import take
-from cytoolz   import thread_first
+from cytoolz   import merge
 from firebird  import ARD
 from firebird  import logger
 from functools import partial
-from merlin.functions import dictionary
-from merlin.geometry import extents
-from merlin.geometry import coordinates
 
-import firebird
 import cassandra
 import classification
 import click
+import firebird
 import grids
 import pyccd
 import timeseries
@@ -45,7 +41,6 @@ def context_settings():
 @click.group(context_settings=context_settings())
 def entrypoint():
     """Placeholder function to group Click commands"""
-
     pass
 
 
@@ -68,19 +63,21 @@ ool
     """
     
     try:
+        # connect to the cluster
         firebird.start('changedetection')
 
-        info = logger('changedetection').info
+        # wire everything up
         tile = grids.tile(x=x, y=y, cfg=ARD)
-        
-        info(str(merge(tile, {'acquired': acquired, 'chips': len(tile['chips'])})))
+        ids  = timeseries.ids(tile.get('chips')) 
+        ard  = timeseries.ard(acquired, ids).cache()
+        ccd  = pyccd.dataframe(pyccd.execute(ard))
 
-        ard = timeseries.ard(acquired, timeseries.ids(chips)).cache()
-        ccd = pyccd.dataframe(pyccd.execute(ard))
-        
+        logger('changedetection').info(str(merge(tile, {'acquired': acquired, 'chips': len(ids)})))
+
+        # realize the data transformations
         cassandra.write(ard.select(['chipx', 'chipy', 'ard.dates']), cqlstr('ard.dates'))
         cassandra.write(ccd, cqlstr)
-        
+
         return {'ard': ard, 'pyccd': ccd}
     
     except Exception as e:

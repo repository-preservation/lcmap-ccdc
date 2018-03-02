@@ -1,3 +1,8 @@
+from cytoolz import first
+from functools import filter
+from merlin.geometry import extents
+from merlin.geometry import coordinates
+
 import firebird
 import merlin
 
@@ -41,12 +46,12 @@ def tile(x, y, cfg):
     tile_extents = extents(ulx=tilex, uly=tiley, grid=tile_grid)
     chips = coordinates(tile_extents, grid=chip_grid, snap_fn=snap_fn)
 
-    return dictionary(x=tilex,
-                      y=tiley,
-                      h=h,
-                      v=v,
-                      **tile_extents,
-                      chips=chips)
+    return dict(x=tilex,
+                y=tiley,
+                h=h,
+                v=v,
+                **tile_extents,
+                chips=chips)
 
 
 def chips(tile, grid):
