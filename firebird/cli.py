@@ -13,9 +13,11 @@ from cytoolz   import do
 from cytoolz   import filter
 from cytoolz   import first
 from cytoolz   import merge
+from cytoolz   import take
 from firebird  import ARD
 from firebird  import logger
 from functools import partial
+from merlin    import functions
 
 import cassandra
 import classification
@@ -61,30 +63,39 @@ ool
         TBD
 
     """
-    
+    ctx = None
     try:
         # connect to the cluster
-        firebird.start('changedetection')
-
+        ctx = firebird.context('changedetection')
+        
         # wire everything up
         tile = grids.tile(x=x, y=y, cfg=ARD)
-        ids  = timeseries.ids(tile.get('chips')) 
-        ard  = timeseries.ard(acquired, ids).cache()
-        ccd  = pyccd.dataframe(pyccd.execute(ard))
-
-        logger('changedetection').info(str(merge(tile, {'acquired': acquired, 'chips': len(ids)})))
+        ids  = timeseries.ids(ctx=ctx, chips=take(number, tile.get('chips')))
+        ard  = timeseries.ard(ctx=ctx, ids=ids, acquired=acquired).cache()        
+        ccd  = pyccd.dataframe(ctx=ctx, df=ard).cache()
+        
+        logger(ctx, 'changedetection').info(str(merge(tile, {'acquired': acquired,
+                                                             'input partitions': firebird.INPUT_PARTITIONS,
+                                                             'product_partitions': firebird.PRODUCT_PARTITIONS,
+                                                             'chips': ids.count()})))
 
         # realize the data transformations
-        cassandra.write(ard.select(['chipx', 'chipy', 'ard.dates']), cqlstr('ard.dates'))
-        cassandra.write(ccd, cqlstr)
+        
+        cassandra.write(ctx, ard.select('chipx', 'chipy', 'ard.dates'), functions.cqlstr('ard.dates'))
+        #cassandra.write(ctx, ccd, cqlstr)
 
-        return {'ard': ard, 'pyccd': ccd}
+        #return {'ard': ard.count(), 'pyccd': ccd.count()}
+        print("ard count:{}".format(ard.count()))
+        return {'ard': ard.count()}
+        
     
     except Exception as e:
         print('error:{}'.format(e))
         traceback.print_exc()
     finally:
-        firebird.stop()
+        if ctx is not None:
+            ctx.stop()
+            ctx = None
 
 
 @click.command()
@@ -100,7 +111,7 @@ def train(x, y):
 
 
 @click.command()
-@click.option('--x', '-x,' requried=True)
+@click.option('--x', '-x', required=True)
 @click.option('--y', '-y', required=True)
 @click.option('--acquired', '-a', required=True)
 def classify(x, y, acquired):

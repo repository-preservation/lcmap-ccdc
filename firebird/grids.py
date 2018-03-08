@@ -1,5 +1,4 @@
 from cytoolz import first
-from functools import filter
 from merlin.geometry import extents
 from merlin.geometry import coordinates
 

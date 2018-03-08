@@ -8,6 +8,7 @@ from functools import partial
 from pyspark import sql
 from pyspark.sql import SparkSession
 from pyspark.sql.types import ArrayType
+from pyspark.sql.types import FloatType
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
@@ -18,18 +19,19 @@ import merlin
 import numpy
 
 
-def ids(chips):
+def ids(ctx, chips):
     """Loads chip ids into Spark
     
     Args:
+        ctx             : spark context
         chips (sequence): ((x1,y1),(x2,y2),(x3,y3)...))
 
     Returns:
         RDD of chip ids
     """
     
-    logger(__name__).info('loading chip ids')
-    return context().parallelize(chips, firebird.INPUT_PARTITIONS)
+    logger(ctx, __name__).info('loading chip ids')
+    return ctx.parallelize(chips, firebird.INPUT_PARTITIONS)
 
 
 def schema(name):
@@ -42,32 +44,32 @@ def schema(name):
         StructType: Dataframe schema
     """
     
-    s = {'ard': StructType([StructField("chip_x", IntegerType(), False),
-                            StructField("chip_y", IntegerType(), False),
-                            StructField("x", IntegerType(), False),
-                            StructField("y", IntegerType(), False),
+    s = {'ard': StructType([StructField('chipx', IntegerType(), False),
+                            StructField('chipy', IntegerType(), False),
+                            StructField('x', IntegerType(), False),
+                            StructField('y', IntegerType(), False),
                             StructField('ard', StructType([
-                                StructField("dates", ArrayType(IntegerType(), False), False),
-                                StructField("blues", ArrayType(IntegerType(), False), False),
-                                StructField("greens", ArrayType(IntegerType(), False), False),
-                                StructField("reds", ArrayType(IntegerType(), False), False),
-                                StructField("nirs", ArrayType(IntegerType(), False), False),
-                                StructField("swir1s", ArrayType(IntegerType(), False), False),
-                                StructField("swir2s", ArrayType(IntegerType(), False), False),
-                                StructField("thermals", ArrayType(IntegerType(), False), False),
-                                StructField("quality", ArrayType(IntegerType(), False), False)]))]),
-         'aux': StructType([StructField("chip_x", IntegerType(), False),
-                            StructField("chip_y", IntegerType(), False),
-                            StructField("x", IntegerType(), False),
-                            StructField("y", IntegerType(), False),
+                                StructField('dates', ArrayType(IntegerType(), False), False),
+                                StructField('blues', ArrayType(IntegerType(), False), False),
+                                StructField('greens', ArrayType(IntegerType(), False), False),
+                                StructField('reds', ArrayType(IntegerType(), False), False),
+                                StructField('nirs', ArrayType(IntegerType(), False), False),
+                                StructField('swir1s', ArrayType(IntegerType(), False), False),
+                                StructField('swir2s', ArrayType(IntegerType(), False), False),
+                                StructField('thermals', ArrayType(IntegerType(), False), False),
+                                StructField('qas', ArrayType(IntegerType(), False), False)]))]),
+         'aux': StructType([StructField('chipx', IntegerType(), False),
+                            StructField('chipy', IntegerType(), False),
+                            StructField('x', IntegerType(), False),
+                            StructField('y', IntegerType(), False),
                             StructField('aux', StructType([
-                                StructField("dates", ArrayType(IntegerType(), False), False),
-                                StructField("dem", ArrayType(FloatType(), False), False),
-                                StructField("trends", ArrayType(IntegerType(), False), False),
-                                StructField("aspect", ArrayType(IntegerType(), False), False),
-                                StructField("posidex", ArrayType(FloatType(), False), False),
-                                StructField("slope", ArrayType(FloatType(), False), False),
-                                StructField("mpw", ArrayType(IntegerType(), False), False)]))])}
+                                StructField('dates', ArrayType(IntegerType(), False), False),
+                                StructField('dem', ArrayType(FloatType(), False), False),
+                                StructField('trends', ArrayType(IntegerType(), False), False),
+                                StructField('aspect', ArrayType(IntegerType(), False), False),
+                                StructField('posidex', ArrayType(FloatType(), False), False),
+                                StructField('slope', ArrayType(FloatType(), False), False),
+                                StructField('mpw', ArrayType(IntegerType(), False), False)]))])}
 
     return s.get(name) if name else s
 
@@ -101,26 +103,28 @@ def converter(name):
     return c.get(name)
 
 
-def dataframe(rdd):
+def dataframe(ctx, rdd):
     """Transforms an rdd to a dataframe
 
     Args:
+        ctx: spark context
         rdd: rdd.  Name attribute must be set
 
     Returns:
         dataframe
     """
-    
-    logger(rdd.name).info('converting to dataframe')
-    session = SparkSession(context())
-    return session.createDataFrame(data=rdd.map(converter(rdd.name)),
-                                   schema=schema(rdd.name))
+
+    logger(ctx, rdd.name()).info('converting {} to dataframe'.format(rdd.name()))
+    session = SparkSession(ctx)
+    return session.createDataFrame(data=rdd.map(converter(rdd.name())),
+                                   schema=schema(rdd.name()))
 
 
-def execute(ids, acquired, cfg, name=__name__):
+def execute(ctx, ids, acquired, cfg, name=__name__):
     """Create timeseries from a collection of chip ids and time range
 
     Args:
+        ctx      : spark context
         ids (rdd): RDD of chip ids
         acquired (str): ISO8601 date range: 1980-01-01/2017-01-01 
         cfg: A Merlin configuration
@@ -142,10 +146,10 @@ def execute(ids, acquired, cfg, name=__name__):
           'dates':    [734992, 734991, 734984, 734983, 734976, 734975, 734448, 734441, 734439, 727265, 726648, 726616]})
     """
 
-    logger(name).info('creating time series')
+    logger(ctx, name).info('creating time series')
     
     fn = partial(merlin.create, acquired=acquired, cfg=cfg)
-
+    
     return ids.map(lambda xy: fn(x=first(xy), y=second(xy)))\
               .flatMap(lambda x: x)\
               .map(lambda x: ((int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3])), x[1]))\
@@ -153,10 +157,11 @@ def execute(ids, acquired, cfg, name=__name__):
               .setName(name)
 
 
-def ard(ids, acquired):
+def ard(ctx, ids, acquired):
     """Create an ard timeseries
     
     Args:
+        ctx: spark context
         ids: rdd off chip ids
         acquired (str): ISO8601 date range: 1980-01-01/2017-12-31
 
@@ -164,16 +169,19 @@ def ard(ids, acquired):
         ARD dataframe: ((chipx, chipy, x, y), {data}) 
     """
     
-    return dataframe(execute(ids=ids,
-                             acquired=acquired,
-                             cfg=firebird.ARD,
-                             name='ard'))
+    return dataframe(ctx=ctx,
+                     rdd=execute(ctx=ctx,
+                                 ids=ids,
+                                 acquired=acquired,
+                                 cfg=firebird.ARD,
+                                 name='ard'))
 
 
-def aux(ids, acquired):
+def aux(ctx, ids, acquired):
     """Create an aux timeseries
     
     Args:
+        ctx: spark context
         ids: rdd off chip ids
         acquired (str): ISO8601 date range: 1980-01-01/2017-12-31
 
@@ -181,7 +189,9 @@ def aux(ids, acquired):
         Aux dataframe ((chipx, chipy, x, y), {data}) 
     """
     
-    return dataframe(execute(ids=ids,
-                             acquired=acquired,
-                             cfg=firebird.AUX,
-                             name='aux'))
+    return dataframe(ctx=ctx,
+                     rdd=execute(ctx=ctx,
+                                 ids=ids,
+                                 acquired=acquired,
+                                 cfg=firebird.AUX,
+                                 name='aux'))
