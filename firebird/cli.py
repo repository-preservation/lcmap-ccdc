@@ -12,6 +12,7 @@ cli.py should be added to setup.py as an entry_point console script.  After inst
 from cytoolz   import do
 from cytoolz   import filter
 from cytoolz   import first
+from cytoolz   import get
 from cytoolz   import merge
 from cytoolz   import take
 from firebird  import ARD
@@ -20,13 +21,11 @@ from functools import partial
 from merlin    import functions
 
 import cassandra
-import classification
 import click
 import firebird
 import grids
 import pyccd
 import timeseries
-import training
 import traceback
 
 
@@ -60,35 +59,34 @@ ool
         acquired (str): ISO8601 date range
         number (int): Number of chips to run change detection on.  Testing only.
     Returns:
-        TBD
+        dict of counts 
 
     """
     ctx = None
     try:
         # connect to the cluster
         ctx = firebird.context('changedetection')
+        log = logger(ctx, 'changedetection')
         
         # wire everything up
         tile = grids.tile(x=x, y=y, cfg=ARD)
-        ids  = timeseries.ids(ctx=ctx, chips=take(number, tile.get('chips')))
-        ard  = timeseries.ard(ctx=ctx, ids=ids, acquired=acquired).cache()        
-        ccd  = pyccd.dataframe(ctx=ctx, df=ard).cache()
+        ids  = timeseries.ids(ctx=ctx, chips=take(number, tile.get('chips'))).cache()
+        ard  = timeseries.rdd(ctx=ctx, ids=ids, acquired=acquired, cfg=firebird.ARD, name='ard')
+        ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard))
         
-        logger(ctx, 'changedetection').info(str(merge(tile, {'acquired': acquired,
-                                                             'input partitions': firebird.INPUT_PARTITIONS,
-                                                             'product_partitions': firebird.PRODUCT_PARTITIONS,
-                                                             'chips': ids.count()})))
+        log.info(str(merge(tile, {'acquired': acquired,
+                                  'input partitions': firebird.INPUT_PARTITIONS,
+                                  'product_partitions': firebird.PRODUCT_PARTITIONS,
+                                  'chips': ids.count()})))
 
         # realize the data transformations
-        
-        cassandra.write(ctx, ard.select('chipx', 'chipy', 'ard.dates'), functions.cqlstr('ard.dates'))
         #cassandra.write(ctx, ccd, cqlstr)
 
-        #return {'ard': ard.count(), 'pyccd': ccd.count()}
-        print("ard count:{}".format(ard.count()))
-        return {'ard': ard.count()}
-        
-    
+        counts = {'ccd': ccd.count()}
+        log.info("saved {} ccd segments".format(get('ccd', counts)))
+
+        return counts
+            
     except Exception as e:
         print('error:{}'.format(e))
         traceback.print_exc()

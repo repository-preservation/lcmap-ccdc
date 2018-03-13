@@ -4,6 +4,7 @@ from cytoolz import second
 from firebird import context
 from firebird import logger
 from functools import partial
+from merlin.functions import denumpify
 
 from pyspark import sql
 from pyspark.sql import SparkSession
@@ -74,17 +75,17 @@ def schema(name):
     return s.get(name) if name else s
 
 
-def denumpyify(data):
-    """Converts dictionary values from numpy types to Python types.
-
-    Args:
-        data (dict): A dictionary possibly containing numpy arrays
-
-    Returns:
-        dict: A dictionary with numpy arrays converted to Python lists
-    """
-
-    return {k:v.tolist() if isinstance(v, numpy.ndarray) else v for k,v in data.items()}
+#def denumpyify(data):
+#    """Converts dictionary values from numpy types to Python types.
+#
+#    Args:
+#        data (dict): A dictionary possibly containing numpy arrays
+#
+#    Returns:
+#        dict: A dictionary with numpy arrays converted to Python lists
+#    """
+#
+#    return {k: merlin.functions.denumpify(v) for k,v in data.items()}
 
 
 def converter(name):
@@ -120,7 +121,7 @@ def dataframe(ctx, rdd):
                                    schema=schema(rdd.name()))
 
 
-def execute(ctx, ids, acquired, cfg, name=__name__):
+def rdd(ctx, ids, acquired, cfg, name=__name__):
     """Create timeseries from a collection of chip ids and time range
 
     Args:

@@ -48,4 +48,4 @@ def write(sc, dataframe, table):
     msg  = assoc(opts, 'spark.cassandra.auth.password', 'XXXXX')
     firebird.logger(sc, name=__name__).info('writing dataframe:{}'.format(msg))
     return dataframe.write.format('org.apache.spark.sql.cassandra')\
-                          .mode('append').options(**opts).save()
+                          .mode('overwrite').options(**opts).save()
