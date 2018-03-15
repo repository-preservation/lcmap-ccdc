@@ -18,7 +18,7 @@ from cytoolz   import take
 from firebird  import ARD
 from firebird  import logger
 from functools import partial
-from merlin    import functions
+from merlin. functions import cqlstr
 
 import cassandra
 import click
@@ -62,6 +62,7 @@ ool
         dict of counts 
 
     """
+    
     ctx = None
     try:
         # connect to the cluster
@@ -72,7 +73,7 @@ ool
         tile = grids.tile(x=x, y=y, cfg=ARD)
         ids  = timeseries.ids(ctx=ctx, chips=take(number, tile.get('chips'))).cache()
         ard  = timeseries.rdd(ctx=ctx, ids=ids, acquired=acquired, cfg=firebird.ARD, name='ard')
-        ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard))
+        ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).cache()
         
         log.info(str(merge(tile, {'acquired': acquired,
                                   'input partitions': firebird.INPUT_PARTITIONS,
@@ -80,9 +81,10 @@ ool
                                   'chips': ids.count()})))
 
         # realize the data transformations
-        #cassandra.write(ctx, ccd, cqlstr)
+        cassandra.write(ctx, ccd, cqlstr(pyccd.algorithm()))
 
         counts = {'ccd': ccd.count()}
+        
         log.info("saved {} ccd segments".format(get('ccd', counts)))
 
         return counts

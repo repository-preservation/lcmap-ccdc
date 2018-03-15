@@ -51,7 +51,7 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
  rfprob: random forest probability
 */
 
-CREATE TABLE IF NOT EXISTS lcmap_local.pyccd_2018_3_12 (
+CREATE TABLE IF NOT EXISTS lcmap_local.lcmap_pyccd_2018_03_12 (
     chipx  int,
     chipy  int,
     x      int,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS lcmap_local.pyccd_2018_3_12 (
     sday   int,
     eday   int,
     bday   int,
-    chprob  float,
+    chprob float,
     curqa  tinyint,
     blmag  float,
     grmag  float,
@@ -93,7 +93,7 @@ CREATE TABLE IF NOT EXISTS lcmap_local.pyccd_2018_3_12 (
     snprob float,
     waprob float,
     clprob float,
-    prmask frozen<list<boolean>>,
+    prmask frozen<list<tinyint>>,
     rfrawp frozen<list<float>>,
     rfprob frozen<list<float>>,
     PRIMARY KEY((chipx, chipy), x, y, sday, eday)

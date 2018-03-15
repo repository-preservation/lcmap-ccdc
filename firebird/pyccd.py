@@ -199,3 +199,9 @@ def rdd(ctx, timeseries):
     
     logger(context=ctx, name=__name__).info('executing change detection')
     return timeseries.flatMap(detect)
+
+
+def algorithm():
+    """Returns the ccd algorithm and version"""
+
+    return ccd.algorithm
