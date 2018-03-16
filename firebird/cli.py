@@ -52,42 +52,45 @@ def entrypoint():
 @click.option('--number', '-n', required=False, default=2500)
 def changedetection(x, y, acquired, number=2500):
     """Run change detection for a tile over a time range and save results to Cassandra.
-ool    
-    Args:
-        x (int): tile x coordinate
-        y (int): tile y coordinate
-        acquired (str): ISO8601 date range
-        number (int): Number of chips to run change detection on.  Testing only.
-    Returns:
-        dict of counts 
-
-    """
     
-    ctx = None
+    Args:
+        x        (int): tile x coordinate
+        y        (int): tile y coordinate
+        acquired (str): ISO8601 date range
+        number   (int): Number of chips to run change detection on.  Testing only.
+
+    Returns:
+        count of saved segments 
+    """
+
+    
+    ctx  = None
+    name = 'change-detection'
+    
     try:
-        # connect to the cluster
-        ctx = firebird.context('changedetection')
-        log = logger(ctx, 'changedetection')
+        # connect to cluster
+        ctx = firebird.context(name)
+
+        # get logger
+        log = logger(ctx, name)
         
         # wire everything up
         tile = grids.tile(x=x, y=y, cfg=ARD)
-        ids  = timeseries.ids(ctx=ctx, chips=take(number, tile.get('chips'))).cache()
+        ids  = timeseries.ids(ctx=ctx, chips=take(number, tile.get('chips')))
         ard  = timeseries.rdd(ctx=ctx, ids=ids, acquired=acquired, cfg=firebird.ARD, name='ard')
         ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).cache()
-        
+
+        # emit parameters
         log.info(str(merge(tile, {'acquired': acquired,
-                                  'input partitions': firebird.INPUT_PARTITIONS,
-                                  'product_partitions': firebird.PRODUCT_PARTITIONS,
+                                  'input-partitions': firebird.INPUT_PARTITIONS,
+                                  'product-partitions': firebird.PRODUCT_PARTITIONS,
                                   'chips': ids.count()})))
 
-        # realize the data transformations
+        # realize data transformations
         cassandra.write(ctx, ccd, cqlstr(pyccd.algorithm()))
 
-        counts = {'ccd': ccd.count()}
-        
-        log.info("saved {} ccd segments".format(get('ccd', counts)))
-
-        return counts
+        # log and return segment counts
+        return do(log.info "saved {} ccd segments".format(get('ccd', counts)))
             
     except Exception as e:
         print('error:{}'.format(e))
@@ -102,12 +105,38 @@ ool
 @click.option('--x', '-x', required=True)
 @click.option('--y', '-y', required=True)
 def train(x, y):
-    # find a tile for x, y
-    # get the tiles neighbor tiles
-    # get the chip ids for all 9 tiles
-    # get AUX data to cover all 9 tiles
-    # filter 
-    pass
+
+     ctx = None
+    try:
+        # connect to the cluster
+        ctx = firebird.context('random-forest-training')
+
+        # get logger
+        log = logger(ctx, 'random-forest-training')
+
+    # make sure tile contains the chip ids for all the neighbor tiles too,
+    # or call grids.neighbors(x=x, y=y, cfg=AUX)
+    tile = grids.tile(x=x, y=y, cfg=AUX)
+    ids  = timeseries.ids(ctx=ctx, chips=take(number, tile.get('chips')))
+
+    # build converter and schema to flatten aux
+    aux  = timeseries.dataframe(ctx=ctx,
+                                rdd=timeseries.rdd(ctx=ctx,
+                                                   ids=ids,
+                                                   acquired=acquired,
+                                                   cfg=firebird.AUX, name='aux')
+
+    # filter aux for trends != 0 and trends != 9
+    # extract chip ids from filtered aux
+    # query for matching segments by chip id (pyccd.read or cassandra.read)
+    # filter segments on sday > S and eday < E
+    # join segments and aux together
+    # build features with features UDF, eject unneeded columns
+    # train RF
+    # save RF
+    # return something
+                                
+    return True
 
 
 @click.command()

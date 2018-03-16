@@ -53,16 +53,11 @@ def tile(x, y, cfg):
                 chips=chips)
 
 
-def chips(tile, grid):
-    """Given a tile coordinate return a list of chip ids
+def training(x, y, cfg):
+    """Returns the chip ids for training"""
 
-       Args:
-         tile (dict): {'ulx', 'uly', 'lrx', 'lry', 'projection-pt', 'grid-pt'}
-         grid (dict): {}
+    grid    = cfg.get('grid_fn')()
+    snap_fn = cfg.get('snap_fn')()
+    near_fn = cfg.get('near_fn')()
 
-       Return:
-           sequence: [{'ulx', 'uly', 'lrx', 'lry', 'projection-pt', 'grid-pt'}]
-    """
-    pass
-
-
+    return chips
