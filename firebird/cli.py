@@ -68,7 +68,7 @@ def changedetection(x, y, acquired, number=2500):
     name = 'change-detection'
     
     try:
-        # connect to cluster
+        # start and/or connect Spark
         ctx = firebird.context(name)
 
         # get logger
@@ -93,9 +93,12 @@ def changedetection(x, y, acquired, number=2500):
         return do(log.info "saved {} ccd segments".format(get('ccd', counts)))
             
     except Exception as e:
+        # spark errors & stack trace
         print('error:{}'.format(e))
         traceback.print_exc()
+        
     finally:
+        # stop and/or disconnect Spark
         if ctx is not None:
             ctx.stop()
             ctx = None
