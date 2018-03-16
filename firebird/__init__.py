@@ -51,5 +51,6 @@ def logger(context, name):
     Returns:
         Logger instance
     """
-    
+
+    # TODO: add firebird version to name
     return context._jvm.org.apache.log4j.LogManager.getLogger(name)

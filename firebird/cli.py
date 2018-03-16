@@ -18,7 +18,7 @@ from cytoolz   import take
 from firebird  import ARD
 from firebird  import logger
 from functools import partial
-from merlin. functions import cqlstr
+from merlin.functions import cqlstr
 
 import cassandra
 import click
@@ -46,10 +46,10 @@ def entrypoint():
 
 
 @entrypoint.command()
-@click.option('--x', '-x', required=True)
-@click.option('--y', '-y', required=True)
+@click.option('--x',        '-x', required=True)
+@click.option('--y',        '-y', required=True)
 @click.option('--acquired', '-a', required=True)
-@click.option('--number', '-n', required=False, default=2500)
+@click.option('--number',   '-n', required=False, default=2500)
 def changedetection(x, y, acquired, number=2500):
     """Run change detection for a tile over a time range and save results to Cassandra.
     
@@ -69,10 +69,10 @@ def changedetection(x, y, acquired, number=2500):
     
     try:
         # start and/or connect Spark
-        ctx = firebird.context(name)
+        ctx  = firebird.context(name)
 
         # get logger
-        log = logger(ctx, name)
+        log  = logger(ctx, name)
         
         # wire everything up
         tile = grids.tile(x=x, y=y, cfg=ARD)
