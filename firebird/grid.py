@@ -1,12 +1,15 @@
 from cytoolz import first
+from cytoolz import get
+from cytoolz import get-in
 from merlin.geometry import extents
 from merlin.geometry import coordinates
+from operators import eq
 
 import firebird
 import merlin
 
-def grid():
-    """Returns the grid definition associated with Chipmunk ARD"""
+def definition():
+    """Returns the grid definition associated with configuration"""
     
     return firebird.ARD.get('grid_fn')()
 
@@ -33,17 +36,20 @@ def tile(x, y, cfg):
        Return:
            dict: {'ulx', 'uly', 'lrx', 'lry', 'projection-pt', 'grid-pt'}
     """
-    grid = cfg.get('grid_fn')()
-    chip_grid = first(filter(lambda x: x['name'] == 'chip', grid))
-    tile_grid = first(filter(lambda x: x['name'] == 'tile', grid))
+    # get all grid definitions
+    grid  = definition()
 
+    # get tile & chip grids
+    tgrid = first(filter(eq(lambda x: get('name', x), 'tile'), grid))
+    cgrid = first(filter(eq(lambda x: get('name', x), 'chip'), grid))
+
+    
     snap_fn = cfg.get('snap_fn')
     snapped = snap_fn(x=x, y=y)
-    tilex, tiley = snapped.get('tile').get('proj-pt')
-    h, v = snapped.get('tile').get('grid-pt')
-    #near = near_fn(x=x, y=y)
-    tile_extents = extents(ulx=tilex, uly=tiley, grid=tile_grid)
-    chips = coordinates(tile_extents, grid=chip_grid, snap_fn=snap_fn)
+    tx, ty  = get_in(['tile', 'proj-pt'], snapped)
+    h, v    = get_in(['tile', 'grid-pt'], snapped)
+    exts    = extents(ulx=tx, uly=ty, grid=tgrid)
+    chips   = coordinates(exts, grid=cgrid, snap_fn=snap_fn)
 
     return dict(x=tilex,
                 y=tiley,

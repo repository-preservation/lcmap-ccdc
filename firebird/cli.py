@@ -23,7 +23,7 @@ from merlin.functions import cqlstr
 import cassandra
 import click
 import firebird
-import grids
+import grid
 import pyccd
 import timeseries
 import traceback
@@ -75,7 +75,7 @@ def changedetection(x, y, acquired, number=2500):
         log  = logger(ctx, name)
         
         # wire everything up
-        tile = grids.tile(x=x, y=y, cfg=ARD)
+        tile = grid.tile(x=x, y=y, cfg=ARD)
         ids  = timeseries.ids(ctx=ctx, chips=take(number, tile.get('chips')))
         ard  = timeseries.rdd(ctx=ctx, ids=ids, acquired=acquired, cfg=firebird.ARD, name='ard')
         ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).cache()
@@ -94,7 +94,7 @@ def changedetection(x, y, acquired, number=2500):
             
     except Exception as e:
         # spark errors & stack trace
-        print('error:{}'.format(e))
+        print('{} error:{}'.format(name, e))
         traceback.print_exc()
         
     finally:
@@ -109,25 +109,29 @@ def changedetection(x, y, acquired, number=2500):
 @click.option('--y', '-y', required=True)
 def train(x, y):
 
-     ctx = None
+     ctx  = None
+     name = 'random-forest-training'
+     
     try:
-        # connect to the cluster
-        ctx = firebird.context('random-forest-training')
+        # start and/or connect Spark
+        ctx = firebird.context(name)
 
         # get logger
-        log = logger(ctx, 'random-forest-training')
+        log = logger(ctx, name)
 
-    # make sure tile contains the chip ids for all the neighbor tiles too,
-    # or call grids.neighbors(x=x, y=y, cfg=AUX)
-    tile = grids.tile(x=x, y=y, cfg=AUX)
-    ids  = timeseries.ids(ctx=ctx, chips=take(number, tile.get('chips')))
+        # wire everything up
+        # make sure tile contains the chip ids for all the neighbor tiles too,
+        # or call grids.neighbors(x=x, y=y, cfg=AUX)
+        chips = grid.training(x=x, y=y, cfg=AUX)
 
-    # build converter and schema to flatten aux
-    aux  = timeseries.dataframe(ctx=ctx,
-                                rdd=timeseries.rdd(ctx=ctx,
-                                                   ids=ids,
-                                                   acquired=acquired,
-                                                   cfg=firebird.AUX, name='aux')
+        ids   = timeseries.ids(ctx=ctx, chips=take(number, chips))
+
+        # build converter and schema to flatten aux
+        aux   = timeseries.dataframe(ctx=ctx,
+                                     rdd=timeseries.rdd(ctx=ctx,
+                                                        ids=ids,
+                                                        acquired=acquired,
+                                                        cfg=firebird.AUX, name='aux')
 
     # filter aux for trends != 0 and trends != 9
     # extract chip ids from filtered aux
@@ -138,6 +142,23 @@ def train(x, y):
     # train RF
     # save RF
     # return something
+
+        # realize data transformations
+        # TODO: do it
+
+        # log and return model training status
+        # TODO: do it
+        
+    except Exception as e:
+        # spark errors & stack trace
+        print('{} error:{}'.format(name, e))
+        traceback.print_exc()
+        
+    finally:
+        # stop and/or disconnect Spark
+        if ctx is not None
+            ctx.stop()
+            ctx = None
                                 
     return True
 
