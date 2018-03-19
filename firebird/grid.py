@@ -1,9 +1,10 @@
 from cytoolz import first
 from cytoolz import get
-from cytoolz import get-in
+from cytoolz import get_in
+from merlin.functions import flatten
 from merlin.geometry import extents
 from merlin.geometry import coordinates
-from operators import eq
+from operator import eq
 
 import firebird
 import merlin
@@ -14,56 +15,54 @@ def definition():
     return firebird.ARD.get('grid_fn')()
 
 
-        #grid         = ARD.get('grid_fn')()
-        #chip_grid    = first(filter(lambda x: x['name'] == 'chip', grid))
-        #tile_grid    = first(filter(lambda x: x['name'] == 'tile', grid))
-        #snap_fn      = ARD.get('snap_fn')
-        #tilex, tiley = snap_fn(x=x, y=y).get('tile').get('proj-pt')
-        #tile_extents = extents(ulx=tilex, uly=tiley, grid=tile_grid)
-        #chips        = take(int(number),
-        #                    coordinates(tile_extents, grid=chip_grid, snap_fn=snap_fn))
-
-        # END move into function(s)
-
-
 def tile(x, y, cfg):
     """Given a point return a tile
     
-       Args:
-           x (float): x coordinate
-           y (float): y coordinate
+    Args:
+        x (float): x coordinate
+        y (float): y coordinate
 
-       Return:
-           dict: {'ulx', 'uly', 'lrx', 'lry', 'projection-pt', 'grid-pt'}
+    Return:
+        dict: {'ulx', 'uly', 'lrx', 'lry', 'projection-pt', 'grid-pt'}
     """
+
     # get all grid definitions
-    grid  = definition()
+    grid    = definition()
 
     # get tile & chip grids
-    tgrid = first(filter(eq(lambda x: get('name', x), 'tile'), grid))
-    cgrid = first(filter(eq(lambda x: get('name', x), 'chip'), grid))
+    tgrid   = first(filter(lambda x: eq(get('name', x), 'tile'), grid))
+    cgrid   = first(filter(lambda x: eq(get('name', x), 'chip'), grid))
 
-    
-    snap_fn = cfg.get('snap_fn')
+    snap_fn = get('snap_fn', cfg)
     snapped = snap_fn(x=x, y=y)
     tx, ty  = get_in(['tile', 'proj-pt'], snapped)
     h, v    = get_in(['tile', 'grid-pt'], snapped)
     exts    = extents(ulx=tx, uly=ty, grid=tgrid)
     chips   = coordinates(exts, grid=cgrid, snap_fn=snap_fn)
 
-    return dict(x=tilex,
-                y=tiley,
+    return dict(x=tx,
+                y=ty,
                 h=h,
                 v=v,
-                **tile_extents,
+                **exts,
                 chips=chips)
 
 
 def training(x, y, cfg):
-    """Returns the chip ids for training"""
+    """Returns the chip ids for training
+    
+    Args:
+        x (int): x coordinate in tile 
+        y (int): y coordinate in tile
 
-    grid    = cfg.get('grid_fn')()
-    snap_fn = cfg.get('snap_fn')()
-    near_fn = cfg.get('near_fn')()
+    Returns:
+        list of chip ids for training area
+    """
 
-    return chips
+    near_fn = get('near_fn', cfg)
+
+    tiles = list(filter(lambda x: get('proj-pt', x),
+                        get('tile', near_fn(x, y))))
+
+    return flatten([get('chips', tile(x, y, cfg)) for x, y in tiles])
+

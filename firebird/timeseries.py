@@ -45,63 +45,46 @@ def schema(name):
         StructType: Dataframe schema
     """
     
-    s = {'ard': StructType([StructField('chipx', IntegerType(), False),
-                            StructField('chipy', IntegerType(), False),
-                            StructField('x', IntegerType(), False),
-                            StructField('y', IntegerType(), False),
-                            StructField('ard', StructType([
-                                StructField('dates', ArrayType(IntegerType(), False), False),
-                                StructField('blues', ArrayType(IntegerType(), False), False),
-                                StructField('greens', ArrayType(IntegerType(), False), False),
-                                StructField('reds', ArrayType(IntegerType(), False), False),
-                                StructField('nirs', ArrayType(IntegerType(), False), False),
-                                StructField('swir1s', ArrayType(IntegerType(), False), False),
-                                StructField('swir2s', ArrayType(IntegerType(), False), False),
-                                StructField('thermals', ArrayType(IntegerType(), False), False),
-                                StructField('qas', ArrayType(IntegerType(), False), False)]))]),
-         'aux': StructType([StructField('chipx', IntegerType(), False),
-                            StructField('chipy', IntegerType(), False),
-                            StructField('x', IntegerType(), False),
-                            StructField('y', IntegerType(), False),
-                            StructField('aux', StructType([
-                                StructField('dates', ArrayType(IntegerType(), False), False),
-                                StructField('dem', ArrayType(FloatType(), False), False),
-                                StructField('trends', ArrayType(IntegerType(), False), False),
-                                StructField('aspect', ArrayType(IntegerType(), False), False),
-                                StructField('posidex', ArrayType(FloatType(), False), False),
-                                StructField('slope', ArrayType(FloatType(), False), False),
-                                StructField('mpw', ArrayType(IntegerType(), False), False)]))])}
+    s = {'ard': StructType([StructField('chipx', IntegerType(), nullable=False),
+                            StructField('chipy', IntegerType(), nullable=False),
+                            StructField('x', IntegerType(), nullable=False),
+                            StructField('y', IntegerType(), nullable=False),
+                            StructField('dates', ArrayType(IntegerType(), False), nullable=False),
+                            StructField('blues', ArrayType(IntegerType(), False), nullable=False),
+                            StructField('greens', ArrayType(IntegerType(), False), nullable=False),
+                            StructField('reds', ArrayType(IntegerType(), False), nullable=False),
+                            StructField('nirs', ArrayType(IntegerType(), False), nullable=False),
+                            StructField('swir1s', ArrayType(IntegerType(), False), nullable=False),
+                            StructField('swir2s', ArrayType(IntegerType(), False), nullable=False),
+                            StructField('thermals', ArrayType(IntegerType(), False), nullable=False),
+                            StructField('qas', ArrayType(IntegerType(), False), nullable=False)]),
+         'aux': StructType([StructField('chipx', IntegerType(), nullable=False),
+                            StructField('chipy', IntegerType(), nullable=False),
+                            StructField('x', IntegerType(), nullable=False),
+                            StructField('y', IntegerType(), nullable=False),
+                            StructField('dates', ArrayType(IntegerType(), False), nullable=False),
+                            StructField('dem', ArrayType(FloatType(), False), nullable=True),
+                            StructField('trends', ArrayType(IntegerType(), False), nullable=False),
+                            StructField('aspect', ArrayType(IntegerType(), False), nullable=True),
+                            StructField('posidex', ArrayType(FloatType(), False), nullable=True),
+                            StructField('slope', ArrayType(FloatType(), False), nullable=True),
+                            StructField('mpw', ArrayType(IntegerType(), False), nullable=True)])}
 
     return s.get(name) if name else s
 
 
-#def denumpyify(data):
-#    """Converts dictionary values from numpy types to Python types.
-#
-#    Args:
-#        data (dict): A dictionary possibly containing numpy arrays
-#
-#    Returns:
-#        dict: A dictionary with numpy arrays converted to Python lists
-#    """
-#
-#    return {k: merlin.functions.denumpify(v) for k,v in data.items()}
-
-
-def converter(name):
+def converter():
     """Returns a function to convert an RDD to Dataframe
-
-    Args:
-        name (str): name of converter
 
     Returns:
         func: A Python function to convert an rdd to dataframe
     """
-    
-    c = {'ard': lambda x: (int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3]), denumpyify(x[1])),
-         'aux': lambda x: (int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3]), denumpyify(x[1]))}
 
-    return c.get(name)
+    return lambda x: {'chipx': int(x[0][0]),
+                      'chipy': int(x[0][1]),
+                      'x'    : int(x[0][2]),
+                      'y'    : int(x[0][3]),
+                      **denumpify(x[1])}
 
 
 def dataframe(ctx, rdd):
@@ -117,7 +100,7 @@ def dataframe(ctx, rdd):
 
     logger(ctx, rdd.name()).info('converting {} to dataframe'.format(rdd.name()))
     session = SparkSession(ctx)
-    return session.createDataFrame(data=rdd.map(converter(rdd.name())),
+    return session.createDataFrame(data=rdd.map(converter()),
                                    schema=schema(rdd.name()))
 
 
@@ -159,7 +142,7 @@ def rdd(ctx, ids, acquired, cfg, name=__name__):
 
 
 def ard(ctx, ids, acquired):
-    """Create an ard timeseries
+    """Create an ard timeseries dataframe
     
     Args:
         ctx: spark context
@@ -171,15 +154,15 @@ def ard(ctx, ids, acquired):
     """
     
     return dataframe(ctx=ctx,
-                     rdd=execute(ctx=ctx,
-                                 ids=ids,
-                                 acquired=acquired,
-                                 cfg=firebird.ARD,
-                                 name='ard'))
+                     rdd=rdd(ctx=ctx,
+                             ids=ids,
+                             acquired=acquired,
+                             cfg=firebird.ARD,
+                             name='ard'))
 
 
 def aux(ctx, ids, acquired):
-    """Create an aux timeseries
+    """Create an aux timeseries dataframe
     
     Args:
         ctx: spark context
@@ -191,8 +174,8 @@ def aux(ctx, ids, acquired):
     """
     
     return dataframe(ctx=ctx,
-                     rdd=execute(ctx=ctx,
-                                 ids=ids,
-                                 acquired=acquired,
-                                 cfg=firebird.AUX,
-                                 name='aux'))
+                     rdd=rdd(ctx=ctx,
+                             ids=ids,
+                             acquired=acquired,
+                             cfg=firebird.AUX,
+                             name='aux'))

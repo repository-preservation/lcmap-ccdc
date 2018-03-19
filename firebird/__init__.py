@@ -21,7 +21,7 @@ CASSANDRA_INPUT_CONSISTENCY_LEVEL  = os.getenv('CASSANDRA_INPUT_CONSISTENCY_LEVE
 INPUT_PARTITIONS                   = int(os.getenv('INPUT_PARTITIONS', 1))
 PRODUCT_PARTITIONS                 = int(os.getenv('PRODUCT_PARTITIONS', 1))
 ARD                                = merlin.cfg.get(profile='chipmunk-ard', env={'CHIPMUNK_URL': ARD_CHIPMUNK}) 
-AUX                                = merlin.cfg.get(profile='chipmunk-aux', env={'CHIPMUNK_URL': AUX_CHIPMUNK}) 
+AUX                                = merlin.cfg.get(profile='chipmunk-trends', env={'CHIPMUNK_URL': AUX_CHIPMUNK}) 
 
 
 def context(name):

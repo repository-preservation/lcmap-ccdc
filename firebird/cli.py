@@ -63,7 +63,6 @@ def changedetection(x, y, acquired, number=2500):
         count of saved segments 
     """
 
-    
     ctx  = None
     name = 'change-detection'
     
@@ -107,8 +106,18 @@ def changedetection(x, y, acquired, number=2500):
 @click.command()
 @click.option('--x', '-x', required=True)
 @click.option('--y', '-y', required=True)
-def train(x, y):
+def train(x, y, number=22500):
+    """Trains and saves random forest model for a tile
 
+    Args:
+        x (int)      : x coordinate in tile
+        y (int)      : y coordinate in tile
+        number (int) : Number of chips as training data. Testing only.
+
+    Returns:
+        TBD
+    """
+    
      ctx  = None
      name = 'random-forest-training'
      
@@ -120,20 +129,19 @@ def train(x, y):
         log = logger(ctx, name)
 
         # wire everything up
-        # make sure tile contains the chip ids for all the neighbor tiles too,
-        # or call grids.neighbors(x=x, y=y, cfg=AUX)
         chips = grid.training(x=x, y=y, cfg=AUX)
+
+        print('training chip count:{}'.format(len(chips)))
 
         ids   = timeseries.ids(ctx=ctx, chips=take(number, chips))
 
-        # build converter and schema to flatten aux
-        aux   = timeseries.dataframe(ctx=ctx,
-                                     rdd=timeseries.rdd(ctx=ctx,
-                                                        ids=ids,
-                                                        acquired=acquired,
-                                                        cfg=firebird.AUX, name='aux')
+        # get aux dataframe
+        aux   = timeseries.aux(ctx=ctx,
+                               ids=ids,
+                               acquired=acquired)\
+                          .filter('trends[0] NOT IN (0, 9)')\
+                          .cache()
 
-    # filter aux for trends != 0 and trends != 9
     # extract chip ids from filtered aux
     # query for matching segments by chip id (pyccd.read or cassandra.read)
     # filter segments on sday > S and eday < E
