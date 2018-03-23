@@ -16,9 +16,9 @@ from cytoolz   import get
 from cytoolz   import merge
 from cytoolz   import take
 from firebird  import ARD
+from firebird  import AUX
 from firebird  import logger
 from functools import partial
-from merlin.functions import cqlstr
 
 import cassandra
 import click
@@ -86,16 +86,16 @@ def changedetection(x, y, acquired, number=2500):
                                   'chips': ids.count()})))
 
         # realize data transformations
-        cassandra.write(ctx, ccd, cqlstr(pyccd.algorithm()))
+        cassandra.write(ctx, ccd, pyccd.table())
 
         # log and return segment counts
-        return do(log.info "saved {} ccd segments".format(get('ccd', counts)))
+        return do(log.info, "saved {} ccd segments".format(ccd.count()))
             
     except Exception as e:
         # spark errors & stack trace
         print('{} error:{}'.format(name, e))
         traceback.print_exc()
-        
+
     finally:
         # stop and/or disconnect Spark
         if ctx is not None:
@@ -103,23 +103,26 @@ def changedetection(x, y, acquired, number=2500):
             ctx = None
 
 
-@click.command()
-@click.option('--x', '-x', required=True)
-@click.option('--y', '-y', required=True)
-def train(x, y, number=22500):
+@entrypoint.command()
+@click.option('--x',        '-x', required=True)
+@click.option('--y',        '-y', required=True)
+@click.option('--acquired', '-a', required=True)
+@click.option('--number',   '-n', required=False, default=22500)
+def train(x, y, acquired, number=22500):
     """Trains and saves random forest model for a tile
 
     Args:
-        x (int)      : x coordinate in tile
-        y (int)      : y coordinate in tile
-        number (int) : Number of chips as training data. Testing only.
+        x (int)       : x coordinate in tile
+        y (int)       : y coordinate in tile
+        acquired (str): ISO8601 date range 
+        number (int)  : Number of chips as training data. Testing only.
 
     Returns:
         TBD
     """
     
-     ctx  = None
-     name = 'random-forest-training'
+    ctx  = None
+    name = 'random-forest-training'
      
     try:
         # start and/or connect Spark
@@ -129,34 +132,42 @@ def train(x, y, number=22500):
         log = logger(ctx, name)
 
         # wire everything up
-        chips = grid.training(x=x, y=y, cfg=AUX)
+        # parameterize the grid being passed in so you can test
+        # this it the ops grid
+        # chips = grid.training(x=x, y=y, cfg=AUX)
 
-        print('training chip count:{}'.format(len(chips)))
-
-        ids   = timeseries.ids(ctx=ctx, chips=take(number, chips))
-
-        # get aux dataframe
-        aux   = timeseries.aux(ctx=ctx,
-                               ids=ids,
-                               acquired=acquired)\
-                          .filter('trends[0] NOT IN (0, 9)')\
-                          .cache()
-
-    # extract chip ids from filtered aux
-    # query for matching segments by chip id (pyccd.read or cassandra.read)
-    # filter segments on sday > S and eday < E
-    # join segments and aux together
-    # build features with features UDF, eject unneeded columns
-    # train RF
-    # save RF
-    # return something
-
-        # realize data transformations
-        # TODO: do it
-
-        # log and return model training status
-        # TODO: do it
+        chips = get('chips', grid.tile(x=x, y=y, cfg=AUX))
         
+        ids   = timeseries.ids(ctx=ctx, chips=take(number, chips)).persist()
+                
+        # get aux dataframe
+        aux   = timeseries.aux(ctx=ctx, ids=ids, acquired=acquired)\
+                          .filter('trends[0] NOT IN (1, 8)')\
+                          .persist()
+
+        # get chip ids to query
+        cid   = aux.select(aux.chipx, aux.chipy).distinct().persist()
+                
+        # Pull results for each chip
+        ccd   = cid.join(cassandra.read(ctx, pyccd.table()),
+                         on=['chipx', 'chipy'],
+                         how='inner').filter('sday >= 0 AND eday <= 0').persist()
+
+        # merge aux data with ccd results
+        both  = aux.join(ccd, on=['chipx', 'chipy', 'x', 'y'], how='inner').persist()
+
+        log.debug('training chip count:{}'.format(ids.count()))
+        log.debug('aux point count:{}'.format(aux.count()))
+        log.debug('aux chip count:{}'.format(cid.count()))
+        log.debug('training point count:{}'.format(both.count()))
+        log.debug('sample training point:{}'.format(both.first()))
+        
+        # build features with features UDF, eject unneeded columns
+        # train RF
+        # save RF
+        # return something
+
+                
     except Exception as e:
         # spark errors & stack trace
         print('{} error:{}'.format(name, e))
@@ -164,7 +175,7 @@ def train(x, y, number=22500):
         
     finally:
         # stop and/or disconnect Spark
-        if ctx is not None
+        if ctx is not None:
             ctx.stop()
             ctx = None
                                 

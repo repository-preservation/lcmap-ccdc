@@ -1,4 +1,5 @@
 from cytoolz import assoc
+from pyspark.sql import SparkSession
 import firebird
 
 def options(table):
@@ -26,8 +27,9 @@ def options(table):
     }
 
 
-def read():
-    pass
+def read(sc, table):
+    opts = options(table)
+    return SparkSession(sc).read.format('org.apache.spark.sql.cassandra').options(**opts).load()
 
 
 def write(sc, dataframe, table):

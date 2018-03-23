@@ -4,6 +4,7 @@ from cytoolz import get_in
 from cytoolz import merge
 from cytoolz import second
 from firebird import logger
+from merlin.functions import cqlstr
 from merlin.functions import denumpify
 from pyspark import sql
 from pyspark.sql import SparkSession
@@ -17,6 +18,18 @@ from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
 
 import ccd
+
+
+def algorithm():
+    """Returns the ccd algorithm and version"""
+
+    return ccd.algorithm
+
+
+def table():
+    """Cassandra pyccd table name"""
+    
+    return cqlstr(algorithm())
 
 
 def schema():
@@ -201,7 +214,3 @@ def rdd(ctx, timeseries):
     return timeseries.flatMap(detect)
 
 
-def algorithm():
-    """Returns the ccd algorithm and version"""
-
-    return ccd.algorithm

@@ -1,6 +1,9 @@
-from cytoolz import first
-from cytoolz import get
-from cytoolz import get_in
+from cytoolz  import first
+from cytoolz  import get
+from cytoolz  import get_in
+from cytoolz  import second
+from cytoolz  import thread_last
+from functools import partial
 from merlin.functions import flatten
 from merlin.geometry import extents
 from merlin.geometry import coordinates
@@ -9,10 +12,11 @@ from operator import eq
 import firebird
 import merlin
 
-def definition():
+
+def definition(cfg=firebird.ARD):
     """Returns the grid definition associated with configuration"""
     
-    return firebird.ARD.get('grid_fn')()
+    return get('grid_fn', cfg)()
 
 
 def tile(x, y, cfg):
@@ -52,8 +56,9 @@ def training(x, y, cfg):
     """Returns the chip ids for training
     
     Args:
-        x (int): x coordinate in tile 
-        y (int): y coordinate in tile
+        x   (int):  x coordinate in tile 
+        y   (int):  y coordinate in tile
+        cfg (dict): a Merlin configuration
 
     Returns:
         list of chip ids for training area
@@ -61,8 +66,13 @@ def training(x, y, cfg):
 
     near_fn = get('near_fn', cfg)
 
-    tiles = list(filter(lambda x: get('proj-pt', x),
-                        get('tile', near_fn(x, y))))
+    return thread_last(near_fn(x=x, y=y),
+                       partial(get, 'tile'),
+                       partial(map, lambda t:  t.get('proj-pt')),
+                       partial(map, lambda xy: tile(x=first(xy), y=second(xy), cfg=cfg)),
+                       partial(map, lambda t:  get('chips', t)),
+                       flatten,
+                       list)
 
-    return flatten([get('chips', tile(x, y, cfg)) for x, y in tiles])
+   
 
