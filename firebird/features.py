@@ -41,11 +41,11 @@ def columns():
 
 @udf(returnType=VectorUDF())
 def densify(*args, **kwargs):
-    """Creates classification features
+    """Create classification features
 
     Args:
-        *args    - sequence of arguments to be densified into Vector
-        **kwargs - ignored
+        *args    : sequence of arguments to be densified into Vector
+        **kwargs : ignored
 
     Returns:
         pyspark.ml.linalg.Vector
@@ -55,13 +55,28 @@ def densify(*args, **kwargs):
 
 
 def dependent(df):
-    """Creates label column on dataframe"""
+    """Create dependent variable
+
+    Args:
+        df: dataframe with trends column
+    
+    Returns:
+        dataframe with label column
+    """
+    
     return df.withColumnRenamed('trends', 'label')
 
 
 def independent(df):
-    """User defined function to create features for a dataframe"""
-    # call UDF to create features column and return df with column
+    """Create independent variable
+
+    Args:
+        df: dataframe with columns as specified in columns()
+
+    Returns:
+        dataframe with features column
+    """
+    
     return df.with_column('features', densify(*columns()))
 
 
