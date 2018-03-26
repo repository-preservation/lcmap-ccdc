@@ -85,11 +85,10 @@ def changedetection(x, y, acquired, number=2500):
                                   'product-partitions': firebird.PRODUCT_PARTITIONS,
                                   'chips': ids.count()})))
 
-        # realize data transformations
-        cassandra.write(ctx, ccd, pyccd.table())
-
+        written = pyccd.write(ctx, ccd).count()
+        
         # log and return segment counts
-        return do(log.info, "saved {} ccd segments".format(ccd.count()))
+        return do(log.info, "saved {} ccd segments".format(written)
             
     except Exception as e:
         # spark errors & stack trace
@@ -132,29 +131,28 @@ def train(x, y, acquired, number=22500):
         log = logger(ctx, name)
 
         # wire everything up
+        
         # parameterize the grid being passed in so you can test
         # this it the ops grid
         # chips = grid.training(x=x, y=y, cfg=AUX)
 
         chips = get('chips', grid.tile(x=x, y=y, cfg=AUX))
         
-        ids   = timeseries.ids(ctx=ctx, chips=take(number, chips)).persist()
+        ids = timeseries.ids(ctx=ctx, chips=take(number, chips)).persist()
                 
         # get aux dataframe
-        aux   = timeseries.aux(ctx=ctx, ids=ids, acquired=acquired)\
+        aux = timeseries.aux(ctx=ctx, ids=ids, acquired=acquired)\
                           .filter('trends[0] NOT IN (1, 8)')\
                           .persist()
 
         # get chip ids to query
-        cid   = aux.select(aux.chipx, aux.chipy).distinct().persist()
+        cid = aux.select(aux.chipx, aux.chipy).distinct().persist()
                 
         # Pull results for each chip
-        ccd   = cid.join(cassandra.read(ctx, pyccd.table()),
-                         on=['chipx', 'chipy'],
-                         how='inner').filter('sday >= 0 AND eday <= 0').persist()
+        ccd = pyccd.read(ctx, cid).filter('sday >= 0 AND eday <= 0').persist()
 
-        # merge aux data with ccd results
-        both  = aux.join(ccd, on=['chipx', 'chipy', 'x', 'y'], how='inner').persist()
+        # create features dataframe
+        fdf = features.dataframe(aux, ccd).persist()
 
         log.debug('training chip count:{}'.format(ids.count()))
         log.debug('aux point count:{}'.format(aux.count()))
@@ -162,7 +160,7 @@ def train(x, y, acquired, number=22500):
         log.debug('training point count:{}'.format(both.count()))
         log.debug('sample training point:{}'.format(both.first()))
         
-        # build features with features UDF, eject unneeded columns
+        #build features with features UDF, eject unneeded columns
         # train RF
         # save RF
         # return something

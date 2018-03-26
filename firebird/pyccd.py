@@ -3,6 +3,7 @@ from cytoolz import get
 from cytoolz import get_in
 from cytoolz import merge
 from cytoolz import second
+from firebird import cassandra
 from firebird import logger
 from merlin.functions import cqlstr
 from merlin.functions import denumpify
@@ -95,35 +96,6 @@ def dataframe(ctx, rdd):
     return SparkSession(ctx).createDataFrame(rdd, schema=schema())
  
    
-def read(sc, tilex, tiley):
-    """Reads a tile of change results from Cassandra
-
-    Args:
-        tilex (int): tile x coordinate
-        tiley (int): tile y coordinate
-        
-    Returns:
-        A spark dataframe conforming to pyccd.schema
-    """
-    pass
-
-
-#def write(sc, dataframe):
-#    """Writes a dataframe to persistent storage
-#
-#    Args:
-#        sc: Spark Context
-#        dataframe: Dataframe to persist
-#
-#    Returns:
-#        dataframe
-#    """
-#    
-#    return cassandra.write(sc=sc,
-#                           dataframe=dataframe,
-#                           options=cassandra.options(table=cqlstr(ccd.algorithm)))
-
-
 def default(change_models):
     # if there are no change models, append an empty one to
     # signify that ccd was run for the point, setting start_day and end_day to 0
@@ -203,7 +175,7 @@ def rdd(ctx, timeseries):
     """Run pyccd against a timeseries
 
     Args:
-        sc: spark context
+        ctx: spark context
         timeseries: RDD of timeseries data
 
     Returns:
@@ -213,4 +185,33 @@ def rdd(ctx, timeseries):
     logger(context=ctx, name=__name__).info('executing change detection')
     return timeseries.flatMap(detect)
 
+
+def read(ctx, ids):
+    """Read pyccd results
+
+    Args:
+        ctx: spark context
+        ids: dataframe of (chipx, chipy)
+
+    Returns:
+        dataframe conforming to pyccd.schema()
+    """
+    return ids.join(cassandra.read(ctx, table()),
+                    on=['chipx', 'chipy'],
+                    how='inner')
+
+
+def write(ctx, df):
+    """Write pyccd results
+
+    Args:
+        ctx: spark context
+        df : dataframe conforming to pyccd.schema()
+    
+    Returns:
+        df
+    """
+    cassandra.write(ctx, df, table())
+    return df
+    
 
