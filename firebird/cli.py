@@ -22,9 +22,12 @@ from functools import partial
 
 import cassandra
 import click
+import features
 import firebird
 import grid
+import ids
 import pyccd
+import randomforest
 import timeseries
 import traceback
 
@@ -75,20 +78,20 @@ def changedetection(x, y, acquired, number=2500):
         
         # wire everything up
         tile = grid.tile(x=x, y=y, cfg=ARD)
-        ids  = timeseries.ids(ctx=ctx, chips=take(number, tile.get('chips')))
-        ard  = timeseries.rdd(ctx=ctx, ids=ids, acquired=acquired, cfg=firebird.ARD, name='ard')
+        cids = ids.rdd(ctx=ctx, chips=take(number, tile.get('chips')))
+        ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=firebird.ARD, name='ard')
         ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).cache()
 
         # emit parameters
         log.info(str(merge(tile, {'acquired': acquired,
                                   'input-partitions': firebird.INPUT_PARTITIONS,
                                   'product-partitions': firebird.PRODUCT_PARTITIONS,
-                                  'chips': ids.count()})))
+                                  'chips': cids.count()})))
 
         written = pyccd.write(ctx, ccd).count()
         
         # log and return segment counts
-        return do(log.info, "saved {} ccd segments".format(written)
+        return do(log.info, "saved {} ccd segments".format(written))
             
     except Exception as e:
         # spark errors & stack trace
@@ -103,91 +106,67 @@ def changedetection(x, y, acquired, number=2500):
 
 
 @entrypoint.command()
-@click.option('--x',        '-x', required=True)
-@click.option('--y',        '-y', required=True)
+@click.option('--x', '-x', required=True)
+@click.option('--y', '-y', required=True)
 @click.option('--acquired', '-a', required=True)
-@click.option('--number',   '-n', required=False, default=22500)
-def train(x, y, acquired, number=22500):
-    """Trains and saves random forest model for a tile
-
+def classify(x, y, acquired):
+    """
     Args:
+        acquired (str): ISO8601 date range       
         x (int)       : x coordinate in tile
         y (int)       : y coordinate in tile
-        acquired (str): ISO8601 date range 
-        number (int)  : Number of chips as training data. Testing only.
-
-    Returns:
-        TBD
     """
+  
+    ctx = None
+    name = 'random-forest-classification'
     
-    ctx  = None
-    name = 'random-forest-training'
-     
     try:
-        # start and/or connect Spark
-        ctx = firebird.context(name)
+        ctx   = firebird.context(name)
 
         # get logger
-        log = logger(ctx, name)
-
-        # wire everything up
+        log   = logger(ctx, name)
         
-        # parameterize the grid being passed in so you can test
-        # this it the ops grid
-        # chips = grid.training(x=x, y=y, cfg=AUX)
+        # train a model
+        tids  = ids.rdd(ctx, grid.training(x=x, y=y, cfg=AUX))
+        tile  = grid.tile(x=x, y=y, cfg=AUX)
+        model = randomforest.train(ctx, tids, acquired)
 
-        chips = get('chips', grid.tile(x=x, y=y, cfg=AUX))
+        if model is None:
+            log.warn('Model could not be trained... exiting')
+            return 1
+
+        # pull data to classify
+        cids  = ids.dataframe(ctx, ids.rdd(ctx, get('chips', tile)))
+        ccd   = pyccd.read(ctx, cids).filter('sday >= 0 AND eday >= 0')
+        aux   = timeseries.aux(ctx, cids.rdd, acquired)
+
+        # classify it
+        fdf   = features.dataframe(aux, ccd)
+        preds = randomforest.classify(model, fdf)
+        log.info('Preds:{}'.format(preds))
+        log.info('Sample prediction:{}'.format(preds.first()))
         
-        ids = timeseries.ids(ctx=ctx, chips=take(number, chips)).persist()
-                
-        # get aux dataframe
-        aux = timeseries.aux(ctx=ctx, ids=ids, acquired=acquired)\
-                          .filter('trends[0] NOT IN (1, 8)')\
-                          .persist()
+        # join class onto ARD dataframe
+        # save
+        # done
 
-        # get chip ids to query
-        cid = aux.select(aux.chipx, aux.chipy).distinct().persist()
-                
-        # Pull results for each chip
-        ccd = pyccd.read(ctx, cid).filter('sday >= 0 AND eday <= 0').persist()
-
-        # create features dataframe
-        fdf = features.dataframe(aux, ccd).persist()
-
-        log.debug('training chip count:{}'.format(ids.count()))
-        log.debug('aux point count:{}'.format(aux.count()))
-        log.debug('aux chip count:{}'.format(cid.count()))
-        log.debug('training point count:{}'.format(both.count()))
-        log.debug('sample training point:{}'.format(both.first()))
+        #log.debug('training chip count:{}'.format(ids.count()))
+        #log.debug('aux point count:{}'.format(aux.count()))
+        #log.debug('aux chip count:{}'.format(cid.count()))
+        #log.debug('feature point count:{}'.format(fdf.count()))
+        #log.debug('sample feature:{}'.format(fdf.first()))
+        #log.debug('sample model:{}'.format(model.predictionCol))
         
-        #build features with features UDF, eject unneeded columns
-        # train RF
-        # save RF
-        # return something
 
-                
     except Exception as e:
         # spark errors & stack trace
         print('{} error:{}'.format(name, e))
-        traceback.print_exc()
-        
+        traceback.print_exc()    
     finally:
         # stop and/or disconnect Spark
         if ctx is not None:
             ctx.stop()
             ctx = None
-                                
-    return True
-
-
-@click.command()
-@click.option('--x', '-x', required=True)
-@click.option('--y', '-y', required=True)
-@click.option('--acquired', '-a', required=True)
-def classify(x, y, acquired):
-    tile = tile(x, y)
-    # tile.keys == 'x', 'y', 'extents', 'chips', 'near':{'tiles': [], 'chips': []}'
-    pass
 
 
 @click.group()

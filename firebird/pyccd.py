@@ -76,8 +76,7 @@ def schema():
         StructField('waprob', FloatType(), nullable=True),
         StructField('clprob', FloatType(), nullable=True),
         StructField('prmask', ArrayType(ByteType()), nullable=True),
-        StructField('rfrawp', ArrayType(FloatType()), nullable=True),
-        StructField('rfprob', ArrayType(FloatType()), nullable=True)
+        StructField('rfrawp', ArrayType(FloatType()), nullable=True)
     ])
 
 
@@ -93,7 +92,7 @@ def dataframe(ctx, rdd):
     """
 
     logger(ctx, name=__name__).info('creating pyccd dataframe')
-    return SparkSession(ctx).createDataFrame(rdd, schema=schema())
+    return SparkSession(ctx).createDataFrame(rdd, schema())
  
    
 def default(change_models):
@@ -196,6 +195,7 @@ def read(ctx, ids):
     Returns:
         dataframe conforming to pyccd.schema()
     """
+    
     return ids.join(cassandra.read(ctx, table()),
                     on=['chipx', 'chipy'],
                     how='inner')

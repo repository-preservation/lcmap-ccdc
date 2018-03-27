@@ -36,10 +36,10 @@ def columns():
             'blrmse', 'grrmse', 'rermse', 'nirmse', 's1rmse', 's2rmse', 'thrmse',
             'blcoef', 'grcoef', 'recoef', 'nicoef', 's1coef', 's2coef', 'thcoef',
             'blint',  'grint',  'reint',  'niint',  's1int',  's1int',  'thint',
-            'dem',    'aspect', 'slope',  'mpw',    'posidex'])
+            'dem',    'aspect', 'slope',  'mpw',    'posidex']
             
 
-@udf(returnType=VectorUDF())
+@udf(returnType=VectorUDT())
 def densify(*args, **kwargs):
     """Create classification features
 
@@ -50,8 +50,10 @@ def densify(*args, **kwargs):
     Returns:
         pyspark.ml.linalg.Vector
     """
+
+    fn = lambda x: first(x) if type(x) in [tuple, set, list] else x
     
-    return Vectors.dense(list(map(lambda x: first(x) if type(x) in [tuple, set, list], args)))
+    return Vectors.dense(list(map(fn, args)))
 
 
 def dependent(df):
@@ -64,7 +66,7 @@ def dependent(df):
         dataframe with label column
     """
     
-    return df.withColumnRenamed('trends', 'label')
+    return df.withColumn('label', df.trends[0])
 
 
 def independent(df):
@@ -77,7 +79,7 @@ def independent(df):
         dataframe with features column
     """
     
-    return df.with_column('features', densify(*columns()))
+    return df.withColumn('features', densify(*columns()))
 
 
 def dataframe(aux, ccd):
@@ -94,6 +96,6 @@ def dataframe(aux, ccd):
     df = thread_last({'aux': aux, 'ccd': ccd},
                      join,
                      dependent,
-                     independent})
-
-    return df.select(['chipx', 'chipy', 'x', 'y', 'label', 'features'])
+                     independent)
+    
+    return df.select(['chipx', 'chipy', 'x', 'y', 'label', 'features']) 

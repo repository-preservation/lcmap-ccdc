@@ -16,23 +16,9 @@ from pyspark.sql.types import StructType
 
 import cassandra
 import firebird
+import ids
 import merlin
 import numpy
-
-
-def ids(ctx, chips):
-    """Loads chip ids into Spark
-    
-    Args:
-        ctx             : spark context
-        chips (sequence): ((x1,y1),(x2,y2),(x3,y3)...))
-
-    Returns:
-        RDD of chip ids
-    """
-    
-    logger(ctx, __name__).info('loading chip ids')
-    return ctx.parallelize(chips, firebird.INPUT_PARTITIONS)
 
 
 def schema(name):
@@ -104,12 +90,12 @@ def dataframe(ctx, rdd):
                                    schema=schema(rdd.name()))
 
 
-def rdd(ctx, ids, acquired, cfg, name=__name__):
+def rdd(ctx, cids, acquired, cfg, name=__name__):
     """Create timeseries from a collection of chip ids and time range
 
     Args:
         ctx      : spark context
-        ids (rdd): RDD of chip ids
+        cids (rdd): RDD of chip ids
         acquired (str): ISO8601 date range: 1980-01-01/2017-01-01 
         cfg: A Merlin configuration
 
@@ -134,19 +120,26 @@ def rdd(ctx, ids, acquired, cfg, name=__name__):
     
     fn = partial(merlin.create, acquired=acquired, cfg=cfg)
     
-    return ids.map(lambda xy: fn(x=first(xy), y=second(xy)))\
-              .flatMap(lambda x: x)\
-              .map(lambda x: ((int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3])), x[1]))\
-              .repartition(firebird.PRODUCT_PARTITIONS)\
-              .setName(name)
+    #return ids(ctx, cids)\
+    #    .map(lambda xy: fn(x=first(xy), y=second(xy)))\
+    #    .flatMap(lambda x: x)\
+    #    .map(lambda x: ((int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3])), x[1]))\
+    #    .repartition(firebird.PRODUCT_PARTITIONS)\
+    #    .setName(name)
+
+    return cids\
+        .flatMap(lambda xy: fn(x=first(xy), y=second(xy)))\
+        .map(lambda x: ((int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3])), x[1]))\
+        .repartition(firebird.PRODUCT_PARTITIONS)\
+        .setName(name)
 
 
-def ard(ctx, ids, acquired):
+def ard(ctx, cids, acquired):
     """Create an ard timeseries dataframe
     
     Args:
-        ctx: spark context
-        ids: rdd off chip ids
+        ctx:  spark context
+        cids: rdd off chip ids
         acquired (str): ISO8601 date range: 1980-01-01/2017-12-31
 
     Returns:
@@ -155,18 +148,18 @@ def ard(ctx, ids, acquired):
     
     return dataframe(ctx=ctx,
                      rdd=rdd(ctx=ctx,
-                             ids=ids,
+                             cids=cids,
                              acquired=acquired,
                              cfg=firebird.ARD,
                              name='ard'))
 
 
-def aux(ctx, ids, acquired):
+def aux(ctx, cids, acquired):
     """Create an aux timeseries dataframe
     
     Args:
-        ctx: spark context
-        ids: rdd off chip ids
+        ctx:  spark context
+        cids: rdd off chip ids
         acquired (str): ISO8601 date range: 1980-01-01/2017-12-31
 
     Returns:
@@ -175,7 +168,7 @@ def aux(ctx, ids, acquired):
     
     return dataframe(ctx=ctx,
                      rdd=rdd(ctx=ctx,
-                             ids=ids,
+                             cids=cids,
                              acquired=acquired,
                              cfg=firebird.AUX,
                              name='aux'))
