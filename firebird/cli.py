@@ -156,36 +156,38 @@ def classification(x, y, acquired):
         log.info('x:{} y:{} acquired:{}'.format(x, y, acquired))
 
         
-        log.info('creating model for training grid chip ids...')
+        log.info('training model with training grid chip ids...')
         model = training(ctx, grid.training(x, y, AUX), acquired)
 
         
         log.info('finding classification grid chip ids...')
         cids = ids.dataframe(ctx,
                              ids.rdd(ctx, grid.classification(x, y, AUX))).persist()
+        log.info('found {} classification grid chip ids...'.format(cids.count()))
         log.debug('sample classification grid chip id:{}'.format(cids.first()))
 
 
         log.info('finding change segments...')
         ccd = pyccd.read(ctx, cids).filter('sday >= 0 AND eday >= 0').persist()
+        log.info('found {} change segments...'.format(ccd.count()))
         log.debug('sample change segment:{}'.format(ccd.first()))
 
          
         log.info('finding aux timeseries...')
         aux = timeseries.aux(ctx, cids.rdd, acquired).persist()
+        log.info('found {} aux timeseries locations'.format(aux.count()))
         log.debug('sample aux timeseries:{}'.format(aux.first()))
         
        
         log.info('constructing classification features...')
         fdf = features.dataframe(aux, ccd).persist()
-        log.debug('features dataframe:{}'.format(fdf))
-        log.debug('features schema:{}'.format(fdf.schema))
+        log.info('constructed {} classification features'.format(fdf.count()))
         log.debug('sample features:{}'.format(fdf.first()))
 
         
         log.info('predicting classes...')
         preds = randomforest.classify(model, fdf).persist()
-        log.debug('preds:{}'.format(preds))
+        log.info('created {} predictions'.format(preds.count()))
         log.debug('sample prediction:{}'.format(preds.first()))
 
         
