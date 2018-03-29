@@ -15,10 +15,12 @@ from cytoolz   import first
 from cytoolz   import get
 from cytoolz   import merge
 from cytoolz   import take
+from cytoolz   import thread_last
 from firebird  import ARD
 from firebird  import AUX
 from firebird  import logger
 from functools import partial
+from merlin    import functions
 
 import cassandra
 import click
@@ -104,47 +106,88 @@ def changedetection(x, y, acquired, number=2500):
             ctx.stop()
             ctx = None
 
+            
+def training(ctx, cids, acquired):
+    """Trains and returns a random forest model for the grid
 
+    Args:
+        ctx: spark context
+        cids: [(x,y), (x1, y1),...]
+        acquired: ISO8601 date range "YYYY-MM-DD/YYYY-MM-DD"
+
+    Returns:
+        trained model
+    """
+    log = logger(ctx, __name__)
+    model = randomforest.train(ctx, ids.rdd(ctx, cids), acquired)
+
+    if model is None:
+        log.warn('Model could not be trained.')
+    else:
+        log.debug('model type:{}'.format(type(model)))
+        log.debug('model:{}'.format(model))
+
+    return model
+
+            
 @entrypoint.command()
 @click.option('--x', '-x', required=True)
 @click.option('--y', '-y', required=True)
 @click.option('--acquired', '-a', required=True)
-def classify(x, y, acquired):
+def classification(x, y, acquired): 
     """
+    Classify a tile.
+
     Args:
         acquired (str): ISO8601 date range       
         x (int)       : x coordinate in tile
         y (int)       : y coordinate in tile
+        acquired (str): date range of change segments to classify
     """
   
     ctx = None
     name = 'random-forest-classification'
     
     try:
-        ctx   = firebird.context(name)
+        ctx = firebird.context(name)
+        log = logger(ctx, name)
 
-        # get logger
-        log   = logger(ctx, name)
+        log.info('beginning {}...'.format(name))
+        log.info('x:{} y:{} acquired:{}'.format(x, y, acquired))
+
         
-        # train a model
-        tids  = ids.rdd(ctx, grid.training(x=x, y=y, cfg=AUX))
-        tile  = grid.tile(x=x, y=y, cfg=AUX)
-        model = randomforest.train(ctx, tids, acquired)
+        log.info('creating model for training grid chip ids...')
+        model = training(ctx, grid.training(x, y, AUX), acquired)
 
-        if model is None:
-            log.warn('Model could not be trained... exiting')
-            return 1
+        
+        log.info('finding classification grid chip ids...')
+        cids = ids.dataframe(ctx,
+                             ids.rdd(ctx, grid.classification(x, y, AUX))).persist()
+        log.debug('sample classification grid chip id:{}'.format(cids.first()))
 
-        # pull data to classify
-        cids  = ids.dataframe(ctx, ids.rdd(ctx, get('chips', tile)))
-        ccd   = pyccd.read(ctx, cids).filter('sday >= 0 AND eday >= 0')
-        aux   = timeseries.aux(ctx, cids.rdd, acquired)
 
-        # classify it
-        fdf   = features.dataframe(aux, ccd)
-        preds = randomforest.classify(model, fdf)
-        log.info('Preds:{}'.format(preds))
-        log.info('Sample prediction:{}'.format(preds.first()))
+        log.info('finding change segments...')
+        ccd = pyccd.read(ctx, cids).filter('sday >= 0 AND eday >= 0').persist()
+        log.debug('sample change segment:{}'.format(ccd.first()))
+
+         
+        log.info('finding aux timeseries...')
+        aux = timeseries.aux(ctx, cids.rdd, acquired).persist()
+        log.debug('sample aux timeseries:{}'.format(aux.first()))
+        
+       
+        log.info('constructing classification features...')
+        fdf = features.dataframe(aux, ccd).persist()
+        log.debug('features dataframe:{}'.format(fdf))
+        log.debug('features schema:{}'.format(fdf.schema))
+        log.debug('sample features:{}'.format(fdf.first()))
+
+        
+        log.info('predicting classes...')
+        preds = randomforest.classify(model, fdf).persist()
+        log.debug('preds:{}'.format(preds))
+        log.debug('sample prediction:{}'.format(preds.first()))
+
         
         # join class onto ARD dataframe
         # save

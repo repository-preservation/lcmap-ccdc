@@ -31,7 +31,7 @@ def train(ctx, cids, acquired):
     """Trains a random forest model for a set of chip ids
 
     Args:
-        cids (sequence): sequence of chip ids sequences [(x,y), (x1, y1), ...]
+        cids (sequence): sequence of chip ids [(x,y), (x1, y1), ...]
         acquired (str): ISO8601 date range       
                
     Returns:
@@ -58,9 +58,9 @@ def train(ctx, cids, acquired):
         log.info('No features found to train model')
         return None
     else:
-        log.debug('Sample feature:{}'.format(fdf.first()))
-        log.debug('Feature row count:{}'.format(fdf.count()))
-        log.debug('Feature columns:{}'.format(fdf.columns))
+        log.debug('sample feature:{}'.format(fdf.first()))
+        log.debug('feature row count:{}'.format(fdf.count()))
+        log.debug('feature columns:{}'.format(fdf.columns))
 
     model = pipeline(fdf).fit(fdf)
 
@@ -81,10 +81,17 @@ def classify(model, dataframe):
     Returns:
         dataframe of raw predictions
     """
-    return model.transform(dataframe)\
-                .select(['chipx', 'chipy', 'x', 'y', 'rawPrediction'])\
-                .withColumn('chipx', udfs.as_int('chipx'))\
-                .withColumn('chipy', udfs.as_int('chipx'))\
-                .withColumn('x'    , udfs.as_int('x'))\
-                .withColumn('y'    , udfs.as_int('y'))\
-                .withColumnRenamed('rawPrediction', 'rfrawp')
+    #return model.transform(dataframe)\
+    #            .select(['chipx', 'chipy', 'x', 'y', 'rawPrediction'])\
+    #            .withColumnRenamed('rawPrediction', 'rfrawp')
+
+    #data_df=data_df.withColumn("Plays", df1["Plays"].cast(IntegerType()))
+
+    # return model.transform(dataframe)\
+    #             .withColumn('chipx', model('chipx').cast(IntegerType()))\
+    #             .withColumn('chipy', model('chipy').cast(IntegerType()))\
+    #             .withColumn('x'    , model('x').cast(IntegerType()))\
+    #             .withColumn('y'    , model('y').cast(IntegerType()))\
+    #             .withColumn('rfrawp', model('rawPrediction'))
+             
+    return model.transform(dataframe)

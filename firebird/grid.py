@@ -4,6 +4,7 @@ from cytoolz  import get_in
 from cytoolz  import second
 from cytoolz  import thread_last
 from functools import partial
+from merlin.functions import denumpify
 from merlin.functions import flatten
 from merlin.geometry import extents
 from merlin.geometry import coordinates
@@ -42,7 +43,7 @@ def tile(x, y, cfg):
     tx, ty  = get_in(['tile', 'proj-pt'], snapped)
     h, v    = get_in(['tile', 'grid-pt'], snapped)
     exts    = extents(ulx=tx, uly=ty, grid=tgrid)
-    chips   = coordinates(exts, grid=cgrid, snap_fn=snap_fn)
+    chips   = denumpify(coordinates(exts, grid=cgrid, snap_fn=snap_fn))
 
     return dict(x=tx,
                 y=ty,
@@ -51,6 +52,19 @@ def tile(x, y, cfg):
                 **exts,
                 chips=chips)
 
+
+def chips(tile):
+    """Returns chips ids for a tile.
+
+    Args:
+        tile: tile(x, y, cfg)
+    
+    Returns:
+        list of ints: [(x,y), (x1,y1), ...]
+    """
+    
+    return list(map(lambda xy: (int(first(xy)), int(second(xy))), get('chips', tile)))
+    
 
 def training(x, y, cfg):
     """Returns the chip ids for training
@@ -74,5 +88,17 @@ def training(x, y, cfg):
                        flatten,
                        list)
 
-   
+
+def classification(x, y, cfg):
+    """Returns the chip ids for classification
+
+    Args:
+        x  (int):  x coordinate in tile
+        y  (int):  y coordinate in tile
+        cfg (dict): a Merlin configuration
+
+    Returns:
+        list of chip ids for classification area
+    """
+    return chips(tile(x, y, cfg))
 

@@ -22,6 +22,12 @@ def rdd(ctx, cids):
         RDD of chip ids
     """
 
+    log = firebird.logger(ctx, __name__)
+
+    log.info('loading {} chip ids...'.format(len(cids)))
+    log.debug('cids datatype:{}'.format(type(cids)))
+    log.trace('cids:{}'.format(cids))
+    
     return ctx.parallelize(cids, firebird.INPUT_PARTITIONS)
  
     

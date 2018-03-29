@@ -28,6 +28,16 @@ def options(table):
 
 
 def read(sc, table):
+    """Read data from Cassandra as a dataframe
+
+    Args:
+        sc: spark context
+        table: cassandra table to read from
+
+    Returns:
+        dataframe
+    """
+    
     opts = options(table)
     return SparkSession(sc).read.format('org.apache.spark.sql.cassandra').options(**opts).load()
 
@@ -38,7 +48,7 @@ def write(sc, dataframe, table):
     Dataframe must conform to the table schema.
     
     Args:
-        sc: Spark Context
+        sc: spark context
         dataframe: The dataframe to write
         table: Cassandra table to write dataframe to
 
