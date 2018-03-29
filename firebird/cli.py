@@ -175,13 +175,13 @@ def classification(x, y, acquired):
          
         log.info('finding aux timeseries...')
         aux = timeseries.aux(ctx, cids.rdd, acquired).persist()
-        log.info('found {} aux timeseries locations'.format(aux.count()))
+        log.info('found {} aux timeseries'.format(aux.count()))
         log.debug('sample aux timeseries:{}'.format(aux.first()))
         
        
-        log.info('constructing classification features...')
+        log.info('finding classification features...')
         fdf = features.dataframe(aux, ccd).persist()
-        log.info('constructed {} classification features'.format(fdf.count()))
+        log.info('found {} classification features'.format(fdf.count()))
         log.debug('sample features:{}'.format(fdf.first()))
 
         
@@ -190,19 +190,14 @@ def classification(x, y, acquired):
         log.info('created {} predictions'.format(preds.count()))
         log.debug('sample prediction:{}'.format(preds.first()))
 
-        
-        # join class onto ARD dataframe
-        # save
-        # done
 
-        #log.debug('training chip count:{}'.format(ids.count()))
-        #log.debug('aux point count:{}'.format(aux.count()))
-        #log.debug('aux chip count:{}'.format(cid.count()))
-        #log.debug('feature point count:{}'.format(fdf.count()))
-        #log.debug('sample feature:{}'.format(fdf.first()))
-        #log.debug('sample model:{}'.format(model.predictionCol))
-        
+        log.info('saving classification results...')
+        results = ccd.join(preds, on=['chipx', 'chipy'], how='inner')
+        written = pyccd.write(ctx, results).count()
+        log.info('saved {} classification results'.format(written))
 
+        return {'x': x, 'y': y, 'acquired': acquired, 'classifications': written}
+       
     except Exception as e:
         # spark errors & stack trace
         print('{} error:{}'.format(name, e))
