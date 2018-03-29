@@ -120,13 +120,6 @@ def rdd(ctx, cids, acquired, cfg, name=__name__):
     
     fn = partial(merlin.create, acquired=acquired, cfg=cfg)
     
-    #return ids(ctx, cids)\
-    #    .map(lambda xy: fn(x=first(xy), y=second(xy)))\
-    #    .flatMap(lambda x: x)\
-    #    .map(lambda x: ((int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3])), x[1]))\
-    #    .repartition(firebird.PRODUCT_PARTITIONS)\
-    #    .setName(name)
-
     return cids\
         .flatMap(lambda xy: fn(x=first(xy), y=second(xy)))\
         .map(lambda x: ((int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3])), x[1]))\
