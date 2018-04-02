@@ -80,7 +80,7 @@ def changedetection(x, y, acquired, number=2500):
         
         # wire everything up
         tile = grid.tile(x=x, y=y, cfg=ARD)
-        cids = ids.rdd(ctx=ctx, chips=take(number, tile.get('chips')))
+        cids = ids.rdd(ctx=ctx, cids=list(take(number, tile.get('chips'))))
         ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=firebird.ARD, name='ard')
         ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).cache()
 
@@ -90,6 +90,7 @@ def changedetection(x, y, acquired, number=2500):
                                   'product-partitions': firebird.PRODUCT_PARTITIONS,
                                   'chips': cids.count()})))
 
+        log.info('finding ccd segments...')
         written = pyccd.write(ctx, ccd).count()
         
         # log and return segment counts
@@ -162,19 +163,23 @@ def classification(x, y, acquired):
         
         log.info('finding classification grid chip ids...')
         cids = ids.dataframe(ctx,
-                             ids.rdd(ctx, grid.classification(x, y, AUX))).persist()
+                             ids.rdd(ctx, grid.classification(x, y, AUX)))
         log.info('found {} classification grid chip ids...'.format(cids.count()))
         log.debug('sample classification grid chip id:{}'.format(cids.first()))
 
 
         log.info('finding change segments...')
-        ccd = pyccd.read(ctx, cids).filter('sday >= 0 AND eday >= 0').persist()
+        ccd = pyccd.read(ctx,
+                         cids.repartition(firebird.PRODUCT_PARTITIONS))\
+                         .filter('sday >= 0 AND eday >= 0').persist()
         log.info('found {} change segments...'.format(ccd.count()))
         log.debug('sample change segment:{}'.format(ccd.first()))
 
          
         log.info('finding aux timeseries...')
-        aux = timeseries.aux(ctx, cids.rdd, acquired).persist()
+        aux = timeseries.aux(ctx,
+                             cids.rdd.repartition(firebird.INPUT_PARTITIONS),
+                             acquired).repartition(firebird.PRODUCT_PARTITIONS).persist()
         log.info('found {} aux timeseries'.format(aux.count()))
         log.debug('sample aux timeseries:{}'.format(aux.first()))
         
@@ -192,7 +197,8 @@ def classification(x, y, acquired):
 
 
         log.info('saving classification results...')
-        results = ccd.join(preds, on=['chipx', 'chipy'], how='inner')
+        results = ccd.join(preds, on=['chipx', 'chipy', 'x', 'y', 'sday', 'eday'], how='inner')
+        log.info('sample result:{}'.format(results.first()))
         written = pyccd.write(ctx, results).count()
         log.info('saved {} classification results'.format(written))
 

@@ -98,4 +98,4 @@ def dataframe(aux, ccd):
                      dependent,
                      independent)
     
-    return df.select(['chipx', 'chipy', 'x', 'y', 'label', 'features']) 
+    return df.select(['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'label', 'features']) 

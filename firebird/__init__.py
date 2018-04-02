@@ -19,7 +19,7 @@ CASSANDRA_KEYSPACE                 = os.getenv('CASSANDRA_KEYSPACE', 'lcmap_loca
 CASSANDRA_OUTPUT_CONCURRENT_WRITES = int(os.getenv('CASSANDRA_OUTPUT_CONCURRENT_WRITES', 2))
 CASSANDRA_OUTPUT_CONSISTENCY_LEVEL = os.getenv('CASSANDRA_OUTPUT_CONSISTENCY_LEVEL', 'QUORUM')
 CASSANDRA_INPUT_CONSISTENCY_LEVEL  = os.getenv('CASSANDRA_INPUT_CONSISTENCY_LEVEL', 'QUORUM')
-INPUT_PARTITIONS                   = int(os.getenv('INPUT_PARTITIONS', 1))
+INPUT_PARTITIONS                   = int(os.getenv('INPUT_PARTITIONS', 2))
 PRODUCT_PARTITIONS                 = int(os.getenv('PRODUCT_PARTITIONS', multiprocessing.cpu_count() * 8))
 ARD                                = merlin.cfg.get(profile='chipmunk-ard', env={'CHIPMUNK_URL': ARD_CHIPMUNK}) 
 AUX                                = merlin.cfg.get(profile='chipmunk-trends', env={'CHIPMUNK_URL': AUX_CHIPMUNK}) 

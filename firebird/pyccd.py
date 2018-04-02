@@ -91,7 +91,7 @@ def dataframe(ctx, rdd):
         A spark dataframe conforming to schema()
     """
 
-    logger(ctx, name=__name__).info('creating pyccd dataframe')
+    logger(ctx, name=__name__).debug('creating pyccd dataframe...')
     return SparkSession(ctx).createDataFrame(rdd, schema())
  
    
@@ -181,7 +181,7 @@ def rdd(ctx, timeseries):
         RDD of pyccd results
     """
     
-    logger(context=ctx, name=__name__).info('executing change detection')
+    logger(context=ctx, name=__name__).info('executing change detection...')
     return timeseries.flatMap(detect)
 
 

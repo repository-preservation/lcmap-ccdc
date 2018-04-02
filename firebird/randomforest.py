@@ -5,6 +5,7 @@ from pyspark.ml.feature import VectorIndexer
 from pyspark.ml import Pipeline
 
 import features
+import firebird
 import ids
 import pyccd
 import timeseries
@@ -21,9 +22,10 @@ def read():
 
 def pipeline(fdf):
     # build the pipeline with indexers and return fitted model
-    lindex   = StringIndexer(inputCol='label', outputCol='label_index').fit(fdf) 
-    findex   = VectorIndexer(inputCol='features', outputCol='feature_index', maxCategories=8).fit(fdf)
-    rf       = RandomForestClassifier(labelCol='label_index', featuresCol='feature_index', numTrees=500)
+    # options for handleInvalid are "keep", "error" or "skip", default is error
+    lindex = StringIndexer(inputCol='label', outputCol='label_index', handleInvalid='keep').fit(fdf) 
+    findex = VectorIndexer(inputCol='features', outputCol='feature_index', maxCategories=8).fit(fdf)
+    rf     = RandomForestClassifier(labelCol='label_index', featuresCol='feature_index', numTrees=500)
     return Pipeline(stages=[lindex, findex, rf])
 
 
@@ -46,7 +48,8 @@ def train(ctx, cids, acquired):
     aux  = timeseries.aux(ctx=ctx,
                           cids=cids,
                           acquired=acquired)\
-                     .filter('trends[0] NOT IN (1, 8)').persist()
+                     .filter('trends[0] NOT IN (0, 9)')\
+                     .repartition(firebird.PRODUCT_PARTITIONS).persist()
     
     aid  = aux.select(aux.chipx, aux.chipy).distinct()
 
@@ -81,9 +84,9 @@ def classify(model, dataframe):
     Returns:
         dataframe of raw predictions
     """
-    #return model.transform(dataframe)\
-    #            .select(['chipx', 'chipy', 'x', 'y', 'rawPrediction'])\
-    #            .withColumnRenamed('rawPrediction', 'rfrawp')
+    return model.transform(dataframe)\
+                .select(['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'rawPrediction'])\
+                .withColumnRenamed('rawPrediction', 'rfrawp')
 
     #data_df=data_df.withColumn("Plays", df1["Plays"].cast(IntegerType()))
 
@@ -94,4 +97,4 @@ def classify(model, dataframe):
     #             .withColumn('y'    , model('y').cast(IntegerType()))\
     #             .withColumn('rfrawp', model('rawPrediction'))
              
-    return model.transform(dataframe)
+    #return model.transform(dataframe)
