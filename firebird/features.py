@@ -1,9 +1,6 @@
 from cytoolz import first
 from cytoolz import thread_last
-from pyspark.ml.linalg import Vectors
-from pyspark.ml.linalg import VectorUDT
-from pyspark.sql.functions import udf
-
+from udfs import densify
 
 def join(dfs):
     """Join aux and ccd dataframes
@@ -38,23 +35,6 @@ def columns():
             'blint',  'grint',  'reint',  'niint',  's1int',  's1int',  'thint',
             'dem',    'aspect', 'slope',  'mpw',    'posidex']
             
-
-@udf(returnType=VectorUDT())
-def densify(*args, **kwargs):
-    """Create classification features
-
-    Args:
-        *args    : sequence of arguments to be densified into Vector
-        **kwargs : ignored
-
-    Returns:
-        pyspark.ml.linalg.Vector
-    """
-
-    fn = lambda x: first(x) if type(x) in [tuple, set, list] else x
-    
-    return Vectors.dense(list(map(fn, args)))
-
 
 def dependent(df):
     """Create dependent variable

@@ -84,17 +84,22 @@ def classify(model, dataframe):
     Returns:
         dataframe of raw predictions
     """
+
     return model.transform(dataframe)\
                 .select(['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'rawPrediction'])\
                 .withColumnRenamed('rawPrediction', 'rfrawp')
 
-    #data_df=data_df.withColumn("Plays", df1["Plays"].cast(IntegerType()))
 
-    # return model.transform(dataframe)\
-    #             .withColumn('chipx', model('chipx').cast(IntegerType()))\
-    #             .withColumn('chipy', model('chipy').cast(IntegerType()))\
-    #             .withColumn('x'    , model('x').cast(IntegerType()))\
-    #             .withColumn('y'    , model('y').cast(IntegerType()))\
-    #             .withColumn('rfrawp', model('rawPrediction'))
-             
-    #return model.transform(dataframe)
+def dedensify(dataframe):
+    """Returns a random forest dataframe with rfrawp column converted to 
+       standard Python types
+
+    Args:
+        dataframe: random forest dataframe (from classify)
+
+    Returns:
+        dataframe with rfrawp converted to standard Python types
+    """
+
+    return dataframe.withColumnRenamed('rfrawp', udfs.dedensify('rfrawp'))
+    

@@ -171,35 +171,25 @@ def classification(x, y, acquired):
         log.info('finding change segments...')
         ccd = pyccd.read(ctx,
                          cids.repartition(firebird.PRODUCT_PARTITIONS))\
-                         .filter('sday >= 0 AND eday >= 0').persist()
-        log.info('found {} change segments...'.format(ccd.count()))
-        log.debug('sample change segment:{}'.format(ccd.first()))
-
+                         .filter('sday >= 0 AND eday >= 0')
          
         log.info('finding aux timeseries...')
         aux = timeseries.aux(ctx,
                              cids.rdd.repartition(firebird.INPUT_PARTITIONS),
-                             acquired).repartition(firebird.PRODUCT_PARTITIONS).persist()
-        log.info('found {} aux timeseries'.format(aux.count()))
-        log.debug('sample aux timeseries:{}'.format(aux.first()))
-        
+                             acquired).repartition(firebird.PRODUCT_PARTITIONS)        
        
         log.info('finding classification features...')
-        fdf = features.dataframe(aux, ccd).persist()
-        log.info('found {} classification features'.format(fdf.count()))
-        log.debug('sample features:{}'.format(fdf.first()))
-
+        fdf = features.dataframe(aux, ccd)
         
         log.info('predicting classes...')
-        preds = randomforest.classify(model, fdf).persist()
-        log.info('created {} predictions'.format(preds.count()))
-        log.debug('sample prediction:{}'.format(preds.first()))
-
+        preds = randomforest.classify(model, fdf)
 
         log.info('saving classification results...')
-        results = ccd.join(preds, on=['chipx', 'chipy', 'x', 'y', 'sday', 'eday'], how='inner')
+        results = pyccd.join(ccd, preds).persist()
+
         log.info('sample result:{}'.format(results.first()))
-        written = pyccd.write(ctx, results).count()
+        
+        written = pyccd.write(ctx, randomforest.dedensify(results)).count()
         log.info('saved {} classification results'.format(written))
 
         return {'x': x, 'y': y, 'acquired': acquired, 'classifications': written}

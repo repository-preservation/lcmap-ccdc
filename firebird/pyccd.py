@@ -213,5 +213,20 @@ def write(ctx, df):
     """
     cassandra.write(ctx, df, table())
     return df
+
+
+def join(ccd, predictions):
+    """Join ccd dataframe with predictions dataframe
+
+    Args:
+        ccd:         ccd dataframe
+        predictions: predictions dataframe
+
+    Returns:
+        dataframe
+    """
     
+    return ccd.join(predictions,
+                    on=['chipx', 'chipy', 'x', 'y', 'sday', 'eday'],
+                    how='inner').drop(ccd['rfrawp'])
 
