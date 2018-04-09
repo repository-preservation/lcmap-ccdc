@@ -165,9 +165,7 @@ def classification(x, y, acquired):
         cids = ids.dataframe(ctx,
                              ids.rdd(ctx, grid.classification(x, y, AUX)))
         log.info('found {} classification grid chip ids...'.format(cids.count()))
-        log.debug('sample classification grid chip id:{}'.format(cids.first()))
-
-
+        
         log.info('finding change segments...')
         ccd = pyccd.read(ctx,
                          cids.repartition(firebird.PRODUCT_PARTITIONS))\
@@ -187,9 +185,10 @@ def classification(x, y, acquired):
         log.info('saving classification results...')
         results = pyccd.join(ccd, preds).persist()
 
-        log.info('sample result:{}'.format(results.first()))
+        log.debug('sample result:{}'.format(results.first()))
         
         written = pyccd.write(ctx, randomforest.dedensify(results)).count()
+
         log.info('saved {} classification results'.format(written))
 
         return {'x': x, 'y': y, 'acquired': acquired, 'classifications': written}

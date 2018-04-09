@@ -1,8 +1,10 @@
 from firebird  import logger
+from merlin.functions import denumpify
 from pyspark.ml.classification import RandomForestClassifier
 from pyspark.ml.feature import StringIndexer
 from pyspark.ml.feature import VectorIndexer
 from pyspark.ml import Pipeline
+from pyspark.sql.types import Row
 
 import features
 import firebird
@@ -101,5 +103,12 @@ def dedensify(dataframe):
         dataframe with rfrawp converted to standard Python types
     """
 
-    return dataframe.withColumnRenamed('rfrawp', udfs.dedensify('rfrawp'))
+    return dataframe.rdd.map(lambda r: Row(chipx=r['chipx'],
+                                           chipy=r['chipy'],
+                                           x=r['x'],
+                                           y=r['y'],
+                                           sday=r['sday'],
+                                           eday=r['eday'],
+                                           rfrawp=denumpify(list(r['rfrawp'])))).toDF()
+
     
