@@ -1,33 +1,18 @@
 lcmap-firebird
 ==============
-LCMAP Science Execution Environment
+LCMAP Product Generation
 
 What is lcmap-firebird?
 -----------------------
-* LCMAP product generation, development and analysis
+* Runs change detection & random forest classification at scale
 * Built on Apache Spark, Apache Mesos, Docker and Python3
 * Runs on 2000 cores as easily as it runs on 1
-
-As an operations environment
-----------------------------
 * Command line interface
 * System requirements: Bash & Docker
 
-As a development and analysis environment
------------------------------------------
-* Jupyter Notebooks & Apache Cassandra (included)
-* Notebooks uploaded or mounted via a volume 
-* Results are savable to Cassandra anywhere: Cloud, cluster, dev server, local, etc
-* Comes with the Firebird Spark Python library for working with chips, chip-specs and creating time-series data
-
-Streamlined Research to Operations
-----------------------------------
-* Development and analysis Notebooks are controlled outside Firebird.
-* Code may be moved to operations `by merging it directly into lcmap-firebird or included it via library. <#developing-firebird>`_
-
-
 Get Started
 -----------
+WIP
 .. code-block:: bash
 
    $ wget https://raw.githubusercontent.com/USGS-EROS/lcmap-firebird/master/firebird.install.example -O firebird.install
@@ -43,7 +28,7 @@ Get Started
 
 Developing Firebird
 -------------------
-
+WIP
 * Install Docker, Maven and Conda
 
 * Create and activate a conda environment
@@ -87,6 +72,6 @@ Development Philosophy
 ----------------------
 Apache Spark is functional programming for cluster computing therefore
 Firebird strives to ensure all of it's code follows functional principles:
-data is immutable, functions are the primary unit of abstraction, and functional 
-composition rather than intermingling concepts (complecting.)
+data is immutable, functions are the primary unit of abstraction, and functions are  
+composed to create higher level functions rather than intermingling (complecting) concepts.
 
