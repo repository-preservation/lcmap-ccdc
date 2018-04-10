@@ -105,7 +105,7 @@ def default(change_models):
 def format(chipx, chipy, x, y, dates, ccdresult):
        
     return [denumpify(
-             {'chipx' : chipx,
+             {'chipx'  : chipx,
               'chipy'  : chipy,
               'x'      : x,
               'y'      : y,

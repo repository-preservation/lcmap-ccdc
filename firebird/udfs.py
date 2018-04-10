@@ -3,6 +3,7 @@ from pyspark.sql.functions import udf
 from pyspark.ml.linalg import Vectors
 from pyspark.ml.linalg import VectorUDT
 
+
 @udf(returnType=VectorUDT())
 def densify(*args, **kwargs):
     """Create classification features

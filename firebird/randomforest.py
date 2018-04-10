@@ -23,7 +23,15 @@ def read():
 
 
 def pipeline(fdf):
-    # build the pipeline with indexers and return fitted model
+    """Creates a Spark pipeline configured with indexers and classifier.
+
+    Args:
+        fdf: Features dataframe
+
+    Return:
+        Pipeline with label index, vector index and random forest classifier
+    """ 
+    
     # options for handleInvalid are "keep", "error" or "skip", default is error
     lindex = StringIndexer(inputCol='label', outputCol='label_index', handleInvalid='keep').fit(fdf) 
     findex = VectorIndexer(inputCol='features', outputCol='feature_index', maxCategories=8).fit(fdf)
@@ -55,7 +63,7 @@ def train(ctx, cids, acquired):
     
     aid  = aux.select(aux.chipx, aux.chipy).distinct()
 
-    ccd  = pyccd.read(ctx, aid).filter('sday >= 0 AND eday >= 0')
+    ccd  = pyccd.read(ctx, aid).filter('sday >= {} AND eday <= {}'.format(firebird.SDAY, firebird.EDAY))
 
     fdf  = features.dataframe(aux, ccd).persist()
 

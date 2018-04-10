@@ -2,6 +2,7 @@ from cytoolz import first
 from cytoolz import thread_last
 from udfs import densify
 
+
 def join(dfs):
     """Join aux and ccd dataframes
 
