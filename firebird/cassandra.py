@@ -1,4 +1,5 @@
 from cytoolz import assoc
+from pyspark.sql import SparkSession
 import firebird
 
 def options(table):
@@ -26,23 +27,37 @@ def options(table):
     }
 
 
-def read():
-    pass
+def read(sc, table):
+    """Read data from Cassandra as a dataframe
 
-
-def write(sc, dataframe, options):
-    """Write a dataframe to cassandra using options.
-    
     Args:
-        sc: Spark Context
-        dataframe: The dataframe to write
-        options: Cassandra options
+        sc: spark context
+        table: cassandra table to read from
 
     Returns:
         dataframe
     """
-     
-    msg = assoc(options, 'spark.cassandra.auth.password', 'XXXXX')
+    
+    opts = options(table)
+    return SparkSession(sc).read.format('org.apache.spark.sql.cassandra').options(**opts).load()
+
+
+def write(sc, dataframe, table):
+    """Write a dataframe to cassandra using options.  
+
+    Dataframe must conform to the table schema.
+    
+    Args:
+        sc: spark context
+        dataframe: The dataframe to write
+        table: Cassandra table to write dataframe to
+
+    Returns:
+        dataframe
+    """
+
+    opts = options(table)
+    msg  = assoc(opts, 'spark.cassandra.auth.password', 'XXXXX')
     firebird.logger(sc, name=__name__).info('writing dataframe:{}'.format(msg))
     return dataframe.write.format('org.apache.spark.sql.cassandra')\
-                          .mode('append').options(**options).save()
+                          .mode('append').options(**opts).save()

@@ -2,6 +2,7 @@ from pyspark import SparkConf
 from pyspark import SparkContext
 import logging
 import merlin
+import multiprocessing
 import os
 import socket
 
@@ -18,10 +19,12 @@ CASSANDRA_KEYSPACE                 = os.getenv('CASSANDRA_KEYSPACE', 'lcmap_loca
 CASSANDRA_OUTPUT_CONCURRENT_WRITES = int(os.getenv('CASSANDRA_OUTPUT_CONCURRENT_WRITES', 2))
 CASSANDRA_OUTPUT_CONSISTENCY_LEVEL = os.getenv('CASSANDRA_OUTPUT_CONSISTENCY_LEVEL', 'QUORUM')
 CASSANDRA_INPUT_CONSISTENCY_LEVEL  = os.getenv('CASSANDRA_INPUT_CONSISTENCY_LEVEL', 'QUORUM')
-INPUT_PARTITIONS                   = int(os.getenv('INPUT_PARTITIONS', 1))
-PRODUCT_PARTITIONS                 = int(os.getenv('PRODUCT_PARTITIONS', 1))
+INPUT_PARTITIONS                   = int(os.getenv('INPUT_PARTITIONS', 2))
+PRODUCT_PARTITIONS                 = int(os.getenv('PRODUCT_PARTITIONS', multiprocessing.cpu_count() * 8))
 ARD                                = merlin.cfg.get(profile='chipmunk-ard', env={'CHIPMUNK_URL': ARD_CHIPMUNK}) 
 AUX                                = merlin.cfg.get(profile='chipmunk-aux', env={'CHIPMUNK_URL': AUX_CHIPMUNK}) 
+TRAINING_SDAY                      = os.getenv('TRAINING_SDAY', 0)
+TRAINING_EDAY                      = os.getenv('TRAINING_EDAY', 0)
 
 
 def context(name):
@@ -34,7 +37,7 @@ def context(name):
         A Spark context
     """
 
-    return SparkContext.getOrCreate(conf=SparkConf().setAppName(name))
+    return SparkContext.getOrCreate(SparkConf().setAppName(name))
  
 
 # Must obtain a logger from log4j since the jvm is what is actually 
@@ -51,5 +54,6 @@ def logger(context, name):
     Returns:
         Logger instance
     """
-    
+
+    # TODO: add firebird version to name
     return context._jvm.org.apache.log4j.LogManager.getLogger(name)

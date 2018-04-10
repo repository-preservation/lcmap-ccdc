@@ -35,6 +35,12 @@ spark-lib:
 	mv resources/spark-2.2.0-bin-hadoop2.7 resources/spark
 	rm resources/spark-2.2.0-bin-hadoop2.7.tgz
 	mvn dependency:copy-dependencies -f resources/pom.xml -DoutputDirectory=spark/jars
+	cp resources/log4j.properties resources/spark/conf
+	cp resources/spark-defaults.conf resources/spark/conf
+
+spark-config:
+	cp resources/log4j.properties resources/spark/conf
+	cp resources/spark-defaults.conf resources/spark/conf
 
 tests:
 	./test.sh

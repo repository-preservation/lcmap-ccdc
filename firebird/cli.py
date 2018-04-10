@@ -12,22 +12,27 @@ cli.py should be added to setup.py as an entry_point console script.  After inst
 from cytoolz   import do
 from cytoolz   import filter
 from cytoolz   import first
+from cytoolz   import get
+from cytoolz   import merge
 from cytoolz   import take
-from cytoolz   import thread_first
+from cytoolz   import thread_last
 from firebird  import ARD
+from firebird  import AUX
 from firebird  import logger
 from functools import partial
-from merlin.functions import dictionary
-from merlin.geometry import extents
-from merlin.geometry import coordinates
+from merlin    import functions
 
-import firebird
-import classification
+import cassandra
 import click
+import features
+import firebird
+import grid
+import ids
 import pyccd
+import randomforest
 import timeseries
-import training
 import traceback
+
 
 def context_settings():
     """Normalized tokens for Click cli
@@ -42,81 +47,161 @@ def context_settings():
 @click.group(context_settings=context_settings())
 def entrypoint():
     """Placeholder function to group Click commands"""
-
     pass
 
 
 @entrypoint.command()
+@click.option('--x',        '-x', required=True)
+@click.option('--y',        '-y', required=True)
+@click.option('--acquired', '-a', required=True)
+@click.option('--number',   '-n', required=False, default=2500)
+def changedetection(x, y, acquired, number=2500):
+    """Run change detection for a tile over a time range and save results to Cassandra.
+    
+    Args:
+        x        (int): tile x coordinate
+        y        (int): tile y coordinate
+        acquired (str): ISO8601 date range
+        number   (int): Number of chips to run change detection on.  Testing only.
+
+    Returns:
+        count of saved segments 
+    """
+
+    ctx  = None
+    name = 'change-detection'
+    
+    try:
+        # start and/or connect Spark
+        ctx  = firebird.context(name)
+
+        # get logger
+        log  = logger(ctx, name)
+        
+        # wire everything up
+        tile = grid.tile(x=x, y=y, cfg=ARD)
+        cids = ids.rdd(ctx=ctx, cids=list(take(number, tile.get('chips'))))
+        ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=firebird.ARD, name='ard')
+        ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).cache()
+
+        # emit parameters
+        log.info(str(merge(tile, {'acquired': acquired,
+                                  'input-partitions': firebird.INPUT_PARTITIONS,
+                                  'product-partitions': firebird.PRODUCT_PARTITIONS,
+                                  'chips': cids.count()})))
+
+        log.info('finding ccd segments...')
+        written = pyccd.write(ctx, ccd).count()
+        
+        # log and return segment counts
+        return do(log.info, "saved {} ccd segments".format(written))
+            
+    except Exception as e:
+        # spark errors & stack trace
+        print('{} error:{}'.format(name, e))
+        traceback.print_exc()
+
+    finally:
+        # stop and/or disconnect Spark
+        if ctx is not None:
+            ctx.stop()
+            ctx = None
+
+            
+def training(ctx, cids, acquired):
+    """Trains and returns a random forest model for the grid
+
+    Args:
+        ctx: spark context
+        cids: [(x,y), (x1, y1),...]
+        acquired: ISO8601 date range "YYYY-MM-DD/YYYY-MM-DD"
+
+    Returns:
+        trained model
+    """
+    log = logger(ctx, __name__)
+    model = randomforest.train(ctx, ids.rdd(ctx, cids), acquired)
+
+    if model is None:
+        log.warn('Model could not be trained.')
+    else:
+        log.debug('model type:{}'.format(type(model)))
+        log.debug('model:{}'.format(model))
+
+    return model
+
+            
+@entrypoint.command()
 @click.option('--x', '-x', required=True)
 @click.option('--y', '-y', required=True)
 @click.option('--acquired', '-a', required=True)
-@click.option('--number', '-n', required=False, default=2500)
-def changedetection(x, y, acquired, number=2500):
-    """Run change detection for a tile over a time range and save results to Cassandra.
-ool    
-    Args:
-        x (int): tile x coordinate
-        y (int): tile y coordinate
-        acquired (str): ISO8601 date range
-        number (int): Number of chips to run change detection on.  Testing only.
-    Returns:
-        TBD
-
+def classification(x, y, acquired): 
     """
-    sc = None
-    try:
-        name         = 'changedetection'
-        sc           = firebird.context(name=name)
-        log          = firebird.logger(context=sc, name=name)
-        grid         = ARD.get('grid_fn')()
-        chip_grid    = first(filter(lambda x: x['name'] == 'chip', grid))
-        tile_grid    = first(filter(lambda x: x['name'] == 'tile', grid))
-        snap_fn      = ARD.get('snap_fn')
-        tilex, tiley = snap_fn(x=x, y=y).get('tile').get('proj-pt')
-        tile_extents = extents(ulx=tilex, uly=tiley, grid=tile_grid)
-        chips        = coordinates(tile_extents, grid=chip_grid, snap_fn=snap_fn)
-            
-        log.info('{}'.format(dictionary(name=name,
-                                        grid=grid,
-                                        snap_fn=snap_fn,
-                                        tilex=tilex,
-                                        tiley=tiley,
-                                        tile_extents=tile_extents,
-                                        chips_count=len(chips),
-                                        x=x,
-                                        y=y,
-                                        acquired=acquired)))
+    Classify a tile.
 
-        ts = timeseries.execute(sc=sc,
-                                acquired=acquired,
-                                cfg=ARD,
-                                ids=timeseries.ids(sc=sc, chips=take(int(number), chips))).cache()
-
-        df1 = timeseries.write(sc=sc, dataframe=timeseries.dataframe(sc=sc, rdd=ts))
-        df2 = pyccd.write(sc=sc, dataframe=pyccd.dataframe(sc=sc, rdd=pyccd.execute(sc=sc, timeseries=ts)))
-
-        return {'timeseries': df1, 'pyccd': df2}
+    Args:
+        acquired (str): ISO8601 date range       
+        x (int)       : x coordinate in tile
+        y (int)       : y coordinate in tile
+        acquired (str): date range of change segments to classify
+    """
+  
+    ctx = None
+    name = 'random-forest-classification'
     
+    try:
+        ctx = firebird.context(name)
+        log = logger(ctx, name)
+
+        log.info('beginning {}...'.format(name))
+        log.info('x:{} y:{} acquired:{}'.format(x, y, acquired))
+
+        
+        log.info('training model with training grid chip ids...')
+        model = training(ctx, grid.training(x, y, AUX), acquired)
+
+        
+        log.info('finding classification grid chip ids...')
+        cids = ids.dataframe(ctx,
+                             ids.rdd(ctx, grid.classification(x, y, AUX)))
+        log.info('found {} classification grid chip ids...'.format(cids.count()))
+        
+        log.info('finding change segments...')
+        ccd = pyccd.read(ctx,
+                         cids.repartition(firebird.PRODUCT_PARTITIONS))\
+                         .filter('sday >= 0 AND eday >= 0')
+         
+        log.info('finding aux timeseries...')
+        aux = timeseries.aux(ctx,
+                             cids.rdd.repartition(firebird.INPUT_PARTITIONS),
+                             acquired).repartition(firebird.PRODUCT_PARTITIONS)        
+       
+        log.info('finding classification features...')
+        fdf = features.dataframe(aux, ccd)
+        
+        log.info('predicting classes...')
+        preds = randomforest.classify(model, fdf)
+
+        log.info('saving classification results...')
+        results = pyccd.join(ccd, preds).persist()
+
+        log.debug('sample result:{}'.format(results.first()))
+        
+        written = pyccd.write(ctx, randomforest.dedensify(results)).count()
+
+        log.info('saved {} classification results'.format(written))
+
+        return {'x': x, 'y': y, 'acquired': acquired, 'classifications': written}
+       
     except Exception as e:
-        print('error:{}'.format(e))
-        traceback.print_exc()
+        # spark errors & stack trace
+        print('{} error:{}'.format(name, e))
+        traceback.print_exc()    
     finally:
-        if sc is not None:
-            sc.stop()
-
-
-@click.command()
-@click.option('--acquired', '-a', required=True)
-@click.option('--point', '-p', required=True)
-def train():
-    pass
-
-
-@click.command()
-@click.option('--acquired', '-a', required=True)
-@click.option('--point', '-p', required=True)
-def classify():
-    pass
+        # stop and/or disconnect Spark
+        if ctx is not None:
+            ctx.stop()
+            ctx = None
 
 
 @click.group()
