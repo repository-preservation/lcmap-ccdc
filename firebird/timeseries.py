@@ -16,8 +16,8 @@ from pyspark.sql.types import StructType
 
 import cassandra
 import firebird
-import ids
-import merlin
+from firebird import ids
+from firebird import merlin
 import numpy
 
 
