@@ -1,4 +1,8 @@
 from firebird import udfs
 
+import pyspark.sql.column
+
 def test_densify():
-    assert 1 == 1
+    # validity in question
+    dfy = udfs.densify("foo", "bar")
+    assert type(dfy) is pyspark.sql.column.Column
