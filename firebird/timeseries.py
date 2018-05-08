@@ -2,6 +2,7 @@ from cytoolz import assoc
 from cytoolz import first
 from cytoolz import second
 from firebird import context
+from firebird import ids
 from firebird import logger
 from functools import partial
 from merlin.functions import denumpify
@@ -16,8 +17,7 @@ from pyspark.sql.types import StructType
 
 import cassandra
 import firebird
-from firebird import ids
-from firebird import merlin
+import merlin
 import numpy
 
 
