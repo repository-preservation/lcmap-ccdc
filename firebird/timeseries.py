@@ -1,6 +1,7 @@
 from cytoolz import assoc
 from cytoolz import first
 from cytoolz import second
+from firebird import cassandra
 from firebird import context
 from firebird import ids
 from firebird import logger
@@ -15,7 +16,6 @@ from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
 
-import cassandra
 import firebird
 import merlin
 import numpy
