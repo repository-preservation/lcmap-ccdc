@@ -18,19 +18,19 @@ from cytoolz   import take
 from cytoolz   import thread_last
 from firebird  import ARD
 from firebird  import AUX
+from firebird  import cassandra
+from firebird  import features
+from firebird  import grid
+from firebird  import ids
+from firebird  import pyccd
 from firebird  import logger
+from firebird  import randomforest
+from firebird  import timeseries
 from functools import partial
 from merlin    import functions
 
-import cassandra
 import click
-import features
 import firebird
-import grid
-import ids
-import pyccd
-import randomforest
-import timeseries
 import traceback
 
 
