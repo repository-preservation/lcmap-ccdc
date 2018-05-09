@@ -27,6 +27,7 @@ setup(name='lcmap-firebird',
       license='Unlicense',
       packages=['firebird'],
       install_requires=[
+          'click==6.7',
           'lcmap-merlin>=2.2.0',
           'lcmap-pyccd==2018.3.12',
       ],
@@ -44,7 +45,7 @@ setup(name='lcmap-firebird',
       #test_suite='nose.collector',
       #tests_require=['nose', 'nose-cover3'],
       entry_points={
-          'console_scripts': ['firebird=firebird.cmdline:cli'],
+          'console_scripts': ['firebird=firebird.cli:entrypoint'],
       },
       include_package_data=True,
       zip_safe=False)
