@@ -1,17 +1,18 @@
-from firebird  import logger
+from firebird import features
+from firebird import ids
+from firebird import logger
+from firebird import PRODUCT_PARTITIONS
+from firebird import pyccd
+from firebird import timeseries
+from firebird import TRAINING_EDAY
+from firebird import TRAINING_SDAY
+from firebird import udfs
 from merlin.functions import denumpify
 from pyspark.ml.classification import RandomForestClassifier
 from pyspark.ml.feature import StringIndexer
 from pyspark.ml.feature import VectorIndexer
 from pyspark.ml import Pipeline
 from pyspark.sql.types import Row
-
-import features
-import firebird
-import ids
-import pyccd
-import timeseries
-import udfs
 
 
 def write():
@@ -59,11 +60,11 @@ def train(ctx, cids, acquired):
                           cids=cids,
                           acquired=acquired)\
                      .filter('trends[0] NOT IN (0, 9)')\
-                     .repartition(firebird.PRODUCT_PARTITIONS).persist()
+                     .repartition(PRODUCT_PARTITIONS).persist()
     
     aid  = aux.select(aux.chipx, aux.chipy).distinct()
 
-    ccd  = pyccd.read(ctx, aid).filter('sday >= {} AND eday <= {}'.format(firebird.SDAY, firebird.EDAY))
+    ccd  = pyccd.read(ctx, aid).filter('sday >= {} AND eday <= {}'.format(TRAINING_SDAY, TRAINING_EDAY))
 
     fdf  = features.dataframe(aux, ccd).persist()
 
