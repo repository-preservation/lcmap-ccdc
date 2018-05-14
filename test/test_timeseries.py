@@ -16,15 +16,10 @@ def mock_timeseries_rdd(ctx, cids, acquired, cfg, name):
 def mock_merlin_create(x, y, acquired, cfg):
     return [[[11, 22, 33, 44], (x, y)]]
 
-def get_chip_ids_rdd(chipids):
-    sc = SparkSession(SparkContext.getOrCreate()).sparkContext
-    return ids.rdd(ctx=sc, cids=chipids)
-
 dummy_list = [[5, 4, 3, 2], {"foo": 66}]
 ard_schema = ['chipx', 'chipy', 'x', 'y', 'dates', 'blues', 'greens', 'reds', 'nirs', 'swir1s', 'swir2s', 'thermals', 'qas']
 aux_schema = ['chipx', 'chipy', 'x', 'y', 'dates', 'dem', 'trends', 'aspect', 'posidex', 'slope', 'mpw']
 tile_resp  = json.loads(open("test/data/tile_response.json").read())
-ids_rdd    = get_chip_ids_rdd(((-1815585.0, 1064805.0), (-1815585.0, 1061805.0), (-1815585.0, 1058805.0)))
 acquired   = '1980-01-01/2017-01-01'
 
 
@@ -47,7 +42,7 @@ def test_dataframe(spark_context):
     dframe = timeseries.dataframe(spark_context, rdd)
     assert type(dframe) is pyspark.sql.dataframe.DataFrame
 
-def test_rdd(spark_context, monkeypatch):
+def test_rdd(spark_context, monkeypatch, ids_rdd):
     monkeypatch.setattr(merlin, 'create', mock_merlin_create)
     ard   = timeseries.rdd(ctx=spark_context, cids=ids_rdd, acquired=acquired, cfg=ARD, name='ard')
     first = list(ard.map(lambda x: x).collect())
@@ -57,14 +52,14 @@ def test_rdd(spark_context, monkeypatch):
                      ((11, 22, 33, 44), (-1815585.0, 1061805.0)),
                      ((11, 22, 33, 44), (-1815585.0, 1058805.0))]
 
-def test_ard(spark_context, monkeypatch):
+def test_ard(spark_context, monkeypatch, ids_rdd):
     monkeypatch.setattr(timeseries, 'rdd', mock_timeseries_rdd)
     ard_df = timeseries.ard(spark_context, ids_rdd, acquired)
 
     assert type(ard_df) is pyspark.sql.dataframe.DataFrame
     assert ard_df.columns == ard_schema
 
-def test_aux(spark_context, monkeypatch):
+def test_aux(spark_context, monkeypatch, ids_rdd):
     monkeypatch.setattr(timeseries, 'rdd', mock_timeseries_rdd)
     aux_df = timeseries.aux(spark_context, ids_rdd, acquired)
 
