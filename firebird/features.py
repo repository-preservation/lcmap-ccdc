@@ -33,7 +33,7 @@ def columns():
     return ['blmag',  'grmag',  'remag',  'nimag',  's1mag',  's2mag',  'thmag',
             'blrmse', 'grrmse', 'rermse', 'nirmse', 's1rmse', 's2rmse', 'thrmse',
             'blcoef', 'grcoef', 'recoef', 'nicoef', 's1coef', 's2coef', 'thcoef',
-            'blint',  'grint',  'reint',  'niint',  's1int',  's1int',  'thint',
+            'blint',  'grint',  'reint',  'niint',  's1int',  's2int',  'thint',
             'dem',    'aspect', 'slope',  'mpw',    'posidex']
             
 
