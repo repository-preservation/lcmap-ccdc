@@ -3,7 +3,7 @@ import pytest
 from firebird import ids
 
 from pyspark import SparkContext
-from pyspark.sql import SparkSession
+from pyspark.sql import SparkSession, SQLContext
 
 def get_chip_ids_rdd(chipids):
     sc = SparkSession(SparkContext.getOrCreate()).sparkContext
@@ -16,6 +16,11 @@ def spark_session():
 @pytest.fixture()
 def spark_context():
     return SparkSession(SparkContext.getOrCreate()).sparkContext
+
+@pytest.fixture()
+def sql_context():
+    sc = SparkSession(SparkContext.getOrCreate()).sparkContext
+    return SQLContext(sc)
 
 @pytest.fixture()
 def ids_rdd():

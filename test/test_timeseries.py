@@ -4,12 +4,12 @@ from firebird    import timeseries
 from pyspark     import SparkContext
 from pyspark.sql import SparkSession
 
-from test.shared import acquired
-from test.shared import ard_schema
-from test.shared import aux_schema
-from test.shared import dummy_list
-from test.shared import mock_merlin_create
-from test.shared import mock_timeseries_rdd
+from .shared import acquired
+from .shared import ard_schema
+from .shared import aux_schema
+from .shared import dummy_list
+from .shared import mock_merlin_create
+from .shared import mock_timeseries_rdd
 
 import json
 import merlin
