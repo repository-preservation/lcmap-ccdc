@@ -1,4 +1,5 @@
 from pyspark.sql import Row
+from test import TEST_ROOT
 
 import json
 
@@ -26,6 +27,8 @@ features_columns = ['blmag',  'grmag',  'remag',  'nimag',  's1mag',  's2mag',  
                     'blint',  'grint',  'reint',  'niint',  's1int',  's2int',  'thint',
                     'dem',    'aspect', 'slope',  'mpw',    'posidex']
 
+grid_resp  = json.loads(open(TEST_ROOT+"/data/grid_response.json").read())
+
 def merge_lists(lists):
     output = []
     for i in lists:
@@ -38,10 +41,18 @@ merged_schema = merge_lists([ard_schema, aux_schema])
 def mock_merlin_create(x, y, acquired, cfg):
     return [[[11, 22, 33, 44], (x, y)]]
 
+def mock_merlin_grid(url, resource):
+    return grid_resp
+
+def mock_merlin_snap(x, y, url, resource):
+    return snap_resp
+
 def mock_timeseries_rdd(ctx, cids, acquired, cfg, name):
     rdd = ctx.parallelize([[[11, 22, 33, 44], (-999, 111)]])
     rdd.setName(name)
     return rdd
 
-tile_resp  = json.loads(open("test/data/tile_response.json").read())
+snap_resp = json.loads(open(TEST_ROOT+"/data/snap_response.json").read())
+
+tile_resp  = json.loads(open(TEST_ROOT+"/data/tile_response.json").read())
 
