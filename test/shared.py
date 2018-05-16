@@ -4,12 +4,22 @@ from test import TEST_ROOT
 import json
 
 acquired   = '1980-01-01/2017-01-01'
-
-ard_schema = ['chipx', 'chipy', 'x', 'y', 'dates', 'blues', 'greens', 'reds', 'nirs', 'swir1s', 'swir2s', 'thermals', 'qas']
-
-aux_schema = ['chipx', 'chipy', 'x', 'y', 'dates', 'dem', 'trends', 'aspect', 'posidex', 'slope', 'mpw']
-
+ard_schema = ['chipx', 'chipy', 'x', 'y', 'dates', 'blues', 'greens', 'reds', 'nirs', 
+              'swir1s', 'swir2s', 'thermals', 'qas']
+aux_schema = ['chipx', 'chipy', 'x', 'y', 'dates', 'dem', 'trends', 'aspect', 'posidex', 
+              'slope', 'mpw']
 dummy_list = [[5, 4, 3, 2], {"foo": 66}]
+
+features_columns = ['blmag',  'grmag',  'remag',  'nimag',  's1mag',  's2mag',  'thmag',
+                    'blrmse', 'grrmse', 'rermse', 'nirmse', 's1rmse', 's2rmse', 'thrmse',
+                    'blcoef', 'grcoef', 'recoef', 'nicoef', 's1coef', 's2coef', 'thcoef',
+                    'blint',  'grint',  'reint',  'niint',  's1int',  's2int',  'thint',
+                    'dem',    'aspect', 'slope',  'mpw',    'posidex']
+
+grid_resp = json.loads(open(TEST_ROOT+"/data/grid_response.json").read())
+near_resp = json.loads(open(TEST_ROOT+"/data/near_response.json").read())
+snap_resp = json.loads(open(TEST_ROOT+"/data/snap_response.json").read())
+tile_resp = json.loads(open(TEST_ROOT+"/data/tile_response.json").read())
 
 def faux_dataframe(ctx, attrs, type='int'):
     vals = list(range(0, len(attrs)))
@@ -20,14 +30,6 @@ def faux_dataframe(ctx, attrs, type='int'):
     Foo  = Row(*attrs)
     foo1 = Foo(*vals)
     return ctx.createDataFrame(data=[foo1])
-
-features_columns = ['blmag',  'grmag',  'remag',  'nimag',  's1mag',  's2mag',  'thmag',
-                    'blrmse', 'grrmse', 'rermse', 'nirmse', 's1rmse', 's2rmse', 'thrmse',
-                    'blcoef', 'grcoef', 'recoef', 'nicoef', 's1coef', 's2coef', 'thcoef',
-                    'blint',  'grint',  'reint',  'niint',  's1int',  's2int',  'thint',
-                    'dem',    'aspect', 'slope',  'mpw',    'posidex']
-
-grid_resp  = json.loads(open(TEST_ROOT+"/data/grid_response.json").read())
 
 def merge_lists(lists):
     output = []
@@ -44,6 +46,9 @@ def mock_merlin_create(x, y, acquired, cfg):
 def mock_merlin_grid(url, resource):
     return grid_resp
 
+def mock_merlin_near(x, y, url, resource):
+    return near_resp
+
 def mock_merlin_snap(x, y, url, resource):
     return snap_resp
 
@@ -52,7 +57,4 @@ def mock_timeseries_rdd(ctx, cids, acquired, cfg, name):
     rdd.setName(name)
     return rdd
 
-snap_resp = json.loads(open(TEST_ROOT+"/data/snap_response.json").read())
-
-tile_resp  = json.loads(open(TEST_ROOT+"/data/tile_response.json").read())
 

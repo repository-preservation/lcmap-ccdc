@@ -1,6 +1,7 @@
 from firebird import grid
 
 from .shared import mock_merlin_grid
+from .shared import mock_merlin_near
 from .shared import mock_merlin_snap
 
 import firebird
@@ -24,8 +25,13 @@ def test_chips():
     chips = grid.chips({"x": -100, "y": 100, "chips": [(1, 1), (2, 2)]})
     assert set(chips) == set([(1, 1), (2, 2)])
 
-def test_training():
-    assert True
+def test_training(monkeypatch):
+    monkeypatch.setattr(merlin.chipmunk, 'near', mock_merlin_near)
+    training_data = grid.training(100, 200, firebird.AUX)
+    assert len(training_data) == 22500
 
-def test_classification():
-    assert True
+def test_classification(monkeypatch):
+    monkeypatch.setattr(merlin.chipmunk, 'grid', mock_merlin_grid)
+    monkeypatch.setattr(merlin.chipmunk, 'snap', mock_merlin_snap)
+    classification_chips = grid.classification(-100, 200, firebird.AUX)
+    assert len(classification_chips) == 2500
