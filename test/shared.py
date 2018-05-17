@@ -1,3 +1,4 @@
+from functools import partial
 from pyspark.sql import Row
 from test import TEST_ROOT
 
@@ -21,6 +22,10 @@ near_resp = json.loads(open(TEST_ROOT+"/data/near_response.json").read())
 snap_resp = json.loads(open(TEST_ROOT+"/data/snap_response.json").read())
 tile_resp = json.loads(open(TEST_ROOT+"/data/tile_response.json").read())
 
+merlin_grid_partial = partial(lambda: grid_resp)
+merlin_near_partial = partial(lambda x, y: near_resp)
+merlin_snap_partial = partial(lambda x, y: snap_resp)
+
 def faux_dataframe(ctx, attrs, type='int'):
     vals = list(range(0, len(attrs)))
 
@@ -42,15 +47,6 @@ merged_schema = merge_lists([ard_schema, aux_schema])
 
 def mock_merlin_create(x, y, acquired, cfg):
     return [[[11, 22, 33, 44], (x, y)]]
-
-def mock_merlin_grid(url, resource):
-    return grid_resp
-
-def mock_merlin_near(x, y, url, resource):
-    return near_resp
-
-def mock_merlin_snap(x, y, url, resource):
-    return snap_resp
 
 def mock_timeseries_rdd(ctx, cids, acquired, cfg, name):
     rdd = ctx.parallelize([[[11, 22, 33, 44], (-999, 111)]])
