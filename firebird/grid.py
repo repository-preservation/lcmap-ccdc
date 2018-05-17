@@ -32,7 +32,7 @@ def tile(x, y, cfg):
     """
 
     # get all grid definitions
-    grid    = definition()
+    grid    = definition(cfg)
 
     # get tile & chip grids
     tgrid   = first(filter(lambda x: eq(get('name', x), 'tile'), grid))
