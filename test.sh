@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 . .test_env
 find . | grep -E "(__pycache__|\.pyc|\.pyo$)" | xargs rm -rf
-pytest
+pytest -p no:warnings

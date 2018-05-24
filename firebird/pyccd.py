@@ -84,7 +84,7 @@ def dataframe(ctx, rdd):
     """Creates pyccd dataframe from ard dataframe
 
     Args:
-        ctx: spark contextd
+        ctx: spark context
         rdd: pyccd rdd
 
     Returns:
