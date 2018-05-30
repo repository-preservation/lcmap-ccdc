@@ -1,17 +1,12 @@
 from firebird    import ARD
-from firebird    import ids
 from firebird    import timeseries
-from pyspark     import SparkContext
-from pyspark.sql import SparkSession
 
 from .shared import acquired
 from .shared import ard_schema
 from .shared import aux_schema
-from .shared import dummy_list
 from .shared import mock_merlin_create
 from .shared import mock_timeseries_rdd
 
-import json
 import merlin
 import pyspark.sql.types
 
@@ -22,14 +17,14 @@ def test_schema_ard():
     assert timeseries.schema("ard").names == ard_schema
 
 def test_schema_aux():
-    assert timeseries.schema("aux").names == aux_schema
+    assert set(timeseries.schema("aux").names) == set(aux_schema)
 
 def test_converter():
     converter = timeseries.converter()
-    assert converter(dummy_list) == {"chipx": 5, "chipy": 4, "x": 3, "y": 2, "foo": 66}
+    assert converter([[5, 4, 3, 2], {"foo": 66}]) == {"chipx": 5, "chipy": 4, "x": 3, "y": 2, "foo": 66}
 
 def test_dataframe(spark_context):
-    rdd = spark_context.parallelize(dummy_list)
+    rdd = spark_context.parallelize([[5, 4, 3, 2], {"foo": 66}])
     rdd.setName("ard")
     dframe = timeseries.dataframe(spark_context, rdd)
     assert type(dframe) is pyspark.sql.dataframe.DataFrame
@@ -56,5 +51,5 @@ def test_aux(spark_context, monkeypatch, ids_rdd):
     aux_df = timeseries.aux(spark_context, ids_rdd, acquired)
 
     assert type(aux_df) is pyspark.sql.dataframe.DataFrame
-    assert aux_df.columns == aux_schema
+    assert set(aux_df.columns) == set(aux_schema)
     

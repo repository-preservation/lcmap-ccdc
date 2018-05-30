@@ -1,8 +1,6 @@
 from firebird import cassandra
-from firebird import grid
 from firebird import ids
 from firebird import pyccd
-from firebird import timeseries
 
 from .shared import ccd_schema_names
 from .shared import ccd_format_keys
@@ -12,8 +10,6 @@ from .shared import timeseries_element
 
 from pyspark.sql.types import StructType
 from pyspark.rdd import PipelinedRDD
-
-import firebird
 
 def test_algorithm():
     assert "lcmap-pyccd" in pyccd.algorithm()
@@ -55,8 +51,7 @@ def test_read(monkeypatch, ids_rdd, spark_context, sql_context):
     monkeypatch.setattr(cassandra, 'read', mock_cassandra_read)
     ids_df = ids.dataframe(spark_context, ids_rdd)
     pyccd_read = pyccd.read(ctx=sql_context, ids=ids_df)
-    assert 'chipx' in pyccd_read.schema.names
-    assert 'chipy' in pyccd_read.schema.names
+    assert set(['chipx','chipy','srb1']) == set(pyccd_read.schema.names)
 
 def test_write(monkeypatch, sql_context):
     # excercises cassandra.write, returns dataframe passed as arg
@@ -71,6 +66,5 @@ def test_join(sql_context):
     ccd_df    = faux_dataframe(ctx=sql_context, attrs=df_attrs1)
     pred_df   = faux_dataframe(ctx=sql_context, attrs=df_attrs2)
     joined_df = pyccd.join(ccd=ccd_df, predictions=pred_df)
-    assert 'rfrawp' not in joined_df.schema.names
-    assert 'chipx' in joined_df.schema.names
+    assert set(['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'srb3']) == set(joined_df.schema.names)
 
