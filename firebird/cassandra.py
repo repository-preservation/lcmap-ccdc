@@ -14,7 +14,7 @@ def options(table):
     
     return {
         'table': table,
-        'keyspace': firebird.CASSANDRA_KEYSPACE,
+        'keyspace': firebird.keyspace(),
         'spark.cassandra.auth.username': firebird.CASSANDRA_USER,
         'spark.cassandra.auth.password': firebird.CASSANDRA_PASS,
         'spark.cassandra.connection.compression': 'LZ4',
