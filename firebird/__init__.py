@@ -40,7 +40,8 @@ def keyspace():
 
     ard = re.sub("/", "", urlparse(ARD_CHIPMUNK).path)
     aux = re.sub("/", "", urlparse(AUX_CHIPMUNK).path)
-    ver = merlin.files.read('../version.txt')
+    pwd = os.path.dirname(os.path.realpath(__file__))
+    ver = merlin.files.read('{}{}version.txt'.format(os.path.dirname(pwd), os.path.sep))
     fmt = "{0}_{1}_CCDC_{2}"
     return merlin.functions.cqlstr(fmt.format(ard, aux, ver)).strip().upper()
 

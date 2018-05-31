@@ -48,10 +48,9 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
  clprob: cloud probability
  prmask: processing mask, 0/1 for not used/used in calculation (applies against dates)
  rfrawp: random forest raw prediction
- rfprob: random forest probability
 */
 
-CREATE TABLE IF NOT EXISTS lcmap_local.lcmap_pyccd_2018_03_12 (
+CREATE TABLE IF NOT EXISTS __CCDC_1_0.data (
     chipx  int,
     chipy  int,
     x      int,
@@ -95,7 +94,6 @@ CREATE TABLE IF NOT EXISTS lcmap_local.lcmap_pyccd_2018_03_12 (
     clprob float,
     prmask frozen<list<tinyint>>,
     rfrawp frozen<list<float>>,
-    rfprob frozen<list<float>>,
     PRIMARY KEY((chipx, chipy), x, y, sday, eday)
 )
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }

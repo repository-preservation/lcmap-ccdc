@@ -30,7 +30,7 @@ def algorithm():
 def table():
     """Cassandra pyccd table name"""
     
-    return cqlstr(algorithm())
+    return 'data'
 
 
 def schema():
