@@ -43,11 +43,14 @@ near_resp = json.loads(open(TEST_ROOT+"/data/near_response.json").read())
 snap_resp = json.loads(open(TEST_ROOT+"/data/snap_response.json").read())
 tile_resp = json.loads(open(TEST_ROOT+"/data/tile_response.json").read())
 regy_resp = json.loads(open(TEST_ROOT+"/data/registry_response.json").read())
+chip_resp = json.loads(open(TEST_ROOT+"/data/chip_response.json").read())
 
 merlin_grid_partial = partial(lambda: grid_resp)
 merlin_near_partial = partial(lambda x, y: near_resp)
 merlin_snap_partial = partial(lambda x, y: snap_resp)
 merlin_regy_partial = partial(lambda: regy_resp)
+merlin_chip_partial = partial(lambda *args, **kwargs: chip_resp)
+merlin_frmt_partial = partial(lambda *args, **kwargs: [((11, 22, 33, 44), (-1815585.0, 1064805.0))])
 
 def faux_dataframe(ctx, attrs, type='int'):
     vals = list(range(0, len(attrs)))
