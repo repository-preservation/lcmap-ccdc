@@ -11,6 +11,8 @@ from .shared     import merlin_grid_partial
 from .shared     import merlin_near_partial
 from .shared     import merlin_snap_partial
 from .shared     import merlin_regy_partial
+from .shared     import merlin_chip_partial
+from .shared     import merlin_frmt_partial
 
 def get_chip_ids_rdd(chipids):
     sc = SparkSession(SparkContext.getOrCreate()).sparkContext
@@ -27,6 +29,8 @@ def merlin_ard_config():
     mock_cfg['grid_fn'] = merlin_grid_partial
     mock_cfg['snap_fn'] = merlin_snap_partial
     mock_cfg['registry_fn'] = merlin_regy_partial
+    mock_cfg['chips_fn'] = merlin_chip_partial
+    mock_cfg['format_fn'] = merlin_frmt_partial
     return mock_cfg
 
 @pytest.fixture()
