@@ -44,6 +44,18 @@ def context_settings():
     return dict(token_normalize_func=lambda x: x.lower())
 
 
+def acquired():
+    """Dynamically generated acquired date range
+
+    Returns:
+        str: ISO8601 compliant date range
+    """
+    
+    start = '1776-07-04'
+    end   = datetime.datetime.now().isoformat()
+    return '{}/{}'.format(start, end)
+    
+
 @click.group(context_settings=context_settings())
 def entrypoint():
     """Placeholder function to group Click commands"""
@@ -55,7 +67,7 @@ def entrypoint():
 @click.option('--y',        '-y', required=True)
 @click.option('--acquired', '-a', required=True)
 @click.option('--number',   '-n', required=False, default=2500)
-def changedetection(x, y, acquired, number=2500):
+def changedetection(x, y, acquired=acquired(), number=2500):
     """Run change detection for a tile over a time range and save results to Cassandra.
     
     Args:
@@ -108,7 +120,7 @@ def changedetection(x, y, acquired, number=2500):
             ctx = None
 
             
-def training(ctx, cids, acquired):
+def training(ctx, cids, acquired=acquired()):
     """Trains and returns a random forest model for the grid
 
     Args:
@@ -135,7 +147,7 @@ def training(ctx, cids, acquired):
 @click.option('--x', '-x', required=True)
 @click.option('--y', '-y', required=True)
 @click.option('--acquired', '-a', required=True)
-def classification(x, y, acquired): 
+def classification(x, y, acquired=acquired()): 
     """
     Classify a tile.
 
