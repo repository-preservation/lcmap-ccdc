@@ -127,7 +127,7 @@ def rdd(ctx, cids, acquired, cfg, name=__name__):
         .setName(name)
 
 
-def ard(ctx, cids, acquired):
+def ard(ctx, cids, acquired, cfg=firebird.ARD):
     """Create an ard timeseries dataframe
     
     Args:
@@ -143,11 +143,11 @@ def ard(ctx, cids, acquired):
                      rdd=rdd(ctx=ctx,
                              cids=cids,
                              acquired=acquired,
-                             cfg=firebird.ARD,
+                             cfg=cfg,
                              name='ard'))
 
 
-def aux(ctx, cids, acquired):
+def aux(ctx, cids, acquired, cfg=firebird.AUX):
     """Create an aux timeseries dataframe
     
     Args:
@@ -163,5 +163,5 @@ def aux(ctx, cids, acquired):
                      rdd=rdd(ctx=ctx,
                              cids=cids,
                              acquired=acquired,
-                             cfg=firebird.AUX,
+                             cfg=cfg,
                              name='aux'))
