@@ -1,11 +1,7 @@
 from firebird import cassandra
 from firebird import pyccd
 
-#from pyspark.sql import Row, SQLContext, dataframe
 import pyspark.sql as spark_sql
-
-test_schema = "lcmap_local"
-test_table = "lcmap_pyccd_2018_03_12"
 
 def test_options():
     options_resp = cassandra.options("foo")
