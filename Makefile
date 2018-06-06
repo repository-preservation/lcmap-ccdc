@@ -6,6 +6,9 @@ vertest:
 	@echo TAG:$(TAG)
 	@echo IMAGE:$(IMAGE)
 
+breathe:
+	sleep 20
+
 docker-build:
 	docker build -t $(IMAGE):$(TAG) -t $(IMAGE):latest $(PWD)
 
@@ -20,12 +23,17 @@ docker-shell:
 deps-up:
 	docker-compose -f resources/docker-compose.yml up
 
+deps-up-d:
+	docker-compose -f resources/docker-compose.yml up -d
+
 deps-down: 
 	docker-compose -f resources/docker-compose.yml down
 
 db-schema:
 	docker cp resources/schema.cql firebird-cassandra:/
 	docker exec -u root firebird-cassandra cqlsh localhost -f schema.cql
+
+db-schema-d: deps-up-d breathe db-schema
 
 spark-lib:
 	@rm -rf resources/spark

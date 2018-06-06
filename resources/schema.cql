@@ -100,3 +100,12 @@ CREATE TABLE IF NOT EXISTS lcmap_local.lcmap_pyccd_2018_03_12 (
 )
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
+
+CREATE TABLE IF NOT EXISTS lcmap_local.inventory (
+       layer text, 
+       source text, 
+       url text, 
+       tile text, 
+       chips text, 
+       extra text,
+       PRIMARY KEY (source));
