@@ -24,7 +24,7 @@ def test_schema():
 def test_dataframe(spark_context, timeseries_rdd):
     rdd    = pyccd.rdd(ctx=spark_context, timeseries=timeseries_rdd)
     dframe = pyccd.dataframe(spark_context, rdd)
-    set(dframe.columns) == set(ccd_schema_names)
+    assert set(dframe.columns) == set(ccd_schema_names)
 
 def test_default():
     assert pyccd.default([]) == [{'start_day': 0, 'end_day': 0}]
