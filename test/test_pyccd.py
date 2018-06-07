@@ -11,6 +11,8 @@ from .shared import timeseries_element
 from pyspark.sql.types import StructType
 from pyspark.rdd import PipelinedRDD
 
+import pyspark.sql as spark_sql
+
 def test_algorithm():
     assert "lcmap-pyccd" in pyccd.algorithm()
 
@@ -47,18 +49,24 @@ def test_rdd(spark_context, timeseries_rdd):
     rdd = pyccd.rdd(ctx=spark_context, timeseries=timeseries_rdd)
     assert type(rdd) is PipelinedRDD
 
-def test_read(monkeypatch, ids_rdd, spark_context, sql_context):
-    monkeypatch.setattr(cassandra, 'read', mock_cassandra_read)
-    ids_df = ids.dataframe(spark_context, ids_rdd)
-    pyccd_read = pyccd.read(ctx=sql_context, ids=ids_df)
-    assert set(['chipx','chipy','srb1']) == set(pyccd_read.schema.names)
+def test_read_write(spark_context, sql_context):
+    # create a dataframe from an rdd
+    rdd       = spark_context.parallelize([(100, -100, 200, -200, 33, 44),
+                                           (300, -300, 400, -400, 55, 66)])
+    layers    = rdd.map(lambda x: spark_sql.Row(chipx=x[0], chipy=x[1], x=x[2], y=x[3], sday=x[4], eday=x[5]))
+    context   = spark_sql.SQLContext(spark_context)
+    dataframe = context.createDataFrame(layers)
 
-def test_write(monkeypatch, sql_context):
-    # excercises cassandra.write, returns dataframe passed as arg
-    monkeypatch.setattr(cassandra, 'write', lambda a, b, c: True)
-    df = faux_dataframe(sql_context, ['a', 'b', 'c'])
-    pyccd_write = pyccd.write(sql_context, df)
-    assert pyccd_write == df
+    # test write
+    written_dataframe = pyccd.write(spark_context, dataframe)
+    assert type(written_dataframe) is spark_sql.dataframe.DataFrame
+
+    # test read
+    ids_rdd   = rdd.map(lambda x: spark_sql.Row(chipx=x[0], chipy=x[1]))
+    ids_df    = ids.dataframe(spark_context, ids_rdd)
+    read_dataframe = pyccd.read(spark_context, ids_df)
+    assert type(written_dataframe) is spark_sql.dataframe.DataFrame
+
 
 def test_join(sql_context):
     df_attrs1 = ['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'rfrawp']
