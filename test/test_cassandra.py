@@ -19,17 +19,15 @@ def test_options():
 
 def test_read_write(spark_context, timeseries_rdd):
     # create a dataframe from an rdd
-    rdd       = spark_context.parallelize([('lc08_srb1', 'foo_srb1.tif', '', '005015', '', ''),
-                                           ('lc08_srb2', 'foo_srb2.tif', '', '005015', '', '')])
-    layers    = rdd.map(lambda x: spark_sql.Row(layer=x[0], source=x[1], url=x[2], tile=x[3], chips=x[4], extra=x[5]))
+    rdd       = spark_context.parallelize([(100, -100, 200, -200, 33, 44),
+                                           (300, -300, 400, -400, 55, 66)])
+    layers    = rdd.map(lambda x: spark_sql.Row(chipx=x[0], chipy=x[1], x=x[2], y=x[3], sday=x[4], eday=x[5]))
     context   = spark_sql.SQLContext(spark_context)
     dataframe = context.createDataFrame(layers)
     # write the dataframe to cassandra. cassandra.write returns NoneType, not a dataframe
-    cassandra.write(spark_context, dataframe, 'inventory')
+    cassandra.write(spark_context, dataframe, 'lcmap_pyccd_2018_03_12')
     # read the table into a dataframe
-    read_dataframe = cassandra.read(spark_context, 'inventory')
-
-    assert set(read_dataframe.columns) == set(['layer', 'source', 'url', 'tile', 'chips', 'extra'])
-    assert set([i.asDict()["layer"] for i in read_dataframe.collect()]) == set(['lc08_srb1', 'lc08_srb2'])
+    read_dataframe = cassandra.read(spark_context, 'lcmap_pyccd_2018_03_12')
+    assert set([i.asDict()["chipx"] for i in read_dataframe.collect()]) == set([100, 300])
 
 
