@@ -65,7 +65,8 @@ def test_read_write(spark_context, sql_context):
     ids_rdd   = rdd.map(lambda x: spark_sql.Row(chipx=x[0], chipy=x[1]))
     ids_df    = ids.dataframe(spark_context, ids_rdd)
     read_dataframe = pyccd.read(spark_context, ids_df)
-    assert type(written_dataframe) is spark_sql.dataframe.DataFrame
+    assert type(read_dataframe) is spark_sql.dataframe.DataFrame
+    assert set([i.asDict()["chipx"] for i in read_dataframe.collect()]) == set([100, 300])
 
 
 def test_join(sql_context):
