@@ -27,6 +27,7 @@ setup(name='lcmap-ccdc',
       license='Unlicense',
       packages=['ccdc'],
       install_requires=[
+          'click==6.7',
           'lcmap-merlin>=2.2.0',
           'lcmap-pyccd==2018.3.12',
       ],
@@ -44,7 +45,7 @@ setup(name='lcmap-ccdc',
       #test_suite='nose.collector',
       #tests_require=['nose', 'nose-cover3'],
       entry_points={
-          'console_scripts': ['ccdc=ccdc.cmdline:cli'],
+          'console_scripts': ['ccdc=ccdc.cli:entrypoint'],
       },
       include_package_data=True,
       zip_safe=False)
