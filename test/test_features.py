@@ -1,6 +1,5 @@
-from firebird import features
-from firebird import timeseries
-
+from ccdc    import features
+from ccdc    import timeseries
 from .shared import acquired
 from .shared import faux_dataframe
 from .shared import features_columns

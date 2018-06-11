@@ -1,4 +1,4 @@
-from firebird import ids
+from ccdc import ids
 
 import json
 import pyspark.rdd

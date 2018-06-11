@@ -1,10 +1,10 @@
+import ccdc
 import pytest
-import firebird
 
+from ccdc        import grid
+from ccdc        import ids
+from ccdc        import timeseries
 from copy        import deepcopy
-from firebird    import grid
-from firebird    import ids
-from firebird    import timeseries
 from pyspark     import SparkContext
 from pyspark.sql import SparkSession, SQLContext
 from .shared     import merlin_grid_partial
@@ -24,7 +24,7 @@ def ids_rdd():
 
 @pytest.fixture()
 def merlin_ard_config():
-    mock_cfg = deepcopy(firebird.ARD)
+    mock_cfg = deepcopy(ccdc.ARD)
     mock_cfg['near_fn'] = merlin_near_partial
     mock_cfg['grid_fn'] = merlin_grid_partial
     mock_cfg['snap_fn'] = merlin_snap_partial
@@ -35,7 +35,7 @@ def merlin_ard_config():
 
 @pytest.fixture()
 def merlin_aux_config():
-    mock_cfg = deepcopy(firebird.AUX)
+    mock_cfg = deepcopy(ccdc.AUX)
     mock_cfg['near_fn'] = merlin_near_partial
     mock_cfg['grid_fn'] = merlin_grid_partial
     mock_cfg['snap_fn'] = merlin_snap_partial

@@ -1,8 +1,8 @@
-from firebird  import grid
+from ccdc import grid
 
 def test_definition(merlin_ard_config):
     # all thats being tested is that merlin.chipmunk is the grid_fn
-    # in firebird.ARD
+    # in ccdc.ARD
     defn = grid.definition(merlin_ard_config)[0]
     assert set(defn.keys()) == {'proj', 'tx', 'sy', 'ty', 'ry', 'rx', 'sx', 'name'}
 

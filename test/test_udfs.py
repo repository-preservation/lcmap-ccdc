@@ -1,4 +1,4 @@
-from firebird import udfs
+from ccdc import udfs
 
 import pyspark.sql.column
 

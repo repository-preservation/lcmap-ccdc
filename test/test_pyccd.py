@@ -1,23 +1,22 @@
-from firebird import cassandra
-from firebird import ids
-from firebird import pyccd
-
+from ccdc import cassandra
+from ccdc import ids
+from ccdc import pyccd
 from .shared import ccd_schema_names
 from .shared import ccd_format_keys
 from .shared import faux_dataframe
 from .shared import mock_cassandra_read
 from .shared import timeseries_element
-
 from pyspark.sql.types import StructType
 from pyspark.rdd import PipelinedRDD
 
 import pyspark.sql as spark_sql
 
+
 def test_algorithm():
     assert "lcmap-pyccd" in pyccd.algorithm()
 
 def test_table():
-    assert "lcmap_pyccd_" in pyccd.table()
+    assert "data" == pyccd.table()
 
 def test_schema():
     assert type(pyccd.schema()) is StructType

@@ -1,7 +1,7 @@
+from ccdc import ARD
+from ccdc import timeseries
 from cytoolz  import first
 from cytoolz  import second
-from firebird import ARD
-from firebird import timeseries
 
 from .shared import acquired
 from .shared import ard_schema

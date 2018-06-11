@@ -1,4 +1,4 @@
-from firebird import randomforest
+from ccdc import randomforest
 
 def test_pipeline():
     assert True

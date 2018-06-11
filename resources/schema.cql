@@ -1,4 +1,4 @@
-CREATE KEYSPACE IF NOT EXISTS __ccdc_1_0
+CREATE KEYSPACE IF NOT EXISTS CCDC_1_0
 WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
 
 /* If sday and eday are 0, there was no change detected for that location
@@ -51,7 +51,7 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
  rfprob: random forest probability
 */
 
-CREATE TABLE IF NOT EXISTS __ccdc_1_0.data (
+CREATE TABLE IF NOT EXISTS CCDC_1_0.data (
     chipx  int,
     chipy  int,
     x      int,
