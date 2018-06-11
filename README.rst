@@ -1,8 +1,8 @@
-lcmap-firebird
-==============
+lcmap-ccdc
+==========
 LCMAP Product Generation
 
-What is lcmap-firebird?
+What is lcmap-ccdc?
 -----------------------
 * Runs change detection & random forest classification at scale
 * Built on Apache Spark, Apache Mesos, Docker and Python3
@@ -15,10 +15,14 @@ Get Started
 WIP
 .. code-block:: bash
 
-   $ wget https://raw.githubusercontent.com/USGS-EROS/lcmap-firebird/master/firebird.install.example -O firebird.install
-   $ emacs firebird.install
-   $ source firebird.install
-   $ firebird-save -a 1980-01-01/2017-01-01 -b -1821585,2891595 -p seglength -p ccd -d 2014-01-01 
+   $ wget https://raw.githubusercontent.com/USGS-EROS/lcmap-ccdc/master/resources/ccdc.install.example -O ccdc.install
+   $ emacs ccdc.install
+   $ source ccdc.install
+   $ ccdc-detect -x -1821585 -y 2891595
+   # run detect on neighbor tiles before classifying
+   $ ccdc-classify -x -1821585 -y 2891595
+   $ ccdc-data     -x -1821585 -y 2891595
+   $ ccdc-metadata -x -1821585 -y 2891595
 
 `Frequently Asked Questions <docs/faq.rst>`_
 ----------------------------------------------
@@ -26,8 +30,8 @@ WIP
 `Roadmap <docs/roadmap.rst>`_
 -----------------------------
 
-Developing Firebird
--------------------
+Developing CCDC
+---------------
 WIP
 * Install Docker, Maven and Conda
 
@@ -35,14 +39,14 @@ WIP
 .. code-block:: bash
 
    $ conda config --add channels conda-forge
-   $ conda create --name firebird python=3.6 numpy pandas scipy gdal -y
-   $ source activate firebird
+   $ conda create --name ccdc python=3.6 numpy pandas scipy gdal -y
+   $ source activate ccdc
 
 * Clone this repo, install deps
 .. code-block:: bash
 
-   $ git clone git@github.com:usgs-eros/lcmap-firebird
-   $ cd lcmap-firebird
+   $ git clone git@github.com:usgs-eros/lcmap-ccdc
+   $ cd lcmap-ccdc
    $ pip install -e .[test,dev]
 
 * Run tests
@@ -61,7 +65,7 @@ WIP
 
    $ emacs version.txt
    $ make docker-build
-   $ emacs firebird.install # point to new version that was just built
+   $ emacs ccdc.install # point to new version that was just built
 
 * Publish the Docker image so it will be available to a cluster
 .. code-block:: bash
@@ -71,7 +75,6 @@ WIP
 Development Philosophy
 ----------------------
 Apache Spark is functional programming for cluster computing therefore
-Firebird strives to ensure all of it's code follows functional principles:
+CCDC therefore follows functional principles:
 data is immutable, functions are the primary unit of abstraction, and functions are  
 composed to create higher level functions rather than intermingling (complecting) concepts.
-
