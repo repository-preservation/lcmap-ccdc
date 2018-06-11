@@ -4,12 +4,12 @@ Is this all the documentation that is available?
 ------------------------------------------------
 For version 0.5, yes.  For version 1.0 proper documentation will be published to https://readthedocs.org.
 
-What credentials and keys do I need to run Firebird?
+What credentials and keys do I need to run Ccdc?
 ----------------------------------------------------
 
-As an operations environment, Firebird runs Spark in Docker on Mesos and saves it's results to Cassandra.  
+As an operations environment, Ccdc runs Spark in Docker on Mesos and saves it's results to Cassandra.  
 
-Set the following items in :code:`firebird.install`:
+Set the following items in :code:`ccdc.install`:
 
 * Mesos keys, credentials, and master url(s)
 * Cassandra credentials and contact point url
@@ -33,11 +33,11 @@ For the PySpark shell:
 * `PYSPARK_EXECUTOR_MEMORY`
 
 
-What are the verbose options for Firebird?
+What are the verbose options for Ccdc?
 ------------------------------------------
 .. code-block:: bash
 
-   $ firebird-save --acquired 1980-01-01/2017-01-01 \
+   $ ccdc-save --acquired 1980-01-01/2017-01-01 \
                    --bounds -1821585,2891595 \
                    --products seglength \
                    --products ccd \
@@ -52,7 +52,7 @@ How do I just run a single point instead?
 -----------------------------------------
 .. code-block:: bash
 
-   $ firebird-save --acquired 1980-01-01/2017-01-01 \
+   $ ccdc-save --acquired 1980-01-01/2017-01-01 \
                    --bounds -1821585,2891595 \
                    --products seglength \
                    --products ccd \
@@ -63,14 +63,14 @@ How do I find out what products I can run?
 ------------------------------------------
 .. code-block:: bash
 
-   $ firebird-products
+   $ ccdc-products
 
 
 You seem to like seglength, ccd and 2014-01-01
 ----------------------------------------------
 .. code-block:: bash
 
-   $ firebird-save --acquired 1980-01-01/2017-01-01 \
+   $ ccdc-save --acquired 1980-01-01/2017-01-01 \
                    --bounds -1821585,2891595 \
                    --products curveqa \
                    --product_dates 2010-01-01 \
@@ -86,7 +86,7 @@ How do I run a bigger area?
 ---------------------------
 .. code-block:: bash
 
-   $ firebird-save --acquired 1980-01-01/2017-01-01 \
+   $ ccdc-save --acquired 1980-01-01/2017-01-01 \
                    --bounds -1791585,2891595 \
                    --bounds -1821585,2891595 \
                    --bounds -1791585,2911595 \
@@ -99,7 +99,7 @@ How do I run a triangle instead?
 --------------------------------
 .. code-block:: bash
 
-   $ firebird-save --acquired 1980-01-01/2017-01-01 \
+   $ ccdc-save --acquired 1980-01-01/2017-01-01 \
                    --bounds -1791585,2891595 \
                    --bounds -1821585,2891595 \
                    --bounds -1821585,2911595 \
@@ -110,7 +110,7 @@ How do I run a triangle instead?
 
 I ran a really large area and got out of memory errors.
 -------------------------------------------------------
-Edit :code:`firebird.install` and add more memory to the executors.  
+Edit :code:`ccdc.install` and add more memory to the executors.  
 It is helpful to calculate how much data you will be working with ahead of
 time based on your query bounds, acquired range and products.
 
@@ -119,8 +119,8 @@ Keep in mind that each partition of data must fit in memory for an executor.
 Where do the results get saved?
 -------------------------------
 In a table matching the algorithm + version, in a keyspace configured
-in :code:`firebird.install`.  Tables and keyspaces must be created before running
-Firebird, presumably by Cassandra admins.
+in :code:`ccdc.install`.  Tables and keyspaces must be created before running
+CCDC, presumably by Cassandra admins.
 
 If you are running the local Cassandra image, you are the Cassandra admin.
 In that case, edit :code:`test/resources/schema.setup.cql`
