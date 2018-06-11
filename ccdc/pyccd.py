@@ -1,10 +1,10 @@
+from ccdc import cassandra
+from ccdc import logger
 from cytoolz import first
 from cytoolz import get
 from cytoolz import get_in
 from cytoolz import merge
 from cytoolz import second
-from firebird import cassandra
-from firebird import logger
 from merlin.functions import cqlstr
 from merlin.functions import denumpify
 from pyspark import sql
@@ -84,7 +84,7 @@ def dataframe(ctx, rdd):
     """Creates pyccd dataframe from ard dataframe
 
     Args:
-        ctx: spark contextd
+        ctx: spark context
         rdd: pyccd rdd
 
     Returns:

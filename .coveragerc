@@ -1,14 +1,14 @@
 [run]
 branch  = True
-source  = firebird
+source  = ccdc
 omit    = lib/*
           bin/*
           lib64/*
           include/*
           version.py
           setup.py
-          firebird/mocks/*
-          firebird/cmdline.py
+          ccdc/mocks/*
+          ccdc/cmdline.py
           test/fixtures.py
 [html]
 directory = test/coverage

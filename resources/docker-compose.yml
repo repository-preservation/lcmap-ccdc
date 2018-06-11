@@ -1,8 +1,8 @@
 version: "2"
 
 services:
-  firebird-cassandra:
+  ccdc-cassandra:
     image: cassandra:3.9
-    container_name: firebird-cassandra
+    container_name: ccdc-cassandra
     ports:
     - "9043:9042"

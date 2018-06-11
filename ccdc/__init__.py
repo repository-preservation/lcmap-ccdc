@@ -9,7 +9,7 @@ import re
 import socket
 
 # All of these are evaluated at import time!!!  That means the env vars need
-# to be set before the firebird module is imported.  
+# to be set before the ccdc module is imported.  
 HOST                               = socket.gethostbyname(socket.getfqdn())
 ARD_CHIPMUNK                       = os.getenv('ARD_CHIPMUNK', 'http://localhost:5656/')
 AUX_CHIPMUNK                       = os.getenv('AUX_CHIPMUNK', 'http://localhost:5656/')
@@ -29,13 +29,13 @@ TRAINING_SDAY                      = os.getenv('TRAINING_SDAY', 0)
 TRAINING_EDAY                      = os.getenv('TRAINING_EDAY', 0)
 
 def keyspace():
-    """ Compute the Firebird keyspace.
+    """ Compute the CCDC keyspace.
         
         This value should always be a function of the URL for ARD, the URL for AUX
-        and the Firebird version.
+        and the CCDC version.
 
         Returns:
-            The Firebird keyspace name
+            The CCDC keyspace name
     """
 
     ard = re.sub("/", "", urlparse(ARD_CHIPMUNK).path)
@@ -43,7 +43,7 @@ def keyspace():
     pwd = os.path.dirname(os.path.realpath(__file__))
     ver = merlin.files.read('{}{}version.txt'.format(os.path.dirname(pwd), os.path.sep))
     fmt = "{0}_{1}_CCDC_{2}"
-    return merlin.functions.cqlstr(fmt.format(ard, aux, ver)).strip().upper()
+    return merlin.functions.cqlstr(fmt.format(ard, aux, ver)).strip().upper().lstrip('_')
 
 
 def context(name):
@@ -74,5 +74,5 @@ def logger(context, name):
         Logger instance
     """
 
-    # TODO: add firebird version to name
+    # TODO: add ccdc version to name
     return context._jvm.org.apache.log4j.LogManager.getLogger(name)

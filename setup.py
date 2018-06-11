@@ -11,7 +11,7 @@ def version():
         return h.read().strip()
 
 
-setup(name='lcmap-firebird',
+setup(name='lcmap-ccdc',
       version=version(),
       description='Apache Spark based product generation for LCMAP',
       long_description=readme(),
@@ -20,13 +20,14 @@ setup(name='lcmap-firebird',
         'License :: OSI Approved :: Unlicense',
         'Programming Language :: Python :: 3.6',
       ],
-      keywords='usgs lcmap eros spark pyccd',
-      url='http://github.com/usgs-eros/lcmap-firebird',
+      keywords='usgs lcmap eros spark pyccd ccdc',
+      url='http://github.com/usgs-eros/lcmap-ccdc',
       author='USGS EROS LCMAP',
       author_email='',
       license='Unlicense',
-      packages=['firebird'],
+      packages=['ccdc'],
       install_requires=[
+          'click==6.7',
           'lcmap-merlin>=2.2.0',
           'lcmap-pyccd==2018.3.12',
       ],
@@ -44,7 +45,7 @@ setup(name='lcmap-firebird',
       #test_suite='nose.collector',
       #tests_require=['nose', 'nose-cover3'],
       entry_points={
-          'console_scripts': ['firebird=firebird.cmdline:cli'],
+          'console_scripts': ['ccdc=ccdc.cli:entrypoint'],
       },
       include_package_data=True,
       zip_safe=False)

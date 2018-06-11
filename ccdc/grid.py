@@ -10,11 +10,11 @@ from merlin.geometry import extents
 from merlin.geometry import coordinates
 from operator import eq
 
-import firebird
+import ccdc
 import merlin
 
 
-def definition(cfg=firebird.ARD):
+def definition(cfg=ccdc.ARD):
     """Returns the grid definition associated with configuration"""
     
     return get('grid_fn', cfg)()
@@ -32,7 +32,7 @@ def tile(x, y, cfg):
     """
 
     # get all grid definitions
-    grid    = definition()
+    grid    = definition(cfg)
 
     # get tile & chip grids
     tgrid   = first(filter(lambda x: eq(get('name', x), 'tile'), grid))
