@@ -1,4 +1,4 @@
-"""cli.py is the command line interface for Firebird.  
+"""cli.py is the command line interface for CCDC.  
 
 Prerequisites:
 1. Set env vars as defined in __init__.py.
@@ -6,7 +6,7 @@ Prerequisites:
 3. Chipmunk must be available on the network for ARD and AUX data.
 4. Cassandra must be available to read and write pyccd, training, and classification results.
 
-cli.py should be added to setup.py as an entry_point console script.  After installing the Firebird python package, it would then be invoked as the entrypoint of the Firebird Docker image.
+cli.py should be added to setup.py as an entry_point console script.  After installing the CCDC python package, it would then be invoked as the entrypoint of the CCDC Docker image.
 """
 
 from cytoolz   import do
@@ -16,21 +16,21 @@ from cytoolz   import get
 from cytoolz   import merge
 from cytoolz   import take
 from cytoolz   import thread_last
-from firebird  import ARD
-from firebird  import AUX
-from firebird  import cassandra
-from firebird  import features
-from firebird  import grid
-from firebird  import ids
-from firebird  import pyccd
-from firebird  import logger
-from firebird  import randomforest
-from firebird  import timeseries
+from ccdc      import ARD
+from ccdc      import AUX
+from ccdc      import logger
 from functools import partial
 from merlin    import functions
 
+import cassandra
+import ccdc
 import click
-import firebird
+import features
+import grid
+import ids
+import pyccd
+import randomforest
+import timeseries
 import traceback
 
 
@@ -73,7 +73,7 @@ def changedetection(x, y, acquired, number=2500):
     
     try:
         # start and/or connect Spark
-        ctx  = firebird.context(name)
+        ctx  = ccdc.context(name)
 
         # get logger
         log  = logger(ctx, name)
@@ -81,13 +81,13 @@ def changedetection(x, y, acquired, number=2500):
         # wire everything up
         tile = grid.tile(x=x, y=y, cfg=ARD)
         cids = ids.rdd(ctx=ctx, cids=list(take(number, tile.get('chips'))))
-        ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=firebird.ARD, name='ard')
+        ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=ccdc.ARD, name='ard')
         ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).cache()
 
         # emit parameters
         log.info(str(merge(tile, {'acquired': acquired,
-                                  'input-partitions': firebird.INPUT_PARTITIONS,
-                                  'product-partitions': firebird.PRODUCT_PARTITIONS,
+                                  'input-partitions': ccdc.INPUT_PARTITIONS,
+                                  'product-partitions': ccdc.PRODUCT_PARTITIONS,
                                   'chips': cids.count()})))
 
         log.info('finding ccd segments...')
@@ -150,7 +150,7 @@ def classification(x, y, acquired):
     name = 'random-forest-classification'
     
     try:
-        ctx = firebird.context(name)
+        ctx = ccdc.context(name)
         log = logger(ctx, name)
 
         log.info('beginning {}...'.format(name))
@@ -168,13 +168,13 @@ def classification(x, y, acquired):
         
         log.info('finding change segments...')
         ccd = pyccd.read(ctx,
-                         cids.repartition(firebird.PRODUCT_PARTITIONS))\
+                         cids.repartition(ccdc.PRODUCT_PARTITIONS))\
                          .filter('sday >= 0 AND eday >= 0')
          
         log.info('finding aux timeseries...')
         aux = timeseries.aux(ctx,
-                             cids.rdd.repartition(firebird.INPUT_PARTITIONS),
-                             acquired).repartition(firebird.PRODUCT_PARTITIONS)        
+                             cids.rdd.repartition(ccdc.INPUT_PARTITIONS),
+                             acquired).repartition(ccdc.PRODUCT_PARTITIONS)        
        
         log.info('finding classification features...')
         fdf = features.dataframe(aux, ccd)

@@ -1,10 +1,8 @@
+from ccdc import context
+from ccdc import logger
 from cytoolz import assoc
 from cytoolz import first
 from cytoolz import second
-from firebird import cassandra
-from firebird import context
-from firebird import ids
-from firebird import logger
 from functools import partial
 from merlin.functions import denumpify
 
@@ -16,7 +14,9 @@ from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
 
-import firebird
+import cassandra
+import ccdc
+import ids
 import merlin
 import numpy
 
@@ -123,11 +123,11 @@ def rdd(ctx, cids, acquired, cfg, name=__name__):
     return cids\
         .flatMap(lambda xy: fn(x=first(xy), y=second(xy)))\
         .map(lambda x: ((int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3])), x[1]))\
-        .repartition(firebird.PRODUCT_PARTITIONS)\
+        .repartition(ccdc.PRODUCT_PARTITIONS)\
         .setName(name)
 
 
-def ard(ctx, cids, acquired, cfg=firebird.ARD):
+def ard(ctx, cids, acquired, cfg=ccdc.ARD):
     """Create an ard timeseries dataframe
     
     Args:
@@ -147,7 +147,7 @@ def ard(ctx, cids, acquired, cfg=firebird.ARD):
                              name='ard'))
 
 
-def aux(ctx, cids, acquired, cfg=firebird.AUX):
+def aux(ctx, cids, acquired, cfg=ccdc.AUX):
     """Create an aux timeseries dataframe
     
     Args:

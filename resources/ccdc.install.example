@@ -1,7 +1,7 @@
 #/usr/bin/env bash
 
 ########################
-# Firebird Configuration
+# CCDC Configuration
 ########################
 
 AARDVARK=<http://host:port>
@@ -35,13 +35,13 @@ STORAGE_PARTITION_COUNT=10
 #MASTER=local[*]
 MASTER=<mesos://zk://host1:2181,host2:2181,host3:2181/mesos>
 
-IMAGE=<usgseros/lcmap-firebird:2017.09.18>
+IMAGE=<usgseros/lcmap-ccdc:2017.09.18>
 
 VOLUME=`echo ~/keys`:/certs
 
-FIREBIRD_USER=$USER
+CCDC_USER=$USER
 ############################
-# End Firebird Configuration
+# End CCDC Configuration
 ############################
 
 TIMESTAMP=`date --iso-8601=seconds`
@@ -61,26 +61,26 @@ BASE="docker run \
 -e LIBPROCESS_SSL_CA_FILE=/certs/TrustedRoot.crt \
 -e LIBPROCESS_SSL_CA_DIR=/certs \
 -e LIBPROCESS_SSL_ECDH_CURVE=auto \
--e FIREBIRD_AARDVARK=$AARDVARK \
--e FIREBIRD_CASSANDRA_CONTACT_POINTS=$CASSANDRA_CONTACT_POINTS \
--e FIREBIRD_CASSANDRA_USER=$CASSANDRA_USER \
--e FIREBIRD_CASSANDRA_PASS=$CASSANDRA_SECRET \
--e FIREBIRD_CASSANDRA_KEYSPACE=$CASSANDRA_KEYSPACE \
--e FIREBIRD_INITIAL_PARTITION_COUNT=$INITIAL_PARTITION_COUNT \
--e FIREBIRD_PRODUCT_PARTITION_COUNT=$PRODUCT_PARITION_COUNT \
--e FIREBIRD_STORAGE_PARTITION_COUNT=$STORAGE_PARTITION_COUNT \
--e FIREBIRD_LOG_LEVEL=WARN \
--e FIREBIRD_USER=$FIREBIRD_USER \
+-e CCDC_AARDVARK=$AARDVARK \
+-e CCDC_CASSANDRA_CONTACT_POINTS=$CASSANDRA_CONTACT_POINTS \
+-e CCDC_CASSANDRA_USER=$CASSANDRA_USER \
+-e CCDC_CASSANDRA_PASS=$CASSANDRA_SECRET \
+-e CCDC_CASSANDRA_KEYSPACE=$CASSANDRA_KEYSPACE \
+-e CCDC_INITIAL_PARTITION_COUNT=$INITIAL_PARTITION_COUNT \
+-e CCDC_PRODUCT_PARTITION_COUNT=$PRODUCT_PARITION_COUNT \
+-e CCDC_STORAGE_PARTITION_COUNT=$STORAGE_PARTITION_COUNT \
+-e CCDC_LOG_LEVEL=WARN \
+-e CCDC_USER=$CCDC_USER \
 --publish-all \
 --network=host \
 --pid=host \
 -v $VOLUME \
 $IMAGE"
 
-alias firebird-version="$BASE firebird show version"
-alias firebird-products="$BASE firebird show products"
-alias firebird-notebook="$BASE jupyter --ip=$HOSTNAME notebook --allow-root"
-alias firebird-shell="$BASE /bin/bash"
+alias ccdc-version="$BASE ccdc show version"
+alias ccdc-products="$BASE ccdc show products"
+alias ccdc-notebook="$BASE jupyter --ip=$HOSTNAME notebook --allow-root"
+alias ccdc-shell="$BASE /bin/bash"
 
 
 # Spark runtime configuration options are available at
@@ -90,31 +90,18 @@ alias firebird-shell="$BASE /bin/bash"
 # --driver-memory $DRIVER_MEMORY \
 # --executor-memory $EXECUTOR_MEMORY \
 
-alias firebird-save="$BASE spark-submit \
+alias ccdc-save="$BASE spark-submit \
 --master $MASTER \
 --total-executor-cores $CORES \
---conf spark.app.name=$FIREBIRD_USER:firebird-save:[$TIMESTAMP] \
+--conf spark.app.name=$CCDC_USER:ccdc-save:[$TIMESTAMP] \
 --conf spark.driver.host=$HOSTNAME \
 --conf spark.mesos.principal=$MESOS_PRINCIPAL \
 --conf spark.mesos.secret=$MESOS_SECRET \
 --conf spark.mesos.role=$MESOS_ROLE \
 --conf spark.mesos.executor.docker.image=$IMAGE \
 --conf spark.mesos.executor.docker.forcePullImage=true \
---conf spark.mesos.task.labels=firebird-save:$FIREBIRD_USER \
-/home/lcmap/firebird/cmdline.py save"
+--conf spark.mesos.task.labels=ccdc-save:$CCDC_USER \
+/home/lcmap/ccdc/cmdline.py save"
 
 
-alias firebird-pyspark="$BASE pyspark \
---master $MASTER \
---total-executor-cores $PYSPARK_CORES \
---driver-memory $PYSPARK_DRIVER_MEMORY \
---executor-memory $PYSPARK_EXECUTOR_MEMORY \
---conf spark.app.name=$FIREBIRD_USER \
---conf spark.driver.host=$HOSTNAME \
---conf spark.mesos.principal=$MESOS_PRINCIPAL \
---conf spark.mesos.secret=$MESOS_SECRET \
---conf spark.mesos.role=$MESOS_ROLE \
---conf spark.mesos.executor.docker.image=$IMAGE \
---conf spark.mesos.executor.docker.forcePullImage=true \
---conf spark.mesos.task.labels=firebird-pyspark:$FIREBIRD_USER \
--v"
+

@@ -2,7 +2,8 @@ from pyspark.sql import SparkSession
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
-import firebird
+
+import ccdc
 
 
 def schema():
@@ -22,13 +23,13 @@ def rdd(ctx, cids):
         RDD of chip ids
     """
 
-    log = firebird.logger(ctx, __name__)
+    log = ccdc.logger(ctx, __name__)
 
     log.info('loading {} chip ids...'.format(len(cids)))
     log.debug('cids datatype:{}'.format(type(cids)))
     log.trace('cids:{}'.format(cids))
     
-    return ctx.parallelize(cids, firebird.INPUT_PARTITIONS)
+    return ctx.parallelize(cids, ccdc.INPUT_PARTITIONS)
  
     
 def dataframe(ctx, rdd):

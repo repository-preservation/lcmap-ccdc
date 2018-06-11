@@ -1,6 +1,6 @@
 # pull the tag from version.txt
 TAG:=`cat version.txt`
-IMAGE:=usgseros/lcmap-firebird
+IMAGE:=usgseros/lcmap-ccdc
 
 vertest:
 	@echo TAG:$(TAG)
@@ -30,8 +30,8 @@ deps-down:
 	docker-compose -f resources/docker-compose.yml down
 
 db-schema:
-	docker cp resources/schema.cql firebird-cassandra:/
-	docker exec -u root firebird-cassandra cqlsh localhost -f schema.cql
+	docker cp resources/schema.cql ccdc-cassandra:/
+	docker exec -u root ccdc-cassandra cqlsh localhost -f schema.cql
 
 db-schema-d: deps-up-d breathe db-schema
 
@@ -54,6 +54,6 @@ tests:
 	./test.sh
 
 clean:
-	@rm -rf dist build lcmap_firebird.egg-info test/coverage derby.log metastore_db spark-warehouse
+	@rm -rf dist build lcmap_ccdc.egg-info test/coverage derby.log metastore_db spark-warehouse
 	@find . -name '*.pyc' -delete
 	@find . -name '__pycache__' -delete
