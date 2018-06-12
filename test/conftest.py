@@ -1,6 +1,3 @@
-import ccdc
-import pytest
-
 from ccdc        import grid
 from ccdc        import ids
 from ccdc        import timeseries
@@ -13,6 +10,10 @@ from .shared     import merlin_snap_partial
 from .shared     import merlin_regy_partial
 from .shared     import merlin_chip_partial
 from .shared     import merlin_frmt_partial
+
+import ccdc
+import pytest
+
 
 def get_chip_ids_rdd(chipids):
     sc = SparkSession(SparkContext.getOrCreate()).sparkContext

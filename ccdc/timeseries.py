@@ -1,4 +1,6 @@
+from ccdc import cassandra
 from ccdc import context
+from ccdc import ids
 from ccdc import logger
 from cytoolz import assoc
 from cytoolz import first
@@ -14,9 +16,7 @@ from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
 
-import cassandra
 import ccdc
-import ids
 import merlin
 import numpy
 

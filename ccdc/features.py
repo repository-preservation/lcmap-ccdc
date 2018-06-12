@@ -1,6 +1,6 @@
+from ccdc.udfs import densify
 from cytoolz import first
 from cytoolz import thread_last
-from firebird.udfs import densify
 
 
 def join(dfs):

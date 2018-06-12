@@ -1,7 +1,8 @@
 from ccdc import features
 from ccdc import ids
-from ccdc import timeseries
 from ccdc import logger
+from ccdc import pyccd
+from ccdc import timeseries
 from ccdc import udfs
 from merlin.functions import denumpify
 from pyspark.ml.classification import RandomForestClassifier
@@ -11,7 +12,6 @@ from pyspark.ml import Pipeline
 from pyspark.sql.types import Row
 
 import ccdc
-import pyccd
 
 
 def write():

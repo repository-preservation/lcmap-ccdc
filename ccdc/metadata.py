@@ -1,15 +1,6 @@
-from cytoolz import first
-from cytoolz import get
-from cytoolz import get_in
-from cytoolz import merge
-from cytoolz import second
-from firebird import cassandra
-from firebird import logger
-from merlin.functions import cqlstr
-from merlin.functions import denumpify
-from pyspark import sql
+from ccdc import cassandra
+from ccdc import logger
 from pyspark.sql import SparkSession
-from pyspark.sql import functions
 from pyspark.sql.types import DateType
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import MapType
@@ -127,6 +118,7 @@ def write(ctx, df):
     Returns:
         df
     """
+
     cassandra.write(ctx, df, table())
     return df
 
