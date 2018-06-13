@@ -9,6 +9,18 @@ Prerequisites:
 cli.py should be added to setup.py as an entry_point console script.  After installing the CCDC python package, it would then be invoked as the entrypoint of the CCDC Docker image.
 """
 
+from ccdc import ARD
+from ccdc import AUX
+from ccdc import cassandra
+from ccdc import features
+from ccdc import grid
+from ccdc import ids
+from ccdc import logger
+from ccdc import metadata
+from ccdc import pyccd
+from ccdc import randomforest
+from ccdc import timeseries
+
 from cytoolz   import do
 from cytoolz   import filter
 from cytoolz   import first
@@ -16,21 +28,12 @@ from cytoolz   import get
 from cytoolz   import merge
 from cytoolz   import take
 from cytoolz   import thread_last
-from ccdc      import ARD
-from ccdc      import AUX
-from ccdc      import logger
 from functools import partial
 from merlin    import functions
 
-import cassandra
 import ccdc
 import click
-import features
-import grid
-import ids
-import pyccd
-import randomforest
-import timeseries
+import datetime
 import traceback
 
 
@@ -65,10 +68,10 @@ def entrypoint():
 @entrypoint.command()
 @click.option('--x',        '-x', required=True)
 @click.option('--y',        '-y', required=True)
-@click.option('--acquired', '-a', required=True)
+@click.option('--acquired', '-a', required=False, default=acquired())
 @click.option('--number',   '-n', required=False, default=2500)
 def changedetection(x, y, acquired=acquired(), number=2500):
-    """Run change detection for a tile over a time range and save results to Cassandra.
+    """Run change detection for a tile and save results to Cassandra.
     
     Args:
         x        (int): tile x coordinate
@@ -91,6 +94,7 @@ def changedetection(x, y, acquired=acquired(), number=2500):
         log  = logger(ctx, name)
         
         # wire everything up
+        print(ARD)
         tile = grid.tile(x=x, y=y, cfg=ARD)
         cids = ids.rdd(ctx=ctx, cids=list(take(number, tile.get('chips'))))
         ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=ccdc.ARD, name='ard')
@@ -104,9 +108,23 @@ def changedetection(x, y, acquired=acquired(), number=2500):
 
         log.info('finding ccd segments...')
         written = pyccd.write(ctx, ccd).count()
+
+        # write metadata
+        md =  metadata.detection(ulx=int(get('x', tile)),
+                                 uly=int(get('y', tile)),
+                                 lrx=int(get('lrx', tile)),
+                                 lry=int(get('lry', tile)),
+                                 h=int(get('h', tile)),
+                                 v=int(get('v', tile)),
+                                 acquired=acquired,
+                                 detector=pyccd.algorithm(),
+                                 ardurl=ccdc.ARD_CHIPMUNK,
+                                 segcount=written)
         
+        _ = metadata.write(ctx, metadata.dataframe(ctx, md))
+                        
         # log and return segment counts
-        return do(log.info, "saved {} ccd segments".format(written))
+        return do(log.info, "{} complete: {}".format(name, md))
             
     except Exception as e:
         # spark errors & stack trace

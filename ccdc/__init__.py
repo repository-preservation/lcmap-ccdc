@@ -11,8 +11,8 @@ import socket
 # All of these are evaluated at import time!!!  That means the env vars need
 # to be set before the ccdc module is imported.  
 HOST                               = socket.gethostbyname(socket.getfqdn())
-ARD_CHIPMUNK                       = os.getenv('ARD_CHIPMUNK', 'http://localhost:5656/')
-AUX_CHIPMUNK                       = os.getenv('AUX_CHIPMUNK', 'http://localhost:5656/')
+ARD_CHIPMUNK                       = os.getenv('ARD_CHIPMUNK', 'http://localhost:5656')
+AUX_CHIPMUNK                       = os.getenv('AUX_CHIPMUNK', 'http://localhost:5656')
 CASSANDRA_HOST                     = os.getenv('CASSANDRA_URLS', HOST)
 CASSANDRA_PORT                     = int(os.getenv('CASSANDRA_PORT', 9043))
 CASSANDRA_USER                     = os.getenv('CASSANDRA_USER', 'cassandra')

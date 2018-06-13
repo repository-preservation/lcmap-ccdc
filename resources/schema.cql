@@ -1,4 +1,4 @@
-CREATE KEYSPACE IF NOT EXISTS CCDC_1_0
+CREATE KEYSPACE IF NOT EXISTS ccdc_1_0
 WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
 
 /* If sday and eday are 0, there was no change detected for that location
@@ -95,6 +95,48 @@ CREATE TABLE IF NOT EXISTS CCDC_1_0.data (
     prmask frozen<list<tinyint>>,
     rfrawp frozen<list<float>>,
     PRIMARY KEY((chipx, chipy), x, y, sday, eday)
+)
+WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
+AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
+
+
+-------
+/* If sday and eday are 0, there was no change detected for that location
+
+ Data dictionary:
+ ulx:            tile upper left x
+ uly:            tile upper left y
+ lrx:            tile lower right x
+ lry:            tile lower right y
+ h:              tile h designation
+ v:              tile v designation
+ acq:            date range filter for input observations
+ detector:       blue magnitude
+ dran:           timestamp detection was run 
+ segcnt:         number of change segments identified (including 1 non detection per x,y)
+ classifier:     red magnitude
+ cran:           timestamp classifier was run
+ ardurl:         swir1 magnitude
+ auxurl:         swir2 magnitude
+ 
+*/
+
+CREATE TABLE IF NOT EXISTS CCDC_1_0.metadata (
+    ulx        int,
+    uly        int,
+    lrx        int,
+    lry        int,
+    h          int,
+    v          int,
+    acq        text,
+    detector   text,
+    dran       text,
+    segcnt     int,
+    classifier text,
+    cran       text,
+    ardurl     text,
+    auxurl     text,
+    PRIMARY KEY((ulx, uly))
 )
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };

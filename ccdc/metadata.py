@@ -1,9 +1,8 @@
 from ccdc import cassandra
 from ccdc import logger
+from pyspark.sql import Row
 from pyspark.sql import SparkSession
-from pyspark.sql.types import DateType
 from pyspark.sql.types import IntegerType
-from pyspark.sql.types import MapType
 from pyspark.sql.types import StringType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
@@ -21,48 +20,63 @@ def schema():
     """pyspark dataframe schema for metadata"""
     
     return StructType([
-        StructField('tilex', IntegerType(), nullable=False),
-        StructField('tiley', IntegerType(), nullable=False),
+        StructField('ulx', IntegerType(), nullable=False),
+        StructField('uly', IntegerType(), nullable=False),
+        StructField('lrx', IntegerType(), nullable=True),
+        StructField('lry', IntegerType(), nullable=True),
+        StructField('h', IntegerType(), nullable=True),
+        StructField('v', IntegerType(), nullable=True),
+        StructField('acq', StringType(), nullable=True),
         StructField('detector', StringType(), nullable=True),
-        StructField('detector_ran', DateType(), nullable=True),
-        StructField('detector_params', MapType(StringType(), StringType()), nullable=True),
+        StructField('dran', StringType(), nullable=True),
+        StructField('segcnt', IntegerType(), nullable=True),
         StructField('classifier', StringType(), nullable=True),
-        StructField('classifier_ran', DateType(), nullable=True),
-        StructField('classifier_params', MapType(StringType(), StringType()), nullable=True),
-        StructField('ardurl', IntegerType(), nullable=True),
-        StructField('auxurl', IntegerType(), nullable=True)])
+        StructField('cran', StringType(), nullable=True),
+        StructField('ardurl', StringType(), nullable=True),
+        StructField('auxurl', StringType(), nullable=True)])
 
 
-def detector(tilex, tiley, detector, params, ardurl, auxurl):
+def detection(ulx, uly, lrx, lry, h, v, acquired, detector, ardurl, segcount):
     """create metadata for detectors
 
     Args:
-        tilex: x coordinate of tile
-        tiley: y coordinate of tile
+        ulx:   upper left x
+        uly:   upper left y
+        lrx:   lower right x
+        lry:   lower right y
+        h:     horizontal id of tile
+        v:     vertical id of tile
+        acquired: ISO8601 date range for input data (str)
         detector: name and version of detector
-        params: parameters supplied to detector at runtime
         ardurl: URL used to supply input ARD data to detector
-        auxurl: URL used to supply input AUX data to detector
+        segcount: number of segments written
 
     Returns:
         dict: Detector metadata
     """
     
-    return {'tilex': tilex,
-            'tiley': tiley,
+    return {'ulx': ulx,
+            'uly': uly,
+            'lrx': lrx,
+            'lry': lry,
+            'h': h,
+            'v': v,
+            'acq': acquired,
             'detector': detector,
-            'detector_ran': datetime.datetime.now().isoformat(),
-            'detector_params': params,
+            'dran': datetime.datetime.now().isoformat(),
             'ardurl': ardurl,
-            'auxurl': auxurl}
+            'segcnt': segcount,
+            'classifier': None,
+            'cran': None,
+            'auxurl': None}
 
 
-def classifier(tilex, tiley, classifier, params):
+def classify(ulx, uly, classifier, auxurl):
     """create metadata for classifiers
 
     Args:
-        tilex: x coordinate of tile
-        tiley: y coordinate of tile
+        ulx: x coordinate of tile
+        uly: y coordinate of tile
         detector: name and version of classifier
         params: parameters supplied to classifier at runtime
 
@@ -70,26 +84,26 @@ def classifier(tilex, tiley, classifier, params):
         dict: Classifier metadata
     """
 
-    return {'tilex': tilex,
-            'tiley': tiley,
+    return {'ulx': ulx,
+            'uly': uly,
             'classifier': classifier,
-            'classifier_ran': datetime.datetime.now().isoformat(),
-            'classifier_params': params}
+            'cran': datetime.datetime.now().isoformat(),
+            'auxurl': auxurl}
 
 
-def dataframe(ctx, rdd):
-    """Creates metadata dataframe from ard dataframe
+def dataframe(ctx, d):
+    """Creates metadata dataframe from dictionary
 
     Args:
-        ctx: spark contextd
-        rdd: pyccd rdd
+        ctx: spark context
+        rdd: dictionary
 
     Returns:
         A spark dataframe conforming to schema()
     """
 
     logger(ctx, name=__name__).debug('creating metadata dataframe...')
-    return SparkSession(ctx).createDataFrame(rdd, schema())
+    return SparkSession(ctx).createDataFrame([Row(**d)], schema=schema())
  
        
 def read(ctx, ids):
@@ -104,7 +118,7 @@ def read(ctx, ids):
     """
     
     return ids.join(cassandra.read(ctx, table()),
-                    on=['tilex', 'tiley'],
+                    on=['ulx', 'uly'],
                     how='inner')
 
 
@@ -135,6 +149,6 @@ def join(detections, classifications):
     """
     
     return detections.join(classifications,
-                           on=['tilex', 'tiley'],
+                           on=['ulx', 'uly'],
                            how='inner')
 

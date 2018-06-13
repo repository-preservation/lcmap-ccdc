@@ -28,7 +28,7 @@ setup(name='lcmap-ccdc',
       packages=['ccdc'],
       install_requires=[
           'click==6.7',
-          'lcmap-merlin>=2.2.0',
+          'lcmap-merlin>=2.2.1',
           'lcmap-pyccd==2018.3.12',
       ],
       # List additional groups of dependencies here (e.g. development
