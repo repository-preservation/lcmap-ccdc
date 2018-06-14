@@ -7,7 +7,6 @@ from cytoolz import first
 from cytoolz import second
 from functools import partial
 from merlin.functions import denumpify
-
 from pyspark import sql
 from pyspark.sql import SparkSession
 from pyspark.sql.types import ArrayType
@@ -33,8 +32,8 @@ def schema(name):
     
     s = {'ard': StructType([StructField('chipx', IntegerType(), nullable=False),
                             StructField('chipy', IntegerType(), nullable=False),
-                            StructField('x', IntegerType(), nullable=False),
-                            StructField('y', IntegerType(), nullable=False),
+                            StructField('pixelx', IntegerType(), nullable=False),
+                            StructField('pixely', IntegerType(), nullable=False),
                             StructField('dates', ArrayType(IntegerType(), False), nullable=False),
                             StructField('blues', ArrayType(IntegerType(), False), nullable=False),
                             StructField('greens', ArrayType(IntegerType(), False), nullable=False),
@@ -46,8 +45,8 @@ def schema(name):
                             StructField('qas', ArrayType(IntegerType(), False), nullable=False)]),
          'aux': StructType([StructField('chipx', IntegerType(), nullable=False),
                             StructField('chipy', IntegerType(), nullable=False),
-                            StructField('x', IntegerType(), nullable=False),
-                            StructField('y', IntegerType(), nullable=False),
+                            StructField('pixelx', IntegerType(), nullable=False),
+                            StructField('pixely', IntegerType(), nullable=False),
                             StructField('dates', ArrayType(IntegerType(), False), nullable=False),
                             StructField('dem', ArrayType(FloatType(), False), nullable=True),
                             StructField('trends', ArrayType(IntegerType(), False), nullable=False),
@@ -66,10 +65,10 @@ def converter():
         func: A Python function to convert an rdd to dataframe
     """
 
-    return lambda x: {'chipx': int(x[0][0]),
-                      'chipy': int(x[0][1]),
-                      'x'    : int(x[0][2]),
-                      'y'    : int(x[0][3]),
+    return lambda x: {'chipx':  int(x[0][0]),
+                      'chipy':  int(x[0][1]),
+                      'pixelx': int(x[0][2]),
+                      'pixely': int(x[0][3]),
                       **denumpify(x[1])}
 
 
@@ -100,7 +99,7 @@ def rdd(ctx, cids, acquired, cfg, name=__name__):
         cfg: A Merlin configuration
 
     Returns:
-        RDD of time series: ((chipx, chipy, x, y), {data}) 
+        RDD of time series: ((chipx, chipy, pixelx, pixely), {data}) 
 
     Example:
     >>> execute(sc, [(0,0)], '1980-01-01/2017-01-01', {a_merlin_cfg})
@@ -136,7 +135,7 @@ def ard(ctx, cids, acquired, cfg=ccdc.ARD):
         acquired (str): ISO8601 date range: 1980-01-01/2017-12-31
 
     Returns:
-        ARD dataframe: ((chipx, chipy, x, y), {data}) 
+        ARD dataframe: ((chipx, chipy, pixelx, pixely), {data}) 
     """
     
     return dataframe(ctx=ctx,
@@ -156,7 +155,7 @@ def aux(ctx, cids, acquired, cfg=ccdc.AUX):
         acquired (str): ISO8601 date range: 1980-01-01/2017-12-31
 
     Returns:
-        Aux dataframe ((chipx, chipy, x, y), {data}) 
+        Aux dataframe ((chipx, chipy, pixelx, pixely), {data}) 
     """
     
     return dataframe(ctx=ctx,

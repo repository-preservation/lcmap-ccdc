@@ -94,29 +94,26 @@ CREATE TABLE IF NOT EXISTS CCDC_1_0.data (
     clprob float,
     prmask frozen<list<tinyint>>,
     rfrawp frozen<list<float>>,
-    PRIMARY KEY((chipx, chipy), x, y, sday, eday)
+    PRIMARY KEY((chipx, chipy), pixelx, pixely, sday, eday)
 )
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
 
 
--------
-/* If sday and eday are 0, there was no change detected for that location
-
+/* 
  Data dictionary:
  tilex:          tile upper left x
  tiley:          tile upper left y
  h:              tile h designation
  v:              tile v designation
- acq:            date range filter for input observations
+ acq:            max date range for input observations
  detector:       name and version of detector 
  dran:           timestamp detection was run 
  segcnt:         number of change segments identified (including 1 non detection per x,y)
  classifier:     name and version of classifier
  cran:           timestamp classifier was run
  ardurl:         url ard data was obtained from
- auxurl:         url aux data was obtained from
- 
+ auxurl:         url aux data was obtained from 
 */
 
 CREATE TABLE IF NOT EXISTS CCDC_1_0.metadata (
@@ -132,7 +129,7 @@ CREATE TABLE IF NOT EXISTS CCDC_1_0.metadata (
     cran       text,
     ardurl     text,
     auxurl     text,
-    PRIMARY KEY((ulx, uly))
+    PRIMARY KEY((tilex, tiley))
 )
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };

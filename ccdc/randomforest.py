@@ -96,7 +96,7 @@ def classify(model, dataframe):
     """
 
     return model.transform(dataframe)\
-                .select(['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'rawPrediction'])\
+                .select(['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday', 'rawPrediction'])\
                 .withColumnRenamed('rawPrediction', 'rfrawp')
 
 
@@ -113,8 +113,8 @@ def dedensify(dataframe):
 
     return dataframe.rdd.map(lambda r: Row(chipx=r['chipx'],
                                            chipy=r['chipy'],
-                                           x=r['x'],
-                                           y=r['y'],
+                                           pixelx=r['pixelx'],
+                                           pixely=r['pixely'],
                                            sday=r['sday'],
                                            eday=r['eday'],
                                            rfrawp=denumpify(list(r['rfrawp'])))).toDF()

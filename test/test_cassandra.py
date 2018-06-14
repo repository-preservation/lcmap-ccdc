@@ -23,7 +23,7 @@ def test_read_write(spark_context, timeseries_rdd):
     ctx       = spark_context
     # create a dataframe from an rdd
     rdd       = ctx.parallelize([(100, -100, 200, -200, 33, 44), (300, -300, 400, -400, 55, 66)])
-    layers    = rdd.map(lambda x: sql.Row(chipx=x[0], chipy=x[1], x=x[2], y=x[3], sday=x[4], eday=x[5]))
+    layers    = rdd.map(lambda x: sql.Row(chipx=x[0], chipy=x[1], pixelx=x[2], pixely=x[3], sday=x[4], eday=x[5]))
     sctx      = sql.SQLContext(ctx)
     dataframe = sctx.createDataFrame(layers)
 

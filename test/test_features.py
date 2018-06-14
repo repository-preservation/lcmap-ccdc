@@ -35,4 +35,4 @@ def test_dataframe(spark_context, sql_context, ids_rdd, merlin_aux_config):
     aux_df = timeseries.aux(spark_context, ids_rdd, acquired, cfg=merlin_aux_config)
     fauxDF = faux_dataframe(sql_context, features_dframe)
     framed = features.dataframe(aux_df, fauxDF)
-    assert set(['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'label', 'features']) == set(framed.columns)
+    assert set(['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday', 'label', 'features']) == set(framed.columns)

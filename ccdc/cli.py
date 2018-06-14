@@ -54,7 +54,7 @@ def acquired():
         str: ISO8601 compliant date range
     """
     
-    start = '1776-07-04'
+    start = '0000-00-01'
     end   = datetime.datetime.now().isoformat()
     return '{}/{}'.format(start, end)
     
@@ -121,7 +121,7 @@ def changedetection(x, y, acquired=acquired(), number=2500):
         
         _ = metadata.write(ctx, metadata.dataframe(ctx, md))
                         
-        # log and return segment counts
+        # log and return metadata for detection job
         return do(log.info, "{} complete: {}".format(name, md))
             
     except Exception as e:
