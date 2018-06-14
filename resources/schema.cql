@@ -109,7 +109,7 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
  acq:            max date range for input observations
  detector:       name and version of detector 
  dran:           timestamp detection was run 
- segcnt:         number of change segments identified (including 1 non detection per x,y)
+ segcnt:         number of change segments identified (including 1 non detection per pixel)
  classifier:     name and version of classifier
  cran:           timestamp classifier was run
  ardurl:         url ard data was obtained from
