@@ -7,8 +7,8 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
 
  chipx:  upper left x of the chip
  chipy:  upper left y of the chip
- x:      x coordinate
- y:      y coordinate
+ pixelx: x pixel coordinate
+ pixely: y pixel coordinate
  sday:   start day
  eday:   end day
  bday:   break day
@@ -53,8 +53,8 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
 CREATE TABLE IF NOT EXISTS CCDC_1_0.data (
     chipx  int,
     chipy  int,
-    x      int,
-    y      int,
+    pixelx int,
+    pixely int,
     sday   int,
     eday   int,
     bday   int,
