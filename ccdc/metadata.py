@@ -20,10 +20,8 @@ def schema():
     """pyspark dataframe schema for metadata"""
     
     return StructType([
-        StructField('ulx', IntegerType(), nullable=False),
-        StructField('uly', IntegerType(), nullable=False),
-        StructField('lrx', IntegerType(), nullable=True),
-        StructField('lry', IntegerType(), nullable=True),
+        StructField('tilex', IntegerType(), nullable=False),
+        StructField('tiley', IntegerType(), nullable=False),
         StructField('h', IntegerType(), nullable=True),
         StructField('v', IntegerType(), nullable=True),
         StructField('acq', StringType(), nullable=True),
@@ -36,16 +34,14 @@ def schema():
         StructField('auxurl', StringType(), nullable=True)])
 
 
-def detection(ulx, uly, lrx, lry, h, v, acquired, detector, ardurl, segcount):
+def detection(tilex, tiley, h, v, acquired, detector, ardurl, segcount):
     """create metadata for detectors
 
     Args:
-        ulx:   upper left x
-        uly:   upper left y
-        lrx:   lower right x
-        lry:   lower right y
-        h:     horizontal id of tile
-        v:     vertical id of tile
+        tilex:   upper left x
+        tiley:   upper left y
+        h:       horizontal id of tile
+        v:       vertical id of tile
         acquired: ISO8601 date range for input data (str)
         detector: name and version of detector
         ardurl: URL used to supply input ARD data to detector
@@ -55,10 +51,8 @@ def detection(ulx, uly, lrx, lry, h, v, acquired, detector, ardurl, segcount):
         dict: Detector metadata
     """
     
-    return {'ulx': ulx,
-            'uly': uly,
-            'lrx': lrx,
-            'lry': lry,
+    return {'tilex': ulx,
+            'tiley': uly,
             'h': h,
             'v': v,
             'acq': acquired,
@@ -71,12 +65,12 @@ def detection(ulx, uly, lrx, lry, h, v, acquired, detector, ardurl, segcount):
             'auxurl': None}
 
 
-def classify(ulx, uly, classifier, auxurl):
+def classify(tilex, tiley, classifier, auxurl):
     """create metadata for classifiers
 
     Args:
-        ulx: x coordinate of tile
-        uly: y coordinate of tile
+        tilex: x coordinate of tile
+        tiley: y coordinate of tile
         detector: name and version of classifier
         params: parameters supplied to classifier at runtime
 
@@ -84,8 +78,8 @@ def classify(ulx, uly, classifier, auxurl):
         dict: Classifier metadata
     """
 
-    return {'ulx': ulx,
-            'uly': uly,
+    return {'tilex': ulx,
+            'tiley': uly,
             'classifier': classifier,
             'cran': datetime.datetime.now().isoformat(),
             'auxurl': auxurl}
@@ -118,7 +112,7 @@ def read(ctx, ids):
     """
     
     return ids.join(cassandra.read(ctx, table()),
-                    on=['ulx', 'uly'],
+                    on=['tilex', 'tiley'],
                     how='inner')
 
 
@@ -149,6 +143,6 @@ def join(detections, classifications):
     """
     
     return detections.join(classifications,
-                           on=['ulx', 'uly'],
+                           on=['tilex', 'tiley'],
                            how='inner')
 

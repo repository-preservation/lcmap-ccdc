@@ -104,17 +104,15 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
 /* If sday and eday are 0, there was no change detected for that location
 
  Data dictionary:
- ulx:            tile upper left x
- uly:            tile upper left y
- lrx:            tile lower right x
- lry:            tile lower right y
+ tilex:          tile upper left x
+ tiley:          tile upper left y
  h:              tile h designation
  v:              tile v designation
  acq:            date range filter for input observations
- detector:       name and version of detector implementation
+ detector:       name and version of detector 
  dran:           timestamp detection was run 
  segcnt:         number of change segments identified (including 1 non detection per x,y)
- classifier:     name and version of classifier implementation
+ classifier:     name and version of classifier
  cran:           timestamp classifier was run
  ardurl:         url ard data was obtained from
  auxurl:         url aux data was obtained from
@@ -122,10 +120,8 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
 */
 
 CREATE TABLE IF NOT EXISTS CCDC_1_0.metadata (
-    ulx        int,
-    uly        int,
-    lrx        int,
-    lry        int,
+    tilex      int,
+    tiley      int,
     h          int,
     v          int,
     acq        text,

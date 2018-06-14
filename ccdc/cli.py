@@ -110,10 +110,8 @@ def changedetection(x, y, acquired=acquired(), number=2500):
         written = pyccd.write(ctx, ccd).count()
 
         # write metadata
-        md =  metadata.detection(ulx=int(get('x', tile)),
-                                 uly=int(get('y', tile)),
-                                 lrx=int(get('lrx', tile)),
-                                 lry=int(get('lry', tile)),
+        md =  metadata.detection(tilex=int(get('x', tile)),
+                                 tiley=int(get('y', tile)),
                                  h=int(get('h', tile)),
                                  v=int(get('v', tile)),
                                  acquired=acquired,

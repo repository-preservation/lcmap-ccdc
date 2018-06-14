@@ -46,6 +46,21 @@ def keyspace():
     return merlin.functions.cqlstr(fmt.format(ard, aux, ver)).strip().lower().lstrip('_')
 
 
+def conf():
+    return {'spark.driver.host':                          os.environ['HOSTNAME'],
+            'spark.mesos.principal':                      os.environ.get('MESOS_PRINCIPAL', ''),
+            'spark.mesos.secret':                         os.environ.get('MESOS_SECRET', ''),
+            'spark.mesos.role':                           os.environ.get('MESOS_ROLE', ''),
+            'spark.mesos.executor.docker.image':          os.environ.get('IMAGE', ''),
+            'spark.mesos.executor.docker.forcePullImage': 'false',
+            'spark.mesos.task.labels':                    'lcmap-ccdc:{}'.format(os.environ['USER']),
+            'spark.serializer':                           'org.apache.spark.serializer.KryoSerializer',
+            'spark.python.worker.memory':                 os.environ.get('PYTHON_WORKER_MEMORY', '1g'),
+            'spark.executor.cores':                       '1',
+            'spark.cores.max':                            os.environ.get('CORES_MAX', '1000'),
+            'spark.executor.memory':                      os.environ.get('EXECUTOR_MEMORY', '4g')}
+
+
 def context(name):
     """ Create or return a Spark Context
 
