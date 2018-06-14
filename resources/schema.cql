@@ -50,7 +50,7 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
  rfrawp: random forest raw prediction
 */
 
-CREATE TABLE IF NOT EXISTS CCDC_1_0.data (
+CREATE TABLE IF NOT EXISTS ccdc_1_0.data (
     chipx  int,
     chipy  int,
     pixelx int,
@@ -116,7 +116,7 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
  auxurl:         url aux data was obtained from 
 */
 
-CREATE TABLE IF NOT EXISTS CCDC_1_0.metadata (
+CREATE TABLE IF NOT EXISTS ccdc_1_0.metadata (
     tilex      int,
     tiley      int,
     h          int,
