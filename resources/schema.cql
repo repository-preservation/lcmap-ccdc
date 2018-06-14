@@ -111,13 +111,13 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
  h:              tile h designation
  v:              tile v designation
  acq:            date range filter for input observations
- detector:       blue magnitude
+ detector:       name and version of detector implementation
  dran:           timestamp detection was run 
  segcnt:         number of change segments identified (including 1 non detection per x,y)
- classifier:     red magnitude
+ classifier:     name and version of classifier implementation
  cran:           timestamp classifier was run
- ardurl:         swir1 magnitude
- auxurl:         swir2 magnitude
+ ardurl:         url ard data was obtained from
+ auxurl:         url aux data was obtained from
  
 */
 
