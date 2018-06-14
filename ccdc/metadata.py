@@ -51,8 +51,8 @@ def detection(tilex, tiley, h, v, acquired, detector, ardurl, segcount):
         dict: Detector metadata
     """
     
-    return {'tilex': ulx,
-            'tiley': uly,
+    return {'tilex': tilex,
+            'tiley': tiley,
             'h': h,
             'v': v,
             'acq': acquired,
@@ -78,8 +78,8 @@ def classify(tilex, tiley, classifier, auxurl):
         dict: Classifier metadata
     """
 
-    return {'tilex': ulx,
-            'tiley': uly,
+    return {'tilex': tilex,
+            'tiley': tiley,
             'classifier': classifier,
             'cran': datetime.datetime.now().isoformat(),
             'auxurl': auxurl}

@@ -37,7 +37,7 @@ setup(name='lcmap-ccdc',
       # $ pip install -e .[test]
       extras_require={
           'test': ['pytest',
-                   'hypothesis',
+                   'vcrpy',
                    'mock',
                   ],
           'dev': ['',],

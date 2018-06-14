@@ -54,7 +54,7 @@ def acquired():
         str: ISO8601 compliant date range
     """
     
-    start = '0000-00-01'
+    start = '0001-01-01'
     end   = datetime.datetime.now().isoformat()
     return '{}/{}'.format(start, end)
     

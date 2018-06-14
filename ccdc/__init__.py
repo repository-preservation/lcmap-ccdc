@@ -17,10 +17,18 @@ CASSANDRA_HOST                     = os.getenv('CASSANDRA_URLS', HOST)
 CASSANDRA_PORT                     = int(os.getenv('CASSANDRA_PORT', 9043))
 CASSANDRA_USER                     = os.getenv('CASSANDRA_USER', 'cassandra')
 CASSANDRA_PASS                     = os.getenv('CASSANDRA_PASS', 'cassandra')
-
 CASSANDRA_OUTPUT_CONCURRENT_WRITES = int(os.getenv('CASSANDRA_OUTPUT_CONCURRENT_WRITES', 2))
 CASSANDRA_OUTPUT_CONSISTENCY_LEVEL = os.getenv('CASSANDRA_OUTPUT_CONSISTENCY_LEVEL', 'QUORUM')
 CASSANDRA_INPUT_CONSISTENCY_LEVEL  = os.getenv('CASSANDRA_INPUT_CONSISTENCY_LEVEL', 'QUORUM')
+MESOS_PRINCIPAL                    = os.getenv('MESOS_PRINCIPAL', '')
+MESOS_SECRET                       = os.getenv('MESOS_SECRET', '')
+MESOS_ROLE                         = os.getenv('MESOS_ROLE', '')
+IMAGE                              = os.getenv('IMAGE', '')
+FORCE_PULL                         = os.getenv('FORCE_PULL', 'false')
+SERIALIZER                         = os.getenv('SERIALIZER', 'org.apache.spark.serializer.KryoSerializer')
+PYTHON_WORKER_MEMORY               = os.getenv('PYTHON_WORKER_MEMORY', '1g')
+CORES_MAX                          = os.getenv('CORES_MAX', 2)
+EXECUTOR_MEMORY                    = os.getenv('EXECUTOR_MEMORY', '4g')
 INPUT_PARTITIONS                   = int(os.getenv('INPUT_PARTITIONS', 2))
 PRODUCT_PARTITIONS                 = int(os.getenv('PRODUCT_PARTITIONS', multiprocessing.cpu_count() * 8))
 ARD                                = merlin.cfg.get(profile='chipmunk-ard', env={'CHIPMUNK_URL': ARD_CHIPMUNK}) 
@@ -47,32 +55,35 @@ def keyspace():
 
 
 def conf():
-    return {'spark.driver.host':                          os.environ['HOSTNAME'],
-            'spark.mesos.principal':                      os.environ.get('MESOS_PRINCIPAL', ''),
-            'spark.mesos.secret':                         os.environ.get('MESOS_SECRET', ''),
-            'spark.mesos.role':                           os.environ.get('MESOS_ROLE', ''),
-            'spark.mesos.executor.docker.image':          os.environ.get('IMAGE', ''),
-            'spark.mesos.executor.docker.forcePullImage': 'false',
+    return {'spark.driver.host':                          HOST,
+            'spark.mesos.principal':                      MESOS_PRINCIPAL,
+            'spark.mesos.secret':                         MESOS_SECRET,
+            'spark.mesos.role':                           MESOS_ROLE,
+            'spark.mesos.executor.docker.image':          IMAGE,
+            'spark.mesos.executor.docker.forcePullImage': FORCE_PULL,
             'spark.mesos.task.labels':                    'lcmap-ccdc:{}'.format(os.environ['USER']),
-            'spark.serializer':                           'org.apache.spark.serializer.KryoSerializer',
-            'spark.python.worker.memory':                 os.environ.get('PYTHON_WORKER_MEMORY', '1g'),
+            'spark.serializer':                           SERIALIZER,
+            'spark.python.worker.memory':                 PYTHON_WORKER_MEMORY,
             'spark.executor.cores':                       '1',
-            'spark.cores.max':                            os.environ.get('CORES_MAX', '1000'),
-            'spark.executor.memory':                      os.environ.get('EXECUTOR_MEMORY', '4g')}
+            'spark.cores.max':                            CORES_MAX,
+            'spark.executor.memory':                      EXECUTOR_MEMORY}
 
 
-def context(name):
+def context(name, conf=conf()):
     """ Create or return a Spark Context
 
     Args:
-        name (str): Name of the application
+        name  (str): Name of the application
+        conf (dict): Spark configuration
 
     Returns:
         A Spark context
     """
 
-    return SparkContext.getOrCreate(SparkConf().setAppName(name))
- 
+    return SparkContext(master=os.environ['MASTER'],
+                        appName='lcmap-ccdc:{}'.format(os.environ['USER']),
+                        conf=SparkConf().setAll(conf.items()))
+
 
 # Must obtain a logger from log4j since the jvm is what is actually 
 # doing all the logging under the covers for PySpark.
