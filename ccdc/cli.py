@@ -6,7 +6,6 @@ Prerequisites:
 3. Chipmunk must be available on the network for ARD and AUX data.
 4. Cassandra must be available to read and write pyccd, training, and classification results.
 
-cli.py should be added to setup.py as an entry_point console script.  After installing the CCDC python package, it would then be invoked as the entrypoint of the CCDC Docker image.
 """
 
 from ccdc import ARD
@@ -96,7 +95,7 @@ def changedetection(x, y, acquired=acquired(), number=2500):
         # wire everything up
         print(ARD)
         tile = grid.tile(x=x, y=y, cfg=ARD)
-        cids = ids.rdd(ctx=ctx, cids=list(take(number, tile.get('chips'))))
+        cids = ids.rdd(ctx=ctx, xys=list(take(number, tile.get('chips'))))
         ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=ccdc.ARD, name='ard')
         ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).cache()
 
@@ -136,19 +135,26 @@ def changedetection(x, y, acquired=acquired(), number=2500):
             ctx = None
 
             
-def training(ctx, cids, acquired=acquired()):
+def training(ctx, cids, msday, meday, acquired=acquired()):
     """Trains and returns a random forest model for the grid
 
     Args:
         ctx: spark context
         cids: [(x,y), (x1, y1),...]
+        msday: ordinal model start day
+        meday: ordinal model end day
         acquired: ISO8601 date range "YYYY-MM-DD/YYYY-MM-DD"
 
     Returns:
         trained model
     """
     log = logger(ctx, __name__)
-    model = randomforest.train(ctx, ids.rdd(ctx, cids), acquired)
+    model = randomforest.train(ctx=ctx,
+                               cids=ids.rdd(ctx, cids),
+                               msday=msday,
+                               meday=meday,
+                               ending=model_end_day,
+                               acquired=acquired)
 
     if model is None:
         log.warn('Model could not be trained.')
@@ -162,15 +168,19 @@ def training(ctx, cids, acquired=acquired()):
 @entrypoint.command()
 @click.option('--x', '-x', required=True)
 @click.option('--y', '-y', required=True)
-@click.option('--acquired', '-a', required=True)
-def classification(x, y, acquired=acquired()): 
+@click.option('--msday', '-s', required=True)
+@click.option('--meday', '-e', required=True)
+@click.option('--acquired', '-a', required=False, default=acquired())
+def classification(x, y, msday, meday, acquired=acquired()): 
     """
     Classify a tile.
 
     Args:
         acquired (str): ISO8601 date range       
-        x (int)       : x coordinate in tile
-        y (int)       : y coordinate in tile
+        x        (int): x coordinate in tile
+        y        (int): y coordinate in tile
+        msday    (int): ordinal day, beginning of training period
+        meday    (int): ordinal day, end of training period
         acquired (str): date range of change segments to classify
     """
   
@@ -188,10 +198,16 @@ def classification(x, y, acquired=acquired()):
         log.info('training model with training grid chip ids...')
         model = training(ctx, grid.training(x, y, AUX), acquired)
 
+        if model is None:
+            return
+
+        # end model training, begin classification
         
         log.info('finding classification grid chip ids...')
-        cids = ids.dataframe(ctx,
-                             ids.rdd(ctx, grid.classification(x, y, AUX)))
+        cids = ids.dataframe(ctx=ctx,
+                             rdd=ids.rdd(ctx, grid.classification(x, y, AUX)),
+                             schema=ids.chip_schema())
+        
         log.info('found {} classification grid chip ids...'.format(cids.count()))
         
         log.info('finding change segments...')
@@ -216,11 +232,28 @@ def classification(x, y, acquired=acquired()):
         log.debug('sample result:{}'.format(results.first()))
         
         written = pyccd.write(ctx, randomforest.dedensify(results)).count()
-
         log.info('saved {} classification results'.format(written))
 
-        return {'x': x, 'y': y, 'acquired': acquired, 'classifications': written}
-       
+        # write metadata
+        # doing this driver side instead of udf as metadata is only 1 small record per tile
+        tile = grid.tile(x=x, y=y, cfg=ARD)
+
+        tids = ids.dataframe(ctx=ctx,
+                             rdd=ids.rdd(ctx=ctx, xys=((tile['x'], tile['y']),)),
+                             schema=ids.tile_schema())
+
+        md = merge(metadata.read(ctx=ctx, ids=tids).first().asDict(),
+                   metadata.classify(tilex=tile['x'],
+                                     tiley=tile['y'],
+                                     msday=msday,
+                                     meday=meday,
+                                     classifier='',
+                                     auxurl=ccdc.AUX_CHIPMUNK))
+
+        return metadata.write(ctx=ctx,
+                              df=metadata.dataframe(ctx=ctx, d=md).first().asDict())
+
+               
     except Exception as e:
         # spark errors & stack trace
         print('{} error:{}'.format(name, e))

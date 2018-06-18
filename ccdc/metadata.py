@@ -28,11 +28,41 @@ def schema():
         StructField('detector', StringType(), nullable=True),
         StructField('dran', StringType(), nullable=True),
         StructField('segcnt', IntegerType(), nullable=True),
+        StructField('msday', IntegerType(), nullable=True),
+        StructField('meday', IntegerType(), nullable=True),
         StructField('classifier', StringType(), nullable=True),
         StructField('cran', StringType(), nullable=True),
         StructField('ardurl', StringType(), nullable=True),
         StructField('auxurl', StringType(), nullable=True)])
 
+#def detection_schema():
+#    return StructType([
+#        StructField('tilex', IntegerType(), nullable=False),
+#        StructField('tiley', IntegerType(), nullable=False),
+#        StructField('h', IntegerType(), nullable=True),
+#        StructField('v', IntegerType(), nullable=True),
+#        StructField('acq', StringType(), nullable=True),
+#        StructField('detector', StringType(), nullable=True),
+#        StructField('dran', StringType(), nullable=True),
+#        StructField('segcnt', IntegerType(), nullable=True),
+#        StructField('ardurl', StringType(), nullable=True)])
+
+
+#def classification_schema():
+#    return StructType([
+#        StructField('tilex', IntegerType(), nullable=False),
+#        StructField('tiley', IntegerType(), nullable=False),
+#        StructField('h', IntegerType(), nullable=True),
+#        StructField('v', IntegerType(), nullable=True),
+#        StructField('acq', StringType(), nullable=True),
+#        StructField('detector', StringType(), nullable=True),
+#        StructField('dran', StringType(), nullable=True),
+#        StructField('segcnt', IntegerType(), nullable=True),
+#        StructField('classifier', StringType(), nullable=True),
+#        StructField('cran', StringType(), nullable=True),
+#        StructField('ardurl', StringType(), nullable=True),
+#        StructField('auxurl', StringType(), nullable=True)])
+    
 
 def detection(tilex, tiley, h, v, acquired, detector, ardurl, segcount):
     """create metadata for detectors
@@ -129,20 +159,3 @@ def write(ctx, df):
 
     cassandra.write(ctx, df, table())
     return df
-
-
-def join(detections, classifications):
-    """Join detections metadata dataframe with classifications metadata dataframe
-
-    Args:
-        detections:         detections dataframe
-        classifications:    classifications dataframe
-
-    Returns:
-        dataframe
-    """
-    
-    return detections.join(classifications,
-                           on=['tilex', 'tiley'],
-                           how='inner')
-

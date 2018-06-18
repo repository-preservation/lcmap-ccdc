@@ -39,11 +39,14 @@ def pipeline(fdf):
     return Pipeline(stages=[lindex, findex, rf])
 
 
-def train(ctx, cids, acquired):
+def train(ctx, cids, msday, meday, acquired):
     """Trains a random forest model for a set of chip ids
 
     Args:
+        ctx: spark context
         cids (sequence): sequence of chip ids [(x,y), (x1, y1), ...]
+        msday (int): ordinal day, beginning of training period
+        meday (int); ordinal day, end of training period
         acquired (str): ISO8601 date range       
                
     Returns:
@@ -63,7 +66,7 @@ def train(ctx, cids, acquired):
     
     aid  = aux.select(aux.chipx, aux.chipy).distinct()
 
-    ccd  = pyccd.read(ctx, aid).filter('sday >= {} AND eday <= {}'.format(ccdc.SDAY, ccdc.EDAY))
+    ccd  = pyccd.read(ctx, aid).filter('sday >= {} AND eday <= {}'.format(msday, meday)
 
     fdf  = features.dataframe(aux, ccd).persist()
 
