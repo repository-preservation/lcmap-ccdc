@@ -66,7 +66,7 @@ def train(ctx, cids, msday, meday, acquired):
     
     aid  = aux.select(aux.chipx, aux.chipy).distinct()
 
-    ccd  = pyccd.read(ctx, aid).filter('sday >= {} AND eday <= {}'.format(msday, meday)
+    ccd  = pyccd.read(ctx, aid).filter('sday >= {} AND eday <= {}'.format(msday, meday))
 
     fdf  = features.dataframe(aux, ccd).persist()
 

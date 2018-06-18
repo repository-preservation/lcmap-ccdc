@@ -110,6 +110,8 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
  detector:       name and version of detector 
  dran:           timestamp detection was run 
  segcnt:         number of change segments identified (including 1 non detection per pixel)
+ msday:          model start day (ordinal)
+ meday:          model end day (ordinal)
  classifier:     name and version of classifier
  cran:           timestamp classifier was run
  ardurl:         url ard data was obtained from
@@ -125,6 +127,8 @@ CREATE TABLE IF NOT EXISTS ccdc_1_0.metadata (
     detector   text,
     dran       text,
     segcnt     int,
+    msday      int,
+    meday      int,
     classifier text,
     cran       text,
     ardurl     text,

@@ -153,7 +153,6 @@ def training(ctx, cids, msday, meday, acquired=acquired()):
                                cids=ids.rdd(ctx, cids),
                                msday=msday,
                                meday=meday,
-                               ending=model_end_day,
                                acquired=acquired)
 
     if model is None:
@@ -194,9 +193,12 @@ def classification(x, y, msday, meday, acquired=acquired()):
         log.info('beginning {}...'.format(name))
         log.info('x:{} y:{} acquired:{}'.format(x, y, acquired))
 
-        
         log.info('training model with training grid chip ids...')
-        model = training(ctx, grid.training(x, y, AUX), acquired)
+        model = training(ctx=ctx,
+                         cids=grid.training(x, y, AUX),
+                         msday=msday,
+                         meday=meday,
+                         acquired=acquired)
 
         if model is None:
             return
@@ -264,28 +266,6 @@ def classification(x, y, msday, meday, acquired=acquired()):
             ctx.stop()
             ctx = None
 
-
-@click.group()
-def show():
-    pass
-
-
-@show.command()
-def models():
-    pass
-
-
-@show.command()
-def tile():
-    """Display tile status
-       
-       Returns: {'tileid':
-                    {'chipid':
-                        'good': 2499,
-                        'bad' : 1}}
-    """
-    pass
-
-
+            
 if __name__ == '__main__':
     entrypoint()
