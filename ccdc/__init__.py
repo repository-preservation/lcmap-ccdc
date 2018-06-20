@@ -20,21 +20,11 @@ CASSANDRA_PASS                     = os.getenv('CASSANDRA_PASS', 'cassandra')
 CASSANDRA_OUTPUT_CONCURRENT_WRITES = int(os.getenv('CASSANDRA_OUTPUT_CONCURRENT_WRITES', 2))
 CASSANDRA_OUTPUT_CONSISTENCY_LEVEL = os.getenv('CASSANDRA_OUTPUT_CONSISTENCY_LEVEL', 'QUORUM')
 CASSANDRA_INPUT_CONSISTENCY_LEVEL  = os.getenv('CASSANDRA_INPUT_CONSISTENCY_LEVEL', 'QUORUM')
-MESOS_PRINCIPAL                    = os.getenv('MESOS_PRINCIPAL', '')
-MESOS_SECRET                       = os.getenv('MESOS_SECRET', '')
-MESOS_ROLE                         = os.getenv('MESOS_ROLE', '')
-IMAGE                              = os.getenv('IMAGE', '')
-FORCE_PULL                         = os.getenv('FORCE_PULL', 'false')
-SERIALIZER                         = os.getenv('SERIALIZER', 'org.apache.spark.serializer.KryoSerializer')
-PYTHON_WORKER_MEMORY               = os.getenv('PYTHON_WORKER_MEMORY', '1g')
-CORES_MAX                          = os.getenv('CORES_MAX', multiprocessing.cpu_count())
-EXECUTOR_MEMORY                    = os.getenv('EXECUTOR_MEMORY', '4g')
 INPUT_PARTITIONS                   = int(os.getenv('INPUT_PARTITIONS', 1))
 PRODUCT_PARTITIONS                 = int(os.getenv('PRODUCT_PARTITIONS', multiprocessing.cpu_count() * 8))
 ARD                                = merlin.cfg.get(profile='chipmunk-ard', env={'CHIPMUNK_URL': ARD_CHIPMUNK}) 
 AUX                                = merlin.cfg.get(profile='chipmunk-aux', env={'CHIPMUNK_URL': AUX_CHIPMUNK}) 
-TRAINING_SDAY                      = os.getenv('TRAINING_SDAY', 0)
-TRAINING_EDAY                      = os.getenv('TRAINING_EDAY', 0)
+
 
 def keyspace():
     """ Compute the CCDC keyspace.
@@ -54,35 +44,17 @@ def keyspace():
     return merlin.functions.cqlstr(fmt.format(ard, aux, ver)).strip().lower().lstrip('_')
 
 
-def conf():
-    return {'spark.driver.host':                          HOST,
-            'spark.mesos.principal':                      MESOS_PRINCIPAL,
-            'spark.mesos.secret':                         MESOS_SECRET,
-            'spark.mesos.role':                           MESOS_ROLE,
-            'spark.mesos.executor.docker.image':          IMAGE,
-            'spark.mesos.executor.docker.forcePullImage': FORCE_PULL,
-            'spark.mesos.task.labels':                    'lcmap-ccdc:{}'.format(os.environ['USER']),
-            'spark.serializer':                           SERIALIZER,
-            'spark.python.worker.memory':                 PYTHON_WORKER_MEMORY,
-            'spark.executor.cores':                       '1',
-            'spark.cores.max':                            CORES_MAX,
-            'spark.executor.memory':                      EXECUTOR_MEMORY}
-
-
-def context(name, conf=conf()):
+def context(name):
     """ Create or return a Spark Context
 
     Args:
         name  (str): Name of the application
-        conf (dict): Spark configuration
 
     Returns:
         A Spark context
     """
 
-    return SparkContext(master=os.environ['MASTER'],
-                        appName='lcmap-ccdc:{}'.format(os.environ['USER']),
-                        conf=SparkConf().setAll(conf.items()))
+    return SparkContext.getOrCreate()
 
 
 # Must obtain a logger from log4j since the jvm is what is actually 

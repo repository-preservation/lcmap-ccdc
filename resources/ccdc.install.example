@@ -4,44 +4,34 @@
 # CCDC Configuration
 ########################
 
-AARDVARK=<http://host:port>
-
-CASSANDRA_CONTACT_POINTS=<CASSANDRA_HOST>
-CASSANDRA_USER=<CASSANDRA_USER>
-CASSANDRA_SECRET=<CASSANDRA_SECRET>
-CASSANDRA_KEYSPACE=<CASSANDRA_KEYSPACE>
-
-MESOS_PRINCIPAL=<MESOS_USER>
-MESOS_SECRET=<MESOS_SECRET>
-MESOS_ROLE=<MESOS_ROLE>
-
-# Resource requests
-CORES=50
-DRIVER_MEMORY=5g
-EXECUTOR_MEMORY=15g
-
-PYSPARK_CORES=50
-PYSPARK_DRIVER_MEMORY=4g
-PYSPARK_EXECUTOR_MEMORY=20g
-
-# Chip query parallelism
-INITIAL_PARTITION_COUNT=4
-# Product generation parallelism.  Should be CORES * 4 or CORES * 8.
-# Keep partitions below 128MB each.
-PRODUCT_PARTITION_COUNT=100
-# Result storage parallelism
-STORAGE_PARTITION_COUNT=10
-
+export ARD_CHIPMUNK=<http://host:port/path>
+export AUX_CHIPMUNK=<http://host:port/path>
+export CASSANDRA_HOST=<ip address>
+export CASSANDRA_PORT=9042
+export CASSANDRA_USER=<username>
+export CASSANDRA_PASS=<password>
+export MESOS_PRINCIPAL=<username>
+export MESOS_SECRET=<password>
+export MESOS_ROLE=<role>
+export IMAGE=<usgseros/lcmap-ccdc:VERSION>
+export CORES=<as many as you can negotiate for>
+export INPUT_PARTITIONS=<# controls parallel requests to chipmunk>
+export PRODUCT_PARTITIONS=$((CORES * 8))
+export DRIVER_MEMORY=5g
+export EXECUTOR_MEMORY=4g
+export MASTER=<mesos://zk://host1:2181,host2:2181,host3:2181/mesos>
 #MASTER=local[*]
-MASTER=<mesos://zk://host1:2181,host2:2181,host3:2181/mesos>
+export VOLUME=`echo ~/keys`:/certs
+export CCDC_USER=$USER
+export SERIALIZER="org.apache.spark.serializer.KryoSerializer"
 
-IMAGE=<usgseros/lcmap-ccdc:2017.09.18>
-
-VOLUME=`echo ~/keys`:/certs
-
-CCDC_USER=$USER
 ############################
 # End CCDC Configuration
+############################
+
+
+############################
+# Don't alter anything below
 ############################
 
 TIMESTAMP=`date --iso-8601=seconds`
@@ -61,47 +51,44 @@ BASE="docker run \
 -e LIBPROCESS_SSL_CA_FILE=/certs/TrustedRoot.crt \
 -e LIBPROCESS_SSL_CA_DIR=/certs \
 -e LIBPROCESS_SSL_ECDH_CURVE=auto \
--e CCDC_AARDVARK=$AARDVARK \
--e CCDC_CASSANDRA_CONTACT_POINTS=$CASSANDRA_CONTACT_POINTS \
--e CCDC_CASSANDRA_USER=$CASSANDRA_USER \
--e CCDC_CASSANDRA_PASS=$CASSANDRA_SECRET \
--e CCDC_CASSANDRA_KEYSPACE=$CASSANDRA_KEYSPACE \
--e CCDC_INITIAL_PARTITION_COUNT=$INITIAL_PARTITION_COUNT \
--e CCDC_PRODUCT_PARTITION_COUNT=$PRODUCT_PARITION_COUNT \
--e CCDC_STORAGE_PARTITION_COUNT=$STORAGE_PARTITION_COUNT \
--e CCDC_LOG_LEVEL=WARN \
--e CCDC_USER=$CCDC_USER \
+-e ARD_CHIPMUNK=$ARD_CHIPMUNK \
+-e AUX_CHIPMUNK=$AUX_CHIPMUNK \
+-e CASSANDRA_HOST=$CASSANDRA_HOST \
+-e CASSANDRA_PORT=$CASSANDRA_PORT \
+-e CASSANDRA_USER=$CASSANDRA_USER \
+-e CASSANDRA_PASS=$CASSANDRA_PASS \
+-e INPUT_PARTITIONS=$INPUT_PARTITIONS \
+-e PRODUCT_PARTITIONS=$PRODUCT_PARITIONS \
+-e USER=$USER \
 --publish-all \
 --network=host \
 --pid=host \
 -v $VOLUME \
 $IMAGE"
 
-alias ccdc-version="$BASE ccdc show version"
-alias ccdc-products="$BASE ccdc show products"
-alias ccdc-notebook="$BASE jupyter --ip=$HOSTNAME notebook --allow-root"
-alias ccdc-shell="$BASE /bin/bash"
-
-
-# Spark runtime configuration options are available at
-# https://spark.apache.org/docs/latest/configuration.html
-#
-
-# --driver-memory $DRIVER_MEMORY \
-# --executor-memory $EXECUTOR_MEMORY \
-
-alias ccdc-save="$BASE spark-submit \
+CMD="$BASE spark-submit \
 --master $MASTER \
 --total-executor-cores $CORES \
---conf spark.app.name=$CCDC_USER:ccdc-save:[$TIMESTAMP] \
 --conf spark.driver.host=$HOSTNAME \
 --conf spark.mesos.principal=$MESOS_PRINCIPAL \
 --conf spark.mesos.secret=$MESOS_SECRET \
 --conf spark.mesos.role=$MESOS_ROLE \
 --conf spark.mesos.executor.docker.image=$IMAGE \
---conf spark.mesos.executor.docker.forcePullImage=true \
---conf spark.mesos.task.labels=ccdc-save:$CCDC_USER \
-/home/lcmap/ccdc/cmdline.py save"
+--conf spark.mesos.executor.docker.forcePullImage=false \
+--conf spark.serializer=$SERIALIZER"
 
+# Spark runtime configuration options are available at
+# https://spark.apache.org/docs/latest/configuration.html
+#
+# --driver-memory $DRIVER_MEMORY \
+# --executor-memory $EXECUTOR_MEMORY \
 
+alias ccdc-changedetection="$CMD \
+--conf spark.app.name=$CCDC_USER:ccdc-changedetection:[$TIMESTAMP] \
+--conf spark.mesos.task.labels=ccdc-changedetection:$USER \
+/home/lcmap/ccdc/cli.py changedetection"
 
+alias ccdc-classification="$CMD \
+--conf spark.app.name=$USER:ccdc-classification:[$TIMESTAMP] \
+--conf spark.mesos.task.labels=ccdc-classification:$USER \
+/home/lcmap/ccdc/cli.py classification"

@@ -5,10 +5,10 @@ from ccdc import pyccd
 from ccdc import timeseries
 from ccdc import udfs
 from merlin.functions import denumpify
+from pyspark.ml import Pipeline
 from pyspark.ml.classification import RandomForestClassifier
 from pyspark.ml.feature import StringIndexer
 from pyspark.ml.feature import VectorIndexer
-from pyspark.ml import Pipeline
 from pyspark.sql.types import Row
 
 import ccdc
