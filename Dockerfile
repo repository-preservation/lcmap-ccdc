@@ -1,7 +1,9 @@
 FROM usgseros/lcmap-spark:1.0.1-develop
 
-RUN  sudo /usr/local/bin/conda install scipy scikit-learn=0.18 --yes
-RUN  mkdir -p ccdc
+RUN sudo /usr/local/bin/conda install scipy scikit-learn=0.18 --yes
+RUN mkdir -p ccdc
+RUN sudo localedef -i en_US -f UTF-8 en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
 COPY .test_env test.sh setup.py version.txt Makefile README.rst ./ccdc/
 COPY ccdc ccdc/ccdc
 COPY test ccdc/test

@@ -13,7 +13,7 @@ import socket
 HOST                               = socket.gethostbyname(socket.getfqdn())
 ARD_CHIPMUNK                       = os.getenv('ARD_CHIPMUNK', 'http://localhost:5656')
 AUX_CHIPMUNK                       = os.getenv('AUX_CHIPMUNK', 'http://localhost:5656')
-CASSANDRA_HOST                     = os.getenv('CASSANDRA_URLS', HOST)
+CASSANDRA_HOST                     = os.getenv('CASSANDRA_HOST', HOST)
 CASSANDRA_PORT                     = int(os.getenv('CASSANDRA_PORT', 9043))
 CASSANDRA_USER                     = os.getenv('CASSANDRA_USER', 'cassandra')
 CASSANDRA_PASS                     = os.getenv('CASSANDRA_PASS', 'cassandra')
