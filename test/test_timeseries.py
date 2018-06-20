@@ -23,7 +23,7 @@ def test_schema_aux():
 
 def test_converter():
     converter = timeseries.converter()
-    assert converter([[5, 4, 3, 2], {"foo": 66}]) == {"chipx": 5, "chipy": 4, "x": 3, "y": 2, "foo": 66}
+    assert converter([[5, 4, 3, 2], {"foo": 66}]) == {"chipx": 5, "chipy": 4, "pixelx": 3, "pixely": 2, "foo": 66}
 
 def test_dataframe(spark_context):
     rdd = spark_context.parallelize([[5, 4, 3, 2], {"foo": 66}])

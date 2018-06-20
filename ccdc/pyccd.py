@@ -30,15 +30,15 @@ def algorithm():
 def table():
     """Cassandra pyccd table name"""
     
-    return cqlstr(algorithm())
+    return 'data'
 
 
 def schema():
     return StructType([
         StructField('chipx' , IntegerType(), nullable=False),
         StructField('chipy' , IntegerType(), nullable=False),
-        StructField('x'     , IntegerType(), nullable=False),
-        StructField('y'     , IntegerType(), nullable=False),
+        StructField('pixelx', IntegerType(), nullable=False),
+        StructField('pixely', IntegerType(), nullable=False),
         StructField('sday'  , IntegerType(), nullable=False),
         StructField('eday'  , IntegerType(), nullable=False),
         StructField('bday'  , IntegerType(), nullable=True),
@@ -102,13 +102,13 @@ def default(change_models):
     return [{'start_day': 0, 'end_day': 0}] if not change_models else change_models
 
     
-def format(chipx, chipy, x, y, dates, ccdresult):
+def format(chipx, chipy, pixelx, pixely, dates, ccdresult):
        
     return [denumpify(
              {'chipx'  : chipx,
               'chipy'  : chipy,
-              'x'      : x,
-              'y'      : y,
+              'pixelx' : pixelx,
+              'pixely' : pixely,
               'sday'   : get('start_day', cm),
               'eday'   : get('end_day', cm),
               'bday'   : get('bday', cm, None),
@@ -160,12 +160,12 @@ def detect(timeseries):
         sequence of change detections
     """
 
-    chipx, chipy, x, y = first(timeseries)
+    chipx, chipy, pixelx, pixely = first(timeseries)
 
     return format(chipx=chipx,
                   chipy=chipy,
-                  x=x,
-                  y=y,
+                  pixelx=pixelx,
+                  pixely=pixely,
                   dates=get('dates', second(timeseries)),
                   ccdresult=ccd.detect(**second(timeseries)))
 
@@ -227,6 +227,6 @@ def join(ccd, predictions):
     """
     
     return ccd.join(predictions,
-                    on=['chipx', 'chipy', 'x', 'y', 'sday', 'eday'],
+                    on=['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday'],
                     how='inner').drop(ccd['rfrawp'])
 

@@ -52,7 +52,7 @@ def test_read_write(spark_context, sql_context):
     # create a dataframe from an rdd
     rdd       = spark_context.parallelize([(100, -100, 200, -200, 33, 44),
                                            (300, -300, 400, -400, 55, 66)])
-    layers    = rdd.map(lambda x: spark_sql.Row(chipx=x[0], chipy=x[1], x=x[2], y=x[3], sday=x[4], eday=x[5]))
+    layers    = rdd.map(lambda x: spark_sql.Row(chipx=x[0], chipy=x[1], pixelx=x[2], pixely=x[3], sday=x[4], eday=x[5]))
     context   = spark_sql.SQLContext(spark_context)
     dataframe = context.createDataFrame(layers)
 
@@ -69,10 +69,10 @@ def test_read_write(spark_context, sql_context):
 
 
 def test_join(sql_context):
-    df_attrs1 = ['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'rfrawp']
-    df_attrs2 = ['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'srb3']
+    df_attrs1 = ['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday', 'rfrawp']
+    df_attrs2 = ['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday', 'srb3']
     ccd_df    = faux_dataframe(ctx=sql_context, attrs=df_attrs1)
     pred_df   = faux_dataframe(ctx=sql_context, attrs=df_attrs2)
     joined_df = pyccd.join(ccd=ccd_df, predictions=pred_df)
-    assert set(['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'srb3']) == set(joined_df.schema.names)
+    assert set(['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday', 'srb3']) == set(joined_df.schema.names)
 

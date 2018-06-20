@@ -11,22 +11,20 @@ import socket
 # All of these are evaluated at import time!!!  That means the env vars need
 # to be set before the ccdc module is imported.  
 HOST                               = socket.gethostbyname(socket.getfqdn())
-ARD_CHIPMUNK                       = os.getenv('ARD_CHIPMUNK', 'http://localhost:5656/')
-AUX_CHIPMUNK                       = os.getenv('AUX_CHIPMUNK', 'http://localhost:5656/')
+ARD_CHIPMUNK                       = os.getenv('ARD_CHIPMUNK', 'http://localhost:5656')
+AUX_CHIPMUNK                       = os.getenv('AUX_CHIPMUNK', 'http://localhost:5656')
 CASSANDRA_HOST                     = os.getenv('CASSANDRA_URLS', HOST)
 CASSANDRA_PORT                     = int(os.getenv('CASSANDRA_PORT', 9043))
 CASSANDRA_USER                     = os.getenv('CASSANDRA_USER', 'cassandra')
 CASSANDRA_PASS                     = os.getenv('CASSANDRA_PASS', 'cassandra')
-
 CASSANDRA_OUTPUT_CONCURRENT_WRITES = int(os.getenv('CASSANDRA_OUTPUT_CONCURRENT_WRITES', 2))
 CASSANDRA_OUTPUT_CONSISTENCY_LEVEL = os.getenv('CASSANDRA_OUTPUT_CONSISTENCY_LEVEL', 'QUORUM')
 CASSANDRA_INPUT_CONSISTENCY_LEVEL  = os.getenv('CASSANDRA_INPUT_CONSISTENCY_LEVEL', 'QUORUM')
-INPUT_PARTITIONS                   = int(os.getenv('INPUT_PARTITIONS', 2))
+INPUT_PARTITIONS                   = int(os.getenv('INPUT_PARTITIONS', 1))
 PRODUCT_PARTITIONS                 = int(os.getenv('PRODUCT_PARTITIONS', multiprocessing.cpu_count() * 8))
 ARD                                = merlin.cfg.get(profile='chipmunk-ard', env={'CHIPMUNK_URL': ARD_CHIPMUNK}) 
 AUX                                = merlin.cfg.get(profile='chipmunk-aux', env={'CHIPMUNK_URL': AUX_CHIPMUNK}) 
-TRAINING_SDAY                      = os.getenv('TRAINING_SDAY', 0)
-TRAINING_EDAY                      = os.getenv('TRAINING_EDAY', 0)
+
 
 def keyspace():
     """ Compute the CCDC keyspace.
@@ -40,23 +38,24 @@ def keyspace():
 
     ard = re.sub("/", "", urlparse(ARD_CHIPMUNK).path)
     aux = re.sub("/", "", urlparse(AUX_CHIPMUNK).path)
-    ver = merlin.files.read('../version.txt')
-    fmt = "{0}_{1}_CCDC_{2}"
-    return merlin.functions.cqlstr(fmt.format(ard, aux, ver)).strip().upper().lstrip('_')
+    pwd = os.path.dirname(os.path.realpath(__file__))
+    ver = merlin.files.read('{}{}version.txt'.format(os.path.dirname(pwd), os.path.sep))
+    fmt = "{0}_{1}_ccdc_{2}"
+    return merlin.functions.cqlstr(fmt.format(ard, aux, ver)).strip().lower().lstrip('_')
 
 
 def context(name):
     """ Create or return a Spark Context
 
     Args:
-        name (str): Name of the application
+        name  (str): Name of the application
 
     Returns:
         A Spark context
     """
 
-    return SparkContext.getOrCreate(SparkConf().setAppName(name))
- 
+    return SparkContext.getOrCreate()
+
 
 # Must obtain a logger from log4j since the jvm is what is actually 
 # doing all the logging under the covers for PySpark.

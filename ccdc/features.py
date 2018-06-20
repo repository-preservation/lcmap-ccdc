@@ -1,6 +1,6 @@
+from ccdc.udfs import densify
 from cytoolz import first
 from cytoolz import thread_last
-from firebird.udfs import densify
 
 
 def join(dfs):
@@ -13,7 +13,7 @@ def join(dfs):
         combined dataframe
     """
     return dfs['aux'].join(dfs['ccd'],
-                           on=['chipx', 'chipy', 'x', 'y'],
+                           on=['chipx', 'chipy', 'pixelx', 'pixely'],
                            how='inner')
 
 
@@ -79,4 +79,4 @@ def dataframe(aux, ccd):
                      dependent,
                      independent)
     
-    return df.select(['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'label', 'features']) 
+    return df.select(['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday', 'label', 'features']) 

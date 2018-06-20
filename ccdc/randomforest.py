@@ -1,17 +1,17 @@
 from ccdc import features
 from ccdc import ids
-from ccdc import timeseries
 from ccdc import logger
+from ccdc import pyccd
+from ccdc import timeseries
 from ccdc import udfs
 from merlin.functions import denumpify
+from pyspark.ml import Pipeline
 from pyspark.ml.classification import RandomForestClassifier
 from pyspark.ml.feature import StringIndexer
 from pyspark.ml.feature import VectorIndexer
-from pyspark.ml import Pipeline
 from pyspark.sql.types import Row
 
 import ccdc
-import pyccd
 
 
 def write():
@@ -39,11 +39,14 @@ def pipeline(fdf):
     return Pipeline(stages=[lindex, findex, rf])
 
 
-def train(ctx, cids, acquired):
+def train(ctx, cids, msday, meday, acquired):
     """Trains a random forest model for a set of chip ids
 
     Args:
+        ctx: spark context
         cids (sequence): sequence of chip ids [(x,y), (x1, y1), ...]
+        msday (int): ordinal day, beginning of training period
+        meday (int); ordinal day, end of training period
         acquired (str): ISO8601 date range       
                
     Returns:
@@ -63,7 +66,7 @@ def train(ctx, cids, acquired):
     
     aid  = aux.select(aux.chipx, aux.chipy).distinct()
 
-    ccd  = pyccd.read(ctx, aid).filter('sday >= {} AND eday <= {}'.format(ccdc.SDAY, ccdc.EDAY))
+    ccd  = pyccd.read(ctx, aid).filter('sday >= {} AND eday <= {}'.format(msday, meday))
 
     fdf  = features.dataframe(aux, ccd).persist()
 
@@ -96,7 +99,7 @@ def classify(model, dataframe):
     """
 
     return model.transform(dataframe)\
-                .select(['chipx', 'chipy', 'x', 'y', 'sday', 'eday', 'rawPrediction'])\
+                .select(['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday', 'rawPrediction'])\
                 .withColumnRenamed('rawPrediction', 'rfrawp')
 
 
@@ -113,8 +116,8 @@ def dedensify(dataframe):
 
     return dataframe.rdd.map(lambda r: Row(chipx=r['chipx'],
                                            chipy=r['chipy'],
-                                           x=r['x'],
-                                           y=r['y'],
+                                           pixelx=r['pixelx'],
+                                           pixely=r['pixely'],
                                            sday=r['sday'],
                                            eday=r['eday'],
                                            rfrawp=denumpify(list(r['rfrawp'])))).toDF()

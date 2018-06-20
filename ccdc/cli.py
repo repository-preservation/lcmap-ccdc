@@ -6,8 +6,19 @@ Prerequisites:
 3. Chipmunk must be available on the network for ARD and AUX data.
 4. Cassandra must be available to read and write pyccd, training, and classification results.
 
-cli.py should be added to setup.py as an entry_point console script.  After installing the CCDC python package, it would then be invoked as the entrypoint of the CCDC Docker image.
 """
+
+from ccdc import ARD
+from ccdc import AUX
+from ccdc import cassandra
+from ccdc import features
+from ccdc import grid
+from ccdc import ids
+from ccdc import logger
+from ccdc import metadata
+from ccdc import pyccd
+from ccdc import randomforest
+from ccdc import timeseries
 
 from cytoolz   import do
 from cytoolz   import filter
@@ -16,21 +27,12 @@ from cytoolz   import get
 from cytoolz   import merge
 from cytoolz   import take
 from cytoolz   import thread_last
-from ccdc      import ARD
-from ccdc      import AUX
-from ccdc      import logger
 from functools import partial
 from merlin    import functions
 
-import cassandra
 import ccdc
 import click
-import features
-import grid
-import ids
-import pyccd
-import randomforest
-import timeseries
+import datetime
 import traceback
 
 
@@ -44,6 +46,18 @@ def context_settings():
     return dict(token_normalize_func=lambda x: x.lower())
 
 
+def acquired():
+    """Dynamically generated acquired date range
+
+    Returns:
+        str: ISO8601 compliant date range
+    """
+    
+    start = '0001-01-01'
+    end   = datetime.datetime.now().isoformat()
+    return '{}/{}'.format(start, end)
+    
+
 @click.group(context_settings=context_settings())
 def entrypoint():
     """Placeholder function to group Click commands"""
@@ -53,10 +67,10 @@ def entrypoint():
 @entrypoint.command()
 @click.option('--x',        '-x', required=True)
 @click.option('--y',        '-y', required=True)
-@click.option('--acquired', '-a', required=True)
+@click.option('--acquired', '-a', required=False, default=acquired())
 @click.option('--number',   '-n', required=False, default=2500)
-def changedetection(x, y, acquired, number=2500):
-    """Run change detection for a tile over a time range and save results to Cassandra.
+def changedetection(x, y, acquired=acquired(), number=2500):
+    """Run change detection for a tile and save results to Cassandra.
     
     Args:
         x        (int): tile x coordinate
@@ -79,8 +93,9 @@ def changedetection(x, y, acquired, number=2500):
         log  = logger(ctx, name)
         
         # wire everything up
+        print(ARD)
         tile = grid.tile(x=x, y=y, cfg=ARD)
-        cids = ids.rdd(ctx=ctx, cids=list(take(number, tile.get('chips'))))
+        cids = ids.rdd(ctx=ctx, xys=list(take(number, tile.get('chips'))))
         ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=ccdc.ARD, name='ard')
         ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).cache()
 
@@ -92,9 +107,21 @@ def changedetection(x, y, acquired, number=2500):
 
         log.info('finding ccd segments...')
         written = pyccd.write(ctx, ccd).count()
+
+        # write metadata
+        md =  metadata.detection(tilex=int(get('x', tile)),
+                                 tiley=int(get('y', tile)),
+                                 h=int(get('h', tile)),
+                                 v=int(get('v', tile)),
+                                 acquired=acquired,
+                                 detector=pyccd.algorithm(),
+                                 ardurl=ccdc.ARD_CHIPMUNK,
+                                 segcount=written)
         
-        # log and return segment counts
-        return do(log.info, "saved {} ccd segments".format(written))
+        _ = metadata.write(ctx, metadata.dataframe(ctx, md))
+                        
+        # log and return metadata for detection job
+        return do(log.info, "{} complete: {}".format(name, md))
             
     except Exception as e:
         # spark errors & stack trace
@@ -108,19 +135,25 @@ def changedetection(x, y, acquired, number=2500):
             ctx = None
 
             
-def training(ctx, cids, acquired):
+def training(ctx, cids, msday, meday, acquired=acquired()):
     """Trains and returns a random forest model for the grid
 
     Args:
         ctx: spark context
         cids: [(x,y), (x1, y1),...]
+        msday: ordinal model start day
+        meday: ordinal model end day
         acquired: ISO8601 date range "YYYY-MM-DD/YYYY-MM-DD"
 
     Returns:
         trained model
     """
     log = logger(ctx, __name__)
-    model = randomforest.train(ctx, ids.rdd(ctx, cids), acquired)
+    model = randomforest.train(ctx=ctx,
+                               cids=ids.rdd(ctx, cids),
+                               msday=msday,
+                               meday=meday,
+                               acquired=acquired)
 
     if model is None:
         log.warn('Model could not be trained.')
@@ -134,15 +167,19 @@ def training(ctx, cids, acquired):
 @entrypoint.command()
 @click.option('--x', '-x', required=True)
 @click.option('--y', '-y', required=True)
-@click.option('--acquired', '-a', required=True)
-def classification(x, y, acquired): 
+@click.option('--msday', '-s', required=True)
+@click.option('--meday', '-e', required=True)
+@click.option('--acquired', '-a', required=False, default=acquired())
+def classification(x, y, msday, meday, acquired=acquired()): 
     """
     Classify a tile.
 
     Args:
         acquired (str): ISO8601 date range       
-        x (int)       : x coordinate in tile
-        y (int)       : y coordinate in tile
+        x        (int): x coordinate in tile
+        y        (int): y coordinate in tile
+        msday    (int): ordinal day, beginning of training period
+        meday    (int): ordinal day, end of training period
         acquired (str): date range of change segments to classify
     """
   
@@ -156,14 +193,23 @@ def classification(x, y, acquired):
         log.info('beginning {}...'.format(name))
         log.info('x:{} y:{} acquired:{}'.format(x, y, acquired))
 
-        
         log.info('training model with training grid chip ids...')
-        model = training(ctx, grid.training(x, y, AUX), acquired)
+        model = training(ctx=ctx,
+                         cids=grid.training(x, y, AUX),
+                         msday=msday,
+                         meday=meday,
+                         acquired=acquired)
 
+        if model is None:
+            return
+
+        # end model training, begin classification
         
         log.info('finding classification grid chip ids...')
-        cids = ids.dataframe(ctx,
-                             ids.rdd(ctx, grid.classification(x, y, AUX)))
+        cids = ids.dataframe(ctx=ctx,
+                             rdd=ids.rdd(ctx, grid.classification(x, y, AUX)),
+                             schema=ids.chip_schema())
+        
         log.info('found {} classification grid chip ids...'.format(cids.count()))
         
         log.info('finding change segments...')
@@ -188,11 +234,28 @@ def classification(x, y, acquired):
         log.debug('sample result:{}'.format(results.first()))
         
         written = pyccd.write(ctx, randomforest.dedensify(results)).count()
-
         log.info('saved {} classification results'.format(written))
 
-        return {'x': x, 'y': y, 'acquired': acquired, 'classifications': written}
-       
+        # write metadata
+        # doing this driver side instead of udf as metadata is only 1 small record per tile
+        tile = grid.tile(x=x, y=y, cfg=ARD)
+
+        tids = ids.dataframe(ctx=ctx,
+                             rdd=ids.rdd(ctx=ctx, xys=((tile['x'], tile['y']),)),
+                             schema=ids.tile_schema())
+
+        md = merge(metadata.read(ctx=ctx, ids=tids).first().asDict(),
+                   metadata.classify(tilex=tile['x'],
+                                     tiley=tile['y'],
+                                     msday=msday,
+                                     meday=meday,
+                                     classifier='',
+                                     auxurl=ccdc.AUX_CHIPMUNK))
+
+        return metadata.write(ctx=ctx,
+                              df=metadata.dataframe(ctx=ctx, d=md).first().asDict())
+
+               
     except Exception as e:
         # spark errors & stack trace
         print('{} error:{}'.format(name, e))
@@ -203,28 +266,6 @@ def classification(x, y, acquired):
             ctx.stop()
             ctx = None
 
-
-@click.group()
-def show():
-    pass
-
-
-@show.command()
-def models():
-    pass
-
-
-@show.command()
-def tile():
-    """Display tile status
-       
-       Returns: {'tileid':
-                    {'chipid':
-                        'good': 2499,
-                        'bad' : 1}}
-    """
-    pass
-
-
+            
 if __name__ == '__main__':
     entrypoint()

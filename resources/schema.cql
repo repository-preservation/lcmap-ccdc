@@ -1,4 +1,4 @@
-CREATE KEYSPACE IF NOT EXISTS CCDC_1_0
+CREATE KEYSPACE IF NOT EXISTS ccdc_1_0
 WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
 
 /* If sday and eday are 0, there was no change detected for that location
@@ -7,8 +7,8 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
 
  chipx:  upper left x of the chip
  chipy:  upper left y of the chip
- x:      x coordinate
- y:      y coordinate
+ pixelx: x pixel coordinate
+ pixely: y pixel coordinate
  sday:   start day
  eday:   end day
  bday:   break day
@@ -48,14 +48,13 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
  clprob: cloud probability
  prmask: processing mask, 0/1 for not used/used in calculation (applies against dates)
  rfrawp: random forest raw prediction
- rfprob: random forest probability
 */
 
-CREATE TABLE IF NOT EXISTS CCDC_1_0.data (
+CREATE TABLE IF NOT EXISTS ccdc_1_0.data (
     chipx  int,
     chipy  int,
-    x      int,
-    y      int,
+    pixelx int,
+    pixely int,
     sday   int,
     eday   int,
     bday   int,
@@ -95,9 +94,46 @@ CREATE TABLE IF NOT EXISTS CCDC_1_0.data (
     clprob float,
     prmask frozen<list<tinyint>>,
     rfrawp frozen<list<float>>,
-    rfprob frozen<list<float>>,
-    PRIMARY KEY((chipx, chipy), x, y, sday, eday)
+    PRIMARY KEY((chipx, chipy), pixelx, pixely, sday, eday)
 )
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
 
+
+/* 
+ Data dictionary:
+ tilex:          tile upper left x
+ tiley:          tile upper left y
+ h:              tile h designation
+ v:              tile v designation
+ acq:            max date range for input observations
+ detector:       name and version of detector 
+ dran:           timestamp detection was run 
+ segcnt:         number of change segments identified (including 1 non detection per pixel)
+ msday:          model start day (ordinal)
+ meday:          model end day (ordinal)
+ classifier:     name and version of classifier
+ cran:           timestamp classifier was run
+ ardurl:         url ard data was obtained from
+ auxurl:         url aux data was obtained from 
+*/
+
+CREATE TABLE IF NOT EXISTS ccdc_1_0.metadata (
+    tilex      int,
+    tiley      int,
+    h          int,
+    v          int,
+    acq        text,
+    detector   text,
+    dran       text,
+    segcnt     int,
+    msday      int,
+    meday      int,
+    classifier text,
+    cran       text,
+    ardurl     text,
+    auxurl     text,
+    PRIMARY KEY((tilex, tiley))
+)
+WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
+AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };

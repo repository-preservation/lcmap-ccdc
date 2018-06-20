@@ -6,7 +6,7 @@ vertest:
 	@echo TAG:$(TAG)
 	@echo IMAGE:$(IMAGE)
 
-breathe:
+sleep:
 	sleep 20
 
 docker-build:
@@ -33,7 +33,7 @@ db-schema:
 	docker cp resources/schema.cql ccdc-cassandra:/
 	docker exec -u root ccdc-cassandra cqlsh localhost -f schema.cql
 
-db-schema-d: deps-up-d breathe db-schema
+#db-schema-d: deps-up-d breathe db-schema
 
 spark-lib:
 	@rm -rf resources/spark
@@ -50,7 +50,7 @@ spark-config:
 	cp resources/log4j.properties resources/spark/conf
 	cp resources/spark-defaults.conf resources/spark/conf
 
-tests:
+tests:  db-schema
 	./test.sh
 
 clean:

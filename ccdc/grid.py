@@ -28,7 +28,7 @@ def tile(x, y, cfg):
         y (float): y coordinate
 
     Return:
-        dict: {'ulx', 'uly', 'lrx', 'lry', 'projection-pt', 'grid-pt'}
+        dict: {'x', 'y', 'h', 'v', 'ulx', 'uly', 'lrx', 'lry', 'chips'}
     """
 
     # get all grid definitions

@@ -11,7 +11,7 @@ def merge(inputs):
   return list(concat(inputs))
 
 acquired   = '1980-01-01/2017-01-01'
-schemabase = ['chipx', 'chipy', 'x', 'y', 'dates']
+schemabase = ['chipx', 'chipy', 'pixelx', 'pixely', 'dates']
 auxbase    = ['aspect','dem', 'mpw', 'posidex', 'slope']
 attrbase   = ['blmag',  'grmag',  'remag',  'nimag',  's1mag',  's2mag',  'thmag',  'blrmse', 
               'grrmse', 'rermse', 'nirmse', 's1rmse', 's2rmse', 'thrmse', 'blcoef', 'grcoef', 
