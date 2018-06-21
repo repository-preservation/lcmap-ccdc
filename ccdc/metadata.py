@@ -92,7 +92,9 @@ def detection(tilex, tiley, h, v, acquired, detector, ardurl, segcount):
             'segcnt': segcount,
             'classifier': None,
             'cran': None,
-            'auxurl': None}
+            'auxurl': None,
+            'msday': None,
+            'meday': None}
 
 
 def classify(tilex, tiley, classifier, auxurl):

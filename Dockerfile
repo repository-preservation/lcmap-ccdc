@@ -1,4 +1,4 @@
-FROM usgseros/lcmap-spark:1.0.1-develop
+FROM usgseros/lcmap-spark:1.1.0-develop
 
 RUN sudo /usr/local/bin/conda install scipy scikit-learn=0.18 --yes
 RUN mkdir -p ccdc

@@ -37,11 +37,11 @@ db-schema:
 
 spark-lib:
 	@rm -rf resources/spark
-	@mkdir -p resources
-	@wget -P resources https://d3kbcqa49mib13.cloudfront.net/spark-2.2.0-bin-hadoop2.7.tgz
-	tar -C resources -zxf resources/spark-2.2.0-bin-hadoop2.7.tgz
-	mv resources/spark-2.2.0-bin-hadoop2.7 resources/spark
-	rm resources/spark-2.2.0-bin-hadoop2.7.tgz
+	@mkdir -p resourcesx
+	@wget -P resources http://mirrors.ocf.berkeley.edu/apache/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz
+	tar -C resources -zxf resources/spark-2.3.1-bin-hadoop2.7.tgz
+	mv resources/spark-2.3.1-bin-hadoop2.7 resources/spark
+	rm resources/spark-2.3.1-bin-hadoop2.7.tgz
 	mvn dependency:copy-dependencies -f resources/pom.xml -DoutputDirectory=spark/jars
 	cp resources/log4j.properties resources/spark/conf
 	cp resources/spark-defaults.conf resources/spark/conf
