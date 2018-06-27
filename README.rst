@@ -20,11 +20,9 @@ Example
    # all neighbor tiles should have changedetection run before classifying 
    $ ccdc-classification -x -1821585 -y 2891595
 
-Documentation
--------------
 
-System Overview
-===============
+Overview
+========
 In progress.
 
 Dependencies
