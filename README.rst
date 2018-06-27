@@ -1,6 +1,6 @@
 lcmap-ccdc
 ==========
-LCMAP Product Generation
+LCMAP Continuous Change Detection and Classification
 
 What is lcmap-ccdc?
 -----------------------
@@ -8,30 +8,58 @@ What is lcmap-ccdc?
 * Built on Apache Spark, Apache Mesos, Docker and Python3
 * Runs on 2000 cores as easily as it runs on 1
 * Command line interface
-* System requirements: Bash & Docker
 
-Get Started
------------
-WIP
+Example
+-------
 .. code-block:: bash
 
+   # run changedetection on tile that contains x/y
+   $ ccdc-changedetection -x -1821585 -y 2891595
+   
+   # run classification on tile that contains x/y
+   # all neighbor tiles should have changedetection run before classifying 
+   $ ccdc-classification -x -1821585 -y 2891595
+
+Documentation
+-------------
+System Overview
+===============
+In progress.
+
+Dependencies
+============
+
+* lcmap-chipmunk deployed for Analysis Ready Data (ARD) and Auxilliary Data (AUX)
+* An Apache Cassandra cluster with read & write access to tables in the target keyspace
+* Apache Mesos for scaling the Apache Spark cluster (optional)
+* Ability to run Docker locally
+
+Installing
+==========
+.. code-block:: bash
+
+   # Copy ccdc.install.example to your machine
    $ wget https://raw.githubusercontent.com/USGS-EROS/lcmap-ccdc/master/resources/ccdc.install.example -O ccdc.install
+   # Edit the values for input urls, Cassandra, lcmap-ccdc image and Spark parallelism
    $ emacs ccdc.install
-   $ source ccdc.install
-   $ ccdc-detect -x -1821585 -y 2891595
-   # run detect on neighbor tiles before classifying
-   $ ccdc-classify -x -1821585 -y 2891595
-   $ ccdc-data     -x -1821585 -y 2891595
-   $ ccdc-metadata -x -1821585 -y 2891595
+   # Include ccdc.install into shell environment
+   $ . ccdc.install
+   
 
-`Frequently Asked Questions <docs/faq.rst>`_
-----------------------------------------------
+Configuring
+===========
+In progress.
 
-`Roadmap <docs/roadmap.rst>`_
------------------------------
+Running
+=======
+In progress.
 
-Developing CCDC
----------------
+Tuning
+======
+In progress.
+
+Developing
+==========
 WIP
 * Install Docker, Maven and Conda
 
@@ -71,6 +99,22 @@ WIP
 .. code-block:: bash
 
    $ make docker-push
+
+Versioning
+----------
+lcmap-ccdc follows semantic versioning: http://semver.org/
+
+Licensing
+---------
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or distribute this software, either in source code form or as a compiled binary, for any purpose, commercial or non-commercial, and by any means.
+
+In jurisdictions that recognize copyright laws, the author or authors of this software dedicate any and all copyright interest in the software to the public domain. We make this dedication for the benefit of the public at large and to the detriment of our heirs and successors. We intend this dedication to be an overt act of relinquishment in perpetuity of all present and future rights to this software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to http://unlicense.org.
 
 Development Philosophy
 ----------------------
