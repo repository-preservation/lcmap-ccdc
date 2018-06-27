@@ -1,14 +1,17 @@
+==========
 lcmap-ccdc
 ==========
 LCMAP Continuous Change Detection and Classification
 
+-------------------
 What is lcmap-ccdc?
------------------------
+-------------------
 * Runs change detection & random forest classification at scale
 * Built on Apache Spark, Apache Mesos, Docker and Python3
 * Runs on 2000 cores as easily as it runs on 1
 * Command line interface
 
+-------
 Example
 -------
 .. code-block:: bash
@@ -20,6 +23,9 @@ Example
    # all neighbor tiles should have changedetection run before classifying 
    $ ccdc-classification -x -1821585 -y 2891595
 
+-------------
+Documentation
+-------------
 
 Overview
 ========
@@ -99,10 +105,12 @@ Developing
 
    $ make docker-push
 
+----------
 Versioning
 ----------
 lcmap-ccdc follows semantic versioning: http://semver.org/
 
+---------
 Licensing
 ---------
 This is free and unencumbered software released into the public domain.
@@ -115,6 +123,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 
 For more information, please refer to http://unlicense.org.
 
+----------------------
 Development Philosophy
 ----------------------
 Apache Spark is functional programming for cluster computing therefore
