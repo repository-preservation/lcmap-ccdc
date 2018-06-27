@@ -22,6 +22,7 @@ Example
 
 Documentation
 -------------
+
 System Overview
 ===============
 In progress.
@@ -60,7 +61,7 @@ In progress.
 
 Developing
 ==========
-WIP
+
 * Install Docker, Maven and Conda
 
 * Create and activate a conda environment
