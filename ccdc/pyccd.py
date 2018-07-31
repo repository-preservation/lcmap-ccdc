@@ -111,7 +111,7 @@ def format(chipx, chipy, pixelx, pixely, dates, ccdresult):
               'pixely' : pixely,
               'sday'   : get('start_day', cm),
               'eday'   : get('end_day', cm),
-              'bday'   : get('bday', cm, None),
+              'bday'   : get('break_day', cm, None),
               'chprob' : get('change_probability', cm, None),
               'curqa'  : get('curve_qa', cm, None),
               'blmag'  : get_in(['blue', 'magnitude'], cm, None),

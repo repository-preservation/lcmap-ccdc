@@ -5,6 +5,8 @@ from .shared import ccd_schema_names
 from .shared import ccd_format_keys
 from .shared import faux_dataframe
 from .shared import mock_cassandra_read
+from .shared import pyccd_change_model
+from .shared import iwds_change_model
 from .shared import timeseries_element
 from pyspark.sql.types import StructType
 from pyspark.rdd import PipelinedRDD
@@ -32,10 +34,85 @@ def test_default():
     assert pyccd.default(["foo", "bar"]) == ["foo", "bar"]
 
 def test_format():
-    ccdresult = {'change_models': []}
-    pyccd_format = pyccd.format(-100, 200, -125, 195, "1980-01-01/2017-12-31", ccdresult)
-    assert set(pyccd_format[0].keys()) == set(ccd_format_keys)
+    chipx = 100
+    chipy = -100
+    pixelx= = 50
+    pixely = -50
+    acquired = '1980/2017'
+    fval = 0.5
+    
+    pyccd_model = {magnitude: fval,
+                   rmse: fval,
+                   coefficients: (fval, fval),
+                   intercept: fval}    
 
+    pyccd_change_model = {start_day: 1,
+                          end_day: 3,
+                          break_day: 2,
+                          observation_count: 3,
+                          change_probability: fval,
+                          curve_qa: fval,
+                          blue: pyccd_model,
+                          green: pyccd_model,
+                          red: pyccd_model,
+                          nir: pyccd_model,
+                          swir1: pyccd_model,
+                          swir2: pyccd_model,
+                          thermal: pyccd_model,
+                          snow_prob: fval,
+                          water_prob: fval,
+                          cloud_prob: fval,
+                          processing_mask: [0, 1, 0]}
+
+    iwds_change_model =  {'chipx'  : chipx,
+                          'chipy'  : chipy,
+                          'pixelx' : pixelx,
+                          'pixely' : pixely,
+                          'sday'   : get('start_day', pyccd_change_model)
+                          'eday'   : get('end_day', pyccd_change_model),
+                          'bday'   : get('break_day', pyccd_change_model),
+                          'chprob' : get('change_probability', pyccd_change_model),
+                          'curqa'  : get('curve_qa', pyccd_change_model),
+                          'blmag'  : fval,
+                          'grmag'  : fval,
+                          'remag'  : fval,
+                          'nimag'  : fval,
+                          's1mag'  : fval,
+                          's2mag'  : fval,
+                          'thmag'  : fval,
+                          'blrmse' : fval, 
+                          'grrmse' : fval,
+                          'rermse' : fval,
+                          'nirmse' : fval,
+                          's1rmse' : fval,
+                          's2rmse' : fval,
+                          'thrmse' : fval,
+                          'blcoef' : (fval, fval),
+                          'grcoef' : (fval, fval),
+                          'recoef' : (fval, fval),
+                          'nicoef' : (fval, fval),
+                          's1coef' : (fval, fval),
+                          's2coef' : (fval, fval),
+                          'thcoef' : (fval, fval),
+                          'blint'  : fval,
+                          'grint'  : fval, 
+                          'reint'  : fval,
+                          'niint'  : fval, 
+                          's1int'  : fval, 
+                          's2int'  : fval, 
+                          'thint'  : fval, 
+                          'dates'  : dates,
+                          'snprob' : fval, 
+                          'waprob' : fval, 
+                          'clprob' : fval, 
+                          'prmask' : [0, 1, 0]}
+
+    pyccd_format = pyccd.format(chipx, chipy, pixelx, pixely,
+                                acquired, {'change_models': [pyccd_change_model,]})
+    
+    assert pyccd_format == iwds_change_model
+    
+    
 def test_detect():
     result = pyccd.detect(timeseries_element)[0]
     assert result['chipx'] == -1815585
