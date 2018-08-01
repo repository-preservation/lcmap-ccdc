@@ -1,12 +1,12 @@
 from ccdc import cassandra
 from ccdc import ids
 from ccdc import pyccd
+from cytoolz import first
+from cytoolz import get
 from .shared import ccd_schema_names
 from .shared import ccd_format_keys
 from .shared import faux_dataframe
 from .shared import mock_cassandra_read
-from .shared import pyccd_change_model
-from .shared import iwds_change_model
 from .shared import timeseries_element
 from pyspark.sql.types import StructType
 from pyspark.rdd import PipelinedRDD
@@ -36,39 +36,35 @@ def test_default():
 def test_format():
     chipx = 100
     chipy = -100
-    pixelx= = 50
+    pixelx = 50
     pixely = -50
     acquired = '1980/2017'
     fval = 0.5
     
-    pyccd_model = {magnitude: fval,
-                   rmse: fval,
-                   coefficients: (fval, fval),
-                   intercept: fval}    
+    pyccd_model = {'magnitude': fval,
+                   'rmse': fval,
+                   'coefficients': (fval, fval),
+                   'intercept': fval}    
 
-    pyccd_change_model = {start_day: 1,
-                          end_day: 3,
-                          break_day: 2,
-                          observation_count: 3,
-                          change_probability: fval,
-                          curve_qa: fval,
-                          blue: pyccd_model,
-                          green: pyccd_model,
-                          red: pyccd_model,
-                          nir: pyccd_model,
-                          swir1: pyccd_model,
-                          swir2: pyccd_model,
-                          thermal: pyccd_model,
-                          snow_prob: fval,
-                          water_prob: fval,
-                          cloud_prob: fval,
-                          processing_mask: [0, 1, 0]}
+    pyccd_change_model = {'start_day': 1,
+                          'end_day': 3,
+                          'break_day': 2,
+                          'observation_count': 3,
+                          'change_probability': fval,
+                          'curve_qa': fval,
+                          'blue': pyccd_model,
+                          'green': pyccd_model,
+                          'red': pyccd_model,
+                          'nir': pyccd_model,
+                          'swir1': pyccd_model,
+                          'swir2': pyccd_model,
+                          'thermal': pyccd_model}
 
     iwds_change_model =  {'chipx'  : chipx,
                           'chipy'  : chipy,
                           'pixelx' : pixelx,
                           'pixely' : pixely,
-                          'sday'   : get('start_day', pyccd_change_model)
+                          'sday'   : get('start_day', pyccd_change_model),
                           'eday'   : get('end_day', pyccd_change_model),
                           'bday'   : get('break_day', pyccd_change_model),
                           'chprob' : get('change_probability', pyccd_change_model),
@@ -101,16 +97,25 @@ def test_format():
                           's1int'  : fval, 
                           's2int'  : fval, 
                           'thint'  : fval, 
-                          'dates'  : dates,
+                          'dates'  : acquired,
                           'snprob' : fval, 
                           'waprob' : fval, 
                           'clprob' : fval, 
                           'prmask' : [0, 1, 0]}
 
     pyccd_format = pyccd.format(chipx, chipy, pixelx, pixely,
-                                acquired, {'change_models': [pyccd_change_model,]})
+                                acquired, {'snow_prob': fval,
+                                           'water_prob': fval,
+                                           'cloud_prob': fval,
+                                           'processing_mask': [0, 1, 0],
+                                           'change_models': [pyccd_change_model,]})
+
+    print("pyccd_format:{}".format(pyccd_format))
+    print("========================================")
+    print("\n")
+    print("iwds_change_model:{}".format(iwds_change_model))
     
-    assert pyccd_format == iwds_change_model
+    assert first(pyccd_format) == iwds_change_model
     
     
 def test_detect():
@@ -139,7 +144,7 @@ def test_read_write(spark_context, sql_context):
 
     # test read
     ids_rdd   = rdd.map(lambda x: spark_sql.Row(chipx=x[0], chipy=x[1]))
-    ids_df    = ids.dataframe(spark_context, ids_rdd)
+    ids_df    = ids.dataframe(spark_context, ids_rdd, ids.chip_schema())
     read_dataframe = pyccd.read(spark_context, ids_df)
     assert type(read_dataframe) is spark_sql.dataframe.DataFrame
     assert set([i.asDict()["chipx"] for i in read_dataframe.collect()]) == set([100, 300])
