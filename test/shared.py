@@ -10,6 +10,7 @@ import json
 def merge(inputs):
   return list(concat(inputs))
 
+             
 acquired   = '1980-01-01/2017-01-01'
 schemabase = ['chipx', 'chipy', 'pixelx', 'pixely', 'dates']
 auxbase    = ['aspect','dem', 'mpw', 'posidex', 'slope']
@@ -72,5 +73,8 @@ def mock_timeseries_rdd(ctx, cids, acquired, cfg, name):
     rdd = ctx.parallelize([[[11, 22, 33, 44], (-999, 111)]])
     rdd.setName(name)
     return rdd
+
+
+
 
 

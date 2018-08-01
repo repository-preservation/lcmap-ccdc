@@ -6,7 +6,7 @@ import pyspark.sql.types
 import pytest
 
 def test_schema():
-    ids_schema = ids.schema()
+    ids_schema = ids.chip_schema()
     assert type(ids_schema) == pyspark.sql.types.StructType
     assert json.loads(ids_schema.json()) == {'fields': [{'metadata': {}, 'name': 'chipx', 'nullable': False, 'type': 'integer'}, 
                                                         {'metadata': {}, 'name': 'chipy', 'nullable': False, 'type': 'integer'}], 'type': 'struct'}
@@ -17,6 +17,6 @@ def test_rdd(spark_context):
 
 def test_dataframe(spark_context):
     rdd = ids.rdd(spark_context, ((-100, 100), (-200, 200)))
-    df = ids.dataframe(spark_context, rdd)
+    df = ids.dataframe(spark_context, rdd, ids.chip_schema())
     assert type(df) == pyspark.sql.dataframe.DataFrame
-    assert df.schema == ids.schema()
+    assert df.schema == ids.chip_schema()

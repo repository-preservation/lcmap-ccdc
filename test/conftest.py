@@ -17,7 +17,7 @@ import pytest
 
 def get_chip_ids_rdd(chipids):
     sc = SparkSession(SparkContext.getOrCreate()).sparkContext
-    return ids.rdd(ctx=sc, cids=chipids)
+    return ids.rdd(ctx=sc, xys=chipids)
 
 @pytest.fixture()
 def ids_rdd():
@@ -57,6 +57,6 @@ def timeseries_rdd():
     config = merlin_ard_config()
     tile   = grid.tile(100, 200, config)
     chips  = grid.chips(tile) # chips == [(-543585, 2378805)]
-    cids   = ids.rdd(ctx=sc, cids=chips)
+    cids   = ids.rdd(ctx=sc, xys=chips)
     return timeseries.rdd(ctx=sc, cids=cids, acquired='1980-01-01/2017-01-01', cfg=config, name='ard')    
 
