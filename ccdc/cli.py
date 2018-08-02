@@ -93,7 +93,7 @@ def changedetection(x, y, acquired=acquired(), number=2500):
         log  = logger(ctx, name)
         
         # wire everything up
-        print(ARD)
+        log.info("lcmap-merlin profile:{}".format(ARD))
         tile = grid.tile(x=x, y=y, cfg=ARD)
         cids = ids.rdd(ctx=ctx, xys=list(take(number, tile.get('chips'))))
         ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=ccdc.ARD, name='ard')
