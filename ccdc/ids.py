@@ -38,7 +38,7 @@ def rdd(ctx, xys):
     log.trace('xys:{}'.format(xys))
     
     return ctx.parallelize(xys, ccdc.INPUT_PARTITIONS)
- 
+     
     
 def dataframe(ctx, rdd, schema):
     """Creates dataframe matching 'schema'
