@@ -25,7 +25,7 @@ from cytoolz   import filter
 from cytoolz   import first
 from cytoolz   import get
 from cytoolz   import merge
-from cytoolz   import partition
+from cytoolz   import partition_all
 from cytoolz   import take
 from cytoolz   import thread_last
 from functools import partial
@@ -48,7 +48,7 @@ def acquired():
     return '{}/{}'.format(start, end)
 
 
-def detect(ctx, xys, acquired, logger):
+def detect(xys, ctx, acquired, log):
 
     log.info('finding ccd segments for {} chips'.format(len(xys)))
     log.debug('finding ccd segments for chips:{}'.format(xys))                
@@ -79,13 +79,14 @@ def changedetection(x, y, acquired=acquired(), number=2500, chunk_size=2500):
         ctx    = ccdc.context(name)
         log    = logger(ctx, name)
         tile   = grid.tile(x=x, y=y, cfg=ARD)
-        chunks = partition(chunk_size, take(number, tile.get('chips')))
-        
+        chunks = list(partition_all(chunk_size,
+                                    take(number, tile.get('chips'))))
+        log.debug("CHUNKS:{}".format(chunks))
         log.debug("lcmap-merlin profile:{}".format(ARD))
         log.info(str(merge(tile, {'acquired': acquired,
                                   'input-partitions': ccdc.INPUT_PARTITIONS,
                                   'product-partitions': ccdc.PRODUCT_PARTITIONS,
-                                  'chip_count': number,
+                                  'chips': number,
                                   'chunk_size': chunk_size})))
 
         fn     = partial(detect, ctx=ctx, acquired=acquired, log=log)
