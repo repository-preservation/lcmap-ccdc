@@ -122,10 +122,10 @@ def rdd(ctx, cids, acquired, cfg, name=__name__):
     return cids\
         .flatMap(lambda xy: fn(x=first(xy), y=second(xy)))\
         .map(lambda x: ((int(x[0][0]), int(x[0][1]), int(x[0][2]), int(x[0][3])), x[1]))\
-        .repartition(ccdc.PRODUCT_PARTITIONS)\
-        .setName(name)
-
-
+       .repartition(ccdc.PRODUCT_PARTITIONS)\
+       .setName(name)
+    
+    
 def ard(ctx, cids, acquired, cfg=ccdc.ARD):
     """Create an ard timeseries dataframe
     
