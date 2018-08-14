@@ -81,7 +81,7 @@ def changedetection(x, y, acquired=acquired(), number=2500, chunk_size=2500):
         tile   = grid.tile(x=x, y=y, cfg=ARD)
         chunks = list(partition_all(chunk_size,
                                     take(number, tile.get('chips'))))
-        log.debug("CHUNKS:{}".format(chunks))
+        log.debug("chunks:{}".format(chunks))
         log.debug("lcmap-merlin profile:{}".format(ARD))
         log.info(str(merge(tile, {'acquired': acquired,
                                   'input-partitions': ccdc.INPUT_PARTITIONS,
