@@ -23,11 +23,12 @@ def entrypoint():
 
 
 @entrypoint.command()
-@click.option('--x',        '-x', required=True)
-@click.option('--y',        '-y', required=True)
-@click.option('--acquired', '-a', required=False, default=core.acquired())
-@click.option('--number',   '-n', required=False, default=2500)
-def changedetection(x, y, acquired, number):
+@click.option('--x',          '-x', required=True)
+@click.option('--y',          '-y', required=True)
+@click.option('--acquired',   '-a', required=False, default=core.acquired())
+@click.option('--number',     '-n', required=False, default=2500)
+@click.option('--chunk_size', '-c', required=False, default=1)
+def changedetection(x, y, acquired, number, chunk_size):
     """Run change detection for a tile and save results to Cassandra.
     
     Args:
@@ -43,7 +44,8 @@ def changedetection(x, y, acquired, number):
     return core.changedetection(x=x,
                                 y=y,
                                 acquired=acquired,
-                                number=number)
+                                number=number,
+                                chunk_size=chunk_size)
 
                         
 @entrypoint.command()
