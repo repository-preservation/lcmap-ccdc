@@ -53,7 +53,7 @@ def changedetection(x, y, acquired, number, chunk_size):
 @click.option('--y', '-y', required=True)
 @click.option('--msday', '-s', required=True)
 @click.option('--meday', '-e', required=True)
-@click.option('--acquired', '-a', required=False, default=acquired())
+@click.option('--acquired', '-a', required=False, default=core.acquired())
 def classification(x, y, msday, meday, acquired): 
     """
     Classify a tile.
