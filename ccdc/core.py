@@ -29,7 +29,7 @@ from cytoolz   import partition_all
 from cytoolz   import take
 from cytoolz   import thread_last
 from functools import partial
-from merlin    import functions
+from merlin import functions
 
 import ccdc
 import datetime
@@ -49,13 +49,27 @@ def acquired():
 
 
 def detect(xys, ctx, acquired, log):
+    """Run change detection for a group of xys
+
+    Args:
+        xys (list or tuple): sequence of x,y to run change detection on
+        ctx                : a spark context
+        acquired (str)     : ISO8601 date range 
+        log                : A Python logger
+    """
 
     log.info('finding ccd segments for {} chips'.format(len(xys)))
-    log.debug('finding ccd segments for chips:{}'.format(xys))                
+    log.debug(xys)                
+
     cids = ids.rdd(ctx=ctx, xys=list(xys))
     ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=ccdc.ARD, name='ard')
-    ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard))
-    _    = pyccd.write(ctx, ccd)
+    ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).persist()
+    _    = chip.dataframe(ctx=ctx, df=ccd).write()
+    _    = pixel.dataframe(ctx=ctx, df=ccd).write()
+    _    = segment.dataframe(ctx=ctx, df=ccd).write()
+    ccd.unpersist()
+    #_ = pyccd.write(ctx, ccd)
+
     return xys
 
 
@@ -153,9 +167,8 @@ def classification(x, y, msday, meday, acquired=acquired()):
     Classify a tile.
 
     Args:
-        acquired (str): ISO8601 date range       
-        x        (int): x coordinate in tile
-        y        (int): y coordinate in tile
+        x        (int): tile x coordinate
+        y        (int): tile y coordinate
         msday    (int): ordinal day, beginning of training period
         meday    (int): ordinal day, end of training period
         acquired (str): date range of change segments to classify

@@ -22,7 +22,7 @@ import ccd
 
 
 def algorithm():
-    """Returns the ccd algorithm and version"""
+    """Returns The ccd algorithm and version"""
 
     return ccd.algorithm
 
@@ -72,9 +72,6 @@ def schema():
         StructField('s2int' , FloatType(), nullable=True),
         StructField('thint' , FloatType(), nullable=True),
         StructField('dates' , ArrayType(IntegerType()), nullable=False),
-        StructField('snprob', FloatType(), nullable=True),
-        StructField('waprob', FloatType(), nullable=True),
-        StructField('clprob', FloatType(), nullable=True),
         StructField('prmask', ArrayType(ByteType()), nullable=True),
         StructField('rfrawp', ArrayType(FloatType()), nullable=True)
     ])
@@ -143,9 +140,6 @@ def format(chipx, chipy, pixelx, pixely, dates, ccdresult):
               's2int'  : get_in(['swir2', 'intercept'], cm, None),
               'thint'  : get_in(['thermal', 'intercept'], cm, None),
               'dates'  : dates,
-              'snprob' : get('snow_prob', ccdresult, None),
-              'waprob' : get('water_prob', ccdresult, None),
-              'clprob' : get('cloud_prob', ccdresult, None),
               'prmask' : get('processing_mask', ccdresult, None)})
              for cm in default(get('change_models', ccdresult, None))]
 
@@ -185,48 +179,48 @@ def rdd(ctx, timeseries):
     return timeseries.flatMap(detect)
 
 
-def read(ctx, ids):
-    """Read pyccd results
-
-    Args:
-        ctx: spark context
-        ids: dataframe of (chipx, chipy)
-
-    Returns:
-        dataframe conforming to pyccd.schema()
-    """
-    
-    return ids.join(cassandra.read(ctx, table()),
-                    on=['chipx', 'chipy'],
-                    how='inner')
-
-
-def write(ctx, df):
-    """Write pyccd results
-
-    Args:
-        ctx: spark context
-        df : dataframe conforming to pyccd.schema()
-    
-    Returns:
-        df
-    """
-    cassandra.write(ctx, df, table())
-    return df
+#def read(ctx, ids):
+#    """Read pyccd results
+#
+#    Args:
+#        ctx: spark context
+#        ids: dataframe of (chipx, chipy)
+#
+#    Returns:
+#        dataframe conforming to pyccd.schema()
+#    """
+#    
+#    return ids.join(cassandra.read(ctx, table()),
+#                    on=['chipx', 'chipy'],
+#                    how='inner')
 
 
-def join(ccd, predictions):
-    """Join ccd dataframe with predictions dataframe
+#def write(ctx, df):
+#    """Write pyccd results
+#
+#    Args:
+#        ctx: spark context
+#        df : dataframe conforming to pyccd.schema()
+#    
+#    Returns:
+#        df
+#    """
+#    cassandra.write(ctx, df, table())
+#    return df
 
-    Args:
-        ccd:         ccd dataframe
-        predictions: predictions dataframe
 
-    Returns:
-        dataframe
-    """
-    
-    return ccd.join(predictions,
-                    on=['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday'],
-                    how='inner').drop(ccd['rfrawp'])
+#def join(ccd, predictions):
+#    """Join ccd dataframe with predictions dataframe
+#
+#    Args:
+#        ccd:         ccd dataframe
+#        predictions: predictions dataframe
+#
+#    Returns:
+#        dataframe
+#    """
+#    
+#    return ccd.join(predictions,
+#                    on=['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday'],
+#                    how='inner').drop(ccd['rfrawp'])
 
