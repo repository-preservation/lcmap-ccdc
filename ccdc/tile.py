@@ -76,22 +76,3 @@ def write(ctx, df):
     """
     cassandra.write(ctx, df, table())
     return df
-
-
-# Write functions like this in Python
-def example(one, two, **rest):
-
-    return {"one": one,
-            "two": two,
-            "rest": rest}
-
-
-# call them like this
-def run():
-
-    d = {"one": 1,
-         "two": 2,
-         "three": 3,
-         "four": 4}
-    
-    print(example(**d))
