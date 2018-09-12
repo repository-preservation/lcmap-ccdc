@@ -6,7 +6,7 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
  tx:      tile upper left x
  ty:      tile upper left y
  model:   model coefficients
- name:    model namep
+ name:    model name
  updated: timestamp of last model update
 *******************************************************************/
 
@@ -16,8 +16,7 @@ CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.tile (
     model      text,
     name       text,
     updated    timestamp,
-    PRIMARY KEY((tx, ty))
-)
+    PRIMARY KEY((tx, ty)))
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
 
@@ -31,9 +30,8 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
 CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.chip (
     cx         int,
     cy         int,
-    dates      frozen<list<timestamp>> static,
-    PRIMARY KEY((cx, cy))
-)
+    dates      frozen<list<timestamp>>,
+    PRIMARY KEY((cx, cy)))
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
 
@@ -53,8 +51,7 @@ CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.pixel (
     px         int,
     py         int,
     mask frozen<list<tinyint>>,,
-    PRIMARY KEY((cx, cy), px, py)
-)
+    PRIMARY KEY((cx, cy), px, py))
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
 
@@ -142,7 +139,7 @@ CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.segment (
     s2int  float,
     thint  float,    
     rfrawp frozen<list<float>>,
-    PRIMARY KEY((cx, cy), px, py, sday, eday)
+    PRIMARY KEY((cx, cy), px, py, sday, eday))
     
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
