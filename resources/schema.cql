@@ -30,7 +30,7 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
 CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.chip (
     cx         int,
     cy         int,
-    dates      frozen<list<timestamp>>,
+    dates      frozen<list<date>>,
     PRIMARY KEY((cx, cy)))
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
@@ -64,9 +64,9 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
  cy:     upper left y of the chip
  px:     x pixel coordinate
  py:     y pixel coordinate
- sday:   start day
- eday:   end day
- bday:   break day
+ sday:   start date
+ eday:   end date
+ bday:   break date
  chprob: change_probability
  curqa:  curve_qa
  blmag:  blue magnitude
@@ -105,9 +105,9 @@ CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.segment (
     cy     int,
     px     int,
     py     int,
-    sday   int,
-    eday   int,
-    bday   int,
+    sday   date,
+    eday   date,
+    bday   date,
     chprob float,
     curqa  tinyint,
     blmag  float,

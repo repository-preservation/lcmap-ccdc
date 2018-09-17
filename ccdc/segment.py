@@ -1,5 +1,6 @@
 from ccdc import cassandra
 from pyspark.sql.types import ArrayType
+from pyspark.sql.types import DateType
 from pyspark.sql.types import FloatType
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StructField
@@ -18,9 +19,9 @@ def schema():
         StructField('cy'    , IntegerType(), nullable=False),
         StructField('px'    , IntegerType(), nullable=False),
         StructField('py'    , IntegerType(), nullable=False),
-        StructField('sday'  , IntegerType(), nullable=False),
-        StructField('eday'  , IntegerType(), nullable=False),
-        StructField('bday'  , IntegerType(), nullable=True),
+        StructField('sday'  , DateType(), nullable=False),
+        StructField('eday'  , DateType(), nullable=False),
+        StructField('bday'  , DateType(), nullable=True),
         StructField('chprob', FloatType(), nullable=True),
         StructField('curqa' , IntegerType(), nullable=True),
         StructField('blmag' , FloatType(), nullable=True),
@@ -45,6 +46,7 @@ def schema():
         StructField('s2coef', ArrayType(FloatType()), nullable=True),
         StructField('thcoef', ArrayType(FloatType()), nullable=True),
         StructField('blint' , FloatType(), nullable=True),
+        StructField('grint' , FloatType(), nullable=True),
         StructField('reint' , FloatType(), nullable=True),
         StructField('niint' , FloatType(), nullable=True),
         StructField('s1int' , FloatType(), nullable=True),
@@ -52,6 +54,20 @@ def schema():
         StructField('thint' , FloatType(), nullable=True),
         StructField('rfrawp', ArrayType(FloatType()), nullable=True)
     ])
+
+
+def dataframe(ctx, ccd):
+    """Create segment dataframe from ccd dataframe
+
+    Args:
+        ctx: spark context
+        ccd: CCD dataframe
+
+    Returns:
+        dataframe conforming to segment.schema()
+    """
+        
+    return ccd.select(schema().fieldNames())
 
 
 def read(ctx, ids):

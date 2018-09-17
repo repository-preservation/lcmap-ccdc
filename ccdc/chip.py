@@ -1,8 +1,9 @@
+from ccdc import cassandra
 from pyspark.sql.types import ArrayType
-from pyspark.sql.types import DateType
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
+from pyspark.sql.types import TimestampType
 
 
 def table():
@@ -17,7 +18,7 @@ def schema():
     return StructType([
         StructField('cx'   , IntegerType(), nullable=False),
         StructField('cy'   , IntegerType(), nullable=False),
-        StructField('dates', ArrayType(DateType()), nullable=False),      
+        StructField('dates', ArrayType(TimestampType()), nullable=False),      
     ])
 
 
@@ -32,7 +33,7 @@ def dataframe(ctx, ccd):
         dataframe conforming to chip.py
     """
     
-    return ccd.select(['cx', 'cy', 'dates'])
+    return ccd.select(schema().fieldNames())
 
 
 def read(ctx, ids):

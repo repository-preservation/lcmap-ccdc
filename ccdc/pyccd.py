@@ -5,18 +5,22 @@ from cytoolz import get
 from cytoolz import get_in
 from cytoolz import merge
 from cytoolz import second
+from datetime import date
 from merlin.functions import cqlstr
 from merlin.functions import denumpify
+
 from pyspark import sql
 from pyspark.sql import SparkSession
 from pyspark.sql import functions
 from pyspark.sql.types import ArrayType
 from pyspark.sql.types import ByteType
+from pyspark.sql.types import DateType
 from pyspark.sql.types import FloatType
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StringType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
+from pyspark.sql.types import TimestampType
 
 import ccd
 
@@ -35,13 +39,13 @@ def table():
 
 def schema():
     return StructType([
-        StructField('chipx' , IntegerType(), nullable=False),
-        StructField('chipy' , IntegerType(), nullable=False),
-        StructField('pixelx', IntegerType(), nullable=False),
-        StructField('pixely', IntegerType(), nullable=False),
-        StructField('sday'  , IntegerType(), nullable=False),
-        StructField('eday'  , IntegerType(), nullable=False),
-        StructField('bday'  , IntegerType(), nullable=True),
+        StructField('cx'    , IntegerType(), nullable=False),
+        StructField('cy'    , IntegerType(), nullable=False),
+        StructField('px'    , IntegerType(), nullable=False),
+        StructField('py'    , IntegerType(), nullable=False),
+        StructField('sday'  , DateType(), nullable=False),
+        StructField('eday'  , DateType(), nullable=False),
+        StructField('bday'  , DateType(), nullable=True),
         StructField('chprob', FloatType(), nullable=True),
         StructField('curqa' , IntegerType(), nullable=True),
         StructField('blmag' , FloatType(), nullable=True),
@@ -66,13 +70,14 @@ def schema():
         StructField('s2coef', ArrayType(FloatType()), nullable=True),
         StructField('thcoef', ArrayType(FloatType()), nullable=True),
         StructField('blint' , FloatType(), nullable=True),
+        StructField('grint' , FloatType(), nullable=True),
         StructField('reint' , FloatType(), nullable=True),
         StructField('niint' , FloatType(), nullable=True),
         StructField('s1int' , FloatType(), nullable=True),
         StructField('s2int' , FloatType(), nullable=True),
         StructField('thint' , FloatType(), nullable=True),
-        StructField('dates' , ArrayType(IntegerType()), nullable=False),
-        StructField('prmask', ArrayType(ByteType()), nullable=True),
+        StructField('dates' , ArrayType(DateType()), nullable=False),
+        StructField('mask'  , ArrayType(ByteType()), nullable=True),
         StructField('rfrawp', ArrayType(FloatType()), nullable=True)
     ])
 
@@ -94,21 +99,21 @@ def dataframe(ctx, rdd):
    
 def default(change_models):
     # if there are no change models, append an empty one to
-    # signify that ccd was run for the point, setting start_day and end_day to 0
+    # signify that ccd was run for the point, setting start_day and end_day to day 1
 
-    return [{'start_day': 0, 'end_day': 0}] if not change_models else change_models
+    return [{'start_day': 1, 'end_day': 1, 'break_day': 1}] if not change_models else change_models
 
     
-def format(chipx, chipy, pixelx, pixely, dates, ccdresult):
+def format(cx, cy, px, py, dates, ccdresult):
        
     return [denumpify(
-             {'chipx'  : chipx,
-              'chipy'  : chipy,
-              'pixelx' : pixelx,
-              'pixely' : pixely,
-              'sday'   : get('start_day', cm),
-              'eday'   : get('end_day', cm),
-              'bday'   : get('break_day', cm, None),
+             {'cx'     : cx,
+              'cy'     : cy,
+              'px'     : px,
+              'py'     : py,
+              'sday'   : date.fromordinal(get('start_day', cm)),
+              'eday'   : date.fromordinal(get('end_day', cm)),
+              'bday'   : date.fromordinal(get('break_day', cm, None)),
               'chprob' : get('change_probability', cm, None),
               'curqa'  : get('curve_qa', cm, None),
               'blmag'  : get_in(['blue', 'magnitude'], cm, None),
@@ -139,8 +144,8 @@ def format(chipx, chipy, pixelx, pixely, dates, ccdresult):
               's1int'  : get_in(['swir1', 'intercept'], cm, None),
               's2int'  : get_in(['swir2', 'intercept'], cm, None),
               'thint'  : get_in(['thermal', 'intercept'], cm, None),
-              'dates'  : dates,
-              'prmask' : get('processing_mask', ccdresult, None)})
+              'dates'  : [date.fromordinal(o) for o in dates],
+              'mask'   : get('processing_mask', ccdresult, None)})
              for cm in default(get('change_models', ccdresult, None))]
 
 
@@ -154,12 +159,12 @@ def detect(timeseries):
         sequence of change detections
     """
 
-    chipx, chipy, pixelx, pixely = first(timeseries)
+    cx, cy, px, py = first(timeseries)
 
-    return format(chipx=chipx,
-                  chipy=chipy,
-                  pixelx=pixelx,
-                  pixely=pixely,
+    return format(cx=cx,
+                  cy=cy,
+                  px=px,
+                  py=py,
                   dates=get('dates', second(timeseries)),
                   ccdresult=ccd.detect(**second(timeseries)))
 

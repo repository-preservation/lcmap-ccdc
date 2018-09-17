@@ -1,3 +1,4 @@
+from ccdc import cassandra
 from pyspark.sql.types import ArrayType
 from pyspark.sql.types import ByteType
 from pyspark.sql.types import IntegerType
@@ -17,7 +18,7 @@ def schema():
         StructField('cy'    , IntegerType(), nullable=False),
         StructField('px'    , IntegerType(), nullable=False),
         StructField('py'    , IntegerType(), nullable=False),
-        StructField('prmask', ArrayType(ByteType()), nullable=True)])\
+        StructField('mask'  , ArrayType(ByteType()), nullable=True)])\
 
 
 def dataframe(ctx, ccd):
@@ -31,7 +32,7 @@ def dataframe(ctx, ccd):
         dataframe conforming to pixel.py
     """
         
-    return ccd.select(['cx', 'cy', 'px', 'py', 'prmask'])
+    return ccd.select(schema().fieldNames())
 
 
 def read(ctx, ids):

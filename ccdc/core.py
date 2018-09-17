@@ -11,13 +11,16 @@ Prerequisites:
 from ccdc import ARD
 from ccdc import AUX
 from ccdc import cassandra
+from ccdc import chip
 from ccdc import features
 from ccdc import grid
 from ccdc import ids
 from ccdc import logger
 from ccdc import metadata
+from ccdc import pixel
 from ccdc import pyccd
 from ccdc import randomforest
+from ccdc import segment
 from ccdc import timeseries
 
 from cytoolz   import do
@@ -64,9 +67,9 @@ def detect(xys, ctx, acquired, log):
     cids = ids.rdd(ctx=ctx, xys=list(xys))
     ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=ccdc.ARD, name='ard')
     ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).persist()
-    _    = chip.dataframe(ctx=ctx, df=ccd).write()
-    _    = pixel.dataframe(ctx=ctx, df=ccd).write()
-    _    = segment.dataframe(ctx=ctx, df=ccd).write()
+    _    = chip.write(ctx=ctx, df=chip.dataframe(ctx=ctx, ccd=ccd))
+    _    = pixel.write(ctx=ctx, df=pixel.dataframe(ctx=ctx, ccd=ccd))
+    _    = segment.write(ctx=ctx, df=segment.dataframe(ctx=ctx, ccd=ccd))
     ccd.unpersist()
     #_ = pyccd.write(ctx, ccd)
 
@@ -105,18 +108,8 @@ def changedetection(x, y, acquired=acquired(), number=2500, chunk_size=2500):
 
         fn     = partial(detect, ctx=ctx, acquired=acquired, log=log)
         result = list(map(fn, chunks))
-        meta   = metadata.detection(tilex=int(get('x', tile)),
-                                    tiley=int(get('y', tile)),
-                                    h=int(get('h', tile)),
-                                    v=int(get('v', tile)),
-                                    acquired=acquired,
-                                    detector=pyccd.algorithm(),
-                                    ardurl=ccdc.ARD_CHIPMUNK,
-                                    segcount=None)
-        
-        _ = metadata.write(ctx, metadata.dataframe(ctx, meta))
 
-        log.info('{} complete: {}'.format(name, meta))
+        log.info('{} ({}) complete'.format(name, len(result)))
 
         return result
     
