@@ -1,4 +1,4 @@
-CREATE KEYSPACE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0
+CREATE KEYSPACE IF NOT EXISTS ccdc_1_0
 WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
 
 
@@ -10,7 +10,7 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
  updated: timestamp of last model update
 *******************************************************************/
 
-CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.tile (
+CREATE TABLE IF NOT EXISTS ccdc_1_0.tile (
     tx         int,
     ty         int,
     model      text,
@@ -27,7 +27,7 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
  dates: ARD timestamps for this chip
 *******************************************************************/
 
-CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.chip (
+CREATE TABLE IF NOT EXISTS ccdc_1_0.chip (
     cx         int,
     cy         int,
     dates      frozen<list<date>>,
@@ -45,7 +45,7 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
        (applies against dates)
 *******************************************************************/
 
-CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.pixel (
+CREATE TABLE IF NOT EXISTS ccdc_1_0.pixel (
     cx         int,
     cy         int,
     px         int,
@@ -100,7 +100,7 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
  rfrawp: random forest raw prediction
 *******************************************************************/
 
-CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.segment (
+CREATE TABLE IF NOT EXISTS ccdc_1_0.segment (
     cx     int,
     cy     int,
     px     int,

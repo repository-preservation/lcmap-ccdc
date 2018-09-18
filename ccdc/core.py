@@ -16,7 +16,6 @@ from ccdc import features
 from ccdc import grid
 from ccdc import ids
 from ccdc import logger
-from ccdc import metadata
 from ccdc import pixel
 from ccdc import pyccd
 from ccdc import randomforest
@@ -107,7 +106,7 @@ def changedetection(x, y, acquired=acquired(), number=2500, chunk_size=2500):
                                   'chunk_size': chunk_size})))
 
         fn     = partial(detect, ctx=ctx, acquired=acquired, log=log)
-        result = list(map(fn, chunks))
+        result = tuple(functions.flatten(map(fn, chunks)))
 
         log.info('{} ({}) complete'.format(name, len(result)))
 
@@ -184,60 +183,62 @@ def classification(x, y, msday, meday, acquired=acquired()):
                          meday=meday,
                          acquired=acquired)
 
-        if model is None:
-            return
+        #if model is None:
+        #    return
 
         # end model training, begin classification
         
-        log.info('finding classification grid chip ids...')
-        cids = ids.dataframe(ctx=ctx,
-                             rdd=ids.rdd(ctx, grid.classification(x, y, AUX)),
-                             schema=ids.chip_schema())
+        #log.info('finding classification grid chip ids...')
+        #cids = ids.dataframe(ctx=ctx,
+        #                     rdd=ids.rdd(ctx, grid.classification(x, y, AUX)),
+        #                     schema=ids.chip_schema())
         
-        log.info('found {} classification grid chip ids...'.format(cids.count()))
+        #log.info('found {} classification grid chip ids...'.format(cids.count()))
         
-        log.info('finding change segments...')
-        ccd = pyccd.read(ctx,
-                         cids.repartition(ccdc.PRODUCT_PARTITIONS))\
-                         .filter('sday >= 0 AND eday >= 0')
+        #log.info('finding change segments...')
+        #ccd = pyccd.read(ctx,
+        #                 cids.repartition(ccdc.PRODUCT_PARTITIONS))\
+        #                 .filter('sday >= 0 AND eday >= 0')
          
-        log.info('finding aux timeseries...')
-        aux = timeseries.aux(ctx,
-                             cids.rdd.repartition(ccdc.INPUT_PARTITIONS),
-                             acquired).repartition(ccdc.PRODUCT_PARTITIONS)        
+        #log.info('finding aux timeseries...')
+        #aux = timeseries.aux(ctx,
+        #                     cids.rdd.repartition(ccdc.INPUT_PARTITIONS),
+        #                     acquired).repartition(ccdc.PRODUCT_PARTITIONS)        
        
-        log.info('finding classification features...')
-        fdf = features.dataframe(aux, ccd)
+        #log.info('finding classification features...')
+        #fdf = features.dataframe(aux, ccd)
         
-        log.info('predicting classes...')
-        preds = randomforest.classify(model, fdf)
+        #log.info('predicting classes...')
+        #preds = randomforest.classify(model, fdf)
 
-        log.info('saving classification results...')
-        results = pyccd.join(ccd, preds).persist()
+        #log.info('saving classification results...')
+        #results = pyccd.join(ccd, preds).persist()
 
-        log.debug('sample result:{}'.format(results.first()))
+        #log.debug('sample result:{}'.format(results.first()))
         
-        written = pyccd.write(ctx, randomforest.dedensify(results)).count()
-        log.info('saved {} classification results'.format(written))
+        #written = pyccd.write(ctx, randomforest.dedensify(results)).count()
+        #log.info('saved {} classification results'.format(written))
 
+  
         # write metadata
         # doing this driver side instead of udf as metadata is only 1 small record per tile
-        tile = grid.tile(x=x, y=y, cfg=ARD)
+        #tile = grid.tile(x=x, y=y, cfg=ARD)
 
-        tids = ids.dataframe(ctx=ctx,
-                             rdd=ids.rdd(ctx=ctx, xys=((tile['x'], tile['y']),)),
-                             schema=ids.tile_schema())
+        #tids = ids.dataframe(ctx=ctx,
+        #                     rdd=ids.rdd(ctx=ctx, xys=((tile['x'], tile['y']),)),
+        #                     schema=ids.tile_schema())
 
-        md = merge(metadata.read(ctx=ctx, ids=tids).first().asDict(),
-                   metadata.classify(tilex=tile['x'],
-                                     tiley=tile['y'],
-                                     msday=msday,
-                                     meday=meday,
-                                     classifier='',
-                                     auxurl=ccdc.AUX_CHIPMUNK))
+        
+        #md = merge(metadata.read(ctx=ctx, ids=tids).first().asDict(),
+        #           metadata.classify(tilex=tile['x'],
+        #                             tiley=tile['y'],
+        #                             msday=msday,
+        #                             meday=meday,
+        #                             classifier='',
+        #                             auxurl=ccdc.AUX_CHIPMUNK))
 
-        return metadata.write(ctx=ctx,
-                              df=metadata.dataframe(ctx=ctx, d=md).first().asDict())
+        #return metadata.write(ctx=ctx,
+        #                      df=metadata.dataframe(ctx=ctx, d=md).first().asDict())
 
                
     except Exception as e:

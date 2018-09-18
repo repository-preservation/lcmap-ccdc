@@ -189,14 +189,14 @@ def rdd(ctx, timeseries):
 #
 #    Args:
 #        ctx: spark context
-#        ids: dataframe of (chipx, chipy)
+#        ids: dataframe of (cx, cy)
 #
 #    Returns:
 #        dataframe conforming to pyccd.schema()
 #    """
 #    
 #    return ids.join(cassandra.read(ctx, table()),
-#                    on=['chipx', 'chipy'],
+#                    on=['cx', 'cy'],
 #                    how='inner')
 
 
@@ -226,6 +226,6 @@ def rdd(ctx, timeseries):
 #    """
 #    
 #    return ccd.join(predictions,
-#                    on=['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday'],
+#                    on=['cx', 'cy', 'px', 'py', 'sday', 'eday'],
 #                    how='inner').drop(ccd['rfrawp'])
 
