@@ -43,9 +43,9 @@ def test_format():
     sday = 1
     eday = 3
     bday = 2
-    sdate = datetime.date.fromordinal(sday)
-    edate = datetime.date.fromordinal(eday)
-    bdate = datetime.date.fromordinal(bday)
+    sdate = datetime.date.fromordinal(sday).isoformat()
+    edate = datetime.date.fromordinal(eday).isoformat()
+    bdate = datetime.date.fromordinal(bday).isoformat()
     ordinal_dates = [sday, bday, eday]
     iwds_dates = [sdate, bdate, edate]
         

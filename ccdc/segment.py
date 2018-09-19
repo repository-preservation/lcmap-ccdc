@@ -1,8 +1,8 @@
 from ccdc import cassandra
 from pyspark.sql.types import ArrayType
-from pyspark.sql.types import DateType
 from pyspark.sql.types import FloatType
 from pyspark.sql.types import IntegerType
+from pyspark.sql.types import StringType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
 
@@ -19,9 +19,9 @@ def schema():
         StructField('cy'    , IntegerType(), nullable=False),
         StructField('px'    , IntegerType(), nullable=False),
         StructField('py'    , IntegerType(), nullable=False),
-        StructField('sday'  , DateType(), nullable=False),
-        StructField('eday'  , DateType(), nullable=False),
-        StructField('bday'  , DateType(), nullable=True),
+        StructField('sday'  , StringType(), nullable=False),
+        StructField('eday'  , StringType(), nullable=False),
+        StructField('bday'  , StringType(), nullable=True),
         StructField('chprob', FloatType(), nullable=True),
         StructField('curqa' , IntegerType(), nullable=True),
         StructField('blmag' , FloatType(), nullable=True),

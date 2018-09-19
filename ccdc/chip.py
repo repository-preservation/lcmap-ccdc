@@ -1,7 +1,7 @@
 from ccdc import cassandra
 from pyspark.sql.types import ArrayType
-from pyspark.sql.types import DateType
 from pyspark.sql.types import IntegerType
+from pyspark.sql.types import StringType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
 
@@ -18,7 +18,7 @@ def schema():
     return StructType([
         StructField('cx'   , IntegerType(), nullable=False),
         StructField('cy'   , IntegerType(), nullable=False),
-        StructField('dates', ArrayType(DateType()), nullable=False),      
+        StructField('dates', ArrayType(StringType()), nullable=False),      
     ])
 
 

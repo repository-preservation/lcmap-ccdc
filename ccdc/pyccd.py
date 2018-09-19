@@ -14,7 +14,6 @@ from pyspark.sql import SparkSession
 from pyspark.sql import functions
 from pyspark.sql.types import ArrayType
 from pyspark.sql.types import ByteType
-from pyspark.sql.types import DateType
 from pyspark.sql.types import FloatType
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StringType
@@ -43,9 +42,9 @@ def schema():
         StructField('cy'    , IntegerType(), nullable=False),
         StructField('px'    , IntegerType(), nullable=False),
         StructField('py'    , IntegerType(), nullable=False),
-        StructField('sday'  , DateType(), nullable=False),
-        StructField('eday'  , DateType(), nullable=False),
-        StructField('bday'  , DateType(), nullable=True),
+        StructField('sday'  , StringType(), nullable=False),
+        StructField('eday'  , StringType(), nullable=False),
+        StructField('bday'  , StringType(), nullable=True),
         StructField('chprob', FloatType(), nullable=True),
         StructField('curqa' , IntegerType(), nullable=True),
         StructField('blmag' , FloatType(), nullable=True),
@@ -76,7 +75,7 @@ def schema():
         StructField('s1int' , FloatType(), nullable=True),
         StructField('s2int' , FloatType(), nullable=True),
         StructField('thint' , FloatType(), nullable=True),
-        StructField('dates' , ArrayType(DateType()), nullable=False),
+        StructField('dates' , ArrayType(StringType()), nullable=False),
         StructField('mask'  , ArrayType(ByteType()), nullable=True),
         StructField('rfrawp', ArrayType(FloatType()), nullable=True)
     ])
@@ -111,9 +110,9 @@ def format(cx, cy, px, py, dates, ccdresult):
               'cy'     : cy,
               'px'     : px,
               'py'     : py,
-              'sday'   : date.fromordinal(get('start_day', cm)),
-              'eday'   : date.fromordinal(get('end_day', cm)),
-              'bday'   : date.fromordinal(get('break_day', cm, None)),
+              'sday'   : date.fromordinal(get('start_day', cm)).isoformat(),
+              'eday'   : date.fromordinal(get('end_day', cm)).isoformat(),
+              'bday'   : date.fromordinal(get('break_day', cm, None)).isoformat(),
               'chprob' : get('change_probability', cm, None),
               'curqa'  : get('curve_qa', cm, None),
               'blmag'  : get_in(['blue', 'magnitude'], cm, None),
@@ -144,7 +143,7 @@ def format(cx, cy, px, py, dates, ccdresult):
               's1int'  : get_in(['swir1', 'intercept'], cm, None),
               's2int'  : get_in(['swir2', 'intercept'], cm, None),
               'thint'  : get_in(['thermal', 'intercept'], cm, None),
-              'dates'  : [date.fromordinal(o) for o in dates],
+              'dates'  : [date.fromordinal(o).isoformat() for o in dates],
               'mask'   : get('processing_mask', ccdresult, None)})
              for cm in default(get('change_models', ccdresult, None))]
 

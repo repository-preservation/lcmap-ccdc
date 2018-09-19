@@ -1,5 +1,4 @@
 from ccdc import cassandra
-from pyspark.sql.types import DateType
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StringType
 from pyspark.sql.types import StructField
@@ -24,7 +23,7 @@ def schema():
         StructField('y'    ,   IntegerType(), nullable=False),
         StructField('name',    StringType(),  nullable=False),
         StructField('model',   StringType(),  nullable=False),
-        StructField('updated', DateType(),    nullable=False)
+        StructField('updated', StringType(),    nullable=False)
     ])
 
 
