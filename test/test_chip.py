@@ -1,10 +1,5 @@
 from ccdc import chip
-
 from pyspark.sql import Row
-from pyspark.sql.types import ArrayType
-from pyspark.sql.types import IntegerType
-from pyspark.sql.types import StructType
-from pyspark.sql.types import StructField
 
 import datetime
 import test
@@ -43,12 +38,5 @@ def test_read_write(spark_context, sql_context):
     written = chip.write(spark_context, cdf)
     read    = chip.read(spark_context, idf)
 
-    print('Written:{}'.format(written.toJSON().collect()))
-
-    print('-------------')
-    
-    print('Read:{}'.format(read.toJSON().collect()))
-
-
     assert read.toJSON().collect() == written.toJSON().collect()
-    assert 1 < 0
+

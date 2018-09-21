@@ -30,7 +30,7 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
 CREATE TABLE IF NOT EXISTS ccdc_1_0.chip (
     cx         int,
     cy         int,
-    dates      frozen<list<date>>,
+    dates      frozen<list<text>>,
     PRIMARY KEY((cx, cy)))
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
@@ -105,9 +105,9 @@ CREATE TABLE IF NOT EXISTS ccdc_1_0.segment (
     cy     int,
     px     int,
     py     int,
-    sday   date,
-    eday   date,
-    bday   date,
+    sday   text,
+    eday   text,
+    bday   text,
     chprob float,
     curqa  tinyint,
     blmag  float,
