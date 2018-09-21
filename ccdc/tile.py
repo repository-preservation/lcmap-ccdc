@@ -1,4 +1,6 @@
 from ccdc import cassandra
+from pyspark.sql import SparkSession
+from pyspark.sql import Row
 from pyspark.sql.types import IntegerType
 from pyspark.sql.types import StringType
 from pyspark.sql.types import StructField
@@ -12,39 +14,33 @@ def table():
 
 
 def schema():
-    """ Schema for tile dataframe 
-
-    TODO:  Consider ArrayType of ByteType for model persistence if necessary
-
-    """
+    """ Schema for tile dataframe """
     
     return StructType([
-        StructField('x'    ,   IntegerType(), nullable=False),
-        StructField('y'    ,   IntegerType(), nullable=False),
+        StructField('tx',      IntegerType(), nullable=False),
+        StructField('ty',      IntegerType(), nullable=False),
         StructField('name',    StringType(),  nullable=False),
         StructField('model',   StringType(),  nullable=False),
-        StructField('updated', StringType(),    nullable=False)
+        StructField('updated', StringType(),  nullable=False)
     ])
 
 
-def rdd():
-    return NotImplemented    
-
-
-def dataframe(ctx, x, y, name, model):
+def dataframe(ctx, tx, ty, name, model, updated):
     """ Create tile dataframe 
 
     Args:
-        ctx:   Spark context
-        x:     tile x
-        y:     tile y
-        name:  model name
-        model: trained model
+        ctx:     Spark context
+        tx:      tile x
+        ty:      tile y
+        name:    model name
+        model:   trained model
+        updated: iso format timestamp
 
     Returns:
         Dataframe matching tile.schema()
     """
-    pass
+    rows = [Row(tx=tx, ty=ty, name=name, model=model, updated=updated)]
+    return SparkSession(ctx).createDataFrame(rows)
 
 
 def read(ctx, ids):
@@ -59,7 +55,7 @@ def read(ctx, ids):
     """
     
     return ids.join(cassandra.read(ctx, table()),
-                    on=['x', 'y'],
+                    on=['tx', 'ty'],
                     how='inner')
 
 

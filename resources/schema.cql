@@ -15,7 +15,7 @@ CREATE TABLE IF NOT EXISTS ccdc_1_0.tile (
     ty         int,
     model      text,
     name       text,
-    updated    timestamp,
+    updated    text,
     PRIMARY KEY((tx, ty)))
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
