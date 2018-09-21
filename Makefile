@@ -1,6 +1,7 @@
 # pull the tag from version.txt
 TAG:=`cat version.txt`
 IMAGE:=usgseros/lcmap-ccdc
+KEYSPACE:=`head -1 resources/schema.cql |cut -d " " -f6`
 
 vertest:
 	@echo TAG:$(TAG)
@@ -33,7 +34,8 @@ db-schema:
 	docker cp resources/schema.cql ccdc-cassandra:/
 	docker exec -u root ccdc-cassandra cqlsh localhost -f schema.cql
 
-#db-schema-d: deps-up-d breathe db-schema
+db-drop:
+	docker exec -u root ccdc-cassandra cqlsh localhost -e "DROP KEYSPACE $(KEYSPACE)";
 
 spark-lib:
 	@rm -rf resources/spark
