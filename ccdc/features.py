@@ -13,7 +13,7 @@ def join(dfs):
         combined dataframe
     """
     return dfs['aux'].join(dfs['ccd'],
-                           on=['chipx', 'chipy', 'pixelx', 'pixely'],
+                           on=['cx', 'cy', 'px', 'py'],
                            how='inner')
 
 
@@ -79,4 +79,4 @@ def dataframe(aux, ccd):
                      dependent,
                      independent)
     
-    return df.select(['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday', 'label', 'features']) 
+    return df.select(['cx', 'cy', 'px', 'py', 'sday', 'eday', 'label', 'features']) 

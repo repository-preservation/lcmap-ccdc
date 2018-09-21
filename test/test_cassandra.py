@@ -1,5 +1,5 @@
-from ccdc    import cassandra
-from ccdc    import pyccd
+from ccdc import cassandra
+from ccdc import pyccd
 from pyspark import sql
 
 
@@ -22,16 +22,16 @@ def test_read_write(spark_context, timeseries_rdd):
 
     ctx       = spark_context
     # create a dataframe from an rdd
-    rdd       = ctx.parallelize([(100, -100, 200, -200, 33, 44), (300, -300, 400, -400, 55, 66)])
-    layers    = rdd.map(lambda x: sql.Row(chipx=x[0], chipy=x[1], pixelx=x[2], pixely=x[3], sday=x[4], eday=x[5]))
+    rdd       = ctx.parallelize([(100, -100, 200, -200), (300, -300, 400, -400)])
+    layers    = rdd.map(lambda x: sql.Row(cx=x[0], cy=x[1], px=x[2], py=x[3], sday='1999-01-01', eday='1999-12-31'))
     sctx      = sql.SQLContext(ctx)
     dataframe = sctx.createDataFrame(layers)
 
     # write the dataframe to cassandra. cassandra.write returns NoneType, not a dataframe
-    cassandra.write(ctx, dataframe, 'data')
+    cassandra.write(ctx, dataframe, 'segment')
 
     # read the table into a dataframe
-    read_dataframe = cassandra.read(spark_context, 'data')
-    assert set([i.asDict()["chipx"] for i in read_dataframe.collect()]) == set([100, 300])
+    read_dataframe = cassandra.read(spark_context, 'segment')
+    assert set([i.asDict()["cx"] for i in read_dataframe.collect()]) == set([100, 300])
 
 

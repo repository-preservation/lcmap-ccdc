@@ -4,16 +4,10 @@ from ccdc        import timeseries
 from copy        import deepcopy
 from pyspark     import SparkContext
 from pyspark.sql import SparkSession, SQLContext
-from .shared     import merlin_grid_partial
-from .shared     import merlin_near_partial
-from .shared     import merlin_snap_partial
-from .shared     import merlin_regy_partial
-from .shared     import merlin_chip_partial
-from .shared     import merlin_frmt_partial
 
 import ccdc
 import pytest
-
+import test
 
 def get_chip_ids_rdd(chipids):
     sc = SparkSession(SparkContext.getOrCreate()).sparkContext
@@ -25,22 +19,22 @@ def ids_rdd():
 
 @pytest.fixture()
 def merlin_ard_config():
-    mock_cfg = deepcopy(ccdc.ARD)
-    mock_cfg['near_fn'] = merlin_near_partial
-    mock_cfg['grid_fn'] = merlin_grid_partial
-    mock_cfg['snap_fn'] = merlin_snap_partial
-    mock_cfg['registry_fn'] = merlin_regy_partial
-    mock_cfg['chips_fn'] = merlin_chip_partial
-    mock_cfg['format_fn'] = merlin_frmt_partial
-    return mock_cfg
+    cfg = deepcopy(ccdc.ARD)
+    cfg['near_fn'] = test.merlin_near_partial
+    cfg['grid_fn'] = test.merlin_grid_partial
+    cfg['snap_fn'] = test.merlin_snap_partial
+    cfg['registry_fn'] = test.merlin_regy_partial
+    cfg['chips_fn'] = test.merlin_chip_partial
+    cfg['format_fn'] = test.merlin_frmt_partial
+    return cfg
 
 @pytest.fixture()
 def merlin_aux_config():
-    mock_cfg = deepcopy(ccdc.AUX)
-    mock_cfg['near_fn'] = merlin_near_partial
-    mock_cfg['grid_fn'] = merlin_grid_partial
-    mock_cfg['snap_fn'] = merlin_snap_partial
-    return mock_cfg
+    cfg = deepcopy(ccdc.AUX)
+    cfg['near_fn'] = test.merlin_near_partial
+    cfg['grid_fn'] = test.merlin_grid_partial
+    cfg['snap_fn'] = test.merlin_snap_partial
+    return cfg
 
 @pytest.fixture()
 def spark_context():

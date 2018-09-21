@@ -1,6 +1,6 @@
 FROM usgseros/lcmap-spark:1.1.0-develop
 
-RUN sudo /usr/local/bin/conda install scipy scikit-learn=0.18 --yes
+RUN sudo /usr/local/bin/conda install cython scipy scikit-learn=0.18 --yes
 RUN mkdir -p ccdc
 RUN sudo localedef -i en_US -f UTF-8 en_US.UTF-8
 ENV LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8

@@ -9,15 +9,15 @@ import ccdc
 def chip_schema():
     """Schema for ids dataframe"""
     
-    return StructType([StructField('chipx', IntegerType(), nullable=False),
-                       StructField('chipy', IntegerType(), nullable=False)])
+    return StructType([StructField('cx', IntegerType(), nullable=False),
+                       StructField('cy', IntegerType(), nullable=False)])
 
 
 def tile_schema():
     """Schema for tile ids dataframe"""
 
-    return StructType([StructField('tilex', IntegerType(), nullable=False),
-                       StructField('tiley', IntegerType(), nullable=False)])
+    return StructType([StructField('tx', IntegerType(), nullable=False),
+                       StructField('ty', IntegerType(), nullable=False)])
 
 
 def rdd(ctx, xys):

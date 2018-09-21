@@ -30,10 +30,10 @@ def schema(name):
         StructType: Dataframe schema
     """
     
-    s = {'ard': StructType([StructField('chipx', IntegerType(), nullable=False),
-                            StructField('chipy', IntegerType(), nullable=False),
-                            StructField('pixelx', IntegerType(), nullable=False),
-                            StructField('pixely', IntegerType(), nullable=False),
+    s = {'ard': StructType([StructField('cx', IntegerType(), nullable=False),
+                            StructField('cy', IntegerType(), nullable=False),
+                            StructField('px', IntegerType(), nullable=False),
+                            StructField('py', IntegerType(), nullable=False),
                             StructField('dates', ArrayType(IntegerType(), False), nullable=False),
                             StructField('blues', ArrayType(IntegerType(), False), nullable=False),
                             StructField('greens', ArrayType(IntegerType(), False), nullable=False),
@@ -43,10 +43,10 @@ def schema(name):
                             StructField('swir2s', ArrayType(IntegerType(), False), nullable=False),
                             StructField('thermals', ArrayType(IntegerType(), False), nullable=False),
                             StructField('qas', ArrayType(IntegerType(), False), nullable=False)]),
-         'aux': StructType([StructField('chipx', IntegerType(), nullable=False),
-                            StructField('chipy', IntegerType(), nullable=False),
-                            StructField('pixelx', IntegerType(), nullable=False),
-                            StructField('pixely', IntegerType(), nullable=False),
+         'aux': StructType([StructField('cx', IntegerType(), nullable=False),
+                            StructField('cy', IntegerType(), nullable=False),
+                            StructField('px', IntegerType(), nullable=False),
+                            StructField('py', IntegerType(), nullable=False),
                             StructField('dates', ArrayType(IntegerType(), False), nullable=False),
                             StructField('dem', ArrayType(FloatType(), False), nullable=True),
                             StructField('trends', ArrayType(IntegerType(), False), nullable=False),
@@ -65,10 +65,10 @@ def converter():
         func: A Python function to convert an rdd to dataframe
     """
 
-    return lambda x: {'chipx':  int(x[0][0]),
-                      'chipy':  int(x[0][1]),
-                      'pixelx': int(x[0][2]),
-                      'pixely': int(x[0][3]),
+    return lambda x: {'cx': int(x[0][0]),
+                      'cy': int(x[0][1]),
+                      'px': int(x[0][2]),
+                      'py': int(x[0][3]),
                       **denumpify(x[1])}
 
 
@@ -99,7 +99,7 @@ def rdd(ctx, cids, acquired, cfg, name=__name__):
         cfg: A Merlin configuration
 
     Returns:
-        RDD of time series: ((chipx, chipy, pixelx, pixely), {data}) 
+        RDD of time series: ((cx, cy, px, py), {data}) 
 
     Example:
     >>> execute(sc, [(0,0)], '1980-01-01/2017-01-01', {a_merlin_cfg})
@@ -135,7 +135,7 @@ def ard(ctx, cids, acquired, cfg=ccdc.ARD):
         acquired (str): ISO8601 date range: 1980-01-01/2017-12-31
 
     Returns:
-        ARD dataframe: ((chipx, chipy, pixelx, pixely), {data}) 
+        ARD dataframe: ((cx, cy, px, py), {data}) 
     """
     
     return dataframe(ctx=ctx,
@@ -155,7 +155,7 @@ def aux(ctx, cids, acquired, cfg=ccdc.AUX):
         acquired (str): ISO8601 date range: 1980-01-01/2017-12-31
 
     Returns:
-        Aux dataframe ((chipx, chipy, pixelx, pixely), {data}) 
+        Aux dataframe ((cx, cy, px, py), {data}) 
     """
     
     return dataframe(ctx=ctx,

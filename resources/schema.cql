@@ -1,17 +1,72 @@
 CREATE KEYSPACE IF NOT EXISTS ccdc_1_0
 WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
 
-/* If sday and eday are 0, there was no change detected for that location
 
- Data dictionary:
+/*******************************************************************
+ tx:      tile upper left x
+ ty:      tile upper left y
+ model:   model coefficients
+ name:    model name
+ updated: timestamp of last model update
+*******************************************************************/
 
- chipx:  upper left x of the chip
- chipy:  upper left y of the chip
- pixelx: x pixel coordinate
- pixely: y pixel coordinate
- sday:   start day
- eday:   end day
- bday:   break day
+CREATE TABLE IF NOT EXISTS ccdc_1_0.tile (
+    tx         int,
+    ty         int,
+    model      text,
+    name       text,
+    updated    text,
+    PRIMARY KEY((tx, ty)))
+WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
+AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
+
+
+/*******************************************************************
+ cx: upper left x of the chip
+ cy: upper left y of the chip
+ dates: ARD timestamps for this chip
+*******************************************************************/
+
+CREATE TABLE IF NOT EXISTS ccdc_1_0.chip (
+    cx         int,
+    cy         int,
+    dates      frozen<list<text>>,
+    PRIMARY KEY((cx, cy)))
+WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
+AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
+
+
+/*******************************************************************
+ cx:   upper left x of the chip
+ cy:   upper left y of the chip
+ px:   x pixel coordinate
+ py:   y pixel coordinate
+ mask: processing mask, 0/1 for not used/used in calculation
+       (applies against dates)
+*******************************************************************/
+
+CREATE TABLE IF NOT EXISTS ccdc_1_0.pixel (
+    cx         int,
+    cy         int,
+    px         int,
+    py         int,
+    mask frozen<list<tinyint>>,,
+    PRIMARY KEY((cx, cy), px, py))
+WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
+AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
+
+
+
+/*******************************************************************
+ If sday and eday are 0, there was no change detected for that location
+
+ cx:     upper left x of the chip
+ cy:     upper left y of the chip
+ px:     x pixel coordinate
+ py:     y pixel coordinate
+ sday:   start date
+ eday:   end date
+ bday:   break date
  chprob: change_probability
  curqa:  curve_qa
  blmag:  blue magnitude
@@ -42,22 +97,17 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
  s1int:  swir1 intercept
  s2int:  swir2 intercept
  thint:  thermal intercept
- dates:  ARD dates for this chip (static)
- snprob: snow probability
- waprob: water probability
- clprob: cloud probability
- prmask: processing mask, 0/1 for not used/used in calculation (applies against dates)
  rfrawp: random forest raw prediction
-*/
+*******************************************************************/
 
-CREATE TABLE IF NOT EXISTS ccdc_1_0.data (
-    chipx  int,
-    chipy  int,
-    pixelx int,
-    pixely int,
-    sday   int,
-    eday   int,
-    bday   int,
+CREATE TABLE IF NOT EXISTS ccdc_1_0.segment (
+    cx     int,
+    cy     int,
+    px     int,
+    py     int,
+    sday   text,
+    eday   text,
+    bday   text,
     chprob float,
     curqa  tinyint,
     blmag  float,
@@ -88,52 +138,8 @@ CREATE TABLE IF NOT EXISTS ccdc_1_0.data (
     s1int  float,
     s2int  float,
     thint  float,    
-    dates  frozen<list<int>> static,
-    snprob float,
-    waprob float,
-    clprob float,
-    prmask frozen<list<tinyint>>,
     rfrawp frozen<list<float>>,
-    PRIMARY KEY((chipx, chipy), pixelx, pixely, sday, eday)
-)
-WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
-AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
-
-
-/* 
- Data dictionary:
- tilex:          tile upper left x
- tiley:          tile upper left y
- h:              tile h designation
- v:              tile v designation
- acq:            max date range for input observations
- detector:       name and version of detector 
- dran:           timestamp detection was run 
- segcnt:         number of change segments identified (including 1 non detection per pixel)
- msday:          model start day (ordinal)
- meday:          model end day (ordinal)
- classifier:     name and version of classifier
- cran:           timestamp classifier was run
- ardurl:         url ard data was obtained from
- auxurl:         url aux data was obtained from 
-*/
-
-CREATE TABLE IF NOT EXISTS ccdc_1_0.metadata (
-    tilex      int,
-    tiley      int,
-    h          int,
-    v          int,
-    acq        text,
-    detector   text,
-    dran       text,
-    segcnt     int,
-    msday      int,
-    meday      int,
-    classifier text,
-    cran       text,
-    ardurl     text,
-    auxurl     text,
-    PRIMARY KEY((tilex, tiley))
-)
+    PRIMARY KEY((cx, cy), px, py, sday, eday))
+    
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };

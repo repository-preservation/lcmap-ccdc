@@ -64,7 +64,7 @@ def train(ctx, cids, msday, meday, acquired):
                      .filter('trends[0] NOT IN (0, 9)')\
                      .repartition(ccdc.PRODUCT_PARTITIONS).persist()
     
-    aid  = aux.select(aux.chipx, aux.chipy).distinct()
+    aid  = aux.select(aux.cx, aux.cy).distinct()
 
     ccd  = pyccd.read(ctx, aid).filter('sday >= {} AND eday <= {}'.format(msday, meday))
 
@@ -99,7 +99,7 @@ def classify(model, dataframe):
     """
 
     return model.transform(dataframe)\
-                .select(['chipx', 'chipy', 'pixelx', 'pixely', 'sday', 'eday', 'rawPrediction'])\
+                .select(['cx', 'cy', 'px', 'py', 'sday', 'eday', 'rawPrediction'])\
                 .withColumnRenamed('rawPrediction', 'rfrawp')
 
 
@@ -114,10 +114,10 @@ def dedensify(dataframe):
         dataframe with rfrawp converted to standard Python types
     """
 
-    return dataframe.rdd.map(lambda r: Row(chipx=r['chipx'],
-                                           chipy=r['chipy'],
-                                           pixelx=r['pixelx'],
-                                           pixely=r['pixely'],
+    return dataframe.rdd.map(lambda r: Row(chipx=r['cx'],
+                                           chipy=r['cy'],
+                                           pixelx=r['px'],
+                                           pixely=r['py'],
                                            sday=r['sday'],
                                            eday=r['eday'],
                                            rfrawp=denumpify(list(r['rfrawp'])))).toDF()
