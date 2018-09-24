@@ -50,7 +50,7 @@ def acquired():
     return '{}/{}'.format(start, end)
 
 
-def detect(xys, ctx, acquired, log):
+def detect(xys, ctx, acquired, log, chunk_size):
     """Run change detection for a group of xys
 
     Args:
@@ -63,7 +63,7 @@ def detect(xys, ctx, acquired, log):
     log.info('finding ccd segments for {} chips'.format(len(xys)))
     log.debug(xys)                
 
-    cids = ids.rdd(ctx=ctx, xys=list(xys))
+    cids = ids.rdd(ctx=ctx, xys=list(xys), chunk_size=chunk_size)
     ard  = timeseries.rdd(ctx=ctx, cids=cids, acquired=acquired, cfg=ccdc.ARD, name='ard')
     ccd  = pyccd.dataframe(ctx=ctx, rdd=pyccd.rdd(ctx=ctx, timeseries=ard)).persist()
     _    = chip.write(ctx=ctx, df=chip.dataframe(ctx=ctx, ccd=ccd))
@@ -100,12 +100,11 @@ def changedetection(x, y, acquired=acquired(), number=2500, chunk_size=2500):
         log.debug("chunks:{}".format(chunks))
         log.debug("lcmap-merlin profile:{}".format(ARD))
         log.info(str(merge(tile, {'acquired': acquired,
-                                  'input-partitions': ccdc.INPUT_PARTITIONS,
                                   'product-partitions': ccdc.PRODUCT_PARTITIONS,
                                   'chips': number,
                                   'chunk_size': chunk_size})))
 
-        fn     = partial(detect, ctx=ctx, acquired=acquired, log=log)
+        fn     = partial(detect, ctx=ctx, acquired=acquired, log=log, chunk_size=chunk_size)
         result = tuple(functions.flatten(map(fn, chunks)))
 
         log.info('{} ({}) complete'.format(name, len(result)))

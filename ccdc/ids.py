@@ -20,7 +20,7 @@ def tile_schema():
                        StructField('ty', IntegerType(), nullable=False)])
 
 
-def rdd(ctx, xys):
+def rdd(ctx, xys, chunk_size=1):
     """Creates rdd of xy ids
     
     Args:
@@ -37,7 +37,7 @@ def rdd(ctx, xys):
     log.debug('xys datatype:{}'.format(type(xys)))
     log.trace('xys:{}'.format(xys))
     
-    return ctx.parallelize(xys, ccdc.INPUT_PARTITIONS)
+    return ctx.parallelize(xys, chunk_size)
      
     
 def dataframe(ctx, rdd, schema):
