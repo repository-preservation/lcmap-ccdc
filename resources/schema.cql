@@ -1,4 +1,4 @@
-CREATE KEYSPACE IF NOT EXISTS ccdc_1_0
+CREATE KEYSPACE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0
 WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
 
 
@@ -10,7 +10,7 @@ WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1};
  updated: timestamp of last model update
 *******************************************************************/
 
-CREATE TABLE IF NOT EXISTS ccdc_1_0.tile (
+CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.tile (
     tx         int,
     ty         int,
     model      text,
@@ -27,7 +27,7 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
  dates: ARD timestamps for this chip
 *******************************************************************/
 
-CREATE TABLE IF NOT EXISTS ccdc_1_0.chip (
+CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.chip (
     cx         int,
     cy         int,
     dates      frozen<list<text>>,
@@ -45,7 +45,7 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
        (applies against dates)
 *******************************************************************/
 
-CREATE TABLE IF NOT EXISTS ccdc_1_0.pixel (
+CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.pixel (
     cx         int,
     cy         int,
     px         int,
@@ -97,10 +97,9 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
  s1int:  swir1 intercept
  s2int:  swir2 intercept
  thint:  thermal intercept
- rfrawp: random forest raw prediction
 *******************************************************************/
 
-CREATE TABLE IF NOT EXISTS ccdc_1_0.segment (
+CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.segment (
     cx     int,
     cy     int,
     px     int,
@@ -138,7 +137,30 @@ CREATE TABLE IF NOT EXISTS ccdc_1_0.segment (
     s1int  float,
     s2int  float,
     thint  float,    
-    rfrawp frozen<list<float>>,
+    PRIMARY KEY((cx, cy), px, py, sday, eday))
+    
+WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
+AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
+
+
+/*******************************************************************
+ cx:   upper left x of the chip
+ cy:   upper left y of the chip
+ px:   x pixel coordinate
+ py:   y pixel coordinate
+ sday: start date
+ eday: end date
+ prob: xgboost classification probabilities
+*******************************************************************/
+
+CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.prediction (
+    cx   int,
+    cy   int,
+    px   int,
+    py   int,
+    sday text,
+    eday text,
+    prob frozen<list<float>>,
     PRIMARY KEY((cx, cy), px, py, sday, eday))
     
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }

@@ -39,7 +39,7 @@ db-drop:
 
 spark-lib:
 	@rm -rf resources/spark
-	@mkdir -p resourcesx
+	@mkdir -p resources
 	@wget -P resources http://mirrors.ocf.berkeley.edu/apache/spark/spark-2.3.1/spark-2.3.1-bin-hadoop2.7.tgz
 	tar -C resources -zxf resources/spark-2.3.1-bin-hadoop2.7.tgz
 	mv resources/spark-2.3.1-bin-hadoop2.7 resources/spark
