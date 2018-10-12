@@ -1,10 +1,10 @@
-FROM usgseros/lcmap-spark:1.1.0-develop
+FROM usgseros/lcmap-spark:1.2.0-develop
 
 RUN sudo yum install -y git
-RUN sudo /usr/local/bin/conda install cython scipy scikit-learn=0.18 --yes
+RUN sudo /usr/local/bin/conda install cython numpy scipy scikit-learn --yes
 RUN mkdir -p ccdc
 RUN sudo localedef -i en_US -f UTF-8 en_US.UTF-8
-ENV LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8
+ENV LC_ALL=en_US.UTF-8 LANG=en_US.UTF-8 PYTHONWARNINGS="ignore"
 COPY .test_env test.sh setup.py version.txt requirements-dev.txt Makefile README.rst ./ccdc/
 COPY ccdc ccdc/ccdc
 COPY test ccdc/test

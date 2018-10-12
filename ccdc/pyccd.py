@@ -77,7 +77,6 @@ def schema():
         StructField('thint' , FloatType(), nullable=True),
         StructField('dates' , ArrayType(StringType()), nullable=False),
         StructField('mask'  , ArrayType(ByteType()), nullable=True),
-        StructField('rfrawp', ArrayType(FloatType()), nullable=True)
     ])
 
 

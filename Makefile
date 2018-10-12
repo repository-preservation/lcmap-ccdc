@@ -1,6 +1,14 @@
-# pull the tag from version.txt
-TAG:=`cat version.txt`
-IMAGE:=usgseros/lcmap-ccdc
+.DEFAULT_GOAL := docker-build
+VERSION    := `cat version.txt`
+IMAGE      := usgseros/lcmap-ccdc
+BRANCH     := $(or $(TRAVIS_BRANCH),`git rev-parse --abbrev-ref HEAD`)
+BRANCH     := $(shell echo $(BRANCH) | tr / -)
+BUILD_TAG  := $(IMAGE):build
+LATEST_TAG := $(IMAGE):latest
+TAG        := $(shell if [ "$(BRANCH)" = "master" ];\
+                         then echo "$(IMAGE):$(VERSION)";\
+                         else echo "$(IMAGE):$(VERSION)-$(BRANCH)";\
+                      fi)
 KEYSPACE:=`head -1 resources/schema.cql |cut -d " " -f6`
 
 vertest:
@@ -11,12 +19,16 @@ sleep:
 	sleep 20
 
 docker-build:
-	docker build -t $(IMAGE):$(TAG) -t $(IMAGE):latest $(PWD)
+	@docker build -t $(BUILD_TAG) --rm=true --compress $(PWD)
+
+docker-tag:
+	@docker tag $(BUILD_TAG) $(TAG)
+	@docker tag $(BUILD_TAG) $(LATEST_TAG)
 
 docker-push:
 	docker login
-	docker push $(IMAGE):$(TAG)
-	docker push $(IMAGE):latest
+	docker push $(TAG)
+	docker push $(LATEST_TAG)
 
 docker-shell:
 	docker run -it --entrypoint=/bin/bash $(IMAGE):latest

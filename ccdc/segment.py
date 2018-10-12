@@ -52,7 +52,6 @@ def schema():
         StructField('s1int' , FloatType(), nullable=True),
         StructField('s2int' , FloatType(), nullable=True),
         StructField('thint' , FloatType(), nullable=True),
-        StructField('rfrawp', ArrayType(FloatType()), nullable=True)
     ])
 
 
