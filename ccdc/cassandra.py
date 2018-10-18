@@ -23,7 +23,8 @@ def options(table):
         'spark.cassandra.input.consistency.level': ccdc.CASSANDRA_INPUT_CONSISTENCY_LEVEL,
         'spark.cassandra.output.consistency.level': ccdc.CASSANDRA_OUTPUT_CONSISTENCY_LEVEL,
         'spark.cassandra.output.concurrent.writes': ccdc.CASSANDRA_OUTPUT_CONCURRENT_WRITES,
-        'spark.cassandra.output.batch.grouping.buffer.size': 500
+        'spark.cassandra.output.batch.grouping.buffer.size': ccdc.CASSANDRA_OUTPUT_BATCH_GROUPING_BUFFER_SIZE,
+        'spark.cassandra.output.batch.size.rows': ccdc.CASSANDRA_OUTPUT_BATCH_SIZE_ROWS
     }
 
 

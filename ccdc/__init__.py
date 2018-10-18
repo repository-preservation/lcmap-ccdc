@@ -10,20 +10,22 @@ import socket
 
 # All of these are evaluated at import time!!!  That means the env vars need
 # to be set before the ccdc module is imported.  
-HOST                               = socket.gethostbyname(socket.getfqdn())
-ARD_CHIPMUNK                       = os.getenv('ARD_CHIPMUNK', 'http://localhost:5656')
-AUX_CHIPMUNK                       = os.getenv('AUX_CHIPMUNK', 'http://localhost:5656')
-CASSANDRA_HOST                     = os.getenv('CASSANDRA_HOST', HOST)
-CASSANDRA_PORT                     = int(os.getenv('CASSANDRA_PORT', 9043))
-CASSANDRA_USER                     = os.getenv('CASSANDRA_USER', 'cassandra')
-CASSANDRA_PASS                     = os.getenv('CASSANDRA_PASS', 'cassandra')
-CASSANDRA_OUTPUT_CONCURRENT_WRITES = int(os.getenv('CASSANDRA_OUTPUT_CONCURRENT_WRITES', 2))
-CASSANDRA_OUTPUT_CONSISTENCY_LEVEL = os.getenv('CASSANDRA_OUTPUT_CONSISTENCY_LEVEL', 'QUORUM')
-CASSANDRA_INPUT_CONSISTENCY_LEVEL  = os.getenv('CASSANDRA_INPUT_CONSISTENCY_LEVEL', 'QUORUM')
-INPUT_PARTITIONS                   = int(os.getenv('INPUT_PARTITIONS', 1))
-PRODUCT_PARTITIONS                 = int(os.getenv('PRODUCT_PARTITIONS', multiprocessing.cpu_count() * 8))
-ARD                                = merlin.cfg.get(profile='chipmunk-ard', env={'CHIPMUNK_URL': ARD_CHIPMUNK}) 
-AUX                                = merlin.cfg.get(profile='chipmunk-aux', env={'CHIPMUNK_URL': AUX_CHIPMUNK}) 
+HOST                                         = socket.gethostbyname(socket.getfqdn())
+ARD_CHIPMUNK                                 = os.getenv('ARD_CHIPMUNK', 'http://localhost:5656')
+AUX_CHIPMUNK                                 = os.getenv('AUX_CHIPMUNK', 'http://localhost:5656')
+CASSANDRA_HOST                               = os.getenv('CASSANDRA_HOST', HOST)
+CASSANDRA_PORT                               = int(os.getenv('CASSANDRA_PORT', 9043))
+CASSANDRA_USER                               = os.getenv('CASSANDRA_USER', 'cassandra')
+CASSANDRA_PASS                               = os.getenv('CASSANDRA_PASS', 'cassandra')
+CASSANDRA_OUTPUT_CONCURRENT_WRITES           = int(os.getenv('CASSANDRA_OUTPUT_CONCURRENT_WRITES', 1))
+CASSANDRA_OUTPUT_BATCH_GROUPING_BUFFER_SIZE  = int(os.getenv('CASSANDRA_OUTPUT_BATCH_GROUPING_BUFFER_SIZE', 50))
+CASSANDRA_OUTPUT_BATCH_SIZE_ROWS             = int(os.getenv('CASSANDRA_OUTPUT_BATCH_SIZE_ROWS', 10000))
+CASSANDRA_OUTPUT_CONSISTENCY_LEVEL           = os.getenv('CASSANDRA_OUTPUT_CONSISTENCY_LEVEL', 'QUORUM')
+CASSANDRA_INPUT_CONSISTENCY_LEVEL            = os.getenv('CASSANDRA_INPUT_CONSISTENCY_LEVEL', 'QUORUM')
+INPUT_PARTITIONS                             = int(os.getenv('INPUT_PARTITIONS', 1))
+PRODUCT_PARTITIONS                           = int(os.getenv('PRODUCT_PARTITIONS', multiprocessing.cpu_count() * 8))
+ARD                                          = merlin.cfg.get(profile='chipmunk-ard', env={'CHIPMUNK_URL': ARD_CHIPMUNK}) 
+AUX                                          = merlin.cfg.get(profile='chipmunk-aux', env={'CHIPMUNK_URL': AUX_CHIPMUNK}) 
 
 
 def keyspace():
