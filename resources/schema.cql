@@ -158,9 +158,11 @@ CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.prediction (
     cy   int,
     px   int,
     py   int,
+    sday text,
+    eday text,
     date text,
     prob frozen<list<float>>,
-    PRIMARY KEY((cx, cy), px, py, date))
+    PRIMARY KEY((cx, cy), px, py, sday, eday, date))
     
 WITH COMPRESSION = { 'sstable_compression': 'LZ4Compressor' }
 AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
