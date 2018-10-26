@@ -153,7 +153,7 @@ AND  COMPACTION  = { 'class': 'LeveledCompactionStrategy' };
  prob: xgboost classification probabilities
 *******************************************************************/
 
-CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.prediction (
+CREATE TABLE IF NOT EXISTS ard_cu_c01_v01_aux_cu_v01_ccdc_1_0.annual_prediction (
     cx   int,
     cy   int,
     px   int,
